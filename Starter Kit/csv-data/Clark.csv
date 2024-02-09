@@ -1,0 +1,14 @@
+README for Supplementary Table  1
+This supplementary table contains 3 tabs as follows:  
+""
+Tab1: ccRCC_clinical_characteristics
+"Notes: Tab1 provides clinical data (i.e. specimen pathological aliquot, gender, age, race, grade, etc.) for CPTAC ccRCC cohort and was used for Figures 1, S1, 3, S3, 4, S4, 5, S5, 6, 7, S7."
+""
+Tab2: data_sample_availability
+"Notes: Tab2 provides the number of samples for each ""omics"" dataset"
+""
+Tab3: WGS-WES_sequencing_depth
+"Notes: Tab3 provides the total number of reads, mapped reads, and coverage of whole genome sequencing (WGS) and whole exosome sequencing (WXS)"
+""
+Tab4: RNA-seq_sequencing_depth
+"Notes: Tab4 provides the total number of reads, mapped reads, and splicing numbers of RNA sequencing"
