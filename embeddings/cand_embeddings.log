@@ -1,0 +1,199 @@
+Generated embeddings for Krug.csv, column Supplemental Table 1.
+Generated embeddings for Krug.csv, column Unnamed: 1.
+Generated embeddings for Clark.csv, column README for Supplementary Table  1.
+Not enough data in Sheet to generate embeddings.
+Not enough data in Description to generate embeddings.
+Generated embeddings for McDermott.csv, column Patient Information.
+Generated embeddings for McDermott.csv, column Unnamed: 1.
+Generated embeddings for McDermott.csv, column Cancer.
+Generated embeddings for McDermott.csv, column Normal.
+Generated embeddings for Gillette.csv, column Table S1A: Metadata associated with LUAD patients and tumors  related to STAR methods, Figures 1-7.
+Generated embeddings for Gillette.csv, column Unnamed: 1.
+Not enough data in README for Table S1 to generate embeddings.
+Generated embeddings for Wang.csv, column Unnamed: 1.
+Generated embeddings for Wang.csv, column Unnamed: 2.
+Generated embeddings for Satpathy.csv, column Table S1A: Metadata associated with LSCC patients and tumors  related to STAR methods, Figures 1-7.
+Generated embeddings for Satpathy.csv, column Unnamed: 1.
+Generated embeddings for Cao.csv, column README for Table S1 Clinical information and molecular phenotypes of the samples analyzed in this study, related to Figure 1 and Figure S1..
+Generated embeddings for Cao.csv, column Unnamed: 1.
+Generated embeddings for Huang.csv, column Sheet.
+Generated embeddings for Huang.csv, column Description.
+Generated embeddings for Dou.csv, column idx.
+Generated embeddings for Dou.csv, column Proteomics_Participant_ID.
+Generated embeddings for Dou.csv, column Case_excluded.
+Generated embeddings for Dou.csv, column Proteomics_TMT_batch.
+Generated embeddings for Dou.csv, column Proteomics_TMT_plex.
+Generated embeddings for Dou.csv, column Proteomics_TMT_channel.
+Generated embeddings for Dou.csv, column Proteomics_Parent_Sample_IDs.
+Generated embeddings for Dou.csv, column Proteomics_Aliquot_ID.
+Generated embeddings for Dou.csv, column Proteomics_Tumor_Normal.
+Generated embeddings for Dou.csv, column Proteomics_OCT.
+Generated embeddings for Dou.csv, column Country.
+Generated embeddings for Dou.csv, column Histologic_Grade_FIGO.
+Generated embeddings for Dou.csv, column Myometrial_invasion_Specify.
+Generated embeddings for Dou.csv, column Histologic_type.
+Generated embeddings for Dou.csv, column Treatment_naive.
+Generated embeddings for Dou.csv, column Tumor_purity.
+Generated embeddings for Dou.csv, column Path_Stage_Primary_Tumor-pT.
+Generated embeddings for Dou.csv, column Path_Stage_Reg_Lymph_Nodes-pN.
+Generated embeddings for Dou.csv, column Clin_Stage_Dist_Mets-cM.
+Generated embeddings for Dou.csv, column Path_Stage_Dist_Mets-pM.
+Generated embeddings for Dou.csv, column tumor_Stage-Pathological.
+Generated embeddings for Dou.csv, column FIGO_stage.
+Generated embeddings for Dou.csv, column LVSI.
+Generated embeddings for Dou.csv, column BMI.
+Generated embeddings for Dou.csv, column Age.
+Generated embeddings for Dou.csv, column Diabetes.
+Generated embeddings for Dou.csv, column Race.
+Generated embeddings for Dou.csv, column Ethnicity.
+Generated embeddings for Dou.csv, column Gender.
+Generated embeddings for Dou.csv, column Tumor_Site.
+Generated embeddings for Dou.csv, column Tumor_Site_Other.
+Generated embeddings for Dou.csv, column Tumor_Focality.
+Generated embeddings for Dou.csv, column Tumor_Size_cm.
+Generated embeddings for Dou.csv, column Estrogen_Receptor.
+Generated embeddings for Dou.csv, column Estrogen_Receptor_%.
+Generated embeddings for Dou.csv, column Progesterone_Receptor.
+Generated embeddings for Dou.csv, column Progesterone_Receptor_%.
+Generated embeddings for Dou.csv, column MLH1.
+Generated embeddings for Dou.csv, column MLH2.
+Generated embeddings for Dou.csv, column MSH6.
+Generated embeddings for Dou.csv, column PMS2.
+Generated embeddings for Dou.csv, column p53.
+Generated embeddings for Dou.csv, column Other_IHC_specify.
+Generated embeddings for Dou.csv, column MLH1_Promoter_Hypermethylation.
+Generated embeddings for Dou.csv, column Num_full_term_pregnancies.
+Generated embeddings for Dou.csv, column EPIC_Bcells.
+Generated embeddings for Dou.csv, column EPIC_CAFs.
+Generated embeddings for Dou.csv, column EPIC_CD4_Tcells.
+Generated embeddings for Dou.csv, column EPIC_CD8_Tcells.
+Generated embeddings for Dou.csv, column EPIC_Endothelial.
+Generated embeddings for Dou.csv, column EPIC_Macrophages.
+Generated embeddings for Dou.csv, column EPIC_NKcells.
+Generated embeddings for Dou.csv, column EPIC_otherCells.
+Generated embeddings for Dou.csv, column CIBERSORT_B _cells _naive.
+Generated embeddings for Dou.csv, column CIBERSORT_B _cells _memory.
+Generated embeddings for Dou.csv, column CIBERSORT_Plasma _cells.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _CD8.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _CD4 _naive.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _CD4 _memory _resting.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _CD4 _memory _activated.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _follicular _helper.
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _regulatory _(Tregs).
+Generated embeddings for Dou.csv, column CIBERSORT_T _cells _gamma _delta.
+Generated embeddings for Dou.csv, column CIBERSORT_NK _cells _resting.
+Generated embeddings for Dou.csv, column CIBERSORT_NK _cells _activated.
+Generated embeddings for Dou.csv, column CIBERSORT_Monocytes.
+Generated embeddings for Dou.csv, column CIBERSORT_Macrophages _M0.
+Generated embeddings for Dou.csv, column CIBERSORT_Macrophages _M1.
+Generated embeddings for Dou.csv, column CIBERSORT_Macrophages _M2.
+Generated embeddings for Dou.csv, column CIBERSORT_Dendritic _cells _resting.
+Generated embeddings for Dou.csv, column CIBERSORT_Dendritic _cells _activated.
+Generated embeddings for Dou.csv, column CIBERSORT_Mast _cells _resting.
+Generated embeddings for Dou.csv, column CIBERSORT_Mast _cells _activated.
+Generated embeddings for Dou.csv, column CIBERSORT_Eosinophils.
+Generated embeddings for Dou.csv, column CIBERSORT_Neutrophils.
+Generated embeddings for Dou.csv, column CIBERSORT_Absolute _score.
+Generated embeddings for Dou.csv, column ESTIMATE_StromalScore.
+Generated embeddings for Dou.csv, column ESTIMATE_ImmuneScore.
+Generated embeddings for Dou.csv, column ESTIMATE_ESTIMATEScore.
+Generated embeddings for Dou.csv, column Stemness_score.
+Generated embeddings for Dou.csv, column ER_ESR1.
+Generated embeddings for Dou.csv, column PR_PGR.
+Generated embeddings for Dou.csv, column Pathway_activity_EGFR.
+Generated embeddings for Dou.csv, column Pathway_activity_Hypoxia.
+Generated embeddings for Dou.csv, column Pathway_activity_JAK.STAT.
+Generated embeddings for Dou.csv, column Pathway_activity_MAPK.
+Generated embeddings for Dou.csv, column Pathway_activity_NFkB.
+Generated embeddings for Dou.csv, column Pathway_activity_PI3K.
+Generated embeddings for Dou.csv, column Pathway_activity_TGFb.
+Generated embeddings for Dou.csv, column Pathway_activity_TNFa.
+Generated embeddings for Dou.csv, column Pathway_activity_Trail.
+Generated embeddings for Dou.csv, column Pathway_activity_VEGF.
+Generated embeddings for Dou.csv, column Pathway_activity_p53.
+Generated embeddings for Dou.csv, column TP53_ATM.
+Generated embeddings for Dou.csv, column TP53_CHEK2.
+Generated embeddings for Dou.csv, column TP53_MDM4.
+Generated embeddings for Dou.csv, column TP53_RPS6KA3.
+Generated embeddings for Dou.csv, column TP53_TP53.
+Generated embeddings for Dou.csv, column TP53_pathway.
+Generated embeddings for Dou.csv, column PI3K_AKT1.
+Generated embeddings for Dou.csv, column PI3K_AKT2.
+Generated embeddings for Dou.csv, column PI3K_AKT3.
+Generated embeddings for Dou.csv, column PI3K_DEPDC5.
+Generated embeddings for Dou.csv, column PI3K_DEPTOR.
+Generated embeddings for Dou.csv, column PI3K_INPP4B.
+Generated embeddings for Dou.csv, column PI3K_MAPKAP1.
+Generated embeddings for Dou.csv, column PI3K_MLST8.
+Generated embeddings for Dou.csv, column PI3K_MTOR.
+Generated embeddings for Dou.csv, column PI3K_NPRL2.
+Generated embeddings for Dou.csv, column PI3K_NPRL3.
+Generated embeddings for Dou.csv, column PI3K_PDK1.
+Generated embeddings for Dou.csv, column PI3K_PIK3CA.
+Generated embeddings for Dou.csv, column PI3K_PIK3CB.
+Generated embeddings for Dou.csv, column PI3K_PIK3R1.
+Generated embeddings for Dou.csv, column PI3K_PIK3R2.
+Generated embeddings for Dou.csv, column PI3K_PPP2R1A.
+Generated embeddings for Dou.csv, column PI3K_PTEN.
+Generated embeddings for Dou.csv, column PI3K_RHEB.
+Generated embeddings for Dou.csv, column PI3K_RICTOR.
+Generated embeddings for Dou.csv, column PI3K_RPS6.
+Generated embeddings for Dou.csv, column PI3K_RPS6KB1.
+Generated embeddings for Dou.csv, column PI3K_RPTOR.
+Generated embeddings for Dou.csv, column PI3K_STK11.
+Generated embeddings for Dou.csv, column PI3K_TSC1.
+Generated embeddings for Dou.csv, column PI3K_TSC2.
+Generated embeddings for Dou.csv, column PI3K_pathway.
+Generated embeddings for Dou.csv, column HRD_BRCA1.
+Generated embeddings for Dou.csv, column HRD_BRCA2.
+Generated embeddings for Dou.csv, column HRD_BRCA1_or_BRCA2.
+Generated embeddings for Dou.csv, column CNV_DEL.
+Generated embeddings for Dou.csv, column CNV_AMP.
+Generated embeddings for Dou.csv, column CNV_class.
+Generated embeddings for Dou.csv, column CNV_idx.
+Generated embeddings for Dou.csv, column CNV_1q_DEL.
+Generated embeddings for Dou.csv, column CNV_3q_DEL.
+Generated embeddings for Dou.csv, column CNV_4q_DEL.
+Generated embeddings for Dou.csv, column CNV_1q_AMP.
+Generated embeddings for Dou.csv, column CNV_3q_AMP.
+Generated embeddings for Dou.csv, column CNV_4q_AMP.
+Generated embeddings for Dou.csv, column Purity_Immune.
+Generated embeddings for Dou.csv, column Purity_Cancer.
+Generated embeddings for Dou.csv, column Purity_Stroma.
+Generated embeddings for Dou.csv, column MSI_status.
+Generated embeddings for Dou.csv, column POLE_subtype.
+Generated embeddings for Dou.csv, column JAK1_MS_INDEL.
+Generated embeddings for Dou.csv, column JAK1_Mutation.
+Generated embeddings for Dou.csv, column Log2_variant_per_Mbp.
+Generated embeddings for Dou.csv, column Log2_SNP_per_Mbp.
+Generated embeddings for Dou.csv, column Log2_INDEL_per_Mbp.
+Generated embeddings for Dou.csv, column Log2_variant_total.
+Generated embeddings for Dou.csv, column Log2_SNP_total.
+Generated embeddings for Dou.csv, column Log2_INDEL_total.
+Generated embeddings for Dou.csv, column Genomics_subtype.
+Generated embeddings for Dou.csv, column Mutation_signature_C>A.
+Generated embeddings for Dou.csv, column Mutation_signature_C>G.
+Generated embeddings for Dou.csv, column Mutation_signature_C>T.
+Generated embeddings for Dou.csv, column Mutation_signature_T>C.
+Generated embeddings for Dou.csv, column Mutation_signature_T>A.
+Generated embeddings for Dou.csv, column Mutation_signature_T>G.
+Generated embeddings for Dou.csv, column WXS_normal_sample_type.
+Generated embeddings for Dou.csv, column WXS_normal_filename.
+Generated embeddings for Dou.csv, column WXS_normal_UUID.
+Generated embeddings for Dou.csv, column WXS_tumor_sample_type.
+Generated embeddings for Dou.csv, column WXS_tumor_filename.
+Generated embeddings for Dou.csv, column WXS_tumor_UUID.
+Generated embeddings for Dou.csv, column WGS_normal_sample_type.
+Generated embeddings for Dou.csv, column WGS_normal_UUID.
+Generated embeddings for Dou.csv, column WGS_tumor_sample_type.
+Generated embeddings for Dou.csv, column WGS_tumor_UUID.
+Generated embeddings for Dou.csv, column RNAseq_R1_sample_type.
+Generated embeddings for Dou.csv, column RNAseq_R1_filename.
+Generated embeddings for Dou.csv, column RNAseq_R1_UUID.
+Generated embeddings for Dou.csv, column RNAseq_R2_sample_type.
+Generated embeddings for Dou.csv, column RNAseq_R2_filename.
+Generated embeddings for Dou.csv, column RNAseq_R2_UUID.
+Generated embeddings for Dou.csv, column miRNAseq_sample_type.
+Generated embeddings for Dou.csv, column miRNAseq_UUID.
+Generated embeddings for Dou.csv, column Methylation_available.
+Generated embeddings for Dou.csv, column Methylation_quality.
