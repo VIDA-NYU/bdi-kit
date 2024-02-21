@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-BASE_DIRECTORY = "Starter-Kit/raw-data"
+BASE_DIRECTORY = "data/datalake"
 EXTRACTED_TABLES_DIRECTORY = "data/extracted-tables"
 MIN_COLUMNS = 4
 MIN_ROWS = 4
