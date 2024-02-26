@@ -3,7 +3,11 @@ import pandas as pd
 from valentine.metrics import F1Score, PrecisionTopNPercent
 from valentine import valentine_match
 from valentine.algorithms import JaccardDistanceMatcher
+from valentine.algorithms import Coma
+from valentine.algorithms import SimilarityFlooding
+from valentine.algorithms import DistributionBased
 import pprint
+import value_matcher as vm
 pp = pprint.PrettyPrinter(indent=4, sort_dicts=True)
 
 EXTRACTED_TABLES_DIRECTORY = "data/extracted-tables"
@@ -17,8 +21,10 @@ SELECTED_COLS_THRESHOLD = 0.2
 
 def main():
     target_df = pd.read_csv(TARGET_TABLE)
+
+
     print(f'Looking for matching columns for:')  
-    print(f'Columns: {target_df.columns}')
+    # print(f'Columns: {target_df.columns}')
     pp.pprint(target_df)
     print('\n\n')
 
@@ -28,9 +34,14 @@ def main():
         full_filename = os.path.join(EXTRACTED_TABLES_DIRECTORY, filename)
         if os.path.isfile(full_filename) and filename.endswith(".csv"):
             print(f'Looking for matching columns in {filename} ...')
-            df = pd.read_csv(full_filename)
             
+            df = pd.read_csv(full_filename)
+      
+            #TODO add more matchers
             matcher = JaccardDistanceMatcher()
+            # matcher = Coma()
+            # matcher = SimilarityFlooding()
+            # matcher = DistributionBased()
 
             result = valentine_match(
                 target_df, df, matcher, TARGET_TABLE_NAME, table_name)
@@ -41,12 +52,18 @@ def main():
 
                     col_target = target_df[pair[0][1]]
                     col_discovered = df[pair[1][1]]
-                    
-                    combined_df = pd.concat([col_target, col_discovered], axis=1)
+
+                    combined_df = pd.DataFrame({"target_"+col_target.name: col_target, "discovered_"+col_discovered.name: col_discovered})
                     print(combined_df)
+                    vm.detect_types(combined_df)
+                    
+                    
+                    
+
+    
 
 
-            break
+            # break
 
     pp.pprint(selected_pairs)
 
