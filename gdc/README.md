@@ -10,3 +10,12 @@ pip install -r requirements.txt
 ```
 
 ### Usage
+Load GDC schema as dictionary.
+```
+load_gdc_schema() -> dict
+```
+  
+Match column name and return GDC metadata.
+```
+fetch_properties(column_name: str) -> dict
+```

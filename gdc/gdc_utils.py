@@ -1,14 +1,18 @@
-import os
 import json
+import os
+
 import jellyfish
 
 PATH_TO_GDC_SCHEMA = "gdc_schema.json"
+
+
 def load_gdc_schema():
     if not os.path.exists(PATH_TO_GDC_SCHEMA):
         return {}
-    with open(PATH_TO_GDC_SCHEMA, 'r') as f:
+    with open(PATH_TO_GDC_SCHEMA, "r") as f:
         data = json.load(f)
     return data
+
 
 def fetch_properties(column_name):
     schema = load_gdc_schema()
