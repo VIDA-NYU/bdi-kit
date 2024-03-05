@@ -5,3 +5,5 @@
 *.pyc
 __pycache__/
 
+# Data directories
+use-case-2/data/
