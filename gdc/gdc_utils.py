@@ -1,9 +1,13 @@
 import json
+import logging
 import os
+from os.path import dirname, join
 
 import jellyfish
 
-PATH_TO_GDC_SCHEMA = "gdc_schema.json"
+logger = logging.getLogger(__name__)
+
+PATH_TO_GDC_SCHEMA = join(dirname(__file__), "gdc_schema.json")
 
 
 def load_gdc_schema():
