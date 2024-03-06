@@ -47,7 +47,7 @@ class CSVEmbeddingsGenerator:
         embeddings_df = pd.DataFrame(embeddings)
         embeddings_df.to_pickle(embeddings_file_path)
 
-api_key = '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' #TODO: Replace with your own OpenAI API key
+api_key = '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' #TODO: Replace with your own OpenAI API key
 input_directory = './Starter-Kit' 
 output_directory = './embeddings/target-embeddings' 
 
