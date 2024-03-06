@@ -1,0 +1,1069 @@
+case_submitter_id,age_at_diagnosis,race,ethnicity,gender,vital_status,ajcc_pathologic_t,ajcc_pathologic_n,ajcc_pathologic_stage,tumor_grade,tumor_focality,tumor_largest_dimension_diameter,primary_diagnosis,morphology,tissue_or_organ_of_origin,tumor_code,study
+01BR001,20089.0,black or african american,not hispanic or latino,female,Alive,T2,N1c,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR008,17532.0,black or african american,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR009,23376.0,black or african american,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR010,23741.0,black or african american,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR015,12784.0,white,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR017,16436.0,white,not hispanic or latino,female,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR018,24106.0,white,not hispanic or latino,female,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR020,16436.0,black or african american,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR023,18993.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR025,22646.0,black or african american,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR026,17532.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+01BR027,29220.0,black or african american,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR030,30681.0,black or african american,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR031,22280.0,black or african american,not hispanic or latino,female,Alive,T3,N3,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR032,16802.0,white,not hispanic or latino,female,Alive,T4,N0,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR033,14610.0,black or african american,not hispanic or latino,female,Alive,T3,N2,Stage III,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+01BR040,14610.0,black or african american,not hispanic or latino,female,Not Reported,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR042,21184.0,black or african american,Not Reported,female,Not Reported,T2,NX,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+01BR043,21550.0,white,not hispanic or latino,female,Not Reported,TX,N1,Stage II,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+03BR002,21915.0,white,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+03BR004,32142.0,white,not hispanic or latino,female,Alive,T2,N1mi,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+03BR005,22280.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+03BR006,15340.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+03BR010,28490.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+03BR011,25933.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+03BR013,18993.0,Not Reported,Not Reported,female,Alive,T2,N0 (i-),Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR001,25568.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR003,13514.0,white,not hispanic or latino,female,Alive,T3,N0 (i-),Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR004,16802.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+05BR005,18262.0,white,not hispanic or latino,female,Alive,T1c,N0,Stage I,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR009,23376.0,white,not hispanic or latino,female,Alive,T3,N3a,Stage III,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+05BR016,28490.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR026,25933.0,white,not hispanic or latino,female,Alive,T2,N0 (i-),Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+05BR029,22280.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR038,18993.0,white,not hispanic or latino,female,Alive,T1c,N0,Stage I,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR042,14610.0,white,not hispanic or latino,female,Not Reported,T2,N1mi,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR043,18262.0,white,not hispanic or latino,female,Not Reported,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR044,22646.0,white,not hispanic or latino,female,Not Reported,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+05BR045,21915.0,white,not hispanic or latino,female,Not Reported,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+06BR003,27394.0,Not Reported,hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+06BR005,21184.0,Not Reported,hispanic or latino,female,Alive,T1c,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+06BR006,18628.0,Not Reported,hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+06BR014,18628.0,Not Reported,hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+09BR001,22280.0,black or african american,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+09BR004,27394.0,white,not hispanic or latino,female,Not Reported,T2,N0 (i-),Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+09BR005,13880.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+09BR007,28124.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR003,19358.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR004,19724.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR006,19724.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR009,16071.0,asian,not hispanic or latino,female,Alive,T2,N3b,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR010,12784.0,asian,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR011,25933.0,asian,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR012,28124.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR013,25568.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+11BR014,14245.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR015,21915.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR016,10958.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR017,27028.0,white,not hispanic or latino,female,Dead,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR018,19724.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+11BR019,22280.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Infiltrating duct and lobular carcinoma,8522/3,"Breast, NOS",BRCA,Krug
+11BR020,13514.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR022,17532.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR023,21184.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR024,29220.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR025,28124.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR027,27759.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR028,20089.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR030,18262.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR031,18262.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR032,17897.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+11BR036,18628.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR038,17167.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR040,24472.0,asian,not hispanic or latino,female,Alive,T2,N2,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR042,25933.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR043,13149.0,white,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR044,17532.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR047,21550.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+11BR049,16436.0,asian,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR050,19724.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Mucinous adenocarcinoma,8480/3,"Breast, NOS",BRCA,Krug
+11BR051,23741.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR053,22280.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR054,30681.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR055,20454.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR056,18993.0,asian,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR058,23741.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR059,16436.0,asian,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR060,18993.0,asian,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR072,25568.0,white,not hispanic or latino,female,Alive,T2,N3a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR073,23376.0,white,not hispanic or latino,female,Alive,T2,N2,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR074,24106.0,white,not hispanic or latino,female,Alive,T2,N2,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR075,28855.0,white,not hispanic or latino,female,Alive,T3,N2,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+11BR080,24837.0,white,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+13BR009,27394.0,white,not hispanic or latino,female,Not Reported,T3,N1a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+14BR005,28490.0,white,not hispanic or latino,female,Alive,T2,N0 (i-),Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+14BR008,24106.0,white,not hispanic or latino,female,Alive,T3,N2a,Stage III,GX,Not Reported,Not Reported,"Lobular carcinoma, NOS",8520/3,"Breast, NOS",BRCA,Krug
+14BR014,21550.0,white,Not Reported,female,Alive,T2,N0 (i+),Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+15BR003,27028.0,white,not hispanic or latino,female,Alive,T1c,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+16BR012,17167.0,white,not hispanic or latino,female,Alive,T2,N3c,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR002,23376.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR003,23741.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR004,27759.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Infiltr. duct mixed with other types of carcinoma,8523/3,"Breast, NOS",BRCA,Krug
+18BR006,22646.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR007,23376.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR009,23011.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR010,14975.0,white,not hispanic or latino,female,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR016,26663.0,white,not hispanic or latino,female,Alive,T1,N0,Stage I,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR017,26298.0,white,not hispanic or latino,female,Alive,T1,N0,Stage I,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+18BR019,24837.0,white,not hispanic or latino,female,Alive,T2a,N2,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR001,29950.0,black or african american,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR002,32872.0,white,not hispanic or latino,female,Alive,T2,NX,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR005,17167.0,black or african american,not hispanic or latino,female,Alive,T2,N1,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR006,23741.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR007,20089.0,black or african american,not hispanic or latino,female,Alive,T2,N0,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+20BR008,25933.0,black or african american,not hispanic or latino,female,Alive,T4b,N2,Stage III,GX,Not Reported,Not Reported,Infiltr. duct mixed with other types of carcinoma,8523/3,"Breast, NOS",BRCA,Krug
+21BR001,31412.0,white,hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+21BR002,31412.0,white,hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Not Reported,Not Reported,"Breast, NOS",BRCA,Krug
+21BR010,25933.0,white,hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+22BR005,16802.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage II,GX,Not Reported,Not Reported,Infiltrating duct and lobular carcinoma,8522/3,"Breast, NOS",BRCA,Krug
+22BR006,20089.0,black or african american,not hispanic or latino,female,Dead,T3,N1,Stage III,GX,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Breast, NOS",BRCA,Krug
+C3L-00004,26298.0,white,not hispanic or latino,male,Alive,T3,NX,Stage III,G3,Unifocal,12,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00010,10958.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G3,Unifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00011,23011.0,white,not hispanic or latino,female,Dead,T3a,NX,Stage IV,G4,Unifocal,12,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00026,23741.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G3,Unifocal,2,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00079,17897.0,white,not hispanic or latino,male,Dead,T3a,N1,Stage III,G3,Unifocal,14,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00088,26298.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage III,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00096,18993.0,white,not hispanic or latino,male,Dead,T3a,N0,Stage IV,G4,Multifocal,12.3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00097,21550.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Multifocal,3.7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00103,20454.0,white,not hispanic or latino,male,Dead,T3b,N0,Stage III,G3,Unifocal,11,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00183,12053.0,white,hispanic or latino,female,Alive,T3a,NX,Stage III,G2,Unifocal,6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00359,26663.0,white,not hispanic or latino,female,Dead,T1a,NX,Stage I,G1,Unifocal,3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00360,26298.0,white,not hispanic or latino,male,Alive,T2a,NX,Stage II,G3,Unifocal,3.7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00369,32507.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage III,G2,Unifocal,12.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00416,22646.0,white,not hispanic or latino,male,Alive,T3b,NX,Stage III,G4,Unifocal,6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00418,20454.0,white,not hispanic or latino,female,Alive,T3a,NX,Stage III,G2,Unifocal,8.7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00447,12784.0,white,not hispanic or latino,male,Alive,T1b,NX,Stage I,G3,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00448,24106.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,1.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00561,18262.0,white,not hispanic or latino,male,Alive,T3b,N0,Stage III,G4,Unifocal,10,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00581,18993.0,white,not hispanic or latino,male,Dead,T2b,NX,Stage II,G2,Unifocal,13,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00583,20089.0,white,hispanic or latino,male,Alive,T1a,NX,Stage I,G3,Multifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00606,27394.0,white,not hispanic or latino,female,Dead,T3a,N0,Stage III,G3,Unifocal,7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00607,24106.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage III,G3,Multifocal,7.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00610,20819.0,white,not hispanic or latino,female,Alive,T1b,NX,Stage I,G3,Unifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00765,22280.0,white,Not Reported,female,Alive,T1b,NX,Stage I,G2,Unifocal,5.6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00766,20819.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Unifocal,2.8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00790,16071.0,white,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00791,27759.0,white,Not Reported,male,Alive,T1b,N1,Stage III,G3,Unifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00792,32872.0,white,Not Reported,female,Alive,T2a,NX,Stage II,G3,Unifocal,8.7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00796,24472.0,white,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00799,14975.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,2.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00800,14975.0,white,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00812,27028.0,white,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,2.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00813,22280.0,white,Not Reported,male,Alive,T3a,NX,Stage III,G3,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00814,30316.0,Not Reported,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00817,29220.0,white,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,1.2,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00902,25202.0,white,not hispanic or latino,female,Alive,T1b,NX,Stage I,G1,Unifocal,5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00907,20089.0,white,not hispanic or latino,male,Alive,T1b,NX,Stage I,G2,Unifocal,4.8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00908,21915.0,white,not hispanic or latino,female,Alive,T2b,NX,Stage II,G3,Unifocal,10.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00910,27394.0,white,not hispanic or latino,female,Alive,T1b,NX,Stage I,G3,Unifocal,5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-00917,13514.0,white,hispanic or latino,male,Alive,T1a,NX,Stage I,G3,Unifocal,3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01281,24106.0,white,not hispanic or latino,male,Alive,T3a,NX,Stage IV,G4,Multifocal,11.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01283,13514.0,white,hispanic or latino,male,Alive,T1a,NX,Stage I,G3,Unifocal,2.4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01286,21184.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage III,G3,Unifocal,6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01287,21915.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage IV,G4,Unifocal,10.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01288,25568.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,2.8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01302,25933.0,white,not hispanic or latino,female,Dead,T3a,N0,Stage III,G4,Unifocal,8.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01313,23011.0,white,not hispanic or latino,male,Dead,T3a,NX,Stage III,G4,Unifocal,9,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01352,27759.0,white,hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Unifocal,3.4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01553,21550.0,white,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,1.9,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01557,18628.0,black or african american,Not Reported,male,Alive,T3a,N0,Stage III,G3,Unifocal,9.6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01560,19724.0,white,Not Reported,female,Alive,T1a,NX,Stage I,G3,Unifocal,1.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01603,23011.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01607,30316.0,white,not hispanic or latino,male,Alive,T3a,NX,Stage III,G3,Unifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01836,17167.0,white,not hispanic or latino,male,Alive,T1b,NX,Stage I,G3,Unifocal,4.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01861,20819.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G3,Unifocal,3.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01882,17532.0,white,not hispanic or latino,male,Alive,T1a,N0,Stage I,G2,Unifocal,2.2,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3L-01885,24472.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,3.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00148,18993.0,Not Reported,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00149,24837.0,Not Reported,Not Reported,female,Alive,T4,N0,Stage IV,G3,Unifocal,12,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00150,20089.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage IV,G3,Unifocal,12,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00154,24837.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G3,Unifocal,8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00168,17167.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G3,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00177,18993.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00194,18628.0,white,not hispanic or latino,female,Alive,T2b,NX,Stage IV,G3,Unifocal,12,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00242,25202.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,3.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00244,16802.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,2.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00246,16071.0,white,not hispanic or latino,male,Alive,T1a,NX,Stage I,G2,Unifocal,3.1,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00305,21915.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G1,Multifocal,1,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00310,30681.0,Not Reported,Not Reported,male,Dead,T3a,NX,Stage III,G2,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00312,24837.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G3,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00313,11323.0,Not Reported,Not Reported,female,Alive,T1b,NX,Stage I,G2,Unifocal,4.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00314,28490.0,Not Reported,Not Reported,male,Dead,T1b,NX,Stage I,G2,Unifocal,4.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00315,24837.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G3,Unifocal,7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00317,27028.0,Not Reported,Not Reported,female,Alive,T1b,NX,Stage I,G2,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00320,24472.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00380,20819.0,Not Reported,Not Reported,female,Alive,T1b,NX,Stage I,G2,Unifocal,4.1,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00390,21184.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage IV,G2,Unifocal,14.1,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00435,26298.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage III,G3,Unifocal,10.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00437,25202.0,Not Reported,Not Reported,female,Dead,T3a,NX,Stage III,G3,Unifocal,6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00491,19724.0,Not Reported,Not Reported,male,Dead,T1b,NX,Stage IV,G2,Unifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00492,17897.0,Not Reported,Not Reported,female,Alive,T2b,NX,Stage II,G3,Unifocal,11,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00494,24106.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00495,24472.0,Not Reported,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00573,22280.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G2,Unifocal,11,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00577,26298.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage IV,G3,Unifocal,14,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00646,20819.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G2,Unifocal,3.2,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00733,20454.0,white,not hispanic or latino,male,Alive,T3a,NX,Stage III,G2,Unifocal,8.6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00831,18993.0,Not Reported,Not Reported,male,Dead,T2a,NX,Stage II,G2,Unifocal,8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00832,28855.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,4.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00834,23741.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G1,Unifocal,5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00852,22646.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G3,Unifocal,13.6,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-00953,14975.0,asian,not hispanic or latino,male,Alive,T2a,NX,Stage II,G3,Unifocal,8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01175,21915.0,Not Reported,Not Reported,female,Alive,T3a,NX,Stage III,G2,Unifocal,3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01176,25933.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G2,Multifocal,6.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01178,21184.0,Not Reported,Not Reported,female,Alive,T3a,NX,Stage III,G2,Unifocal,7,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01179,26298.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G2,Multifocal,2.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01180,18628.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01200,20454.0,Not Reported,Not Reported,female,Dead,T4,N0,Stage IV,G3,Unifocal,16,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01213,24837.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G1,Unifocal,8.3,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01214,21915.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G2,Unifocal,8.4,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01220,18628.0,Not Reported,Not Reported,male,Dead,T3a,NX,Stage IV,G4,Unifocal,6.8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01261,24472.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G1,Unifocal,5.2,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01361,17532.0,Not Reported,Not Reported,male,Alive,T1a,NX,Stage I,G2,Unifocal,2.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01522,29220.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G2,Unifocal,5.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01524,22280.0,Not Reported,Not Reported,male,Alive,T2a,NX,Stage II,G3,Unifocal,8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01646,25202.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G3,Unifocal,10,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01648,25202.0,Not Reported,Not Reported,male,Alive,T2a,NX,Stage II,G2,Multifocal,7.5,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01649,18628.0,Not Reported,Not Reported,male,Alive,T3a,NX,Stage III,G2,Unifocal,8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01651,21184.0,Not Reported,Not Reported,male,Alive,T2a,NX,Stage II,G3,Multifocal,10,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+C3N-01808,17167.0,white,not hispanic or latino,male,Alive,T1b,NX,Stage I,G2,Unifocal,5.8,Renal cell carcinoma,8312/3,"Kidney, NOS",ccRCC,Clark
+01CO005,25202.0,white,not hispanic or latino,female,Dead,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO006,27394.0,white,not hispanic or latino,female,Alive,T4a,N2b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO008,19724.0,black or african american,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO013,20819.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO014,28124.0,white,not hispanic or latino,female,Alive,T3,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO015,32142.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO019,23011.0,white,not hispanic or latino,female,Alive,T4a,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+01CO022,27759.0,white,not hispanic or latino,female,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO002,,white,not hispanic or latino,female,Alive,T2,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO003,,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO006,30316.0,white,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO011,14245.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO015,26663.0,white,not hispanic or latino,female,Dead,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO020,32872.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO026,25568.0,white,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO028,22280.0,white,not hispanic or latino,female,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO029,20089.0,black or african american,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO032,28855.0,white,not hispanic or latino,male,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO033,22280.0,white,not hispanic or latino,male,Alive,T2,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO034,19724.0,white,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO035,23376.0,black or african american,hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO037,18262.0,american indian or alaska native,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO039,26663.0,white,not hispanic or latino,male,Dead,T4a,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO041,28490.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO044,25568.0,white,not hispanic or latino,female,Alive,T4a,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO045,27394.0,white,Not Reported,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO047,20454.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO048,28490.0,white,not hispanic or latino,female,Alive,T4b,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO049,31777.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO050,24106.0,white,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO053,18628.0,white,not hispanic or latino,male,Alive,T3,N1b,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+05CO054,31412.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+06CO001,27394.0,Not Reported,hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+06CO002,26663.0,Not Reported,hispanic or latino,female,Alive,T3,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO005,25202.0,white,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO006,31412.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO008,19358.0,white,not hispanic or latino,male,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO011,27394.0,white,not hispanic or latino,female,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO013,18262.0,white,not hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO014,24106.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO015,24837.0,white,not hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO018,18993.0,white,not hispanic or latino,female,Alive,T2,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO019,31777.0,black or african american,not hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+09CO022,25933.0,black or african american,not hispanic or latino,female,Alive,T4a,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO005,24106.0,asian,not hispanic or latino,female,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO007,23376.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO008,24472.0,asian,not hispanic or latino,female,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO010,21550.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO018,27028.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO019,27028.0,white,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO020,20089.0,white,not hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO021,27028.0,white,not hispanic or latino,female,Dead,T3,N2a,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO022,26298.0,white,not hispanic or latino,male,Alive,T4b,N0,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO027,20089.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO030,19724.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO031,19358.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO032,20819.0,asian,not hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO033,19724.0,asian,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO036,13149.0,asian,not hispanic or latino,male,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO037,18993.0,asian,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO039,24472.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO042,25568.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO043,24472.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO044,25202.0,white,not hispanic or latino,female,Dead,T3,N1a,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO045,25933.0,white,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO047,23741.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO048,23376.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO051,22280.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO052,24106.0,white,not hispanic or latino,female,Dead,T3,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO053,23011.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO054,23741.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO057,26663.0,white,not hispanic or latino,male,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO058,20454.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO061,17167.0,asian,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO062,27028.0,asian,not hispanic or latino,male,Alive,T3,N0,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO070,12784.0,asian,not hispanic or latino,male,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO072,23376.0,white,not hispanic or latino,female,Alive,T3,N1b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO077,24472.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+11CO079,27394.0,white,not hispanic or latino,female,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+14CO003,27028.0,white,not hispanic or latino,female,Alive,T3,N2b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+14CO005,27394.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+15CO001,20819.0,asian,hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+15CO002,19358.0,black or african american,not hispanic or latino,female,Alive,T4a,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+16CO002,24472.0,white,not hispanic or latino,male,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+16CO003,23011.0,white,not hispanic or latino,female,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+16CO006,23376.0,white,not hispanic or latino,male,Alive,T3,N0,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+16CO011,21550.0,white,not hispanic or latino,male,Alive,T3,N1,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+20CO001,19358.0,white,not hispanic or latino,female,Alive,T3,N1a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+20CO003,21915.0,white,not hispanic or latino,male,Dead,T4a,N1b,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+20CO004,20089.0,white,not hispanic or latino,male,Alive,T4a,N2b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+20CO007,19724.0,black or african american,not hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+21CO006,27759.0,white,hispanic or latino,male,Alive,T2,N0,Stage I,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+21CO007,18262.0,white,not hispanic or latino,male,Alive,T4a,N2a,Stage IV,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+22CO004,18628.0,white,hispanic or latino,male,Alive,T3,N0,Stage II,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+22CO006,20819.0,white,not hispanic or latino,female,Alive,T3,N2b,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+27CO004,18262.0,white,hispanic or latino,female,Alive,T3,N2a,Stage III,GX,Not Reported,Not Reported,"Adenocarcinoma, intestinal type",8144/3,"Colon, NOS",COAD,Vasaikar
+C3L-00104,21184.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-00365,21550.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-00674,16436.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.9,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-00677,25202.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01040,28124.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01043,21550.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01045,26663.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01046,18262.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01048,21915.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01049,16802.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01061,24106.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.8,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01142,15340.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01146,21550.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01149,17532.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.3,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3L-01154,18628.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.2,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3L-01155,24106.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01156,20819.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01157,24106.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01327,27028.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01834,24837.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-01887,17532.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02041,18628.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,0,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02465,18262.0,Not Reported,hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02504,25933.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02542,21184.0,white,hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02642,28124.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02704,19724.0,white,not hispanic or latino,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,1.7,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02705,21915.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02707,21184.0,white,not hispanic or latino,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02708,15706.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02900,18993.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,2.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02955,27759.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02970,21184.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-02984,12418.0,asian,not hispanic or latino,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03260,27394.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03266,22280.0,white,hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,2.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03387,25568.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,9,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03390,16071.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.2,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3L-03392,18262.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03400,13880.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03405,21550.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3L-03407,20819.0,Not Reported,hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03681,22646.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03727,25933.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03728,29220.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03744,27394.0,white,not hispanic or latino,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,2.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03748,23376.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3L-03968,21915.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3L-04084,23011.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-00661,17897.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,7,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-00662,28124.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-00663,14245.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,7,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-00665,23741.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01192,21915.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01196,24472.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01334,23376.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01364,12418.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01366,23011.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01367,27028.0,Not Reported,Not Reported,male,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01368,23741.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01369,20819.0,Not Reported,Not Reported,female,Not Reported,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01505,27028.0,white,not hispanic or latino,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01515,26663.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,1.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01517,17897.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01518,26298.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01798,16071.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01814,17532.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,7,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-01815,25933.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-01816,19358.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01818,21915.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01851,17167.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-01852,21550.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01856,24106.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-01857,25202.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02181,19358.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02183,23011.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02185,22280.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,8.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02186,19358.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02188,21550.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02190,19358.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02255,32142.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02256,23741.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02769,19358.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.3,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02770,25568.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5.2,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02782,17167.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-02783,8766.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,8,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-02784,13514.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-02785,25202.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,Temporal lobe,GBM,Wang
+C3N-02786,14245.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.8,"Glioblastoma, NOS",9440/3,Frontal lobe,GBM,Wang
+C3N-02788,23376.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,6.6,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-03070,23741.0,Not Reported,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,4.5,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-03088,11323.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.8,"Glioblastoma, NOS",9440/3,"Brain, NOS",GBM,Wang
+C3N-03180,19358.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,5,"Glioblastoma, NOS",9440/3,Temporal lobe,GBM,Wang
+C3N-03182,17167.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,4,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-03183,19358.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,7,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-03184,12784.0,Not Reported,Not Reported,male,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,3.5,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-03186,19724.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,8,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+C3N-03188,19724.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,8,"Glioblastoma, NOS",9440/3,Frontal lobe,GBM,Wang
+C3N-03473,10958.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,GX,Not Reported,7.8,"Glioblastoma, NOS",9440/3,Cerebrum,GBM,Wang
+01OV007,24837.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV017,20454.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV018,16071.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV023,21184.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV026,28124.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV030,26663.0,white,Not Reported,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV039,18628.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV041,25568.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+01OV047,24837.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV005,28124.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV006,16071.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV008,18262.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV015,27028.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV022,21184.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV023,16802.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV029,17532.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV032,20819.0,black or african american,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV036,20089.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV041,14975.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV044,13149.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+02OV046,22280.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV001,18262.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV004,19724.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV005,26298.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV008,19358.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV011,31046.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV012,21184.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV013,19358.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV017,23741.0,white,hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV018,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV021,20819.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV023,13514.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV024,17532.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV027,21550.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV028,21550.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV031,21550.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV033,20819.0,Not Reported,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV036,14245.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV037,25933.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV039,16802.0,Not Reported,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV040,25568.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV044,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV045,20089.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV048,21915.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV049,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV050,26663.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV051,20819.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV053,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV054,15706.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV055,22646.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV057,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV058,25933.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+04OV063,18262.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+11OV002,23741.0,asian,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Stage III,G2,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+13OV003,20819.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G1,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+14OV011,21184.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+15OV001,16071.0,asian,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV001,20454.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G2,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV002,17532.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV010,23741.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV011,28855.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV013,17897.0,black or african american,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV014,24106.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV015,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV017,28855.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV018,22646.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G2,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV025,24106.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV027,18628.0,white,Not Reported,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV028,20819.0,white,not hispanic or latino,female,Dead,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV029,16071.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV030,15706.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV033,27394.0,american indian or alaska native,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV036,23011.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Not Reported,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV039,19724.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+17OV040,20819.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,GX,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+18OV001,22280.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage I,G2,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+20OV005,25568.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+26OV002,20819.0,white,not hispanic or latino,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+26OV008,23741.0,white,Not Reported,female,Dead,Not Reported,Not Reported,Stage IV,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+26OV009,21915.0,white,Not Reported,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+26OV011,23376.0,white,Not Reported,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+26OV013,27028.0,white,Not Reported,female,Alive,Not Reported,Not Reported,Stage III,G3,Not Reported,Not Reported,Serous cystadenocarcinoma,8441/3,Ovary,HGSC,McDermott
+C3L-00977,20454.0,Not Reported,Not Reported,male,Dead,T1,N1,Stage III,G1,Unifocal,1.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00987,22280.0,Not Reported,Not Reported,male,Alive,T2,N1,Stage III,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00994,18262.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00995,20454.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage III,G1,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00997,17167.0,Not Reported,Not Reported,male,Alive,T2,N1,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00999,20454.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G1,Unifocal,2.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-01138,22646.0,Not Reported,Not Reported,male,Alive,T4a,N1,Stage IV,G1,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-01237,20819.0,Not Reported,Not Reported,male,Alive,T2,N2,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-02617,23376.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G3,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-02621,24837.0,Not Reported,Not Reported,male,Alive,T1,NX,Stage I,G3,Multifocal,0.6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-02651,29585.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G2,Unifocal,2.5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-03378,19724.0,Not Reported,Not Reported,male,Alive,T4a,N2c,Stage IV,G2,Unifocal,1.8,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-04025,25202.0,Not Reported,Not Reported,male,Alive,T1b,NX,Stage I,G2,Unifocal,1.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-04354,21915.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G3,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-04791,29585.0,Not Reported,Not Reported,male,Alive,T1,NX,Stage I,G2,Unifocal,3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-04844,22280.0,Not Reported,Not Reported,female,Alive,T4a,N3,Stage IV,G2,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-04849,23011.0,Not Reported,Not Reported,male,Alive,T4a,N3,Stage IV,G2,Unifocal,4.7,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00204,23011.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G3,Unifocal,3.2,Adenosquamous carcinoma,8560/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00295,19358.0,Not Reported,Not Reported,female,Alive,T3,NX,Stage III,G2,Unifocal,2.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00297,25202.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00299,19724.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,3.1,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00306,18262.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00307,25568.0,Not Reported,Not Reported,male,Dead,T4a,NX,Stage IV,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00498,23011.0,Not Reported,Not Reported,male,Alive,T2,N1,Stage III,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00519,24472.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00822,19358.0,Not Reported,Not Reported,female,Dead,T3,N0,Stage III,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00825,19358.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Multifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00828,24472.0,Not Reported,Not Reported,male,Dead,T2,NX,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00829,19358.0,Not Reported,Not Reported,male,Dead,T2,N2b,Stage IV,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00846,24472.0,Not Reported,Not Reported,male,Alive,T1,NX,Stage I,G1,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00857,23376.0,Not Reported,Not Reported,male,Dead,T4a,N1,Stage IV,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-00871,21184.0,Not Reported,Not Reported,male,Dead,T3,N2b,Stage IV,G2,Unifocal,5.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01337,18993.0,Not Reported,Not Reported,male,Alive,T4,N2b,Stage IV,G1,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01338,18262.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage III,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01339,24837.0,Not Reported,Not Reported,female,Dead,T4,N1,Stage IV,G3,Unifocal,3.4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01340,26298.0,Not Reported,Not Reported,male,Dead,T4a,N0,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01620,20454.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01645,25933.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01752,26663.0,Not Reported,Not Reported,male,Dead,T4a,N0,Stage IV,G2,Unifocal,5.6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01754,23376.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01755,24837.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage III,G2,Unifocal,5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01756,22646.0,Not Reported,Not Reported,male,Alive,T3,N2c,Stage IV,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01757,23376.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G2,Unifocal,2.7,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01758,21550.0,Not Reported,Not Reported,male,Dead,T4a,N1,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01858,22646.0,Not Reported,Not Reported,male,Alive,T3,N3b,Stage IV,G2,Unifocal,3.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01859,24472.0,Not Reported,Not Reported,male,Dead,T4a,N2c,Stage IV,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01943,23011.0,Not Reported,Not Reported,male,Dead,T4a,N3a,Stage IV,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01944,23741.0,Not Reported,Not Reported,male,Alive,T4a,N1,Stage IV,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01945,22280.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage III,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01946,23376.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,1.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01947,17897.0,Not Reported,Not Reported,male,Alive,T3,N2b,Stage IV,G2,Unifocal,5.5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-01948,20089.0,Not Reported,Not Reported,female,Alive,T4a,N2b,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02275,25202.0,Not Reported,Not Reported,male,Alive,T4a,N0,Stage IV,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02279,21550.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02333,22280.0,Not Reported,Not Reported,male,Alive,T4a,NX,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02694,20819.0,Not Reported,Not Reported,male,Dead,T2,N2b,Stage IV,G2,Unifocal,2.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02695,16436.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage III,G1,Multifocal,3.7,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02700,29220.0,Not Reported,Not Reported,female,Alive,T2,NX,Stage II,G1,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02713,23376.0,Not Reported,Not Reported,male,Alive,T3,N2,Stage IV,G3,Unifocal,3.3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02714,8401.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G2,Unifocal,2.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02716,27759.0,Not Reported,Not Reported,male,Alive,T1,NX,Stage I,G1,Unifocal,1.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02727,17897.0,Not Reported,Not Reported,male,Alive,T4a,NX,Stage IV,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02730,14610.0,Not Reported,Not Reported,male,Alive,T1,N1,Stage III,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-02925,24837.0,Not Reported,Not Reported,female,Alive,T3,N2b,Stage IV,G2,Unifocal,4.2,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03008,23741.0,Not Reported,Not Reported,female,Dead,T4a,N2c,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03009,21184.0,Not Reported,Not Reported,male,Dead,T1,N0,Stage I,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03011,22646.0,Not Reported,Not Reported,male,Dead,T2,N2b,Stage IV,G3,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03012,25933.0,Not Reported,Not Reported,male,Dead,T4a,N0,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03013,21550.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03015,22280.0,Not Reported,Not Reported,male,Alive,T4a,N2b,Stage IV,G3,Unifocal,1,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03027,23741.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,1,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03028,21550.0,Not Reported,Not Reported,male,Alive,T2,N2b,Stage IV,G2,Unifocal,3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03042,24472.0,Not Reported,hispanic or latino,female,Not Reported,T4a,N3b,Stage IV,G2,Unifocal,5.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03045,28124.0,Not Reported,hispanic or latino,male,Not Reported,T2,N1,Stage III,G1,Unifocal,2.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03226,19724.0,Not Reported,Not Reported,male,Alive,T2,N2b,Stage IV,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03433,27759.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,2.4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03456,23376.0,Not Reported,Not Reported,male,Alive,T4a,N0,Stage IV,G2,Unifocal,7,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03457,25933.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03458,25568.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G1,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03487,19358.0,Not Reported,Not Reported,female,Alive,T4a,N0,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03488,23376.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage III,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03490,23376.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03612,18628.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage III,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03619,21550.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03620,22280.0,Not Reported,Not Reported,male,Alive,T2,NX,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03664,21184.0,Not Reported,Not Reported,male,Alive,T4a,N2c,Stage IV,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03781,24837.0,Not Reported,Not Reported,male,Dead,T4a,N0,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03782,18262.0,Not Reported,Not Reported,female,Alive,T4a,N0,Stage IV,G1,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03783,24472.0,Not Reported,Not Reported,male,Dead,T2,N2b,Stage IV,G1,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03785,24106.0,Not Reported,Not Reported,male,Dead,T1,NX,Stage I,G2,Multifocal,1.2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03837,19724.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G1,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03841,21550.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage III,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03849,20089.0,Not Reported,Not Reported,male,Alive,T4a,N2b,Stage IV,G1,Unifocal,7,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03876,23741.0,Not Reported,Not Reported,male,Dead,T3,N2b,Stage IV,G1,Unifocal,2.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03878,18993.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage III,G1,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03888,21184.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage III,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03889,19358.0,Not Reported,Not Reported,male,Alive,T4a,N0,Stage IV,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03928,21915.0,Not Reported,Not Reported,female,Alive,T2,N1,Stage III,G1,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-03933,25568.0,Not Reported,Not Reported,female,Alive,T2,N1,Stage III,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04152,19724.0,Not Reported,Not Reported,male,Alive,T4a,N2b,Stage IV,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04273,26663.0,Not Reported,Not Reported,male,Dead,T2,N2b,Stage IV,G2,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04275,22280.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G1,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04276,24837.0,Not Reported,Not Reported,male,Alive,T4a,N0,Stage IV,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04277,26298.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage III,G2,Unifocal,1,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04278,25933.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage III,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04279,23741.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04280,23741.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G1,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3N-04611,20089.0,Not Reported,Not Reported,male,Not Reported,T3,NX,Stage III,G2,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Head, face or neck, NOS",HNSCC,Huang
+C3L-00081,22280.0,white,not hispanic or latino,female,Dead,T2a,N1,Stage II,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00415,23376.0,white,not hispanic or latino,female,Alive,T2b,N0,Stage II,G3,Unifocal,6.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00445,27028.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G2,Unifocal,5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-00568,27028.0,white,hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,4.7,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00603,26298.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00904,25933.0,white,not hispanic or latino,male,Dead,T3,N0,Stage II,G3,Unifocal,4.4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00923,25933.0,white,not hispanic or latino,female,Alive,T2a,N0,Stage I,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00927,27028.0,white,not hispanic or latino,male,Alive,T2a,N2,Stage III,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00965,23011.0,Not Reported,Not Reported,male,Alive,T2,N1,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-00993,27394.0,Not Reported,Not Reported,male,Dead,T2b,N2,Stage III,G2,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01000,21550.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01285,19724.0,white,not hispanic or latino,male,Alive,T2a,N1,Stage II,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01455,32142.0,white,not hispanic or latino,male,Dead,T2a,N1,Stage II,G3,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01606,24106.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,2.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01663,26663.0,white,not hispanic or latino,female,Dead,T1a,N2,Stage III,G3,Unifocal,1.6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-01838,25568.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,4,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-01884,27028.0,white,not hispanic or latino,male,Dead,T1b,N0,Stage I,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02127,24106.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G2,Unifocal,4,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02130,25568.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage I,G2,Unifocal,3.3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02163,20819.0,Not Reported,Not Reported,male,Alive,T2,N1,Stage II,G2,Unifocal,4.5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02164,21184.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,2.5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02168,24106.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G1,Unifocal,3.9,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02170,26663.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,4.5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02349,29585.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G2,Unifocal,1.9,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02358,27394.0,white,not hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,4.4,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02546,27028.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02552,24837.0,white,not hispanic or latino,male,Dead,T2a,N0,Stage I,G3,Unifocal,3.7,Adenosquamous carcinoma,8560/3,"Lung, NOS",LSCC,Satpathy
+C3L-02619,25568.0,Not Reported,Not Reported,male,Alive,T4,N1,Stage III,G3,Unifocal,8.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02625,24106.0,Not Reported,Not Reported,male,Dead,T2a,N1,Stage II,G3,Multifocal,3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02627,23376.0,Not Reported,Not Reported,female,Alive,T1,N0,Stage I,G3,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02629,20819.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,8,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02646,27028.0,Not Reported,Not Reported,male,Dead,T3,NX,Stage III,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02648,26298.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage II,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02649,22646.0,Not Reported,Not Reported,male,Dead,T3a,N2,Stage III,G3,Unifocal,8.8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02650,19358.0,Not Reported,Not Reported,male,Alive,T3,N2,Stage III,G2,Multifocal,8,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02660,26298.0,Not Reported,Not Reported,male,Dead,T2a,N2,Stage III,G3,Unifocal,3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3L-02665,18628.0,Not Reported,Not Reported,male,Alive,T3,NX,Stage II,G2,Multifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02669,26663.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02891,24106.0,white,not hispanic or latino,female,Alive,T1c,N1,Stage II,G3,Unifocal,2.7,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02951,22280.0,white,not hispanic or latino,male,Alive,T2b,N0,Stage II,G2,Unifocal,4.8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02963,25933.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,3.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02964,21184.0,white,not hispanic or latino,male,Dead,T2b,N0,Stage II,G3,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02968,23376.0,white,not hispanic or latino,male,Alive,T2b,N0,Stage II,G2,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-02969,27759.0,white,not hispanic or latino,male,Alive,T1c,N0,Stage I,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03272,24472.0,white,not hispanic or latino,male,Alive,T4,N1,Stage IV,G2,Unifocal,7.3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03678,17897.0,white,not hispanic or latino,male,Dead,T2a,N2,Stage III,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03961,17532.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03962,23741.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage I,G3,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03963,26663.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-03965,19724.0,Not Reported,Not Reported,male,Alive,T2b,N2,Stage III,G2,Unifocal,4.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-04013,22280.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-04014,20819.0,Not Reported,Not Reported,male,Alive,T1,N0,Stage I,G3,Unifocal,2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-04071,25202.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G3,Unifocal,2.9,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3L-04391,25568.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,3.8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-00211,14610.0,Not Reported,Not Reported,male,Dead,T2a,N2,Stage III,G3,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-00221,28490.0,Not Reported,not hispanic or latino,male,Alive,T3,N0,Stage III,G2,Unifocal,4.7,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3N-00247,28124.0,white,not hispanic or latino,female,Alive,T1b,N1,Stage II,G3,Unifocal,2.2,Adenosquamous carcinoma,8560/3,"Lung, NOS",LSCC,Satpathy
+C3N-00497,23376.0,Not Reported,Not Reported,female,Alive,T2b,N1,Stage II,G2,Unifocal,5,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3N-00555,21550.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,5.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01017,20454.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01020,23741.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01025,18993.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,10,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01028,26298.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage I,G3,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01194,25202.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01411,23376.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01846,25568.0,Not Reported,Not Reported,male,Dead,T2a,NX,Stage I,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01892,28124.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage II,G2,Unifocal,6.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-01893,25568.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage III,G2,Unifocal,5.1,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02252,24837.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,G3,Not Reported,Not Reported,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02283,24472.0,Not Reported,Not Reported,male,Alive,T2b,N1,Stage II,GX,Unifocal,4.1,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02284,25202.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02285,26298.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage II,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02288,21184.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage III,G2,Unifocal,8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02289,26663.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage II,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02300,25202.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage II,G2,Unifocal,5.6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02339,28490.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G2,Unifocal,7,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02374,24472.0,Not Reported,Not Reported,male,Alive,T2a,N1,Stage II,G2,Unifocal,9,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02375,21550.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02425,22280.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G3,Unifocal,7,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02426,25202.0,Not Reported,Not Reported,female,Dead,T1a,N0,Stage I,G3,Unifocal,2,Adenosquamous carcinoma,8560/3,"Lung, NOS",LSCC,Satpathy
+C3N-02434,27028.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02435,23376.0,white,not hispanic or latino,female,Alive,T2a,N1,Stage II,G2,Unifocal,3.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02494,24106.0,black or african american,not hispanic or latino,female,Not Reported,T1b,N0,Stage I,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02523,22280.0,white,not hispanic or latino,male,Not Reported,T1b,N0,Stage I,G2,Unifocal,2,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3N-02575,25202.0,Not Reported,Not Reported,male,Dead,T1b,N0,Stage I,G2,Unifocal,2.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-02675,25202.0,Not Reported,Not Reported,male,Dead,T3,N2,Stage III,G2,Multifocal,1.7,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3N-03051,23741.0,Not Reported,Not Reported,male,Alive,T2b,N2,Stage III,G3,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03072,22646.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,3.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03076,24837.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G3,Unifocal,4.4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03092,22280.0,Not Reported,Not Reported,male,Not Reported,Not Reported,Not Reported,Not Reported,G2,Not Reported,Not Reported,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03093,25568.0,Not Reported,Not Reported,female,Not Reported,Not Reported,Not Reported,Not Reported,G3,Not Reported,Not Reported,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03204,22646.0,Not Reported,Not Reported,male,Alive,T1c,N0,Stage I,G2,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03424,27028.0,Not Reported,Not Reported,male,Alive,T1a,N0,Stage I,G3,Unifocal,1.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03425,23376.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G2,Unifocal,3,"Sq. cell carcinoma, keratinizing, NOS",8071/3,"Lung, NOS",LSCC,Satpathy
+C3N-03441,24472.0,Not Reported,Not Reported,male,Alive,T1b,N2,Stage III,G3,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03486,23741.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,GX,Unifocal,3,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03662,23376.0,Not Reported,Not Reported,male,Alive,T2a,N1,Stage II,G2,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03848,20454.0,Not Reported,Not Reported,female,Alive,T2a,N2,Stage III,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03851,16071.0,Not Reported,Not Reported,male,Alive,T2b,N1,Stage II,G3,Unifocal,4.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03875,24837.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage I,G3,Unifocal,4.8,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03877,19358.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage III,G3,Unifocal,7,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03880,27759.0,Not Reported,Not Reported,male,Alive,T1c,N1,Stage II,G2,Unifocal,2.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03882,24837.0,Not Reported,Not Reported,male,Alive,T2a,N1,Stage II,G3,Unifocal,4,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-03886,21915.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,GX,Unifocal,4.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-04124,22646.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,3.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-04127,23011.0,Not Reported,Not Reported,male,Alive,T2b,N2,Stage III,G2,Unifocal,5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-04155,27759.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G2,Unifocal,2.5,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+C3N-04162,16802.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G2,Unifocal,6,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LSCC,Satpathy
+11LU013,21550.0,Not Reported,Not Reported,male,Not Reported,T3,N1,Stage III,GX,Unifocal,6,Not Reported,Not Reported,"Lung, NOS",LUAD,Gilette
+11LU016,22646.0,Not Reported,Not Reported,male,Dead,T1b,N2,Stage III,GX,Unifocal,3,Not Reported,Not Reported,"Lung, NOS",LUAD,Gilette
+11LU022,19358.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,GX,Unifocal,4,Not Reported,Not Reported,"Lung, NOS",LUAD,Gilette
+11LU035,21550.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,GX,Unifocal,3,Not Reported,Not Reported,"Lung, NOS",LUAD,Gilette
+C3L-00001,22280.0,white,not hispanic or latino,female,Alive,T2a,N1,Stage II,G3,Unifocal,3.7,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00009,27759.0,white,not hispanic or latino,male,Dead,T1a,N0,Stage I,G2,Unifocal,1.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00080,21184.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00083,25933.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00093,24106.0,white,not hispanic or latino,female,Dead,T2a,N0,Stage I,G2,Unifocal,3,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00094,25202.0,white,not hispanic or latino,male,Dead,T1b,N0,Stage I,G3,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00095,22646.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G2,Unifocal,2.4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00140,25568.0,white,not hispanic or latino,male,Alive,T1a,N0,Stage I,G1,Unifocal,1.9,"Papillary adenocarcinoma, NOS",8260/3,"Lung, NOS",LUAD,Gilette
+C3L-00144,21184.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00263,28855.0,white,not hispanic or latino,male,Alive,T2b,N0,Stage II,G2,Unifocal,6.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00279,26298.0,white,Not Reported,female,Alive,T2a,N0,Stage I,G2,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00368,24472.0,white,not hispanic or latino,female,Alive,T1b,N0,Stage I,G1,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00412,23376.0,american indian or alaska native,not hispanic or latino,male,Dead,T3,N2,Stage III,G2,Multifocal,2.2,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-00422,12784.0,Not Reported,hispanic or latino,female,Alive,T2a,N0,Stage II,G3,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00510,29220.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G1,Unifocal,2.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00604,22280.0,white,not hispanic or latino,female,Alive,T3,N2,Stage III,G2,Multifocal,3.2,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-00893,25933.0,Not Reported,hispanic or latino,male,Alive,T2a,N0,Stage I,G1,Unifocal,3.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-00913,24106.0,white,not hispanic or latino,male,Dead,T3,N1,Stage III,G2,Unifocal,7.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00973,27759.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-01330,24837.0,white,not hispanic or latino,female,Alive,T1b,N0,Stage I,G2,Unifocal,2.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-01632,21915.0,white,not hispanic or latino,female,Dead,T2a,N1,Stage II,G3,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-01682,28490.0,white,not hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,3.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-01683,28124.0,white,not hispanic or latino,male,Dead,T2a,N0,Stage I,G3,Multifocal,3.3,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-01862,29585.0,white,not hispanic or latino,male,Dead,T1b,N2,Stage III,G2,Unifocal,2.7,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-01889,25933.0,white,not hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,2.2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-01890,21184.0,white,not hispanic or latino,female,Alive,T1b,N0,Stage I,G1,Unifocal,3,Lepidic adenocarcinoma,8250/3,"Lung, NOS",LUAD,Gilette
+C3L-01924,24837.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G2,Unifocal,2.1,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-02219,28124.0,white,not hispanic or latino,male,Dead,T2a,N2,Stage III,G2,Unifocal,4.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-02345,22280.0,white,not hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,2.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-02348,21184.0,white,not hispanic or latino,female,Alive,T2b,N0,Stage II,G2,Multifocal,6.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-02350,25202.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G2,Unifocal,3,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3L-02365,22646.0,white,not hispanic or latino,female,Dead,T2b,N1,Stage II,G3,Unifocal,4.2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-02508,23741.0,white,hispanic or latino,male,Alive,T2a,N0,Stage II,G2,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-02549,25202.0,white,not hispanic or latino,male,Dead,T3,N0,Stage II,G1,Unifocal,12,Lepidic adenocarcinoma,8250/3,"Lung, NOS",LUAD,Gilette
+C3N-00167,23376.0,Not Reported,Not Reported,male,Alive,T1a,N1,Stage II,G2,Unifocal,2.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-00169,20819.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00175,26298.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage I,G2,Unifocal,4.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00180,20454.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage III,G3,Multifocal,4.5,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-00199,23741.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G2,Unifocal,2.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00203,26298.0,Not Reported,Not Reported,male,Not Reported,T3,N0,Stage II,G3,Unifocal,5.2,"Squamous cell carcinoma, NOS",8070/3,"Lung, NOS",LUAD,Gilette
+C3N-00217,21550.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G2,Unifocal,3.2,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-00223,25202.0,asian,not hispanic or latino,female,Alive,T2a,N0,Stage I,G2,Unifocal,3.1,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00293,26663.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,GX,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00294,20819.0,Not Reported,Not Reported,male,Alive,T2b,N1,Stage II,GX,Unifocal,6,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00433,20819.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00546,21184.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G3,Unifocal,6,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-00547,21915.0,Not Reported,Not Reported,male,Alive,T2b,N0,Stage II,G2,Unifocal,5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-00549,21184.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00550,18993.0,Not Reported,Not Reported,female,Alive,T2a,N1,Stage II,G2,Unifocal,4,"Papillary adenocarcinoma, NOS",8260/3,"Lung, NOS",LUAD,Gilette
+C3N-00551,19724.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00552,17897.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G3,Unifocal,5,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-00556,25202.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,6,Adenosquamous carcinoma,8560/3,"Lung, NOS",LUAD,Gilette
+C3N-00559,20089.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G2,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00560,20089.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00572,17532.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Unifocal,2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00574,14610.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,3,Adenosquamous carcinoma,8560/3,"Lung, NOS",LUAD,Gilette
+C3N-00578,17532.0,Not Reported,Not Reported,male,Dead,T2a,N2,Stage III,G2,Unifocal,4,Mucinous adenocarcinoma,8480/3,"Lung, NOS",LUAD,Gilette
+C3N-00579,24472.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,3.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-00580,20454.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,4.5,"Papillary adenocarcinoma, NOS",8260/3,"Lung, NOS",LUAD,Gilette
+C3N-00704,24837.0,white,not hispanic or latino,female,Not Reported,T2a,N0,Stage I,G2,Unifocal,1.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-00737,25933.0,white,not hispanic or latino,male,Alive,T1b,N0,Stage I,G2,Unifocal,2.2,Adenocarcinoma with neuroendocrine differen.,8574/3,"Lung, NOS",LUAD,Gilette
+C3N-00738,25568.0,black or african american,not hispanic or latino,female,Not Reported,T1b,N0,Stage I,G1,Unifocal,2.2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-00959,24106.0,white,not hispanic or latino,male,Alive,T2a,N0,Stage I,G2,Unifocal,4,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01016,20454.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,4,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01021,16071.0,Not Reported,Not Reported,female,Alive,T2a,N2,Stage III,G2,Unifocal,3.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01023,21184.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,6,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-01024,24106.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage II,G3,Unifocal,5.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01030,20454.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4.5,Not Reported,Not Reported,"Lung, NOS",LUAD,Gilette
+C3N-01071,17532.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,2.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01072,22646.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,2.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01074,20454.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage I,G3,Unifocal,4,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-01405,21550.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,5,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-01410,23376.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,5,"Solid carcinoma, NOS",8230/3,"Lung, NOS",LUAD,Gilette
+C3N-01413,22646.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G3,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01414,21550.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G2,Unifocal,5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01415,26298.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage III,G2,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01416,24472.0,Not Reported,Not Reported,female,Alive,T2a,N2,Stage III,G2,Unifocal,3.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-01488,19724.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01489,23741.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01799,29585.0,white,not hispanic or latino,male,Alive,T2a,N1,Stage II,G2,Unifocal,3.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01823,23011.0,Not Reported,Not Reported,male,Dead,T2a,N2,Stage III,G2,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-01842,25202.0,Not Reported,Not Reported,male,Alive,T1a,N0,Stage I,G2,Unifocal,2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02000,16802.0,Not Reported,Not Reported,female,Alive,T1b,N1,Stage II,G2,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02002,27759.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G2,Multifocal,2.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02003,20454.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage III,G3,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02067,13514.0,Not Reported,Not Reported,female,Alive,T1a,N2,Stage III,G2,Unifocal,2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02087,22280.0,Not Reported,Not Reported,female,Dead,T2a,N2,Stage III,G3,Unifocal,4,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-02089,27759.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage I,G3,Unifocal,5.5,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-02145,24837.0,Not Reported,Not Reported,female,Alive,T2a,N0,Stage I,G2,Unifocal,3,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-02149,23376.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G2,Unifocal,6,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-02155,16436.0,Not Reported,Not Reported,male,Alive,T3,N0,Stage II,G3,Unifocal,6,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02158,19724.0,Not Reported,Not Reported,female,Alive,T3,N2,Stage III,G2,Unifocal,6,Acinar cell carcinoma,8550/3,"Lung, NOS",LUAD,Gilette
+C3N-02379,20819.0,Not Reported,Not Reported,female,Dead,T2a,N1,Stage II,G3,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02380,20454.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G2,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02421,21184.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G3,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02422,20454.0,Not Reported,Not Reported,female,Dead,T2a,N1,Stage IV,G3,Unifocal,3.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02423,25568.0,Not Reported,Not Reported,male,Alive,T1b,N0,Stage I,G3,Unifocal,3,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02424,23376.0,Not Reported,Not Reported,male,Alive,T2a,N2,Stage II,G3,Unifocal,5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02433,24837.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G2,Unifocal,2.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02529,28855.0,Not Reported,Not Reported,female,Dead,T2a,N1,Stage II,G3,Unifocal,4,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02572,17897.0,Not Reported,Not Reported,male,Alive,T2a,N1,Stage II,G3,Unifocal,3,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02582,28124.0,Not Reported,Not Reported,male,Dead,T2b,N1,Stage II,G3,Unifocal,5.8,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02586,26663.0,Not Reported,Not Reported,male,Dead,T2a,N1,Stage II,G2,Unifocal,3.1,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02587,21550.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Unifocal,2,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02588,25202.0,Not Reported,Not Reported,male,Alive,T2a,N0,Stage II,G3,Unifocal,4.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3N-02729,16436.0,Not Reported,Not Reported,male,Dead,T2a,N0,Stage II,G3,Unifocal,4.5,"Adenocarcinoma, NOS",8140/3,"Lung, NOS",LUAD,Gilette
+C3L-00017,25202.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00102,15340.0,white,not hispanic or latino,male,Dead,T3,N1,Stage II,G3,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00189,24837.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,2.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00277,25202.0,white,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00401,22646.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,2.8,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00589,29220.0,white,not hispanic or latino,male,Alive,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00598,22280.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00599,22646.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G1,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00622,26298.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G1,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00625,12418.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00640,21550.0,white,not hispanic or latino,female,Alive,T3,N1,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00819,27028.0,white,not hispanic or latino,male,Dead,T3,N1,Stage II,G3,Unifocal,2.8,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00881,29220.0,white,not hispanic or latino,male,Alive,T3,N1,Stage II,G2,Unifocal,2.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00928,21184.0,white,not hispanic or latino,female,Dead,T3,N1,Stage II,G1,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-01031,23376.0,Not Reported,Not Reported,female,Alive,T3,N0,Stage II,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-01036,23376.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01037,15340.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G4,Unifocal,4.5,"Carcinoma, NOS",8010/3,"Pancreas, NOS",PDAC,Cao
+C3L-01051,21915.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01052,23376.0,Not Reported,Not Reported,female,Dead,T3,N0,Stage II,G2,Unifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01053,27759.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01054,13880.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage IV,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01124,25568.0,Not Reported,Not Reported,female,Alive,T2,N2,Stage III,G2,Unifocal,2.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01328,25933.0,white,not hispanic or latino,male,Alive,T3,N1,Stage II,G3,Unifocal,3.4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01453,25202.0,white,hispanic or latino,male,Alive,T3,N0,Stage II,G2,Unifocal,5.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01598,26663.0,white,not hispanic or latino,female,Dead,T3,N0,Stage II,G2,Unifocal,2.8,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-01637,28490.0,white,not hispanic or latino,female,Dead,T3,N1,Stage II,G2,Unifocal,2.6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01662,21915.0,white,not hispanic or latino,female,Dead,T3,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01687,28490.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01689,22646.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,3.6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-01703,22646.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage II,G3,Unifocal,6.5,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-01971,24106.0,white,not hispanic or latino,male,Dead,T3,N0,Stage II,G3,Unifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02109,28855.0,Not Reported,Not Reported,female,Alive,T4,N1,Stage III,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02112,24106.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02115,29220.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02116,24472.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage I,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02118,24472.0,Not Reported,Not Reported,female,Dead,T2,N0,Stage I,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02463,23011.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02604,30681.0,white,not hispanic or latino,female,Dead,T3,N1,Stage II,G1,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02606,24837.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,4,Adenosquamous carcinoma,8560/3,"Pancreas, NOS",PDAC,Cao
+C3L-02610,29220.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02613,18993.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G3,Unifocal,6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02701,26298.0,Not Reported,Not Reported,male,Dead,T2,NX,Stage I,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-02809,30681.0,white,not hispanic or latino,male,Dead,T3,N1,Stage III,G2,Unifocal,5.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02890,23741.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G3,Unifocal,7.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02897,29220.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,G2,Unifocal,2.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-02899,26663.0,white,not hispanic or latino,male,Dead,T3,N2,Stage IV,G2,Unifocal,7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03123,21915.0,Not Reported,Not Reported,female,Alive,T3,N1,Stage II,G2,Unifocal,4.1,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03356,25933.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage II,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03388,24837.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,3.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03394,23741.0,Not Reported,Not Reported,female,Dead,T1c,N0,Stage I,G1,Unifocal,1.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03395,28490.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03628,25202.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03630,28490.0,Not Reported,Not Reported,male,Alive,T1,N1,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03632,27028.0,Not Reported,Not Reported,male,Alive,T2,N0,Stage I,G1,Unifocal,2.1,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03635,23011.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage I,G2,Unifocal,3.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03639,27759.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage I,G3,Unifocal,3.9,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-03743,25933.0,white,not hispanic or latino,female,Dead,T2,N1,Stage II,G3,Unifocal,2.9,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04027,25202.0,Not Reported,Not Reported,male,Alive,T1,N0,Stage I,G2,Unifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04072,20089.0,black or african american,not hispanic or latino,male,Dead,T3,N2,Stage III,G3,Unifocal,4.9,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04080,25568.0,white,not hispanic or latino,male,Dead,T2,N1,Stage II,G3,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04473,24472.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-04475,28124.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,2.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04479,24106.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage II,G3,Unifocal,1.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04495,13149.0,Not Reported,Not Reported,female,Dead,T4,N1,Stage III,G2,Unifocal,4.8,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3L-04848,25933.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G3,Unifocal,4.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-04853,31046.0,Not Reported,Not Reported,female,Dead,T3,N0,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00198,20089.0,white,not hispanic or latino,male,Alive,T3,N1,Stage II,G2,Multifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00249,25933.0,white,not hispanic or latino,male,Dead,T3,N1,Stage III,G2,Unifocal,4.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00302,21184.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage IV,G3,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00303,23741.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage III,G3,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00436,25202.0,Not Reported,Not Reported,female,Dead,T3,N0,Stage II,G3,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00511,16436.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00512,15340.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,3.8,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00513,23011.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G3,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00514,21915.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00516,24837.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage II,G3,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00517,25202.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00518,25202.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G3,Unifocal,6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00709,29585.0,white,not hispanic or latino,male,Not Reported,Not Reported,Not Reported,Not Reported,G2,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-00957,27028.0,white,not hispanic or latino,male,Alive,T3,N0,Stage II,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01011,28124.0,white,not hispanic or latino,female,Alive,T3,N1,Stage III,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01012,25933.0,white,not hispanic or latino,male,Alive,T2,N0,Stage I,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01165,23011.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01166,22646.0,Not Reported,Not Reported,female,Alive,T3,N1,Stage III,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01167,28124.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01168,21915.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01375,25568.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01380,23741.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage IV,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01381,15706.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01382,27028.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G3,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01383,29220.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage III,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01388,19358.0,Not Reported,Not Reported,female,Dead,T2,N2,Stage III,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01502,27394.0,white,not hispanic or latino,male,Alive,T4,N1,Stage III,G2,Unifocal,4.6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01714,23011.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01715,22280.0,Not Reported,Not Reported,female,Dead,TX,NX,Stage III,G3,Unifocal,7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01716,18262.0,Not Reported,Not Reported,male,Dead,T4,N1,Stage IV,G3,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01719,23011.0,Not Reported,Not Reported,female,Dead,T3,NX,Stage III,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01997,23011.0,Not Reported,Not Reported,male,Dead,T2,N0,Stage I,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-01998,25202.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage II,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02010,22646.0,black or african american,not hispanic or latino,female,Alive,T3,N2,Stage III,G3,Unifocal,4.1,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02295,20454.0,Not Reported,Not Reported,male,Dead,TX,NX,Stage III,G1,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02573,14975.0,Not Reported,Not Reported,female,Alive,T3,N2,Stage III,G2,Unifocal,6,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3N-02579,18628.0,Not Reported,Not Reported,female,Dead,T1a,N0,Stage I,G2,Unifocal,0.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02585,23741.0,Not Reported,Not Reported,male,Alive,T1c,N0,Stage I,G3,Unifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02589,25933.0,Not Reported,Not Reported,male,Dead,T3,N0,Stage II,G2,Multifocal,2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02592,23011.0,Not Reported,Not Reported,female,Dead,T3,N1,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02768,16802.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage II,G3,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02940,23376.0,Not Reported,Not Reported,male,Alive,T3,N02,Stage III,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02944,22280.0,Not Reported,Not Reported,female,Alive,T2,N0,Stage I,G2,Unifocal,3.2,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02971,28490.0,white,not hispanic or latino,female,Dead,T4,N0,Stage III,G1,Unifocal,5.6,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-02998,23376.0,Not Reported,Not Reported,female,Dead,T3,N2,Stage III,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03000,20819.0,Not Reported,Not Reported,male,Dead,T3,N2,Stage IV,G3,Unifocal,5.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03006,23376.0,Not Reported,Not Reported,female,Alive,T2,N1,Stage III,G2,Unifocal,3.3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03007,21550.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,2.8,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03039,26663.0,white,not hispanic or latino,female,Not Reported,Not Reported,Not Reported,Not Reported,G2,Not Reported,Not Reported,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03061,22646.0,Not Reported,Not Reported,female,Dead,T2,N1,Stage II,G3,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03069,18262.0,Not Reported,Not Reported,female,Dead,T3,N2,Stage III,G2,Unifocal,6.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03086,25202.0,Not Reported,Not Reported,male,Alive,T3,N1,Stage II,G2,Unifocal,4.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03173,23376.0,white,not hispanic or latino,male,Alive,T2,N2,Stage III,G2,Unifocal,2.9,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03190,11323.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage II,G1,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03211,15706.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03426,24837.0,Not Reported,Not Reported,female,Dead,Not Reported,N1,Not Reported,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03428,23011.0,Not Reported,Not Reported,male,Dead,Not Reported,Not Reported,Not Reported,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03430,19724.0,Not Reported,Not Reported,female,Dead,Not Reported,Not Reported,Not Reported,G2,Unifocal,5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03439,20454.0,Not Reported,Not Reported,female,Dead,T1c,N1,Stage II,G2,Unifocal,1.7,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03440,19724.0,Not Reported,Not Reported,female,Alive,T2,N0,Stage I,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03665,23011.0,Not Reported,Not Reported,male,Alive,T2,N2,Stage III,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03666,23011.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage III,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03670,21915.0,Not Reported,Not Reported,male,Alive,T2,N2,Stage III,G2,Unifocal,2.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03754,16071.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G2,Unifocal,2.8,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03780,25202.0,Not Reported,Not Reported,female,Dead,T2,N0,Stage I,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03839,19724.0,Not Reported,Not Reported,female,Alive,T2,N1,Stage II,G2,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03840,21550.0,Not Reported,Not Reported,female,Alive,T2,N1,Stage II,G2,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03853,17897.0,Not Reported,Not Reported,female,Dead,T2,N2,Stage III,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-03884,23376.0,Not Reported,Not Reported,female,Dead,T2,N2,Stage III,G2,Unifocal,2.3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-04119,19724.0,Not Reported,Not Reported,male,Dead,T2,N1,Stage II,G2,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-04126,15340.0,Not Reported,Not Reported,male,Dead,T2,N2,Stage III,G3,Unifocal,3.5,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-04282,27394.0,Not Reported,Not Reported,male,Dead,T3,N1,Stage IV,G3,Unifocal,4,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3N-04283,24106.0,Not Reported,Not Reported,female,Dead,T3,N2,Stage III,G3,Multifocal,7,Invasive carcinoma of no special type,8500/3,Other specified parts of pancreas,PDAC,Cao
+C3N-04284,29220.0,Not Reported,Not Reported,female,Dead,T2,N2,Stage III,G3,Unifocal,3,Invasive carcinoma of no special type,8500/3,"Pancreas, NOS",PDAC,Cao
+C3L-00006,23376.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G1,Unifocal,2.9,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00008,21184.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,3.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00032,18262.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G2,Unifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00090,27394.0,white,not hispanic or latino,female,Dead,T1a,NX,Stage I,G2,Unifocal,3.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00098,23011.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G3,Unifocal,6,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00136,18262.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00137,21915.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00139,30316.0,white,not hispanic or latino,female,Dead,T3a,NX,Stage III,GX,Unifocal,4,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3L-00143,25202.0,white,not hispanic or latino,female,Alive,T1,N0,Stage I,G1,Unifocal,5.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00145,21550.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,4.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00156,20454.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,2.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00161,16802.0,white,hispanic or latino,female,Alive,T1b,N0,Stage I,G2,Unifocal,7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00358,32872.0,white,not hispanic or latino,female,Alive,T1b,NX,Stage I,G3,Unifocal,4.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3L-00361,23376.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,2.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00362,13880.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G1,Unifocal,13.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00413,21915.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,G2,Unifocal,3.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00449,21550.0,white,not hispanic or latino,female,Alive,T1a,N0,Stage I,G2,Unifocal,7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00563,22646.0,asian,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00586,18262.0,white,not hispanic or latino,female,Alive,T2,N2,Stage III,G1,Unifocal,6,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00601,20819.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,3.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00605,26663.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Unifocal,2.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00767,20454.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Multifocal,2.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00769,20454.0,white,Not Reported,female,Alive,T1b,N0,Stage I,G2,Multifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00770,26663.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Multifocal,2.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00771,31412.0,white,not hispanic or latino,female,Dead,T3a,N0,Stage III,G2,Multifocal,6,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00780,25202.0,white,hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Unifocal,1.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00781,17532.0,white,hispanic or latino,female,Alive,T2,N0,Stage II,G3,Unifocal,5.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00905,23376.0,white,not hispanic or latino,female,Alive,T2,N1,Stage III,G3,Unifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00918,24837.0,white,not hispanic or latino,female,Dead,T1a,NX,Stage I,G1,Unifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00921,24106.0,white,not hispanic or latino,female,Alive,T2,N0,Stage II,G2,Unifocal,4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00932,24472.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G2,Unifocal,1,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00942,23376.0,white,Not Reported,female,Alive,T1a,NX,Stage I,G1,Unifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00946,23376.0,white,Not Reported,female,Alive,T1b,N0,Stage I,G1,Multifocal,3.9,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00947,25933.0,white,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,1.8,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00949,23376.0,white,Not Reported,female,Alive,T1a,NX,Stage I,G1,Unifocal,2.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00961,21550.0,white,Not Reported,female,Dead,T1a,N0,Stage I,G1,Multifocal,4.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-00963,21550.0,white,Not Reported,female,Alive,T1b,NX,Stage I,G3,Unifocal,2.6,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01246,22646.0,white,Not Reported,female,Alive,T1a,N0,Stage I,G3,Unifocal,2.3,"Clear cell adenocarcinoma, NOS",8310/3,Endometrium,UCEC,Dou
+C3L-01248,15340.0,white,Not Reported,female,Alive,T1b,NX,Stage I,G1,Unifocal,6.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01249,23741.0,white,Not Reported,female,Alive,T1a,N0,Stage I,G2,Unifocal,6.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01252,27759.0,white,Not Reported,female,Alive,T1a,NX,Stage I,G1,Unifocal,0.9,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01256,27394.0,white,Not Reported,female,Alive,T1b,N0,Stage I,G1,Unifocal,4.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01257,25933.0,white,Not Reported,female,Alive,T1a,N0,Stage I,G1,Unifocal,8,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01275,23741.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G2,Unifocal,5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01282,23376.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G3,Unifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01304,24837.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,3.7,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01307,27028.0,white,not hispanic or latino,female,Dead,T1a,NX,Stage IV,G3,Unifocal,3.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01311,20089.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01312,20454.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Unifocal,4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01744,22646.0,white,Not Reported,female,Alive,T1a,NX,Stage I,G2,Unifocal,2.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3L-01925,23741.0,white,not hispanic or latino,female,Alive,T3b,N1,Stage IV,G3,Unifocal,4.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00151,21915.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G3,Unifocal,0,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00200,26298.0,black or african american,not hispanic or latino,female,Dead,T2,N1,Stage III,G3,Multifocal,9,"Adenocarcinoma, NOS",8140/3,Endometrium,UCEC,Dou
+C3N-00321,23376.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G1,Multifocal,1.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00322,25568.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G2,Multifocal,2.6,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00323,28490.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G2,Multifocal,4,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00324,24106.0,Not Reported,Not Reported,female,Alive,T2,N0,Stage II,G2,Multifocal,2.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00326,16436.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G1,Multifocal,1.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00328,22646.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G3,Multifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00333,23741.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,1,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00334,24837.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G1,Multifocal,1.4,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00335,20819.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G3,Multifocal,2.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00337,24472.0,Not Reported,Not Reported,female,Alive,T1b,NX,Stage I,G2,Multifocal,1.3,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00339,16436.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,1.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00340,21915.0,Not Reported,Not Reported,female,Alive,T3a,N1,Stage III,G3,Multifocal,3.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00377,23376.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G2,Multifocal,1,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00379,14975.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,2.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00383,22280.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G1,Unifocal,4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00386,16071.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G1,Multifocal,2.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00388,21550.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,4,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00389,22646.0,Not Reported,Not Reported,female,Alive,T1b,N0,Stage I,G2,Multifocal,1.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00729,31412.0,white,not hispanic or latino,female,Alive,T1b,N0,Stage I,G2,Multifocal,4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00734,19358.0,white,not hispanic or latino,female,Alive,T3a,N0,Stage III,G1,Unifocal,4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00743,19358.0,black or african american,not hispanic or latino,female,Alive,T1a,N0,Stage I,G2,Multifocal,3.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00836,27394.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G3,Multifocal,1,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-00847,23741.0,Not Reported,Not Reported,female,Alive,T3a,N0,Stage III,G2,Multifocal,4.3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00848,24106.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G2,Multifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00850,23741.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Multifocal,1,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00858,23741.0,Not Reported,Not Reported,female,Alive,T3b,N0,Stage III,G2,Multifocal,11,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00866,28124.0,white,not hispanic or latino,female,Alive,T1a,NX,Stage I,G1,Multifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-00880,22280.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G2,Unifocal,3.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01003,26663.0,Not Reported,Not Reported,female,Dead,T3b,N0,Stage IV,G3,Multifocal,3,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01211,21550.0,Not Reported,Not Reported,female,Alive,T2,N0,Stage II,G2,Multifocal,1.4,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01212,23011.0,Not Reported,Not Reported,female,Alive,T3a,NX,Stage III,G2,Unifocal,1.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01217,21184.0,Not Reported,Not Reported,female,Alive,T1b,NX,Stage I,G1,Multifocal,0.8,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01219,21184.0,Not Reported,Not Reported,female,Alive,T3a,N0,Stage III,G3,Unifocal,5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01267,20819.0,Not Reported,Not Reported,female,Alive,T1b,N1,Stage III,G2,Multifocal,1.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01346,23011.0,Not Reported,Not Reported,female,Alive,T1b,N2,Stage III,G3,Unifocal,5.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-01349,28124.0,Not Reported,Not Reported,female,Dead,T1b,N0,Stage I,G3,Multifocal,5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-01510,19358.0,white,not hispanic or latino,female,Alive,T2,NX,Stage II,G2,Multifocal,8.5,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01520,25202.0,Not Reported,Not Reported,female,Dead,T1a,NX,Stage I,G2,Multifocal,1,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01521,27394.0,Not Reported,Not Reported,female,Alive,T1a,NX,Stage I,G3,Unifocal,4.2,Endometrioid carcinoma,8380/3,Endometrium,UCEC,Dou
+C3N-01537,27028.0,Not Reported,Not Reported,female,Alive,T2,N0,Stage II,G3,Unifocal,1.5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-01802,31046.0,black or african american,not hispanic or latino,female,Alive,T2,N0,Stage II,G3,Unifocal,3.8,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
+C3N-01825,25568.0,Not Reported,Not Reported,female,Alive,T1a,N0,Stage I,G3,Unifocal,5,Serous cystadenocarcinoma,8441/3,Endometrium,UCEC,Dou
