@@ -29,7 +29,7 @@ def detect_matching_columns(candidate_df, target_df, groundtruth=None, matcher=N
     # TODO add more matchers, and configs to the matchers
     if matcher is None:
         matcher = JaccardDistanceMatcher()
-        matcher = Cupid()
+        # matcher = Cupid()
         # matcher = SimilarityFlooding()
         # matcher = DistributionBased()
         # matcher = Coma()
