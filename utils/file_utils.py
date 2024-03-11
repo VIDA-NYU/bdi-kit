@@ -11,5 +11,6 @@ def load_table_matching_groundtruth(datapath):
     """
     df = pd.read_csv(datapath)
     # Create a list of tuples from two columns of the dataframe
-    groundtruth = list(zip(df['candidate'], df['target']))
+    # groundtruth = list(zip(df['candidate'], df['target']))
+    groundtruth = list(zip(df['original_paper_variable_names'], df['GDC_format_variable_names']))
     return groundtruth
