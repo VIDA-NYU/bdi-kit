@@ -1,0 +1,14 @@
+Candidate,Target,Similarity,Index
+Tumor_Focality,tumor_focality,0.9514792425570056,9
+Gender,gender,0.9392409643359092,11
+Ethnicity,ethnicity,0.8865531139559087,18
+Race,race,0.8727293698884933,23
+Tumor_Size_cm,tumor_largest_dimension_diameter,0.696955831931648,43
+tumor_Stage-Pathological,ajcc_pathologic_stage,0.5712153008469711,135
+Histologic_Grade_FIGO,tumor_grade,0.5431541176962648,179
+Histologic_type,morphology,0.4802851429316043,311
+Tumor_Site,tissue_or_organ_of_origin,0.4628932613762283,350
+Proteomics_Participant_ID,case_submitter_id,0.4564555520447005,367
+Age,age_at_diagnosis,0.4495280435062809,390
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,0.3650645838951041,1230
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,0.3513417977570221,1470
