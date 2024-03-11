@@ -68,7 +68,7 @@ def main(input_dir, output_dir, map_columns):
     print(f"Saved all similarities to {all_similarities_csv_path}.")
 
     if map_columns:
-        with open('./table-union/cand_table_map.json', 'r') as json_file:
+        with open('./askem-arpa-h-project/table-union/table_map.json', 'r') as json_file:
             table_map = json.load(json_file)
 
         similarities_df = pd.read_csv(all_similarities_csv_path)
