@@ -1,0 +1,21 @@
+{
+    "target": {
+        "1": "case_submitter_id",
+        "2": "age_at_diagnosis",
+        "3": "race",
+        "4": "ethnicity",
+        "5": "gender",
+        "6": "vital_status",
+        "7": "ajcc_pathologic_t",
+        "8": "ajcc_pathologic_n",
+        "9": "ajcc_pathologic_stage",
+        "10": "tumor_grade",
+        "11": "tumor_focality",
+        "12": "tumor_largest_dimension_diameter",
+        "13": "primary_diagnosis",
+        "14": "morphology",
+        "15": "tissue_or_organ_of_origin",
+        "16": "tumor_code",
+        "17": "study"
+    }
+}
