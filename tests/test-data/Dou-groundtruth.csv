@@ -1,4 +1,4 @@
-candidate,target
+original_paper_variable_names,GDC_format_variable_names
 Proteomics_Participant_ID,case_submitter_id
 Age,age_at_diagnosis
 Gender,gender
