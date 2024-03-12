@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Feb 12 08:34:27 2022
-
-@author: khati
-"""
 import sys
 import string
 import pandas as pd
