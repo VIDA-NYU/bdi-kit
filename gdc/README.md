@@ -10,12 +10,24 @@ pip install -r requirements.txt
 ```
 
 ### Usage
-Load GDC schema as dictionary.
-```
-load_gdc_schema() -> dict
-```
-  
-Match column name and return GDC metadata.
-```
-fetch_properties(column_name: str) -> dict
-```
+#### Import
+```from gdc_api import GDCSchema```
+
+#### Create an instance of GDCSchema
+```schema = GDCSchema('YOUR_COLUMN_OR_KEYWORD')``` or ```schema = GDCSchema()```
+
+#### Get GDC columns matches
+```schema.get_gdc_candidates()```
+
+#### Get GDC properties by candidate path
+```schema.get_properties_by_gdc_candidate('CATEGORY::COL_NAME')```
+
+#### Get GDC column type and values
+```col_type = schema.get_gdc_col_type()```  
+```col_type = schema.get_gdc_col_values()```  
+
+#### Get GDC column descriptions
+```description = schema.get_gdc_col_description()```
+
+#### Set column name or keyword (if you did not set it upon create)
+```schema.set_column_name('YOUR_COLUMN_OR_KEYWORD')```
