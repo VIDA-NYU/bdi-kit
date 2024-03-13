@@ -1,14 +1,12 @@
 import pandas as pd
 from sklearn.metrics import precision_recall_fscore_support
 
-matches_df_raw = pd.read_csv('./askem-arpa-h-project/table-union/results/table_level_match/Dou_match_mapped.csv')
+matches_df_raw = pd.read_csv('./askem-arpa-h-project/table-union/results/clean_table_level_match/Dou_match_mapped.csv')
 ground_truth_df_raw = pd.read_csv('./askem-arpa-h-project/data/table-matching-ground-truth/DouManual.csv')
 incorrect_matches = matches_df_raw[~matches_df_raw['TargetColumn'].isin(ground_truth_df_raw['target'])]
 
 matches_df = matches_df_raw.sort_values(by=['TargetColumn'])
-print(matches_df['TargetColumn'])
 ground_truth_df = ground_truth_df_raw.sort_values(by=['target'])
-print(ground_truth_df['target'])
 
 matches_df = matches_df[matches_df['TargetColumn'].isin(ground_truth_df['target'])]
 
@@ -24,7 +22,7 @@ result_df = pd.concat(
 result_df['Similarity'] = result_df['Similarity'].round(2)
 result_df = result_df.sort_values(by=['Similarity'], ascending=False)
 
-result_df.to_csv('results/Duo_result.csv', index=False)
+result_df.to_csv('./askem-arpa-h-project/table-union/results/Duo_clean_result.csv', index=False)
 
 true_positives = matches_df[matches_df.apply(
     lambda x: (x['TargetColumn'], x['CandidateColumn']) in zip(

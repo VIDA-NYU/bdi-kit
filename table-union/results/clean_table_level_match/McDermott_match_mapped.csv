@@ -1,0 +1,18 @@
+TargetTable,CandidateTable,TargetColumn,CandidateColumn,Similarity
+target,McDermott_OneYearFollowUp,case_submitter_id,CPTAC Case ID,0.4279060576398037
+target,McDermott_OneYearFollowUp,age_at_diagnosis,Date of New Tumor Event,0.4969122212814546
+target,McDermott_OneYearFollowUp,tumor_focality,Tumor analyzed,0.6347340134465315
+target,McDermott_BaselineClinicalData,tumor_largest_dimension_diameter,Tumor Residual Disease (for the max diameter of the largest remaining tumor nodule),0.6463824185487461
+target,McDermott_BaselineClinicalData,primary_diagnosis,Method of Initial Pathologic Diagnosis,0.6198041245524603
+target,McDermott_OneYearFollowUp,morphology,Histological Type,0.5167686497168965
+target,McDermott_BaselineClinicalData,tissue_or_organ_of_origin,Anatomic site of Tumor Specimen,0.49080585980229285
+target,McDermott_OneYearFollowUp,tumor_code,Tumor analyzed,0.6348928131345543
+target,McDermott_BaselineClinicalData,study,Race,0.35910481353337076
+target,McDermott_BaselineClinicalData,race,Race,1.0
+target,McDermott_BaselineClinicalData,ethnicity,Ethnicity,1.0
+target,McDermott_BaselineClinicalData,gender,Gender,1.0
+target,McDermott_OneYearFollowUp,vital_status,Vital Status (at time of last contact),0.7428925624420089
+target,McDermott_OneYearFollowUp,ajcc_pathologic_t,AJCC Tumor Stage,0.5459385199648452
+target,McDermott_OneYearFollowUp,ajcc_pathologic_n,AJCC Tumor Stage,0.5483004267611622
+target,McDermott_OneYearFollowUp,ajcc_pathologic_stage,AJCC Tumor Stage,0.6571140735982786
+target,McDermott_BaselineClinicalData,tumor_grade,Tumor Grade,0.8822683648695097

@@ -1,0 +1,18 @@
+TargetTable,CandidateTable,TargetColumn,CandidateColumn,Similarity
+target,McDermott_BaselineClinicalData,case_submitter_id,CPTAC Case ID,0.4285283966981629
+target,McDermott_BaselineClinicalData,age_at_diagnosis,Age in Months at Time of Tissue Procurement 	,0.4876063163277924
+target,McDermott_OneYearFollowUp,tumor_focality,Tumor analyzed,0.5983549377053051
+target,McDermott_BaselineClinicalData,tumor_largest_dimension_diameter,Tumor Residual Disease (for the max diameter of the largest remaining tumor nodule),0.650807052232024
+target,McDermott_OneYearFollowUp,primary_diagnosis,Method Of Diagnosis of New Tumor Event,0.4587678196626821
+target,McDermott_BaselineClinicalData,morphology,Histological Subtype,0.3043234433600004
+target,McDermott_BaselineClinicalData,tissue_or_organ_of_origin,Anatomic site of Tumor Specimen,0.45544275033694137
+target,McDermott_BaselineClinicalData,tumor_code,Tumor analyzed,0.6011832700869857
+target,McDermott_OneYearFollowUp,study,Clinical Trial Drug Classification,0.2558403535282441
+target,McDermott_BaselineClinicalData,race,Race,0.5831952796724339
+target,McDermott_BaselineClinicalData,ethnicity,Ethnicity,0.6323507549448816
+target,McDermott_BaselineClinicalData,gender,Gender,0.5747133492331281
+target,McDermott_OneYearFollowUp,vital_status,Vital Status (at time of last contact),0.6743341854495641
+target,McDermott_OneYearFollowUp,ajcc_pathologic_t,Number of Days from Date of Initial Pathologic Diagnosis to Date of Therapy End,0.38178882449541274
+target,McDermott_OneYearFollowUp,ajcc_pathologic_n,Was the Pathology Review consistent with the Diagnosis?,0.39047317316788455
+target,McDermott_BaselineClinicalData,ajcc_pathologic_stage,Tumor Stage (Pathological) Ovary FIGO Staging System,0.46459647566841666
+target,McDermott_BaselineClinicalData,tumor_grade,Tumor Grade,0.7275706900343333

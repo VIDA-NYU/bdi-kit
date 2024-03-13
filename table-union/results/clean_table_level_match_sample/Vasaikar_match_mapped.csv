@@ -1,0 +1,18 @@
+TargetTable,CandidateTable,TargetColumn,CandidateColumn,Similarity
+target,Vasaikar_B-ClinicalData,case_submitter_id,SampleID,0.39999346781202305
+target,Vasaikar_B-ClinicalData,age_at_diagnosis,Stage,0.34079105290737244
+target,Vasaikar_B-ClinicalData,tumor_focality,Tumor.Status,0.5593173262167835
+target,Vasaikar_B-ClinicalData,tumor_largest_dimension_diameter,TumorPurity,0.45800713485595645
+target,Vasaikar_B-ClinicalData,primary_diagnosis,Stage,0.35015132350978007
+target,Vasaikar_A-Annotation,morphology,Column name,0.3051508529799969
+target,Vasaikar_A-Annotation,tissue_or_organ_of_origin,Column name,0.383337080002603
+target,Vasaikar_B-ClinicalData,tumor_code,Tumor.Status,0.582787742515602
+target,Vasaikar_B-ClinicalData,study,Vital.Status,0.2771064282596134
+target,Vasaikar_B-ClinicalData,race,Gender,0.3226583996611303
+target,Vasaikar_B-ClinicalData,ethnicity,Mutation,0.21687231551499453
+target,Vasaikar_B-ClinicalData,gender,Gender,0.5944471505227849
+target,Vasaikar_B-ClinicalData,vital_status,Vital.Status,0.7109299017892677
+target,Vasaikar_B-ClinicalData,ajcc_pathologic_t,PT,0.3560434216130297
+target,Vasaikar_B-ClinicalData,ajcc_pathologic_n,Clinical,0.3707700322650196
+target,Vasaikar_B-ClinicalData,ajcc_pathologic_stage,Stage,0.5120187358640624
+target,Vasaikar_B-ClinicalData,tumor_grade,Tumor.Status,0.6017425067076682

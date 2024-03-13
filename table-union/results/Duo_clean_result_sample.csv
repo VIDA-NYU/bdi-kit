@@ -1,0 +1,20 @@
+target,candidate,CandidateColumn,Similarity
+tumor_focality,Tumor_Focality,Tumor_Focality,0.8
+tumor_largest_dimension_diameter,Tumor_Size_cm,Tumor_Size_cm,0.66
+tumor_grade,Histologic_Grade_FIGO,Tumor_Size_cm,0.62
+tumor_code,N/A,WXS_tumor_sample_type,0.58
+race,Race,Race,0.58
+gender,Gender,Gender,0.57
+ajcc_pathologic_stage,tumor_Stage-Pathological,tumor_Stage-Pathological,0.57
+ethnicity,Ethnicity,Ethnicity,0.55
+case_submitter_id,Proteomics_Participant_ID,Case_excluded,0.47
+tissue_or_organ_of_origin,Tumor_Site,Tumor_Site,0.45
+ajcc_pathologic_n,Path_Stage_Reg_Lymph_Nodes-pN,Pathway_activity_JAK.STAT,0.42
+ajcc_pathologic_t,Path_Stage_Primary_Tumor-pT,Pathway_activity_JAK.STAT,0.42
+age_at_diagnosis,Age,Age,0.39
+morphology,Histologic_type,Histologic_Grade_FIGO,0.39
+primary_diagnosis,N/A,Path_Stage_Primary_Tumor-pT,0.39
+vital_status,N/A,Stemness_score,0.36
+study,N/A,idx,0.29
+
+Precision: 0.6153846153846154, Recall: 0.6153846153846154, F1: 0.6153846153846154
