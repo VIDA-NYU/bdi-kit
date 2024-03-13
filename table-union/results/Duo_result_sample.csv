@@ -17,4 +17,4 @@ morphology,Histologic_type,idx,0.43
 vital_status,N/A,Tumor_purity,0.41
 study,N/A,Histologic_Grade_FIGO,0.28
 
-Precision: 0.7692307692307693, Recall: 0.7692307692307693, F1: 0.7692307692307693
+Precision: 0.7692307692307693, Recall: 0.7692307692307693, F1: 0.7692307692307693,
