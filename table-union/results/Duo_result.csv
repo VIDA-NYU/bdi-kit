@@ -17,4 +17,4 @@ ajcc_pathologic_n,Path_Stage_Reg_Lymph_Nodes-pN,Pathway_activity_JAK.STAT,0.44
 primary_diagnosis,N/A,Path_Stage_Primary_Tumor-pT,0.43
 study,N/A,Race,0.31
 
-Precision: 0.6153846153846154, Recall: 0.6153846153846154, F1: 0.6153846153846154
+Precision: 0.6153846153846154, Recall: 0.6153846153846154, F1: 0.6153846153846154,

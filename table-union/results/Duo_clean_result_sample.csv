@@ -16,5 +16,4 @@ morphology,Histologic_type,Histologic_Grade_FIGO,0.39
 primary_diagnosis,N/A,Path_Stage_Primary_Tumor-pT,0.39
 vital_status,N/A,Stemness_score,0.36
 study,N/A,idx,0.29
-
-Precision: 0.6153846153846154, Recall: 0.6153846153846154, F1: 0.6153846153846154
+Precision: 0.6153846153846154, Recall: 0.6153846153846154, F1: 0.6153846153846154，
