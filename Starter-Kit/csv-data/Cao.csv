@@ -1,9 +1,0 @@
-"README for Table S1 Clinical information and molecular phenotypes of the samples analyzed in this study, related to Figure 1 and Figure S1.",Unnamed: 1
-,
-Clinical_data,Clinical data of the 140 tumor cohort
-Molecular_phenotype_data,Molecular phenotypes and additional processed annotations
-TMT_labeling_scheme,The TMT labeling scheme used in the study
-Proteins_phospho_glyco_IDs,Proteins/phosphopeptides/glycopeptides identified in total and per sample on average.
-,
-circRNAforTumor,Circular RNA data for tumor samples
-circRNAforNAT,Circular RNA data for NAT samples
