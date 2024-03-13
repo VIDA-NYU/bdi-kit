@@ -35,7 +35,7 @@ class EmbeddingsGenerator:
                     else:
                         serialized_input = col_name
                     # preprocess
-                    serialized_input = serialized_input.lower().replace(" ", "_").replace("-", "_")
+                    serialized_input = serialized_input.lower().replace("-", "_")
                     # Generate the embedding for the serialized input
                     embedding = self.get_embedding(serialized_input)
                     self._store_embeddings(filename, col_index, embedding)
