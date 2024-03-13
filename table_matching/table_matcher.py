@@ -28,15 +28,16 @@ def detect_matching_columns(candidate_df, target_df, groundtruth=None, matcher=N
     """
     # TODO add more matchers, and configs to the matchers
     if matcher is None:
-        matcher = JaccardDistanceMatcher()
+        # matcher = JaccardDistanceMatcher()
         # matcher = Cupid()
         # matcher = SimilarityFlooding()
         # matcher = DistributionBased()
-        # matcher = Coma()
+        matcher = Coma()
 
     print(f"Computing the matches using the {type(matcher).__name__} algorithm...")
 
-    matches = valentine_match(candidate_df, target_df, matcher, CANDIDATE_TABLE_NAME, TARGET_TABLE_NAME)
+    # matches = valentine_match(candidate_df, target_df, matcher, CANDIDATE_TABLE_NAME, TARGET_TABLE_NAME)
+    matches = valentine_match(candidate_df, target_df, matcher)
 
     # MatcherResults is a wrapper object that has several useful
     # utility/transformation functions
@@ -49,9 +50,9 @@ def detect_matching_columns(candidate_df, target_df, groundtruth=None, matcher=N
     non_covered = target_df.columns.difference(matches.one_to_one().values())
     print(f"\nColumns not covered: {non_covered}")
 
-    # print("\nThe MatcherResults object is a dict and can be treated such:")
-    # for match in matches:
-    #     print(f"{str(match): <60} {matches[match]}")
+    print("\nThe MatcherResults object is a dict and can be treated such:")
+    for match in matches:
+        print(f"{str(match): <60} {matches[match]}")
 
     if groundtruth is not None:
 
@@ -63,11 +64,11 @@ def detect_matching_columns(candidate_df, target_df, groundtruth=None, matcher=N
         print("\nThese are the scores of the default metrics for the matcher:")
         pp.pprint(metrics)
 
-        # print("\nYou can also get specific metric scores:")
-        # pp.pprint(matches.get_metrics(groundtruth, metrics={
-        #     PrecisionTopNPercent(n=80),
-        #     F1Score()
-        # }))
+        print("\nYou can also get specific metric scores:")
+        pp.pprint(matches.get_metrics(groundtruth, metrics={
+            PrecisionTopNPercent(n=80),
+            F1Score()
+        }))
 
     return matches
 
