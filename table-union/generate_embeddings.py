@@ -34,7 +34,8 @@ class EmbeddingsGenerator:
                         serialized_input = f"{col_name}: {', '.join([str(row) for row in random_rows])}"
                     else:
                         serialized_input = col_name
-                    
+                    # preprocess
+                    serialized_input = serialized_input.lower().replace(" ", "_").replace("-", "_")
                     # Generate the embedding for the serialized input
                     embedding = self.get_embedding(serialized_input)
                     self._store_embeddings(filename, col_index, embedding)
@@ -57,7 +58,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate embeddings for the columns in the tables in the input directory.")
     parser.add_argument("--sample", type=bool, default=False, help="Whether to use sample")
     parser.add_argument("--input_dir", type=str, default="./askem-arpa-h-project/data/extracted-tables", help="The directory containing the tables.")
-    parser.add_argument("--output_dir", type=str, default="./askem-arpa-h-project/table-union/embeddings/cand/header", help="The directory to store the embeddings.")
+    parser.add_argument("--output_dir", type=str, default="./askem-arpa-h-project/table-union/embeddings_clean/cand/header", help="The directory to store the embeddings.")
     args = parser.parse_args()
     api_key = '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' #TODO: Replace with your own OpenAI API key
     
