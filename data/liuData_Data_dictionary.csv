@@ -1,0 +1,84 @@
+Column,Description
+Patient_ID,Unique ID of each patient. 
+tumor_code,Tumor acronym (BRCA--Breast Cancer; ccRCC--clear cell renal cell carcinoma;  COAD--colon adenocarcinoma; GBM--Glioblastoma; HNSCC--Head and neck squamous cell carcinoma; LSCC -- Lung squamous cell carcinoma;  LUAD -- Lung adenocarcinoma; HGSC-- High grade serous carcinoma; PDAC --Pancreatic ductal adenocardinoma; UCEC -- Uterine corpus endometrial carcinoma.) 
+tumor_sample_id_protein,"Sample ID for the tumor tissue ( used as column names in the combined protein abundance file, available from the Proteomic Data Commons)"
+normal_sample_id_protein,"Sample ID for the normal tissue ( used as column names in the combined protein abundance file, available from the Proteomic Data Commons)"
+is_excluded_from_pancancer_studies,TRUE if case was excluded from pan-cancer study (PTM/Driver studies under review)
+reason_for_exclusion,Text comment describing why a case was excluded from pancancer study (see is_excluded) column
+is_gtex,"Takes value 1, if the sample is the normal brain samples from GTEX consortium; and takes value 0, otherwise"
+specimen/aliquout_id_protein_normal,Aliquot IDs for protein samples from normal adjacent tissue
+specimen/aliquout_id_protein_tumor,Aliquot IDs for protein samples from tumor tissue 
+specimen/aliquout_id_RNA_Tumor,Aliquot IDs for RNA samples from tumor tissue 
+specimen/aliquout_id_RNA_Normal,Aliquot IDs for RNA samples from normal adjacent tissue 
+specimen/aliquout_id_DNA_Tumor,Aliquot IDs for DNA samples from the tumor tissue 
+specimen/aliquout_id_DNA_Normal,Aliquot IDs for DNA samples from normal adjacent tissue
+specimen/aliquout_id_DNA_Blood,Aliquot IDs for DNA samples from blood
+Age,Age of the patient (in years)
+Sex,Male or Female
+Race,Race as indicated in clinical report
+Ethnicity,Ethnicity as indicated in clinical report
+Inferred Ancestry based on Genomic data,Ancestry as inferred from germline genetic data
+Participant Country,Country source of the sample
+consent/case_stopped,Whether follow-up was ceased
+baseline/tumor_site,Anatomical site of the tumor
+baseline/tumor_laterality,"The side of a paired organ, or the side of the body on which the tumor originated."
+baseline/tumor_focality,Whether multiple tumour foci are present
+baseline/tumor_size_cm,Size of the tumor lesion
+baseline/histologic_type,Histologic type of the tumor as identified in the pathology report
+cptac_path/histologic_grade,Histologic grade of the tumor as identified in the pathology report
+baseline/tumor_stage_pathological,Histologic stage of the tumor as identified in the pathology report
+baseline/tumor_necrosis,Whether cell death was detected in the tumor (Present/Not-identified)
+baseline/margin_status,Whether invasive cancer cells were found at the edge of the tissue
+baseline/ajcc_tnm_cancer_staging_edition_used,Whether eighth or seventh edition of AJCC TNM staging system was used
+baseline/pathologic_staging_primary_tumor_pt,Tumor stage in the primary tumor as identified in the pathology report
+baseline/pathologic_staging_regional_lymph_nodes_pn,Tumor stage in the regional lymph nodes as identified in the pathology report
+baseline/number_of_lymph_nodes_examined,Count of lymph nodes examined for pathologic staging
+baseline/number_of_lymph_nodes_positive_for_tumor_by_ihc_staining,Count of lymph nodes positive for tumor by IHC staining
+baseline/number_of_lymph_nodes_positive_for_tumor_by_he_staining,Count of lymph nodes positive for tumor by H&E staining
+baseline/clinical_staging_distant_metastasis_cm,The stage of cancer using tests that are done before surgery
+baseline/pathologic_staging_distant_metastasis_pm,The stage of cancer determined by tests that are done before surgery
+baseline/specify_distant_metastasis_documented_sites,The stage of cancer determined by removing tissue samples during surgery or a biopsy
+baseline/residual_tumor,Residual tumor (R) classification indicating whether cancer cells remain after attempts to remove the cancer
+baseline/ancillary_studies_immunohistochemistry_type_and_result,List of ancillary immunohistochemistry studies performed and their results
+medical_history/height_at_time_of_surgery_cm,"Patient's height at the time of surgery, in centimeters"
+medical_history/weight_at_time_of_surgery_kg,"Patient's weight at the time of surgery, in kilograms"
+medical_history/bmi,Patient's body mass index
+medical_history/history_of_cancer,Whether the patient has had a former diagnosis of cancer
+medical_history/alcohol_consumption,Whether the patient consumes alcohol and at what rate
+medical_history/tobacco_smoking_history,Whether the patient consumes alcohol and at what rate
+medical_history/number_of_pack_years_smoked,"The number of pack-years smoked by patient, calculated by multiplying the number of packs of cigarettes smoked per day by the number of years the person has smoked"
+medical_history/was_the_participant_exposed_to_secondhand_smoke,Whether the patient was exposed to secondhand smoke
+cancer_history/cancer_type,"If history of cancer present, cancer types previously reported"
+cancer_history/history_of_any_treatment,"Whether the patient underwent radiation, surgery, and/or chemotherapy treatment"
+medications/medication_name_vitamins_supplements,"If the patient underwent treatment, the medications and vitamin supplements taken"
+medications/history_source,Whether the medications or supplements were from medical records or self-reported
+procurement/tumor_tissue_collection_frozen_with_oct,Whether tumor tissue was collected from samples frozen in OCT
+follow-up/number_of_days_from_date_of_initial_pathologic_diagnosis_to_date_of_last_contact,"Time between pathologic diagnosis and date of last contact, in days"
+follow-up/number_of_days_from_date_of_initial_pathologic_diagnosis_to_date_of_death,"Time between pathologic diagnosis and death event, in days"
+follow-up/cause_of_death,"Cause of death, whether from main malignancy, other, or unknown"
+follow-up/number_of_days_from_date_of_collection_to_date_of_last_contact,"Time between surgical tissue collection and date of last contact, in days"
+follow-up/number_of_days_from_date_of_collection_to_date_of_death,"Time between surgical tissue collection and death event, in days"
+follow-up/adjuvant_post-operative_radiation_therapy,Whether adjuvant port-operative radiation therapy was performed
+follow-up/adjuvant_post-operative_pharmaceutical_therapy,Whether adjuvant port-operative pharmaceutical therapy was administered
+follow-up/adjuvant_post-operative_immunological_therapy,Whether adjuvant port-operative immunological therapy was administered
+follow-up/measure_of_success_of_outcome_at_the_completion_of_initial_first_course_treatment,"Whether the disease was considered responsive, in remission, persistent, progressive or stable at the completion of first course of treatment"
+follow-up/measure_of_success_of_outcome_at_date_of_last_contact_or_death,"Whether the disease was considered responsive, in remission, persistent, progressive or stable at the completion at the date of last contact or death"
+follow-up/new_tumor_after_initial_treatment,Whether a new tumor was detected after the first course of treatment
+follow-up/number_of_days_from_date_of_initial_pathologic_diagnosis_to_date_of_new_tumor_event_after_initial_treatment,Time from initial pathologic diagnosis to new tumor event after first course of treatment
+follow-up/type_of_new_tumor,"If there was a new tumor event after the initial course of treatment, the type of new tumor detected"
+follow-up/site_of_new_tumor,"If there was a new tumor event after the initial course of treatment, the primary site of new tumor detected"
+follow-up/other_site_of_new_tumor,"If there was a new tumor event after the initial course of treatment, additional sites of new tumor detected"
+follow-up/diagnostic_evidence_of_recurrence_or_relapse,"Whether recurrence or relapse was evidenced by biopsy, imaging, or biomarker detection"
+follow-up/additional_surgery_for_new_tumor_loco-regional,"If there was a new tumor event after the initial course of treatment, whether there were additional sites of the new tumor located"
+follow-up/additional_surgery_for_new_tumor_metastasis,"If there was a new tumor event after the initial course of treatment, whether there was surgical intervention"
+follow-up/residual_tumor_after_surgery_for_new_tumor,"If there was a new tumor event after the initial course of treatment and surgical intervention, residual tumor (R) classification indicating whether cancer cells remain after attempts to remove the cancer"
+follow-up/additional_treatment_radiation_therapy_for_new_tumor,"If there was a new tumor event after the initial course of treatment, whether there was additional radition therapy"
+follow-up/additional_treatment_pharmaceutical_therapy_for_new_tumor,"If there was a new tumor event after the initial course of treatment, whether there was additional pharmaceutical therapy"
+follow-up/additional_treatment_immuno_for_new_tumor,"If there was a new tumor event after the initial course of treatment, whether there was additional immunological therapy"
+follow-up/number_of_days_from_date_of_initial_pathologic_diagnosis_to_date_of_additional_surgery_for_new_tumor_event_loco-regional,"If there was a new tumor event after the initial course of treatment and surgival intervention, time between initial pathological diagnosis and additional surgery for new tumor"
+follow-up/number_of_days_from_date_of_initial_pathologic_diagnosis_to_date_of_additional_surgery_for_new_tumor_event_metastasis,"If there was a new tumor event after the initial course of treatment and surgival intervention, time between initial pathological diagnosis and additional surgery for new tumor metastasis"
+"Recurrence-free survival, days",Time from initial tumor diagnosis to diagnosis of recurrent event in days
+"Recurrence status (1, yes; 0, no)",Whether there was tumor or recurrence/progression detected at date of last contact
+"Overall survival, days",Time from diagnosis to death event or date of last contact
+"Survival status (1, dead; 0, alive)",Vital status at date of last contact
+"Time between collection and diagnosis, days",The time between the date of collection (either surgery or biopsy) and the date the pathologist signed pathological diagnosis; Negative values indicate that diagnosis occurred after the surgery or biopsy.

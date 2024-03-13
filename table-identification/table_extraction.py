@@ -39,6 +39,7 @@ def handle_files(directory = BASE_DIRECTORY):
             
 def main():
     handle_files()
+    #from_excel_to_csv('data/liuData.xlsx')
 
 if __name__ == "__main__":
     main()
