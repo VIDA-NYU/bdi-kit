@@ -30,14 +30,39 @@ class GDCSchema:
     :param candidates: dict, the candidate gdc column names and their similarity score
     """
 
-    def __init__(self, column_name=None):
+    def __init__(self, column_name=None, subschema=None):
         self.schema = load_gdc_schema()
         self.properties = None
+        
+        self.subschema = None
+        if subschema:
+            if subschema not in self.schema.keys():
+                logger.error("Invalid subschema, make sure your subschema is in schema.keys!")
+            else:
+                self.subschema = subschema
+        
         if column_name is not None:
             self.set_column_name(column_name)
         else:
             self.column_name = None
             self.candidates = None
+            
+    def parse_df(self, df):
+        matches = {}
+        for col_name in df.columns:
+            candidate = list(self.get_gdc_candidates(col_name).keys())
+            if candidate:
+                properties = self.get_properties_by_gdc_candidate(candidate[0])
+                matches[col_name] = {
+                    "candidate": candidate[0],
+                    "type": self.get_gdc_col_type(),
+                    "values": self.get_gdc_col_values(),
+                }
+            else:
+                matches[col_name] = {}
+        return matches
+        
+        
 
     def _check_properties_valid(function):
         def magic(self):
@@ -50,21 +75,27 @@ class GDCSchema:
 
         return magic
 
-    def get_gdc_candidates(self):
+    def get_gdc_candidates(self, column_name=None):
         """
         Get the candidates of GDC column names based on the similarity of the input column name.
         Need to run set_column_name first to make sure the column_name is set.
 
         :return: candidates: dict of candidate column names and their similarity score
         """
-        if self.get_column_name() is None:
+        if self.get_column_name() is None and column_name is None:
             logger.error("Please run set_column_name first!")
             return {}
-
-        column_name = self.column_name
+        
+        if not column_name:
+            column_name = self.column_name
         candidates = {}
-
-        for parent, values in self.get_schema().items():
+        
+        if self.subschema:
+            items = {self.subschema:self.get_schema()[self.subschema]}.items()
+        else:
+            items = self.get_schema().items()
+            
+        for parent, values in items:
             for key in values["properties"].keys():
                 discription = ""
                 if "description" in values["properties"][key]:
@@ -107,6 +138,7 @@ class GDCSchema:
             return self.properties["type"]
         else:
             return None
+
 
     @_check_properties_valid
     def get_gdc_col_values(self):
