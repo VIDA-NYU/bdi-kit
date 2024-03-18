@@ -4,9 +4,9 @@ aa_change,string,Not specified
 adapter_content,Not specified,"FAIL, Not Reported, PASS, Unknown, WARN"
 adapter_name,string,Not specified
 adapter_sequence,string,Not specified
-additional_pathology_findings,Not specified,"Bone marrow discordant histology, Hyperkeratosis, Inflammation, Keratinizing dysplasia; mild, Leiomyoma, Other Complex Extravascular Matrix Patterns, PD-L1 CPS (223C LDT) - 20%, Platinum-resistant, Sialadenitis, Tumor has rough spikey edges"
+additional_pathology_findings,Not specified,"Asbestos bodies, Bilateral ovaries with endometriotic cyst and surface adhesions, Bone marrow concordant histology, Clostridioides difficile (c. diff), Diffuse and early nodular diabetic glomerulosclerosis, Dysplasia; high grade, Epithelial hyperplasia, Keratinizing dysplasia; severe (carcinoma in situ), Other Complex Extravascular Matrix Patterns, Platinum-resistant"
 adrenal_hormone,Not specified,"No, Not Reported, Yes"
-adverse_event,Not specified,"Blood and Lymphatic System Disorders - Other, Delayed Puberty, Dyspepsia, Encephalitis Infection, Gait Disturbance, Hepatitis Viral, Hyperkalemia, Intraoperative Breast Injury, Mania, Superficial Thrombophlebitis"
+adverse_event,Not specified,"Diarrhea, Dry Skin, Duodenal Ulcer, Generalized Muscle Weakness, Hearing Impaired, Hematosalpinx, Optic Nerve Disorder, Scalp Pain, Skin and Subcutaneous Tissue Disorders - Other, Spermatic Cord Hemorrhage"
 adverse_event_grade,Not specified,"Grade 1, Grade 2, Grade 3, Grade 4, Grade 5"
 age_at_diagnosis,number,Not specified
 age_at_index,Not specified,Not specified
@@ -14,15 +14,15 @@ age_at_last_exposure,integer,Not specified
 age_at_onset,integer,Not specified
 age_is_obfuscated,boolean,Not specified
 aggregated_somatic_mutations,Not specified,Not specified
-aids_risk_factors,Not specified,"Candidiasis, Cryptococcosis, Cryptosporidiosis, Chronic Intestinal, Encephalopathy, Herpes Simplex Virus, Mycobacterium avium Complex, Mycobacterium tuberculosis, Pneumocystis Pneumonia, Pneumonia, NOS, Progressive Multifocal Leukoencephalopathy"
+aids_risk_factors,Not specified,"Coccidioidomycosis, Cryptococcosis, Cryptosporidiosis, Chronic Intestinal, Cytomegalovirus, Encephalopathy, Isosporiasis, Mycobacterium, NOS, Salmonella Septicemia, Toxoplasmosis, Wasting Syndrome"
 ajcc_clinical_m,Not specified,"M0, M1, M1a, M1b, M1c, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)"
-ajcc_clinical_n,Not specified,"N0 (i+), N0 (i-), N0 (mol-), N1bI, N1bIII, N1bIV, N2b, N2c, Not Allowed To Collect, Unknown"
-ajcc_clinical_stage,Not specified,"Stage 0, Stage IA2, Stage IA3, Stage IB Cervix, Stage IIB, Stage IIC1, Stage III, Stage IIIC1, Stage IS, Stage X"
-ajcc_clinical_t,Not specified,"Not Reported, T1a, T1b, T2b, T2c, T2d, T3b, T4, T4b, T4d"
-ajcc_pathologic_m,Not specified,"M0, M1a, M1b, M1c, M1d, M2, MX, Not Reported, Unknown, cM0 (i+)"
-ajcc_pathologic_n,Not specified,"N1bIV, N2b, N2c, N3, N3c, N4, NX, Not Allowed To Collect, Not Reported, Unknown"
-ajcc_pathologic_stage,Not specified,"Stage 0a, Stage 0is, Stage IA, Stage IB2, Stage II, Stage IIA2, Stage IIB, Stage IIIA, Stage IIIB, Stage IVA"
-ajcc_pathologic_t,Not specified,"Not Allowed To Collect, T0, T1a1, T2a1, T2a2, T4, Ta, Tis (DCIS), Tis (Paget's), Unknown"
+ajcc_clinical_n,Not specified,"N0 (i+), N0 (mol-), N1, N1a, N1b, N1bI, N1bIV, N1c, N3c, NX"
+ajcc_clinical_stage,Not specified,"Stage 0, Stage IA2, Stage IB2, Stage IIA, Stage III, Stage IIIA, Stage IIIC, Stage IV, Stage IVB, Stage X"
+ajcc_clinical_t,Not specified,"T1b, T2a, T2b, T4, T4a, T4b, Ta, Tis (DCIS), Tis (LCIS), Tis (Paget's)"
+ajcc_pathologic_m,Not specified,"M0, M1a, M1b, M1d, M2, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)"
+ajcc_pathologic_n,Not specified,"N0 (mol-), N1a, N1b, N1bII, N1bIII, N1bIV, N1c, N2b, N3a, N4"
+ajcc_pathologic_stage,Not specified,"Not Reported, Stage 0a, Stage IA1, Stage IA3, Stage IIA1, Stage IIB, Stage III, Stage IIIA, Stage IVB, Stage IVC"
+ajcc_pathologic_t,Not specified,"T1, T1b2, T1mi, T2, T2a1, T3a, T3b, T4c, TX, Tis (DCIS)"
 ajcc_staging_system_edition,Not specified,"1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, Not Reported, Unknown"
 alcohol_days_per_week,number,Not specified
 alcohol_drinks_per_day,number,Not specified
@@ -40,7 +40,7 @@ aliquots,Not specified,Not specified
 amount,number,Not specified
 analysis_metadata_files,Not specified,Not specified
 analyte_quantity,number,Not specified
-analyte_type,Not specified,"DNA, EBV Immortalized Normal, FFPE DNA, GenomePlex (Rubicon) Amplified DNA, Nuclei RNA, RNA, Repli-G (Qiagen) DNA, Repli-G Pooled (Qiagen) DNA, Repli-G X (Qiagen) DNA, cfDNA"
+analyte_type,Not specified,"DNA, EBV Immortalized Normal, FFPE DNA, FFPE RNA, GenomePlex (Rubicon) Amplified DNA, RNA, Repli-G (Qiagen) DNA, Repli-G Pooled (Qiagen) DNA, Repli-G X (Qiagen) DNA, m6A Enriched RNA"
 analyte_type_id,Not specified,"D, E, G, H, R, S, T, W, X, Y"
 analyte_volume,number,Not specified
 analytes,Not specified,Not specified
@@ -53,7 +53,7 @@ ann_arbor_clinical_stage,Not specified,"Not Reported, Stage I, Stage II, Stage I
 ann_arbor_extranodal_involvement,Not specified,"No, Not Allowed To Collect, Not Reported, Unknown, Yes"
 ann_arbor_pathologic_stage,Not specified,"Not Reported, Stage I, Stage II, Stage III, Stage IV, Unknown"
 annotated_somatic_mutations,Not specified,Not specified
-antigen,Not specified,"CA19-9, CD14, CD23, CD34, CD5, Kappa, Surface, Lambda, Surface, Not Reported, Prostate-Specific Antigen (PSA), Unknown"
+antigen,Not specified,"CD14, CD15, CD20, CD33, CD45, CD5, CD56, CD7, Immunoglobulin, Cytoplasmic, Kappa, Surface"
 archives,Not specified,Not specified
 asbestos_exposure,Not specified,"No, Not Reported, Unknown, Yes"
 asbestos_exposure_type,Not specified,"Amosite, Crocidolite"
@@ -67,11 +67,11 @@ base_caller_version,string,Not specified
 basic_statistics,Not specified,"FAIL, Not Reported, PASS, Unknown, WARN"
 batch_id,integer,Not specified
 bcr_id,string,Not specified
-best_overall_response,Not specified,"CPD-Clinical Progression, NPB-No Palliative Benefit, NR-No Response, Non-CR/Non-PD-Non-CR/Non-PD, PA-Palliative Therapy, PD-Progressive Disease, PR-Partial Response, PSR-Pseudoresponse, SPD-Surgical Progression, VGPR-Very Good Partial Response"
-biospecimen_anatomic_site,Not specified,"Fallopian Tube, Foot, Fundus Of Stomach, Index Finger, Lung, Lymph Node(s) Distant, Pineal Gland, Placenta, Rib, Uterus"
+best_overall_response,Not specified,"AJ-Adjuvant Therapy, IPD-Immunoprogression, MR-Minimal/Marginal Response, Non-CR/Non-PD-Non-CR/Non-PD, PPD-Pseudoprogression, PR-Partial Response, PSR-Pseudoresponse, RD-Responsive Disease, SD-Stable Disease, TE-Too Early"
+biospecimen_anatomic_site,Not specified,"Back, Bile Duct, Bladder, Cecum, Diaphragm, Fundus Of Stomach, Humerus, Lymph Node(s) Supraclavicular, Paranasal Sinuses, Testis"
 biospecimen_laterality,Not specified,"Bilateral, Left, Not Reported, Right, Unknown"
 biospecimen_supplements,Not specified,Not specified
-biospecimen_type,Not specified,"Bone Marrow, Buccal Mucosa, Buffy Coat, Connective Tissue, Granulocyte, Peritoneal Fluid, Plasma, Pleural Fluid, Saliva, Urine"
+biospecimen_type,Not specified,"Bone Marrow, Buccal Mucosa, Embryonic Fluid, Granulocyte, Not Reported, Peritoneal Fluid, Saliva, Serum, Unknown, Urine"
 biospecimen_volume,number,Not specified
 blood_test_normal_range_lower,number,Not specified
 blood_test_normal_range_upper,number,Not specified
@@ -83,8 +83,8 @@ burkitt_lymphoma_clinical_variant,Not specified,"Endemic, Immunodeficiency-assoc
 cancer_detection_method,Not specified,"Not Reported, Screening, Surveillance, Symptomatic"
 cases,Not specified,Not specified
 catalog_reference,string,Not specified
-category,Not specified,"Alternate sample pipeline, Case submitted is found to be a recurrence after submission, Duplicate case, History of acceptable prior treatment related to a prior/other malignancy, Item in special subset, Item is noncanonical, Normal tissue origin incorrect, Observation, Tumor tissue origin incorrect, WGA Failure"
-cause_of_death,Not specified,"Cancer Related, Cardiovascular Disorder, NOS, End-stage Renal Disease, Infection, Not Cancer Related, Not Reported, Renal Disorder, NOS, Spinal Muscular Atrophy, Toxicity, Unknown"
+category,Not specified,"BCR Notification, Biospecimen identity unknown, Center QC failed, Clinical data insufficient, General, History of unacceptable prior treatment related to a prior/other malignancy, Inadvertently shipped, Normal tissue origin incorrect, Qualification metrics changed, Tumor class but appears normal"
+cause_of_death,Not specified,"Cancer Related, Cardiovascular Disorder, NOS, End-stage Renal Disease, Infection, Not Cancer Related, Not Reported, Renal Disorder, NOS, Surgical Complications, Toxicity, Unknown"
 cause_of_death_source,Not specified,"Autopsy, Death Certificate, Medical Record, Not Reported, Social Security Death Index, Unknown"
 cause_of_response,string,Not specified
 cd4_count,number,Not specified
@@ -95,19 +95,19 @@ centers,Not specified,Not specified
 channel,Not specified,"Green, Red"
 chemical_exposure_type,array,Not specified
 chemo_concurrent_to_radiation,Not specified,"No, Not Reported, Unknown, Yes"
-child_pugh_classification,Not specified,"A, A5, B7, B8, C, C10, C11, C12, Not Reported, Unknown"
+child_pugh_classification,Not specified,"A5, B, B7, B8, B9, C, C11, C12, Not Reported, Unknown"
 chip_id,string,Not specified
 chip_position,string,Not specified
 chipseq_antibody,Not specified,"Not Applicable, Unknown, abcam ab4729 anti-H3K27ac"
 chipseq_target,Not specified,"H3K27ac, H3K27me3, H3K36me3, H3K4me1, H3K4me3, H3K9me3, Input Control, Unknown"
 chromosomal_translocation,Not specified,"Not Reported, Unknown, t(10;11)(p11.2;q23), t(11;19)(q23;p13.1), t(3;5)(q25;q34), t(6;11)(q27;q23), t(6;9), t(8;21), t(9;11)(p22;q23)"
-chromosome,Not specified,"chr11, chr12, chr18, chr19, chr2, chr20, chr3, chr4, chrX, chrY"
+chromosome,Not specified,"Not Reported, Unknown, chr11, chr20, chr22, chr23, chr3, chr4, chr8, chr9"
 chromosome_arm,Not specified,"Not Reported, p, q"
 cigarettes_per_day,number,Not specified
 circumferential_resection_margin,number,Not specified
 clark_level,Not specified,"I, II, III, IV, Not Reported, V"
 classification,Not specified,"Blocking Release, CenterNotification, Complete Data Freeze, Downstream Data Freeze, Notification, Observation, Redaction"
-classification_of_tumor,Not specified,"Not Allowed To Collect, Prior primary, Progression, Synchronous primary, Unknown, metastasis, not reported, other, primary, recurrence"
+classification_of_tumor,Not specified,"Not Allowed To Collect, Premalignant, Prior primary, Synchronous primary, Unknown, metastasis, not reported, other, primary, recurrence"
 clinical_supplements,Not specified,Not specified
 clinical_trial_indicator,Not specified,"No, Not Reported, Yes"
 clonality,Not specified,"Clonal, Non-clonal"
@@ -119,9 +119,9 @@ cog_renal_stage,Not specified,"Not Reported, Stage I, Stage II, Stage III, Stage
 cog_rhabdomyosarcoma_risk_group,Not specified,"High Risk, Intermediate Risk, Low Risk, Not Reported, Unknown"
 columnar_mucosa_present,Not specified,"No, Not Reported, Unknown, Yes"
 comorbidities,array,Not specified
-comorbidity,Not specified,"Cerebrovascular Disease, Connective Tissue Disorder, Cytomegalovirus (CMV), Hepatitis, Kidney Disease, Metabolic Syndrome, Neuroendocrine Tumor, Other Nonmalignant Systemic Disease, Psoriasis, Shingles"
+comorbidity,Not specified,"Chronic Pancreatitis, Cirrhosis, Unknown Etiology, Denys-Drash Syndrome, Diabetic Neuropathy, Heart Disease, Lymphamatoid Papulosis, Peutz-Jeghers Disease, Renal Failure (Requiring Dialysis), Sarcoidosis, Ulcerative Colitis"
 comorbidity_method_of_diagnosis,Not specified,"Histology, Not Reported, Pathology, Radiology, Unknown"
-composition,Not specified,"3D Neurosphere, Adherent Cell Line, Bone Marrow Components, Buffy Coat, EBV Immortalized, Fibroblasts from Bone Marrow Normal, Lymphocytes, Mixed Adherent Suspension, Peripheral Blood Components NOS, Unknown"
+composition,Not specified,"2D Classical Conditionally Reprogrammed Cells, 2D Modified Conditionally Reprogrammed Cells, 3D Neurosphere, Buccal Cells, Control Analyte, Derived Cell Line, Lymphocytes, Plasma, Solid Tissue, Unknown"
 concentration,number,Not specified
 consent_type,Not specified,"Consent Exemption, Consent Waiver, Consent by Death, Informed Consent"
 consistent_pathology_review,Not specified,"No, Not Reported, Yes"
@@ -134,19 +134,19 @@ copy_number_estimates,Not specified,Not specified
 copy_number_liftover_workflows,Not specified,Not specified
 copy_number_segments,Not specified,Not specified
 copy_number_variation_workflows,Not specified,Not specified
-country_of_birth,Not specified,"Botswana, Cameroon, Federated States of Micronesia, Japan, Lesotho, Mongolia, Nicaragua, Panama, Saint Helena, Ascension and Tristan da Cunha, Switzerland"
-country_of_residence_at_enrollment,Not specified,"Armenia, Bolivia, Congo, Guinea, Kazakhstan, Lesotho, Liechtenstein, Puerto Rico, South Africa, Uruguay"
+country_of_birth,Not specified,"Antigua and Barbuda, China, Denmark, Federated States of Micronesia, Guatemala, Israel, Malaysia, Serbia, State of Palestine, Sweden"
+country_of_residence_at_enrollment,Not specified,"Andorra, Aruba, Belize, France, Germany, Guam, Guatemala, Jersey, Kiribati, Saudi Arabia"
 course_number,number,Not specified
 created_datetime,Not specified,Not specified
 creation_datetime,number,Not specified
 creator,string,Not specified
 current_weight,number,Not specified
 cytoband,string,Not specified
-data_category,Not specified,"Biospecimen, Combined Nucleotide Variation, Copy Number Variation, DNA Methylation, Proteome Profiling, Raw Sequencing Data, Sequencing Data, Somatic Structural Variation, Structural Variation, Transcriptome Profiling"
-data_format,Not specified,"ADF, BAI, BCR SSF XML, CDC JSON, CEL, IDAT, MAF, MAGETAB, SRA XML, TBI"
+data_category,Not specified,"Clinical, Combined Nucleotide Variation, Copy Number Variation, DNA Methylation, Proteome Profiling, Sequencing Data, Sequencing Reads, Simple Nucleotide Variation, Somatic Structural Variation, Structural Variation"
+data_format,Not specified,"ADF, BCR Biotab, BEDPE, CEL, CSV, JPEG 2000, JSON, SRA XML, TARGZ, TIFF"
 data_formats,Not specified,Not specified
 data_subtypes,Not specified,Not specified
-data_type,Not specified,"Aligned Reads, Allele-specific Copy Number Segment, Cohort Level Copy Number Scores, Gene Expression Quantification, Isoform Expression Quantification, Masked Intensities, Masked Somatic Mutation, Raw CGI Variant, Slide Image, Unaligned Reads"
+data_type,Not specified,"Aggregated Somatic Mutation, Aligned Reads Index, Allele-specific Copy Number Segment, Clinical Supplement, Gene Level Copy Number Scores, Isoform Expression Quantification, Simple Germline Variation, Splice Junction Quantification, Structural Alteration, Unaligned Reads"
 data_types,Not specified,Not specified
 days_to_adverse_event,integer,Not specified
 days_to_best_overall_response,integer,Not specified
@@ -176,13 +176,13 @@ dbgap_accession_number,string,Not specified
 demographics,Not specified,Not specified
 derived_files,Not specified,Not specified
 described_cases,Not specified,Not specified
-diabetes_treatment_type,Not specified,"Alpha-Glucosidase Inhibitor, Diet, Injected Insulin, Insulin, Linagliptin, Oral Hypoglycemic, Other, Sulfonylurea, Thiazolidinedione, Unknown"
+diabetes_treatment_type,Not specified,"Biguanide, Diet, Insulin, Linagliptin, Not Reported, Oral Hypoglycemic, Other, Sulfonylurea, Thiazolidinedione, Unknown"
 diagnoses,Not specified,Not specified
 diagnosis_is_primary_disease,boolean,Not specified
 diagnosis_pathologically_confirmed,Not specified,"No, Not Allowed To Collect, Not Reported, Unknown, Yes"
 discontiguous_lesion_count,integer,Not specified
-disease_response,Not specified,"AJ-Adjuvant Therapy, IPD-Immunoprogression, NPB-No Palliative Benefit, PR-Partial Response, PSR-Pseudoresponse, RPD-Radiographic Progressive Disease, SD-Stable Disease, SPD-Surgical Progression, Unknown, VGPR-Very Good Partial Response"
-disease_type,string,"Chronic Myeloproliferative Disorders, Epithelial Neoplasms, NOS, Gliomas, Hodgkin Lymphoma, Mast Cell Tumors, Neoplasms of Histiocytes and Accessory Lymphoid Cells, Neuroepitheliomatous Neoplasms, Not Reported, Paragangliomas and Glomus Tumors, Unknown"
+disease_response,Not specified,"DU-Disease Unchanged, Non-CR/Non-PD-Non-CR/Non-PD, Not Reported, PR-Partial Response, PSR-Pseudoresponse, RD-Responsive Disease, RP-Response, TE-Too Early, Unknown, WT-With Tumor"
+disease_type,string,"Complex Mixed and Stromal Neoplasms, Cystic, Mucinous and Serous Neoplasms, Fibromatous Neoplasms, Germ Cell Neoplasms, Giant Cell Tumors, Leukemias, NOS, Lipomatous Neoplasms, Mature B-Cell Lymphomas, Mature T- and NK-Cell Lymphomas, Myxomatous Neoplasms"
 distance_normal_to_tumor,Not specified,"Adjacent (< or = 2cm), Distal (>2cm), Not Reported, Unknown"
 distributor_reference,string,Not specified
 dlco_ref_predictive_percent,number,Not specified
@@ -217,14 +217,14 @@ exercise_frequency_weekly,Not specified,"1 to 2 Days, 3 to 4 Days, 5 or More Day
 exon,string,Not specified
 experiment_metadata_files,Not specified,Not specified
 experiment_name,string,Not specified
-experimental_protocol_type,Not specified,"Allprep FFPE DNA, Allprep RNA Extraction, Chemical Lysis DNA Extraction, Genomplex, Repli-G, Repli-G X, Total RNA, aDNA Preparation Type, mirVana (Allprep DNA) RNA, nRNA - Melanoma Protocol"
+experimental_protocol_type,Not specified,"Allprep RNA Extraction, Chemical Lysis DNA Extraction, HighPure miRNA (Allprep DNA) FFPE RNA, Pre-extracted DNA received by TSS, Repli-G, Repli-G X, Total RNA, aDNA Preparation Type, mirVana (Allprep DNA) RNA, nRNA - Melanoma Protocol"
 experimental_strategies,Not specified,Not specified
-experimental_strategy,Not specified,"ATAC-Seq, Cell Culture, ChIP-Seq, HiChIP, Tissue Slide, Total RNA-Seq, Validation, WGS, WXS, m6A MeRIP-Seq"
+experimental_strategy,Not specified,"ATAC-Seq, ChIP-Seq, Genotyping Array, Methylation Array, Reverse Phase Protein Array, Total RNA-Seq, Validation, WXS, miRNA-Seq, scATAC-Seq"
 exposure_duration,Not specified,"Not Reported, Six Weeks or More, Unknown"
 exposure_duration_hrs_per_day,number,Not specified
 exposure_duration_years,integer,Not specified
 exposure_source,Not specified,"Home, Occupational, Secondary, Social, Unknown, Work"
-exposure_type,Not specified,"Asbestos, Coal Dust, Dust, NOS, Marijuana, Radiation, Radon, Smoke, Smokeless Tobacco, Tobacco, Wood Dust"
+exposure_type,Not specified,"Asbestos, Chemical, Coal Dust, Dust, NOS, Marijuana, Radiation, Radon, Respirable Crystalline Silica, Smoke, Smokeless Tobacco"
 exposures,Not specified,Not specified
 expression_analysis_workflows,Not specified,Not specified
 extracapsular_extension,Not specified,"Extensive, Focal, Not Reported"
@@ -240,14 +240,14 @@ fev1_fvc_post_bronch_percent,number,Not specified
 fev1_fvc_pre_bronch_percent,number,Not specified
 fev1_ref_post_bronch_percent,number,Not specified
 fev1_ref_pre_bronch_percent,number,Not specified
-figo_stage,Not specified,"Not Allowed To Collect, Stage 0, Stage IA2, Stage IB2, Stage IC3, Stage II, Stage IIA1, Stage III, Stage IIIA2, Stage IVA"
+figo_stage,Not specified,"Stage IA, Stage IB1, Stage IC, Stage IC2, Stage IIIAii, Stage IIIB, Stage IIIC1, Stage IV, Stage IVB, Unknown"
 figo_staging_edition_year,Not specified,"1988, 1995, 2009"
 file_name,string,Not specified
 file_size,integer,Not specified
-file_state,Not specified,"deleted, error, processed, processing, registered, released, submitted, uploaded, uploading, validated"
+file_state,Not specified,"deleted, error, processed, processing, released, submitted, uploaded, uploading, validated, validating"
 files,Not specified,Not specified
 filtered_copy_number_segments,Not specified,Not specified
-first_event,Not specified,"Death, Death without Remission, Event, Induction Failure, None, Not Reported, Other, Presented with Metastases, Relapse, Second Malignant Neoplasm"
+first_event,Not specified,"Censored, Death, Death without Remission, Induction Failure, None, Not Reported, Other, Progression, Relapse, Second Malignant Neoplasm"
 first_symptom_longest_duration,Not specified,"0-30 Days, 31-90 Days, 91-180 Days, >=181 Days"
 first_symptom_prior_to_diagnosis,Not specified,"Altered Mental Status, Headaches, Motor or Movement Changes, Not Reported, Seizures, Sensory Changes, Unknown, Visual Changes"
 flow_cell_barcode,string,Not specified
@@ -261,7 +261,7 @@ freezing_method,string,Not specified
 gastric_esophageal_junction_involvement,Not specified,"No, Not Reported, Unknown, Yes"
 gender,Not specified,"female, male, not reported, unknown, unspecified"
 gene_expressions,Not specified,Not specified
-gene_symbol,Not specified,"CCNB1IP1, DNM2, FANCA, GRM3, ISX, MAF, MAP2K1, MUTYH, SEPT5, TRIP11"
+gene_symbol,Not specified,"ARNT, BMP5, CARS, CLTCL1, ISX, MYB, RECQL4, ROBO2, RPS15, ZNF198"
 genomic_profile_harmonization_workflows,Not specified,Not specified
 germline_mutation_calling_workflows,Not specified,Not specified
 gleason_grade_group,Not specified,"Group 1, Group 2, Group 3, Group 4, Group 5, Not Reported"
@@ -277,15 +277,15 @@ height,number,Not specified
 hepatitis_sustained_virological_response,Not specified,"No, Not Reported, Unknown, Yes"
 histologic_progression_type,Not specified,"Anaplastic, Not Reported, Poorly differentiated, Unknown"
 histone_family,Not specified,"H1, H2A, H2B, H3, H4, Not Reported, Unknown"
-histone_variant,Not specified,"CENP-A, H2A.Z.2.2, H3.5, H3.X, H3.Y, H3t (H3.4), Not Reported, Unknown, mH2A, mH2A.1"
+histone_variant,Not specified,"CENP-A, H2A-Bbd, H2A.Z, H2A.Z.2, H2A.Z.2.2, H3.1, H3.2, H3.X, Unknown, mH2A"
 history_of_tumor,Not specified,"No, Not Reported, Yes"
 history_of_tumor_type,Not specified,"Colorectal Cancer, Lower Grade Glioma, Phenochromocytoma or Paraganglioma"
 hiv_viral_load,number,Not specified
 hormonal_contraceptive_type,Not specified,"Not Reported, Progestin, Progestin and Estrogen, Unknown"
 hormonal_contraceptive_use,Not specified,"Current User, Former User, Never Used, Not Reported, Unknown"
 hormone_replacement_therapy_type,Not specified,"Estrogen only, Not Reported, Progesterone and Estrogen, Progesterone only, Unknown"
-hpv_positive_type,Not specified,"18, 26, 31, 33, 35, 52, 63, 68, 70, Other"
-hpv_strain,Not specified,"HPV18, HPV31, HPV33, HPV35, HPV39, HPV45, HPV56, HPV58, HPV59, HPV73"
+hpv_positive_type,Not specified,"26, 33, 35, 39, 45, 51, 53, 59, 68, Other"
+hpv_strain,Not specified,"HPV16, HPV18, HPV33, HPV39, HPV45, HPV51, HPV52, HPV66, HPV68, HPV73"
 hysterectomy_margins_involved,Not specified,"Bladder, Macroscopic Parametrium, Microscopic Parametrium, None, Not Reported, Unknown, Vagina"
 hysterectomy_type,Not specified,"Hysterectomy, NOS, Not Performed, Not Reported, Not performed, Radical Hysterectomy, Simple Hysterectomy, Unknown"
 icd_10,string,Not specified
@@ -309,21 +309,21 @@ inpc_grade,Not specified,"Differentiating, Not Reported, Poorly Differentiated, 
 inpc_histologic_group,Not specified,"Favorable, Not Reported, Unfavorable, Unknown"
 inrg_stage,Not specified,"L1, L2, M, Ms, Not Reported, Unknown"
 inss_stage,Not specified,"Not Reported, Stage 1, Stage 2A, Stage 2B, Stage 3, Stage 4, Stage 4S, Unknown"
-instrument_model,Not specified,"AB SOLiD 2, AB SOLiD 3, Complete Genomics, Illumina Genome Analyzer II, Illumina Genome Analyzer IIx, Illumina HiSeq X Five, Illumina HiSeq X Ten, Illumina MiSeq, Ion Torrent PGM, Other"
+instrument_model,Not specified,"454 GS FLX Titanium, Illumina Genome Analyzer IIx, Illumina HiSeq 2000, Illumina HiSeq X Five, Illumina HiSeq X Ten, Illumina NovaSeq X, Ion Torrent PGM, Ion Torrent Proton, Ion Torrent S5, Unknown"
 intended_release_date,Not specified,Not specified
 intermediate_dimension,number,Not specified
 international_prognostic_index,Not specified,"High Risk, High-Intermediate Risk, Low Risk, Low-Intermediate Risk"
 intron,string,Not specified
-irs_group,Not specified,"Group I, Group III, Group IIIa, Group IIIb, Group IIa, Group IIc, Group IV, Group Ia, Not Reported, Unknown"
+irs_group,Not specified,"Group II, Group IIIa, Group IIIb, Group IIa, Group IIb, Group IIc, Group IV, Group Ia, Group Ib, Not Reported"
 irs_stage,Not specified,"1, 2, 3, 4, Not Reported, Unknown"
 is_ffpe,boolean,Not specified
 is_legacy,boolean,Not specified
 is_paired_end,Not specified,Not specified
 ishak_fibrosis_score,Not specified,"0 - No Fibrosis, 1,2 - Portal Fibrosis, 3,4 - Fibrous Septa, 5 - Nodular Formation and Incomplete Cirrhosis, 6 - Established Cirrhosis, Not Reported, Unknown"
 iss_stage,Not specified,"I, II, III, Not Reported, Unknown"
-karnofsky_performance_status,Not specified,"10, 100, 20, 30, 50, 60, 70, 80, Not Reported, Unknown"
+karnofsky_performance_status,Not specified,"10, 100, 20, 30, 40, 50, 70, 80, 90, Unknown"
 kmer_content,Not specified,"FAIL, Not Reported, PASS, Unknown, WARN"
-laboratory_test,Not specified,"BG8, Basophil, Cellularity, Dopamine-Secreting, Lactate Dehydrogenase, M Protein, Myeloblasts, Serum Free Immunoglobulin Light Chain, Kappa, Serum Free Immunoglobulin Light Chain, Lambda, Serum Mesothelin"
+laboratory_test,Not specified,"Blast Count, Circulating Endothelial Cells, Creatinine, Human Chorionic Gonadotropin, Human Papillomavirus, Metamyelocytes, Promyelocytes, Serum Mesothelin, TAG-72, Total Protein"
 lane_number,integer,Not specified
 largest_extrapelvic_peritoneal_focus,Not specified,"Macroscopic (2cm or less), Macroscopic (greater than 2cm), Microscopic, Not Reported, Unknown"
 last_known_disease_status,Not specified,"Biochemical evidence of disease without structural correlate, Distant met recurrence/progression, Loco-regional recurrence/progression, Not Allowed To Collect, Tumor free, Unknown tumor status, With tumor, not reported"
@@ -338,7 +338,7 @@ library_preparation_kit_vendor,string,Not specified
 library_preparation_kit_version,string,Not specified
 library_selection,Not specified,"Affinity Enrichment, Hybrid Selection, Other, PCR, Poly-T Enrichment, Random, miRNA Size Fractionation, rRNA Depletion"
 library_strand,Not specified,"First_Stranded, Not Applicable, Second_Stranded, Unstranded"
-library_strategy,Not specified,"Bisulfite-Seq, HiChIP, RNA-Seq, Targeted Sequencing, WGS, WXS, m6A MeRIP-Seq, miRNA-Seq, scATAC-Seq, scRNA-Seq"
+library_strategy,Not specified,"ATAC-Seq, ChIP-Seq, HiChIP, RNA-Seq, Targeted Sequencing, WGS, WXS, m6A MeRIP-Seq, scATAC-Seq, scRNA-Seq"
 loci_abnormal_count,integer,Not specified
 loci_count,integer,Not specified
 locus,string,Not specified
@@ -346,7 +346,7 @@ longest_dimension,number,Not specified
 lost_to_followup,Not specified,"No, Unknown, Yes"
 lymph_node_dissection_method,Not specified,"Functional (Limited) Neck Dissection, Modified Radical Neck Dissection, Radical Neck Dissection"
 lymph_node_dissection_site,Not specified,"Neck, Left, Neck, NOS, Neck, Right"
-lymph_node_involved_site,Not specified,"Cervical, Cervical, Central, Femoral, Hilar, Iliac, NOS, Iliac-external, Occipital, Parotid, Submandibular, Supraclavicular"
+lymph_node_involved_site,Not specified,"Cervical, Lateral, Epitrochlear, Hilar, Iliac, NOS, Iliac-external, Pelvis, NOS, Retroperitoneal, Splenic, Submandibular, Supraclavicular"
 lymph_node_involvement,Not specified,"Indeterminant, Negative, Not Reported, Positive, Unknown"
 lymph_nodes_positive,integer,Not specified
 lymph_nodes_removed,Not specified,"No, Not Reported, Yes"
@@ -361,7 +361,7 @@ marital_status,Not specified,"Divorced, Domestic Partnership, Married, Never Mar
 masaoka_stage,Not specified,"Stage I, Stage III, Stage IIa, Stage IIb, Stage IVa, Stage IVb"
 masked_methylation_arrays,Not specified,Not specified
 masked_somatic_mutations,Not specified,Not specified
-max_tumor_bulk_site,Not specified,"Brain, Colon, Iliac-external, Oropharynx, Paraaortic lymph nodes, Peri-orbital soft tissue, Pericardium, Stomach, Submandibular lymph nodes, Supraclavicular lymph nodes"
+max_tumor_bulk_site,Not specified,"Maxilla, Mediastinal lymph nodes, Ovary, Pancreas, Parotid gland, Peri-orbital soft tissue, Pericardium, Soft tissue (muscle, ligaments, subcutaneous), Splenic lymph nodes, Thyroid"
 md5sum,string,Not specified
 mean_coverage,number,Not specified
 measurement_type,Not specified,"Echographic, Pathologic, Radiologic"
@@ -371,9 +371,9 @@ melanoma_known_primary,Not specified,"No, Not Reported, Yes"
 menopause_status,Not specified,"Not Reported, Perimenopausal, Postmenopausal, Premenopausal, Unknown"
 metaplasia_present,Not specified,"No, Not Reported, Unknown, Yes"
 metastasis_at_diagnosis,Not specified,"Distant Metastasis, Metastasis, NOS, No Metastasis, Not Reported, Regional Metastasis, Unknown"
-metastasis_at_diagnosis_site,Not specified,"Bladder, Bone, Cerebrospinal Fluid, Esophagus, Lymph Node, NOS, Ovary, Peritoneal Cavity, Pleura, Unknown, Urethra"
-method_of_diagnosis,Not specified,"Biopsy, Blood Draw, Cystoscopy, Diagnostic Imaging, Enucleation, Excisional Biopsy, Fine Needle Aspiration, Laparoscopy, Not Reported, Pathologic Review"
-method_of_sample_procurement,Not specified,"Abdomino-perineal Resection of Rectum, Bone Marrow Aspirate, Enucleation, Hand Assisted Laparoscopic Radical Nephrectomy, Lumpectomy, Oophorectomy, Other, Subtotal Prostatectomy, Transoral Laser Excision, Tumor Debulking"
+metastasis_at_diagnosis_site,Not specified,"Ascites, Kidney, Liver, Lung, Lymph Node, Regional, Pleura, Retroperitoneum, Spinal Cord, Urethra, Vertebral Canal"
+method_of_diagnosis,Not specified,"Autopsy, Cystoscopy, Enucleation, Excisional Biopsy, Laparoscopy, Physical Exam, Surgical Resection, Thoracentesis, Ultrasound Guided Biopsy, Unknown"
+method_of_sample_procurement,Not specified,"Blood Draw, Bone Marrow Aspirate, Endolaryngeal Excision, Needle Biopsy, Orchiectomy, Pan-Procto Colectomy, Partial Maxillectomy, Subtotal Prostatectomy, Supraglottic Laryngectomy, Tumor Resection"
 methylation_array_harmonization_workflows,Not specified,Not specified
 methylation_beta_values,Not specified,Not specified
 methylation_liftover_workflows,Not specified,Not specified
@@ -386,18 +386,18 @@ mismatch_repair_mutation,Not specified,"No, Not Reported, Unknown, Yes"
 mitosis_karyorrhexis_index,Not specified,"High, Intermediate, Low, Not Reported, Unknown"
 mitotic_count,"integer, number",Not specified
 mitotic_total_area,number,Not specified
-molecular_analysis_method,Not specified,"Immunofluorescence, Karyotype, Microarray, Microscopy, NOS, Nuclear Staining, PCR, RNA Sequencing, RT-PCR, Sequencing, NOS, Southern Blotting"
-molecular_consequence,Not specified,"Feature Truncation, Inframe Deletion, Intergenic Variant, Missense Variant, NMD Transcript Variant, Splice Acceptor Variant, Stop Lost, Synonymous Variant, TF Binding Site Variant, TFBS Ablation"
+molecular_analysis_method,Not specified,"Cytogenetics, NOS, Flow Cytometry, Immunofluorescence, Karyotype, Microarray, Microsatellite Analysis, Microscopy, NOS, Not Reported, RT-PCR, Sequencing, NOS"
+molecular_consequence,Not specified,"5 Prime UTR Variant, Coding Sequence Variant, Mature miRNA Variant, Missense Variant, NMD Transcript Variant, Non-coding Transcript Exon Variant, Splice Acceptor Variant, Stop Lost, Stop Retained Variant, TFBS Amplification"
 molecular_tests,Not specified,Not specified
 morphologic_architectural_pattern,Not specified,"Cohesive, Cribiform, Micropapillary, Non-cohesive, Papillary Renal Cell, Papillary, NOS, Solid, Tubular"
-morphology,Not specified,"8142/3, 8148/2, 8171/3, 8211/0, 8300/3, 8450/0, 8772/3, 8935/0, 9105/3, 9393/3"
+morphology,Not specified,"8005/0, 8013/3, 8162/3, 8251/3, 8405/0, 8474/3, 8504/3, 8727/0, 8770/0, 9320/0"
 msi_score,number,Not specified
 msi_status,Not specified,"MSI, MSS"
 multiplex_barcode,string,Not specified
 mutation_codon,Not specified,"12, 13, 61"
 myasthenia_gravis_classification,Not specified,"Class I, Class II, Class III, Class IV, Class V"
 nadir_cd4_count,number,Not specified
-name,string,"MSI, Tag, analyte, batch_effect_removed, cnv, cqcf, hg19, meth, portion, segmented"
+name,string,"LOH, MSI, Normal_LogR, Paired_LogR, exon, hg19, junction, lowess_normalized_smoothed, original, segmented"
 namespace,string,Not specified
 necrosis_percent,number,Not specified
 necrosis_present,Not specified,"No, Not Reported, Yes"
@@ -464,7 +464,7 @@ peritoneal_fluid_cytological_status,Not specified,"Atypical, Malignant, Non-Mali
 peritoneal_washing_results,Not specified,"Negative, Not Reported, Positive"
 plate_name,string,Not specified
 plate_well,string,Not specified
-platform,Not specified,"Affymetrix SNP 6.0, Complete Genomics, Illumina, Illumina Human Methylation 27, Illumina Methylation Epic, Ion Torrent, LS454, PacBio, RPPA, SOLiD"
+platform,Not specified,"Affymetrix SNP 6.0, Complete Genomics, Illumina Human Methylation 27, Illumina Human Methylation 450, Illumina Methylation Epic v2, Ion Torrent, LS454, Other, PacBio, RPPA"
 platforms,Not specified,Not specified
 ploidy,Not specified,"Aneuploid, Diploid, Hyperdiploid, Hypodiploid, Near Diploid, Not Reported, Tetraploid, Unknown"
 pmid,string,Not specified
@@ -476,17 +476,17 @@ pregnant_at_diagnosis,Not specified,"No, Not Reported, Unknown, Yes"
 premature_at_birth,Not specified,"No, Not Reported, Unknown, Yes"
 prescribed_dose,number,Not specified
 preservation_method,Not specified,"Cryopreserved, EDTA, FFPE, Fresh, Frozen, Not Allowed To Collect, Not Reported, OCT, Snap Frozen, Unknown"
-primary_diagnosis,Not specified,"Adamantinoma, malignant, Basal cell carcinoma, micronodular, Intraepithelial squamous cell carcinoma, Mast cell sarcoma, Myloproliferative neoplasm, unclassifiable, Osteoid osteoma, NOS, Polymorphic post transplant lymphoproliferative disorder, Squamotransitional cell carcinoma, Thymoma, type C, Undifferentiated sarcoma"
+primary_diagnosis,Not specified,"Atypical meningioma, Carcinoma, metastatic, NOS, Endometrial stromal nodule, Glioblastoma multiforme, Jadassohn blue nevus, Malignant lymphomatous polyposis, Medulloblastoma, classic, Pseudomucinous cystadenoma, borderline malignancy, Recklinghausen disease, Wolffian duct adenoma"
 primary_disease,boolean,Not specified
 primary_gleason_grade,Not specified,"Pattern 1, Pattern 2, Pattern 3, Pattern 4, Pattern 5"
-primary_site,string,"Corpus uteri, Hematopoietic and reticuloendothelial systems, Hypopharynx, Liver and intrahepatic bile ducts, Other and unspecified parts of biliary tract, Pancreas, Parotid gland, Pyriform sinus, Rectum, Testis"
+primary_site,string,"Anus and anal canal, Brain, Breast, Eye and adnexa, Floor of mouth, Not Applicable, Other and unspecified female genital organs, Skin, Ureter, Vulva"
 prior_malignancy,Not specified,"Not Allowed To Collect, no, not reported, unknown, yes"
 prior_treatment,Not specified,"No, Not Allowed To Collect, Not Reported, Unknown, Yes"
 proc_internal,Not specified,dna-seq skip
 procedures_performed,Not specified,"Colonoscopy, Endoscopy, Not Reported, Unknown"
 programs,Not specified,Not specified
 progression_or_recurrence,Not specified,"No, Not Allowed To Collect, Not Reported, Unknown, Yes, no, not reported, unknown, yes"
-progression_or_recurrence_anatomic_site,Not specified,"Cloacogenic zone, Gallbladder, Heart, Larynx, NOS, Lateral floor of mouth, Lateral wall of oropharynx, Lip, NOS, Lymph node, NOS, Medulla of adrenal gland, Pharynx, NOS"
+progression_or_recurrence_anatomic_site,Not specified,"Acoustic nerve, Connective, subcutaneous and other soft tissues of abdomen, Dome of bladder, Gallbladder, Kidney, NOS, Lesser curvature of stomach, NOS, Lymph nodes of head, face and neck, Olfactory nerve, Overlapping lesion of digestive system, Parametrium"
 progression_or_recurrence_type,Not specified,"Biochemical, Distant, Local, Locoregional, Not Reported, Regional, Unknown"
 project,string,Not specified
 project_id,string,Not specified
@@ -501,7 +501,7 @@ prostatic_chips_positive_count,number,Not specified
 prostatic_chips_total_count,number,Not specified
 prostatic_involvement_percent,number,Not specified
 protein_expressions,Not specified,Not specified
-protocol_identifier,Not specified,"8605, AALL07P4, ACCL0331, ADVL0812, ADVL0821, ADVL1011, ALTE03N1, ANBL0321, ANBL09P1, IHRT"
+protocol_identifier,Not specified,"321P2, 3881, 8605, 9340, AALL0031, AALL03B1, AAML0631, ADVL0215, ANBL0322, CCG2961"
 race,Not specified,"Unknown, american indian or alaska native, asian, black or african american, native hawaiian or other pacific islander, not allowed to collect, not reported, other, unknown, white"
 radiosensitizing_agent,Not specified,"No, Not Reported, Unknown, Yes"
 radon_exposure,Not specified,"No, Not Reported, Unknown, Yes"
@@ -521,8 +521,8 @@ related_files,Not specified,Not specified
 related_to_files,Not specified,Not specified
 relationship_age_at_diagnosis,number,Not specified
 relationship_gender,Not specified,"female, male, not reported, unknown, unspecified"
-relationship_primary_diagnosis,Not specified,"Bile Duct Cancer, Bladder Cancer, Breast Cancer, Chondrosarcoma, Ewing Sarcoma, Kaposi Sarcoma, Neuroblastoma, Rectal Cancer, Throat Cancer, Uterine Cancer"
-relationship_type,Not specified,"Foster Mother, Grandfather, Identical Twin Brother, Maternal Grandfather, Maternal Great Uncle, Niece Second Degree Relative, Paternal Grandparent, Paternal Half Brother, Stepmother, Stepsister"
+relationship_primary_diagnosis,Not specified,"Bladder Cancer, CNS Cancer, Gallbladder Cancer, Kaposi Sarcoma, Leukemia, Liver Cancer, Lymphoma, Rectal Cancer, Tonsillar Cancer, Wilms Tumor"
+relationship_type,Not specified,"Foster Brother, Full Brother, Maternal Great Aunt, Maternal Half Sister, Natural Sister, Nephew, Sibling, Son, Twin Sibling, Unrelated"
 relative_deceased,Not specified,"No, Not Reported, Yes"
 relative_smoker,Not specified,"No, Not Reported, Yes"
 relative_with_cancer_history,Not specified,"no, not reported, unknown, yes"
@@ -541,7 +541,7 @@ rhabdoid_percent,number,Not specified
 rhabdoid_present,Not specified,"No, Not Reported, Yes"
 ribosomal_rna_28s_16s_ratio,number,Not specified
 rin,number,Not specified
-risk_factor,Not specified,"Allergy, Nuts, BRCA Family History, Colonization, Bacterial, Common variable immune deficiency (CVID), Gorlin Syndrome, Hepatitis A Infection, Intestinal Metaplasia, Myelodysplastic Syndrome, Neurocystericerosis, Rheumatoid Arthritis"
+risk_factor,Not specified,"Alcoholic Liver Disease, Allergy, Nuts, Androgen Excess, Autoimmune Atrophic Chronic Gastritis, Hereditary Ovarian Cancer, Neurocystericerosis, Rheumatoid Arthritis, Tuberculosis, Undescended Testis, Vascular Disease"
 risk_factor_method_of_diagnosis,Not specified,"Biochemical Assessment, Both Clinical and Biochemical Assessments, Clinical Assessment, Not Reported"
 risk_factor_treatment,Not specified,"No, Not Reported, Unknown, Yes"
 risk_factors,array,Not specified
@@ -551,8 +551,8 @@ roots,Not specified,Not specified
 route_of_administration,array,Not specified
 run_metadata_files,Not specified,Not specified
 sample_ordinal,integer,Not specified
-sample_type,Not specified,"Additional - New Primary, Blood Derived Cancer - Bone Marrow, Post-treatment, Blood Derived Liquid Biopsy, Blood Derived Normal, FFPE Scrolls, Metastatic, Mixed Adherent Suspension, Recurrent Blood Derived Cancer - Bone Marrow, Repli-G X (Qiagen) DNA, Saliva"
-sample_type_id,Not specified,"03, 05, 06, 14, 15, 31, 32, 41, 85, 87"
+sample_type,Not specified,"Benign Neoplasms, Blood Derived Cancer - Bone Marrow, Post-treatment, Blood Derived Liquid Biopsy, Bone Marrow Normal, Lymphoid Normal, Neoplasms of Uncertain and Unknown Behavior, Not Allowed To Collect, Pleural Effusion, Post neo-adjuvant therapy, Primary Tumor"
+sample_type_id,Not specified,"01, 03, 05, 06, 12, 16, 17, 31, 32, 85"
 samples,Not specified,Not specified
 sarcomatoid_percent,number,Not specified
 sarcomatoid_present,Not specified,"No, Not Reported, Yes"
@@ -560,7 +560,7 @@ satellite_nodule_present,Not specified,"Absent, Indeterminate, Not Reported, Pre
 scan_tracer_used,Not specified,"Acetate, Axumin, Choline, PSMA, Sodium Fluoride"
 schema_version,string,Not specified
 second_exon,string,Not specified
-second_gene_symbol,Not specified,"ASPSCR1, CREB1, EIF3E, GATA2, HEY1, PIM1, PSIP1, PTEN, RGPD3, VHL"
+second_gene_symbol,Not specified,"ERBB3, FES, H3F3B, KCNJ5, KDM6A, LYL1, PHF6, PML, SS18, ZMYM3"
 secondary_expression_analyses,Not specified,Not specified
 secondary_gleason_grade,Not specified,"Pattern 1, Pattern 2, Pattern 3, Pattern 4, Pattern 5"
 secondhand_smoke_as_child,Not specified,"No, Not Reported, Unknown, Yes"
@@ -578,7 +578,7 @@ shortest_dimension,number,Not specified
 simple_germline_variations,Not specified,Not specified
 simple_somatic_mutations,Not specified,Not specified
 single_cell_library,Not specified,"Chromium 3' Gene Expression v2 Library, Chromium 3' Gene Expression v3 Library, Chromium scATAC v1 Library, Smart-Seq2"
-site_of_resection_or_biopsy,Not specified,"Anus, NOS, Bone of limb, NOS, Descended testis, Descending colon, Floor of mouth, NOS, Fundus uteri, Hypopharyngeal aspect of aryepiglottic fold, Lateral floor of mouth, Lingual tonsil, Other ill-defined sites"
+site_of_resection_or_biopsy,Not specified,"Cardia, NOS, Hypopharyngeal aspect of aryepiglottic fold, Lower gum, Lower limb, NOS, Supraglottis, Thymus, Transverse colon, Urachus, Uterine adnexa, Uvula"
 sites_of_involvement,array,Not specified
 sites_of_involvement_count,integer,Not specified
 size_extraocular_nodule,number,Not specified
@@ -593,7 +593,7 @@ somatic_mutation_calling_workflows,Not specified,Not specified
 somatic_mutation_indexes,Not specified,Not specified
 source_center,string,Not specified
 specialized_molecular_test,string,Not specified
-specimen_type,Not specified,"Adherent Cell Line, Cell, Derived Cell Line, EBV Immortalized, Fibroblasts from Bone Marrow, Mononuclear Cells from Bone Marrow, Not Reported, Pleural Effusion, Saliva, Solid Tissue"
+specimen_type,Not specified,"3D Organoid, Derived Cell Lines and Sorted Cells, Granulocytes, Liquid Suspension Cell Line, Mixed Adherent Suspension, Mononuclear Cells from Bone Marrow, Plasma, Serum, Solid Tissue, Sorted Cells"
 spectrophotometer_method,string,Not specified
 spike_ins_concentration,string,Not specified
 spike_ins_fasta,string,Not specified
@@ -601,7 +601,7 @@ spindle_cell_percent,number,Not specified
 stain_type,Not specified,"Haemotoxylin and Eosin (H&E), Immunohistochemistry (IHC)"
 staining_intensity_scale,Not specified,"3 Point Scale, 4 Point Scale"
 staining_intensity_value,Not specified,"0, 1+, 2+, 3+, 4+"
-state,Not specified,"error, invalid, open, processing, redacted, released, review, suppressed, validated, validating"
+state,Not specified,"invalid, legacy, md5summing, processed, released, review, submitted, uploaded, uploading, validated"
 state_comment,string,Not specified
 status,Not specified,"Approved, Rescinded"
 structural_variant_calling_workflows,Not specified,Not specified
@@ -617,64 +617,64 @@ submitter_id,string,Not specified
 supratentorial_localization,Not specified,"Cerebral Cortex, Deep Gray (e.g. Basal Ganglia, Thalamus), Frontal lobe, Not Reported, Occipital lobe, Parietal lobe, Spinal Cord, Temporal lobe, Unknown, White Matter"
 synchronous_malignancy,Not specified,"No, Not Reported, Unknown, Yes"
 tags,Not specified,Not specified
-target_capture_kit,Not specified,"Custom SeqCap EZ HGSC VCRome v2.1 ER Augmented v2, Custom SeqCap EZ TARGET-OS Panel - 7.0 Mb, Custom Solid Tumor GENIE-VICC Panel - 34 Genes, Custom SureSelect CGCI-BLGSP Panel - 7.8 Mb, Custom SureSelect CGCI-HTMCP-CC KMT2D And Hotspot Panel - 37.0 Kb, Custom SureSelect TARGET-AML_NBL_WT Panel - 2.8 Mb, SureSelect Human All Exon v5 + UTR, TruSeq Amplicon Cancer Panel, TruSight Myeloid Sequencing Panel, xGen Exome Research Panel v1.0"
+target_capture_kit,Not specified,"Custom GENIE-DFCI Oncopanel - 447 Genes, Custom MSK IMPACT Panel - 468 Genes, Custom PGDX SureSelect CancerSelect VAREPOP-APOLLO Panel - 203 Genes, Custom SeqCap EZ HGSC VCRome v2.1 ER Augmented v2, Custom SureSelect CGCI-BLGSP Panel - 4.6 Mb, Custom SureSelect Human All Exon v1.1 Plus 3 Boosters, Custom Twist Broad PanCancer Panel - 396 Genes, Nextera DNA Exome, SureSelect Human All Exon v4, TruSeq Amplicon Cancer Panel"
 target_capture_kit_catalog_number,string,Not specified
 target_capture_kit_name,string,Not specified
 target_capture_kit_target_region,string,Not specified
 target_capture_kit_vendor,string,Not specified
 target_capture_kit_version,string,Not specified
 test_analyte_type,Not specified,"DNA, Not Reported, Protein, Total RNA, Unknown, mRNA, miRNA"
-test_result,Not specified,"Abnormal, NOS, Amplified, Copy Number Reported, Equivocal, High, Negative, Not Amplified, Overexpressed, Positive, Test Value Reported"
-test_units,Not specified,"Not Reported, Unknown, g/L, mcg/L, mcg/mL, mg/dL, mm^2, mmol/L, percent, ukat/L"
+test_result,Not specified,"Abnormal, NOS, Amplified, Elevated, High, Intermediate, Mitotic Count Reported, Normal, Not Amplified, Positive, Staining Intensity Value Reported"
+test_units,Not specified,"Not Reported, U/g Hb, U/mL, cells/mL, g/L, g/dL, mg/24 hr, mg/L, mg/dL, mm^2"
 test_value,number,Not specified
-test_value_range,Not specified,"0-25, 1-49%, 10-19%, 30-39%, 40-49%, 51-75, 60-69%, 76-100, <1%, >=50%"
-therapeutic_agents,Not specified,"Amuvatinib, Androgen Receptor Antagonist TAS3681, Anti-CD38-targeted IgG4-attenuated IFNa TAK-573, Digitoxin, Etoricoxib, Iniparib, Integrin alpha-2 Inhibitor E7820, Nanoparticle Paclitaxel Ointment SOR007, Puquitinib Mesylate, Vapreotide"
+test_value_range,Not specified,"0-25, 1-49%, 10-19%, 20-29%, 30-39%, 40-49%, 51-75, 76-100, <1%, Not Reported"
+therapeutic_agents,Not specified,"Adenosine A2A Receptor Antagonist/Phosphodiesterase 10A PBF-999, Anti-CD30 Monoclonal Antibody XmAb2513, Anti-CD70 CAR-expressing T Lymphocytes, Autologous Genetically-modified MAGE-A4 C1032 CD8alpha T Cells, Autologous Nectin-4/FAP-targeted CAR-T Cells, CDK4/6 Inhibitor BPI-16350, Cetuximab, Fc-engineered Anti-CD40 Agonist Antibody 2141-V11, Fosgemcitabine Palabenamide, Tebentafusp"
 therapeutic_level_achieved,boolean,Not specified
 therapeutic_levels_achieved,Not specified,"No, Not Reported, Unknown, Yes"
 therapeutic_target_level,Not specified,>14 mg/L
 time_between_clamping_and_freezing,number,Not specified
 time_between_excision_and_freezing,number,Not specified
 time_between_waking_and_first_smoke,Not specified,"31-60 Minutes, 6-30 Minutes, After 60 Minutes, Unknown, Within 5 Minutes"
-timepoint_category,Not specified,"Adolescence, Childhood, End of Consolidation Therapy, Initial Diagnosis, Not Reported, Post Adjuvant Therapy, Post Hormone Therapy, Preoperative, Prior to Procurement, Within 3 Months of Surgery"
+timepoint_category,Not specified,"Adjuvant Therapy, End of Consolidation Therapy, End of Treatment Course 2, Follow-up, Not Reported, Other, Post Hormone Therapy, Preoperative, Prior to Treatment, Within 3 Months of Surgery"
 tissue_collection_type,Not specified,"Prospective, Retrospective"
 tissue_microarray_coordinates,string,Not specified
-tissue_or_organ_of_origin,Not specified,"Glans penis, Hypopharyngeal aspect of aryepiglottic fold, Medulla of adrenal gland, Overlapping lesion of cervix uteri, Overlapping lesion of connective, subcutaneous and other soft tissues, Overlapping lesion of larynx, Overlapping lesion of other and unspecified parts of mouth, Overlapping lesion of urinary organs, Retromolar area, Tonsil, NOS"
+tissue_or_organ_of_origin,Not specified,"Anterior surface of epiglottis, Anus, NOS, Ciliary body, External lip, NOS, Gallbladder, Ill-defined sites within respiratory system, Not Reported, Overlapping lesion of urinary organs, Posterior wall of bladder, Rib, sternum, clavicle and associated joints"
 tissue_source_sites,Not specified,Not specified
 tissue_type,Not specified,"Abnormal, Normal, Not Allowed To Collect, Not Reported, Peritumoral, Tumor, Unknown"
 to_trim_adapter_sequence,boolean,Not specified
 tobacco_smoking_onset_year,integer,Not specified
 tobacco_smoking_quit_year,integer,Not specified
-tobacco_smoking_status,Not specified,"4, 5, 7, Current Reformed Smoker for > 15 yrs, Current Reformed Smoker, Duration Not Specified, Not Allowed To Collect, Not Reported, Smoker at Diagnosis, Smoking history not documented, Unknown"
+tobacco_smoking_status,Not specified,"2, 3, 4, 5, 6, 7, Current Reformed Smoker for < or = 15 yrs, Current Smoker, Not Reported, Unknown"
 total_reads,integer,Not specified
 total_sequences,integer,Not specified
 transcript,string,Not specified
 transglottic_extension,Not specified,"Absent, Not Reported, Present, Unknown"
-treatment_anatomic_site,Not specified,"Abdomen, total, Carina, Hard Palate, Lymph Node(s) Epitrochlear, Lymph Node(s) Iliac-External, Penis, Small Bowel - Mucosa Only, Umbilical Cord, Urethra, White Blood Cells"
+treatment_anatomic_site,Not specified,"Axilla, Cerebellum, Cerebrospinal Fluid, Heart, Jaw, Lymph Node(s) Occipital, Nails, Penis, Popliteal Fossa, Pouch"
 treatment_anatomic_sites,array,Not specified
 treatment_arm,Not specified,"A081105, A081801, E4512, EA5142"
 treatment_dose,integer,Not specified
 treatment_dose_max,number,Not specified
-treatment_dose_units,Not specified,"AUC, IU/kg, IU/mg, Wafer, cGy, g/day, mEq, mg/dL, mg/m2/day, ug"
+treatment_dose_units,Not specified,"IU/kg, g/day, mL, mg, mg/dL, mg/day, mg/kg, mg/m2, mg/mL, mg/wk"
 treatment_duration,integer,Not specified
 treatment_effect,Not specified,"Complete Necrosis (No Viable Tumor), Incomplete Necrosis (Viable Tumor Present), No Known Treatment Effect, No Necrosis, Not Reported, Unknown"
 treatment_effect_indicator,Not specified,"No, Not Reported, Unknown, Yes"
-treatment_frequency,Not specified,"Every 24 Hours, Every Other Day, Four Times Daily, Never, Not Reported, Occasionally, Once Daily, Once a Week for at Least a Year, Three Times Daily, Unknown"
-treatment_intent_type,Not specified,"Adjuvant, Androgen Deprivation Therapy (ADT), Consolidation Therapy, Cure, First-Line Therapy, Induction, Neoadjuvant, Not Reported, Prevention, Unknown"
+treatment_frequency,Not specified,"Every 24 Hours, Every Hour, Every Other Day, Five Times Daily, Four Times Daily, Once Weekly, Once a Week for at Least a Year, Twice Daily, Twice Weekly, Unknown"
+treatment_intent_type,Not specified,"Adjuvant, Androgen Deprivation Therapy (ADT), Consolidation Therapy, First-Line Therapy, Induction, Neoadjuvant, Not Reported, Prevention, Radiation Boost, Unknown"
 treatment_or_therapy,Not specified,"no, not reported, unknown, yes"
-treatment_outcome,Not specified,"Complete Response, No Measurable Disease, Normalization of Tumor Markers, Not Reported, Partial Response, Persistent Disease, Progressive Disease, Treatment Ongoing, Treatment Stopped Due to Toxicity, Unknown"
+treatment_outcome,Not specified,"Complete Response, Mixed Response, No Measurable Disease, No Response, Normalization of Tumor Markers, Persistent Disease, Treatment Ongoing, Treatment Stopped Due to Toxicity, Unknown, Very Good Partial Response"
 treatment_outcome_duration,integer,Not specified
-treatment_type,Not specified,"Ancillary Treatment, Ethanol Injection Ablation, Peptide Receptor Radionuclide Therapy (PRRT), Pharmaceutical Therapy, NOS, Pleurodesis, NOS, Radiation, Photon Beam, Stem Cell Transplantation, Allogeneic, Stem Cell Transplantation, Haploidentical, Stereotactic Radiosurgery, Surgery"
+treatment_type,Not specified,"Antiseizure Treatment, Biopsy, Incisional, Blinded Study, Treatment Unknown, Brachytherapy, Low Dose, I-131 Radiation Therapy, Immunotherapy (Including Vaccines), Radiation, 3D Conformal, Radiation, Radioisotope, Radiosensitizing Agent, Stem Cell Transplantation, Allogeneic"
 treatments,Not specified,Not specified
 tumor_burden,number,Not specified
-tumor_code,Not specified,"Acute myeloid leukemia (AML), CNS, ependymoma, CNS, glioblastoma (GBM), CNS, low grade glioma (LGG), CNS, rhabdoid tumor, Cervical Cancer (all types), Induction Failure AML (AML-IF), Lung Cancer (all types), Osteosarcoma (OS), Rhabdomyosarcoma"
-tumor_code_id,Not specified,"10, 15, 21, 30, 51, 62, 63, 64, 71, 81"
+tumor_code,Not specified,"Acute Leukemia of Ambiguous Lineage (ALAL), Acute myeloid leukemia (AML), CNS, ependymoma, CNS, medulloblastoma, CNS, other, NHL, anaplastic large cell lymphoma, Rhabdoid tumor (kidney) (RT), Rhabdomyosarcoma, Soft tissue sarcoma, non-rhabdomyosarcoma, Wilms tumor (WT)"
+tumor_code_id,Not specified,"01, 04, 20, 40, 41, 50, 51, 52, 60, 71"
 tumor_confined_to_organ_of_origin,Not specified,"No, Not Reported, Unknown, Yes"
 tumor_depth,number,Not specified
 tumor_depth_descriptor,Not specified,"Deep, Not Reported, Superficial"
 tumor_depth_measurement,number,Not specified
-tumor_descriptor,Not specified,"Metastatic, NOS, New Primary, Not Applicable, Not Reported, Premalignant, Primary, Recurrence, Unknown, Xenograft"
+tumor_descriptor,Not specified,"NOS, New Primary, Not Allowed To Collect, Not Applicable, Not Reported, Premalignant, Primary, Recurrence, Unknown, Xenograft"
 tumor_focality,Not specified,"Multifocal, Not Reported, Unifocal, Unknown"
-tumor_grade,Not specified,"G1, G2, G3, G4, GB, GX, High Grade, Low Grade, Not Reported, Unknown"
+tumor_grade,Not specified,"G2, G3, G4, GB, GX, High Grade, Intermediate Grade, Low Grade, Not Reported, Unknown"
 tumor_grade_category,Not specified,"Four Tier, Not Reported, Three Tier"
 tumor_infiltrating_lymphocytes,Not specified,"Few, Many, Moderate"
 tumor_infiltrating_macrophages,Not specified,"Few, Many, Moderate"
@@ -688,16 +688,16 @@ tumor_shape,Not specified,"Diffuse, Dome, Mushroom, Unknown"
 tumor_thickness,number,Not specified
 tumor_width_measurement,number,Not specified
 type,string,data_release
-type_of_smoke_exposure,Not specified,"Aircraft smoke, Coal smoke, NOS, Fire smoke, NOS, Hashish smoke, Machine smoke, Marijuana smoke, Oil burning smoke, NOS, Work-related smoke, NOS, Work-related smoke, fire fighting, Work-related smoke, plumbing"
+type_of_smoke_exposure,Not specified,"Accidental building fire smoke, Cooking-related smoke, NOS, Machine smoke, Marijuana smoke, Oil burning smoke, NOS, Tobacco smoke, cigar, Unknown, Waste burning smoke, Work-related smoke, artificial smoke machines, Work-related smoke, plastics factory"
 type_of_tobacco_used,Not specified,"Cigar, Cigarette, Electronic Cigarette, Other, Pipe, Smokeless Tobacco"
 uicc_clinical_m,Not specified,"M0, M1, M1a, M1b, M1c, MX, Not Reported, Unknown, cM0 (i+)"
-uicc_clinical_n,Not specified,"N0, N0 (i+), N1, N1a, N1b, N1bI, N1bII, N2c, N3c, NX"
-uicc_clinical_stage,Not specified,"Not Reported, Stage 0is, Stage IA, Stage IA2, Stage IIA1, Stage IIB, Stage IIIC, Stage IIIC2, Stage IS, Stage IVB"
-uicc_clinical_t,Not specified,"T0, T1a2, T1b1, T1b2, T1mi, T2d, T4e, TX, Tis (Paget's), Unknown"
-uicc_pathologic_m,Not specified,"M0, M1, M1a, M1b, M1c, M1d, M2, MX, Not Reported, cM0 (i+)"
-uicc_pathologic_n,Not specified,"N0 (mol+), N1, N1a, N1bIV, N1mi, N2, N2b, N3c, NX, Not Reported"
-uicc_pathologic_stage,Not specified,"Stage IA, Stage IB, Stage IC, Stage IIA1, Stage IIA2, Stage IIIA2, Stage IIID, Stage IVA, Stage IVB, Stage X"
-uicc_pathologic_t,Not specified,"T0, T1, T1a, T1b1, T2, T2b, T3a, T4, Tis, Unknown"
+uicc_clinical_n,Not specified,"N0 (i+), N1, N1b, N1bIV, N1c, N1mi, N2b, N2c, N3c, N4"
+uicc_clinical_stage,Not specified,"Stage IA, Stage IA1, Stage IA3, Stage IIA, Stage IIC1, Stage IIIA, Stage IIIB, Stage IIIC, Stage IVB, Stage IVC"
+uicc_clinical_t,Not specified,"T0, T1a, T1c, T2b, T2c, T3a, T3d, T4, T4e, Tis (DCIS)"
+uicc_pathologic_m,Not specified,"M0, M1, M1b, M1c, M1d, M2, MX, Not Reported, Unknown, cM0 (i+)"
+uicc_pathologic_n,Not specified,"N0, N0 (mol+), N1bI, N1c, N2, N2c, N2mi, N3, N3b, Not Reported"
+uicc_pathologic_stage,Not specified,"Stage IA, Stage IA1, Stage IB, Stage IB1, Stage IIA1, Stage IIIA1, Stage IIIC2, Stage IV, Stage IVB, Stage IVC"
+uicc_pathologic_t,Not specified,"Not Reported, T0, T1, T1a, T1a1, T1c2, T2b, T3c, T4, T4a"
 uicc_staging_system_edition,Not specified,"1st, 2nd, 3rd, 4th, 5th, 6th, 7th, 8th, Not Reported, Unknown"
 ulceration_indicator,Not specified,"No, Not Reported, Yes"
 undescended_testis_corrected,Not specified,"No, Not Reported, Yes"
@@ -709,7 +709,7 @@ undescended_testis_history_laterality,Not specified,"Bilateral, Left, Not Report
 updated_datetime,Not specified,Not specified
 use_per_day,number,Not specified
 variant_origin,Not specified,"Germline, Somatic, Unknown"
-variant_type,Not specified,"Chrimerism, Deletion-Insertion, Genetic Polymorphism, Insertion, Inversion, Methylation, Mosaicism, Not Reported, Splice, Substitution"
+variant_type,Not specified,"Alleles, Conversion, Deletion, Deletion-Insertion, Insertion, Inversion, Loss, Repeated Sequences, Substitution, Translocation"
 vascular_invasion_present,Not specified,"No, Not Reported, Unknown, Yes"
 vascular_invasion_type,Not specified,"Extramural, Intramural, Macro, Micro, No Vascular Invasion, Not Reported, Unknown"
 viral_hepatitis_serologies,Not specified,"HBV Core Antibody, HBV DNA, HBV Genotype, HBV Surface Antibody, HCV Genotype, Hepatitis B Surface Antigen, Hepatitis C Antibody, Hepatitis C Virus RNA, Not Reported, Unknown"
@@ -726,7 +726,7 @@ wilms_tumor_histologic_subtype,Not specified,"Favorable, Not Reported, Unfavorab
 workflow_end_datetime,Not specified,Not specified
 workflow_link,string,Not specified
 workflow_start_datetime,Not specified,Not specified
-workflow_type,Not specified,"BCGSC miRNA Profiling, CellRanger - 10x Filtered Counts, CellRanger - 10x Raw Counts, GATK4 MuTect2, GATK4 MuTect2 Tumor-Only Annotation, GENIE Structural Variation, GISTIC - Focal Amplification, RNA-SeQC - Counts, STAR - FPKM, SomaticSniper"
+workflow_type,Not specified,"ABSOLUTE LiftOver, AscatNGS, BCGSC miRNA Profiling, DNAcopy, GISTIC - Focal Deletion, HTSeq - Counts, Pindel Variant Aggregation and Masking, Read Group Quality Control, STAR - Counts, VarScan2"
 workflow_version,string,Not specified
 year_of_birth,Not specified,Not specified
 year_of_death,integer,Not specified
