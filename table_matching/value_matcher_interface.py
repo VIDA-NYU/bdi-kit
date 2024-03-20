@@ -1,3 +1,5 @@
+import tabulate
+import pandas as pd
 import matplotlib.pyplot as plt
 
 
@@ -14,10 +16,15 @@ class MatcherInterface():
         if self.mapping_results is None:
             self._match_values(verbose=False)
         sorted_results = sorted(self.mapping_results.items(), key=lambda x: x[1]['coverage'], reverse=True)
+        total = 0
 
         for column_name, match_data in sorted_results:
             coverage = match_data['coverage'] * 100
-            print(f'{column_name} ({coverage:.2f} %)')
+            total += coverage
+            print(f'Column {column_name}: {coverage:.2f}%')
+        
+        total = total / len(sorted_results)
+        print(f'Total: {total:.2f}%')
 
     def match_values(self):
         self._match_values(verbose=True)
@@ -37,8 +44,11 @@ class MatcherInterface():
             self.mapping_results[current_column]['matches'] = matches
             self.mapping_results[current_column]['coverage'] = coverage
             if verbose:
-                print(f'Column: {current_column}, matches: {matches}')
-
+                print(f'Column {current_column}:')
+                matches_df = pd.DataFrame(matches)
+                if len(matches_df) > 0:
+                    print(tabulate.tabulate(matches_df, headers=['Current Value', 'Target Value', 'Similarity'], 
+                                            tablefmt='orgtbl', showindex=False), '\n')
 
     def plot_unique_values(self):
         unique_counts = self.dataset.nunique()
@@ -57,7 +67,6 @@ class MatcherInterface():
 if __name__ == '__main__':
     from gdc_utils import get_gdc_data
     from value_matcher import TFIDFMatcher
-    import pandas as pd
 
     column_mapping = {
         #"Proteomics_Participant_ID": "case_submitter_id",
