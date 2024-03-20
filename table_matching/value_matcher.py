@@ -10,6 +10,7 @@ class BaseMatcher():
     def match(self, current_values, target_values, threshold=0.8):
         self.model.match(current_values, target_values)
         match_results = self.model.get_matches()
+        match_results.sort_values(by='Similarity', ascending=False, inplace=True)
 
         matches = []
         #used_values = set()
