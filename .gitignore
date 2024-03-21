@@ -7,3 +7,11 @@ __pycache__/
 
 # Data directories
 use-case-2/data/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+**/*.ipynb_checkpoints
+
+# Ignore vscode settings
+.vscode/
+**/.vscode
