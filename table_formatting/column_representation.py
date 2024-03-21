@@ -1,6 +1,7 @@
 import os
 import sys
 import numpy as np
+import pandas as pd
 from enum import Enum
 
 from typing import Optional, List, Callable, Any
@@ -16,6 +17,7 @@ class DataType(Enum):
 class ColumnRepresentation:
     def __init__(self, column_name: str, column_type: str, null_values_representations: List, possible_column_values: Optional[List[str]] = None) -> None:
         self.column_name: str = column_name
+        self.short_column_name: str = column_name.split('::')[-1]
         self.column_type: str = column_type
         self.null_values_representations: List = null_values_representations
         
@@ -53,7 +55,7 @@ def add_categorical_col(subschema, cols):
         coltype = DataType.STRING
         col_representation = ColumnRepresentation(colname, coltype, cat_null_values, values)
         gdc_target_columns.append(col_representation)
-        print(col_representation.column_name,'with' ,len(col_representation.possible_column_values), 'possible values (excluding null representations).')
+        # print(col_representation.column_name,'with' ,len(col_representation.possible_column_values), 'possible values (excluding null representations).')
 
 subschema = 'demographic'
 cols = [ 'vital_status','ethnicity', 'gender', 'race']
@@ -82,7 +84,7 @@ col_representation = ColumnRepresentation(colname, coltype, numeric_null_values)
 col_representation.add_check_constraint(within_range(0, 140*365 )) # 140 years in days
 # for v in [1, 500, -1, 10000000]:
 #         print(v, col_representation.check_constraints(v))
-print(col_representation.column_name,'with', col_representation.check_constraints_list, 'check constraints.')
+# print(col_representation.column_name,'with', col_representation.check_constraints_list, 'check constraints.')
 gdc_target_columns.append(col_representation)
 
 
@@ -92,5 +94,19 @@ colname = subschema + '::' + col
 coltype = DataType.FLOAT
 col_representation = ColumnRepresentation(colname, coltype, numeric_null_values)
 col_representation.add_check_constraint(within_range(0, 50 )) # 50cm centimeters
-print(col_representation.column_name,'with', col_representation.check_constraints_list, 'check constraints.')
+# print(col_representation.column_name,'with', col_representation.check_constraints_list, 'check constraints.')
 gdc_target_columns.append(col_representation)
+
+
+
+# Extract column names and possible column values from gdc_target_columns
+# generate a dataframe with data from GDC
+column_names = [col.short_column_name for col in gdc_target_columns[:-2]] # TODO fill up numerical columns
+column_values = [col.possible_column_values for col in gdc_target_columns[:-2]]
+# Create a dictionary with column names as keys and column values as values
+data = {column_names[i]: column_values[i] for i in range(len(column_names))}
+
+gdc_df = pd.DataFrame.from_dict(data, orient='index').transpose()
+gdc_df = gdc_df.reindex(columns=column_names)
+gdc_df = gdc_df.fillna(value=pd.NA)
+print(gdc_df.head())
