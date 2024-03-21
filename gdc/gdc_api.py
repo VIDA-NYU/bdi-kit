@@ -46,13 +46,55 @@ class GDCSchema:
         else:
             self.column_name = None
             self.candidates = None
+
+    
+    # Static methods
+    @staticmethod
+    def compute_jaro_score(values, choices):
+        """
+        Compute the Jaro similarity score between the input values and the choices.
+        For each value, it will find the maximum Jaro similarity score with the choices
+        and then return the average score.
+
+        :param values: list, the input values
+        :param choices: list, the choices to compare with from GDC enums
+        :return: score: float, the average Jaro similarity score
+        """
+        score = 0
+        for value in values:
+            score += max([jellyfish.jaro_similarity(value, choice) for choice in choices])
+        return score / len(values)
+    
+    @staticmethod
+    def compute_embedded_col_values_name_score(df_enums, candidate_enums):
+        """
+        Compute Jaro Score (see: compute_jaro_score) and column name similarity score.
+        Output is sorted by Jaro Score and then by column name similarity score.
+
+        :param df_enums: dict, the input column names and their unique values (should be lower cased)
+        :param candidate_enums: dict, the candidate column names and their unique values (should be lower cased)
+        :return: embedded_scores: dict, the embedded scores of column names and their candidate column names
+        """
+        embedded_scores = {}
+        for col_name, values in df_enums.items():
+            scores = {}
+            for candidate, choices in candidate_enums.items():
+                name_score = jellyfish.jaro_similarity(col_name, candidate)
+                scores[candidate] = {
+                    "jaro": GDCSchema.compute_jaro_score(values, choices),
+                    "name": name_score,
+                }
+            scores = {k: v for k, v in sorted(scores.items(), key=lambda item: (item[1]["jaro"], item[1]["name"]), reverse=True)}
+            # print(f"{col_name}: {list(scores.keys())[0]}")
+            embedded_scores[col_name] = scores
+        return embedded_scores
             
     def parse_df(self, df):
         matches = {}
         for col_name in df.columns:
             candidate = list(self.get_gdc_candidates(col_name).keys())
             if candidate:
-                properties = self.get_properties_by_gdc_candidate(candidate[0])
+                _ = self.get_properties_by_gdc_candidate(candidate[0]) # this will automatically set the properties
                 matches[col_name] = {
                     "candidate": candidate[0],
                     "type": self.get_gdc_col_type(),
@@ -61,8 +103,21 @@ class GDCSchema:
             else:
                 matches[col_name] = {}
         return matches
+    
+    def extract_enums(self, subschemas=None):
+        enums = {}
+        for subschema, values in self.get_schema().items():
+            if subschemas and subschema not in subschemas:
+                continue
+            for col_name, properties in values["properties"].items():
+                if "enum" in properties:
+                    if col_name not in enums:
+                        enums[col_name] = []
+                    enums[col_name].extend([value.lower() for value in properties["enum"]])
+        for col_name, values in enums.items():
+            enums[col_name] = list(set(values))
         
-        
+        return enums
 
     def _check_properties_valid(function):
         def magic(self):
