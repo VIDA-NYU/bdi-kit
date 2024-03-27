@@ -1,5 +1,6 @@
 from polyfuzz import PolyFuzz
 from polyfuzz.models import EditDistance, TFIDF, Embeddings
+from flair.embeddings import TransformerWordEmbeddings
 
 
 class BaseMatcher():
@@ -40,6 +41,19 @@ class EditMatcher(BaseMatcher):
 
     def __init__(self):
         method = EditDistance(n_jobs=-1)
+        self.model = PolyFuzz(method)
+    
+    def match(self, current_values, target_values, threshold=0.8):
+        matches = super().match(current_values, target_values, threshold)
+
+        return matches
+
+
+class EmbeddingMatcher(BaseMatcher):
+
+    def __init__(self, model_path='bert-base-multilingual-cased'):
+        embeddings = TransformerWordEmbeddings(model_path)
+        method = Embeddings(embeddings, min_similarity=0, model_id='embedding_model')
         self.model = PolyFuzz(method)
     
     def match(self, current_values, target_values, threshold=0.8):
