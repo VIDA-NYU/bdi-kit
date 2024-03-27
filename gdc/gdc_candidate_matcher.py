@@ -99,12 +99,18 @@ class GDCCandidateMatcher:
             embedded_scores[col_name] = scores
         return embedded_scores
 
-    def parse_df(self, df, number_of_candidates=1):
+    def parse_df(self, df, number_of_candidates=1, as_mapping=False):
         df_enums = self.extract_df_enums(df)
+        enums = self.extract_enums()
         embedded_scores = self.compute_embedded_col_values_name_score(df_enums)
         matches = {}
-
+        if as_mapping:
+            gdc_data = {}
         for col_name, scores in embedded_scores.items():
+            if as_mapping:
+                matches[col_name] = list(scores.keys())[0]
+                gdc_data[list(scores.keys())[0]] = enums[list(scores.keys())[0]]
+                continue
             matches[col_name] = []
             candidates_count = 0
             for candidate, score in scores.items():
@@ -123,5 +129,7 @@ class GDCCandidateMatcher:
                 matches[col_name].append(candidate_score)
 
                 candidates_count += 1
+        if as_mapping:
+            return matches, gdc_data
         return matches
 
