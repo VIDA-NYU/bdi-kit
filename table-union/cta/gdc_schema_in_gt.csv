@@ -1,0 +1,43 @@
+column name,column type,column values
+age_at_diagnosis,number,Not specified
+ajcc_clinical_m,Not specified,"M0, M1, M1a, M1b, M1c, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)"
+ajcc_pathologic_m,Not specified,"M0, M1a, M1b, M1d, M2, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)"
+ajcc_pathologic_n,Not specified,"N0 (mol-), N1a, N1b, N1bII, N1bIII, N1bIV, N1c, N2b, N3a, N4"
+ajcc_pathologic_stage,Not specified,"Not Reported, Stage 0a, Stage IA1, Stage IA3, Stage IIA1, Stage IIB, Stage III, Stage IIIA, Stage IVB, Stage IVC"
+ajcc_pathologic_t,Not specified,"T1, T1b2, T1mi, T2, T2a1, T3a, T3b, T4c, TX, Tis (DCIS)"
+alcohol_intensity,Not specified,"Drinker, Heavy Drinker, Lifelong Non-Drinker, Non-Drinker, Not Reported, Occasional Drinker, Social Drinker, Unknown"
+biospecimen_laterality,Not specified,"Bilateral, Left, Not Reported, Right, Unknown"
+bmi,number,Not specified
+cause_of_death,Not specified,"Cancer Related, Cardiovascular Disorder, NOS, End-stage Renal Disease, Infection, Not Cancer Related, Not Reported, Renal Disorder, NOS, Surgical Complications, Toxicity, Unknown"
+cigarettes_per_day,number,Not specified
+country_of_residence_at_enrollment,Not specified,"Andorra, Aruba, Belize, France, Germany, Guam, Guatemala, Jersey, Kiribati, Saudi Arabia"
+days_to_death,"integer, number",Not specified
+days_to_last_follow_up,Not specified,Not specified
+days_to_recurrence,integer,Not specified
+ethnicity,Not specified,"Unknown, hispanic or latino, not allowed to collect, not hispanic or latino, not reported, unknown"
+figo_stage,Not specified,"Stage IA, Stage IB1, Stage IC, Stage IC2, Stage IIIAii, Stage IIIB, Stage IIIC1, Stage IV, Stage IVB, Unknown"
+gender,Not specified,"female, male, not reported, unknown, unspecified"
+height,number,Not specified
+last_known_disease_status,Not specified,"Biochemical evidence of disease without structural correlate, Distant met recurrence/progression, Loco-regional recurrence/progression, Not Allowed To Collect, Tumor free, Unknown tumor status, With tumor, not reported"
+lymph_nodes_positive,integer,Not specified
+lymphatic_invasion_present,Not specified,"No, Not Reported, Unknown, Yes"
+pack_years_smoked,number,Not specified
+perineural_invasion_present,Not specified,"No, Not Reported, Unknown, Yes"
+primary_diagnosis,Not specified,"Atypical meningioma, Carcinoma, metastatic, NOS, Endometrial stromal nodule, Glioblastoma multiforme, Jadassohn blue nevus, Malignant lymphomatous polyposis, Medulloblastoma, classic, Pseudomucinous cystadenoma, borderline malignancy, Recklinghausen disease, Wolffian duct adenoma"
+progression_or_recurrence,Not specified,"No, Not Allowed To Collect, Not Reported, Unknown, Yes, no, not reported, unknown, yes"
+race,Not specified,"Unknown, american indian or alaska native, asian, black or african american, native hawaiian or other pacific islander, not allowed to collect, not reported, other, unknown, white"
+residual_disease,Not specified,"Not Reported, R0, R1, R2, RX, Unknown"
+secondhand_smoke_as_child,Not specified,"No, Not Reported, Unknown, Yes"
+site_of_resection_or_biopsy,Not specified,"Cardia, NOS, Hypopharyngeal aspect of aryepiglottic fold, Lower gum, Lower limb, NOS, Supraglottis, Thymus, Transverse colon, Urachus, Uterine adnexa, Uvula"
+synchronous_malignancy,Not specified,"No, Not Reported, Unknown, Yes"
+tissue_or_organ_of_origin,Not specified,"Anterior surface of epiglottis, Anus, NOS, Ciliary body, External lip, NOS, Gallbladder, Ill-defined sites within respiratory system, Not Reported, Overlapping lesion of urinary organs, Posterior wall of bladder, Rib, sternum, clavicle and associated joints"
+tissue_type,Not specified,"Abnormal, Normal, Not Allowed To Collect, Not Reported, Peritumoral, Tumor, Unknown"
+tobacco_smoking_onset_year,integer,Not specified
+tobacco_smoking_quit_year,integer,Not specified
+tobacco_smoking_status,Not specified,"2, 3, 4, 5, 6, 7, Current Reformed Smoker for < or = 15 yrs, Current Smoker, Not Reported, Unknown"
+tumor_focality,Not specified,"Multifocal, Not Reported, Unifocal, Unknown"
+tumor_grade,Not specified,"G2, G3, G4, GB, GX, High Grade, Intermediate Grade, Low Grade, Not Reported, Unknown"
+tumor_largest_dimension_diameter,number,Not specified
+vascular_invasion_present,Not specified,"No, Not Reported, Unknown, Yes"
+vital_status,Not specified,"Alive, Dead, Not Reported, Unknown, alive, dead, lost to follow-up"
+weight,number,Not specified
