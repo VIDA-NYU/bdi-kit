@@ -273,7 +273,6 @@ Coverage,None,None
 Cov_100x,None,None
 Template Mean,None,None
 Template SD,None,height
-Case_ID,case_submitter_id,Case_ID
 Tumor/Normal,tissue_type,tissue_type
 Gender,gender,gender
 Age,age_at_diagnosis,age_at_diagnosis
@@ -312,16 +311,8 @@ Path_Stage_Dist_Mets-pM,ajcc_pathologic_m,ajcc_pathologic_m
 tumor_Stage-Pathological,ajcc_pathologic_stage,ajcc_pathologic_stage
 FIGO_stage,figo_stage,figo_stage
 LVSI,None,lymphatic_invasion_present
-BMI,bmi,bmi
-Age,age_at_diagnosis,age_at_diagnosis
 Diabetes,None,None
-Race,race,race
 Ethnicity,ethnicity,ethnicity
-Gender,gender,gender
-Tumor_Site,tissue_or_organ_of_origin,tissue_or_organ_of_origin
-Tumor_Site_Other,None,None
-Tumor_Focality,tumor_focality,tumor_focality
-Tumor_Size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
 Estrogen_Receptor,None,None
 Estrogen_Receptor_%,None,None
 Progesterone_Receptor,None,None
@@ -414,7 +405,6 @@ PI3K_RPTOR,None,None
 PI3K_STK11,None,None
 PI3K_TSC1,None,None
 PI3K_TSC2,None,None
-PI3K_pathway,None,None
 HRD_BRCA1,None,None
 HRD_BRCA2,None,None
 HRD_BRCA1_or_BRCA2,None,None
@@ -431,7 +421,6 @@ CNV_4q_AMP,None,None
 Purity_Immune,None,None
 Purity_Cancer,None,None
 Purity_Stroma,None,None
-MSI_status,None,None
 POLE_subtype,None,None
 JAK1_MS_INDEL,None,None
 JAK1_Mutation,None,None
@@ -470,8 +459,6 @@ Methylation_available,None,None
 Methylation_quality,None,None
 Column name,None,None
 Column definition,None,None
-Unnamed: 2,None,None
-Unnamed: 3,None,None
 Data type,None,None
 Definition,None,None
 SampleID,Case_ID,Case_ID
@@ -485,8 +472,6 @@ TMT Proteome,None,None
 TMT Proteome (Normal),None,None
 TMT Phosphoproteome,None,None
 TMT Phosphoproteome (Normal),None,None
-Age,age_at_diagnosis,age_at_diagnosis
-Gender,gender,gender
 Mucinous,None,tissue_type
 Subsite,None,tissue_or_organ_of_origin
 PT,ajcc_pathologic_t,ajcc_pathologic_t
@@ -528,7 +513,6 @@ median,None,None
 0.95UCL,None,tumor_largest_dimension_diameter
 log-rank p-value,None,None
 case,None,Case_ID
-sample_type,None,tissue_type
 multiomic,None,None
 nmf_consensus,None,None
 nmf_cluster_membership,None,None
@@ -579,14 +563,10 @@ tmt_channel,None,None
 research_id,None,Case_ID
 kids_first_id,None,Case_ID
 clinical_status_at_collection_event,None,vital_status
-case_id,case_submitter_id,Case_ID
-age,age_at_diagnosis,age_at_diagnosis
 gender,gender,gender
 height,height,height
 weight,weight,weight
-bmi,bmi,bmi
 country_of_origin,country_of_residence_at_enrollment,None
-race,race,race
 ethnicity,ethnicity,ethnicity
 ethnicity_self_identify,None,ethnicity
 smoking_history,tobacco_smoking_status,tobacco_smoking_status
@@ -595,10 +575,8 @@ tumor_laterality,biospecimen_laterality,biospecimen_laterality
 tumor_site_curated,site_of_resection_or_biopsy;tissue_or_organ_of_origin,tissue_or_organ_of_origin
 tumor_site_curation_notes,None,None
 follow_up_period,None,None
-vital_status,vital_status,vital_status
 path_diag_to_last_contact_days,days_to_last_follow_up,days_to_last_follow_up
 path_diag_to_death_days,days_to_death,None
-cause_of_death,cause_of_death,cause_of_death
 lost_to_follow_up,None,last_known_disease_status
 tumor_reoccur_after_treatment,progression_or_recurrence,progression_or_recurrence
 path_diag_to_tumor_reoccur_days,days_to_recurrence,days_to_recurrence
@@ -617,8 +595,6 @@ PAM50,None,None
 NMF.Cluster,None,None
 NMF.Cluster.Membership.Score,None,None
 Age.in.Month,age_at_diagnosis,age_at_diagnosis
-Gender,gender,gender
-Ethnicity,ethnicity,ethnicity
 ER.Updated.Clinical.Status,None,last_known_disease_status
 PR.Clinical.Status,None,last_known_disease_status
 ERBB2.Updated.Clinical.Status,None,None
@@ -682,7 +658,6 @@ n_alt_count,None,None
 t_depth,None,None
 n_depth,None,None
 Passed_Filters,None,None
-Type,None,tissue_type
 Sample_id,None,Case_ID
 participant,None,Case_ID
 TOTAL_READS,None,None
@@ -696,11 +671,7 @@ Q30_BASES,None,None
 PF_Q30_BASES,None,None
 Q20_EQUIVALENT_YIELD,None,None
 PF_Q20_EQUIVALENT_YIELD,None,None
-case_id,case_submitter_id,Case_ID
-age,age_at_diagnosis,age_at_diagnosis
-gender,gender,gender
 country,country_of_residence_at_enrollment,country_of_residence_at_enrollment
-smoking_history,tobacco_smoking_status,tobacco_smoking_status
 smoke_age_start,tobacco_smoking_onset_year,tobacco_smoking_onset_year
 smoke_age_stop,tobacco_smoking_quit_year,tobacco_smoking_quit_year
 num_smoke_per_day,pack_years_smoked,cigarettes_per_day
@@ -710,12 +681,8 @@ smoking_inferred,None,None
 alcohol_consum,alcohol_intensity,alcohol_intensity
 num_yrs_alc_con,None,alcohol_intensity
 tumor_site_original,site_of_resection_or_biopsy; tissue_or_organ_of_origin,tissue_or_organ_of_origin
-tumor_site_curated,None,tissue_or_organ_of_origin
-tumor_focality,tumor_focality,tumor_focality
-tumor_size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
 histologic_type,primary_diagnosis,primary_diagnosis
 histologic_grade,tumor_grade,tumor_grade
-tumor_necrosis,None,None
 patho_staging_pt,ajcc_pathologic_t,ajcc_pathologic_t
 patho_staging_pn,ajcc_pathologic_n,ajcc_pathologic_n
 clinic_staging_dist_metas,ajcc_clinical_m,ajcc_clinical_m
@@ -728,7 +695,6 @@ ESTIMATE_stromal_score,None,None
 ESTIMATE_immune_score,None,None
 CD3_IHC_count,None,None
 stemness_score,None,None
-mutation_count,None,None
 neoAntigen_count,None,None
 chr_instability_idx,None,None
 integrated_subtype,None,None
@@ -754,22 +720,15 @@ channel #,None,None
 peptide amount for labeling (ug),None,None
 type,None,tissue_type
 combined_id,None,Case_ID
-Sample.ID,None,Case_ID
 Participant,case_submitter_id,Case_ID
 Experiment,None,None
 Channel,None,None
-Type,tissue_type,tissue_type
 Aliquot,None,None
 Smoking.Status,can be inferred from tobacco_smoking_status,tobacco_smoking_status
-Stage,None,ajcc_pathologic_stage
 Region.of.Origin,None,race
 Country.of.Origin,None,country_of_residence_at_enrollment
-Age,age_at_diagnosis,age_at_diagnosis
-Gender,gender,gender
-Ethnicity,ethnicity,race
 Height.cm,height,height
 Weight.kg,weight,weight
-BMI,bmi,bmi
 Cigarettes.per.Day,cigarettes_per_day,cigarettes_per_day
 Pack.Years.Smoked,pack_years_smoked,pack_years_smoked
 Smoking.History,tobacco_smoking_status,tobacco_smoking_status
@@ -786,7 +745,6 @@ mRNA.stemness.index,None,None
 CIMP.status,None,None
 Tumor.Purity.byESTIMATE.RNAseq,None,None
 TSNet Purity,None,None
-ESTIMATEScore,None,None
 ESTIMATE ImmuneScore,None,None
 ESTIMATE StromalScore,None,None
 QC.status,None,None
@@ -822,10 +780,6 @@ Putative.driver.mutation,None,None
 Methylation.QC,None,None
 Dominant.Histological.Subtype,primary_diagnosis,None
 NMF cluster (p<0.05),None,None
-Unnamed: 1,None,None
-Unnamed: 2,None,None
-Unnamed: 3,None,None
-Unnamed: 4,None,None
 Unnamed: 5,None,None
 Unnamed: 6,None,None
 Unnamed: 7,None,None
@@ -833,30 +787,13 @@ Unnamed: 8,None,None
 Unnamed: 9,None,None
 Unnamed: 10,None,None
 Unnamed: 11,None,None
-Unnamed: 0,None,None
 counts,None,None
 p-values (Bonferroni corrected),None,None
-Sample.ID,None,Case_ID
-Participant,case_submitter_id,Case_ID
-Experiment,None,None
-Channel,None,None
-Type,tissue_type,tissue_type
-Smoking.History,tobacco_smoking_status,tobacco_smoking_status
 Smoking.History_modified,None,tobacco_smoking_status
-Stage,ajcc_pathologic_stage,ajcc_pathologic_stage
 Stage_mod,None,ajcc_pathologic_stage
-Country.of.Origin,country_of_residence_at_enrollment,country_of_residence_at_enrollment
-Age,age_at_diagnosis,age_at_diagnosis
-Gender,gender,gender
-Ethnicity,ethnicity,ethnicity
 Ethnicity_mod,None,ethnicity
 Pathology.based.histology.assessment,None,primary_diagnosis
-Cigarettes.per.Day,cigarettes_per_day,cigarettes_per_day
-Pack.Years.Smoked,pack_years_smoked,pack_years_smoked
-Secondhand.Smoke,secondhand_smoke_as_child,secondhand_smoke_as_child
 CIMP.status.meth,None,None
-QC.status,None,None
-TP53.mutation,None,None
 PTEN.mutation,None,None
 CDKN2A.mutation,None,None
 KMT2D.mutation,None,None
@@ -864,12 +801,10 @@ NFE2L2.mutation,None,None
 ARID1A.mutation,None,None
 CUL3.mutation,None,None
 BRCA2.mutation,None,None
-KEAP1.mutation,None,None
 SUZ12.mutation,None,None
 NF1.mutation,None,None
 PIK3CA.mutation,None,None
 NOTCH1.mutation,None,None
-TP53.mutation.status,None,None
 PTEN.mutation.status,None,None
 CDKN2A.mutation.status,None,None
 KMT2D.mutation.status,None,None
@@ -877,7 +812,6 @@ NFE2L2.mutation.status,None,None
 ARID1A.mutation.status,None,None
 CUL3.mutation.status,None,None
 BRCA2.mutation.status,None,None
-KEAP1.mutation.status,None,None
 SUZ12.mutation.status,None,None
 NF1.mutation.status,None,None
 PIK3CA.mutation.status,None,None
