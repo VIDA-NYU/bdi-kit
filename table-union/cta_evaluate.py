@@ -15,13 +15,19 @@ for filename in tqdm(os.listdir(RAW_PATH), desc="Matching raw types"):
         file = filename.split("_")[0]
         try:
             gt = pd.read_csv(f'./data/table-matching-ground-truth/ground-truth/{file}.csv')
-            
+        
             gt_results = pd.merge(gt, col_types, how='inner', left_on='original_paper_variable_names', right_on='column_name').fillna('None')
             gen_results = pd.merge(gt, col_types, how='right', left_on='original_paper_variable_names', right_on='column_name').fillna('None')
             
             gt_results.drop(columns=['column_name'], inplace=True)
             gen_results = gen_results[['column_name', 'GDC_format_variable_names','generated_column_type']]
             gen_results.rename(columns={'column_name': 'original_paper_variable_names'}, inplace=True)
+            
+            # drop case_submitter_id and can be inferred from tobacco_smoking_status
+            # gt_results.drop(gt_results[(gt_results['GDC_format_variable_names'] == 'case_submitter_id')].index, inplace=True)
+            # gt_results.drop(gt_results[(gt_results['GDC_format_variable_names'] == 'can be inferred from tobacco_smoking_status')].index, inplace=True)
+            # gen_results.drop(gen_results[(gen_results['GDC_format_variable_names'] == 'case_submitter_id')].index, inplace=True)
+            # gen_results.drop(gen_results[(gen_results['GDC_format_variable_names'] == 'can be inferred from tobacco_smoking_status')].index, inplace=True)
             
             gt_results.to_csv(f'./table-union/cta/gt_results/{file}_gt.csv', index=False)
             gen_results.to_csv(f'./table-union/cta/gen_results/{file}_gen.csv', index=False)
