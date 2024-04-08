@@ -1,0 +1,52 @@
+column_name,generated_column_type
+Column name,None
+Column definition,None
+Unnamed: 2,None
+Unnamed: 3,None
+Data type,None
+Definition,None
+SampleID,Case_ID
+Clinical,None
+Mutation,None
+CNV,None
+miRNA-seq,None
+mRNA-seq,None
+Label-free Proteome,None
+TMT Proteome,None
+TMT Proteome (Normal),None
+TMT Phosphoproteome,None
+TMT Phosphoproteome (Normal),None
+Age,age_at_diagnosis
+Gender,gender
+Mucinous,tissue_type
+Subsite,tissue_or_organ_of_origin
+PT,ajcc_pathologic_t
+PN,ajcc_pathologic_n
+Stage,ajcc_pathologic_stage
+CEA,None
+Vascular_Invasion,vascular_invasion_present
+Lymphatic_Invasion,lymphatic_invasion_present
+Perineural_Invasion,perineural_invasion_present
+Synchronous_Tumors,synchronous_malignancy
+Polyps_History,None
+Polyps_Present,tumor_focality
+Vital.Status,vital_status
+Tumor.Status,vital_status
+POLE_mutation,None
+MSH2_mutation,None
+MSH6_mutation,None
+PMS2_mutation,None
+KRAS_mutation,None
+NRAS_mutation,None
+BRAF_mutation,None
+mutation_rate,None
+Hypermutation_status,None
+MSI_PCR_Result,None
+MSmutectFishercall,None
+CMS,None
+ProS,tumor_grade
+UMS,tumor_grade
+StromalScore,None
+ImmuneScore,None
+ESTIMATEScore,None
+TumorPurity,None
