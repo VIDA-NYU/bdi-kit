@@ -1,0 +1,21 @@
+[
+    // diagnosis::ajcc_clinical_m
+    // Extent of the distant metastasis for the cancer based on evidence obtained from clinical assessment parameters determined prior to treatment.
+    "Extent",
+    "Distant metastasis",
+    "Cancer",
+    "Evidence",
+    "Clinical assessment",
+    "Parameters",
+    "Treatment",
+
+    // diagnosis::ajcc_pathologic_t
+    // Code of pathological T (primary tumor) to define the size or contiguous extension of the primary tumor (T), using staging criteria from the American Joint Committee on Cancer (AJCC).
+    "Pathological T",
+    "Primary tumor", // Check
+    "Size", // Check
+    "Contiguous extension", // Check
+    "Staging criteria", // Check
+    "American Joint Committee on Cancer", // Check
+    "AJCC" // Check
+]
