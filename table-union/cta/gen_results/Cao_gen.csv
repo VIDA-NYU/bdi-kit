@@ -49,7 +49,6 @@ Myeloid dendritic cells_MCPCounter,None,None
 Neutrophils_MCPCounter,None,None
 Endothelial cells_MCPCounter,None,None
 Fibroblasts_MCPCounter,None,None
-case_id,case_submitter_id,Case_ID
 tumor_included_for_the_study,None,None
 normal_included_for_the_study,None,None
 histology_diagnosis,None,primary_diagnosis
@@ -90,7 +89,6 @@ is_this_patient_lost_to_follow_up,None,None
 cause_of_death,cause_of_death,cause_of_death
 TMT_set,None,None
 channel_name,None,None
-case_id,case_submitter_id,Case_ID
 sample_type,None,tissue_type
 Unnamed: 0,None,None
 C3L-03394,None,None
@@ -233,28 +231,6 @@ C3L-03639,None,tumor_largest_dimension_diameter
 C3N-04282,None,None
 C3L-04072,None,None
 C3L-02613,None,tumor_largest_dimension_diameter
-Unnamed: 0,None,None
-C3L-02610,None,None
-C3N-01998,None,None
-C3L-01637,None,None
-C3L-02606,None,None
-C3N-00436,None,None
-C3L-00819,None,None
-C3N-00518,None,None
-C3L-00102,None,None
-C3N-00517,None,None
-C3L-00640,None,None
-C3N-01011,None,None
-C3L-03123,None,None
-C3N-02768,None,None
-C3L-02809,None,None
-C3N-02589,None,None
-C3N-03780,None,None
-C3N-03440,None,None
-C3N-02010,None,None
-C3L-04072,None,None
-C3N-03069,None,None
-C3L-02899,None,None
 Case_ID,None,Case_ID
 Type,None,tissue_type
 TMT_Set,None,None

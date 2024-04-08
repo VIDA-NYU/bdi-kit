@@ -23,6 +23,9 @@ for filename in tqdm(os.listdir(RAW_PATH), desc="Matching raw types"):
             gen_results = gen_results[['column_name', 'GDC_format_variable_names','generated_column_type']]
             gen_results.rename(columns={'column_name': 'original_paper_variable_names'}, inplace=True)
             
+            gt_results.drop_duplicates(subset=['original_paper_variable_names'], keep='first', inplace=True)
+            gen_results.drop_duplicates(subset=['original_paper_variable_names'], keep='first', inplace=True)
+            
             # drop case_submitter_id and can be inferred from tobacco_smoking_status
             # gt_results.drop(gt_results[(gt_results['GDC_format_variable_names'] == 'case_submitter_id')].index, inplace=True)
             # gt_results.drop(gt_results[(gt_results['GDC_format_variable_names'] == 'can be inferred from tobacco_smoking_status')].index, inplace=True)

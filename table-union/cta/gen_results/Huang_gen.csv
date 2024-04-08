@@ -36,7 +36,6 @@ neoAntigen_count,None,None
 chr_instability_idx,None,None
 integrated_subtype,None,None
 transcriptomic_subtype,None,None
-case_id,case_submitter_id,Case_ID
 WES,None,None
 WES_BN,None,None
 WGS,None,None
@@ -56,6 +55,5 @@ Unnamed: 15,None,None
 TMT set#,None,None
 channel #,None,None
 peptide amount for labeling (ug),None,None
-case_id,case_submitter_id,Case_ID
 type,None,tissue_type
 combined_id,None,Case_ID

@@ -19,7 +19,6 @@ Number of input reads,None,None
 Number of reads mapped to multiple loci,None,None
 Number of reads mapped to too many loci,None,None
 Number of splices: Total,None,None
-Case,None,Case_ID
 Sample Aliquot,None,None
 Bam File,None,None
 Total Reads,None,None
