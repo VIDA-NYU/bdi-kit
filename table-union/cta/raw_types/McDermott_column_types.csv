@@ -1,0 +1,98 @@
+column_name,generated_column_type
+Patient Information,None
+Unnamed: 1,race
+Cancer,None
+Normal,bmi
+CPTAC Case ID,Case_ID
+Tumor analyzed,Case_ID
+Normal FT analyzed,Case_ID
+CRF Name,None
+Date of Last Contact (Do not answer if patient is deceased),days_to_last_follow_up
+Vital Status (at time of last contact),vital_status
+Date of Death,None
+Tumor Status at Time of Last Contact or Death,last_known_disease_status
+Was a Review of the Initial Pathological Findings Done?,None
+Was the Pathology Review consistent with the Diagnosis?,None
+Adjuvant (Post-Operative) Radiation Therapy,None
+Adjuvant (Post-Operative) Pharmaceutical Therapy,None
+Adjuvant (Post-Operative) Immunotherapy,None
+Adjuvant (Post-Operative) Hormone Therapy,None
+Adjuvant (Post-Operative) Targeted Molecular Therapy,None
+Measure of Success of Outcome at the Completion of Initial First Course Treatment (surgery and adjuvant therapies),last_known_disease_status
+ New Tumor Event After Initial Treatment?,progression_or_recurrence
+Type of New Tumor Event,progression_or_recurrence
+Anatomic Site of New Tumor Event,site_of_resection_or_biopsy
+Other Site of New Tumor Event or Lymph Node Location,tissue_or_organ_of_origin
+Date of New Tumor Event,days_to_recurrence
+Method Of Diagnosis of New Tumor Event,None
+Other Method Of Diagnosis of New Tumor Event,None
+Additional Surgery for New Tumor Event,None
+Date of Additional Surgery for New Tumor Event,None
+Additional Chemotherapy Treatment of New Tumor Event,None
+Additional Immunotherapy Treatment of New Tumor Event,None
+Additional Hormone Therapy Treatment of New Tumor Event,None
+Additional Targeted Molecular Therapy Treatment of New Tumor Event,None
+Radiation Type,None
+Location of Radiation Treatment,None
+Number of Days from Date of Initial Pathologic Diagnosis to the Date Radiation Therapy Started,None
+Total Dose,None
+Units,None
+Total Number of Fractions,None
+Radiation Treatment Ongoing,None
+Number of Days from Date of Initial Pathologic Diagnosis to the Date Radiation Therapy Ended,None
+Measure of Best Response of Radiation Treatment,None
+Was Patient Treated on a Clinical Trial?,None
+Drug Name (Brand or Generic),None
+Clinical Trial Drug Classification,None
+Pharmaceutical Type,None
+Number of Days from Date of Initial Pathologic Diagnosis to Date of Therapy Start,None
+Therapy Ongoing,None
+Number of Days from Date of Initial Pathologic Diagnosis to Date of Therapy End,None
+Measure of Best Response of Pharmaceutical Treatment,None
+What Type of Malignancy was This?,synchronous_malignancy
+Primary Site of Disease,tissue_or_organ_of_origin
+Laterality of the Disease,biospecimen_laterality
+Histological Type,primary_diagnosis
+Number of Days from Date of Initial Pathologic Diagnosis of the Tumor Submitted for CPTAC to the Date of Initial Diagnosis of Other Malignancy,days_to_recurrence
+Did the patient have surgery for this malignancy?,None
+Type of Surgery,None
+Number of Days from Date of Initial Pathologic Diagnosis of the Tumor Submitted for CPTAC to the Date of Surgical Resection for this Other Malignancy,None
+Did the patient receive pharmaceutical therapy for this malignancy?,None
+Extent of Pharmaceutical Therapy,None
+Drug Name(s) (Brand or Generic),None
+Number of Days from Date of Initial Pathologic Diagnosis of the Tumor Submitted for CPTAC to Date Pharmaceutical Therapy Started for this Other Malignancy,None
+Did the patient receive radiation therapy for this malignancy?,None
+Extent of Radiation Therapy,None
+"If the patient received locoregional radiation, was the radiation therapy received in the same field as the tumor submitted for CPTAC?",None
+Number of Days from Date of Initial Pathologic Diagnosis of the Tumor Submitted to CPTAC to Date Radiation Therapy Started for this Other Malignancy,None
+Was the patient staged using FIGO?,None
+FIGO Staging System (Gynecologic Tumors Only),figo_stage
+FIGO Stage,figo_stage
+ Was the patient staged using AJCC?,None
+AJCC Cancer Staging Edition,None
+Pathologic Spread: Primary Tumor (pT),ajcc_pathologic_t
+Pathologic Spread: Lymph Nodes (pN),ajcc_pathologic_n
+Distant Metastases (M),ajcc_pathologic_m
+AJCC Tumor Stage,ajcc_pathologic_stage
+CPTAC Case ID,Case_ID
+Tumor analyzed,None
+Normal FT analyzed,Case_ID
+Age in Months at Time of Tissue Procurement 	,None
+Gender,gender
+Race,race
+Ethnicity,ethnicity
+Jewish Religion/Heritage,ethnicity
+Site of Disease,tissue_or_organ_of_origin
+Anatomic site of Tumor Specimen,tissue_or_organ_of_origin
+Anatomic Lateral Position of Tumor Specimen,biospecimen_laterality
+Histological Subtype,primary_diagnosis
+Method of Initial Pathologic Diagnosis,None
+Tumor Stage (Pathological) Ovary FIGO Staging System,figo_stage
+Tumor Grade,tumor_grade
+Tumor Residual Disease (for the max diameter of the largest remaining tumor nodule),residual_disease
+History of Other Malignancy?,synchronous_malignancy
+History of Systemic Chemotherapy?,None
+History or Radiation Therapy for Any Prior Malignancy That Involves Treatment to the Abdomen or Pelvis?,None
+History of Hormonal Therapy for Cancer within the Last Five Years?,None
+History of Neo-Adjuvant Treatment to Tumor Specimen Submitted for CPTAC,None
+Ischemia Time for Tumor Tissue,None
