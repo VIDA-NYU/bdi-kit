@@ -1,0 +1,117 @@
+original_paper_variable_names,GDC_format_variable_names,generated_column_type
+NMF cluster (p<0.05),None,None
+Unnamed: 1,None,None
+Unnamed: 2,None,None
+Unnamed: 3,None,None
+Unnamed: 4,None,None
+Unnamed: 5,None,None
+Unnamed: 6,None,None
+Unnamed: 7,None,None
+Unnamed: 8,None,None
+Unnamed: 9,None,None
+Unnamed: 10,None,None
+Unnamed: 11,None,None
+Unnamed: 0,None,None
+Unnamed: 1,None,race
+counts,None,None
+Unnamed: 3,None,None
+Unnamed: 4,None,None
+Unnamed: 5,None,lymph_nodes_positive
+p-values (Bonferroni corrected),None,None
+Unnamed: 7,None,None
+Unnamed: 8,None,None
+Unnamed: 9,None,None
+Sample.ID,None,Case_ID
+Participant,case_submitter_id,Case_ID
+Experiment,None,None
+Channel,None,None
+Type,tissue_type,tissue_type
+Smoking.History,tobacco_smoking_status,tobacco_smoking_status
+Smoking.History_modified,None,tobacco_smoking_status
+Stage,ajcc_pathologic_stage,ajcc_pathologic_stage
+Stage_mod,None,ajcc_pathologic_stage
+Country.of.Origin,country_of_residence_at_enrollment,country_of_residence_at_enrollment
+Age,age_at_diagnosis,age_at_diagnosis
+Gender,gender,gender
+Ethnicity,ethnicity,ethnicity
+Ethnicity_mod,None,ethnicity
+Pathology.based.histology.assessment,None,primary_diagnosis
+Cigarettes.per.Day,cigarettes_per_day,cigarettes_per_day
+Pack.Years.Smoked,pack_years_smoked,pack_years_smoked
+Secondhand.Smoke,secondhand_smoke_as_child,secondhand_smoke_as_child
+CIMP.status.meth,None,None
+QC.status,None,None
+TP53.mutation,None,None
+PTEN.mutation,None,None
+CDKN2A.mutation,None,None
+KMT2D.mutation,None,None
+NFE2L2.mutation,None,None
+ARID1A.mutation,None,None
+CUL3.mutation,None,None
+BRCA2.mutation,None,None
+KEAP1.mutation,None,None
+SUZ12.mutation,None,None
+NF1.mutation,None,None
+PIK3CA.mutation,None,None
+NOTCH1.mutation,None,None
+TP53.mutation.status,None,None
+PTEN.mutation.status,None,None
+CDKN2A.mutation.status,None,None
+KMT2D.mutation.status,None,None
+NFE2L2.mutation.status,None,None
+ARID1A.mutation.status,None,None
+CUL3.mutation.status,None,None
+BRCA2.mutation.status,None,None
+KEAP1.mutation.status,None,None
+SUZ12.mutation.status,None,None
+NF1.mutation.status,None,None
+PIK3CA.mutation.status,None,None
+NOTCH1.mutation.status,None,None
+CUL3.NFE2L2.KEAP1.mutation.status,None,None
+KAT6A.cna.wes,None,None
+SOX2.cna.wes,None,None
+TP63.cna.wes,None,None
+FGFR1.cna.wes,None,None
+CDKN2A.cna.wes,None,None
+CDKN2A.pathway.alteration,None,None
+CDKN2A.pathway.alteration.status,None,None
+PIK3CA.pathway.alteration,None,None
+PIK3CA.pathway.alteration.status,None,None
+FGFR3.TACC3.fusion.rna,None,None
+TCGA.RNA.cluster,None,tumor_focality
+NMF.subtype,None,None
+NMF.subtype.core,None,None
+NMF.subtype.membership.score,None,None
+CIN.wes,None,None
+Smoking.Signature.Fraction.wes,None,None
+Smoking.Signature.Count.wes,None,None
+Total.Mutation.Count.wes,None,None
+Mutation.Count.ExcludingINDELs.wes,None,None
+DNP.Count.wes,None,None
+DNP.Count.GG.to.TT.or.CC.to.AA.wes,None,None
+Smoking.score.wes,None,None
+Smoking.Score.Category.wes,None,None
+Mutation.Count.Excluding.Silent.wes,None,None
+Total.Mutation.Count.per.Mb.wes,None,None
+TCGA pan-can immune clustering,None,None
+ESTIMATE.StromalScore.rna,None,None
+ESTIMATE.ImmuneScore.rna,None,None
+ESTIMATE.TumorPurity.rna,None,None
+TSNet.Purity.rna,None,None
+ImmuneCluster.rna,None,None
+xCell.ImmuneScore.rna,None,None
+xCell.StromaScore.rna,None,None
+xCell.MicroenvironmentScore.rna,None,None
+CIBERSORT.AbsoluteScore.rna,None,None
+Unnamed: 0,None,None
+Unnamed: 1,None,None
+counts,None,None
+Unnamed: 3,None,None
+Unnamed: 4,None,Case_ID
+Unnamed: 5,None,None
+Unnamed: 6,None,None
+p-values (Bonferroni corrected),None,None
+Unnamed: 8,None,None
+Unnamed: 9,None,None
+Unnamed: 10,None,None
+Unnamed: 11,None,None
