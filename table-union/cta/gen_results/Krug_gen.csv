@@ -53,7 +53,6 @@ KMT2C.Mutation.Status,None,None
 SF3B1.Mutation.Status,None,None
 ARID1A.Mutation.Status,None,None
 MLLT4.Mutation.Status,None,None
-Sample.ID,None,Case_ID
 ACGT tag ID,None,Case_ID
 Total reads,None,None
 QC,None,None

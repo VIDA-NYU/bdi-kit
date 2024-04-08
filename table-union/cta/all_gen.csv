@@ -49,7 +49,6 @@ Myeloid dendritic cells_MCPCounter,None,None
 Neutrophils_MCPCounter,None,None
 Endothelial cells_MCPCounter,None,None
 Fibroblasts_MCPCounter,None,None
-case_id,case_submitter_id,Case_ID
 tumor_included_for_the_study,None,None
 normal_included_for_the_study,None,None
 histology_diagnosis,None,primary_diagnosis
@@ -90,7 +89,6 @@ is_this_patient_lost_to_follow_up,None,None
 cause_of_death,cause_of_death,cause_of_death
 TMT_set,None,None
 channel_name,None,None
-case_id,case_submitter_id,Case_ID
 sample_type,None,tissue_type
 Unnamed: 0,None,None
 C3L-03394,None,None
@@ -233,28 +231,6 @@ C3L-03639,None,tumor_largest_dimension_diameter
 C3N-04282,None,None
 C3L-04072,None,None
 C3L-02613,None,tumor_largest_dimension_diameter
-Unnamed: 0,None,None
-C3L-02610,None,None
-C3N-01998,None,None
-C3L-01637,None,None
-C3L-02606,None,None
-C3N-00436,None,None
-C3L-00819,None,None
-C3N-00518,None,None
-C3L-00102,None,None
-C3N-00517,None,None
-C3L-00640,None,None
-C3N-01011,None,None
-C3L-03123,None,None
-C3N-02768,None,None
-C3L-02809,None,None
-C3N-02589,None,None
-C3N-03780,None,None
-C3N-03440,None,None
-C3N-02010,None,None
-C3L-04072,None,None
-C3N-03069,None,None
-C3L-02899,None,None
 Case_ID,None,Case_ID
 Type,None,tissue_type
 TMT_Set,None,None
@@ -289,7 +265,6 @@ Number of input reads,None,None
 Number of reads mapped to multiple loci,None,None
 Number of reads mapped to too many loci,None,None
 Number of splices: Total,None,None
-Case,None,Case_ID
 Sample Aliquot,None,None
 Bam File,None,None
 Total Reads,None,None
@@ -686,7 +661,6 @@ KMT2C.Mutation.Status,None,None
 SF3B1.Mutation.Status,None,None
 ARID1A.Mutation.Status,None,None
 MLLT4.Mutation.Status,None,None
-Sample.ID,None,Case_ID
 ACGT tag ID,None,Case_ID
 Total reads,None,None
 QC,None,None
@@ -759,7 +733,6 @@ neoAntigen_count,None,None
 chr_instability_idx,None,None
 integrated_subtype,None,None
 transcriptomic_subtype,None,None
-case_id,case_submitter_id,Case_ID
 WES,None,None
 WES_BN,None,None
 WGS,None,None
@@ -779,7 +752,6 @@ Unnamed: 15,None,None
 TMT set#,None,None
 channel #,None,None
 peptide amount for labeling (ug),None,None
-case_id,case_submitter_id,Case_ID
 type,None,tissue_type
 combined_id,None,Case_ID
 Sample.ID,None,Case_ID
@@ -862,15 +834,8 @@ Unnamed: 9,None,None
 Unnamed: 10,None,None
 Unnamed: 11,None,None
 Unnamed: 0,None,None
-Unnamed: 1,None,race
 counts,None,None
-Unnamed: 3,None,None
-Unnamed: 4,None,None
-Unnamed: 5,None,lymph_nodes_positive
 p-values (Bonferroni corrected),None,None
-Unnamed: 7,None,None
-Unnamed: 8,None,None
-Unnamed: 9,None,None
 Sample.ID,None,Case_ID
 Participant,case_submitter_id,Case_ID
 Experiment,None,None
@@ -953,15 +918,3 @@ xCell.ImmuneScore.rna,None,None
 xCell.StromaScore.rna,None,None
 xCell.MicroenvironmentScore.rna,None,None
 CIBERSORT.AbsoluteScore.rna,None,None
-Unnamed: 0,None,None
-Unnamed: 1,None,None
-counts,None,None
-Unnamed: 3,None,None
-Unnamed: 4,None,Case_ID
-Unnamed: 5,None,None
-Unnamed: 6,None,None
-p-values (Bonferroni corrected),None,None
-Unnamed: 8,None,None
-Unnamed: 9,None,None
-Unnamed: 10,None,None
-Unnamed: 11,None,None

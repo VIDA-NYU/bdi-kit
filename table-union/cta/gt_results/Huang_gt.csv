@@ -1,7 +1,5 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
 case_id,case_submitter_id,Case_ID
-case_id,case_submitter_id,Case_ID
-case_id,case_submitter_id,Case_ID
 age,age_at_diagnosis,age_at_diagnosis
 gender,gender,gender
 country,country_of_residence_at_enrollment,country_of_residence_at_enrollment
