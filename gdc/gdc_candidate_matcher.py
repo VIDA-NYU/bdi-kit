@@ -29,8 +29,7 @@ class GDCCandidateMatcher:
     """
 
     def __init__(self, subschemas=None):
-        self.schema_api = GDCSchema()
-        self.subschemas = subschemas
+        self.schema_api = GDCSchema(subschemas=subschemas)
         self.scorers = set()
 
     def add_scorer(self, scorer):
@@ -39,8 +38,6 @@ class GDCCandidateMatcher:
     def extract_enums(self):
         enums = {}
         for subschema, values in self.schema_api.get_schema().items():
-            if self.subschemas and subschema not in self.subschemas:
-                continue
             for col_name, properties in values["properties"].items():
                 if "enum" in properties:
                     name = f"{subschema}::{col_name}"
