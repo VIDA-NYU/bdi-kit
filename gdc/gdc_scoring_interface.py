@@ -2,6 +2,9 @@ import os
 import sys
 import jellyfish
 
+import ast
+from openai import OpenAI
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from table_matching.value_matcher import EmbeddingMatcher
 
@@ -76,3 +79,31 @@ class EmbeddingScore(GDCScoringInterface):
     def compute_col_name_score(col_name, candidate_col_name):
         EmbeddingScore.value_matcher.model.match([col_name], [candidate_col_name], top_n=1)
         return EmbeddingScore.value_matcher.model.get_matches().iloc[0]["Similarity"]
+
+
+class GPTHelper:
+
+    def __init__(self, api_key):
+        self.client = OpenAI(api_key=api_key)
+
+    def ask_by_prompt(self, prompt, model="gpt-4-turbo-preview"):
+        completion = self.client.chat.completions.create(
+            model=model,
+            messages=[
+                {
+                    "role": "system", 
+                    "content": "You are an assistant for column type annotation."},
+                {
+                    "role": "user", 
+                    "content": prompt},
+            ],
+            temperature=0.3)
+        response_message = completion.choices[0].message.content
+        return response_message
+    
+    def ask_cta(self, labels, context):
+        prompt = f""" Please select the class from {labels} which best describes the context. The context is defined by the column name followed by its respective values. Please respond only with the name of the class. Reply None if none of the classes are applicable.
+                    \n CONTEXT: """ + context +  """ \n RESPONSE: \n"""
+        
+        return self.ask_by_prompt(prompt)
+    

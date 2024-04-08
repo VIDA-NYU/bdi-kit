@@ -1,2 +1,3 @@
 jellyfish==1.0.3
+streamlit
 # -e git+https://github.com/NCI-GDC/gdcdictionary.git#egg=gdcdictionary
