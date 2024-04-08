@@ -41,9 +41,11 @@ for filename in tqdm(os.listdir(RAW_PATH), desc="Matching raw types"):
             print(f'No ground truth for {file}')
             continue
 
+gt_all.drop_duplicates(subset=['original_paper_variable_names'], keep='first', inplace=True)
+gen_all.drop_duplicates(subset=['original_paper_variable_names'], keep='first', inplace=True)
+
 gt_all.to_csv('./table-union/cta/all_gt.csv', index=False)
 gen_all.to_csv('./table-union/cta/all_gen.csv', index=False)
-
 
 for filename in os.listdir('./table-union/cta/gt_results'):
     gt = pd.read_csv(f'./table-union/cta/gt_results/{filename}')
