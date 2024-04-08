@@ -92,9 +92,4 @@ if __name__ == "__main__":
     
     main(api_key, args.input_dir, args.output_dir)
     
-    # # read Dou_column_types.csv and Dou.csv
-    # dou_col_types = pd.read_csv('./table-union/cta/Dou_column_types.csv')
-    # dou = pd.read_csv('./table-union/cta/Dou.csv')
-    # # merge on dou_col_types['column_name'] == dou['original_paper_variable_names'], null as None
-    # dou = pd.merge(dou, dou_col_types, how='inner', left_on='original_paper_variable_names', right_on='column_name')
-    # dou.to_csv('./table-union/cta/dou_inner.csv', index=False)
+    

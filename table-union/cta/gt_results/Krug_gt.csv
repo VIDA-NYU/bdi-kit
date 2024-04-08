@@ -1,0 +1,5 @@
+original_paper_variable_names,GDC_format_variable_names,generated_column_type
+Tumor.Stage,ajcc_pathologic_stage,ajcc_pathologic_stage
+Age.in.Month,age_at_diagnosis,age_at_diagnosis
+Gender,gender,gender
+Ethnicity,ethnicity,ethnicity

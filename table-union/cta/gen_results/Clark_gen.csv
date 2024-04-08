@@ -1,0 +1,46 @@
+original_paper_variable_names,GDC_format_variable_names,generated_column_type
+Table: Sample size of different data sets after excluding samples with low quality.,None,None
+Unnamed: 1,None,tissue_type
+Unnamed: 2,None,None
+Unnamed: 3,None,tissue_type
+Unnamed: 4,None,None
+Case,None,Case_ID
+Tissue Type,None,tissue_type
+Sample Aliquot ID,None,tissue_type
+Uniquely mapped reads number,None,None
+Uniquely mapped reads %,None,None
+% of reads mapped to multiple loci,None,None
+% of reads mapped to too many loci,None,None
+% of reads unmapped: other,None,None
+% of reads unmapped: too short,None,None
+Insertion rate per base,None,None
+"Mismatch rate per base, %",None,None
+Number of input reads,None,None
+Number of reads mapped to multiple loci,None,None
+Number of reads mapped to too many loci,None,None
+Number of splices: Total,None,None
+Case,None,Case_ID
+Sample Aliquot,None,None
+Bam File,None,None
+Total Reads,None,None
+Proper Mapped Reads,None,None
+Coverage,None,None
+Cov_100x,None,None
+Template Mean,None,None
+Template SD,None,height
+Case_ID,case_submitter_id,Case_ID
+Tumor/Normal,tissue_type,tissue_type
+Gender,gender,gender
+Age,age_at_diagnosis,age_at_diagnosis
+BMI,bmi,bmi
+Race,race,race
+Ethnicity_Self_Identify,ethnicity,ethnicity
+Tumor_Site,site_of_resection_or_biopsy;tissue_or_organ_of_origin,tissue_or_organ_of_origin
+Tumor_Site_Other,None,tissue_or_organ_of_origin
+Tumor_Size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
+Tumor_Focality,tumor_focality,tumor_focality
+Histologic_Type,primary_diagnosis,primary_diagnosis
+Grade,tumor_grade,tumor_grade
+Tumor_Stage_Pathological,ajcc_pathologic_stage,ajcc_pathologic_stage
+Path_Stage_Primary_Tumor_pT,ajcc_pathologic_t,ajcc_pathologic_t
+Path_Stage_Reg_Lymph_Nodes_pN,ajcc_pathologic_n,ajcc_pathologic_n
