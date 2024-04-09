@@ -29,6 +29,18 @@ class GDCSchema:
                 data_dict["column_values"].append(self.get_column_values(values["properties"][candidate]))
             ret[parent] = pd.DataFrame(data_dict)
         return ret
+    
+    def get_properties_by_column_name(self, column_name):
+        properties = []
+        for parent, values in self.schema.items():
+            for candidate in values["properties"].keys():
+                if candidate == column_name:
+                    properties.append(candidate)
+                    properties.append(self.get_column_type(values["properties"][candidate]))
+                    properties.append(self.get_column_description(values["properties"][candidate]))
+                    properties.append(self.get_column_values(values["properties"][candidate]))
+                    return properties
+        return None
 
     def get_column_type(self, properties):
         if "enum" in properties:

@@ -49,10 +49,17 @@ if "selected_labels" not in st.session_state:
 if "gdc_labels" not in st.session_state:
     st.session_state.gdc_labels = set()
 
+
+st.write("Select from dataframe or input labels at the bottom input box as 'label 1\nlabel 2\nlabel 3...'")
+list_input = st.text_area('List label input:')
+
 st.session_state.selected_labels.update(selection["column_name"].to_list())
 st.write(st.session_state.selected_labels)
 if st.button('Add to GDC labels'):
-    st.session_state.gdc_labels.update(st.session_state.selected_labels)
+    if len(st.session_state.selected_labels) != 0:
+        st.session_state.gdc_labels.update(st.session_state.selected_labels)
+    if list_input != "":
+        st.session_state.gdc_labels.update([text.strip() for text in list_input.split("\n")])
 if st.button('Clear selection'):
     st.session_state.selected_labels = set()
 
@@ -62,8 +69,8 @@ st.write(st.session_state.gdc_labels)
 st.header("3. Match Columns Using CTA", anchor=False)
 gpt = GPTHelper(api_key="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")
 
-
-output_dict = {"column_name": [], "generated_column_type": []}
+black_list = ["Case_ID"]
+output_dict = {"column_name": [], "generated_column_type": [], "column_type": [], "column_description": [], "column_values": []}
 if st.button('Ask CTA'):
     if raw_dataset is None:
         st.warning("Please upload a CSV file to proceed.")
@@ -72,6 +79,16 @@ if st.button('Ask CTA'):
             result = gpt.ask_cta(labels=list(st.session_state.gdc_labels), context=col_name)
             output_dict["column_name"].append(col_name)
             output_dict["generated_column_type"].append(result)
+            if result is not None and result.lower().strip() != "none" and result not in black_list:
+                st.write(f"Column name: {col_name}, Generated column type: {result}")
+                properties = schema.get_properties_by_column_name(result)
+                output_dict["column_type"].append(properties[1])
+                output_dict["column_description"].append(properties[2])
+                output_dict["column_values"].append(properties[3])
+            else:
+                output_dict["column_type"].append(None)
+                output_dict["column_description"].append(None)
+                output_dict["column_values"].append(None)
+            
+        st.data_editor(pd.DataFrame(output_dict))
 
-st.dataframe(pd.DataFrame(output_dict))
-        
