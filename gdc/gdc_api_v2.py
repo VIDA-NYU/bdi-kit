@@ -21,7 +21,7 @@ class GDCSchema:
         for parent, values in self.schema.items():
             data_dict = {"column_name": [], "column_type": [], "column_description": [], "column_values": []}
             for candidate in values["properties"].keys():
-                if "enum" != self.get_column_type(values["properties"][candidate]):
+                if self.get_column_type(values["properties"][candidate]) is None:
                     continue
                 data_dict["column_name"].append(candidate)
                 data_dict["column_type"].append(self.get_column_type(values["properties"][candidate]))
@@ -62,16 +62,16 @@ class GDCSchema:
         if col_type == "enum":
             return properties["enum"]
         elif col_type == "number" or col_type == "integer" or col_type == "float":
-            return (
-                properties["minimum"]
+            return [
+                str(properties["minimum"])
                 if "minimum" in properties
-                else -float("inf"),
-                properties["maximum"]
+                else "-inf",
+                str(properties["maximum"])
                 if "maximum" in properties
-                else float("inf"),
-            )
+                else "inf",
+            ]
         elif col_type == "boolean":
-            return [True, False]
+            return ["True", "False"]
         else:
             return None
 

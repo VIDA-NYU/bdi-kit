@@ -18,53 +18,73 @@ if uploaded_file:
 
 st.header("2. Explore GDC Schema", anchor=False)
 schema = GDCSchema()
-schema_dfs = schema.parse_schema_to_df()
+
+if "schema_dfs" not in st.session_state:
+    schema_dfs = schema.parse_schema_to_df()
+    for subschema, df in schema_dfs.items():
+        df.insert(0, "Select", False)
+        schema_dfs[subschema] = df
+    st.session_state.schema_dfs = schema_dfs
+
 
 
 subschema = st.selectbox(
     'Select a subschema: ',
-    list(schema_dfs.keys()))
-
-def dataframe_with_selections(df: pd.DataFrame, init_value: bool = False) -> pd.DataFrame:
-    df_with_selections = df.copy()
-    df_with_selections.insert(0, "Select", init_value)
-
-    # Get dataframe row-selections from user with st.data_editor
-    edited_df = st.data_editor(
-        df_with_selections,
-        hide_index=True,
-        column_config={"Select": st.column_config.CheckboxColumn(required=True)},
-        disabled=df.columns,
-    )
-
-    # Filter the dataframe using the temporary column, then drop the column
-    selected_rows = edited_df[edited_df.Select]
-    return selected_rows.drop('Select', axis=1)
-
-
-selection = dataframe_with_selections(schema_dfs[subschema])
+    list(st.session_state.schema_dfs.keys()))
 
 if "selected_labels" not in st.session_state:
-    st.session_state.selected_labels = set()
+    st.session_state.selected_labels = []
+
+
+def update_selected_labels():
+    st.session_state.selected_labels = edited_df[edited_df.Select]["column_name"].to_list()
+
+
+edited_df = st.data_editor(
+    st.session_state.schema_dfs[subschema],
+    hide_index=True,
+    column_config={"Select": st.column_config.CheckboxColumn(required=True),
+                   "column_values": st.column_config.ListColumn()},
+    on_change=update_selected_labels)
+
+
+
+# Select Labels for CTA
+
 if "gdc_labels" not in st.session_state:
     st.session_state.gdc_labels = set()
 
+# st.dataframe(st.session_state.selected_labels, use_container_width=True)
 
-st.write("Select from dataframe or input labels at the bottom input box as 'label 1\nlabel 2\nlabel 3...'")
-list_input = st.text_area('List label input:')
+st.markdown("""Select from dataframe or input labels at the bottom input box as
+```
+label 1
+label 2
+label 3...
+```
+""")
 
-st.session_state.selected_labels.update(selection["column_name"].to_list())
-st.write(st.session_state.selected_labels)
-if st.button('Add to GDC labels'):
-    if len(st.session_state.selected_labels) != 0:
-        st.session_state.gdc_labels.update(st.session_state.selected_labels)
+col1, col2 = st.columns(2)
+list_input = col1.text_area('Import labels as text (seperate by line):')
+labels_csv = col2.file_uploader("Import labels as csv:", type=["csv"])
+if labels_csv:
+    if labels_csv.type == "text/csv":
+        raw_dataset = pd.read_csv(labels_csv)["value"].to_list()
+        st.session_state.gdc_labels.update(raw_dataset)
+
+
+button_col1, button_col2, button_col3 = st.columns(3)
+if button_col1.button('Add to GDC labels', use_container_width=True):
+    if len(edited_df[edited_df.Select]["column_name"].to_list()) != 0:
+        st.session_state.gdc_labels.update(edited_df[edited_df.Select]["column_name"].to_list())
     if list_input != "":
         st.session_state.gdc_labels.update([text.strip() for text in list_input.split("\n")])
-if st.button('Clear selection'):
-    st.session_state.selected_labels = set()
+if button_col2.button('Clear selection', use_container_width=True):
+    st.session_state.gdc_labels.clear()
+
 
 st.write("Selected labels:")
-st.write(st.session_state.gdc_labels)
+st.data_editor(st.session_state.gdc_labels)
 
 st.header("3. Match Columns Using CTA", anchor=False)
 gpt = GPTHelper(api_key="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")
