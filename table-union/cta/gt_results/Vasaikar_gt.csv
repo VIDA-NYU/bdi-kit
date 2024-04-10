@@ -1,5 +1,5 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-SampleID,Case_ID,Case_ID
+SampleID,case_submitter_id,case_submitter_id
 Age,age_at_diagnosis,age_at_diagnosis
 Gender,gender,gender
 PT,ajcc_pathologic_t,ajcc_pathologic_t

@@ -1,0 +1,8 @@
+gt_precision: 0.9473684210526315
+gt_weighted_precision: 0.9570175438596491
+gt_weighted_recall: 0.9473684210526315
+gt_weighted_f1: 0.9482797903850535
+gen_precision: 0.8965141612200436
+gen_weighted_precision: 0.9572190386237404
+gen_weighted_recall: 0.8965141612200436
+gen_weighted_f1: 0.9180640820891365

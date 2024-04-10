@@ -5,7 +5,7 @@ Unnamed: 2,None,None
 Unnamed: 3,None,None
 Data type,None,None
 Definition,None,None
-SampleID,Case_ID,Case_ID
+SampleID,case_submitter_id,case_submitter_id
 Clinical,None,None
 Mutation,None,None
 CNV,None,None

@@ -1,5 +1,5 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-Participant,case_submitter_id,Case_ID
+Participant,case_submitter_id,case_submitter_id
 Type,tissue_type,tissue_type
 Smoking.History,tobacco_smoking_status,tobacco_smoking_status
 Stage,ajcc_pathologic_stage,ajcc_pathologic_stage

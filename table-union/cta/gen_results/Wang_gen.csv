@@ -7,7 +7,7 @@ median,None,None
 0.95LCL,None,None
 0.95UCL,None,tumor_largest_dimension_diameter
 log-rank p-value,None,None
-case,None,Case_ID
+case,None,case_submitter_id
 sample_type,None,tissue_type
 multiomic,None,None
 nmf_consensus,None,None
@@ -50,16 +50,16 @@ PIK3R1_alter_status,None,None
 TERT_alter_status,None,None
 chr7_amp,None,None
 chr10_del,None,None
-aliquot_id,None,Case_ID
-sample_id,None,Case_ID
-original_aliquot_id,None,Case_ID
+aliquot_id,None,case_submitter_id
+sample_id,None,case_submitter_id
+original_aliquot_id,None,case_submitter_id
 batch,None,None
 plex,None,None
 tmt_channel,None,None
-research_id,None,Case_ID
-kids_first_id,None,Case_ID
+research_id,None,case_submitter_id
+kids_first_id,None,case_submitter_id
 clinical_status_at_collection_event,None,vital_status
-case_id,case_submitter_id,Case_ID
+case_id,case_submitter_id,case_submitter_id
 age,age_at_diagnosis,age_at_diagnosis
 gender,gender,gender
 height,height,height
@@ -72,7 +72,7 @@ ethnicity_self_identify,None,ethnicity
 smoking_history,tobacco_smoking_status,tobacco_smoking_status
 secondhand_smoke_exposure,secondhand_smoke_as_child,secondhand_smoke_as_child
 tumor_laterality,biospecimen_laterality,biospecimen_laterality
-tumor_site_curated,site_of_resection_or_biopsy;tissue_or_organ_of_origin,tissue_or_organ_of_origin
+tumor_site_curated,tissue_or_organ_of_origin,tissue_or_organ_of_origin
 tumor_site_curation_notes,None,None
 follow_up_period,None,None
 vital_status,vital_status,vital_status
