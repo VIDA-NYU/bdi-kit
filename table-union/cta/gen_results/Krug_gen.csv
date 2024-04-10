@@ -1,6 +1,6 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-Sample.ID,None,Case_ID
-Sample.IDs,None,Case_ID
+Sample.ID,None,case_submitter_id
+Sample.IDs,None,case_submitter_id
 TMT.Plex,None,None
 TMT.Channel,None,tissue_type
 Tumor.Stage,ajcc_pathologic_stage,ajcc_pathologic_stage
@@ -53,7 +53,7 @@ KMT2C.Mutation.Status,None,None
 SF3B1.Mutation.Status,None,None
 ARID1A.Mutation.Status,None,None
 MLLT4.Mutation.Status,None,None
-ACGT tag ID,None,Case_ID
+ACGT tag ID,None,case_submitter_id
 Total reads,None,None
 QC,None,None
 mapping rates(%),None,None
@@ -61,11 +61,11 @@ No. of transcripts,None,None
 Notes,None,None
 Hugo_Symbol,None,None
 Chromosome,None,None
-Start_Position,None,Case_ID
+Start_Position,None,case_submitter_id
 End_position,None,None
 Variant_Classification,None,None
 Variant_Type,None,None
-Tumor_Sample_Barcode,None,Case_ID
+Tumor_Sample_Barcode,None,case_submitter_id
 Matched_Norm_Sample_Barcode,None,None
 n_ref_count,None,None
 t_ref_count,None,None
@@ -75,8 +75,8 @@ t_depth,None,None
 n_depth,None,None
 Passed_Filters,None,None
 Type,None,tissue_type
-Sample_id,None,Case_ID
-participant,None,Case_ID
+Sample_id,None,case_submitter_id
+participant,None,case_submitter_id
 TOTAL_READS,None,None
 PF_READS,None,None
 READ_LENGTH,None,None

@@ -14,8 +14,8 @@ Unnamed: 11,None,None
 Unnamed: 0,None,None
 counts,None,None
 p-values (Bonferroni corrected),None,None
-Sample.ID,None,Case_ID
-Participant,case_submitter_id,Case_ID
+Sample.ID,None,case_submitter_id
+Participant,case_submitter_id,case_submitter_id
 Experiment,None,None
 Channel,None,None
 Type,tissue_type,tissue_type

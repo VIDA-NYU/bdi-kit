@@ -1,5 +1,5 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-case_id,case_submitter_id,Case_ID
+case_id,case_submitter_id,case_submitter_id
 immune_deconv,None,None
 epithelial_cancer_deconv,None,None
 stromal_deconv,None,None
@@ -56,7 +56,7 @@ age,age_at_diagnosis,age_at_diagnosis
 sex,gender,gender
 race,race,race
 participant_country,country_of_residence_at_enrollment,country_of_residence_at_enrollment
-tumor_site,site_of_resection_or_biopsy; tissue_or_organ_of_origin,tissue_or_organ_of_origin
+tumor_site,tissue_or_organ_of_origin,tissue_or_organ_of_origin
 tumor_focality,tumor_focality,tumor_focality
 tumor_size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
 tumor_necrosis,None,None
@@ -231,7 +231,7 @@ C3L-03639,None,tumor_largest_dimension_diameter
 C3N-04282,None,None
 C3L-04072,None,None
 C3L-02613,None,tumor_largest_dimension_diameter
-Case_ID,None,Case_ID
+Case_ID,None,case_submitter_id
 Type,None,tissue_type
 TMT_Set,None,None
 TMT_Channel,None,None

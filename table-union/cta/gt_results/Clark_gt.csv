@@ -1,12 +1,12 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-Case_ID,case_submitter_id,Case_ID
+Case_ID,case_submitter_id,case_submitter_id
 Tumor/Normal,tissue_type,tissue_type
 Gender,gender,gender
 Age,age_at_diagnosis,age_at_diagnosis
 BMI,bmi,bmi
 Race,race,race
 Ethnicity_Self_Identify,ethnicity,ethnicity
-Tumor_Site,site_of_resection_or_biopsy;tissue_or_organ_of_origin,tissue_or_organ_of_origin
+Tumor_Site,tissue_or_organ_of_origin,tissue_or_organ_of_origin
 Tumor_Size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
 Tumor_Focality,tumor_focality,tumor_focality
 Histologic_Type,primary_diagnosis,primary_diagnosis

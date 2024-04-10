@@ -1,5 +1,5 @@
 original_paper_variable_names,GDC_format_variable_names,generated_column_type
-case_id,case_submitter_id,Case_ID
+case_id,case_submitter_id,case_submitter_id
 age,age_at_diagnosis,age_at_diagnosis
 gender,gender,gender
 country,country_of_residence_at_enrollment,country_of_residence_at_enrollment
@@ -12,7 +12,7 @@ smoking_second_hand,secondhand_smoke_as_child,secondhand_smoke_as_child
 smoking_inferred,None,None
 alcohol_consum,alcohol_intensity,alcohol_intensity
 num_yrs_alc_con,None,alcohol_intensity
-tumor_site_original,site_of_resection_or_biopsy; tissue_or_organ_of_origin,tissue_or_organ_of_origin
+tumor_site_original,tissue_or_organ_of_origin,tissue_or_organ_of_origin
 tumor_site_curated,None,tissue_or_organ_of_origin
 tumor_focality,tumor_focality,tumor_focality
 tumor_size_cm,tumor_largest_dimension_diameter,tumor_largest_dimension_diameter
@@ -56,4 +56,4 @@ TMT set#,None,None
 channel #,None,None
 peptide amount for labeling (ug),None,None
 type,None,tissue_type
-combined_id,None,Case_ID
+combined_id,None,case_submitter_id
