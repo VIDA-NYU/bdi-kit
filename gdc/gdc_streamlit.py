@@ -87,7 +87,7 @@ st.write("Selected labels:")
 st.data_editor(st.session_state.gdc_labels)
 
 st.header("3. Match Columns Using CTA", anchor=False)
-gpt = GPTHelper(api_key="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")
+gpt = GPTHelper(api_key="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")
 
 black_list = ["Case_ID"]
 output_dict = {"column_name": [], "generated_column_type": [], "column_type": [], "column_description": [], "column_values": []}
@@ -95,12 +95,23 @@ if st.button('Ask CTA'):
     if raw_dataset is None:
         st.warning("Please upload a CSV file to proceed.")
     else:
-        for col_name in raw_dataset.columns:
-            result = gpt.ask_cta(labels=list(st.session_state.gdc_labels), context=col_name)
+        progress_text = "CTA start matching columns..."
+        my_bar = st.progress(0, text=progress_text)
+        col_num = raw_dataset.shape[1]
+        for idx, col_name in enumerate(raw_dataset.columns):
+            values = raw_dataset[col_name].drop_duplicates().dropna()
+            if len(values) > 15:
+                rows = values.sample(15).tolist()
+            else:
+                rows = values.tolist()
+            serialized_input = f"{col_name}: {', '.join([str(row) for row in rows])}"
+            context = serialized_input.lower().replace("-", "_")
+
+            result = gpt.ask_cta(labels=list(st.session_state.gdc_labels), context=context)
             output_dict["column_name"].append(col_name)
             output_dict["generated_column_type"].append(result)
             if result is not None and result.lower().strip() != "none" and result not in black_list:
-                st.write(f"Column name: {col_name}, Generated column type: {result}")
+                progress_text = f"Column name: {col_name}, Generated column type: {result}"
                 properties = schema.get_properties_by_column_name(result)
                 output_dict["column_type"].append(properties[1])
                 output_dict["column_description"].append(properties[2])
@@ -108,7 +119,10 @@ if st.button('Ask CTA'):
             else:
                 output_dict["column_type"].append(None)
                 output_dict["column_description"].append(None)
-                output_dict["column_values"].append(None)
+                output_dict["column_values"].append([])
+
+            my_bar.progress((idx+1)/col_num, text=progress_text)
             
-        st.data_editor(pd.DataFrame(output_dict))
+        st.data_editor(pd.DataFrame(output_dict),
+                       column_config={"column_values": st.column_config.ListColumn()})
 
