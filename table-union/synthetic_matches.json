@@ -1,0 +1,1131 @@
+[
+    {
+        "original_column": {
+            "name": "age_at_diagnosis",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "diag_age"
+            },
+            {
+                "name": "age_at_dx"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ajcc_clinical_m",
+            "values": "M0, M1, M1a, M1b, M1c, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "clinical_metastasis_stage",
+                "values": [
+                    "M0",
+                    "M1",
+                    "M1a",
+                    "M1b",
+                    "M1c",
+                    "MX",
+                    "Data_Not_Collected",
+                    "Not_Reported",
+                    "Unknown_Status",
+                    "cM0_i_plus"
+                ]
+            },
+            {
+                "name": "m_stage_clinical",
+                "values": [
+                    "M0",
+                    "M1",
+                    "M1a",
+                    "M1b",
+                    "M1c",
+                    "MX",
+                    "Collection_Prohibited",
+                    "Not_Reported",
+                    "Unknown",
+                    "cM0_positive"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ajcc_pathologic_m",
+            "values": "M0, M1a, M1b, M1d, M2, MX, Not Allowed To Collect, Not Reported, Unknown, cM0 (i+)",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "path_m_stage",
+                "values": [
+                    "M0",
+                    "M1a",
+                    "M1b",
+                    "M1c",
+                    "M2",
+                    "MX",
+                    "Data_Not_Collected",
+                    "Not_Reported",
+                    "Unknown_Status",
+                    "cM0_i+"
+                ]
+            },
+            {
+                "name": "metastasis_stage",
+                "values": [
+                    "Stage_M0",
+                    "Stage_M1a",
+                    "Stage_M1b",
+                    "Stage_M1c",
+                    "Stage_M2",
+                    "Stage_MX",
+                    "Collection_Restricted",
+                    "NR",
+                    "Unknown",
+                    "cM0_plus"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ajcc_pathologic_n",
+            "values": "N0 (mol-), N1a, N1b, N1bII, N1bIII, N1bIV, N1c, N2b, N3a, N4",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "lymph_node_status",
+                "values": [
+                    "N0-",
+                    "N1a",
+                    "N1b",
+                    "N1bII",
+                    "N1bIII",
+                    "N1bIV",
+                    "N1c",
+                    "N2b",
+                    "N3a",
+                    "N4"
+                ]
+            },
+            {
+                "name": "n_stage_classification",
+                "values": [
+                    "N0(mol-)",
+                    "N1a",
+                    "N1b",
+                    "N1b(II)",
+                    "N1b(III)",
+                    "N1b(IV)",
+                    "N1c",
+                    "N2b",
+                    "N3a",
+                    "N4"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ajcc_pathologic_stage",
+            "values": "Not Reported, Stage 0a, Stage IA1, Stage IA3, Stage IIA1, Stage IIB, Stage III, Stage IIIA, Stage IVB, Stage IVC",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "path_stage_ajcc",
+                "values": [
+                    "NR",
+                    "Stage 0",
+                    "Stage I",
+                    "Stage II",
+                    "Stage III",
+                    "Stage IV"
+                ]
+            },
+            {
+                "name": "ajcc_cancer_stage",
+                "values": [
+                    "Not Available",
+                    "Tis",
+                    "Stage 1A",
+                    "Stage 2A",
+                    "Stage 2B",
+                    "Stage 3A",
+                    "Stage 3B",
+                    "Stage 4A",
+                    "Stage 4B"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ajcc_pathologic_t",
+            "values": "T1, T1b2, T1mi, T2, T2a1, T3a, T3b, T4c, TX, Tis (DCIS)",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "pathologic_t_stage",
+                "values": [
+                    "T1",
+                    "T2",
+                    "T3",
+                    "T4",
+                    "TX",
+                    "Tis"
+                ]
+            },
+            {
+                "name": "tumor_stage_t",
+                "values": [
+                    "T1a",
+                    "T1b",
+                    "T2a",
+                    "T2b",
+                    "T3a",
+                    "T3b",
+                    "T4a",
+                    "T4b",
+                    "TX",
+                    "T0"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "alcohol_intensity",
+            "values": "Drinker, Heavy Drinker, Lifelong Non-Drinker, Non-Drinker, Not Reported, Occasional Drinker, Social Drinker, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "alcohol_consumption_level",
+                "values": [
+                    "Regular Drinker",
+                    "Frequent Drinker",
+                    "Abstainer",
+                    "Teetotaler",
+                    "Data Missing",
+                    "Infrequent Drinker",
+                    "Moderate Drinker",
+                    "Not Specified"
+                ]
+            },
+            {
+                "name": "alcohol_use_pattern",
+                "values": [
+                    "Consumes Alcohol",
+                    "High Consumption",
+                    "Never Consumed",
+                    "Abstains",
+                    "Unknown",
+                    "Casual Drinker",
+                    "Occasional Use",
+                    "Undisclosed"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "biospecimen_laterality",
+            "values": "Bilateral, Left, Not Reported, Right, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "sample_side",
+                "values": [
+                    "Both Sides",
+                    "L",
+                    "NR",
+                    "R",
+                    "NA"
+                ]
+            },
+            {
+                "name": "specimen_orientation",
+                "values": [
+                    "Bilat",
+                    "Left-side",
+                    "Unreported",
+                    "Right-side",
+                    "Not Available"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "bmi",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "body_mass_index"
+            },
+            {
+                "name": "BMI_value"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "cause_of_death",
+            "values": "Cancer Related, Cardiovascular Disorder, NOS, End-stage Renal Disease, Infection, Not Cancer Related, Not Reported, Renal Disorder, NOS, Surgical Complications, Toxicity, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "mortality_reason",
+                "values": [
+                    "Oncological Causes",
+                    "Cardiac Disorders",
+                    "Renal Failure"
+                ]
+            },
+            {
+                "name": "death_cause",
+                "values": [
+                    "Infectious Causes",
+                    "Non-Oncological Causes",
+                    "Unspecified"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "cigarettes_per_day",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "daily_cig_intake"
+            },
+            {
+                "name": "cigs_per_day"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "country_of_residence_at_enrollment",
+            "values": "Andorra, Aruba, Belize, France, Germany, Guam, Guatemala, Jersey, Kiribati, Saudi Arabia",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "residence_country_at_admission",
+                "values": [
+                    "AD",
+                    "AW",
+                    "BZ",
+                    "FR",
+                    "DE",
+                    "GU",
+                    "GT",
+                    "JE",
+                    "KI",
+                    "SA"
+                ]
+            },
+            {
+                "name": "enrollment_country",
+                "values": [
+                    "Principality of Andorra",
+                    "Aruba",
+                    "Belize",
+                    "French Republic",
+                    "Federal Republic of Germany",
+                    "Guam",
+                    "Republic of Guatemala",
+                    "Bailiwick of Jersey",
+                    "Republic of Kiribati",
+                    "Kingdom of Saudi Arabia"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "days_to_death",
+            "values": "Not specified",
+            "type": "integer, number"
+        },
+        "matches": [
+            {
+                "name": "death_days"
+            },
+            {
+                "name": "dtd"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "days_to_last_follow_up",
+            "values": "Not specified",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "follow_up_duration_days",
+                "values": [
+                    "Unknown",
+                    "Data not available",
+                    "Not recorded"
+                ]
+            },
+            {
+                "name": "days_since_last_followup",
+                "values": [
+                    "Not available",
+                    "Not reported",
+                    "Missing"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "days_to_recurrence",
+            "values": "Not specified",
+            "type": "integer"
+        },
+        "matches": [
+            {
+                "name": "time_to_recurrence_days"
+            },
+            {
+                "name": "recurrence_interval_days"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "ethnicity",
+            "values": "Unknown, hispanic or latino, not allowed to collect, not hispanic or latino, not reported, unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "ethnic_background",
+                "values": [
+                    "Not specified",
+                    "Latino/Hispanic",
+                    "Data not collected"
+                ]
+            },
+            {
+                "name": "race_ethnicity",
+                "values": [
+                    "Undisclosed",
+                    "Hispanic or Latino",
+                    "Collection restricted"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "figo_stage",
+            "values": "Stage IA, Stage IB1, Stage IC, Stage IC2, Stage IIIAii, Stage IIIB, Stage IIIC1, Stage IV, Stage IVB, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "cancer_stage_figo",
+                "values": [
+                    "IA",
+                    "IB1",
+                    "IC",
+                    "IC2",
+                    "IIIA2",
+                    "IIIB",
+                    "IIIC1",
+                    "IV",
+                    "IVB",
+                    "Not specified"
+                ]
+            },
+            {
+                "name": "figo_cancer_staging",
+                "values": [
+                    "1A",
+                    "1B1",
+                    "1C",
+                    "1C2",
+                    "3Aii",
+                    "3B",
+                    "3C1",
+                    "4",
+                    "4B",
+                    "Unknown"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "gender",
+            "values": "female, male, not reported, unknown, unspecified",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "sex",
+                "values": [
+                    "F",
+                    "M",
+                    "NR"
+                ]
+            },
+            {
+                "name": "gender_id",
+                "values": [
+                    "Female",
+                    "Male",
+                    "Not Specified"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "height",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "stature"
+            },
+            {
+                "name": "body_height"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "last_known_disease_status",
+            "values": "Biochemical evidence of disease without structural correlate, Distant met recurrence/progression, Loco-regional recurrence/progression, Not Allowed To Collect, Tumor free, Unknown tumor status, With tumor, not reported",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "current_disease_status",
+                "values": [
+                    "Biochemical recurrence without imaging confirmation",
+                    "Metastatic disease progression",
+                    "Local/regional disease progression",
+                    "Data collection not permitted",
+                    "No evidence of disease",
+                    "Disease status unknown",
+                    "Evidence of disease"
+                ]
+            },
+            {
+                "name": "disease_progression_status",
+                "values": [
+                    "Biochemical relapse without radiologic evidence",
+                    "Distant metastasis progression",
+                    "Regional recurrence/progression",
+                    "Data not available",
+                    "Cancer-free",
+                    "Status of disease unknown",
+                    "Presence of tumor"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "lymph_nodes_positive",
+            "values": "Not specified",
+            "type": "integer"
+        },
+        "matches": [
+            {
+                "name": "pos_lymph_nodes"
+            },
+            {
+                "name": "num_pos_nodes"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "lymphatic_invasion_present",
+            "values": "No, Not Reported, Unknown, Yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "lymph_invasion_status",
+                "values": [
+                    "Absent",
+                    "NR",
+                    "Indeterminate",
+                    "Present"
+                ]
+            },
+            {
+                "name": "lymphatic_inv_flag",
+                "values": [
+                    "Negative",
+                    "Not Available",
+                    "Unclear",
+                    "Positive"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "pack_years_smoked",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "smoking_pack_years"
+            },
+            {
+                "name": "cig_pack_years"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "perineural_invasion_present",
+            "values": "No, Not Reported, Unknown, Yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "PNI_status",
+                "values": [
+                    "Absent",
+                    "NR",
+                    "Indeterminate",
+                    "Present"
+                ]
+            },
+            {
+                "name": "nerve_invasion_detected",
+                "values": [
+                    "Negative",
+                    "Not Available",
+                    "Unclear",
+                    "Positive"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "primary_diagnosis",
+            "values": "Atypical meningioma, Carcinoma, metastatic, NOS, Endometrial stromal nodule, Glioblastoma multiforme, Jadassohn blue nevus, Malignant lymphomatous polyposis, Medulloblastoma, classic, Pseudomucinous cystadenoma, borderline malignancy, Recklinghausen disease, Wolffian duct adenoma",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "initial_dx",
+                "values": [
+                    "Atypical meningioma",
+                    "Metastatic carcinoma, NOS",
+                    "Endometrial stromal tumor",
+                    "Glioblastoma",
+                    "Blue nevus of Jadassohn",
+                    "Lymphomatous polyposis",
+                    "Classic medulloblastoma",
+                    "Borderline malignant pseudomucinous cystadenoma",
+                    "Neurofibromatosis type 1 (Recklinghausen's disease)",
+                    "Adenoma of the Wolffian duct"
+                ]
+            },
+            {
+                "name": "diag_code",
+                "values": [
+                    "Meningioma, atypical",
+                    "Carcinoma, unspecified, metastatic",
+                    "Endometrial stromal sarcoma, low grade",
+                    "Glioblastoma",
+                    "Blue nevus",
+                    "Malignant lymphoma, unclassifiable, with features intermediate between diffuse large B-cell lymphoma and classical Hodgkin lymphoma",
+                    "Medulloblastoma",
+                    "Mucinous borderline ovarian tumor",
+                    "Neurofibromatosis type I",
+                    "Mesonephric adenoma"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "progression_or_recurrence",
+            "values": "No, Not Allowed To Collect, Not Reported, Unknown, Yes, no, not reported, unknown, yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "disease_progression_status",
+                "values": [
+                    "No",
+                    "Data Not Collected",
+                    "NR",
+                    "Unknown",
+                    "Yes"
+                ]
+            },
+            {
+                "name": "tumor_recurrence_status",
+                "values": [
+                    "Negative",
+                    "Not Collected",
+                    "Not Reported",
+                    "Undetermined",
+                    "Positive"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "race",
+            "values": "Unknown, american indian or alaska native, asian, black or african american, native hawaiian or other pacific islander, not allowed to collect, not reported, other, unknown, white",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "ethnicity",
+                "values": [
+                    "Indigenous",
+                    "Asian/Pacific Islander",
+                    "African Descent"
+                ]
+            },
+            {
+                "name": "race_ethnicity",
+                "values": [
+                    "AI/AN",
+                    "Asian",
+                    "Black/African American"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "residual_disease",
+            "values": "Not Reported, R0, R1, R2, RX, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "post_surgery_margin_status",
+                "values": [
+                    "NR",
+                    "No Residual Tumor",
+                    "Microscopic Residual",
+                    "Macroscopic Residual",
+                    "Residual Unknown",
+                    "Not Evaluated"
+                ]
+            },
+            {
+                "name": "surgical_margin_status",
+                "values": [
+                    "Not Reported",
+                    "R0 - No Residual Tumor",
+                    "R1 - Microscopic Residual Tumor",
+                    "R2 - Macroscopic Residual Tumor",
+                    "RX - Presence of Residual Tumor Cannot Be Assessed",
+                    "Unknown"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "secondhand_smoke_as_child",
+            "values": "No, Not Reported, Unknown, Yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "childhood_SHS_exposure",
+                "values": [
+                    "No",
+                    "NR",
+                    "Unknown",
+                    "Yes"
+                ]
+            },
+            {
+                "name": "passive_smoking_in_childhood",
+                "values": [
+                    "Absent",
+                    "Not Reported",
+                    "Undetermined",
+                    "Present"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "site_of_resection_or_biopsy",
+            "values": "Cardia, NOS, Hypopharyngeal aspect of aryepiglottic fold, Lower gum, Lower limb, NOS, Supraglottis, Thymus, Transverse colon, Urachus, Uterine adnexa, Uvula",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "biopsy_site",
+                "values": [
+                    "Cardia",
+                    "Not Otherwise Specified",
+                    "Aryepiglottic fold, hypopharyngeal aspect",
+                    "Gingiva, lower",
+                    "Lower extremity",
+                    "Not Otherwise Specified",
+                    "Supraglottic region",
+                    "Thymus gland",
+                    "Colon, transverse",
+                    "Urachus",
+                    "Adnexa uteri",
+                    "Uvula"
+                ]
+            },
+            {
+                "name": "tumor_origin_site",
+                "values": [
+                    "Gastroesophageal junction",
+                    "Unspecified",
+                    "Hypopharynx, aryepiglottic fold",
+                    "Mandibular gingiva",
+                    "Leg, lower",
+                    "Unspecified",
+                    "Supraglottis",
+                    "Thymus",
+                    "Transverse colon",
+                    "Urachus",
+                    "Ovarian & other adnexa",
+                    "Uvula"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "synchronous_malignancy",
+            "values": "No, Not Reported, Unknown, Yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "concurrent_cancers",
+                "values": [
+                    "Absent",
+                    "Data Missing",
+                    "Not Known"
+                ]
+            },
+            {
+                "name": "simultaneous_malignancy",
+                "values": [
+                    "Negative",
+                    "Unreported",
+                    "Indeterminate"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tissue_or_organ_of_origin",
+            "values": "Anterior surface of epiglottis, Anus, NOS, Ciliary body, External lip, NOS, Gallbladder, Ill-defined sites within respiratory system, Not Reported, Overlapping lesion of urinary organs, Posterior wall of bladder, Rib, sternum, clavicle and associated joints",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "primary_site",
+                "values": [
+                    "Epiglottis anterior surface",
+                    "Anal region",
+                    "Ciliary body of eye",
+                    "Lip external aspect",
+                    "Gall bladder",
+                    "Respiratory system unspecified sites",
+                    "Unknown",
+                    "Urinary organs overlapping lesion",
+                    "Bladder posterior wall",
+                    "Bones of chest and upper limb"
+                ]
+            },
+            {
+                "name": "site_of_origin",
+                "values": [
+                    "Epiglottis, anterior",
+                    "Anus, unspecified",
+                    "Eye, ciliary body",
+                    "Lip, external",
+                    "Gallbladder",
+                    "Respiratory system, ill-defined",
+                    "Not specified",
+                    "Urinary system, overlapping lesion",
+                    "Bladder, posterior aspect",
+                    "Rib/sternum/clavicle/joints"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tissue_type",
+            "values": "Abnormal, Normal, Not Allowed To Collect, Not Reported, Peritumoral, Tumor, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "sample_origin",
+                "values": [
+                    "Dysplastic",
+                    "Healthy",
+                    "Collection Restricted",
+                    "Data Missing",
+                    "Adjacent to Tumor",
+                    "Neoplastic",
+                    "Not Specified"
+                ]
+            },
+            {
+                "name": "specimen_type",
+                "values": [
+                    "Atypical",
+                    "Non-tumorous",
+                    "Not Collectable",
+                    "Unreported",
+                    "Tumor Surrounding",
+                    "Carcinoma",
+                    "Indeterminate"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tobacco_smoking_onset_year",
+            "values": "Not specified",
+            "type": "integer"
+        },
+        "matches": [
+            {
+                "name": "smoking_start_year"
+            },
+            {
+                "name": "first_smoke_year"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tobacco_smoking_quit_year",
+            "values": "Not specified",
+            "type": "integer"
+        },
+        "matches": [
+            {
+                "name": "smoking_cessation_year"
+            },
+            {
+                "name": "last_smoked_year"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tobacco_smoking_status",
+            "values": "2, 3, 4, 5, 6, 7, Current Reformed Smoker for < or = 15 yrs, Current Smoker, Not Reported, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "smoking_history",
+                "values": [
+                    "Former smoker <=15 years",
+                    "Active smoker",
+                    "Data not available",
+                    "Data unknown"
+                ]
+            },
+            {
+                "name": "smoker_status",
+                "values": [
+                    "Quit <=15 years",
+                    "Smokes",
+                    "Not documented",
+                    "Unknown status"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tumor_focality",
+            "values": "Multifocal, Not Reported, Unifocal, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "focality_status",
+                "values": [
+                    "Multiple Foci",
+                    "Data Missing",
+                    "Single Focus"
+                ]
+            },
+            {
+                "name": "lesion_focality",
+                "values": [
+                    "Polyfocal",
+                    "NR",
+                    "Monofocal"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tumor_grade",
+            "values": "G2, G3, G4, GB, GX, High Grade, Intermediate Grade, Low Grade, Not Reported, Unknown",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "neoplasm_grade",
+                "values": [
+                    "Grade II",
+                    "Grade III",
+                    "Grade IV",
+                    "Borderline",
+                    "Cannot be assessed",
+                    "High",
+                    "Intermediate",
+                    "Low",
+                    "Not available",
+                    "Indeterminate"
+                ]
+            },
+            {
+                "name": "cancer_stage_grade",
+                "values": [
+                    "GII",
+                    "GIII",
+                    "GIV",
+                    "Borderline malignancy",
+                    "GX: Grade cannot be assessed",
+                    "High-grade",
+                    "Intermediate-grade",
+                    "Low-grade",
+                    "NA",
+                    "Unknown"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "tumor_largest_dimension_diameter",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "max_tumor_diameter"
+            },
+            {
+                "name": "largest_tumor_size"
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "vascular_invasion_present",
+            "values": "No, Not Reported, Unknown, Yes",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "blood_vessel_invasion_status",
+                "values": [
+                    "Absent",
+                    "Data not available",
+                    "Indeterminate",
+                    "Present"
+                ]
+            },
+            {
+                "name": "vasc_invasion_ind",
+                "values": [
+                    "Neg",
+                    "NR",
+                    "Unk",
+                    "Pos"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "vital_status",
+            "values": "Alive, Dead, Not Reported, Unknown, alive, dead, lost to follow-up",
+            "type": "Not specified"
+        },
+        "matches": [
+            {
+                "name": "patient_outcome",
+                "values": [
+                    "Living",
+                    "Deceased",
+                    "Unreported"
+                ]
+            },
+            {
+                "name": "survival_status",
+                "values": [
+                    "Surviving",
+                    "Passed",
+                    "Not Documented"
+                ]
+            }
+        ]
+    },
+    {
+        "original_column": {
+            "name": "weight",
+            "values": "Not specified",
+            "type": "number"
+        },
+        "matches": [
+            {
+                "name": "body_weight_kg"
+            },
+            {
+                "name": "wt_kg"
+            }
+        ]
+    }
+]
