@@ -2,11 +2,10 @@ import os
 import sys
 import jellyfish
 
-import ast
 from openai import OpenAI
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from table_matching.value_matcher import EmbeddingMatcher
+# from table_matching.value_matcher import EmbeddingMatcher
 
 
 class GDCScoringInterface:
@@ -62,23 +61,23 @@ class JaroScore(GDCScoringInterface):
         return jellyfish.jaro_similarity(col_name, candidate_col_name)
 
     
-class EmbeddingScore(GDCScoringInterface):
-    scorer_name = "embedding"
-    value_matcher = EmbeddingMatcher()
+# class EmbeddingScore(GDCScoringInterface):
+#     scorer_name = "embedding"
+#     value_matcher = EmbeddingMatcher()
         
     
-    @staticmethod
-    def compute_col_values_score(values, choices):
-        score = 0
-        for value in values:
-            EmbeddingScore.value_matcher.model.match([value], choices, top_n=1)
-            score += EmbeddingScore.value_matcher.model.get_matches().iloc[0]["Similarity"]
-        return score / len(values)
+#     @staticmethod
+#     def compute_col_values_score(values, choices):
+#         score = 0
+#         for value in values:
+#             EmbeddingScore.value_matcher.model.match([value], choices, top_n=1)
+#             score += EmbeddingScore.value_matcher.model.get_matches().iloc[0]["Similarity"]
+#         return score / len(values)
     
-    @staticmethod
-    def compute_col_name_score(col_name, candidate_col_name):
-        EmbeddingScore.value_matcher.model.match([col_name], [candidate_col_name], top_n=1)
-        return EmbeddingScore.value_matcher.model.get_matches().iloc[0]["Similarity"]
+#     @staticmethod
+#     def compute_col_name_score(col_name, candidate_col_name):
+#         EmbeddingScore.value_matcher.model.match([col_name], [candidate_col_name], top_n=1)
+#         return EmbeddingScore.value_matcher.model.get_matches().iloc[0]["Similarity"]
 
 
 class GPTHelper:
