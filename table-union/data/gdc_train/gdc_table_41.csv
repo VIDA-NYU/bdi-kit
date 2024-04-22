@@ -1,0 +1,16 @@
+loci_abnormal_count,pregnancy_outcome,weeks_gestation_at_birth,analyte_type_id,proportion_base_mismatch,concentration,tumor_focality,comorbidity,ann_arbor_b_symptoms_described,days_to_treatment_start,selected_normal_wgs,mitosis_karyorrhexis_index
+0,Ectopic Pregnancy,24,D,0.002,0.05,Multifocal,Chronic Pancreatitis,Fever,0,True,High
+1,Induced Abortion,26,E,0.005,0.1,Not Reported,Cirrhosis,Night Sweats,1,False,Intermediate
+2,Live Birth,28,G,0.007,0.25,Unifocal,Unknown Etiology,Other,3,True,Low
+3,Miscarriage,30,H,0.01,0.5,Unknown,Denys-Drash Syndrome,Weight Loss,7,True,Not Reported
+4,Not Reported,32,R,0.012,0.75,Unknown,Diabetic Neuropathy,Other,14,False,Unknown
+5,Spontaneous Abortion,34,S,0.015,1.0,Unknown,Heart Disease,Night Sweats,21,True,Intermediate
+6,Stillbirth,36,T,0.018,1.5,Not Reported,Lymphamatoid Papulosis,Night Sweats,28,True,Not Reported
+7,Unknown,37,W,0.02,2.0,Unifocal,Peutz-Jeghers Disease,Fever,35,False,Intermediate
+8,Ectopic Pregnancy,38,X,0.023,2.5,Unknown,Renal Failure (Requiring Dialysis),Other,42,True,Low
+9,Not Reported,39,Y,0.025,3.0,Unifocal,Sarcoidosis,Night Sweats,60,False,Not Reported
+10,Induced Abortion,40,W,0.028,5.0,Unifocal,Ulcerative Colitis,Fever,75,False,Not Reported
+12,Ectopic Pregnancy,41,D,0.03,10.0,Unifocal,Unknown Etiology,Night Sweats,90,True,Intermediate
+15,Ectopic Pregnancy,42,D,0.033,15.0,Unifocal,Renal Failure (Requiring Dialysis),Other,120,False,Intermediate
+20,Ectopic Pregnancy,43,R,0.035,20.0,Unifocal,Ulcerative Colitis,Other,150,True,Not Reported
+25,Not Reported,44,R,0.038,25.0,Unifocal,Chronic Pancreatitis,Fever,180,False,Low

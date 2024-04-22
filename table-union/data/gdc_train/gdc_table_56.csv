@@ -1,0 +1,16 @@
+contamination,therapeutic_agents,staining_intensity_value,smoking_frequency,germline_mutation_calling_workflows,days_to_birth,proportion_coverage_30x,age_at_index,tumor_regression_grade,ajcc_staging_system_edition,submission_enabled,uicc_clinical_n,data_types
+0.001,Adenosine A2A Receptor Antagonist/Phosphodiesterase 10A PBF-999,0,Every day,GATK Best Practices for Germline SNP & Indel Discovery,-3285,0.95,1,0,1st,True,N0 (i+),Genomic Sequencing Data
+0.005,Anti-CD30 Monoclonal Antibody XmAb2513,1+,Some days,Mutect2 in tumor-only mode,-6570,0.98,5,1,2nd,False,N1,Transcriptomic Data
+0.01,Anti-CD70 CAR-expressing T Lymphocytes,2+,Unknown,HaplotypeCaller,-4380,0.99,12,2,3rd,False,N1b,Proteomic Data
+0.015,Autologous Genetically-modified MAGE-A4 C1032 CD8alpha T Cells,3+,Unknown,DeepVariant,-7300,0.92,18,3,4th,False,N1bIV,Metabolomic Data
+0.02,Autologous Nectin-4/FAP-targeted CAR-T Cells,4+,Unknown,Strelka2,-14600,0.96,23,Not Reported,5th,False,N1c,Epigenetic Data
+0.025,CDK4/6 Inhibitor BPI-16350,3+,Unknown,VarScan2,-2920,0.94,29,Unknown,6th,True,N1mi,Clinical Data
+0.03,Cetuximab,1+,Unknown,FreeBayes,-5110,0.97,34,1,7th,True,N2b,Imaging Data
+0.035,Fc-engineered Anti-CD40 Agonist Antibody 2141-V11,2+,Every day,Platypus,-17520,0.93,41,Not Reported,8th,True,N2c,Pathology Data
+0.04,Fosgemcitabine Palabenamide,3+,Some days,BCFtools,-2190,0.91,47,Unknown,Not Reported,False,N3c,Pharmacogenomic Data
+0.045,Tebentafusp,3+,Every day,Sentieon DNAseq,-8030,0.9,53,Unknown,Unknown,False,N4,Immune Response Data
+0.05,Fosgemcitabine Palabenamide,2+,Unknown,DRAGEN Germline Pipeline,-9855,0.89,59,1,2nd,False,N1,Patient Reported Outcomes
+0.055,Fosgemcitabine Palabenamide,4+,Every day,Joint Genotyping Workflow,-11680,0.88,65,Not Reported,6th,False,N4,Electronic Health Records
+0.06,Fc-engineered Anti-CD40 Agonist Antibody 2141-V11,0,Some days,Octopus,-10220,0.87,72,Not Reported,7th,True,N1mi,Biochemical Data
+0.065,Fosgemcitabine Palabenamide,2+,Some days,SAMtools mpileup,-12410,0.86,78,1,3rd,True,N1mi,Cell Morphology Data
+0.07,Tebentafusp,3+,Every day,Canvas,-6575,0.85,85,1,7th,True,N1bIV,Environmental Exposure Data

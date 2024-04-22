@@ -1,0 +1,16 @@
+adapter_content,uicc_clinical_m,tumor_shape,treatment_intent_type,methylation_array_harmonization_workflows,comorbidities,micrometastasis_present,ovarian_surface_involvement
+FAIL,M0,Diffuse,Adjuvant,Bisulfite Conversion Quality Control,Hypertension,No,Absent
+Not Reported,M1,Dome,Androgen Deprivation Therapy (ADT),Cross-Platform Normalization,Diabetes mellitus,Not Reported,Indeterminate
+PASS,M1a,Mushroom,Consolidation Therapy,Beta Value Calibration,Chronic kidney disease,Unknown,Not Reported
+Unknown,M1b,Unknown,First-Line Therapy,Probe Annotation Alignment,Coronary artery disease,Yes,Present
+WARN,M1c,Diffuse,Induction,Batch Effect Correction,Chronic obstructive pulmonary disease,No,Unknown
+Not Reported,MX,Unknown,Neoadjuvant,Differential Methylation Analysis,Heart failure,Not Reported,Not Reported
+WARN,Not Reported,Unknown,Not Reported,Replicate Handling Strategy,Obesity,Not Reported,Indeterminate
+Not Reported,Unknown,Unknown,Prevention,Quality Masking of Unreliable Probes,Osteoporosis,Not Reported,Not Reported
+FAIL,cM0 (i+),Unknown,Radiation Boost,Chromosomal Location Adjustment,Anemia,Not Reported,Unknown
+Not Reported,M1c,Unknown,Unknown,Statistical Noise Reduction,Depression,Not Reported,Present
+FAIL,Unknown,Unknown,Consolidation Therapy,Cell Type Deconvolution,Asthma,No,Unknown
+PASS,M1b,Diffuse,Consolidation Therapy,Age and Gender Adjustment,Hyperlipidemia,No,Unknown
+FAIL,M1a,Diffuse,Unknown,Sample Quality Assessment,Arthritis,Not Reported,Unknown
+FAIL,Not Reported,Unknown,Consolidation Therapy,Data Imputation for Missing Values,Stroke,Not Reported,Not Reported
+FAIL,M1b,Diffuse,Unknown,Technical Variation Minimization,Dementia,Not Reported,Indeterminate

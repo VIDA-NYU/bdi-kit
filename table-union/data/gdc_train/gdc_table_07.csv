@@ -1,0 +1,16 @@
+tissue_source_sites,respirable_crystalline_silica_exposure,library_preparation_kit_vendor,figo_stage,country_of_birth,gleason_score,ethnicity,per_base_sequence_quality,sites_of_involvement,largest_extrapelvic_peritoneal_focus,uicc_staging_system_edition,described_cases,days_to_sample_procurement
+Lung,No,Illumina,Stage IA,Antigua and Barbuda,6,Unknown,FAIL,Lymph nodes,Macroscopic (2cm or less),1st,Basal cell carcinoma,0
+Breast,Unknown,Thermo Fisher Scientific,Stage IB1,China,7,hispanic or latino,Not Reported,Liver,Macroscopic (greater than 2cm),2nd,Squamous cell carcinoma,1
+Colon,Yes,Qiagen,Stage IC,Denmark,8,not allowed to collect,PASS,Lung,Microscopic,3rd,Malignant melanoma,3
+Pancreas,No,NEB (New England Biolabs),Stage IC2,Federated States of Micronesia,9,not hispanic or latino,Unknown,Bone,Not Reported,4th,Breast carcinoma,5
+Prostate,Unknown,Roche,Stage IIIAii,Guatemala,10,not reported,WARN,Brain,Unknown,5th,Prostate adenocarcinoma,7
+Ovary,No,Agilent Technologies,Stage IIIB,Israel,5,unknown,Not Reported,Adrenal glands,Microscopic,6th,Lung adenocarcinoma,10
+Liver,Unknown,Takara Bio,Stage IIIC1,Malaysia,4,not hispanic or latino,Not Reported,Peritoneum,Macroscopic (2cm or less),7th,Colorectal adenocarcinoma,14
+Skin,Unknown,Bio-Rad Laboratories,Stage IV,Serbia,3,not hispanic or latino,Not Reported,Skin,Macroscopic (greater than 2cm),8th,Ovarian serous carcinoma,21
+Kidney,Unknown,PacBio (Pacific Biosciences),Stage IVB,State of Palestine,2,not allowed to collect,FAIL,Pleura,Unknown,Not Reported,Pancreatic ductal adenocarcinoma,28
+Brain,No,Oxford Nanopore Technologies,Unknown,Sweden,11,Unknown,Not Reported,Kidney,Unknown,Unknown,Hepatocellular carcinoma,35
+Stomach,Unknown,Sigma-Aldrich,Stage IVB,Malaysia,12,not hispanic or latino,Not Reported,Spleen,Macroscopic (greater than 2cm),7th,Acute myeloid leukemia,42
+Esophagus,Unknown,PerkinElmer,Stage IC,Malaysia,13,hispanic or latino,FAIL,Pancreas,Not Reported,7th,Chronic lymphocytic leukemia,49
+Thyroid,No,10x Genomics,Stage IA,Malaysia,14,hispanic or latino,Not Reported,Ovary,Unknown,2nd,Glioblastoma multiforme,56
+Bladder,Yes,Zymo Research,Stage IA,Federated States of Micronesia,15,unknown,Unknown,Bladder,Not Reported,7th,Renal cell carcinoma,63
+Cervix,Unknown,Promega,Stage IIIB,China,16,not allowed to collect,Unknown,Thyroid,Macroscopic (greater than 2cm),6th,Bladder transitional cell carcinoma,70

@@ -1,0 +1,16 @@
+exposure_duration,average_read_length,treatment_arm,aliquot_quantity,metastasis_at_diagnosis,tumor_purity,primary_site,ajcc_clinical_n,read_groups,mitotic_total_area,is_ffpe
+Not Reported,75,A081105,50,Distant Metastasis,0.95,Anus and anal canal,N0 (i+),Illumina_HiSeq_2500,1500,True
+Six Weeks or More,100,A081801,100,Metastasis,0.85,Brain,N0 (mol-),Ion_Torrent_PGM,2300,False
+Unknown,125,E4512,150,NOS,0.75,Breast,N1,Oxford_Nanopore_MinION,1800,True
+Six Weeks or More,150,EA5142,200,No Metastasis,0.65,Eye and adnexa,N1a,PacBio_RS_II,1250,True
+Unknown,175,A081105,250,Not Reported,0.55,Floor of mouth,N1b,Illumina_NovaSeq_6000,2000,False
+Not Reported,200,A081801,300,Regional Metastasis,0.45,Not Applicable,N1bI,Illumina_MiSeq,950,False
+Not Reported,225,E4512,350,Unknown,0.35,Other and unspecified female genital organs,N1bIV,Ion_Torrent_S5,1700,False
+Unknown,250,A081801,400,Not Reported,0.25,Skin,N1c,PacBio_Sequel,2100,True
+Six Weeks or More,275,A081801,450,Unknown,0.15,Ureter,N3c,Illumina_GAIIx,1900,True
+Not Reported,300,A081801,500,Distant Metastasis,0.05,Vulva,NX,Oxford_Nanopore_GridION,2200,True
+Unknown,325,A081801,550,Not Reported,0.9,Other and unspecified female genital organs,NX,Illumina_HiSeq_X_Ten,1600,True
+Not Reported,350,EA5142,600,Distant Metastasis,0.8,Other and unspecified female genital organs,NX,Ion_Proton,1400,True
+Six Weeks or More,375,E4512,650,Unknown,0.7,Anus and anal canal,N1bIV,PacBio_Sequel_II,2400,True
+Unknown,400,A081801,700,Unknown,0.6,Skin,N1a,Illumina_iSeq_100,1300,True
+Unknown,425,E4512,750,Unknown,0.5,Anus and anal canal,N1bIV,Oxford_Nanopore_PromethION,1100,True

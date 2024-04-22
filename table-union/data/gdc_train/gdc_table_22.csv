@@ -1,0 +1,16 @@
+ajcc_pathologic_m,tumor_grade_category,magnification,basic_statistics,extracapsular_extension,somatic_annotation_workflows,exposure_duration_hrs_per_day
+M0,Four Tier,40,FAIL,Extensive,Mutect2,0.5
+M1a,Not Reported,100,Not Reported,Focal,Strelka2,1.0
+M1b,Three Tier,200,PASS,Not Reported,VarScan2,1.5
+M1d,Four Tier,400,Unknown,Focal,SomaticSniper,2.0
+M2,Three Tier,600,WARN,Extensive,GATK4 Mutect2,2.5
+MX,Three Tier,800,Unknown,Not Reported,Lofreq,3.0
+Not Allowed To Collect,Four Tier,1000,PASS,Extensive,Shimmer,4.0
+Not Reported,Four Tier,1200,Unknown,Extensive,Varscan2 SNP,5.0
+Unknown,Four Tier,1500,Unknown,Extensive,Varscan2 Indel,6.0
+cM0 (i+),Four Tier,2000,Not Reported,Extensive,Pindel,7.0
+M1d,Four Tier,2500,WARN,Extensive,Tumor-Normal Pairing Analysis,8.0
+cM0 (i+),Four Tier,3000,WARN,Extensive,HaplotypeCaller,10.0
+Unknown,Three Tier,4000,PASS,Extensive,SomaticSeq,12.0
+M1a,Four Tier,5000,PASS,Extensive,DeepVariant,14.0
+M1d,Four Tier,6000,PASS,Extensive,Platypus,16.0

@@ -1,0 +1,16 @@
+inss_stage,ann_arbor_clinical_stage,imaging_result,aggregated_somatic_mutations,encoding,tissue_type
+Not Reported,Not Reported,Indeterminate,TP53 mutations,Sanger,Abnormal
+Stage 1,Stage I,Negative,KRAS mutations,Illumina 1.5,Normal
+Stage 2A,Stage II,Not Performed,APC mutations,Illumina 1.8,Not Allowed To Collect
+Stage 2B,Stage III,Not Reported,EGFR mutations,Solexa,Not Reported
+Stage 3,Stage IV,Positive,BRAF mutations,Illumina 1.3,Peritumoral
+Stage 4,Unknown,Unknown,PIK3CA mutations,Illumina 1.7,Tumor
+Stage 4S,Stage IV,Negative,PTEN mutations,Phred+33,Unknown
+Unknown,Not Reported,Positive,CDKN2A mutations,Phred+64,Unknown
+Stage 2B,Stage IV,Not Performed,RB1 mutations,ASCII-33,Unknown
+Stage 4,Stage IV,Not Reported,ALK mutations,ASCII-64,Unknown
+Stage 4S,Stage III,Not Performed,HER2 amplifications,Illumina 1.9,Not Reported
+Stage 1,Stage IV,Negative,MET amplifications,NextSeq,Peritumoral
+Stage 2B,Stage IV,Negative,VHL mutations,TwoColor,Tumor
+Unknown,Stage III,Unknown,NF1 mutations,PacBio,Abnormal
+Stage 3,Stage III,Negative,IDH1 mutations,Oxford Nanopore,Peritumoral

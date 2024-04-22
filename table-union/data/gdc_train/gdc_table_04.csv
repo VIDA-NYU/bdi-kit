@@ -1,0 +1,16 @@
+analyte_type,growth_rate,first_event,diagnoses,read_group_name,days_to_follow_up,type_of_tobacco_used,single_cell_library,other_clinical_attributes,ajcc_clinical_t,extrascleral_extension,simple_somatic_mutations,prior_malignancy,therapeutic_target_level,tumor_length_measurement
+DNA,24,Censored,Breast cancer,RG001_PatientA_Tumor,0,Cigar,Chromium 3' Gene Expression v2 Library,Tumor Grade,T1b,True,TP53 mutations,Not Allowed To Collect,>14 mg/L,2.5
+EBV Immortalized Normal,30,Death,Lung cancer,RG002_PatientA_Normal,30,Cigarette,Chromium 3' Gene Expression v3 Library,Lymphovascular Invasion,T2a,False,KRAS mutations,no,>14 mg/L,4.8
+FFPE DNA,36,Death without Remission,Prostate cancer,RG003_PatientB_Tumor,60,Electronic Cigarette,Chromium scATAC v1 Library,Perineural Invasion,T2b,True,EGFR mutations,not reported,>14 mg/L,7.1
+FFPE RNA,48,Induction Failure,Colorectal cancer,RG004_PatientB_Normal,90,Other,Smart-Seq2,Hormone Receptor Status,T4,False,BRAF V600E,unknown,>14 mg/L,3.3
+GenomePlex (Rubicon) Amplified DNA,60,,Melanoma,RG005_PatientC_Tumor,180,Pipe,Chromium 3' Gene Expression v3 Library,HER2/neu Status,T4a,True,PIK3CA mutations,yes,>14 mg/L,5.6
+RNA,72,Not Reported,Leukemia,RG006_PatientC_Normal,365,Smokeless Tobacco,Chromium scATAC v1 Library,Ki-67 Index,T4b,True,PTEN loss,no,>14 mg/L,8.9
+Repli-G (Qiagen) DNA,84,Other,Lymphoma,RG007_PatientD_Tumor,730,Cigar,Chromium 3' Gene Expression v3 Library,Tumor Infiltrating Lymphocytes,Ta,False,CDKN2A inactivation,Not Allowed To Collect,>14 mg/L,1.2
+Repli-G Pooled (Qiagen) DNA,96,Progression,Bladder cancer,RG008_PatientD_Normal,1095,Electronic Cigarette,Chromium 3' Gene Expression v3 Library,PD-L1 Expression,Tis (DCIS),True,APC mutations,yes,>14 mg/L,9.4
+Repli-G X (Qiagen) DNA,108,Relapse,Ovarian cancer,RG009_PatientE_Tumor,1460,Pipe,Chromium 3' Gene Expression v3 Library,MSI Status (Microsatellite Instability),Tis (LCIS),True,MET amplifications,unknown,>14 mg/L,6.7
+m6A Enriched RNA,120,Second Malignant Neoplasm,Thyroid cancer,RG010_PatientE_Normal,1825,Cigar,Chromium 3' Gene Expression v3 Library,ECOG Performance Status,Tis (Paget's),True,HER2 amplifications,yes,>14 mg/L,0.8
+Repli-G (Qiagen) DNA,132,Second Malignant Neoplasm,Pancreatic cancer,RG011_PatientF_Tumor,2190,Electronic Cigarette,Chromium 3' Gene Expression v3 Library,Molecular Subtype,Tis (DCIS),False,IDH1 R132H,yes,>14 mg/L,11.3
+Repli-G X (Qiagen) DNA,144,Death,Kidney (Renal Cell) cancer,RG012_PatientF_Normal,2555,Cigar,Chromium 3' Gene Expression v2 Library,Tumor Mutational Burden,T1b,False,NPM1 mutations,Not Allowed To Collect,>14 mg/L,10.1
+RNA,156,,Glioblastoma,RG013_PatientG_Tumor,2920,Other,Chromium 3' Gene Expression v3 Library,Oncotype DX Score,Ta,True,FLT3 internal tandem duplications,yes,>14 mg/L,12.6
+RNA,168,,Cervical cancer,RG014_PatientG_Normal,3285,Cigar,Chromium 3' Gene Expression v2 Library,BRCA1/BRCA2 Mutation Status,Tis (DCIS),False,VHL inactivation,no,>14 mg/L,14.2
+FFPE RNA,180,,Esophageal cancer,RG015_PatientH_Tumor,-30,Other,Chromium 3' Gene Expression v3 Library,TP53 Mutation Status,T1b,False,BCR-ABL fusion,yes,>14 mg/L,15.8

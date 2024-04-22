@@ -1,0 +1,16 @@
+contamination_error,kmer_content,sequencing_date,exposure_type,viral_hepatitis_serologies,variant_origin,imaging_findings,chipseq_antibody,imaging_suv_max,timepoint_category,dlco_ref_predictive_percent,somatic_aggregation_workflows,height,structural_variations,recist_targeted_regions_sum,tumor_ploidy
+0.02,FAIL,2021-03-15,Asbestos,HBV Core Antibody,Germline,Carcinomatosis,Not Applicable,2.5,Adjuvant Therapy,85,MuTect2,150,Deletions,2.5,1
+0.05,Not Reported,2021-07-22,Chemical,HBV DNA,Somatic,Kidney Involvement,Unknown,4.1,End of Consolidation Therapy,92,VarScan2,162,Duplications,4.8,2
+0.1,PASS,2021-11-30,Coal Dust,HBV Genotype,Unknown,Liver Involvement,abcam ab4729 anti-H3K27ac,6.7,End of Treatment Course 2,78,Strelka2,175,Translocations,7.1,3
+0.03,Unknown,2022-01-20,Dust,HBV Surface Antibody,Unknown,Lung Involvement,Not Applicable,3.2,Follow-up,65,GATK4 Mutect2,158,Inversions,9.3,4
+0.07,WARN,2022-04-05,NOS,HCV Genotype,Somatic,Normal,abcam ab4729 anti-H3K27ac,5.5,Not Reported,103,SomaticSniper,168,Insertions,12.0,5
+0.15,PASS,2022-06-18,Marijuana,Hepatitis B Surface Antigen,Somatic,Not Reported,abcam ab4729 anti-H3K27ac,7.8,Other,88,Lofreq,183,Copy number variations (CNVs),15.4,6
+0.01,PASS,2022-09-09,Radiation,Hepatitis C Antibody,Somatic,Retroperitoneal Lymph Node Involvement,abcam ab4729 anti-H3K27ac,9.0,Post Hormone Therapy,74,Platypus,145,Tandem duplications,18.2,7
+0.04,PASS,2022-12-01,Radon,Hepatitis C Virus RNA,Unknown,Vena Cava Involvement/Thrombus,abcam ab4729 anti-H3K27ac,10.4,Preoperative,110,DeepVariant,155,Interchromosomal rearrangements,21.5,8
+0.06,PASS,2023-02-14,Respirable Crystalline Silica,Not Reported,Unknown,Retroperitoneal Lymph Node Involvement,abcam ab4729 anti-H3K27ac,12.3,Prior to Treatment,96,Pindel,170,Intrachromosomal rearrangements,24.7,9
+0.08,PASS,2023-05-07,Smoke,Unknown,Unknown,Carcinomatosis,abcam ab4729 anti-H3K27ac,8.6,Within 3 Months of Surgery,67,Tumor-Normal Pair Analysis,178,Loss of heterozygosity (LOH),28.9,10
+0.12,PASS,2023-07-21,Smokeless Tobacco,HBV DNA,Unknown,Liver Involvement,abcam ab4729 anti-H3K27ac,14.7,Adjuvant Therapy,59,SomaticSeq,165,Amplifications,32.1,11
+0.09,FAIL,2023-08-30,Coal Dust,Unknown,Somatic,Retroperitoneal Lymph Node Involvement,abcam ab4729 anti-H3K27ac,16.2,Other,120,FACETS,160,Point mutations,35.6,12
+0.11,PASS,2023-10-12,Smoke,HBV DNA,Unknown,Liver Involvement,abcam ab4729 anti-H3K27ac,18.5,Adjuvant Therapy,81,PureCN,173,Chromothripsis,39.8,13
+0.13,PASS,2023-11-05,Respirable Crystalline Silica,HBV Genotype,Somatic,Carcinomatosis,abcam ab4729 anti-H3K27ac,20.1,Adjuvant Therapy,70,MSIsensor,180,Chromoplexy,43.2,14
+0.14,WARN,2023-12-20,NOS,HBV DNA,Unknown,Retroperitoneal Lymph Node Involvement,abcam ab4729 anti-H3K27ac,22.4,Within 3 Months of Surgery,105,HaplotypeCaller,190,Ring chromosomes,46.5,15
