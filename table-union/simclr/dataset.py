@@ -284,7 +284,7 @@ class PretrainTableDataset(data.Dataset):
         if self.gpt and self.single_column:
             col = random.choice(table_ori.columns)
             table_ori = table_ori[[col]]
-            table_aug = gpt_augment(table_ori)
+            # TODO: implement gpt augmentation
         # --------------------------------------------------------------
         else:
             # single-column mode: only keep one random column

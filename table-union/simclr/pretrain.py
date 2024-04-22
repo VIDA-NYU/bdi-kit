@@ -222,111 +222,111 @@ def load_checkpoint(ckpt):
     return model, dataset
 
 
-def evaluate_pretrain(model: BarlowTwinsSimCLR,
-                      unlabeled: PretrainTableDataset):
-    """Evaluate pre-trained model.
+# def evaluate_pretrain(model: BarlowTwinsSimCLR,
+#                       unlabeled: PretrainTableDataset):
+#     """Evaluate pre-trained model.
 
-    Args:
-        model (BarlowTwinsSimCLR): the model to be evaluated
-        unlabeled (PretrainTableDataset): the unlabeled dataset
+#     Args:
+#         model (BarlowTwinsSimCLR): the model to be evaluated
+#         unlabeled (PretrainTableDataset): the unlabeled dataset
 
-    Returns:
-        Dict: the dictionary of metrics (e.g., valid_f1)
-    """
-    table_path = 'data/%s/tables' % model.hp.task
+#     Returns:
+#         Dict: the dictionary of metrics (e.g., valid_f1)
+#     """
+#     table_path = 'data/%s/tables' % model.hp.task
 
-    # encode each dataset
-    featurized_datasets = []
-    for dataset in ["train", "valid", "test"]:
-        ds_path = 'data/%s/%s.csv' % (model.hp.task, dataset)
-        ds = pd.read_csv(ds_path)
+#     # encode each dataset
+#     featurized_datasets = []
+#     for dataset in ["train", "valid", "test"]:
+#         ds_path = 'data/%s/%s.csv' % (model.hp.task, dataset)
+#         ds = pd.read_csv(ds_path)
 
-        def encode_tables(table_ids, column_ids):
-            tables = []
-            for table_id, col_id in zip(table_ids, column_ids):
-                table = pd.read_csv(os.path.join(table_path, \
-                                    "table_%d.csv" % table_id))
-                if model.hp.single_column:
-                    table = table[[table.columns[col_id]]]
-                tables.append(table)
-            vectors = inference_on_tables(tables, model, unlabeled,
-                                          batch_size=128)
+#         def encode_tables(table_ids, column_ids):
+#             tables = []
+#             for table_id, col_id in zip(table_ids, column_ids):
+#                 table = pd.read_csv(os.path.join(table_path, \
+#                                     "table_%d.csv" % table_id))
+#                 if model.hp.single_column:
+#                     table = table[[table.columns[col_id]]]
+#                 tables.append(table)
+#             vectors = inference_on_tables(tables, model, unlabeled,
+#                                           batch_size=128)
 
-            # assert all columns exist
-            for vec, table in zip(vectors, tables):
-                assert len(vec) == len(table.columns)
+#             # assert all columns exist
+#             for vec, table in zip(vectors, tables):
+#                 assert len(vec) == len(table.columns)
 
-            res = []
-            for vec, cid in zip(vectors, column_ids):
-                if cid < len(vec):
-                    res.append(vec[cid])
-                else:
-                    # single column
-                    res.append(vec[-1])
-            return res
+#             res = []
+#             for vec, cid in zip(vectors, column_ids):
+#                 if cid < len(vec):
+#                     res.append(vec[cid])
+#                 else:
+#                     # single column
+#                     res.append(vec[-1])
+#             return res
 
-        # left tables
-        l_features = encode_tables(ds['l_table_id'], ds['l_column_id'])
+#         # left tables
+#         l_features = encode_tables(ds['l_table_id'], ds['l_column_id'])
 
-        # right tables
-        r_features = encode_tables(ds['r_table_id'], ds['r_column_id'])
+#         # right tables
+#         r_features = encode_tables(ds['r_table_id'], ds['r_column_id'])
 
-        features = []
-        Y = ds['match']
-        for l, r in zip(l_features, r_features):
-            feat = np.concatenate((l, r, np.abs(l - r)))
-            features.append(feat)
+#         features = []
+#         Y = ds['match']
+#         for l, r in zip(l_features, r_features):
+#             feat = np.concatenate((l, r, np.abs(l - r)))
+#             features.append(feat)
 
-        featurized_datasets.append((features, Y))
+#         featurized_datasets.append((features, Y))
 
-    train, valid, test = featurized_datasets
-    return evaluate_column_matching(train, valid, test)
+#     train, valid, test = featurized_datasets
+#     return evaluate_column_matching(train, valid, test)
 
 
-def evaluate_column_clustering(model: BarlowTwinsSimCLR,
-                               unlabeled: PretrainTableDataset):
-    """Evaluate pre-trained model on a column clustering dataset.
+# def evaluate_column_clustering(model: BarlowTwinsSimCLR,
+#                                unlabeled: PretrainTableDataset):
+#     """Evaluate pre-trained model on a column clustering dataset.
 
-    Args:
-        model (BarlowTwinsSimCLR): the model to be evaluated
-        unlabeled (PretrainTableDataset): the unlabeled dataset
+#     Args:
+#         model (BarlowTwinsSimCLR): the model to be evaluated
+#         unlabeled (PretrainTableDataset): the unlabeled dataset
 
-    Returns:
-        Dict: the dictionary of metrics (e.g., purity, number of clusters)
-    """
-    table_path = 'data/%s/tables' % model.hp.task
+#     Returns:
+#         Dict: the dictionary of metrics (e.g., purity, number of clusters)
+#     """
+#     table_path = 'data/%s/tables' % model.hp.task
 
-    # encode each dataset
-    featurized_datasets = []
-    ds_path = 'data/%s/test.csv' % model.hp.task
-    ds = pd.read_csv(ds_path)
-    table_ids, column_ids = ds['table_id'], ds['column_id']
+#     # encode each dataset
+#     featurized_datasets = []
+#     ds_path = 'data/%s/test.csv' % model.hp.task
+#     ds = pd.read_csv(ds_path)
+#     table_ids, column_ids = ds['table_id'], ds['column_id']
 
-    # encode all tables
-    def table_iter():
-        for table_id, col_id in zip(table_ids, column_ids):
-            table = pd.read_csv(os.path.join(table_path, \
-                                "table_%d.csv" % table_id))
-            if model.hp.single_column:
-                table = table[[table.columns[col_id]]]
-            yield table
+#     # encode all tables
+#     def table_iter():
+#         for table_id, col_id in zip(table_ids, column_ids):
+#             table = pd.read_csv(os.path.join(table_path, \
+#                                 "table_%d.csv" % table_id))
+#             if model.hp.single_column:
+#                 table = table[[table.columns[col_id]]]
+#             yield table
 
-    vectors = inference_on_tables(table_iter(), model, unlabeled,
-                                    batch_size=128, total=len(table_ids))
+#     vectors = inference_on_tables(table_iter(), model, unlabeled,
+#                                     batch_size=128, total=len(table_ids))
 
-    # # assert all columns exist
-    # for vec, table in zip(vectors, tables):
-    #     assert len(vec) == len(table.columns)
+#     # # assert all columns exist
+#     # for vec, table in zip(vectors, tables):
+#     #     assert len(vec) == len(table.columns)
 
-    column_vectors = []
-    for vec, cid in zip(vectors, column_ids):
-        if cid < len(vec):
-            column_vectors.append(vec[cid])
-        else:
-            # single column
-            column_vectors.append(vec[-1])
+#     column_vectors = []
+#     for vec, cid in zip(vectors, column_ids):
+#         if cid < len(vec):
+#             column_vectors.append(vec[cid])
+#         else:
+#             # single column
+#             column_vectors.append(vec[-1])
 
-    return evaluate_clustering(column_vectors, ds['class'])
+#     return evaluate_clustering(column_vectors, ds['class'])
 
 
 # ----------------------------- Evaluation for ARPA dataset ----------------------------------
@@ -341,20 +341,20 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
     Returns:
         Dict: the dictionary of metrics (e.g., valid_f1)
     """
-    table_path = 'data/gdc'
+    table_path = 'data'
     
     featurized_datasets = []
-    for dataset in ["train", "valid", "test"]:
+    for dataset in ["train", "test"]:
         ds_path = table_path + '/%s.csv' % dataset
         ds = pd.read_csv(ds_path)
 
-        def encode_tables(table_ids, column_ids):
+        def encode_tables(table_names, column_names):
             tables = []
-            for table_id, col_id in zip(table_ids, column_ids):
+            for table_name, col_name in zip(table_names, column_names):
                 table = pd.read_csv(os.path.join(table_path, \
-                                    "table_%d.csv" % table_id))
+                                    "%s.csv" % table_names))
                 if model.hp.single_column:
-                    table = table[[table.columns[col_id]]]
+                    table = table[[table.columns[col_name]]]
                 tables.append(table)
             vectors = inference_on_tables(tables, model, unlabeled,
                                           batch_size=128)
@@ -364,7 +364,7 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
                 assert len(vec) == len(table.columns)
 
             res = []
-            for vec, cid in zip(vectors, column_ids):
+            for vec, cid in zip(vectors, column_names):
                 if cid < len(vec):
                     res.append(vec[cid])
                 else:
@@ -372,20 +372,23 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
                     res.append(vec[-1])
             return res
         
-        # left tables
-        l_features = encode_tables(ds['l_table_id'], ds['l_column_id'])
+        if dataset == "test":
+            l_features = encode_tables(ds['table_name'], ds['l_column_id'])
+            r_features = encode_tables(ds['table_name'], ds['r_column_id'])
+            
+        else
+            l_features = encode_tables(ds['l_table_id'], ds['l_column_id'])
+            r_features = encode_tables(ds['r_table_id'], ds['r_column_id'])
 
-        # right tables
-        r_features = encode_tables(ds['r_table_id'], ds['r_column_id'])
-
-        features = []
-        Y = ds['match']
-        for l, r in zip(l_features, r_features):
-            feat = np.concatenate((l, r, np.abs(l - r)))
-            features.append(feat)
-
-        featurized_datasets.append((features, Y))
-
-    train, valid, test = featurized_datasets
-    return evaluate_column_matching(train, valid, test)
+    # TODO store embeddings and evaluate
     
+    #     features = []
+    #     Y = ds['match']
+    #     for l, r in zip(l_features, r_features):
+    #         feat = np.concatenate((l, r, np.abs(l - r)))
+    #         features.append(feat)
+
+    #     featurized_datasets.append((features, Y))
+
+    # train, valid, test = featurized_datasets
+    return 0

@@ -88,11 +88,13 @@ Separate each value with a comma and do not include any additional information.
     return content
 
 def convert_to_table():
-    data = pd.read_csv('../askem-arpa-h-project/table-union/gdc_schema_extracted.csv')
-    data_description = pd.read_csv('../askem-arpa-h-project/table-union/gdc_schema_description.csv')
-    result_table = pd.DataFrame()
+    data = pd.read_csv('../data/gdc_schema_extracted.csv')
+    data_description = pd.read_csv('../data/gdc_schema_description.csv')
+    result_table = pd.read_csv('../data/gdc_table.csv')
 
-    for index, row in data.iterrows():
+    # for index, row in data.iterrows():
+    # for last 5 rows
+    for index, row in data.iloc[-5:].iterrows():
         if row['column type'] == 'boolean':
             list_of_values = ['True', 'False']
             while len(list_of_values) < 15:
@@ -128,7 +130,9 @@ def convert_to_table():
         
         if index % 10 == 0:
             print(f'Processed {index} columns')
-            result_table.to_csv('gdc_table.csv', index=False)
+            result_table.to_csv('../data/gdc_table.csv', index=False)
+    
+    result_table.to_csv('../data/gdc_table.csv', index=False)
     
 def generate_random_tables():
     table = pd.read_csv('gdc_table.csv')
@@ -150,5 +154,5 @@ def generate_random_tables():
     
 if __name__ == '__main__':
     # extract_properties()
-    # convert_to_table()
-    generate_random_tables()
+    convert_to_table()
+    # generate_random_tables()

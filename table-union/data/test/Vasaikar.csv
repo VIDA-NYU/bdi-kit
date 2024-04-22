@@ -1,0 +1,113 @@
+SampleID,Age,Gender,PT,PN,Stage,Vascular_Invasion,Lymphatic_Invasion,Perineural_Invasion,Synchronous_Tumors,Vital.Status,Tumor.Status
+Type,CON,BIN,ORD,ORD,ORD,BIN,BIN,BIN,BIN,BIN,BIN
+01CO001,729,Male,T4a,N2b,Stage III,Yes,Yes,No,No,Living,Tumor free
+01CO005,838,Female,T3,N0,Stage II,No,No,No,No,Deceased,Tumor free
+01CO006,904,Female,T4a,N2b,Stage III,Yes,Yes,Yes,Yes,Living,With tumor
+01CO008,652,Female,T3,N0,Stage II,No,No,No,No,Living,With tumor
+01CO013,695,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+01CO014,930,Female,T3,N2a,Stage III,No,No,Yes,No,Living,With tumor
+01CO015,1065,Male,T2,N0,Stage I,,No,,No,Living,Tumor free
+01CO019,757,Female,T4a,N2a,Stage III,Yes,Yes,Yes,Yes,Living,With tumor
+01CO022,921,Female,T2,N0,Stage I,,,,No,Living,Tumor free
+05CO002,,Female,T2,N1a,Stage III,No,No,No,No,Living,Tumor free
+05CO003,,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO004,480,Female,T3,N1b,Stage III,Yes,Yes,No,No,Living,Tumor free
+05CO005,744,Male,T2,N0,Stage I,Yes,Yes,No,No,Living,Tumor free
+05CO006,996,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+05CO007,1020,Female,T4a,N2b,Stage III,Yes,Yes,Yes,No,Living,Tumor free
+05CO011,469,Male,T3,N0,Stage II,Yes,Yes,No,No,Living,Tumor free
+05CO014,881,Female,T3,N1b,Stage III,Yes,Yes,No,No,Living,Tumor free
+05CO015,883,Female,T3,N0,Stage II,No,No,No,No,Deceased,Tumor free
+05CO020,1116,Female,T3,N0,Stage II,No,No,Yes,No,Living,Tumor free
+05CO026,840,Female,T3,N1a,Stage III,No,No,No,Yes,Living,Tumor free
+05CO028,737,Female,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+05CO029,662,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO032,948,Male,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+05CO033,737,Male,T2,N2a,Stage III,Yes,Yes,No,No,Living,With tumor
+05CO034,656,Female,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+05CO035,768,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO037,601,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO039,887,Male,T4a,N0,Stage II,No,No,No,No,Deceased,Tumor free
+05CO041,947,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO044,847,Female,T4a,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO045,902,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+05CO047,677,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+05CO048,940,Female,T4b,N2a,Stage III,Yes,Yes,No,No,Living,Tumor free
+05CO049,1052,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+05CO050,801,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+05CO053,620,Male,T3,N1b,Stage II,No,No,No,No,Living,Tumor free
+05CO054,1038,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+05CO055,643,Female,T4a,N2b,Stage III,Yes,Yes,No,No,Living,Tumor free
+06CO001,904,Male,T3,N1b,Stage III,,,,No,Living,With tumor
+06CO002,876,Female,T3,N2a,Stage III,No,Yes,No,No,Living,Tumor free
+09CO005,832,Female,T3,N1a,Stage III,Yes,Yes,,Yes,Living,
+09CO006,1041,Male,T2,N0,Stage I,,,,Yes,Living,
+09CO008,643,Male,T3,N1a,Stage III,Yes,Yes,,Yes,Living,Tumor free
+09CO011,905,Female,T2,N0,Stage I,No,No,No,Yes,Living,Tumor free
+09CO013,605,Male,T3,N1b,Stage III,No,No,No,No,Living,
+09CO014,803,Male,T3,N0,Stage II,,,No,No,Living,Tumor free
+09CO015,824,Male,T3,N1b,Stage III,No,No,No,Yes,Living,Tumor free
+09CO018,633,Female,T2,N1a,Stage III,,,No,No,Living,Tumor free
+09CO019,1055,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+09CO022,861,Female,T4a,N0,Stage II,,,No,No,Living,Tumor free
+11CO005,792,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+11CO007,768,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO008,804,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+11CO010,708,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO018,893,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO019,892,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO020,665,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO021,897,Female,T3,N2a,Stage IV,No,No,No,No,Deceased,With tumor
+11CO022,865,Male,T4b,N0,Stage IV,No,No,No,No,Living,With tumor
+11CO027,660,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO030,658,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO031,646,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO032,695,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO033,658,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO036,442,Male,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+11CO037,628,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO039,814,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO042,848,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO043,805,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO044,830,Female,T3,N1a,Stage IV,No,No,No,No,Deceased,With tumor
+11CO045,853,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO047,783,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO048,769,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO051,734,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO052,798,Female,T3,N2a,Stage III,No,No,No,No,Deceased,With tumor
+11CO053,763,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO054,788,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO057,883,Male,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+11CO058,678,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO059,1000,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO060,859,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO061,575,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+11CO062,899,Male,T3,N0,Stage IV,No,No,No,No,Living,Tumor free
+11CO070,423,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO072,778,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+11CO077,813,Male,T3,N0,Stage II,No,No,No,No,Living,With tumor
+11CO079,902,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+13CO001,840,Male,T3,N1a,Stage III,Yes,Yes,Yes,No,,
+14CO001,589,Female,T3,N1a,Stage III,Yes,Yes,Yes,,,
+14CO002,755,Male,T3,N0,Stage II,,,No,,Living,Tumor free
+14CO003,895,Female,T3,N2b,Stage III,No,Yes,,,Living,Tumor free
+14CO005,902,Female,T3,N0,Stage II,No,No,Yes,No,Living,Tumor free
+15CO001,684,Female,T3,N1a,Stage III,No,No,No,Yes,Living,Tumor free
+15CO002,636,Female,T4a,N0,Stage II,No,No,No,No,Living,Tumor free
+16CO002,810,Male,T3,N1,Stage III,No,Yes,,No,Living,Tumor free
+16CO003,758,Female,T3,N0,Stage II,No,Yes,,No,Living,Tumor free
+16CO006,771,Male,T3,N0,Stage IV,No,Yes,,No,Living,With tumor
+16CO011,708,Male,T3,N1,Stage III,No,Yes,,No,Living,Tumor free
+16CO012,894,Female,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+20CO001,645,Female,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+20CO003,723,Female,T4a,N1b,Stage IV,No,No,No,No,Deceased,With tumor
+20CO004,667,Male,T4a,N2b,Stage III,Yes,Yes,Yes,No,Living,With tumor
+20CO006,697,Male,T3,N1a,Stage IV,No,No,No,No,Living,With tumor
+20CO007,656,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+21CO006,912,Male,T2,N0,Stage I,No,No,No,No,Living,
+21CO007,600,Male,T4a,N2a,Stage IV,Yes,Yes,No,No,Living,
+22CO004,623,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+22CO006,689,Female,T3,N2b,Stage III,Yes,Yes,Yes,No,Living,With tumor
+24CO005,492,Female,T2,N1b,Stage III,No,No,No,No,Living,Tumor free
+27CO004,610,Female,T3,N2a,Stage III,Yes,Yes,,,Living,Tumor free
+,,,,,,,,,,,
