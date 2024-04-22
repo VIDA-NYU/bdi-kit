@@ -1,10 +1,9 @@
 import streamlit as st
 import pandas as pd
 from gdc_api_v2 import GDCSchema
-from gdc_candidate_matcher import GDCCandidateMatcher
 from gdc_scoring_interface import GPTHelper
 
-st.title('Column Matching with GDC Demo')
+st.title('GDC Matcher Demo')
 
 st.header("1. Upload the Raw Data", anchor=False)
 uploaded_file = st.file_uploader("Upload Your CSV File", type=["csv"])
@@ -90,7 +89,7 @@ st.header("3. Match Columns Using CTA", anchor=False)
 gpt = GPTHelper(api_key="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")
 
 black_list = ["Case_ID"]
-output_dict = {"column_name": [], "generated_column_type": [], "column_type": [], "column_description": [], "column_values": []}
+output_dict = {"column_name": [], "gdc_attribute_name": [], "gdc_type": [], "gdc_description": [], "gdc_values": []}
 if st.button('Ask CTA'):
     if raw_dataset is None:
         st.warning("Please upload a CSV file to proceed.")
@@ -105,24 +104,24 @@ if st.button('Ask CTA'):
             else:
                 rows = values.tolist()
             serialized_input = f"{col_name}: {', '.join([str(row) for row in rows])}"
-            context = serialized_input.lower().replace("-", "_")
+            context = serialized_input
 
             result = gpt.ask_cta(labels=list(st.session_state.gdc_labels), context=context)
             output_dict["column_name"].append(col_name)
-            output_dict["generated_column_type"].append(result)
+            output_dict["gdc_attribute_name"].append(result)
             if result is not None and result.lower().strip() != "none" and result not in black_list:
                 progress_text = f"Column name: {col_name}, Generated column type: {result}"
                 properties = schema.get_properties_by_column_name(result)
-                output_dict["column_type"].append(properties[1])
-                output_dict["column_description"].append(properties[2])
-                output_dict["column_values"].append(properties[3])
+                output_dict["gdc_type"].append(properties[1])
+                output_dict["gdc_description"].append(properties[2])
+                output_dict["gdc_values"].append(properties[3])
             else:
-                output_dict["column_type"].append(None)
-                output_dict["column_description"].append(None)
-                output_dict["column_values"].append([])
+                output_dict["gdc_type"].append(None)
+                output_dict["gdc_description"].append(None)
+                output_dict["gdc_values"].append([])
 
             my_bar.progress((idx+1)/col_num, text=progress_text)
             
         st.data_editor(pd.DataFrame(output_dict),
-                       column_config={"column_values": st.column_config.ListColumn()})
+                       column_config={"gdc_values": st.column_config.ListColumn()})
 

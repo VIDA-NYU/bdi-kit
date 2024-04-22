@@ -40,7 +40,7 @@ class GDCSchema:
                     properties.append(self.get_column_description(values["properties"][candidate]))
                     properties.append(self.get_column_values(values["properties"][candidate]))
                     return properties
-        return None
+        return [None, None, None, []]
 
     def get_column_type(self, properties):
         if "enum" in properties:
