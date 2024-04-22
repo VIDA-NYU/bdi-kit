@@ -1,0 +1,16 @@
+biospecimen_type,submitted_aligned_reads_files,undescended_testis_corrected_method,error_type,relative_smoker,somatic_mutation_indexes,treatment_duration,tumor_code,adrenal_hormone,copy_number_segments,file_size,proportion_coverage_10x,days_to_collection,barretts_esophagus_goblet_cells_present
+Bone Marrow,TumorSample1_R1.fastq.gz,Hormones,file_format,No,KRAS_G12D,28,Acute Leukemia of Ambiguous Lineage (ALAL),No,1,512,0.95,1,No
+Buccal Mucosa,TumorSample1_R2.fastq.gz,Not Reported,file_size,Not Reported,TP53_R175H,45,Acute myeloid leukemia (AML),Not Reported,3,1024,0.87,3,Not Reported
+Embryonic Fluid,NormalSample1_R1.fastq.gz,Orchiopexy,md5sum,Yes,BRAF_V600E,60,CNS,Yes,5,2048,0.92,7,Unknown
+Granulocyte,NormalSample1_R2.fastq.gz,Spontaneous Descent,file_size,Yes,EGFR_L858R,90,ependymoma,No,7,4096,0.76,14,Yes
+Not Reported,TumorSample2_R1.fastq.gz,Testis Removed,file_size,Yes,PIK3CA_E545K,120,CNS,Not Reported,9,8192,0.89,21,No
+Peritoneal Fluid,TumorSample2_R2.fastq.gz,Not Reported,file_size,Yes,PTEN_T102*,150,medulloblastoma,Not Reported,11,16384,0.81,28,No
+Saliva,NormalSample2_R1.fastq.gz,Spontaneous Descent,md5sum,No,APC_R876*,180,CNS,Yes,13,32768,0.98,35,Unknown
+Serum,NormalSample2_R2.fastq.gz,Spontaneous Descent,md5sum,Not Reported,CTNNB1_S45F,210,other,No,15,65536,0.73,42,No
+Unknown,MetastasisSample1_R1.fastq.gz,Hormones,file_size,No,ALK_E1202K,240,NHL,Yes,17,131072,0.85,60,No
+Urine,MetastasisSample1_R2.fastq.gz,Hormones,file_size,Yes,HER2_S310F,270,anaplastic large cell lymphoma,Not Reported,19,262144,0.9,75,No
+Serum,TumorSample3_R1.fastq.gz,Testis Removed,file_size,Yes,MET_D1228N,300,Rhabdoid tumor (kidney) (RT),Not Reported,21,524288,0.78,90,No
+Urine,TumorSample3_R2.fastq.gz,Spontaneous Descent,md5sum,Yes,NRAS_Q61R,330,Rhabdomyosarcoma,Not Reported,23,1048576,0.94,120,No
+Granulocyte,NormalSample3_R1.fastq.gz,Spontaneous Descent,file_size,Not Reported,CDKN2A_W110*,365,Soft tissue sarcoma,Not Reported,25,2097152,0.99,150,No
+Bone Marrow,NormalSample3_R2.fastq.gz,Not Reported,file_size,Yes,FLT3_ITD,400,non-rhabdomyosarcoma,Yes,27,4194304,0.88,180,No
+Bone Marrow,MetastasisSample2_R1.fastq.gz,Testis Removed,file_size,Yes,JAK2_V617F,430,Wilms tumor (WT),No,29,8388608,0.96,210,No

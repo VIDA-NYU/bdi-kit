@@ -1,0 +1,16 @@
+per_tile_sequence_quality,mirna_expressions,analytes,copy_number_estimates,file_name
+FAIL,hsa-miR-21-5p,BRCA1,0,BRCA1_sequence.fasta
+Not Reported,hsa-miR-155-5p,BRCA2,1,Tumor_sample_01.bam
+PASS,hsa-miR-16-5p,PSA,2,Patient3_VHL_mutation.vcf
+Unknown,hsa-miR-34a-5p,CA-125,3,LungCarcinoma_RNAseq.fastq
+WARN,hsa-miR-15a-5p,AFP,4,KRAS_G12D_Expression.xlsx
+Not Reported,hsa-miR-146a-5p,CEA,5,Melanoma_SampleA_Panel.ppt
+Not Reported,hsa-miR-10b-5p,HER2,6,GBM_Patient5_CNV.csv
+Unknown,hsa-miR-221-3p,PD-L1,7,Healthy_Control_DNA.maf
+Not Reported,hsa-miR-222-3p,BCR-ABL,8,ProstateCancer_Sample8_RPPA.txt
+PASS,hsa-miR-17-5p,EGFR,9,BreastCancer_Patient9_FISH.jpeg
+PASS,hsa-miR-92a-3p,KRAS,10,ColonTumor_Sample10_microarray.tif
+Unknown,hsa-miR-205-5p,ALK,11,Leukemia_SubtypeB_clinical.pdf
+FAIL,hsa-miR-200c-3p,PDL1,12,OvarianCancer_Patient11_Proteomics.dat
+Not Reported,hsa-miR-141-3p,LDH,13,SkinCancer_Sample12_mRNA.gff
+FAIL,hsa-miR-29c-3p,CA 19-9,14,PancreaticTumor_P13_SNP.h5

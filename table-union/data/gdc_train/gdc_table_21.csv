@@ -1,0 +1,16 @@
+margin_distance,alcohol_frequency,pathology_details,comorbidity_method_of_diagnosis,therapeutic_level_achieved,initial_disease_status,use_per_day,margin_status,hysterectomy_margins_involved,perineural_invasion_present,alignment_cocleaning_workflows,sample_type_id,method_of_diagnosis
+0.1,Daily Drinker,Invasive ductal carcinoma,Histology,True,Initial Diagnosis,0,Indeterminant,Bladder,No,1. Sequence Alignment Optimization,1,Autopsy
+0.5,Weekly Drinker,Lobular carcinoma in situ,Not Reported,False,Not Reported,1,Involved,Macroscopic Parametrium,Not Reported,2. Cross-Species Contaminant Removal,3,Cystoscopy
+1.0,Weekly Drinker,Ductal carcinoma in situ,Pathology,True,Persistent Disease,2,Not Reported,Microscopic Parametrium,Unknown,3. PCR Amplification Artifact Reduction,5,Enucleation
+1.5,Weekly Drinker,Invasive lobular carcinoma,Radiology,False,Progressive Disease,3,Uninvolved,,Yes,4. Read Quality Filtering,6,Excisional Biopsy
+2.0,Weekly Drinker,Triple-negative breast cancer,Unknown,True,Recurrent Disease,4,Unknown,Not Reported,Yes,5. Duplicate Read Elimination,12,Laparoscopy
+2.5,Weekly Drinker,HER2-positive breast cancer,Radiology,False,Refractory Disease,5,Indeterminant,Unknown,Unknown,6. Adapter Sequence Trimming,16,Physical Exam
+3.0,Weekly Drinker,Follicular lymphoma,Histology,True,Residual Disease,6,Not Reported,Vagina,Not Reported,7. Low Complexity Filter Application,17,Surgical Resection
+4.0,Weekly Drinker,Hodgkin's lymphoma,Radiology,True,Unknown,7,Involved,Not Reported,Unknown,8. Chimera Sequence Identification,31,Thoracentesis
+5.0,Weekly Drinker,Non-Hodgkin's lymphoma,Not Reported,True,Residual Disease,8,Indeterminant,Vagina,No,9. rRNA Sequence Depletion,32,Ultrasound Guided Biopsy
+6.0,Weekly Drinker,Squamous cell carcinoma,Radiology,False,Unknown,9,Involved,,Unknown,10. Mitochondrial DNA Exclusion,85,Unknown
+7.0,Weekly Drinker,Adenocarcinoma,Radiology,True,Not Reported,10,Unknown,Bladder,Yes,11. Viral Integration Site Analysis,1,Autopsy
+8.0,Weekly Drinker,Melanoma,Histology,True,Not Reported,12,Not Reported,Microscopic Parametrium,Unknown,12. Somatic Hypermutation Correction,6,Cystoscopy
+9.0,Weekly Drinker,Glioblastoma,Pathology,True,Unknown,15,Indeterminant,,Unknown,13. Structural Variant Reconciliation,17,Autopsy
+10.0,Weekly Drinker,Osteosarcoma,Not Reported,False,Not Reported,20,Unknown,Macroscopic Parametrium,Unknown,14. Single-Nucleotide Variant Normalization,12,Laparoscopy
+15.0,Daily Drinker,Leiomyosarcoma,Unknown,False,Residual Disease,25,Indeterminant,Bladder,No,15. Indel Realignment,6,Autopsy

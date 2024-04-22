@@ -1,0 +1,16 @@
+workflow_link,size_selection_range,exon,hysterectomy_type,undescended_testis_corrected,includes_spike_ins,raw_methylation_arrays,proportion_reads_duplicated,hpv_strain,alignment_workflows,classification_of_tumor,inpc_histologic_group,uicc_pathologic_m
+`https://github.com/cancer-genomics/workflow1/commit/a1b2c3d4e5,<10 nm,exon1,Hysterectomy,No,True,Illumina Infinium HumanMethylation450,0.08,HPV16,BWA-MEM,Not Allowed To Collect,Favorable,M0
+https://github.com/genome-research/workflow2/commit/f6g7h8i9j0,10-30 nm,exon2,NOS,Not Reported,False,Illumina Infinium HumanMethylation27,0.12,HPV18,Bowtie2,Premalignant,Not Reported,M1
+https://github.com/precision-oncology/workflow3/commit/k1l2m3n4o5,31-50 nm,exon3,Not Performed,Yes,False,Illumina Infinium MethylationEPIC,0.15,HPV33,STAR,Prior primary,Unfavorable,M1b
+https://github.com/bioinformatics-tools/workflow4/commit/p6q7r8s9t0,51-100 nm,exon4,Not Reported,Yes,False,Affymetrix GeneChip Human Tiling 2.0R Array,0.2,HPV39,HISAT2,Synchronous primary,Unknown,M1c
+https://github.com/clinical-genomics/workflow5/commit/u1v2w3x4y5,101-150 nm,exon5,Not performed,Yes,True,Agilent Human CpG Island Microarray,0.25,HPV45,Novoalign,Unknown,Unknown,M1d
+https://github.com/cancer-analysis/workflow6/commit/z6a7b8c9d0,151-200 nm,exon6,Radical Hysterectomy,Not Reported,True,NimbleGen Human DNA Methylation 3x720K CpG Island Plus RefSeq Promoter Array,0.3,HPV51,GATK Best Practices,metastasis,Unfavorable,M2
+https://github.com/molecular-diagnostics/workflow7/commit/e1f2g3h4i5,201-250 nm,exon7,Simple Hysterectomy,Not Reported,True,SurePrint G3 Human CGH Microarray,0.35,HPV52,TopHat2,not reported,Unknown,MX
+https://github.com/cancer-therapy/workflow8/commit/j6k7l8m9n0,251-300 nm,exon8,Unknown,Yes,True,Illumina Infinium MouseMethylation450K,0.4,HPV66,SOAPaligner,other,Unfavorable,Not Reported
+https://github.com/genomic-data-analysis/workflow9/commit/o1p2q3r4s5,301-350 nm,exon9,Not Performed,Yes,True,Affymetrix Human Promoter 1.0R Array,0.45,HPV68,MAQ,primary,Unknown,Unknown
+https://github.com/targeted-therapy/workflow10/commit/t6u7v8w9x0,351-400 nm,exon10,Hysterectomy,Yes,False,NimbleGen Mouse DNA Methylation 385K CpG Island Array,0.5,HPV73,CRAC,recurrence,Not Reported,cM0 (i+)
+https://github.com/cancer-immunotherapy/workflow11/commit/y1z2a3b4c5,401-450 nm,exon11,Not performed,Not Reported,True,Agilent SureSelect Methyl-Seq,0.55,HPV66,CLC Genomics Workbench,Premalignant,Not Reported,Not Reported
+https://github.com/rna-sequencing/workflow12/commit/d6e7f8g9h0,451-500 nm,exon12,Simple Hysterectomy,Not Reported,True,Oxford Nanopore MinION Methylation Sequencing,0.6,HPV66,PAGIT,Synchronous primary,Not Reported,M1b
+https://github.com/protein-analysis/workflow13/commit/i1j2k3l4m5,501-550 nm,exon13,Not performed,Yes,True,PacBio SMRT Sequencing for Methylation,0.65,HPV18,SMALT,Synchronous primary,Unfavorable,M1
+https://github.com/cell-signaling/workflow14/commit/n6o7p8q9r0,551-600 nm,exon14,Hysterectomy,Yes,False,Bio-Rad Droplet Digital PCR for Methylation Analysis,0.7,HPV66,Velvet,other,Unfavorable,M1b
+https://github.com/mutation-analysis/workflow15/commit/s1t2u3v4w5`,>600 nm,exon15,Hysterectomy,Yes,True,Qiagen PyroMark Q24 for CpG Methylation,0.75,HPV66,MUMmer,Prior primary,Unknown,M1b

@@ -1,0 +1,16 @@
+adverse_event,normal_tumor_genotype_snp_match,aliquots,antigen,treatment_outcome,wgs_coverage,regimen_or_line_of_therapy,uicc_pathologic_n,protocol_identifier
+Diarrhea,No,Tumor biopsy frozen,CD14,Complete Response,0x-10x,First-line chemotherapy,N0,321P2
+Dry Skin,Not Allowed To Collect,Tumor biopsy FFPE,CD15,Mixed Response,10x-25x,Second-line chemotherapy,N0 (mol+),3881
+Duodenal Ulcer,Not Reported,Blood plasma,CD20,No Measurable Disease,150x+,Adjuvant chemotherapy,N1bI,8605
+Generalized Muscle Weakness,Unknown,Blood serum,CD33,No Response,25x-150x,Neoadjuvant chemotherapy,N1c,9340
+Hearing Impaired,Yes,Peripheral blood mononuclear cells (PBMC),CD45,Normalization of Tumor Markers,Not Applicable,Palliative chemotherapy,N2,AALL0031
+Hematosalpinx,Not Allowed To Collect,Bone marrow aspirate,CD5,Persistent Disease,Unknown,Maintenance chemotherapy,N2c,AALL03B1
+Optic Nerve Disorder,Unknown,Urine,CD56,Treatment Ongoing,Not Applicable,Hormonal therapy,N2mi,AAML0631
+Scalp Pain,Not Allowed To Collect,Saliva,CD7,Treatment Stopped Due to Toxicity,Unknown,Immunotherapy,N3,ADVL0215
+Skin and Subcutaneous Tissue Disorders - Other,Yes,Cerebrospinal fluid (CSF),Immunoglobulin,Unknown,10x-25x,Targeted therapy,N3b,ANBL0322
+Spermatic Cord Hemorrhage,Not Reported,Pleural effusion,Cytoplasmic,Very Good Partial Response,Not Applicable,Radiation therapy,Not Reported,CCG2961
+Diarrhea,Yes,Ascites fluid,Kappa,Mixed Response,10x-25x,Stem cell transplant,N0 (mol+),3881
+Skin and Subcutaneous Tissue Disorders - Other,No,Lymph node biopsy frozen,Surface,Mixed Response,10x-25x,Monoclonal antibodies,N0,ADVL0215
+Dry Skin,Not Reported,Lymph node biopsy FFPE,CD45,Treatment Stopped Due to Toxicity,10x-25x,Combination therapy,Not Reported,AALL0031
+Skin and Subcutaneous Tissue Disorders - Other,Not Reported,Stool,CD33,Treatment Stopped Due to Toxicity,Unknown,Salvage therapy,N1bI,8605
+Generalized Muscle Weakness,Unknown,Fine needle aspirate (FNA),CD7,Complete Response,0x-10x,Experimental therapy,N2c,9340

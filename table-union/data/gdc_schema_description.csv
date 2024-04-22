@@ -1,0 +1,387 @@
+column name,column type,description,maximum,minimum
+aligned_reads_files,,Not specified,Not specified,Not specified
+submitted_genotyping_arrays,,Not specified,Not specified,Not specified
+workflow_link,string,Link to Github hash for the CWL workflow used.,Not specified,Not specified
+workflow_version,string,Major version for a GDC workflow.,Not specified,Not specified
+workflow_start_datetime,,Not specified,Not specified,Not specified
+workflow_end_datetime,,Not specified,Not specified,Not specified
+type,string,Not specified,Not specified,Not specified
+id,string,Not specified,Not specified,Not specified
+submitter_id,string,A project-specific identifier for a node. This property is the calling card/nickname/alias for a unit of submission. It can be used in place of the uuid for identifying or recalling a node.,Not specified,Not specified
+batch_id,integer,GDC submission batch indicator. It is unique within the context of a project.,Not specified,Not specified
+state,,Not specified,Not specified,Not specified
+project_id,string,Not specified,Not specified,Not specified
+created_datetime,,Not specified,Not specified,Not specified
+updated_datetime,,Not specified,Not specified,Not specified
+copy_number_variation_workflows,,Not specified,Not specified,Not specified
+genomic_profile_harmonization_workflows,,Not specified,Not specified,Not specified
+somatic_copy_number_workflows,,Not specified,Not specified,Not specified
+file_name,string,Not specified,Not specified,Not specified
+file_size,integer,Not specified,Not specified,Not specified
+md5sum,string,Not specified,Not specified,Not specified
+state_comment,string,"Optional comment about why the file is in the current state, mainly for invalid state.",Not specified,Not specified
+a260_a280_ratio,number,"Numeric value that represents the sample ratio of nucleic acid absorbance at 260 nm and 280 nm, used to determine a measure of DNA purity.",Not specified,Not specified
+amount,number,Weight in grams or volume in mL.,Not specified,Not specified
+analyte_quantity,number,The quantity in micrograms (ug) of the analyte(s) derived from the analyte(s) shipped for sequencing and characterization.,Not specified,Not specified
+analyte_volume,number,The volume in microliters (ul) of the aliquot(s) derived from the analyte(s) shipped for sequencing and characterization.,Not specified,Not specified
+concentration,number,"Numeric value that represents the concentration of an analyte or aliquot extracted from the sample or sample portion, measured in milligrams per milliliter.",Not specified,Not specified
+ribosomal_rna_28s_16s_ratio,number,The 28S/18S ribosomal RNA band ratio used to assess the quality of total RNA.,Not specified,Not specified
+rna_integrity_number,number,"A numerical assessment of the integrity of RNA based on the entire electrophoretic trace of the RNA sample, including the presence or absence of degradation products.",Not specified,Not specified
+spectrophotometer_method,string,Name of the method used to determine the concentration of purified nucleic acid within a solution.,Not specified,Not specified
+well_number,string,Numeric value that represents the well location within a plate for the analyte or aliquot from the sample.,Not specified,Not specified
+portions,,Not specified,Not specified,Not specified
+samples,,Not specified,Not specified,Not specified
+breslow_thickness,number,"The number that describes the distance, in millimeters, between the upper layer of the epidermis and the deepest point of tumor penetration.",Not specified,Not specified
+circumferential_resection_margin,number,"Numeric value used to describe the non-peritonealised bare area of rectum, comprising anterior and posterior segments, when submitted as a surgical specimen resulting from excision of cancer of the rectum.",Not specified,Not specified
+days_to_pathology_detail,integer,Number of days between the date used for index and the date a pathologic review of a specific sample or slide was performed.,Not specified,Not specified
+epithelioid_cell_percent,number,The percent of uveal melanoma characterized by the presence of malignant large epithelioid melanocytes.,Not specified,Not specified
+extrascleral_extension,boolean,Spread of uveal melanoma beyond the sclera.,Not specified,Not specified
+greatest_tumor_dimension,number,Numeric value that represents the measurement of the widest portion of the tumor in centimeters.,Not specified,Not specified
+gross_tumor_weight,number,"Numeric value used to describe the gross pathologic tumor weight, measured in grams.",Not specified,Not specified
+lymph_nodes_positive,integer,The number of lymph nodes involved with disease as determined by pathologic examination.,Not specified,Not specified
+lymph_nodes_tested,integer,The number of lymph nodes tested to determine whether lymph nodes were involved with disease as determined by a pathologic examination.,Not specified,Not specified
+necrosis_percent,number,A quantitative measurement of the percent of cells undergoing necrosis compared to the number of total cells present in a sample.,Not specified,Not specified
+number_proliferating_cells,integer,Numeric value that represents the count of proliferating cells determined during pathologic review of the sample slide(s).,Not specified,Not specified
+percent_tumor_invasion,number,The percentage of tumor cells spread locally in a malignant neoplasm through infiltration or destruction of adjacent tissue.,Not specified,Not specified
+percent_tumor_nuclei,number,Numeric value to represent the percentage of tumor nuclei in a malignant neoplasm sample or specimen.,Not specified,Not specified
+peripancreatic_lymph_nodes_tested,integer,The total number of peripancreatic lymph nodes tested for the presence of pancreatic cancer cells.,Not specified,Not specified
+prostatic_chips_positive_count,number,"The text term used to describe the number of positive prostatic chips, which are generated from transurethral resection of the prostate (TURP) procedures and are generally used for relieving urinary obstruction due to nodular hyperplasia of the prostate (benign prostatic hyperplasia).",Not specified,Not specified
+prostatic_chips_total_count,number,"The text term used to describe the total number of prostatic chips, which are generated from transurethral resection of the prostate (TURP) procedures and are generally used for relieving urinary obstruction due to nodular hyperplasia of the prostate (benign prostatic hyperplasia).",Not specified,Not specified
+prostatic_involvement_percent,number,Numeric value that represents the percentage of prostatic involvement found in a specific tissue sample.,Not specified,Not specified
+rhabdoid_percent,number,Numeric value that represents the percentage of rhabdoid features found in a specific tissue sample.,Not specified,Not specified
+sarcomatoid_percent,number,Numeric value that represents the percentage of sarcomatoid features found in a specific tissue sample.,Not specified,Not specified
+size_extraocular_nodule,number,The size of the nodule that is outside the eye.,Not specified,Not specified
+spindle_cell_percent,number,"The percent of uveal melanoma arising from the choroid, ciliary body, or the iris and characterized by the presence of spindle-shaped melanocytes.",Not specified,Not specified
+tumor_depth_measurement,number,The numerical measurement of tumor depth.,Not specified,Not specified
+tumor_largest_dimension_diameter,number,"Numeric value used to describe the maximum diameter or dimension of the primary tumor, measured in centimeters.",Not specified,Not specified
+tumor_length_measurement,number,The numerical measurement of tumor length.,Not specified,Not specified
+tumor_level_prostate,array,The level(s) of the prostate from which the tumor originated.,Not specified,Not specified
+tumor_thickness,number,A measurement of the thickness of a sectioned slice (of tissue or mineral or other substance) in millimeters (mm).,Not specified,Not specified
+tumor_width_measurement,number,The numerical measurement of tumor width.,Not specified,Not specified
+diagnoses,,Not specified,Not specified,Not specified
+average_base_quality,number,Average base quality collected from samtools.,Not specified,Not specified
+average_insert_size,integer,Average insert size collected from samtools.,Not specified,Not specified
+average_read_length,integer,Average read length collected from samtools.,Not specified,Not specified
+contamination,number,Fraction of reads coming from cross-sample contamination collected from GATK4.,Not specified,Not specified
+contamination_error,number,Estimation error of cross-sample contamination collected from GATK4.,Not specified,Not specified
+mean_coverage,number,"Mean coverage for whole genome sequencing, or mean target coverage for whole exome and targeted sequencing, collected from Picard Tools.",Not specified,Not specified
+msi_score,number,Numeric score denoting the aligned reads file's MSI score from MSIsensor.,Not specified,Not specified
+pairs_on_diff_chr,integer,Pairs on different chromosomes collected from samtools.,Not specified,Not specified
+proportion_base_mismatch,number,Proportion of mismatched bases collected from samtools.,Not specified,Not specified
+proportion_coverage_10x,number,"Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 10X or greater coverage from Picard Tools.",Not specified,Not specified
+proportion_coverage_30x,number,"Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 30X or greater coverage from Picard Tools.",Not specified,Not specified
+proportion_reads_duplicated,number,Proportion of duplicated reads collected from samtools.,Not specified,Not specified
+proportion_reads_mapped,number,Proportion of mapped reads collected from samtools.,Not specified,Not specified
+proportion_targets_no_coverage,number,Proportion of targets that did not reach 1X coverage over any base from Picard Tools.,Not specified,Not specified
+total_reads,integer,Total number of reads collected from samtools.,Not specified,Not specified
+tumor_ploidy,number,"Numeric value used to describe the number of sets of chromosomes in a cell or an organism. For example, haploid means one set and diploid means two sets.",Not specified,Not specified
+tumor_purity,number,Numeric value used to describe the ratio of tumor cells compared to total cells present in a sample.,Not specified,Not specified
+alignment_cocleaning_workflows,,Not specified,Not specified,Not specified
+alignment_workflows,,Not specified,Not specified,Not specified
+submitted_unaligned_reads_files,,Not specified,Not specified,Not specified
+submitted_aligned_reads_files,,Not specified,Not specified,Not specified
+name,string,Full name/title of the program.,Not specified,Not specified
+dbgap_accession_number,string,The dbgap accession number provided for the program.,Not specified,Not specified
+bmi,number,A calculated numerical quantity that represents an individual's weight to height ratio.,Not specified,Not specified
+body_surface_area,number,Numeric value used to represent the 2-dimensional extent of the body surface relating height to weight.,Not specified,Not specified
+cd4_count,number,The text term used to describe the outcome of the procedure to determine the amount of the CD4 expressing cells in a sample.,Not specified,Not specified
+comorbidities,array,"The text term used to describe a comorbidity disease, which coexists with the patient's malignant disease.",Not specified,Not specified
+days_to_comorbidity,integer,Number of days between the date used for index and the date the patient was diagnosed with a comorbidity.,Not specified,Not specified
+dlco_ref_predictive_percent,number,"The value, as a percentage of predicted lung volume, measuring the amount of carbon monoxide detected in a patient's lungs.",Not specified,Not specified
+fev1_fvc_post_bronch_percent,number,Percentage value to represent result of Forced Expiratory Volume in 1 second (FEV1) divided by the Forced Vital Capacity (FVC) post-bronchodilator.,Not specified,Not specified
+fev1_fvc_pre_bronch_percent,number,Percentage value to represent result of Forced Expiratory Volume in 1 second (FEV1) divided by the Forced Vital Capacity (FVC) pre-bronchodilator.,Not specified,Not specified
+fev1_ref_post_bronch_percent,number,The percentage comparison to a normal value reference range of the volume of air that a patient can forcibly exhale from the lungs in one second post-bronchodilator.,Not specified,Not specified
+fev1_ref_pre_bronch_percent,number,The percentage comparison to a normal value reference range of the volume of air that a patient can forcibly exhale from the lungs in one second pre-bronchodilator.,Not specified,Not specified
+height,number,The height of the patient in centimeters.,Not specified,Not specified
+hiv_viral_load,number,"Numeric value that represents the concentration of an analyte or aliquot extracted from the sample or sample portion, measured in milligrams per milliliter.",Not specified,Not specified
+nadir_cd4_count,number,Numeric value that represents the lowest point to which the CD4 count has dropped (nadir).,Not specified,Not specified
+pancreatitis_onset_year,integer,Numeric value to represent the year that the patient was diagnosed with clinical chronic pancreatitis.,Not specified,Not specified
+pregnancy_count,integer,The number of times an individual has become pregnant.,Not specified,Not specified
+risk_factors,array,The text term used to describe a risk factor the patient had at the time of or prior to their diagnosis.,Not specified,Not specified
+undescended_testis_corrected_age,integer,The patient's age when their undescended testis was corrected.,Not specified,Not specified
+weeks_gestation_at_birth,number,Numeric value used to describe the number of weeks starting from the approximate date of the biological mother's last menstrual period and ending with the birth of the patient.,Not specified,Not specified
+weight,number,The weight of the patient measured in kilograms.,Not specified,Not specified
+cases,,Not specified,Not specified,Not specified
+follow_ups,,Not specified,Not specified,Not specified
+encoding,string,Version of ASCII encoding of quality values found in the file.,Not specified,Not specified
+fastq_name,string,The name (or part of a name) of a file (of any type).,Not specified,Not specified
+percent_gc_content,integer,The overall %GC of all bases in all sequences.,Not specified,Not specified
+total_sequences,integer,A count of the total number of sequences processed.,Not specified,Not specified
+read_groups,,Not specified,Not specified,Not specified
+aliquot_quantity,number,The quantity in micrograms (ug) of the aliquot(s) derived from the analyte(s) shipped for sequencing and characterization.,Not specified,Not specified
+aliquot_volume,number,The volume in microliters (ul) of the aliquot(s) derived from the analyte(s) shipped for sequencing and characterization.,Not specified,Not specified
+no_matched_normal_low_pass_wgs,boolean,There will be no matched normal low pass WGS aliquots for this case that can be used for variant calling purposes. The GDC may elect to use a single tumor calling pipeline to process this data.,Not specified,Not specified
+no_matched_normal_targeted_sequencing,boolean,There will be no matched normal Targeted Sequencing aliquots for this case that can be used for variant calling purposes. The GDC may elect to use a single tumor calling pipeline to process this data.,Not specified,Not specified
+no_matched_normal_wgs,boolean,There will be no matched normal WGS aliquots for this case that can be used for variant calling purposes. The GDC may elect to use a single tumor calling pipeline to process this data.,Not specified,Not specified
+no_matched_normal_wxs,boolean,There will be no matched normal WXS aliquots for this case that can be used for variant calling purposes. The GDC may elect to use a single tumor calling pipeline to process this data.,Not specified,Not specified
+source_center,string,Name of the center that provided the item.,Not specified,Not specified
+selected_normal_wxs,boolean,Denotes which WXS normal aliquot the submitter prefers to use for variant calling. Only one normal per experimental strategy per case can be selected.,Not specified,Not specified
+selected_normal_wgs,boolean,Denotes which WGS normal aliquot the submitter prefers to use for variant calling. Only one normal per experimental strategy per case can be selected.,Not specified,Not specified
+selected_normal_targeted_sequencing,boolean,Denotes which targeted_sequencing normal aliquot the submitter prefers to use for variant calling. Only one normal per experimental strategy per case can be selected.,Not specified,Not specified
+selected_normal_low_pass_wgs,boolean,Denotes which low-pass WGS normal aliquot the submitter prefers to use for variant calling. Only one normal per experimental strategy per case can be selected.,Not specified,Not specified
+analytes,,Not specified,Not specified,Not specified
+centers,,Not specified,Not specified,Not specified
+submitted_genomic_profiles,,Not specified,Not specified,Not specified
+copy_number_liftover_workflows,,Not specified,Not specified,Not specified
+revision,number,The revision of this archive in the DCC.,Not specified,Not specified
+projects,,Not specified,Not specified,Not specified
+related_to_files,,Not specified,Not specified,Not specified
+somatic_mutation_calling_workflows,,Not specified,Not specified,Not specified
+submitted_methylation_beta_values,,Not specified,Not specified,Not specified
+awg_review,boolean,Indicates that the project is an AWG project.,Not specified,Not specified
+code,string,Project code,Not specified,Not specified
+disease_type,string,Full name for the project,Not specified,Not specified
+intended_release_date,,Tracks a Project's intended release date.,Not specified,Not specified
+in_review,boolean,Indicates that the project is under review by the submitter. Upload and data modification is disabled.,Not specified,Not specified
+is_legacy,boolean,Indicates whether a project will appear in the Legacy Archive.,Not specified,Not specified
+primary_site,string,Primary site for the project,Not specified,Not specified
+release_requested,boolean,User requests that the GDC release the project. Release can only be requested if the project is releasable.,Not specified,Not specified
+released,boolean,To release a project is to tell the GDC to include all submitted entities in the next GDC index.,Not specified,Not specified
+releasable,boolean,A project can only be released by the user when `releasable` is true.,Not specified,Not specified
+request_submission,boolean,Indicates that the user has requested submission to the GDC for harmonization.,Not specified,Not specified
+submission_enabled,boolean,Indicates if submission to a project is allowed.,Not specified,Not specified
+programs,,Not specified,Not specified,Not specified
+days_to_consent,integer,Number of days between the date used for index and the date the subject consent was obtained for participation in the study.,Not specified,Not specified
+days_to_lost_to_followup,integer,The number of days between the date used for index and to the date the patient was lost to follow-up.,Not specified,Not specified
+tissue_source_sites,,Not specified,Not specified,Not specified
+schema_version,string,Not specified,Not specified,Not specified
+simple_somatic_mutations,,Not specified,Not specified,Not specified
+structural_variant_calling_workflows,,Not specified,Not specified,Not specified
+expression_analysis_workflows,,Not specified,Not specified,Not specified
+imaging_date,,Not specified,Not specified,Not specified
+magnification,number,Magnification used to capture the image.,Not specified,Not specified
+slides,,Not specified,Not specified,Not specified
+data_types,,Not specified,Not specified,Not specified
+aliquots,,Not specified,Not specified,Not specified
+annotated_somatic_mutations,,Not specified,Not specified,Not specified
+structural_variations,,Not specified,Not specified,Not specified
+copy_number_segments,,Not specified,Not specified,Not specified
+archives,,Not specified,Not specified,Not specified
+rna_expression_workflows,,Not specified,Not specified,Not specified
+course_number,number,"The number assigned to a course of therapeutic agent administration, indicating where a particular course of treatment falls within a sequence of treatments.",Not specified,Not specified
+days_to_treatment_end,integer,Number of days between the date used for index and the date the treatment ended.,Not specified,Not specified
+days_to_treatment_start,integer,Number of days between the date used for index and the date the treatment started.,Not specified,Not specified
+lesions_treated_number,number,The number of lesions treated.,Not specified,Not specified
+number_of_cycles,integer,The numeric value used to describe the number of cycles of a specific treatment or regimen the patient received.,Not specified,Not specified
+number_of_fractions,number,The total number of divided radiation doses received.,Not specified,Not specified
+prescribed_dose,number,A quantity of an agent prescribed to the study participant.,Not specified,Not specified
+regimen_or_line_of_therapy,string,The text term used to describe the regimen or line of therapy.,Not specified,Not specified
+route_of_administration,array,The pathway by which a substance is administered in order to reach the site of action in the body.,Not specified,Not specified
+therapeutic_level_achieved,boolean,"Indicates a target level of treatment was reached, according to the patient's treatment plan.",Not specified,Not specified
+treatment_anatomic_sites,array,The anatomic site or field targeted by a treatment regimen or single agent therapy.,Not specified,Not specified
+treatment_dose,integer,The numeric value used to describe the total dose of an agent the patient received.,Not specified,Not specified
+treatment_dose_max,number,A maximum quantity of an agent administered to the study participant.,Not specified,Not specified
+treatment_duration,integer,The number of days during which the treatment was given.,Not specified,Not specified
+treatment_outcome_duration,integer,The number of days a patient reached a specific result or effect after treatment.,Not specified,Not specified
+creation_datetime,number,The datetime of portion creation encoded as seconds from epoch.,Not specified,Not specified
+is_ffpe,boolean,Indicator to signify whether or not the tissue sample was fixed in formalin and embedded in paraffin (FFPE).,Not specified,Not specified
+portion_number,string,Numeric value that represents the sequential number assigned to a portion of the sample.,Not specified,Not specified
+aa_change,string,Alphanumeric value used to describe the amino acid change for a specific genetic variant. Example: R116Q.,Not specified,Not specified
+biospecimen_volume,number,The volume of the biospecimen.,Not specified,Not specified
+blood_test_normal_range_lower,number,Numeric value used to describe the lower limit of the normal range used to describe a healthy individual at the institution where the test was completed.,Not specified,Not specified
+blood_test_normal_range_upper,number,Numeric value used to describe the upper limit of the normal range used to describe a healthy individual at the institution where the test was completed.,Not specified,Not specified
+cell_count,integer,Numeric value used to describe the number of cells used for molecular testing.,Not specified,Not specified
+copy_number,number,"Numeric value used to describe the number of times a section of the genome is repeated or copied within an insertion, duplication or deletion variant.",Not specified,Not specified
+cytoband,string,"Alphanumeric value used to describe the cytoband or chromosomal location targeted or included in molecular analysis. If a specific genetic variant is being reported, this property can be used to capture the cytoband where the variant is located. Format: [chromosome][chromosome arm].[band+sub-bands]. Example: 17p13.1.",Not specified,Not specified
+days_to_test,integer,Number of days between the date used for index and the date of the laboratory test.,Not specified,Not specified
+exon,string,"Exon number targeted or included in a molecular analysis. If a specific genetic variant is being reported, this property can be used to capture the exon where that variant is located.",Not specified,Not specified
+intron,string,"Intron number targeted or included in molecular analysis. If a specific genetic variant is being reported, this property can be used to capture the intron where that variant is located.",Not specified,Not specified
+loci_abnormal_count,integer,Numeric value used to describe the number of loci determined to be abnormal.,Not specified,Not specified
+loci_count,integer,Numeric value used to describe the number of loci tested.,Not specified,Not specified
+locus,string,"The position of a gene or a chromosomal marker on a chromosome; also, a stretch of DNA at a particular place on a particular chromosome. The use of locus is sometimes restricted to mean regions of DNA that are expressed.",Not specified,Not specified
+mitotic_count,number,"The number of mitoses identified under the microscope in tumors. The method of counting varies, according to the specific tumor examined. Usually, the mitotic count is determined based on the number of mitoses per high power field (40X) or 10 high power fields.",Not specified,Not specified
+mitotic_total_area,number,The total area reviewed when calculating the mitotic index ratio.,Not specified,Not specified
+second_exon,string,"The second exon number involved in molecular variation. If a specific genetic variant is being reported, this property can be used to capture the second exon where that variant is located. This property is typically used for a translocation where two different locations are involved in the variation.",Not specified,Not specified
+specialized_molecular_test,string,Text term used to describe a specific test that is not covered in the list of molecular analysis methods.,Not specified,Not specified
+test_value,number,The text term or numeric value used to describe a specific result of a molecular test.,Not specified,Not specified
+transcript,string,Alphanumeric value used to describe the transcript of a specific genetic variant.,Not specified,Not specified
+submitted_tangent_copy_numbers,,Not specified,Not specified,Not specified
+project,string,Study name of the project.,Not specified,Not specified
+bcr_id,string,TCGA-provided BCR id.,Not specified,Not specified
+raw_methylation_arrays,,Not specified,Not specified,Not specified
+cause_of_response,string,The text term used to describe the suspected cause or reason for the patient disease response.,Not specified,Not specified
+days_to_adverse_event,integer,Number of days between the date used for index and the date of the patient's adverse event.,Not specified,Not specified
+days_to_first_event,integer,The number of days from the index date to the date of the first event.,Not specified,Not specified
+days_to_follow_up,,Number of days between the date used for index and the date of the patient's last follow-up appointment or contact.,32872,-32872
+days_to_imaging,integer,Number of days between the date used for index and the date the imaging or scan was performed on the patient.,Not specified,Not specified
+days_to_progression,integer,Number of days between the date used for index and the date the patient's disease progressed.,Not specified,Not specified
+days_to_progression_free,integer,Number of days between the date used for index and the date the patient's disease was formally confirmed as progression-free.,Not specified,Not specified
+days_to_recurrence,integer,Number of days between the date used for index and the date the patient's disease recurred.,Not specified,Not specified
+days_to_risk_factor,integer,The number of days from the index date to the date the patient was diagnosed with a specific risk factor.,Not specified,Not specified
+discontiguous_lesion_count,integer,The number of the discontiguous lesions in a new tumor event.,Not specified,Not specified
+imaging_anatomic_site,array,The named location(s) within the body where an image was taken.,Not specified,Not specified
+imaging_suv,number,The standardized update value (SUV) is the effectively dimensionless measure of regional tracer uptake calculated as the activity concentration within a 2D region of interest (ROI) or 3D volume of interest (VOI) measured on a PET image (nCi1mL) / [injected dose (nCi) / body weight (g)].,Not specified,Not specified
+imaging_suv_max,number,"The standardized update value (SUV) is the effectively dimensionless measure of regional tracer uptake calculated as the activity concentration within a 2D region of interest (ROI) or 3D volume of interest (VOI) measured on a PET image (nCi1mL) / [injected dose (nCi) / body weight (g)]. Specifically, the maximum SUV recorded for a patient.",Not specified,Not specified
+recist_targeted_regions_number,integer,"Numeric value that represents the number of baseline target lesions, as described by the Response Evaluation Criteria in Solid Tumours (RECIST) criteria.",Not specified,Not specified
+recist_targeted_regions_sum,number,"Numeric value that represents the sum of baseline target lesions, as described by the Response Evaluation Criteria in Solid Tumours (RECIST) criteria.",Not specified,Not specified
+year_of_follow_up,integer,The year of the patient's last follow-up appointment or contact.,Not specified,Not specified
+adapter_name,string,Name of the sequencing adapter.,Not specified,Not specified
+adapter_sequence,string,Base sequence of the sequencing adapter.,Not specified,Not specified
+base_caller_name,string,Name of the base caller.,Not specified,Not specified
+base_caller_version,string,Version of the base caller.,Not specified,Not specified
+days_to_sequencing,integer,Number of days between the date used for index and the date the read group was sequenced.,Not specified,Not specified
+experiment_name,string,Submitter-defined name for the experiment.,Not specified,Not specified
+flow_cell_barcode,string,Flow cell barcode. Wrong or missing information may affect analysis results.,Not specified,Not specified
+fragment_maximum_length,integer,"Maximum length of the sequenced fragments (e.g., as predicted by Agilent Bioanalyzer).",Not specified,Not specified
+fragment_mean_length,number,"Mean length of the sequenced fragments (e.g., as predicted by Agilent Bioanalyzer).",Not specified,Not specified
+fragment_minimum_length,integer,"Minimum length of the sequenced fragments (e.g., as predicted by Agilent Bioanalyzer).",Not specified,Not specified
+fragment_standard_deviation_length,number,"Standard deviation of the sequenced fragments length (e.g., as predicted by Agilent Bioanalyzer).",Not specified,Not specified
+includes_spike_ins,boolean,Spike-in included?,Not specified,Not specified
+is_paired_end,,Are the reads paired end?,Not specified,Not specified
+lane_number,integer,"The basic machine unit for sequencing. For Illumina machines, this reflects the physical lane number. Wrong or missing information may affect analysis results.",Not specified,Not specified
+library_name,string,Name of the library.,Not specified,Not specified
+library_preparation_kit_name,string,Name of Library Preparation Kit,Not specified,Not specified
+library_preparation_kit_vendor,string,Vendor of Library Preparation Kit,Not specified,Not specified
+library_preparation_kit_catalog_number,string,Catalog of Library Preparation Kit,Not specified,Not specified
+library_preparation_kit_version,string,Version of Library Preparation Kit,Not specified,Not specified
+multiplex_barcode,string,The barcode/index sequence used. Wrong or missing information may affect analysis results.,Not specified,Not specified
+number_expect_cells,integer,Expected number of recovered cells in droplet-based single-cell libraries.,Not specified,Not specified
+read_group_name,string,Read Group Name,Not specified,Not specified
+read_length,,The length of the reads.,Not specified,0
+rin,number,A numerical assessment of the integrity of RNA based on the entire electrophoretic trace of the RNA sample including the presence or absence of degradation products.,Not specified,Not specified
+sequencing_center,string,Name of the center that provided the sequence files.,Not specified,Not specified
+sequencing_date,,Not specified,Not specified,Not specified
+size_selection_range,string,Range of size selection.,Not specified,Not specified
+spike_ins_concentration,string,Spike in concentration.,Not specified,Not specified
+spike_ins_fasta,string,Name of the FASTA file that contains the spike-in sequences.,Not specified,Not specified
+target_capture_kit_catalog_number,string,Catalog of Target Capture Kit.,Not specified,Not specified
+target_capture_kit_name,string,Name of Target Capture Kit.,Not specified,Not specified
+target_capture_kit_target_region,string,Target Capture Kit BED file.,Not specified,Not specified
+target_capture_kit_vendor,string,Vendor of Target Capture Kit.,Not specified,Not specified
+target_capture_kit_version,string,Version of Target Capture Kit.,Not specified,Not specified
+to_trim_adapter_sequence,boolean,Does the user suggest adapter trimming?,Not specified,Not specified
+chip_id,string,User specified identifier for the chip used to perform the methylation microarray.,Not specified,Not specified
+chip_position,string,User specified identifier for the specific position on the chip that the sample was loaded into to perform the methylation microarray.,Not specified,Not specified
+plate_name,string,User specified identifier of the plate used to prepare the sample for analysis.,Not specified,Not specified
+plate_well,string,User specified identifier for the specific well of the plate used to prepare the sample for analysis.,Not specified,Not specified
+creator,string,Name of the person or entity responsible for the creation of the annotation.,Not specified,Not specified
+notes,string,Open entry for any further description or characterization of the data.,Not specified,Not specified
+legacy_created_datetime,,Not specified,Not specified,Not specified
+legacy_updated_datetime,,Not specified,Not specified,Not specified
+aggregated_somatic_mutations,,Not specified,Not specified,Not specified
+aligned_reads_indexes,,Not specified,Not specified,Not specified
+analysis_metadata_files,,Not specified,Not specified,Not specified
+biospecimen_supplements,,Not specified,Not specified,Not specified
+clinical_supplements,,Not specified,Not specified,Not specified
+copy_number_auxiliary_files,,Not specified,Not specified,Not specified
+copy_number_estimates,,Not specified,Not specified,Not specified
+demographics,,Not specified,Not specified,Not specified
+experiment_metadata_files,,Not specified,Not specified,Not specified
+exposures,,Not specified,Not specified,Not specified
+family_histories,,Not specified,Not specified,Not specified
+files,,Not specified,Not specified,Not specified
+filtered_copy_number_segments,,Not specified,Not specified,Not specified
+gene_expressions,,Not specified,Not specified,Not specified
+masked_methylation_arrays,,Not specified,Not specified,Not specified
+masked_somatic_mutations,,Not specified,Not specified,Not specified
+methylation_beta_values,,Not specified,Not specified,Not specified
+mirna_expressions,,Not specified,Not specified,Not specified
+molecular_tests,,Not specified,Not specified,Not specified
+other_clinical_attributes,,Not specified,Not specified,Not specified
+pathology_details,,Not specified,Not specified,Not specified
+pathology_reports,,Not specified,Not specified,Not specified
+protein_expressions,,Not specified,Not specified,Not specified
+read_group_qcs,,Not specified,Not specified,Not specified
+run_metadata_files,,Not specified,Not specified,Not specified
+secondary_expression_analyses,,Not specified,Not specified,Not specified
+simple_germline_variations,,Not specified,Not specified,Not specified
+slide_images,,Not specified,Not specified,Not specified
+somatic_mutation_indexes,,Not specified,Not specified,Not specified
+treatments,,Not specified,Not specified,Not specified
+methylation_array_harmonization_workflows,,Not specified,Not specified,Not specified
+methylation_liftover_workflows,,Not specified,Not specified,Not specified
+major_version,integer,The number identifying the major version.,Not specified,Not specified
+minor_version,integer,The number identifying the minor version.,Not specified,Not specified
+release_date,,Not specified,Not specified,Not specified
+roots,,Not specified,Not specified,Not specified
+somatic_aggregation_workflows,,Not specified,Not specified,Not specified
+mirna_expression_workflows,,Not specified,Not specified,Not specified
+derived_files,,Not specified,Not specified,Not specified
+related_files,,Not specified,Not specified,Not specified
+tags,,Not specified,Not specified,Not specified
+data_subtypes,,Not specified,Not specified,Not specified
+data_formats,,Not specified,Not specified,Not specified
+experimental_strategies,,Not specified,Not specified,Not specified
+platforms,,Not specified,Not specified,Not specified
+described_cases,,Not specified,Not specified,Not specified
+namespace,string,Domain name of the center (e.g. broad.mit.edu).,Not specified,Not specified
+short_name,string,Shortened name of the center (e.g. BI).,Not specified,Not specified
+center_type,string,Type classification of the center (e.g. CGCC).,Not specified,Not specified
+catalog_reference,string,HCMI catalog reference number for cancer model.,Not specified,Not specified
+current_weight,number,"Numeric value that represents the current weight of the sample, measured in milligrams.",Not specified,Not specified
+days_to_collection,integer,The number of days from the index date to the date a sample was collected for a specific study or project.,Not specified,Not specified
+days_to_sample_procurement,integer,The number of days from the index date to the date a patient underwent a procedure (e.g. surgical resection) yielding a sample that was eventually used for research.,Not specified,Not specified
+distributor_reference,string,Distributor reference number for cancer model.,Not specified,Not specified
+freezing_method,string,Text term that represents the method used for freezing the sample.,Not specified,Not specified
+growth_rate,integer,"Rate at which the model grows, measured as hours to time to split.",Not specified,Not specified
+initial_weight,number,"Numeric value that represents the initial weight of the sample, measured in milligrams.",Not specified,Not specified
+intermediate_dimension,number,"Intermediate dimension of the sample, in millimeters.",Not specified,Not specified
+longest_dimension,number,"Numeric value that represents the longest dimension of the sample, measured in millimeters.",Not specified,Not specified
+oct_embedded,string,Indicator of whether or not the sample was embedded in Optimal Cutting Temperature (OCT) compound.,Not specified,Not specified
+passage_count,integer,Number of passages (splits) between the original tissue and this model.,Not specified,Not specified
+pathology_report_uuid,string,UUID of the related pathology report.,Not specified,Not specified
+sample_ordinal,integer,A number describing the samples place in an ordered sequence.,Not specified,Not specified
+shortest_dimension,number,"Numeric value that represents the shortest dimension of the sample, measured in millimeters.",Not specified,Not specified
+time_between_clamping_and_freezing,number,"Numeric representation of the elapsed time between the surgical clamping of blood supply and freezing of the sample, measured in minutes.",Not specified,Not specified
+time_between_excision_and_freezing,number,"Numeric representation of the elapsed time between the excision and freezing of the sample, measured in minutes.",Not specified,Not specified
+parent_samples,,Not specified,Not specified,Not specified
+relationship_age_at_diagnosis,number,The age (in years) when the patient's relative was first diagnosed.,Not specified,Not specified
+relatives_with_cancer_history_count,integer,The number of relatives the patient has with a known history of cancer.,Not specified,Not specified
+age_at_diagnosis,number,"Age in days at which a condition or disease was first diagnosed. CDE: 3225640. TCGA has the age in years with CDE 2006657, this is converted by ceil(age*365.25) to get days.",Not specified,Not specified
+days_to_death,number,"Time interval from a person's date of death to the date of initial pathologic diagnosis, represented as a calculated number of days. CDE: 3165475.",Not specified,Not specified
+icd_10,string,"The tenth version of the International Classification of Disease (ICD), published by the World Health Organization in 1992. A system of numbered categories for representation of data. CDE: 3226287.",Not specified,Not specified
+year_of_diagnosis,number,Numeric value to represent the year of an individual's initial pathologic diagnosis of cancer. CDE: 2896960.,Not specified,Not specified
+germline_mutation_calling_workflows,,Not specified,Not specified,Not specified
+somatic_annotation_workflows,,Not specified,Not specified,Not specified
+days_to_best_overall_response,integer,Number of days between the date used for index and the date of the patient was thought to have the best overall response to their disease.,Not specified,Not specified
+days_to_diagnosis,integer,Number of days between the date used for index and the date the patient was diagnosed with the malignant disease.,Not specified,Not specified
+days_to_last_follow_up,,"Time interval from the date of last follow up to the date of initial pathologic diagnosis, represented as a calculated number of days.",32872,-32872
+days_to_last_known_disease_status,,Number of days between the date used for index and the date the patient's disease status was known.,32872,-32872
+diagnosis_is_primary_disease,boolean,"Indicates whether this specific diagnosis represents the disease that was the primary focus of the study. Additionally, this diagnosis is reflected at the case level, which is captured using the case.disease_type property.",Not specified,Not specified
+gleason_patterns_percent,integer,"Numeric value that represents the percentage of Patterns 4 and 5, which is used when the Gleason score is greater than 7 to predict prognosis.",Not specified,Not specified
+gleason_score,integer,The score derived from universally embraced prostate cancer grading system developed by Dr. Donald F. Gleason in 1977. The system provides a reproducible description of the glandular architecture of prostate tissue to which a pathologist assigns a score depending primarily on the microscopic patterns of cancerous glands and cell morphology,Not specified,Not specified
+icd_10_code,string,Alphanumeric value used to describe the disease code from the tenth version of the International Classification of Disease (ICD-10).,Not specified,Not specified
+margin_distance,number,Numeric value that represents the distance between the tumor and the surgical margin,Not specified,Not specified
+primary_disease,boolean,Indicates whether the specific diagnosis represents the disease that was the primary focus of the study.,Not specified,Not specified
+sites_of_involvement,array,The anatomic sites of disease involvement in addition to the primary anatomic site.,Not specified,Not specified
+sites_of_involvement_count,integer,The number of anatomic sites of disease.,Not specified,Not specified
+tumor_burden,number,"Refers to the number of cancer cells, the size of a tumor, or the amount of cancer in the body.",Not specified,Not specified
+tumor_depth,number,"Numeric value that represents the depth of tumor invasion, measured in millimeters (mm).",Not specified,Not specified
+weiss_assessment_findings,array,Histopathologic criteria to evaluate adrenocortical tumors.,Not specified,Not specified
+percent_follicular_component,number,Numeric value that represents the percentage of follicular features found in a specific tissue sample.,Not specified,Not specified
+percent_rhabdoid_features,number,Numeric value that represents the percentage of rhabdoid features found in a specific tissue sample.,Not specified,Not specified
+percent_sarcomatoid_features,number,Numeric value that represents the percentage of sarcomatoid features found in a specific tissue sample.,Not specified,Not specified
+percent_tumor_cells,number,Numeric value that represents the percentage of infiltration by tumor cells in a sample.,Not specified,Not specified
+percent_normal_cells,number,Numeric value to represent the percentage of normal cell content in a malignant tumor sample or specimen.,Not specified,Not specified
+percent_necrosis,number,Numeric value to represent the percentage of cell death in a malignant tumor sample or specimen.,Not specified,Not specified
+percent_stromal_cells,number,"Numeric value to represent the percentage of reactive cells that are present in a malignant tumor sample or specimen but are not malignant such as fibroblasts, vascular structures, etc.",Not specified,Not specified
+percent_inflam_infiltration,number,"Numeric value to represent local response to cellular injury, marked by capillary dilatation, edema and leukocyte infiltration; clinically, inflammation is manifest by reddness, heat, pain, swelling and loss of function, with the need to heal damaged tissue.",Not specified,Not specified
+percent_lymphocyte_infiltration,number,Numeric value to represent the percentage of infiltration by lymphocytes in a solid tissue sample or specimen.,Not specified,Not specified
+percent_monocyte_infiltration,number,Numeric value to represent the percentage of monocyte infiltration in a sample or specimen.,Not specified,Not specified
+percent_granulocyte_infiltration,number,Numeric value to represent the percentage of infiltration by granulocytes in a tumor sample or specimen.,Not specified,Not specified
+percent_neutrophil_infiltration,number,Numeric value to represent the percentage of infiltration by neutrophils in a tumor sample or specimen.,Not specified,Not specified
+percent_eosinophil_infiltration,number,Numeric value to represent the percentage of infiltration by eosinophils in a tumor sample or specimen.,Not specified,Not specified
+section_location,string,Tissue source of the slide.,Not specified,Not specified
+tissue_microarray_coordinates,string,The alphanumeric term used to describe the coordinates of a specific tissue located on a tissue microarray slide.,Not specified,Not specified
+pmid,string,Not specified,Not specified,Not specified
+doi,string,Not specified,Not specified,Not specified
+age_at_last_exposure,integer,The study participant's age at the time they were last exposed.,Not specified,Not specified
+age_at_onset,integer,Numeric value used to represent the age of the patient when exposure to a specific environmental factor began.,Not specified,Not specified
+alcohol_days_per_week,number,Numeric value used to describe the average number of days each week that a person consumes an alcoholic beverage.,Not specified,Not specified
+alcohol_drinks_per_day,number,Numeric value used to describe the average number of alcoholic beverages a person consumes per day.,Not specified,Not specified
+chemical_exposure_type,array,"The specific type of contact with a chemical substance through touch, inhalation, or ingestion.",Not specified,Not specified
+cigarettes_per_day,number,The average number of cigarettes smoked per day.,Not specified,Not specified
+exposure_duration_hrs_per_day,number,The duration (in hours per day) that a person was exposed.,Not specified,Not specified
+exposure_duration_years,integer,"The period of time from start to finish of exposure, in years.",Not specified,Not specified
+occupation_duration_years,integer,The number of years a patient worked in a specific occupation.,Not specified,Not specified
+occupation_type,array,"A categorization of the principal activity that a person does to earn money, as defined by the International Classification of Occupation (ISCO).",Not specified,Not specified
+pack_years_smoked,number,Numeric computed value to represent lifetime tobacco exposure defined as number of cigarettes smoked per day x number of years smoked divided by 20.,Not specified,Not specified
+tobacco_smoking_onset_year,integer,The year in which the participant began smoking.,Not specified,Not specified
+tobacco_smoking_quit_year,integer,The year in which the participant quit smoking.,Not specified,Not specified
+use_per_day,number,The average number of times the patient used per day.,Not specified,Not specified
+years_smoked,number,Numeric value (or unknown) to represent the number of years a person has been smoking.,Not specified,Not specified
+age_at_index,,The patient's age (in years) on the reference or anchor date used during date obfuscation.,89,0
+age_is_obfuscated,boolean,The age or other properties related to the patient's age have been modified for compliance reasons. The actual age may differ from what was reported in order to comply with the Health Insurance Portability and Accountability Act (HIPAA).,Not specified,Not specified
+days_to_birth,integer,Number of days between the date used for index and the date from a person's date of birth represented as a calculated negative number of days.,Not specified,Not specified
+year_of_birth,,Numeric value to represent the calendar year in which an individual was born.,Not specified,1900
+year_of_death,integer,Numeric value to represent the year of the death of an individual.,Not specified,Not specified

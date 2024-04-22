@@ -1,0 +1,16 @@
+days_to_progression,ovarian_specimen_status,type_of_smoke_exposure,data_subtypes,library_strategy,test_analyte_type,percent_follicular_component,amount,library_strand,centers,clinical_trial_indicator,platform
+45,Not Reported,Accidental building fire smoke,ER-positive,ATAC-Seq,DNA,5.2,0.5,First_Stranded,MD Anderson Cancer Center,No,Affymetrix SNP 6.0
+60,Ovarian Capsule Fragmented,Cooking-related smoke,HER2-positive,ChIP-Seq,Not Reported,12.7,1.2,Not Applicable,Memorial Sloan Kettering Cancer Center,Not Reported,Complete Genomics
+90,Ovarian Capsule Intact,NOS,Triple-negative,HiChIP,Protein,23.5,2.5,Second_Stranded,Johns Hopkins Sidney Kimmel Comprehensive Cancer Center,Yes,Illumina Human Methylation 27
+120,Ovarian Capsule Ruptured,Machine smoke,KRAS mutation,RNA-Seq,Total RNA,34.9,5.0,Unstranded,Dana-Farber Cancer Institute,No,Illumina Human Methylation 450
+150,Unknown,Marijuana smoke,EGFR mutation,Targeted Sequencing,Unknown,45.0,10.0,Second_Stranded,Mayo Clinic Cancer Center,No,Illumina Methylation Epic v2
+180,Ovarian Capsule Ruptured,Oil burning smoke,ALK rearrangement,WGS,mRNA,56.3,20.0,Second_Stranded,Cleveland Clinic Taussig Cancer Institute,No,Ion Torrent
+210,Not Reported,NOS,BRCA1 mutation,WXS,miRNA,67.1,50.0,Second_Stranded,Fred Hutchinson Cancer Research Center,No,LS454
+240,Not Reported,Tobacco smoke,BRCA2 mutation,m6A MeRIP-Seq,mRNA,72.8,75.0,Second_Stranded,UCSF Helen Diller Family Comprehensive Cancer Center,No,Other
+270,Ovarian Capsule Ruptured,cigar,PD-L1 expression,scATAC-Seq,mRNA,80.4,100.0,Second_Stranded,Stanford Cancer Institute,No,PacBio
+300,Not Reported,Unknown,MSI-High,scRNA-Seq,mRNA,85.9,150.0,Second_Stranded,University of Chicago Medicine Comprehensive Cancer Center,No,RPPA
+330,Ovarian Capsule Ruptured,Waste burning smoke,Lynch syndrome,scRNA-Seq,DNA,90.2,200.0,Second_Stranded,Massachusetts General Hospital Cancer Center,No,Illumina Human Methylation 450
+360,Ovarian Capsule Ruptured,Work-related smoke,PIK3CA mutation,scATAC-Seq,DNA,93.7,250.0,Second_Stranded,Northwestern University Robert H. Lurie Comprehensive Cancer Center,No,Illumina Human Methylation 27
+400,Unknown,artificial smoke machines,HPV-positive,m6A MeRIP-Seq,Total RNA,97.5,300.0,Second_Stranded,University of Michigan Rogel Cancer Center,No,RPPA
+430,Unknown,Work-related smoke,AML with FLT3-ITD,WXS,DNA,99.1,400.0,Second_Stranded,City of Hope Comprehensive Cancer Center,No,Affymetrix SNP 6.0
+460,Unknown,plastics factory,CLL with del(17p),Targeted Sequencing,miRNA,100.0,500.0,Second_Stranded,Vanderbilt-Ingram Cancer Center,Not Reported,Affymetrix SNP 6.0

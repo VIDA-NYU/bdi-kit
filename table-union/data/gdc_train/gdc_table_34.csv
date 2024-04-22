@@ -1,0 +1,16 @@
+anaplasia_present,structural_variant_calling_workflows,uicc_clinical_stage,workflow_type,primary_disease,releasable,base_caller_name,necrosis_present,relationship_type,derived_files,gleason_patterns_percent,freezing_method,who_cns_grade,number_expect_cells
+No,Manta,Stage IA,ABSOLUTE LiftOver,True,True,Illumina BaseSpace,No,Foster Brother,Gene_expression_quantification.csv,5,Liquid nitrogen immersion,Grade I,100
+Not Reported,Delly,Stage IA1,AscatNGS,False,False,GATK HaplotypeCaller,Not Reported,Full Brother,Copy_number_variation_data.csv,10,Cryopreservation with DMSO,Grade II,200
+Unknown,GRIDSS,Stage IA3,BCGSC miRNA Profiling,True,True,DeepVariant,Yes,Maternal Great Aunt,Methylation_data.csv,15,Slow programmable freezing,Grade III,300
+Yes,LUMPY,Stage IIA,DNAcopy,False,False,Nanopore Guppy,No,Maternal Half Sister,Protein_expression_data.csv,20,Vitrification,Grade IV,400
+Unknown,SvABA,Stage IIC1,GISTIC - Focal Deletion,True,True,Ion Torrent Suite,Not Reported,Natural Sister,Mutation_annotations.maf,25,Snap freezing,Grade Not Assigned,500
+Yes,BreakDancer,Stage IIIA,HTSeq - Counts,False,True,PacBio SMRT Link,Not Reported,Nephew,Histological_images.zip,30,Ultra-rapid freezing,Not Reported,600
+Not Reported,VarScan2,Stage IIIB,Pindel Variant Aggregation and Masking,False,True,BCFtools,Not Reported,Sibling,Radiology_images.dicom,35,Controlled-rate freezing,Unknown,700
+Yes,Pindel,Stage IIIC,Read Group Quality Control,True,True,FreeBayes,Not Reported,Son,Clinical_data.xml,40,Direct plunging,Grade II,800
+Yes,CNVnator,Stage IVB,STAR - Counts,True,True,Strelka2,Not Reported,Twin Sibling,Pathology_reports.pdf,45,High-pressure freezing,Grade I,900
+No,Strelka2,Stage IVC,VarScan2,False,False,LoFreq,No,Unrelated,Survival_data.csv,50,Pellet freezing,Unknown,1000
+Not Reported,GATK-SV,Stage IIC1,AscatNGS,False,True,Mutect2,Yes,Unrelated,Immune_repertoire.fasta,55,Isothermal freezing,Unknown,1100
+No,TIDDIT,Stage IA1,VarScan2,False,False,VarScan2,No,Foster Brother,Single_cell_data.h5,60,Freezing under vacuum,Not Reported,1200
+Unknown,WHAM,Stage IVB,BCGSC miRNA Profiling,True,False,Clara Parabricks,Yes,Sibling,Pharmacogenomics_data.csv,65,Slush nitrogen freezing,Not Reported,1300
+No,MoChA,Stage IA3,BCGSC miRNA Profiling,True,False,SomaticSniper,Yes,Maternal Great Aunt,Metabolomics_data.csv,70,Methanol bath freezing,Grade II,1400
+Yes,FusionCatcher,Stage IA1,HTSeq - Counts,False,True,Platypus,Not Reported,Sibling,Transcriptome_assembly.fasta,75,Dry ice freezing,Grade II,1500

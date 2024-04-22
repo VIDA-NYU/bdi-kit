@@ -1,0 +1,16 @@
+last_known_disease_status,disease_type,hormonal_contraceptive_use,molecular_analysis_method,days_to_risk_factor,mean_coverage,namespace,residual_tumor
+Biochemical evidence of disease without structural correlate,Complex Mixed and Stromal Neoplasms,Current User,Cytogenetics,-365,30X,mdanderson.org,R0
+Distant met recurrence/progression,Cystic,Former User,NOS,-730,60X,mskcc.org,R1
+Loco-regional recurrence/progression,Mucinous and Serous Neoplasms,Never Used,Flow Cytometry,-1095,100X,dana-farber.org,R2
+Not Allowed To Collect,Fibromatous Neoplasms,Not Reported,Immunofluorescence,-1460,150X,sanger.ac.uk,RX
+Tumor free,Germ Cell Neoplasms,Unknown,Karyotype,-1825,200X,genome.wustl.edu,R1
+Unknown tumor status,Giant Cell Tumors,Unknown,Microarray,-2190,250X,cruk.cam.ac.uk,RX
+With tumor,Leukemias,Current User,Microsatellite Analysis,-2555,300X,vanderbilt.edu,RX
+not reported,NOS,Former User,Microscopy,-2920,350X,ucsf.edu,R0
+Unknown tumor status,Lipomatous Neoplasms,Unknown,NOS,-3285,400X,hopkinsmedicine.org,R0
+Loco-regional recurrence/progression,Mature B-Cell Lymphomas,Current User,Not Reported,-3650,450X,fredhutch.org,RX
+not reported,Mature T- and NK-Cell Lymphomas,Unknown,RT-PCR,-4015,500X,cancer.gov,RX
+Distant met recurrence/progression,Myxomatous Neoplasms,Current User,Sequencing,-4380,550X,mayo.edu,R0
+Biochemical evidence of disease without structural correlate,NOS,Unknown,NOS,-4745,600X,cshl.edu,R1
+not reported,Mature B-Cell Lymphomas,Never Used,Microsatellite Analysis,-5110,650X,icr.ac.uk,R1
+Unknown tumor status,Mature T- and NK-Cell Lymphomas,Current User,Not Reported,-5475,700X,gustaveroussy.fr,R0
