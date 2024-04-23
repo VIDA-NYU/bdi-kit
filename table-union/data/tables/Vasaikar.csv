@@ -1,0 +1,113 @@
+Age,Gender,PT,PN,Stage,Vascular_Invasion,Lymphatic_Invasion,Perineural_Invasion,Synchronous_Tumors,Vital.Status,Tumor.Status
+CON,BIN,ORD,ORD,ORD,BIN,BIN,BIN,BIN,BIN,BIN
+729,Male,T4a,N2b,Stage III,Yes,Yes,No,No,Living,Tumor free
+838,Female,T3,N0,Stage II,No,No,No,No,Deceased,Tumor free
+904,Female,T4a,N2b,Stage III,Yes,Yes,Yes,Yes,Living,With tumor
+652,Female,T3,N0,Stage II,No,No,No,No,Living,With tumor
+695,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+930,Female,T3,N2a,Stage III,No,No,Yes,No,Living,With tumor
+1065,Male,T2,N0,Stage I,,No,,No,Living,Tumor free
+757,Female,T4a,N2a,Stage III,Yes,Yes,Yes,Yes,Living,With tumor
+921,Female,T2,N0,Stage I,,,,No,Living,Tumor free
+,Female,T2,N1a,Stage III,No,No,No,No,Living,Tumor free
+,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+480,Female,T3,N1b,Stage III,Yes,Yes,No,No,Living,Tumor free
+744,Male,T2,N0,Stage I,Yes,Yes,No,No,Living,Tumor free
+996,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+1020,Female,T4a,N2b,Stage III,Yes,Yes,Yes,No,Living,Tumor free
+469,Male,T3,N0,Stage II,Yes,Yes,No,No,Living,Tumor free
+881,Female,T3,N1b,Stage III,Yes,Yes,No,No,Living,Tumor free
+883,Female,T3,N0,Stage II,No,No,No,No,Deceased,Tumor free
+1116,Female,T3,N0,Stage II,No,No,Yes,No,Living,Tumor free
+840,Female,T3,N1a,Stage III,No,No,No,Yes,Living,Tumor free
+737,Female,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+662,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+948,Male,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+737,Male,T2,N2a,Stage III,Yes,Yes,No,No,Living,With tumor
+656,Female,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+768,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+601,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+887,Male,T4a,N0,Stage II,No,No,No,No,Deceased,Tumor free
+947,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+847,Female,T4a,N0,Stage II,No,No,No,No,Living,Tumor free
+902,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+677,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+940,Female,T4b,N2a,Stage III,Yes,Yes,No,No,Living,Tumor free
+1052,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+801,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+620,Male,T3,N1b,Stage II,No,No,No,No,Living,Tumor free
+1038,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+643,Female,T4a,N2b,Stage III,Yes,Yes,No,No,Living,Tumor free
+904,Male,T3,N1b,Stage III,,,,No,Living,With tumor
+876,Female,T3,N2a,Stage III,No,Yes,No,No,Living,Tumor free
+832,Female,T3,N1a,Stage III,Yes,Yes,,Yes,Living,
+1041,Male,T2,N0,Stage I,,,,Yes,Living,
+643,Male,T3,N1a,Stage III,Yes,Yes,,Yes,Living,Tumor free
+905,Female,T2,N0,Stage I,No,No,No,Yes,Living,Tumor free
+605,Male,T3,N1b,Stage III,No,No,No,No,Living,
+803,Male,T3,N0,Stage II,,,No,No,Living,Tumor free
+824,Male,T3,N1b,Stage III,No,No,No,Yes,Living,Tumor free
+633,Female,T2,N1a,Stage III,,,No,No,Living,Tumor free
+1055,Male,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+861,Female,T4a,N0,Stage II,,,No,No,Living,Tumor free
+792,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+768,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+804,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+708,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+893,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+892,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+665,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+897,Female,T3,N2a,Stage IV,No,No,No,No,Deceased,With tumor
+865,Male,T4b,N0,Stage IV,No,No,No,No,Living,With tumor
+660,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+658,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+646,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+695,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+658,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+442,Male,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+628,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+814,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+848,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+805,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+830,Female,T3,N1a,Stage IV,No,No,No,No,Deceased,With tumor
+853,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+783,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+769,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+734,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+798,Female,T3,N2a,Stage III,No,No,No,No,Deceased,With tumor
+763,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+788,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+883,Male,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+678,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+1000,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+859,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+575,Female,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+899,Male,T3,N0,Stage IV,No,No,No,No,Living,Tumor free
+423,Male,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+778,Female,T3,N1b,Stage III,No,No,No,No,Living,Tumor free
+813,Male,T3,N0,Stage II,No,No,No,No,Living,With tumor
+902,Female,T3,N1,Stage III,No,No,No,No,Living,Tumor free
+840,Male,T3,N1a,Stage III,Yes,Yes,Yes,No,,
+589,Female,T3,N1a,Stage III,Yes,Yes,Yes,,,
+755,Male,T3,N0,Stage II,,,No,,Living,Tumor free
+895,Female,T3,N2b,Stage III,No,Yes,,,Living,Tumor free
+902,Female,T3,N0,Stage II,No,No,Yes,No,Living,Tumor free
+684,Female,T3,N1a,Stage III,No,No,No,Yes,Living,Tumor free
+636,Female,T4a,N0,Stage II,No,No,No,No,Living,Tumor free
+810,Male,T3,N1,Stage III,No,Yes,,No,Living,Tumor free
+758,Female,T3,N0,Stage II,No,Yes,,No,Living,Tumor free
+771,Male,T3,N0,Stage IV,No,Yes,,No,Living,With tumor
+708,Male,T3,N1,Stage III,No,Yes,,No,Living,Tumor free
+894,Female,T2,N0,Stage I,No,No,No,No,Living,Tumor free
+645,Female,T3,N1a,Stage III,No,No,No,No,Living,Tumor free
+723,Female,T4a,N1b,Stage IV,No,No,No,No,Deceased,With tumor
+667,Male,T4a,N2b,Stage III,Yes,Yes,Yes,No,Living,With tumor
+697,Male,T3,N1a,Stage IV,No,No,No,No,Living,With tumor
+656,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+912,Male,T2,N0,Stage I,No,No,No,No,Living,
+600,Male,T4a,N2a,Stage IV,Yes,Yes,No,No,Living,
+623,Male,T3,N0,Stage II,No,No,No,No,Living,Tumor free
+689,Female,T3,N2b,Stage III,Yes,Yes,Yes,No,Living,With tumor
+492,Female,T2,N1b,Stage III,No,No,No,No,Living,Tumor free
+610,Female,T3,N2a,Stage III,Yes,Yes,,,Living,Tumor free
+,,,,,,,,,,

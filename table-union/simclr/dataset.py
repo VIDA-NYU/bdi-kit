@@ -6,15 +6,14 @@ import os
 
 from torch.utils import data
 from transformers import AutoTokenizer
-from .augment import augment
 from typing import List
-from .preprocessor import computeTfIdf, tfidfRowSample, preprocess
+from augment import augment
+from preprocessor import computeTfIdf, tfidfRowSample, preprocess
 
 # map lm name to huggingface's pre-trained model names
 lm_mp = {'roberta': 'roberta-base',
          'bert': 'bert-base-uncased',
          'distilbert': 'distilbert-base-uncased'}
-
 
 # class TableDataset(data.Dataset):
 #     """Table dataset"""
@@ -134,9 +133,16 @@ class PretrainTableDataset(data.Dataset):
         self.tokenizer = AutoTokenizer.from_pretrained(lm_mp[lm])
         self.max_len = max_len
         self.path = path
-
-        # assuming tables are in csv format
-        self.tables = [fn for fn in os.listdir(path) if '.csv' in fn]
+        self.gpt = gpt
+        
+        # ----------------------------- Only one training table for ARPA ---------------------------------
+        if path == 'data/tables':
+            self.tables = []
+            table = pd.read_csv(os.path.join(path, 'gdc_table.csv'))
+            for col in table.columns:
+                self.tables.append(pd.DataFrame(table[col]))
+        else:
+            self.tables = [fn for fn in os.listdir(path) if '.csv' in fn]
 
         # only keep the first n tables
         if size is not None:
@@ -214,15 +220,26 @@ class PretrainTableDataset(data.Dataset):
         # a map from column names to special token indices
         column_mp = {}
 
+        if self.gpt:
+            for column in table.columns:
+                tokens = preprocess(table[column], tfidfDict, max_tokens, self.sample_meth)  # from preprocessor.py
+                col_text = self.tokenizer.cls_token + " " + column + " self.tokenizer.sep_token " + \
+                        ' '.join(tokens[:max_tokens]) + " "
+                # print("col_text: ", col_text)
+                # exit()
+                column_mp[column] = len(res)
+                res += self.tokenizer.encode(text=col_text,
+                                            max_length=budget,
+                                            add_special_tokens=False,
+                                            truncation=True)
         # column-ordered preprocessing
-        if self.table_order == 'column':
+        elif self.table_order == 'column':
             if 'row' in self.sample_meth: 
                 table = tfidfRowSample(table, tfidfDict, max_tokens)
             for column in table.columns:
                 tokens = preprocess(table[column], tfidfDict, max_tokens, self.sample_meth) # from preprocessor.py
                 col_text = self.tokenizer.cls_token + " " + \
                         ' '.join(tokens[:max_tokens]) + " "
-
                 column_mp[column] = len(res)
                 res += self.tokenizer.encode(text=col_text,
                                         max_length=budget,
@@ -278,15 +295,21 @@ class PretrainTableDataset(data.Dataset):
             List of int: token ID's of the first view
             List of int: token ID's of the second view
         """
-        table_ori = self._read_table(idx)
-        
+        # print("idx: ", idx)
         # --------------------------------------------------------------
         if self.gpt and self.single_column:
+            table_ori = self.tables[idx]
             col = random.choice(table_ori.columns)
             table_ori = table_ori[[col]]
-            # TODO: implement gpt augmentation
+            train_map = pd.read_csv('data/train.csv')
+            gdc_table_synthetic = pd.read_csv('data/tables/gdc_table_synthetic.csv')
+            row = train_map[train_map['l_column_id'] == col]
+            table_aug = gdc_table_synthetic[row['r_column_id']]
+            table_aug = table_aug.sample(frac=1)
         # --------------------------------------------------------------
         else:
+            # table_ori = self._read_table(idx)
+            table_ori = self.tables[idx]
             # single-column mode: only keep one random column
             if self.single_column:
                 col = random.choice(table_ori.columns)
@@ -300,22 +323,33 @@ class PretrainTableDataset(data.Dataset):
                 table_aug = augment(table_tmp, op2)
             else:
                 table_aug = augment(table_ori, self.augment_op)
+                
+        # print("table_ori: ", table_ori)
+        # print("table_aug: ", table_aug)
 
         # convert table into string
         x_ori, mp_ori = self._tokenize(table_ori)
         x_aug, mp_aug = self._tokenize(table_aug)
+        
+        # print("x_ori: ", x_ori)
+        # print("x_aug: ", x_aug)
+        # print("mp_ori: ", mp_ori)
+        # print("mp_aug: ", mp_aug)
 
         # make sure that x_ori and x_aug has the same number of cls tokens
         # x_ori_cnt = sum([int(x == self.tokenizer.cls_token_id) for x in x_ori])
         # x_aug_cnt = sum([int(x == self.tokenizer.cls_token_id) for x in x_aug])
         # assert x_ori_cnt == x_aug_cnt
-
+        
         # insertsect the two mappings
         cls_indices = []
         for col in mp_ori:
             if col in mp_aug:
                 cls_indices.append((mp_ori[col], mp_aug[col]))
-
+        # TODO: debug
+        if self.gpt:
+            cls_indices = [(0, 0)]
+        
         return x_ori, x_aug, cls_indices
 
 

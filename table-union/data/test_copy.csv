@@ -9,7 +9,7 @@ Age,age_at_diagnosis,Clark,gdc_table
 BMI,bmi,Clark,gdc_table
 Race,race,Clark,gdc_table
 Ethnicity_Self_Identify,ethnicity,Clark,gdc_table
-Tumor_Site,site_of_resection_or_biopsy,Clark,gdc_table
+Tumor_Site,site_of_resection_or_biopsy;tissue_or_organ_of_origin,Clark,gdc_table
 Tumor_Size_cm,tumor_largest_dimension_diameter,Clark,gdc_table
 Tumor_Focality,tumor_focality,Clark,gdc_table
 Histologic_Type,primary_diagnosis,Clark,gdc_table
@@ -17,6 +17,7 @@ Grade,tumor_grade,Clark,gdc_table
 Tumor_Stage_Pathological,ajcc_pathologic_stage,Clark,gdc_table
 Path_Stage_Primary_Tumor_pT,ajcc_pathologic_t,Clark,gdc_table
 Path_Stage_Reg_Lymph_Nodes_pN,ajcc_pathologic_n,Clark,gdc_table
+SampleID,Case_ID,Vasaikar,gdc_table
 Age,age_at_diagnosis,Vasaikar,gdc_table
 Gender,gender,Vasaikar,gdc_table
 PT,ajcc_pathologic_t,Vasaikar,gdc_table
@@ -29,7 +30,7 @@ Synchronous_Tumors,synchronous_malignancy,Vasaikar,gdc_table
 Vital.Status,vital_status,Vasaikar,gdc_table
 Tumor.Status,last_known_disease_status,Vasaikar,gdc_table
 Type,tissue_type,Gillette,gdc_table
-Smoking.Status,tobacco_smoking_status,Gillette,gdc_table
+Smoking.Status,can be inferred from tobacco_smoking_status,Gillette,gdc_table
 Age,age_at_diagnosis,Gillette,gdc_table
 Gender,gender,Gillette,gdc_table
 Ethnicity,ethnicity,Gillette,gdc_table
@@ -52,7 +53,7 @@ ethnicity,ethnicity,Wang,gdc_table
 smoking_history,tobacco_smoking_status,Wang,gdc_table
 secondhand_smoke_exposure,secondhand_smoke_as_child,Wang,gdc_table
 tumor_laterality,biospecimen_laterality,Wang,gdc_table
-tumor_site_curated,site_of_resection_or_biopsy,Wang,gdc_table
+tumor_site_curated,site_of_resection_or_biopsy;tissue_or_organ_of_origin,Wang,gdc_table
 vital_status,vital_status,Wang,gdc_table
 path_diag_to_last_contact_days,days_to_last_follow_up,Wang,gdc_table
 path_diag_to_death_days,days_to_death,Wang,gdc_table
@@ -73,10 +74,10 @@ age,age_at_diagnosis,Cao,gdc_table
 sex,gender,Cao,gdc_table
 race,race,Cao,gdc_table
 participant_country,country_of_residence_at_enrollment,Cao,gdc_table
-tumor_site,site_of_resection_or_biopsy,Cao,gdc_table
+tumor_site,site_of_resection_or_biopsy;tissue_or_organ_of_origin,Cao,gdc_table
 tumor_focality,tumor_focality,Cao,gdc_table
 tumor_size_cm,tumor_largest_dimension_diameter,Cao,gdc_table
-lymph_vascular_invasion,vascular_invasion_present,Cao,gdc_table
+lymph_vascular_invasion,vascular_invasion_present;lymphatic_invasion_present,Cao,gdc_table
 perineural_invasion,perineural_invasion_present,Cao,gdc_table
 number_of_lymph_nodes_positive_for_tumor,lymph_nodes_positive,Cao,gdc_table
 pathologic_staging_regional_lymph_nodes_pn,ajcc_pathologic_n,Cao,gdc_table
@@ -99,7 +100,7 @@ smoke_age_stop,tobacco_smoking_quit_year,Huang,gdc_table
 num_smoke_per_day,pack_years_smoked,Huang,gdc_table
 smoking_second_hand,secondhand_smoke_as_child,Huang,gdc_table
 alcohol_consum,alcohol_intensity,Huang,gdc_table
-tumor_site_original,site_of_resection_or_biopsy,Huang,gdc_table
+tumor_site_original,site_of_resection_or_biopsy;tissue_or_organ_of_origin,Huang,gdc_table
 tumor_focality,tumor_focality,Huang,gdc_table
 tumor_size_cm,tumor_largest_dimension_diameter,Huang,gdc_table
 histologic_type,primary_diagnosis,Huang,gdc_table
