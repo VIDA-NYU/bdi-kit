@@ -4,8 +4,8 @@ import random
 import torch
 import mlflow
 
-from sdd.dataset import PretrainTableDataset
-from sdd.pretrain import train
+from dataset import PretrainTableDataset
+from pretrain import train
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -51,7 +51,7 @@ if __name__ == '__main__':
         torch.cuda.manual_seed_all(seed)
 
     if "arpa" in hp.task:
-        path = 'data/gdc_train'
+        path = 'data/tables'
     else:
         path = 'data/%s/tables' % hp.task
     trainset = PretrainTableDataset.from_hp(path, hp)

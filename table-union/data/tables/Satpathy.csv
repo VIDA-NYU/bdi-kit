@@ -1,0 +1,208 @@
+Type,Smoking.History,Stage,Country.of.Origin,Age,Gender,Ethnicity,Cigarettes.per.Day,Pack.Years.Smoked,Secondhand.Smoke
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,usa,61,female,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIA,usa,61,female,caucasian,,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,64,female,caucasian,20,35.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,usa,64,female,caucasian,20,35.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,bulgaria,74,male,caucasian,20,40.0,Yes
+Tumor,Current reformed smoker within past 15 years,IIA,bulgaria,74,male,caucasian,20,40.0,Yes
+NAT,Current reformed smoker within past 15 years,,usa,74,female,caucasian,20,39.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IB,usa,74,female,caucasian,20,39.0,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,usa,72,male,caucasian,30,67.5,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IA,usa,72,male,caucasian,30,67.5,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,71,male,caucasian,20,56.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,usa,71,male,caucasian,20,56.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,71,female,caucasian,30,67.5,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IB,usa,71,female,caucasian,30,67.5,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,74,male,caucasian,20,57.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIA,usa,74,male,caucasian,20,57.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,russia,63,male,white(caucasian),20,42.0,Yes
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,75,male,white(caucasian),,,Yes
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIIA,ukraine,75,male,white(caucasian),,,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,russia,59,male,white(caucasian),40,84.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,russia,59,male,white(caucasian),40,84.0,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,54,male,caucasian,0,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,usa,54,male,caucasian,0,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,usa,88,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IIA,usa,88,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,66,male,caucasian,20,35.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IB,usa,66,male,caucasian,20,35.0,Exposure to secondhand smoke history not available
+NAT,Smoking history not available,,usa,73,female,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IIIA,usa,73,female,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IB,usa,70,male,caucasian,20,33.0,Exposure to secondhand smoke history not available
+NAT,Smoking history not available,,usa,74,male,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IA,usa,74,male,caucasian,,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,66,male,caucasian,30,78.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,bulgaria,66,male,caucasian,30,78.0,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,70,male,caucasian,10,24.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,bulgaria,70,male,caucasian,10,24.0,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,57,male,caucasian,20,20.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,bulgaria,57,male,caucasian,20,20.0,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, years unknown",,bulgaria,58,male,caucasian,20,,Yes
+Tumor,"Current reformed smoker, years unknown",IIB,bulgaria,58,male,caucasian,20,,Yes
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,bulgaria,66,male,caucasian,,,No or minimal exposure to secondhand smoke
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,II,bulgaria,66,male,caucasian,,,No or minimal exposure to secondhand smoke
+Tumor,Current reformed smoker within past 15 years,IB,bulgaria,73,male,caucasian,20,38.0,Yes
+NAT,Smoking history not available,,usa,81,female,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IA,usa,81,female,caucasian,,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,usa,75,female,caucasian,40,70.0,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IB,usa,75,female,caucasian,40,70.0,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,usa,74,male,caucasian,20,40.0,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IB,usa,74,male,caucasian,20,40.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,68,male,caucasian,30,79.5,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,usa,68,male,caucasian,30,79.5,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,70,male,caucasian,40,72.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIA,bulgaria,70,male,caucasian,40,72.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,bulgaria,66,male,caucasian,20,36.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,bulgaria,66,male,caucasian,20,36.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,64,female,caucasian,30,45.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IA,bulgaria,64,female,caucasian,30,45.0,Yes
+NAT,"Current reformed smoker, more than 15 years",,bulgaria,57,male,caucasian,30,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IIB,bulgaria,57,male,caucasian,30,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,74,male,caucasian,50,5.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIA,bulgaria,74,male,caucasian,50,5.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,bulgaria,72,male,caucasian,20,3.0,No or minimal exposure to secondhand smoke
+Tumor,Current reformed smoker within past 15 years,IIA,bulgaria,72,male,caucasian,20,3.0,No or minimal exposure to secondhand smoke
+NAT,Current reformed smoker within past 15 years,,bulgaria,62,male,caucasian,40,,Yes
+Tumor,Current reformed smoker within past 15 years,IIIA,bulgaria,62,male,caucasian,40,,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,53,male,caucasian,20,,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIB,bulgaria,53,male,caucasian,20,,Yes
+NAT,Current reformed smoker within past 15 years,,bulgaria,72,male,caucasian,40,,Yes
+Tumor,Current reformed smoker within past 15 years,IIIA,bulgaria,72,male,caucasian,40,,Yes
+NAT,Smoking history not available,,bulgaria,51,male,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IIB,bulgaria,51,male,caucasian,,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,bulgaria,73,male,caucasian,35,96.3,Yes
+Tumor,Current reformed smoker within past 15 years,II,bulgaria,73,male,caucasian,35,96.3,Yes
+NAT,Current reformed smoker within past 15 years,,usa,66,female,caucasian,40,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,usa,66,female,caucasian,40,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,61,male,caucasian,10,20.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,usa,61,male,caucasian,10,20.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,71,male,caucasian,20,56.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,I,usa,71,male,caucasian,20,56.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,usa,58,male,caucasian,20,42.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,usa,58,male,caucasian,20,42.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,64,male,caucasian,20,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,usa,64,male,caucasian,20,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,76,male,caucasian,20,45.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,I,usa,76,male,caucasian,20,45.0,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,usa,67,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IV,usa,67,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIIA,usa,49,male,,40,70.0,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,48,female,caucasian,30,43.5,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,bulgaria,48,female,caucasian,30,43.5,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,65,male,caucasian,20,20.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,bulgaria,65,male,caucasian,20,20.0,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,73,male,caucasian,20,60.0,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,bulgaria,73,male,caucasian,20,60.0,Yes
+NAT,Current reformed smoker within past 15 years,,bulgaria,54,male,caucasian,40,40.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIIA,bulgaria,54,male,caucasian,40,40.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,61,male,caucasian,25,48.8,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,bulgaria,61,male,caucasian,25,48.8,Yes
+NAT,Current smoker: Includes daily and non-daily smokers,,bulgaria,57,male,caucasian,30,43.5,Yes
+Tumor,Current smoker: Includes daily and non-daily smokers,IA,bulgaria,57,male,caucasian,30,43.5,Yes
+NAT,Current reformed smoker within past 15 years,,usa,69,male,caucasian,30,79.5,No or minimal exposure to secondhand smoke
+Tumor,Current reformed smoker within past 15 years,IB,usa,69,male,caucasian,30,79.5,No or minimal exposure to secondhand smoke
+NAT,"Current reformed smoker, more than 15 years",,usa,70,male,caucasian,20,10.0,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",I,usa,70,male,caucasian,20,10.0,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIIA,bulgaria,40,male,,,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,other,78,male,,20,36.0,Yes
+Tumor,"Current reformed smoker, more than 15 years",III,other,78,male,tssdidnotcollectthisinformation,20,36.0,Yes
+Tumor,"Current reformed smoker, more than 15 years",IIA,usa,77,female,caucasian,10,2.5,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,57,female,caucasian,20,31.0,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IIB,poland,57,female,caucasian,20,31.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,vietnam,59,male,asian,3,3.2,No or minimal exposure to secondhand smoke
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,vietnam,59,male,asian,3,3.2,No or minimal exposure to secondhand smoke
+NAT,Current smoker: Includes daily and non-daily smokers,,vietnam,56,male,asian,5,5.0,No or minimal exposure to secondhand smoke
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,vietnam,56,male,asian,5,5.0,No or minimal exposure to secondhand smoke
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,vietnam,65,male,asian,,,No or minimal exposure to secondhand smoke
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IB,vietnam,65,male,asian,,,No or minimal exposure to secondhand smoke
+NAT,Current smoker: Includes daily and non-daily smokers,,vietnam,52,male,asian,1,1.5,No or minimal exposure to secondhand smoke
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,vietnam,52,male,asian,1,1.5,No or minimal exposure to secondhand smoke
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,vietnam,72,male,asian,,,No or minimal exposure to secondhand smoke
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IB,vietnam,72,male,asian,,,No or minimal exposure to secondhand smoke
+NAT,Current smoker: Includes daily and non-daily smokers,,poland,69,male,caucasian,20,45.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IA,poland,69,male,caucasian,20,45.0,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,vietnam,64,male,asian,,,No or minimal exposure to secondhand smoke
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IB,vietnam,64,male,asian,,,No or minimal exposure to secondhand smoke
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,70,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IB,ukraine,70,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Smoking history not available,,poland,77,male,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IIB,poland,77,male,caucasian,,,Exposure to secondhand smoke history not available
+NAT,Smoking history not available,,poland,70,male,caucasian,,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IIIA,poland,70,male,caucasian,,,Exposure to secondhand smoke history not available
+NAT,,,other,68,female,,,,
+Tumor,,,other,68,female,,,,
+Tumor,Current reformed smoker within past 15 years,IIB,poland,67,male,caucasian,40,90.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,poland,69,male,caucasian,20,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,poland,72,female,caucasian,15,35.3,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIB,poland,72,female,caucasian,15,35.3,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,58,female,caucasian,20,40.0,No or minimal exposure to secondhand smoke
+Tumor,"Current reformed smoker, more than 15 years",III,poland,58,female,caucasian,20,40.0,No or minimal exposure to secondhand smoke
+NAT,"Current reformed smoker, more than 15 years",,poland,73,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IIA,poland,73,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,Smoking history not available,IIB,poland,69,female,caucasian,,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,78,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIA,ukraine,78,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,china,67,male,han,40,42.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIA,china,67,male,han,40,42.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,china,59,male,han,20,29.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIB,china,59,male,han,20,29.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,61,male,han,20,40.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,china,61,male,han,20,40.0,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,china,69,female,han,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IA,china,69,female,han,,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,74,male,caucasian,20,40.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IB,usa,74,male,caucasian,20,40.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,usa,64,female,caucasian,30,52.5,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIB,usa,64,female,caucasian,30,52.5,Exposure to secondhand smoke history not available
+NAT,,,usa,66,female,black,,,
+Tumor,,,usa,66,female,black,,,
+NAT,,,usa,61,male,caucasian,,,
+Tumor,,,usa,61,male,caucasian,,,
+NAT,Current reformed smoker within past 15 years,,china,69,male,han,40,100.0,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IA,china,69,male,han,40,100.0,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,69,male,caucasian,20,20.0,No or minimal exposure to secondhand smoke
+Tumor,"Current reformed smoker, more than 15 years",IIIA,poland,69,male,caucasian,20,20.0,No or minimal exposure to secondhand smoke
+NAT,Current smoker: Includes daily and non-daily smokers,,china,65,male,han,20,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIA,china,65,male,han,20,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,china,62,male,han,20,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIIA,china,62,male,han,20,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,68,male,han,10,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIA,china,68,male,han,10,,Exposure to secondhand smoke history not available
+NAT,,,ukraine,61,male,slavic,,,
+Tumor,,,ukraine,61,male,slavic,,,
+NAT,,,ukraine,70,female,slavic,,,
+Tumor,,,ukraine,70,female,slavic,,,
+NAT,Current smoker: Includes daily and non-daily smokers,,china,62,male,han,5,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IA,china,62,male,han,5,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,74,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IA,poland,74,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,64,female,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IB,poland,64,female,caucasian,Unknown,,Exposure to secondhand smoke history not available
+NAT,"Current reformed smoker, more than 15 years",,poland,67,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+Tumor,"Current reformed smoker, more than 15 years",IIIA,poland,67,male,caucasian,Unknown,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,65,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IA,ukraine,65,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,64,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIA,ukraine,64,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,china,56,female,han,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIIA,china,56,female,han,,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,44,male,han,20,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,china,44,male,han,20,,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,china,68,male,han,20,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IB,china,68,male,han,20,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,53,male,han,20,,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIB,china,53,male,han,20,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,76,male,han,40,108.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIB,china,76,male,han,40,108.0,Exposure to secondhand smoke history not available
+NAT,Current reformed smoker within past 15 years,,china,68,male,han,40,,Exposure to secondhand smoke history not available
+Tumor,Current reformed smoker within past 15 years,IIB,china,68,male,han,40,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,60,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IB,ukraine,60,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,62,male,han,20,19.0,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IB,china,62,male,han,20,19.0,Exposure to secondhand smoke history not available
+NAT,Current smoker: Includes daily and non-daily smokers,,china,63,male,han,30,58.5,Exposure to secondhand smoke history not available
+Tumor,Current smoker: Includes daily and non-daily smokers,IIIA,china,63,male,han,30,58.5,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,76,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IA,ukraine,76,male,slavic,,,Exposure to secondhand smoke history not available
+NAT,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,,ukraine,46,male,slavic,,,Exposure to secondhand smoke history not available
+Tumor,Lifelong non-smoker: Less than 100 cigarettes smoked in lifetime,IIA,ukraine,46,male,slavic,,,Exposure to secondhand smoke history not available
