@@ -90,27 +90,30 @@ def train(trainset, hp):
     scheduler = get_linear_schedule_with_warmup(optimizer,
                                                 num_warmup_steps=0,
                                                 num_training_steps=num_steps)
-
+    best_precision = 0.0
     for epoch in range(1, hp.n_epochs+1):
         # train
         model.train()
         train_step(train_iter, model, optimizer, scheduler, scaler, hp)
         print("epoch %d: " % epoch + "training done")
+        
         # save the last checkpoint
-        if hp.save_model and epoch == hp.n_epochs:
-            directory = os.path.join(hp.logdir, hp.task)
-            if not os.path.exists(directory):
-                os.makedirs(directory)
+        # ---------------------------TODO: integrate-------------------------------------
+        # if hp.save_model and epoch == hp.n_epochs:
+        #     directory = os.path.join(hp.logdir, hp.task)
+        #     if not os.path.exists(directory):
+        #         os.makedirs(directory)
 
-            # save the checkpoints for each component
-            if hp.single_column:
-                ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.augment_op)+'_'+str(hp.sample_meth)+'_'+str(hp.table_order)+'_'+str(hp.run_id)+'singleCol.pt')
-            else:
-                ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.augment_op)+'_'+str(hp.sample_meth)+'_'+str(hp.table_order)+'_'+str(hp.run_id)+'.pt')
+        #     # save the checkpoints for each component
+        #     if hp.single_column:
+        #         ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.augment_op)+'_'+str(hp.sample_meth)+'_'+str(hp.table_order)+'_'+str(hp.run_id)+'singleCol.pt')
+        #     else:
+        #         ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.augment_op)+'_'+str(hp.sample_meth)+'_'+str(hp.table_order)+'_'+str(hp.run_id)+'.pt')
 
-            ckpt = {'model': model.state_dict(),
-                    'hp': hp}
-            torch.save(ckpt, ckpt_path)
+        #     ckpt = {'model': model.state_dict(),
+        #             'hp': hp}
+        #     torch.save(ckpt, ckpt_path)
+        # -------------------------------------------------------------------------------
 
             # test loading checkpoints
             # load_checkpoint(ckpt_path)
@@ -138,14 +141,31 @@ def train(trainset, hp):
         # ----------------------------------------------------------------
         if hp.task in ['arpa']:
             # Train column matching models using the learned representations
-            store_emebeddings = True if epoch == hp.n_epochs else False
-            metrics_dict = evaluate_arpa_matching(model, trainset, store_emebeddings)
+            # store_embeddings = True if epoch == hp.n_epochs else False
+            precision = evaluate_arpa_matching(model, trainset, best_precision, hp)
+        
+            if hp.save_model and precision > best_precision:
+                directory = os.path.join(hp.logdir, hp.task)
+                if not os.path.exists(directory):
+                    os.makedirs(directory)
+                if hp.gpt:
+                    ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.top_k)+'_'+str(hp.run_id)+'.pt')
+                else:
+                    ckpt_path = os.path.join(hp.logdir, hp.task, 'model_'+str(hp.top_k)+'_starmie_'+str(hp.run_id)+'.pt')
+
+                ckpt = {'model': model.state_dict(),
+                        'hp': hp}
+                torch.save(ckpt, ckpt_path)
+            
+            best_precision = max(best_precision, precision)
+            
+            print("epoch %d: " % epoch + "precision=%f" % precision)
+            print("Best precision so far: ", best_precision)
             
             # log metrics
-            mlflow.log_metrics(metrics_dict)
-
-            print("epoch %d: " % epoch + ", ".join(["%s=%f" % (k, v) \
-                                    for k, v in metrics_dict.items()]))
+            # mlflow.log_metrics(metrics_dict)
+            # print("epoch %d: " % epoch + ", ".join(["%s=%f" % (k, v) \
+            #                         for k, v in metrics_dict.items()]))
 
 
 def inference_on_tables(tables: List[pd.DataFrame],
@@ -338,7 +358,8 @@ def load_checkpoint(ckpt):
 # ----------------------------- Evaluation for ARPA dataset ----------------------------------
 def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
                            unlabeled: PretrainTableDataset,
-                           store_embeddings):
+                           best_precision,
+                           hp):
     """Evaluate pre-trained model on a column matching dataset.
 
     Args:
@@ -349,7 +370,8 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
         Dict: the dictionary of metrics (e.g., valid_f1)
     """
     table_path = 'data'
-
+    k = hp.top_k
+    
     results = []
 
     for dataset in ["train", "test"]:
@@ -368,7 +390,6 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
             assert all(len(vec) == len(table.columns) for vec, table in zip(vectors, tables))
 
             res = []
-            # TODO: debug
             for vec, cid in zip(vectors, column_names):
                 if isinstance(cid, str): # for ARPA test
                     res.append(vec[-1])
@@ -389,12 +410,10 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
             gdc_ds = pd.read_csv(os.path.join(table_path, 'train.csv'))
             all_r_features = encode_tables(gdc_ds['l_table_id'], gdc_ds['l_column_id'])
             gt_column_ids = gdc_ds['l_column_id']
-
-        k = 50
         
         precision, top_k_results = evaluate_schema_matching(l_features, r_features, all_r_features, k, ds['l_column_id'], ds['r_column_id'], gt_column_ids)
         
-        if dataset == "test" and store_embeddings:
+        if dataset == "test" and best_precision < precision:
             embeddings_directory = '../../gdc_embeddings'
             os.makedirs(embeddings_directory, exist_ok=True)
             for i, embedding in enumerate(r_features):
@@ -403,12 +422,15 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
         
         print("%s precision at %d: %f" % (dataset, k, precision))
 
-    # Save results to JSON
-    results_path = 'top_k_results.json'
+    if hp.gpt:
+        results_path = f'top_{k}_results.json'
+    else:
+        results_path = f'top_{k}_starmie_results.json'
+        
     with open(results_path, 'w') as file:
         json.dump(results, file, indent=4)
     
-    return {"test_precision_at_k": precision}  # Example metric
+    return precision  # Example metric
 
 
 def evaluate_schema_matching(l_features, r_features, all_r_features, k, l_column_ids, r_column_ids, gt_column_ids):
