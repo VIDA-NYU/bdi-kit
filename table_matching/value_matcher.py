@@ -14,9 +14,8 @@ class BaseMatcher():
         self.model.match(current_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by='Similarity', ascending=False, inplace=True)
-
         matches = []
-        #used_values = set()
+
         for _, row in match_results.iterrows():
             current_value = row['From']
             target_value = row['To']
@@ -70,31 +69,28 @@ class LLMMatcher(BaseMatcher):
         self.client = OpenAI()
     
     def match(self, current_values, target_values, threshold=0.8):
-        completion = self.client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        messages=[
-            {"role": "system", "content": "You are an intelligent system designed for mapping values from a source list to a target list."\
-            "These values belong to the medical domain, and the target list contains values in the Genomics Data Commons (GDC) format."},
-            {"role": "user", "content": f"The source list is: {current_values}"\
-            "The target list is: {target_values}"\
-            "Find the pairs and return a list of Python tuples with a similarity value, between 0 and 1, with 1 indicating the highest similarity"\
-            "DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. Only provide the Python list. For example [(source value, target value, 0.8)]"}
-        ]
-        )
-        response_message = completion.choices[0].message.content
+        target_values_set = set(target_values)
         matches = []
-        try:
-            matches = ast.literal_eval(response_message)
-        except:
-            print(f'Errors parsing response: {response_message}')
+
+        for current_value in current_values:
+            completion = self.client.chat.completions.create(
+            model='gpt-4-turbo-preview',
+            messages=[
+                {'role': 'system', 'content': 'You are an intelligent system that given a term, you have to choose a value from a list that best matches the term. '
+                'These terms belong to the medical domain, and the list contains terms in the Genomics Data Commons (GDC) format.'},
+                {'role': 'user', 'content': f'For the term: "{current_value}", choose a value from this list {target_values}. '
+                'Return the value from the list with a similarity score, between 0 and 1, with 1 indicating the highest similarity. '
+                'DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. '
+                'Only provide a Python dictionary. For example {"term": "term from the list", "score": 0.8}.'}
+            ]
+            )
+            
+            response_message = completion.choices[0].message.content
+            try:
+                response_dict = ast.literal_eval(response_message)
+                if response_dict['term'] in target_values_set:
+                    matches.append((current_value, response_dict['term'], response_dict['score']))
+            except:
+                print(f'Errors parsing response for "{current_value}": {response_message}')
 
         return matches
-    
-
-
-if __name__ == '__main__':
-    from_list = ["apple", "apples", "appl", "recal", "house", "similarity"]
-    to_list = ["apple", "apples", "mouse"]
-    matcher = TFIDFMatcher()
-    matches = matcher.match(from_list, to_list)
-    print(matches)
