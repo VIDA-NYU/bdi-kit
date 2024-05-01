@@ -2,6 +2,7 @@ from openai import OpenAI
 import tiktoken
 import json
 import pandas as pd
+from tqdm import tqdm
 
 class CTA:
     def __init__(self, api_key):
@@ -13,7 +14,8 @@ class CTA:
         num_tokens = len(encoding.encode(string))
         return num_tokens
 
-    def get_column_type(self, context, labels, model="gpt-4-turbo-preview"):
+    # Reply None if none of the classes are applicable.
+    def get_column_type(self, context, labels, m, model="gpt-4-turbo-preview"):
         col_type = self.client.chat.completions.create(model=model,
         messages=[
                 {
@@ -21,7 +23,7 @@ class CTA:
                     "content": "You are an assistant for column matching."},
                 {
                     "role": "user", 
-                    "content": """ Please select the class from """ + labels + """ which best describes the context. The context is defined by the column name followed by its respective values. Please respond only with the name of the class. Reply None if none of the classes are applicable.
+                    "content": """ Please select the top """ + str(m) +  """ class from """ + labels + """ which best describes the context. The context is defined by the column name followed by its respective values. Please respond only with the name of the classes separated by semicolon.
                     \n CONTEXT: """ + context +  """ \n RESPONSE: \n"""},
             ],
         temperature=0.3)
@@ -33,11 +35,13 @@ def run_cta():
     api_key = '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'
     annotator = CTA(api_key)
 
-    k = 50
-    starmie = True
+    k = 10
+    starmie = False
+    m = 5
 
     file_name = f"top_{k}_starmie_results.json" if starmie else f"top_{k}_results.json"
 
+    # with open("./results-cl/" + file_name, "r") as file:
     with open(file_name, "r") as file:
         json_data = json.load(file)
 
@@ -46,7 +50,7 @@ def run_cta():
     table_path = 'data/tables'
     results = []
 
-    for result in json_data:
+    for result in tqdm(json_data):
         table = pd.read_csv(f'{table_path}/{result["Table name"]}.csv')
         candidate_column = result["Candidate column"]
         top_k_columns = result["Top k columns"]
@@ -59,7 +63,7 @@ def run_cta():
             rows = values.tolist()
         serialized_input = f"{candidate_column}: {', '.join([str(row) for row in rows])}"
         context = serialized_input.lower()
-        col_type = annotator.get_column_type(context, labels)
+        col_type = annotator.get_column_type(context, labels, m)
         match = {
             "Table name": result["Table name"],
             "Candidate column": candidate_column,
@@ -69,13 +73,17 @@ def run_cta():
         results.append(match)
         
         total_possible += 1
-        if col_type == result["Ground truth column"]:
+        if result["Ground truth column"] in col_type:
             total_matches += 1
         
-        print(f"{candidate_column}: {col_type}")
+        # print(f"{candidate_column}: {col_type}")
         
     print("Precision: ", total_matches / total_possible)
 
-    with open(f"cta_{file_name}", "w") as file:
+    with open(f"cta_{m}_{file_name}", "w") as file:
         json.dump(results, file, indent=4)
-    print(f"CTA results saved to cta_{file_name}")
+    print(f"CTA results saved to cta_{m}_{file_name}")
+
+
+if __name__ == "__main__":
+    run_cta()
