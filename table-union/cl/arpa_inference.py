@@ -106,10 +106,10 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
         top_k_results.append(result)
 
     table_name = hp.cand_table.split('/')[-1].split('.')[0]
-    results_path = f'top_{k}_{table_name}.json'
+    results_path = f'./arpa_result/top_{k}_{table_name}.json'
     with open(results_path, 'w') as file:
         json.dump(top_k_results, file, indent=4)
-    print(f"Top k results saved to {results_path}")
+    print(f"Top {k} results saved to {results_path}")
     
     if hp.save_embeddings:
         embeddings_directory = './gdc_embeddings'
@@ -123,8 +123,9 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
 def gpt_cta(top_k_results, table, hp):
     api_key = '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'
     annotator = CTA(api_key)
+    m = hp.cta_m
     results = []
-    for result in top_k_results:
+    for result in tqdm(top_k_results):
         candidate_column = result["Candidate column"]
         top_k_columns = result["Top k columns"]
         labels = ', '.join(top_k_columns)
@@ -136,31 +137,35 @@ def gpt_cta(top_k_results, table, hp):
             rows = values.tolist()
         serialized_input = f"{candidate_column}: {', '.join([str(row) for row in rows])}"
         context = serialized_input.lower()
-        col_type = annotator.get_column_type(context, labels)
+        col_type = annotator.get_column_type(context, labels, m)
         match = {
             "Candidate column": candidate_column,
-            "Target GDC variable name": col_type
+            "Target GDC variable name(s)": col_type
         }
         results.append(match)
-        print(f"{candidate_column}: {col_type}")
+        # print(f"{candidate_column}: {col_type}")
 
     table_name = hp.cand_table.split('/')[-1].split('.')[0]
-    results_path = f'top_1_{table_name}.json'
+    results_path = f'./arpa_result/top_{m}_{table_name}.json'
     with open(results_path, 'w') as file:
         json.dump(results, file, indent=4)
-    print(f"Top-1 results saved to {results_path}")
+    print(f"Top-{m} results saved to {results_path}")
 
 
 def run_inference(hp):
     table = pd.read_csv(hp.cand_table)
     print(f"Loaded table from {hp.cand_table}")
-    model_path = os.path.join(hp.logdir, hp.task, f"model_{hp.top_k}_0.pt")
+    if hp.top_k in [10, 20, 50]:
+        model_idx = hp.top_k
+    else:
+        model_idx = 20
+    model_path = os.path.join(hp.logdir, hp.task, f"model_{model_idx}_0.pt")
     ckpt = torch.load(model_path)
     print(f"Loaded model from {model_path}")
     model = load_checkpoint(ckpt, hp)
     top_k_results = evaluate_arpa_matching(model, table, hp)
     if hp.use_cta:
-        print("Using CTA for top-1 matching...")
+        print(f"Running CTA on top-{hp.cta_m} results...")
         gpt_cta(top_k_results, table, hp)
 
     
@@ -189,8 +194,12 @@ if __name__ == '__main__':
     parser.add_argument("--use_gdc_embeddings", dest="use_gdc_embeddings", action="store_true")
     parser.add_argument("--use_cta", dest="use_cta", action="store_true")
     parser.add_argument("--save_embeddings", dest="save_embeddings", action="store_true")
+    parser.add_argument("--cta_m", type=int, default=1)
     
     hp = parser.parse_args()
-    
     run_inference(hp)
+    
     # ../data/extracted-tables/Cao_Clinical_data.csv
+    # ../data/extracted-tables/Huang_Meta_table.csv
+    
+    # TODO: add sim score to the results

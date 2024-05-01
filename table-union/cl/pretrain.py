@@ -248,6 +248,16 @@ def load_checkpoint(ckpt):
     return model, dataset
 
 
+# def test(trainset, hp):
+#     model_path = os.path.join(hp.logdir, hp.task, f"model_{hp.top_k}_0.pt")
+#     ckpt = torch.load(model_path)
+#     print(f"Loaded model from {model_path}")
+#     model = load_checkpoint(ckpt, hp)
+    
+#     table_path = 'data'
+#     k = hp.top_k
+
+
 # ----------------------------- Evaluation for ARPA dataset ----------------------------------
 def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
                            unlabeled: PretrainTableDataset,
@@ -270,13 +280,24 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
     for dataset in ["train", "test"]:
         ds_path = os.path.join(table_path, f'{dataset}.csv')
         ds = pd.read_csv(ds_path)
-
+        
         def encode_tables(table_names, column_names):
             tables = []
             for table_name, col_name in zip(table_names, column_names):
                 table = pd.read_csv(os.path.join(table_path, f"tables/{table_name}.csv"))
                 if model.hp.single_column:
                     table = pd.DataFrame(table[col_name])
+                    # Guarantee that the table has 15 rows
+                    if len(table) > 15:
+                        unique_rows = table.drop_duplicates()
+                        num_unique_rows = len(unique_rows)
+                        if num_unique_rows <= 15:
+                            needed_rows = 15 - num_unique_rows
+                            additional_rows = table[~table.index.isin(unique_rows.index)].sample(n=needed_rows, replace=True, random_state=1)
+                            table = pd.concat([unique_rows, additional_rows])
+                        else:
+                            table = unique_rows.sample(n=15, random_state=1)
+                    # -------------------------------------
                 tables.append(table)
             vectors = inference_on_tables(tables, model, unlabeled, batch_size=128)
             

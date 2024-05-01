@@ -10,7 +10,7 @@ from pretrain import train
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", type=str, default="small")
-    parser.add_argument("--logdir", type=str, default="../../model/")
+    parser.add_argument("--logdir", type=str, default="../../models/")
     parser.add_argument("--run_id", type=int, default=0)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--max_len", type=int, default=128)
