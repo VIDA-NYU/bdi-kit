@@ -1,21 +1,19 @@
 import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
 import numpy as np
-import sklearn.metrics as metrics
 import pandas as pd
 import os
 import json
 import argparse
+import tiktoken
 from tqdm import tqdm
 from torch.utils import data
-from transformers import AdamW, get_linear_schedule_with_warmup
 from typing import List
 from sklearn.metrics.pairwise import cosine_similarity
+from openai import OpenAI
 
 from model import BarlowTwinsSimCLR
 from dataset import PretrainTableDataset
+from cta import CTA
 
 def load_checkpoint(ckpt, hp):
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -24,7 +22,6 @@ def load_checkpoint(ckpt, hp):
     model.load_state_dict(ckpt['model'])
 
     return model
-
 
 def inference_on_tables(tables: List[pd.DataFrame],
                         model: BarlowTwinsSimCLR,
@@ -43,7 +40,6 @@ def inference_on_tables(tables: List[pd.DataFrame],
             # model inference
             with torch.no_grad():
                 x, _, _ = unlabeled.pad(batch)
-                # all column vectors in the batch
                 column_vectors = model.inference(x)
                 ptr = 0
                 for xi in x:
@@ -53,7 +49,6 @@ def inference_on_tables(tables: List[pd.DataFrame],
                             current.append(column_vectors[ptr].cpu().numpy())
                             ptr += 1
                     results.append(current)
-
             batch.clear()
 
     return results
@@ -67,27 +62,6 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
     results = []
     
     unlabeled = PretrainTableDataset.from_hp(table_path, hp)
-
-    # def encode_tables(table_names, column_names):
-    #     tables = []
-    #     for table_name, col_name in zip(table_names, column_names):
-    #         table = pd.read_csv(os.path.join(table_path, f"tables/{table_name}.csv"))
-    #         if model.hp.single_column:
-    #             table = pd.DataFrame(table[col_name])
-    #         tables.append(table)
-    #     vectors = inference_on_tables(tables, model, unlabeled, batch_size=128)
-        
-    #     assert all(len(vec) == len(table.columns) for vec, table in zip(vectors, tables))
-
-    #     res = []
-    #     for vec, cid in zip(vectors, column_names):
-    #         if isinstance(cid, str): # for ARPA test
-    #             res.append(vec[-1])
-    #         elif cid < len(vec):
-    #             res.append(vec[cid])
-    #         else:
-    #             res.append(vec[-1])
-    #     return res
     
     tables = []
     for i, column in enumerate(table.columns):
@@ -129,34 +103,71 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
             "Candidate column": l_column_ids[index],
             "Top k columns": top_k_column_names
         }
-        
         top_k_results.append(result)
 
-    results_path = f'retrived_top_{k}_results.json'
-        
+    table_name = hp.cand_table.split('/')[-1].split('.')[0]
+    results_path = f'top_{k}_{table_name}.json'
     with open(results_path, 'w') as file:
         json.dump(top_k_results, file, indent=4)
-
-    print(f"Results saved to {results_path}")
+    print(f"Top k results saved to {results_path}")
     
-    # embeddings_directory = './gdc_embeddings'
-    # os.makedirs(embeddings_directory, exist_ok=True)
-    # for i, embedding in enumerate(r_features):
-    #     np.save(os.path.join(embeddings_directory, f'{i}.npy'), embedding)
+    if hp.save_embeddings:
+        embeddings_directory = './gdc_embeddings'
+        os.makedirs(embeddings_directory, exist_ok=True)
+        for i, embedding in enumerate(r_features):
+            np.save(os.path.join(embeddings_directory, f'{i}.npy'), embedding)
+    
+    return top_k_results
+        
+
+def gpt_cta(top_k_results, table, hp):
+    api_key = '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'
+    annotator = CTA(api_key)
+    results = []
+    for result in top_k_results:
+        candidate_column = result["Candidate column"]
+        top_k_columns = result["Top k columns"]
+        labels = ', '.join(top_k_columns)
+        col = table[candidate_column]
+        values = col.drop_duplicates().dropna()
+        if len(values) > 15:
+            rows = values.sample(15).tolist()
+        else:
+            rows = values.tolist()
+        serialized_input = f"{candidate_column}: {', '.join([str(row) for row in rows])}"
+        context = serialized_input.lower()
+        col_type = annotator.get_column_type(context, labels)
+        match = {
+            "Candidate column": candidate_column,
+            "Target GDC variable name": col_type
+        }
+        results.append(match)
+        print(f"{candidate_column}: {col_type}")
+
+    table_name = hp.cand_table.split('/')[-1].split('.')[0]
+    results_path = f'top_1_{table_name}.json'
+    with open(results_path, 'w') as file:
+        json.dump(results, file, indent=4)
+    print(f"Top-1 results saved to {results_path}")
+
 
 def run_inference(hp):
     table = pd.read_csv(hp.cand_table)
     print(f"Loaded table from {hp.cand_table}")
-    ckpt = torch.load(hp.model_path)
-    print(f"Loaded model from {hp.model_path}")
+    model_path = os.path.join(hp.logdir, hp.task, f"model_{hp.top_k}_0.pt")
+    ckpt = torch.load(model_path)
+    print(f"Loaded model from {model_path}")
     model = load_checkpoint(ckpt, hp)
-    evaluate_arpa_matching(model, table, hp)
-    
+    top_k_results = evaluate_arpa_matching(model, table, hp)
+    if hp.use_cta:
+        print("Using CTA for top-1 matching...")
+        gpt_cta(top_k_results, table, hp)
+
     
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument("--task", type=str, default="small")
-    parser.add_argument("--logdir", type=str, default="../../model/")
+    parser.add_argument("--task", type=str, default="arpa")
+    parser.add_argument("--logdir", type=str, default="../../models")
     parser.add_argument("--run_id", type=int, default=0)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--max_len", type=int, default=128)
@@ -172,12 +183,14 @@ if __name__ == '__main__':
     parser.add_argument("--table_order", type=str, default='column')
     parser.add_argument("--sample_meth", type=str, default='head')
     parser.add_argument("--gpt", type=bool, default=True)
-    parser.add_argument("--top_k", type=int, default=10)
+    
+    parser.add_argument("--top_k", type=int, default=20)
     parser.add_argument("--cand_table", type=str, default='data/tables/Cao.csv')
-    # ../data/extracted-tables/Cao_Clinical_data.csv
-    parser.add_argument("--model_path", type=str, default='../../model/arpa/model_10_0.pt')
-    parser.add_argument("--use_gdc_embeddings", type=bool, default=True)
+    parser.add_argument("--use_gdc_embeddings", dest="use_gdc_embeddings", action="store_true")
+    parser.add_argument("--use_cta", dest="use_cta", action="store_true")
+    parser.add_argument("--save_embeddings", dest="save_embeddings", action="store_true")
     
     hp = parser.parse_args()
     
     run_inference(hp)
+    # ../data/extracted-tables/Cao_Clinical_data.csv

@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/57f529f6303747fa8a6eaac42d146864/artifacts
+end_time: 1714519676302
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 57f529f6303747fa8a6eaac42d146864
+run_name: salty-cow-392
+run_uuid: 57f529f6303747fa8a6eaac42d146864
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714519605090
+status: 3
+tags: []
+user_id: yl6624

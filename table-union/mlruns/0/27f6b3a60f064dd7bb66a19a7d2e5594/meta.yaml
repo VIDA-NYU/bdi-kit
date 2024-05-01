@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/27f6b3a60f064dd7bb66a19a7d2e5594/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 27f6b3a60f064dd7bb66a19a7d2e5594
+run_name: orderly-ant-845
+run_uuid: 27f6b3a60f064dd7bb66a19a7d2e5594
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714519940119
+status: 1
+tags: []
+user_id: yl6624

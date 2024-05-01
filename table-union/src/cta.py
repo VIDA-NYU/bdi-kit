@@ -27,7 +27,7 @@ class CTA:
         messages=[
                 {
                     "role": "system", 
-                    "content": "You are an assistant for column type annotation."},
+                    "content": "You are an assistant for column matching."},
                 {
                     "role": "user", 
                     "content": """ Please select the class from """ + self.labels + """ which best describes the context. The context is defined by the column name followed by its respective values. Please respond only with the name of the class. Reply None if none of the classes are applicable.

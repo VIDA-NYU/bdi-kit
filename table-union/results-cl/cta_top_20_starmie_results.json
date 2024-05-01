@@ -1,0 +1,758 @@
+[
+    {
+        "Table name": "Krug",
+        "Candidate column": "Tumor.Stage",
+        "Generated GDC variable name": "ajcc_clinical_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Age.in.Month",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Ethnicity",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor/Normal",
+        "Generated GDC variable name": "no_matched_normal_wgs",
+        "Ground truth GDC variable column": "tissue_type"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "demographics",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Age",
+        "Generated GDC variable name": "age_at_index",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "BMI",
+        "Generated GDC variable name": "bmi",
+        "Ground truth GDC variable column": "bmi"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Race",
+        "Generated GDC variable name": "demographics",
+        "Ground truth GDC variable column": "race"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Ethnicity_Self_Identify",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Site",
+        "Generated GDC variable name": "zone_of_origin_prostate",
+        "Ground truth GDC variable column": "site_of_resection_or_biopsy"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Size_cm",
+        "Generated GDC variable name": "tumor_largest_dimension_diameter",
+        "Ground truth GDC variable column": "tumor_largest_dimension_diameter"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Focality",
+        "Generated GDC variable name": "tumor_focality",
+        "Ground truth GDC variable column": "tumor_focality"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Histologic_Type",
+        "Generated GDC variable name": "primary_diagnosis",
+        "Ground truth GDC variable column": "primary_diagnosis"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Grade",
+        "Generated GDC variable name": "tumor_grade",
+        "Ground truth GDC variable column": "tumor_grade"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Stage_Pathological",
+        "Generated GDC variable name": "ajcc_clinical_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Path_Stage_Primary_Tumor_pT",
+        "Generated GDC variable name": "uicc_pathologic_t",
+        "Ground truth GDC variable column": "ajcc_pathologic_t"
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Path_Stage_Reg_Lymph_Nodes_pN",
+        "Generated GDC variable name": "ajcc_pathologic_n",
+        "Ground truth GDC variable column": "ajcc_pathologic_n"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Age",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "PT",
+        "Generated GDC variable name": "ajcc_pathologic_t",
+        "Ground truth GDC variable column": "ajcc_pathologic_t"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "PN",
+        "Generated GDC variable name": "ajcc_pathologic_n",
+        "Ground truth GDC variable column": "ajcc_pathologic_n"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Stage",
+        "Generated GDC variable name": "ajcc_clinical_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Vascular_Invasion",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "vascular_invasion_present"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Lymphatic_Invasion",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "lymphatic_invasion_present"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Perineural_Invasion",
+        "Generated GDC variable name": "perineural_invasion_present",
+        "Ground truth GDC variable column": "perineural_invasion_present"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Synchronous_Tumors",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "synchronous_malignancy"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Vital.Status",
+        "Generated GDC variable name": "vital_status",
+        "Ground truth GDC variable column": "vital_status"
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Tumor.Status",
+        "Generated GDC variable name": "last_known_disease_status",
+        "Ground truth GDC variable column": "last_known_disease_status"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Type",
+        "Generated GDC variable name": "disease_type",
+        "Ground truth GDC variable column": "tissue_type"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Smoking.Status",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Age",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Ethnicity",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Height.cm",
+        "Generated GDC variable name": "height",
+        "Ground truth GDC variable column": "height"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Weight.kg",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "weight"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "BMI",
+        "Generated GDC variable name": "bmi",
+        "Ground truth GDC variable column": "bmi"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Cigarettes.per.Day",
+        "Generated GDC variable name": "pack_years_smoked",
+        "Ground truth GDC variable column": "cigarettes_per_day"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Pack.Years.Smoked",
+        "Generated GDC variable name": "pack_years_smoked",
+        "Ground truth GDC variable column": "pack_years_smoked"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Smoking.History",
+        "Generated GDC variable name": "tobacco_smoking_status",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Secondhand.Smoke",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "secondhand_smoke_as_child"
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Dominant.Histological.Subtype",
+        "Generated GDC variable name": "morphologic_architectural_pattern",
+        "Ground truth GDC variable column": "primary_diagnosis"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "age",
+        "Generated GDC variable name": "age_at_index",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "height",
+        "Generated GDC variable name": "height",
+        "Ground truth GDC variable column": "height"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "weight",
+        "Generated GDC variable name": "initial_weight",
+        "Ground truth GDC variable column": "weight"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "bmi",
+        "Generated GDC variable name": "bmi",
+        "Ground truth GDC variable column": "bmi"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "country_of_origin",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "country_of_residence_at_enrollment"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "race",
+        "Generated GDC variable name": "race",
+        "Ground truth GDC variable column": "race"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "ethnicity",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "smoking_history",
+        "Generated GDC variable name": "tobacco_smoking_status",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "secondhand_smoke_exposure",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "secondhand_smoke_as_child"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_laterality",
+        "Generated GDC variable name": "laterality",
+        "Ground truth GDC variable column": "biospecimen_laterality"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_site_curated",
+        "Generated GDC variable name": "supratentorial_localization",
+        "Ground truth GDC variable column": "site_of_resection_or_biopsy"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "vital_status",
+        "Generated GDC variable name": "vital_status",
+        "Ground truth GDC variable column": "vital_status"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_last_contact_days",
+        "Generated GDC variable name": "days_to_last_follow_up",
+        "Ground truth GDC variable column": "days_to_last_follow_up"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_death_days",
+        "Generated GDC variable name": "days_to_death",
+        "Ground truth GDC variable column": "days_to_death"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "cause_of_death",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "cause_of_death"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_reoccur_after_treatment",
+        "Generated GDC variable name": "test_result",
+        "Ground truth GDC variable column": "progression_or_recurrence"
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_tumor_reoccur_days",
+        "Generated GDC variable name": "days_to_progression",
+        "Ground truth GDC variable column": "days_to_recurrence"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Type",
+        "Generated GDC variable name": "tissue_type",
+        "Ground truth GDC variable column": "tissue_type"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Smoking.History",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Stage",
+        "Generated GDC variable name": "ajcc_clinical_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Country.of.Origin",
+        "Generated GDC variable name": "country_of_birth",
+        "Ground truth GDC variable column": "country_of_residence_at_enrollment"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Age",
+        "Generated GDC variable name": "age_at_index",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Ethnicity",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Cigarettes.per.Day",
+        "Generated GDC variable name": "cigarettes_per_day",
+        "Ground truth GDC variable column": "cigarettes_per_day"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Pack.Years.Smoked",
+        "Generated GDC variable name": "pack_years_smoked",
+        "Ground truth GDC variable column": "pack_years_smoked"
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Secondhand.Smoke",
+        "Generated GDC variable name": "risk_factors",
+        "Ground truth GDC variable column": "secondhand_smoke_as_child"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "age",
+        "Generated GDC variable name": "age_at_index",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "sex",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "race",
+        "Generated GDC variable name": "demographics",
+        "Ground truth GDC variable column": "race"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "participant_country",
+        "Generated GDC variable name": "country_of_birth",
+        "Ground truth GDC variable column": "country_of_residence_at_enrollment"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_site",
+        "Generated GDC variable name": "primary_site",
+        "Ground truth GDC variable column": "site_of_resection_or_biopsy"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_focality",
+        "Generated GDC variable name": "tumor_focality",
+        "Ground truth GDC variable column": "tumor_focality"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_size_cm",
+        "Generated GDC variable name": "greatest_tumor_dimension",
+        "Ground truth GDC variable column": "tumor_largest_dimension_diameter"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "lymph_vascular_invasion",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "vascular_invasion_present"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "perineural_invasion",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "perineural_invasion_present"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "number_of_lymph_nodes_positive_for_tumor",
+        "Generated GDC variable name": "amount",
+        "Ground truth GDC variable column": "lymph_nodes_positive"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_regional_lymph_nodes_pn",
+        "Generated GDC variable name": "ajcc_pathologic_n",
+        "Ground truth GDC variable column": "ajcc_pathologic_n"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_primary_tumor_pt",
+        "Generated GDC variable name": "ajcc_pathologic_t",
+        "Ground truth GDC variable column": "ajcc_pathologic_t"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_distant_metastasis_pm",
+        "Generated GDC variable name": "uicc_pathologic_m",
+        "Ground truth GDC variable column": "ajcc_pathologic_m"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "clinical_staging_distant_metastasis_cm",
+        "Generated GDC variable name": "uicc_clinical_m",
+        "Ground truth GDC variable column": "ajcc_clinical_m"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "residual_tumor",
+        "Generated GDC variable name": "residual_tumor",
+        "Ground truth GDC variable column": "residual_disease"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_stage_pathological",
+        "Generated GDC variable name": "ajcc_pathologic_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "bmi",
+        "Generated GDC variable name": "bmi",
+        "Ground truth GDC variable column": "bmi"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "alcohol_consumption",
+        "Generated GDC variable name": "alcohol_intensity",
+        "Ground truth GDC variable column": "alcohol_intensity"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tobacco_smoking_history",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "vital_status",
+        "Generated GDC variable name": "marital_status",
+        "Ground truth GDC variable column": "vital_status"
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "cause_of_death",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "cause_of_death"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "age",
+        "Generated GDC variable name": "age_at_index",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "country",
+        "Generated GDC variable name": "country_of_birth",
+        "Ground truth GDC variable column": "country_of_residence_at_enrollment"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoking_history",
+        "Generated GDC variable name": "tobacco_smoking_status",
+        "Ground truth GDC variable column": "tobacco_smoking_status"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoke_age_start",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "tobacco_smoking_onset_year"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoke_age_stop",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "tobacco_smoking_quit_year"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "num_smoke_per_day",
+        "Generated GDC variable name": "use_per_day",
+        "Ground truth GDC variable column": "pack_years_smoked"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoking_second_hand",
+        "Generated GDC variable name": "type_of_smoke_exposure",
+        "Ground truth GDC variable column": "secondhand_smoke_as_child"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "alcohol_consum",
+        "Generated GDC variable name": "alcohol_intensity",
+        "Ground truth GDC variable column": "alcohol_intensity"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_site_original",
+        "Generated GDC variable name": "tissue_or_organ_of_origin",
+        "Ground truth GDC variable column": "site_of_resection_or_biopsy"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_focality",
+        "Generated GDC variable name": "tumor_focality",
+        "Ground truth GDC variable column": "tumor_focality"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_size_cm",
+        "Generated GDC variable name": "tumor_thickness",
+        "Ground truth GDC variable column": "tumor_largest_dimension_diameter"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "histologic_type",
+        "Generated GDC variable name": "pathology_details",
+        "Ground truth GDC variable column": "primary_diagnosis"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "histologic_grade",
+        "Generated GDC variable name": "tumor_grade",
+        "Ground truth GDC variable column": "tumor_grade"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "patho_staging_pt",
+        "Generated GDC variable name": "ajcc_pathologic_t",
+        "Ground truth GDC variable column": "ajcc_pathologic_t"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "patho_staging_pn",
+        "Generated GDC variable name": "ajcc_pathologic_n",
+        "Ground truth GDC variable column": "ajcc_pathologic_n"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "clinic_staging_dist_metas",
+        "Generated GDC variable name": "ajcc_clinical_m",
+        "Ground truth GDC variable column": "ajcc_clinical_m"
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_stage",
+        "Generated GDC variable name": "ajcc_clinical_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Country",
+        "Generated GDC variable name": "country_of_birth",
+        "Ground truth GDC variable column": "country_of_residence_at_enrollment"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Histologic_Grade_FIGO",
+        "Generated GDC variable name": "None",
+        "Ground truth GDC variable column": "tumor_grade"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Histologic_type",
+        "Generated GDC variable name": "primary_diagnosis",
+        "Ground truth GDC variable column": "primary_diagnosis"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Primary_Tumor-pT",
+        "Generated GDC variable name": "figo_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_t"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Reg_Lymph_Nodes-pN",
+        "Generated GDC variable name": "uicc_pathologic_n",
+        "Ground truth GDC variable column": "ajcc_pathologic_n"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Clin_Stage_Dist_Mets-cM",
+        "Generated GDC variable name": "ajcc_clinical_m",
+        "Ground truth GDC variable column": "ajcc_clinical_m"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Dist_Mets-pM",
+        "Generated GDC variable name": "uicc_pathologic_m",
+        "Ground truth GDC variable column": "ajcc_pathologic_m"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "tumor_Stage-Pathological",
+        "Generated GDC variable name": "ajcc_pathologic_stage",
+        "Ground truth GDC variable column": "ajcc_pathologic_stage"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "FIGO_stage",
+        "Generated GDC variable name": "figo_stage",
+        "Ground truth GDC variable column": "figo_stage"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "BMI",
+        "Generated GDC variable name": "weight",
+        "Ground truth GDC variable column": "bmi"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Age",
+        "Generated GDC variable name": "relationship_age_at_diagnosis",
+        "Ground truth GDC variable column": "age_at_diagnosis"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Race",
+        "Generated GDC variable name": "race",
+        "Ground truth GDC variable column": "race"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Ethnicity",
+        "Generated GDC variable name": "ethnicity",
+        "Ground truth GDC variable column": "ethnicity"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Gender",
+        "Generated GDC variable name": "gender",
+        "Ground truth GDC variable column": "gender"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Site",
+        "Generated GDC variable name": "primary_site",
+        "Ground truth GDC variable column": "tissue_or_organ_of_origin"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Focality",
+        "Generated GDC variable name": "tumor_focality",
+        "Ground truth GDC variable column": "tumor_focality"
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Size_cm",
+        "Generated GDC variable name": "greatest_tumor_dimension",
+        "Ground truth GDC variable column": "tumor_largest_dimension_diameter"
+    }
+]

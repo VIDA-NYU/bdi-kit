@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/1e8a6ac23bba48e69c674df6d9a48daa/artifacts
+end_time: 1714526607205
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1e8a6ac23bba48e69c674df6d9a48daa
+run_name: skillful-hen-20
+run_uuid: 1e8a6ac23bba48e69c674df6d9a48daa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714524794824
+status: 3
+tags: []
+user_id: yl6624
