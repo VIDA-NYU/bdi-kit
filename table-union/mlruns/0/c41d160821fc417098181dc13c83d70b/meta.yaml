@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/c41d160821fc417098181dc13c83d70b/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c41d160821fc417098181dc13c83d70b
+run_name: youthful-shrike-408
+run_uuid: c41d160821fc417098181dc13c83d70b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714519940119
+status: 1
+tags: []
+user_id: yl6624

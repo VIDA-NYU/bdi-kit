@@ -1,0 +1,86 @@
+[
+    {
+        "Candidate column": "age",
+        "Target GDC variable name": "demographics"
+    },
+    {
+        "Candidate column": "sex",
+        "Target GDC variable name": "gender"
+    },
+    {
+        "Candidate column": "race",
+        "Target GDC variable name": "race"
+    },
+    {
+        "Candidate column": "participant_country",
+        "Target GDC variable name": "country_of_residence_at_enrollment"
+    },
+    {
+        "Candidate column": "tumor_site",
+        "Target GDC variable name": "primary_site"
+    },
+    {
+        "Candidate column": "tumor_focality",
+        "Target GDC variable name": "tumor_focality"
+    },
+    {
+        "Candidate column": "tumor_size_cm",
+        "Target GDC variable name": "size_extraocular_nodule"
+    },
+    {
+        "Candidate column": "lymph_vascular_invasion",
+        "Target GDC variable name": "vascular_invasion_present"
+    },
+    {
+        "Candidate column": "perineural_invasion",
+        "Target GDC variable name": "perineural_invasion_present"
+    },
+    {
+        "Candidate column": "number_of_lymph_nodes_positive_for_tumor",
+        "Target GDC variable name": "lymph_nodes_positive"
+    },
+    {
+        "Candidate column": "pathologic_staging_regional_lymph_nodes_pn",
+        "Target GDC variable name": "uicc_pathologic_n"
+    },
+    {
+        "Candidate column": "pathologic_staging_primary_tumor_pt",
+        "Target GDC variable name": "ajcc_pathologic_t"
+    },
+    {
+        "Candidate column": "pathologic_staging_distant_metastasis_pm",
+        "Target GDC variable name": "uicc_pathologic_m"
+    },
+    {
+        "Candidate column": "clinical_staging_distant_metastasis_cm",
+        "Target GDC variable name": "ajcc_clinical_m"
+    },
+    {
+        "Candidate column": "residual_tumor",
+        "Target GDC variable name": "residual_tumor"
+    },
+    {
+        "Candidate column": "tumor_stage_pathological",
+        "Target GDC variable name": "ajcc_pathologic_stage"
+    },
+    {
+        "Candidate column": "bmi",
+        "Target GDC variable name": "bmi"
+    },
+    {
+        "Candidate column": "alcohol_consumption",
+        "Target GDC variable name": "alcohol_history"
+    },
+    {
+        "Candidate column": "tobacco_smoking_history",
+        "Target GDC variable name": "tobacco_smoking_status"
+    },
+    {
+        "Candidate column": "vital_status",
+        "Target GDC variable name": "patient_status"
+    },
+    {
+        "Candidate column": "cause_of_death",
+        "Target GDC variable name": "cause_of_death"
+    }
+]

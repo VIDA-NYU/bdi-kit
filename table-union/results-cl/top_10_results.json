@@ -1,1 +1,2144 @@
-[]
+[
+    {
+        "Table name": "Krug",
+        "Candidate column": "Tumor.Stage",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "figo_stage",
+            "ajcc_clinical_stage",
+            "uicc_clinical_stage",
+            "inss_stage",
+            "iss_stage",
+            "uicc_pathologic_stage",
+            "ajcc_pathologic_stage",
+            "ann_arbor_clinical_stage",
+            "extrathyroid_extension",
+            "masaoka_stage"
+        ]
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Age.in.Month",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "total_sequences",
+            "weight",
+            "necrosis_percent",
+            "pmid",
+            "cd4_count",
+            "comorbidities",
+            "percent_necrosis",
+            "nadir_cd4_count",
+            "days_to_death",
+            "submitted_methylation_beta_values"
+        ]
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "variant_origin",
+            "ovarian_specimen_status",
+            "columnar_mucosa_present",
+            "consent_type",
+            "tumor_confined_to_organ_of_origin",
+            "satellite_nodule_present",
+            "marital_status"
+        ]
+    },
+    {
+        "Table name": "Krug",
+        "Candidate column": "Ethnicity",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "race",
+            "ethnicity",
+            "eye_color",
+            "gender",
+            "melanoma_known_primary",
+            "age_is_obfuscated",
+            "variant_origin",
+            "somatic_mutation_calling_workflows",
+            "margins_involved_site",
+            "anaplasia_present"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor/Normal",
+        "Ground truth column": "tissue_type",
+        "Top k columns": [
+            "treatment_effect",
+            "residual_tumor",
+            "history_of_tumor",
+            "treatment_outcome",
+            "treatment_effect_indicator",
+            "enneking_msts_tumor_site",
+            "greatest_tumor_dimension",
+            "analyte_type_id",
+            "tissue_type",
+            "tumor_infiltrating_lymphocytes"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "variant_origin",
+            "menopause_status",
+            "relationship_type",
+            "marital_status",
+            "demographics",
+            "ensat_clinical_m",
+            "inrg_stage"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "age_at_index",
+            "age_at_diagnosis",
+            "relationship_age_at_diagnosis",
+            "age_at_onset",
+            "days_to_birth",
+            "age_at_last_exposure",
+            "fev1_fvc_pre_bronch_percent",
+            "risk_factors",
+            "initial_weight",
+            "weight"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "BMI",
+        "Ground truth column": "bmi",
+        "Top k columns": [
+            "recist_targeted_regions_sum",
+            "average_base_quality",
+            "necrosis_percent",
+            "intermediate_dimension",
+            "percent_stromal_cells",
+            "longest_dimension",
+            "bmi",
+            "fragment_standard_deviation_length",
+            "percent_lymphocyte_infiltration",
+            "body_surface_area"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Race",
+        "Ground truth column": "race",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "variant_origin",
+            "eye_color",
+            "gender",
+            "melanoma_known_primary",
+            "relationship_type",
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "age_is_obfuscated"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Ethnicity_Self_Identify",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "demographics",
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "variant_origin",
+            "gender",
+            "relationship_type",
+            "education_level",
+            "relationship_gender"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Site",
+        "Ground truth column": "site_of_resection_or_biopsy",
+        "Top k columns": [
+            "enneking_msts_tumor_site",
+            "tumor_level_prostate",
+            "tumor_depth_descriptor",
+            "tumor_shape",
+            "distance_normal_to_tumor",
+            "laterality",
+            "enneking_msts_metastasis",
+            "zone_of_origin_prostate",
+            "tumor_depth_measurement",
+            "metastasis_at_diagnosis_site"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Size_cm",
+        "Ground truth column": "tumor_largest_dimension_diameter",
+        "Top k columns": [
+            "greatest_tumor_dimension",
+            "tumor_depth",
+            "test_value",
+            "tumor_largest_dimension_diameter",
+            "percent_eosinophil_infiltration",
+            "percent_monocyte_infiltration",
+            "imaging_suv_max",
+            "tumor_length_measurement",
+            "tumor_burden",
+            "contamination_error"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Focality",
+        "Ground truth column": "tumor_focality",
+        "Top k columns": [
+            "tumor_focality",
+            "tumor_infiltrating_lymphocytes",
+            "tumor_infiltrating_macrophages",
+            "is_ffpe",
+            "enneking_msts_tumor_site",
+            "tissue_type",
+            "extracapsular_extension",
+            "tumor_shape",
+            "extranodal_extension",
+            "non_nodal_tumor_deposits"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Histologic_Type",
+        "Ground truth column": "primary_diagnosis",
+        "Top k columns": [
+            "history_of_tumor_type",
+            "melanoma_known_primary",
+            "extrascleral_extension",
+            "papillary_renal_cell_type",
+            "clark_level",
+            "sarcomatoid_present",
+            "distributor_reference",
+            "cases",
+            "roots",
+            "diagnoses"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Grade",
+        "Ground truth column": "tumor_grade",
+        "Top k columns": [
+            "who_nte_grade",
+            "tumor_grade",
+            "tumor_grade_category",
+            "inpc_grade",
+            "gleason_grade_group",
+            "who_cns_grade",
+            "histologic_progression_type",
+            "cog_renal_stage",
+            "secondary_gleason_grade",
+            "cog_liver_stage"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Tumor_Stage_Pathological",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "ensat_pathologic_stage",
+            "ann_arbor_pathologic_stage",
+            "iss_stage",
+            "ensat_pathologic_t",
+            "ajcc_pathologic_stage",
+            "uicc_pathologic_t",
+            "cog_renal_stage",
+            "ann_arbor_clinical_stage",
+            "inss_stage",
+            "cog_liver_stage"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Path_Stage_Primary_Tumor_pT",
+        "Ground truth column": "ajcc_pathologic_t",
+        "Top k columns": [
+            "uicc_pathologic_t",
+            "ensat_pathologic_t",
+            "uicc_clinical_t",
+            "ajcc_pathologic_t",
+            "ajcc_clinical_t",
+            "ajcc_pathologic_stage",
+            "ensat_pathologic_stage",
+            "days_to_treatment_start",
+            "uicc_pathologic_stage",
+            "treatment_outcome_duration"
+        ]
+    },
+    {
+        "Table name": "Clark",
+        "Candidate column": "Path_Stage_Reg_Lymph_Nodes_pN",
+        "Ground truth column": "ajcc_pathologic_n",
+        "Top k columns": [
+            "ensat_pathologic_n",
+            "lymph_node_involvement",
+            "lymph_nodes_removed",
+            "uicc_pathologic_n",
+            "ajcc_pathologic_n",
+            "ajcc_clinical_n",
+            "uicc_clinical_n",
+            "metastasis_at_diagnosis",
+            "lymph_node_dissection_site",
+            "ann_arbor_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "weight",
+            "initial_weight",
+            "comorbidities",
+            "described_cases",
+            "age_at_diagnosis",
+            "current_weight",
+            "age_at_index",
+            "icd_10_code",
+            "cases",
+            "diagnoses"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "relationship_gender",
+            "gender",
+            "relationship_type",
+            "variant_origin",
+            "ethnicity",
+            "marital_status",
+            "biospecimen_laterality",
+            "demographics",
+            "inrg_stage",
+            "fab_morphology_code"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "PT",
+        "Ground truth column": "ajcc_pathologic_t",
+        "Top k columns": [
+            "uicc_clinical_t",
+            "ajcc_clinical_t",
+            "uicc_pathologic_t",
+            "ajcc_pathologic_t",
+            "ensat_pathologic_t",
+            "extrathyroid_extension",
+            "days_to_treatment_start",
+            "ajcc_pathologic_stage",
+            "enneking_msts_tumor_site",
+            "treatment_outcome_duration"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "PN",
+        "Ground truth column": "ajcc_pathologic_n",
+        "Top k columns": [
+            "uicc_pathologic_n",
+            "ajcc_clinical_n",
+            "ajcc_pathologic_n",
+            "uicc_clinical_n",
+            "ensat_pathologic_n",
+            "non_nodal_regional_disease",
+            "non_nodal_tumor_deposits",
+            "lymph_node_involvement",
+            "metastasis_at_diagnosis",
+            "lymph_nodes_removed"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Stage",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "iss_stage",
+            "cog_renal_stage",
+            "inss_stage",
+            "ann_arbor_clinical_stage",
+            "cog_liver_stage",
+            "ensat_pathologic_stage",
+            "ann_arbor_pathologic_stage",
+            "figo_stage",
+            "ajcc_clinical_stage",
+            "masaoka_stage"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Vascular_Invasion",
+        "Ground truth column": "vascular_invasion_present",
+        "Top k columns": [
+            "vascular_invasion_type",
+            "vascular_invasion_present",
+            "perineural_invasion_present",
+            "ovarian_specimen_status",
+            "is_legacy",
+            "id",
+            "contiguous_organ_invaded",
+            "library_strand",
+            "ovarian_surface_involvement",
+            "premature_at_birth"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Lymphatic_Invasion",
+        "Ground truth column": "lymphatic_invasion_present",
+        "Top k columns": [
+            "relationship_type",
+            "biospecimen_laterality",
+            "undescended_testis_history_laterality",
+            "ann_arbor_b_symptoms_described",
+            "ann_arbor_b_symptoms",
+            "biospecimen_anatomic_site",
+            "contiguous_organ_invaded",
+            "diagnoses",
+            "inrg_stage",
+            "cases"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Perineural_Invasion",
+        "Ground truth column": "perineural_invasion_present",
+        "Top k columns": [
+            "perineural_invasion_present",
+            "id",
+            "vascular_invasion_type",
+            "undescended_testis_history",
+            "primary_disease",
+            "vascular_invasion_present",
+            "peritoneal_washing_results",
+            "anaplasia_present",
+            "is_legacy",
+            "imaging_result"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Synchronous_Tumors",
+        "Ground truth column": "synchronous_malignancy",
+        "Top k columns": [
+            "ann_arbor_b_symptoms",
+            "classification_of_tumor",
+            "ann_arbor_b_symptoms_described",
+            "peritoneal_fluid_cytological_status",
+            "normal_tumor_genotype_snp_match",
+            "undescended_testis_history_laterality",
+            "synchronous_malignancy",
+            "undescended_testis_corrected_laterality",
+            "first_symptom_prior_to_diagnosis",
+            "biospecimen_laterality"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Vital.Status",
+        "Ground truth column": "vital_status",
+        "Top k columns": [
+            "vital_status",
+            "relative_deceased",
+            "premature_at_birth",
+            "ann_arbor_b_symptoms_described",
+            "prior_malignancy",
+            "undescended_testis_history_laterality",
+            "marital_status",
+            "alcohol_history",
+            "ann_arbor_b_symptoms",
+            "cause_of_death"
+        ]
+    },
+    {
+        "Table name": "Vasaikar",
+        "Candidate column": "Tumor.Status",
+        "Ground truth column": "last_known_disease_status",
+        "Top k columns": [
+            "tissue_type",
+            "tumor_shape",
+            "enneking_msts_tumor_site",
+            "treatment_effect",
+            "biospecimen_type",
+            "specimen_type",
+            "residual_tumor_measurement",
+            "sample_type",
+            "tumor_focality",
+            "last_known_disease_status"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Type",
+        "Ground truth column": "tissue_type",
+        "Top k columns": [
+            "enneking_msts_tumor_site",
+            "residual_tumor",
+            "tissue_type",
+            "analyte_type_id",
+            "specimen_type",
+            "treatment_effect",
+            "non_nodal_tumor_deposits",
+            "tumor_shape",
+            "biospecimen_type",
+            "test_analyte_type"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Smoking.Status",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "relative_smoker",
+            "type_of_tobacco_used",
+            "cigarettes_per_day",
+            "tobacco_smoking_status",
+            "type_of_smoke_exposure",
+            "pack_years_smoked",
+            "exposure_type",
+            "alcohol_history",
+            "oxygen_use_indicator",
+            "smoking_frequency"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "fev1_fvc_pre_bronch_percent",
+            "weight",
+            "age_at_diagnosis",
+            "age_at_index",
+            "fev1_fvc_post_bronch_percent",
+            "relationship_age_at_diagnosis",
+            "epithelioid_cell_percent",
+            "age_at_onset",
+            "initial_weight",
+            "icd_10_code"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "relationship_type",
+            "marital_status",
+            "menopause_status",
+            "variant_origin",
+            "consent_type",
+            "demographics",
+            "age_is_obfuscated"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Ethnicity",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "eye_color",
+            "gender",
+            "variant_origin",
+            "melanoma_known_primary",
+            "country_of_birth",
+            "channel",
+            "margins_involved_site",
+            "country_of_residence_at_enrollment"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Height.cm",
+        "Ground truth column": "height",
+        "Top k columns": [
+            "imaging_suv_max",
+            "blood_test_normal_range_upper",
+            "tumor_burden",
+            "height",
+            "mirna_expressions",
+            "a260_a280_ratio",
+            "blood_test_normal_range_lower",
+            "test_value",
+            "cytoband",
+            "body_surface_area"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Weight.kg",
+        "Ground truth column": "weight",
+        "Top k columns": [
+            "percent_normal_cells",
+            "fev1_fvc_post_bronch_percent",
+            "percent_follicular_component",
+            "weight",
+            "blood_test_normal_range_lower",
+            "gross_tumor_weight",
+            "percent_necrosis",
+            "epithelioid_cell_percent",
+            "initial_weight",
+            "fev1_fvc_pre_bronch_percent"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "BMI",
+        "Ground truth column": "bmi",
+        "Top k columns": [
+            "average_base_quality",
+            "cytoband",
+            "imaging_suv_max",
+            "locus",
+            "bmi",
+            "longest_dimension",
+            "tumor_burden",
+            "portions",
+            "intermediate_dimension",
+            "necrosis_percent"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Cigarettes.per.Day",
+        "Ground truth column": "cigarettes_per_day",
+        "Top k columns": [
+            "cigarettes_per_day",
+            "type_of_tobacco_used",
+            "aliquot_volume",
+            "biospecimen_volume",
+            "percent_lymphocyte_infiltration",
+            "prescribed_dose",
+            "tobacco_smoking_status",
+            "analyte_volume",
+            "pack_years_smoked",
+            "percent_stromal_cells"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Pack.Years.Smoked",
+        "Ground truth column": "pack_years_smoked",
+        "Top k columns": [
+            "gross_tumor_weight",
+            "necrosis_percent",
+            "percent_lymphocyte_infiltration",
+            "blood_test_normal_range_upper",
+            "percent_neutrophil_infiltration",
+            "fragment_standard_deviation_length",
+            "pack_years_smoked",
+            "spindle_cell_percent",
+            "blood_test_normal_range_lower",
+            "recist_targeted_regions_sum"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Smoking.History",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "tobacco_smoking_quit_year",
+            "risk_factors",
+            "years_smoked",
+            "pack_years_smoked",
+            "cigarettes_per_day",
+            "alcohol_intensity",
+            "type_of_smoke_exposure",
+            "alcohol_days_per_week"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Secondhand.Smoke",
+        "Ground truth column": "secondhand_smoke_as_child",
+        "Top k columns": [
+            "secondhand_smoke_as_child",
+            "type_of_smoke_exposure",
+            "exposure_source",
+            "exposure_type",
+            "environmental_tobacco_smoke_exposure",
+            "respirable_crystalline_silica_exposure",
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "time_between_waking_and_first_smoke",
+            "exposure_duration"
+        ]
+    },
+    {
+        "Table name": "Gillette",
+        "Candidate column": "Dominant.Histological.Subtype",
+        "Ground truth column": "primary_diagnosis",
+        "Top k columns": [
+            "biospecimen_type",
+            "max_tumor_bulk_site",
+            "disease_type",
+            "specimen_type",
+            "roots",
+            "tumor_shape",
+            "aneuploidy",
+            "margins_involved_site",
+            "papillary_renal_cell_type",
+            "tissue_type"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "age_at_index",
+            "age_at_onset",
+            "relationship_age_at_diagnosis",
+            "age_at_diagnosis",
+            "age_at_last_exposure",
+            "days_to_birth",
+            "weeks_gestation_at_birth",
+            "height",
+            "hpv_strain",
+            "initial_weight"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "consent_type",
+            "marital_status",
+            "relationship_type",
+            "pregnancy_outcome",
+            "tumor_shape",
+            "variant_origin",
+            "menopause_status"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "height",
+        "Ground truth column": "height",
+        "Top k columns": [
+            "imaging_suv_max",
+            "tumor_burden",
+            "blood_test_normal_range_upper",
+            "height",
+            "mirna_expressions",
+            "a260_a280_ratio",
+            "cytoband",
+            "portions",
+            "test_value",
+            "amount"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "weight",
+        "Ground truth column": "weight",
+        "Top k columns": [
+            "fev1_fvc_post_bronch_percent",
+            "blood_test_normal_range_lower",
+            "fev1_ref_pre_bronch_percent",
+            "percent_normal_cells",
+            "fev1_ref_post_bronch_percent",
+            "percent_follicular_component",
+            "percent_necrosis",
+            "gross_tumor_weight",
+            "blood_test_normal_range_upper",
+            "masked_methylation_arrays"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "bmi",
+        "Ground truth column": "bmi",
+        "Top k columns": [
+            "bmi",
+            "average_base_quality",
+            "longest_dimension",
+            "intermediate_dimension",
+            "portions",
+            "percent_stromal_cells",
+            "recist_targeted_regions_sum",
+            "cytoband",
+            "pmid",
+            "ribosomal_rna_28s_16s_ratio"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "country_of_origin",
+        "Ground truth column": "country_of_residence_at_enrollment",
+        "Top k columns": [
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "zone_of_origin_prostate",
+            "extracapsular_extension",
+            "race",
+            "tumor_confined_to_organ_of_origin",
+            "biospecimen_laterality",
+            "ovarian_specimen_status",
+            "ethnicity",
+            "papillary_renal_cell_type"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "race",
+        "Ground truth column": "race",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "variant_origin",
+            "gender",
+            "melanoma_known_primary",
+            "chromosome_arm",
+            "ensat_pathologic_n",
+            "eye_color",
+            "channel",
+            "relationship_type"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "ethnicity",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "gender",
+            "variant_origin",
+            "country_of_birth",
+            "relationship_gender",
+            "country_of_residence_at_enrollment",
+            "age_is_obfuscated",
+            "demographics",
+            "relationship_type"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "smoking_history",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "years_smoked",
+            "risk_factors",
+            "tobacco_smoking_quit_year",
+            "pack_years_smoked",
+            "cigarettes_per_day",
+            "demographics",
+            "type_of_smoke_exposure",
+            "tobacco_smoking_onset_year"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "secondhand_smoke_exposure",
+        "Ground truth column": "secondhand_smoke_as_child",
+        "Top k columns": [
+            "secondhand_smoke_as_child",
+            "exposure_source",
+            "environmental_tobacco_smoke_exposure",
+            "type_of_smoke_exposure",
+            "exposure_type",
+            "respirable_crystalline_silica_exposure",
+            "smoking_frequency",
+            "tobacco_smoking_status",
+            "years_smoked",
+            "time_between_waking_and_first_smoke"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_laterality",
+        "Ground truth column": "biospecimen_laterality",
+        "Top k columns": [
+            "laterality",
+            "biospecimen_laterality",
+            "undescended_testis_corrected_laterality",
+            "lymph_node_dissection_site",
+            "zone_of_origin_prostate",
+            "tumor_focality",
+            "tumor_confined_to_organ_of_origin",
+            "distance_normal_to_tumor",
+            "variant_type",
+            "structural_variations"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_site_curated",
+        "Ground truth column": "site_of_resection_or_biopsy",
+        "Top k columns": [
+            "tumor_level_prostate",
+            "site_of_resection_or_biopsy",
+            "supratentorial_localization",
+            "lymph_node_involved_site",
+            "progression_or_recurrence_anatomic_site",
+            "metastasis_at_diagnosis_site",
+            "tissue_or_organ_of_origin",
+            "pediatric_kidney_staging",
+            "max_tumor_bulk_site",
+            "section_location"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "vital_status",
+        "Ground truth column": "vital_status",
+        "Top k columns": [
+            "relative_deceased",
+            "vital_status",
+            "released",
+            "cause_of_death_source",
+            "is_legacy",
+            "releasable",
+            "relative_with_cancer_history",
+            "days_to_death",
+            "release_requested",
+            "necrosis_present"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_last_contact_days",
+        "Ground truth column": "days_to_last_follow_up",
+        "Top k columns": [
+            "gross_tumor_weight",
+            "necrosis_percent",
+            "blood_test_normal_range_lower",
+            "percent_necrosis",
+            "total_sequences",
+            "masked_methylation_arrays",
+            "library_preparation_kit_catalog_number",
+            "current_weight",
+            "transcript",
+            "weight"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_death_days",
+        "Ground truth column": "days_to_death",
+        "Top k columns": [
+            "necrosis_percent",
+            "percent_necrosis",
+            "gross_tumor_weight",
+            "comorbidities",
+            "days_to_death",
+            "weight",
+            "total_sequences",
+            "transcript",
+            "pmid",
+            "blood_test_normal_range_lower"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "cause_of_death",
+        "Ground truth column": "cause_of_death",
+        "Top k columns": [
+            "comorbidities",
+            "comorbidity",
+            "additional_pathology_findings",
+            "relationship_primary_diagnosis",
+            "tumor_code",
+            "icd_10_code",
+            "pediatric_kidney_staging",
+            "cause_of_death",
+            "icd_10",
+            "adverse_event"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "tumor_reoccur_after_treatment",
+        "Ground truth column": "progression_or_recurrence",
+        "Top k columns": [
+            "treatment_or_therapy",
+            "residual_tumor",
+            "treatment_outcome_duration",
+            "treatment_effect",
+            "treatment_effect_indicator",
+            "haart_treatment_indicator",
+            "treatment_duration",
+            "last_known_disease_status",
+            "residual_tumor_measurement",
+            "history_of_tumor"
+        ]
+    },
+    {
+        "Table name": "Wang",
+        "Candidate column": "path_diag_to_tumor_reoccur_days",
+        "Ground truth column": "days_to_recurrence",
+        "Top k columns": [
+            "necrosis_percent",
+            "percent_necrosis",
+            "cd4_count",
+            "nadir_cd4_count",
+            "total_sequences",
+            "gross_tumor_weight",
+            "recist_targeted_regions_sum",
+            "dbgap_accession_number",
+            "size_selection_range",
+            "catalog_reference"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Type",
+        "Ground truth column": "tissue_type",
+        "Top k columns": [
+            "analyte_type_id",
+            "residual_tumor",
+            "tissue_type",
+            "enneking_msts_tumor_site",
+            "non_nodal_tumor_deposits",
+            "history_of_tumor",
+            "test_analyte_type",
+            "normal_tumor_genotype_snp_match",
+            "treatment_effect",
+            "specimen_type"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Smoking.History",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "risk_factors",
+            "years_smoked",
+            "pack_years_smoked",
+            "tobacco_smoking_quit_year",
+            "cigarettes_per_day",
+            "type_of_smoke_exposure",
+            "type_of_tobacco_used",
+            "demographics"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Stage",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "figo_stage",
+            "ajcc_clinical_stage",
+            "inss_stage",
+            "uicc_pathologic_stage",
+            "uicc_clinical_stage",
+            "irs_group",
+            "enneking_msts_stage",
+            "iss_stage",
+            "ajcc_pathologic_stage",
+            "ann_arbor_clinical_stage"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Country.of.Origin",
+        "Ground truth column": "country_of_residence_at_enrollment",
+        "Top k columns": [
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "race",
+            "zone_of_origin_prostate",
+            "ethnicity",
+            "extracapsular_extension",
+            "biospecimen_laterality",
+            "variant_origin",
+            "enneking_msts_metastasis",
+            "library_strand"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "age_at_index",
+            "relationship_age_at_diagnosis",
+            "age_at_onset",
+            "age_at_diagnosis",
+            "age_at_last_exposure",
+            "days_to_birth",
+            "fev1_fvc_pre_bronch_percent",
+            "age_is_obfuscated",
+            "risk_factors",
+            "demographics"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "marital_status",
+            "variant_origin",
+            "menopause_status",
+            "consent_type",
+            "pregnancy_outcome",
+            "columnar_mucosa_present",
+            "ovarian_specimen_status"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Ethnicity",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "gender",
+            "eye_color",
+            "variant_origin",
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "relationship_gender",
+            "margins_involved_site",
+            "primary_site"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Cigarettes.per.Day",
+        "Ground truth column": "cigarettes_per_day",
+        "Top k columns": [
+            "cigarettes_per_day",
+            "type_of_tobacco_used",
+            "tobacco_smoking_status",
+            "pack_years_smoked",
+            "years_smoked",
+            "prescribed_dose",
+            "tobacco_smoking_quit_year",
+            "aliquot_volume",
+            "alcohol_days_per_week",
+            "smoking_frequency"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Pack.Years.Smoked",
+        "Ground truth column": "pack_years_smoked",
+        "Top k columns": [
+            "percent_necrosis",
+            "blood_test_normal_range_lower",
+            "necrosis_percent",
+            "gross_tumor_weight",
+            "epithelioid_cell_percent",
+            "percent_tumor_invasion",
+            "percent_normal_cells",
+            "pack_years_smoked",
+            "percent_follicular_component",
+            "total_sequences"
+        ]
+    },
+    {
+        "Table name": "Satpathy",
+        "Candidate column": "Secondhand.Smoke",
+        "Ground truth column": "secondhand_smoke_as_child",
+        "Top k columns": [
+            "type_of_smoke_exposure",
+            "exposure_type",
+            "secondhand_smoke_as_child",
+            "exposure_source",
+            "environmental_tobacco_smoke_exposure",
+            "type_of_tobacco_used",
+            "relative_smoker",
+            "time_between_waking_and_first_smoke",
+            "smoking_frequency",
+            "tobacco_smoking_status"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "age_at_index",
+            "relationship_age_at_diagnosis",
+            "age_at_onset",
+            "age_at_diagnosis",
+            "age_at_last_exposure",
+            "days_to_birth",
+            "age_is_obfuscated",
+            "risk_factors",
+            "icd_10_code",
+            "demographics"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "sex",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "marital_status",
+            "ethnicity",
+            "menopause_status",
+            "pregnancy_outcome",
+            "relationship_type",
+            "consent_type",
+            "pregnant_at_diagnosis",
+            "variant_origin"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "race",
+        "Ground truth column": "race",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "eye_color",
+            "variant_origin",
+            "gender",
+            "relationship_type",
+            "melanoma_known_primary",
+            "age_is_obfuscated",
+            "channel",
+            "country_of_birth"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "participant_country",
+        "Ground truth column": "country_of_residence_at_enrollment",
+        "Top k columns": [
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "zone_of_origin_prostate",
+            "race",
+            "relationship_type",
+            "creator",
+            "tumor_confined_to_organ_of_origin",
+            "biospecimen_laterality",
+            "extracapsular_extension",
+            "library_strand"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_site",
+        "Ground truth column": "site_of_resection_or_biopsy",
+        "Top k columns": [
+            "non_nodal_tumor_deposits",
+            "satellite_nodule_present",
+            "tumor_focality",
+            "tumor_shape",
+            "extranodal_extension",
+            "zone_of_origin_prostate",
+            "enneking_msts_tumor_site",
+            "distance_normal_to_tumor",
+            "tumor_confined_to_organ_of_origin",
+            "residual_tumor_measurement"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_focality",
+        "Ground truth column": "tumor_focality",
+        "Top k columns": [
+            "tumor_focality",
+            "tumor_infiltrating_macrophages",
+            "extracapsular_extension",
+            "tumor_shape",
+            "tumor_ploidy",
+            "extranodal_extension",
+            "tumor_infiltrating_lymphocytes",
+            "is_ffpe",
+            "measurement_unit",
+            "tumor_confined_to_organ_of_origin"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_size_cm",
+        "Ground truth column": "tumor_largest_dimension_diameter",
+        "Top k columns": [
+            "size_extraocular_nodule",
+            "workflow_version",
+            "schema_version",
+            "breslow_thickness",
+            "analyte_quantity",
+            "shortest_dimension",
+            "imaging_suv",
+            "circumferential_resection_margin",
+            "tumor_thickness",
+            "average_insert_size"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "lymph_vascular_invasion",
+        "Ground truth column": "vascular_invasion_present",
+        "Top k columns": [
+            "vascular_invasion_present",
+            "vascular_invasion_type",
+            "lymphatic_invasion_present",
+            "hepatitis_sustained_virological_response",
+            "is_legacy",
+            "perineural_invasion_present",
+            "lymph_node_involvement",
+            "released",
+            "oxygen_use_indicator",
+            "releasable"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "perineural_invasion",
+        "Ground truth column": "perineural_invasion_present",
+        "Top k columns": [
+            "perineural_invasion_present",
+            "lymphatic_invasion_present",
+            "lymph_node_involvement",
+            "vascular_invasion_present",
+            "id",
+            "primary_disease",
+            "is_legacy",
+            "peripancreatic_lymph_nodes_positive",
+            "peritoneal_washing_results",
+            "non_nodal_regional_disease"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "number_of_lymph_nodes_positive_for_tumor",
+        "Ground truth column": "lymph_nodes_positive",
+        "Top k columns": [
+            "lymph_nodes_positive",
+            "tumor_length_measurement",
+            "greatest_tumor_dimension",
+            "lymph_nodes_tested",
+            "imaging_suv_max",
+            "percent_monocyte_infiltration",
+            "cytoband",
+            "percent_tumor_nuclei",
+            "tumor_largest_dimension_diameter",
+            "percent_eosinophil_infiltration"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_regional_lymph_nodes_pn",
+        "Ground truth column": "ajcc_pathologic_n",
+        "Top k columns": [
+            "ensat_pathologic_n",
+            "uicc_pathologic_n",
+            "peripancreatic_lymph_nodes_positive",
+            "lymph_node_involvement",
+            "lymph_nodes_removed",
+            "uicc_clinical_n",
+            "ajcc_clinical_n",
+            "lymph_nodes_positive",
+            "lymph_nodes_tested",
+            "ajcc_pathologic_n"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_primary_tumor_pt",
+        "Ground truth column": "ajcc_pathologic_t",
+        "Top k columns": [
+            "uicc_pathologic_t",
+            "uicc_clinical_t",
+            "ajcc_clinical_t",
+            "ajcc_pathologic_t",
+            "ensat_pathologic_t",
+            "clinical_trial_indicator",
+            "days_to_treatment_start",
+            "extrathyroid_extension",
+            "treatment_or_therapy",
+            "history_of_tumor"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "pathologic_staging_distant_metastasis_pm",
+        "Ground truth column": "ajcc_pathologic_m",
+        "Top k columns": [
+            "ensat_clinical_m",
+            "uicc_pathologic_m",
+            "enneking_msts_metastasis",
+            "ajcc_pathologic_m",
+            "uicc_clinical_m",
+            "ajcc_clinical_m",
+            "micrometastasis_present",
+            "double_hit_lymphoma",
+            "mitotic_count",
+            "fab_morphology_code"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "clinical_staging_distant_metastasis_cm",
+        "Ground truth column": "ajcc_clinical_m",
+        "Top k columns": [
+            "uicc_pathologic_m",
+            "uicc_clinical_m",
+            "ajcc_pathologic_m",
+            "ajcc_clinical_m",
+            "ensat_clinical_m",
+            "enneking_msts_metastasis",
+            "fab_morphology_code",
+            "mitotic_count",
+            "masaoka_stage",
+            "micrometastasis_present"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "residual_tumor",
+        "Ground truth column": "residual_disease",
+        "Top k columns": [
+            "residual_tumor",
+            "residual_disease",
+            "read_pair_number",
+            "tumor_regression_grade",
+            "disease_response",
+            "submitted_aligned_reads_files",
+            "tissue_type",
+            "tissue_collection_type",
+            "largest_extrapelvic_peritoneal_focus",
+            "tumor_depth_descriptor"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tumor_stage_pathological",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "uicc_pathologic_stage",
+            "ajcc_pathologic_stage",
+            "figo_stage",
+            "uicc_clinical_stage",
+            "ajcc_clinical_stage",
+            "ensat_pathologic_stage",
+            "cog_renal_stage",
+            "inss_stage",
+            "irs_group",
+            "iss_stage"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "bmi",
+        "Ground truth column": "bmi",
+        "Top k columns": [
+            "bmi",
+            "average_base_quality",
+            "intermediate_dimension",
+            "longest_dimension",
+            "recist_targeted_regions_sum",
+            "percent_stromal_cells",
+            "portions",
+            "body_surface_area",
+            "intended_release_date",
+            "cytoband"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "alcohol_consumption",
+        "Ground truth column": "alcohol_intensity",
+        "Top k columns": [
+            "alcohol_frequency",
+            "alcohol_drinks_per_day",
+            "alcohol_intensity",
+            "alcohol_days_per_week",
+            "alcohol_history",
+            "alcohol_type",
+            "prescribed_dose",
+            "tobacco_smoking_status",
+            "cigarettes_per_day",
+            "current_weight"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "tobacco_smoking_history",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "smoking_frequency",
+            "tobacco_smoking_status",
+            "years_smoked",
+            "pack_years_smoked",
+            "tobacco_smoking_quit_year",
+            "risk_factors",
+            "cigarettes_per_day",
+            "type_of_smoke_exposure",
+            "relative_with_cancer_history",
+            "type_of_tobacco_used"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "vital_status",
+        "Ground truth column": "vital_status",
+        "Top k columns": [
+            "relative_deceased",
+            "vital_status",
+            "cause_of_death_source",
+            "released",
+            "days_to_death",
+            "premature_at_birth",
+            "days_to_last_known_disease_status",
+            "first_symptom_longest_duration",
+            "consent_type",
+            "first_event"
+        ]
+    },
+    {
+        "Table name": "Cao",
+        "Candidate column": "cause_of_death",
+        "Ground truth column": "cause_of_death",
+        "Top k columns": [
+            "comorbidities",
+            "comorbidity",
+            "icd_10_code",
+            "icd_10",
+            "described_cases",
+            "cause_of_death",
+            "cases",
+            "tumor_code",
+            "pathology_details",
+            "family_histories"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "age_at_index",
+            "age_at_onset",
+            "age_at_diagnosis",
+            "relationship_age_at_diagnosis",
+            "age_at_last_exposure",
+            "days_to_birth",
+            "age_is_obfuscated",
+            "risk_factors",
+            "demographics",
+            "height"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "ethnicity",
+            "variant_origin",
+            "relationship_type",
+            "tumor_shape",
+            "consent_type",
+            "marital_status",
+            "age_is_obfuscated",
+            "menopause_status"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "country",
+        "Ground truth column": "country_of_residence_at_enrollment",
+        "Top k columns": [
+            "country_of_birth",
+            "country_of_residence_at_enrollment",
+            "zone_of_origin_prostate",
+            "spindle_cell_percent",
+            "extracapsular_extension",
+            "race",
+            "tumor_confined_to_organ_of_origin",
+            "tissue_source_sites",
+            "size_selection_range",
+            "ovarian_surface_involvement"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoking_history",
+        "Ground truth column": "tobacco_smoking_status",
+        "Top k columns": [
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "tobacco_smoking_quit_year",
+            "years_smoked",
+            "risk_factors",
+            "pack_years_smoked",
+            "cigarettes_per_day",
+            "alcohol_intensity",
+            "type_of_smoke_exposure",
+            "tobacco_smoking_onset_year"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoke_age_start",
+        "Ground truth column": "tobacco_smoking_onset_year",
+        "Top k columns": [
+            "age_is_obfuscated",
+            "age_at_last_exposure",
+            "age_at_diagnosis",
+            "relationship_age_at_diagnosis",
+            "age_at_onset",
+            "days_to_risk_factor",
+            "years_smoked",
+            "age_at_index",
+            "days_to_birth",
+            "tobacco_smoking_status"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoke_age_stop",
+        "Ground truth column": "tobacco_smoking_quit_year",
+        "Top k columns": [
+            "years_smoked",
+            "pack_years_smoked",
+            "tobacco_smoking_status",
+            "smoking_frequency",
+            "exposure_duration_years",
+            "relationship_age_at_diagnosis",
+            "days_to_last_known_disease_status",
+            "type_of_smoke_exposure",
+            "days_to_risk_factor",
+            "risk_factors"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "num_smoke_per_day",
+        "Ground truth column": "pack_years_smoked",
+        "Top k columns": [
+            "years_smoked",
+            "cigarettes_per_day",
+            "pack_years_smoked",
+            "smoking_frequency",
+            "tobacco_smoking_status",
+            "cell_count",
+            "percent_stromal_cells",
+            "relative_smoker",
+            "exposure_duration_hrs_per_day",
+            "percent_lymphocyte_infiltration"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "smoking_second_hand",
+        "Ground truth column": "secondhand_smoke_as_child",
+        "Top k columns": [
+            "smoking_frequency",
+            "tobacco_smoking_status",
+            "type_of_smoke_exposure",
+            "exposure_type",
+            "type_of_tobacco_used",
+            "secondhand_smoke_as_child",
+            "environmental_tobacco_smoke_exposure",
+            "exposure_source",
+            "cigarettes_per_day",
+            "time_between_waking_and_first_smoke"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "alcohol_consum",
+        "Ground truth column": "alcohol_intensity",
+        "Top k columns": [
+            "alcohol_intensity",
+            "alcohol_frequency",
+            "alcohol_drinks_per_day",
+            "alcohol_days_per_week",
+            "alcohol_history",
+            "alcohol_type",
+            "demographics",
+            "tobacco_smoking_status",
+            "risk_factors",
+            "current_weight"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_site_original",
+        "Ground truth column": "site_of_resection_or_biopsy",
+        "Top k columns": [
+            "tissue_or_organ_of_origin",
+            "treatment_anatomic_sites",
+            "section_location",
+            "primary_site",
+            "site_of_resection_or_biopsy",
+            "progression_or_recurrence_anatomic_site",
+            "tissue_source_sites",
+            "sites_of_involvement",
+            "tumor_depth_descriptor",
+            "imaging_anatomic_site"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_focality",
+        "Ground truth column": "tumor_focality",
+        "Top k columns": [
+            "tumor_focality",
+            "extracapsular_extension",
+            "tumor_shape",
+            "tumor_confined_to_organ_of_origin",
+            "zone_of_origin_prostate",
+            "extranodal_extension",
+            "is_ffpe",
+            "tumor_ploidy",
+            "tumor_infiltrating_macrophages",
+            "tissue_type"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_size_cm",
+        "Ground truth column": "tumor_largest_dimension_diameter",
+        "Top k columns": [
+            "size_extraocular_nodule",
+            "shortest_dimension",
+            "breslow_thickness",
+            "intermediate_dimension",
+            "size_selection_range",
+            "recist_targeted_regions_sum",
+            "analyte_quantity",
+            "inss_stage",
+            "spindle_cell_percent",
+            "average_insert_size"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "histologic_type",
+        "Ground truth column": "primary_diagnosis",
+        "Top k columns": [
+            "roots",
+            "disease_type",
+            "pathology_details",
+            "history_of_tumor_type",
+            "described_cases",
+            "pathology_reports",
+            "analytes",
+            "cases",
+            "diagnoses",
+            "scan_tracer_used"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "histologic_grade",
+        "Ground truth column": "tumor_grade",
+        "Top k columns": [
+            "histologic_progression_type",
+            "who_nte_grade",
+            "inpc_grade",
+            "tumor_grade",
+            "tumor_grade_category",
+            "secondary_gleason_grade",
+            "enneking_msts_grade",
+            "inpc_histologic_group",
+            "data_type",
+            "igcccg_stage"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "patho_staging_pt",
+        "Ground truth column": "ajcc_pathologic_t",
+        "Top k columns": [
+            "uicc_pathologic_t",
+            "ensat_pathologic_t",
+            "uicc_clinical_t",
+            "ajcc_pathologic_t",
+            "ajcc_clinical_t",
+            "days_to_treatment_start",
+            "ajcc_pathologic_stage",
+            "extrathyroid_extension",
+            "enneking_msts_tumor_site",
+            "ensat_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "patho_staging_pn",
+        "Ground truth column": "ajcc_pathologic_n",
+        "Top k columns": [
+            "uicc_pathologic_n",
+            "ajcc_pathologic_n",
+            "uicc_clinical_n",
+            "ajcc_clinical_n",
+            "peripancreatic_lymph_nodes_positive",
+            "ensat_pathologic_n",
+            "lymph_node_involvement",
+            "lymph_nodes_positive",
+            "ajcc_pathologic_stage",
+            "uicc_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "clinic_staging_dist_metas",
+        "Ground truth column": "ajcc_clinical_m",
+        "Top k columns": [
+            "ajcc_clinical_m",
+            "ajcc_pathologic_m",
+            "uicc_clinical_m",
+            "ensat_clinical_m",
+            "uicc_pathologic_m",
+            "enneking_msts_metastasis",
+            "fab_morphology_code",
+            "read_group_qcs",
+            "inrg_stage",
+            "enneking_msts_stage"
+        ]
+    },
+    {
+        "Table name": "Huang",
+        "Candidate column": "tumor_stage",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "iss_stage",
+            "cog_renal_stage",
+            "ensat_pathologic_stage",
+            "cog_liver_stage",
+            "inss_stage",
+            "ann_arbor_pathologic_stage",
+            "ann_arbor_clinical_stage",
+            "figo_stage",
+            "masaoka_stage",
+            "ajcc_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Country",
+        "Ground truth column": "country_of_residence_at_enrollment",
+        "Top k columns": [
+            "country_of_birth",
+            "zone_of_origin_prostate",
+            "country_of_residence_at_enrollment",
+            "tumor_confined_to_organ_of_origin",
+            "ethnicity",
+            "lymph_nodes_removed",
+            "lymph_node_dissection_site",
+            "variant_origin",
+            "lymph_node_involvement",
+            "submission_enabled"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Histologic_Grade_FIGO",
+        "Ground truth column": "tumor_grade",
+        "Top k columns": [
+            "who_nte_grade",
+            "histologic_progression_type",
+            "tumor_grade_category",
+            "tumor_grade",
+            "inpc_grade",
+            "gleason_grade_group",
+            "primary_gleason_grade",
+            "secondary_gleason_grade",
+            "measurement_type",
+            "tumor_regression_grade"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Histologic_type",
+        "Ground truth column": "primary_diagnosis",
+        "Top k columns": [
+            "history_of_tumor_type",
+            "specimen_type",
+            "roots",
+            "measurement_type",
+            "margins_involved_site",
+            "hysterectomy_margins_involved",
+            "hysterectomy_type",
+            "aneuploidy",
+            "composition",
+            "stain_type"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Primary_Tumor-pT",
+        "Ground truth column": "ajcc_pathologic_t",
+        "Top k columns": [
+            "uicc_pathologic_t",
+            "uicc_clinical_t",
+            "ajcc_pathologic_t",
+            "ajcc_pathologic_stage",
+            "ensat_pathologic_t",
+            "ajcc_clinical_t",
+            "uicc_pathologic_stage",
+            "extrathyroid_extension",
+            "uicc_clinical_stage",
+            "ajcc_clinical_stage"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Reg_Lymph_Nodes-pN",
+        "Ground truth column": "ajcc_pathologic_n",
+        "Top k columns": [
+            "uicc_pathologic_n",
+            "ajcc_pathologic_stage",
+            "ajcc_pathologic_n",
+            "uicc_clinical_n",
+            "ajcc_clinical_n",
+            "simple_germline_variations",
+            "uicc_pathologic_stage",
+            "ann_arbor_pathologic_stage",
+            "ensat_pathologic_t",
+            "ensat_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Clin_Stage_Dist_Mets-cM",
+        "Ground truth column": "ajcc_clinical_m",
+        "Top k columns": [
+            "ajcc_clinical_m",
+            "ajcc_pathologic_m",
+            "uicc_clinical_m",
+            "uicc_pathologic_m",
+            "ensat_clinical_m",
+            "fab_morphology_code",
+            "enneking_msts_metastasis",
+            "inrg_stage",
+            "enneking_msts_stage",
+            "molecular_consequence"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Path_Stage_Dist_Mets-pM",
+        "Ground truth column": "ajcc_pathologic_m",
+        "Top k columns": [
+            "enneking_msts_metastasis",
+            "ajcc_pathologic_m",
+            "uicc_pathologic_m",
+            "ensat_clinical_m",
+            "uicc_clinical_m",
+            "metastasis_at_diagnosis",
+            "ajcc_clinical_m",
+            "fab_morphology_code",
+            "inrg_stage",
+            "enneking_msts_tumor_site"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "tumor_Stage-Pathological",
+        "Ground truth column": "ajcc_pathologic_stage",
+        "Top k columns": [
+            "ensat_pathologic_stage",
+            "iss_stage",
+            "ann_arbor_pathologic_stage",
+            "cog_renal_stage",
+            "ann_arbor_clinical_stage",
+            "ajcc_pathologic_stage",
+            "inss_stage",
+            "cog_liver_stage",
+            "masaoka_stage",
+            "uicc_pathologic_stage"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "FIGO_stage",
+        "Ground truth column": "figo_stage",
+        "Top k columns": [
+            "figo_stage",
+            "uicc_clinical_stage",
+            "uicc_pathologic_stage",
+            "ajcc_clinical_stage",
+            "irs_group",
+            "inss_stage",
+            "iss_stage",
+            "ajcc_pathologic_stage",
+            "cog_liver_stage",
+            "single_cell_library"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "BMI",
+        "Ground truth column": "bmi",
+        "Top k columns": [
+            "fragment_standard_deviation_length",
+            "recist_targeted_regions_sum",
+            "necrosis_percent",
+            "gross_tumor_weight",
+            "percent_neutrophil_infiltration",
+            "percent_lymphocyte_infiltration",
+            "intermediate_dimension",
+            "average_base_quality",
+            "weight",
+            "total_sequences"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Age",
+        "Ground truth column": "age_at_diagnosis",
+        "Top k columns": [
+            "fev1_fvc_post_bronch_percent",
+            "epithelioid_cell_percent",
+            "fev1_fvc_pre_bronch_percent",
+            "percent_tumor_invasion",
+            "percent_follicular_component",
+            "weight",
+            "initial_weight",
+            "fragment_standard_deviation_length",
+            "gross_tumor_weight",
+            "age_at_index"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Race",
+        "Ground truth column": "race",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "variant_origin",
+            "country_of_birth",
+            "gender",
+            "age_is_obfuscated",
+            "relationship_type",
+            "demographics",
+            "country_of_residence_at_enrollment",
+            "eye_color"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Ethnicity",
+        "Ground truth column": "ethnicity",
+        "Top k columns": [
+            "ethnicity",
+            "race",
+            "variant_origin",
+            "gender",
+            "demographics",
+            "relationship_gender",
+            "age_at_last_exposure",
+            "age_is_obfuscated",
+            "country_of_birth",
+            "relationship_type"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Gender",
+        "Ground truth column": "gender",
+        "Top k columns": [
+            "gender",
+            "relationship_gender",
+            "variant_origin",
+            "tumor_confined_to_organ_of_origin",
+            "ethnicity",
+            "relationship_type",
+            "ovarian_specimen_status",
+            "marital_status",
+            "pregnancy_outcome",
+            "biospecimen_laterality"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Site",
+        "Ground truth column": "tissue_or_organ_of_origin",
+        "Top k columns": [
+            "margins_involved_site",
+            "supratentorial_localization",
+            "morphologic_architectural_pattern",
+            "primary_site",
+            "composition",
+            "site_of_resection_or_biopsy",
+            "biospecimen_type",
+            "dysplasia_type",
+            "tissue_type",
+            "gleason_grade_tertiary"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Focality",
+        "Ground truth column": "tumor_focality",
+        "Top k columns": [
+            "tumor_focality",
+            "extracapsular_extension",
+            "tumor_shape",
+            "extranodal_extension",
+            "is_ffpe",
+            "tissue_type",
+            "tumor_infiltrating_lymphocytes",
+            "enneking_msts_tumor_site",
+            "tumor_infiltrating_macrophages",
+            "zone_of_origin_prostate"
+        ]
+    },
+    {
+        "Table name": "Dou",
+        "Candidate column": "Tumor_Size_cm",
+        "Ground truth column": "tumor_largest_dimension_diameter",
+        "Top k columns": [
+            "tumor_depth",
+            "rin",
+            "test_value",
+            "msi_score",
+            "greatest_tumor_dimension",
+            "percent_eosinophil_infiltration",
+            "contamination_error",
+            "imaging_suv",
+            "tumor_depth_measurement",
+            "tumor_width_measurement"
+        ]
+    }
+]

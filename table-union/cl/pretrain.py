@@ -248,113 +248,6 @@ def load_checkpoint(ckpt):
     return model, dataset
 
 
-# def evaluate_pretrain(model: BarlowTwinsSimCLR,
-#                       unlabeled: PretrainTableDataset):
-#     """Evaluate pre-trained model.
-
-#     Args:
-#         model (BarlowTwinsSimCLR): the model to be evaluated
-#         unlabeled (PretrainTableDataset): the unlabeled dataset
-
-#     Returns:
-#         Dict: the dictionary of metrics (e.g., valid_f1)
-#     """
-#     table_path = 'data/%s/tables' % model.hp.task
-
-#     # encode each dataset
-#     featurized_datasets = []
-#     for dataset in ["train", "valid", "test"]:
-#         ds_path = 'data/%s/%s.csv' % (model.hp.task, dataset)
-#         ds = pd.read_csv(ds_path)
-
-#         def encode_tables(table_ids, column_ids):
-#             tables = []
-#             for table_id, col_id in zip(table_ids, column_ids):
-#                 table = pd.read_csv(os.path.join(table_path, \
-#                                     "table_%d.csv" % table_id))
-#                 if model.hp.single_column:
-#                     table = table[[table.columns[col_id]]]
-#                 tables.append(table)
-#             vectors = inference_on_tables(tables, model, unlabeled,
-#                                           batch_size=128)
-
-#             # assert all columns exist
-#             for vec, table in zip(vectors, tables):
-#                 assert len(vec) == len(table.columns)
-
-#             res = []
-#             for vec, cid in zip(vectors, column_ids):
-#                 if cid < len(vec):
-#                     res.append(vec[cid])
-#                 else:
-#                     # single column
-#                     res.append(vec[-1])
-#             return res
-
-#         # left tables
-#         l_features = encode_tables(ds['l_table_id'], ds['l_column_id'])
-
-#         # right tables
-#         r_features = encode_tables(ds['r_table_id'], ds['r_column_id'])
-
-#         features = []
-#         Y = ds['match']
-#         for l, r in zip(l_features, r_features):
-#             feat = np.concatenate((l, r, np.abs(l - r)))
-#             features.append(feat)
-
-#         featurized_datasets.append((features, Y))
-
-#     train, valid, test = featurized_datasets
-#     return evaluate_column_matching(train, valid, test)
-
-
-# def evaluate_column_clustering(model: BarlowTwinsSimCLR,
-#                                unlabeled: PretrainTableDataset):
-#     """Evaluate pre-trained model on a column clustering dataset.
-
-#     Args:
-#         model (BarlowTwinsSimCLR): the model to be evaluated
-#         unlabeled (PretrainTableDataset): the unlabeled dataset
-
-#     Returns:
-#         Dict: the dictionary of metrics (e.g., purity, number of clusters)
-#     """
-#     table_path = 'data/%s/tables' % model.hp.task
-
-#     # encode each dataset
-#     featurized_datasets = []
-#     ds_path = 'data/%s/test.csv' % model.hp.task
-#     ds = pd.read_csv(ds_path)
-#     table_ids, column_ids = ds['table_id'], ds['column_id']
-
-#     # encode all tables
-#     def table_iter():
-#         for table_id, col_id in zip(table_ids, column_ids):
-#             table = pd.read_csv(os.path.join(table_path, \
-#                                 "table_%d.csv" % table_id))
-#             if model.hp.single_column:
-#                 table = table[[table.columns[col_id]]]
-#             yield table
-
-#     vectors = inference_on_tables(table_iter(), model, unlabeled,
-#                                     batch_size=128, total=len(table_ids))
-
-#     # # assert all columns exist
-#     # for vec, table in zip(vectors, tables):
-#     #     assert len(vec) == len(table.columns)
-
-#     column_vectors = []
-#     for vec, cid in zip(vectors, column_ids):
-#         if cid < len(vec):
-#             column_vectors.append(vec[cid])
-#         else:
-#             # single column
-#             column_vectors.append(vec[-1])
-
-#     return evaluate_clustering(column_vectors, ds['class'])
-
-
 # ----------------------------- Evaluation for ARPA dataset ----------------------------------
 def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
                            unlabeled: PretrainTableDataset,
@@ -411,29 +304,31 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
             all_r_features = encode_tables(gdc_ds['l_table_id'], gdc_ds['l_column_id'])
             gt_column_ids = gdc_ds['l_column_id']
         
-        precision, top_k_results = evaluate_schema_matching(l_features, r_features, all_r_features, k, ds['l_column_id'], ds['r_column_id'], gt_column_ids)
+        precision, top_k_results = evaluate_schema_matching(l_features, r_features, all_r_features, k, ds['l_column_id'], ds['r_column_id'], gt_column_ids, ds['l_table_id'])
         
         if dataset == "test" and best_precision < precision:
-            embeddings_directory = '../../gdc_embeddings'
-            os.makedirs(embeddings_directory, exist_ok=True)
-            for i, embedding in enumerate(r_features):
-                np.save(os.path.join(embeddings_directory, f'{i}.npy'), embedding)
             results.extend(top_k_results)
-        
+            
+            if hp.gpt:
+                results_path = f'top_{k}_results.json'
+            else:
+                results_path = f'top_{k}_starmie_results.json'
+                
+            with open(results_path, 'w') as file:
+                json.dump(results, file, indent=4)
+            
+            if hp.save_model:
+                embeddings_directory = '../../gdc_embeddings'
+                os.makedirs(embeddings_directory, exist_ok=True)
+                for i, embedding in enumerate(r_features):
+                    np.save(os.path.join(embeddings_directory, f'{i}.npy'), embedding)
+                
         print("%s precision at %d: %f" % (dataset, k, precision))
-
-    if hp.gpt:
-        results_path = f'top_{k}_results.json'
-    else:
-        results_path = f'top_{k}_starmie_results.json'
-        
-    with open(results_path, 'w') as file:
-        json.dump(results, file, indent=4)
     
-    return precision  # Example metric
+    return precision 
 
 
-def evaluate_schema_matching(l_features, r_features, all_r_features, k, l_column_ids, r_column_ids, gt_column_ids):
+def evaluate_schema_matching(l_features, r_features, all_r_features, k, l_column_ids, r_column_ids, gt_column_ids, l_table_ids):
     cosine_sim = cosine_similarity(l_features, all_r_features)
     
     tp_count = 0
@@ -446,6 +341,7 @@ def evaluate_schema_matching(l_features, r_features, all_r_features, k, l_column
         
         # Append results in JSON format
         result = {
+            "Table name": l_table_ids[index],
             "Candidate column": l_column_ids[index],
             "Ground truth column": r_column_ids[index],
             "Top k columns": top_k_column_names

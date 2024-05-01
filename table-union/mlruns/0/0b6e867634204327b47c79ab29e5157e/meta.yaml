@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/0b6e867634204327b47c79ab29e5157e/artifacts
+end_time: 1714525239522
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0b6e867634204327b47c79ab29e5157e
+run_name: magnificent-fox-79
+run_uuid: 0b6e867634204327b47c79ab29e5157e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714523404125
+status: 3
+tags: []
+user_id: yl6624
