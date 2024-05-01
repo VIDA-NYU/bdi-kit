@@ -124,3 +124,4 @@ class GDCCandidateMatcher:
 
                 candidates_count += 1
         return matches
+
