@@ -98,10 +98,12 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
     for index, similarities in enumerate(cosine_sim):
         top_k_indices = np.argsort(similarities)[::-1][:k]
         top_k_column_names = [gt_column_ids[i] for i in top_k_indices]
+        top_k_similarities = [str(round(similarities[i], 4)) for i in top_k_indices]
+        top_k_columns = list(zip(top_k_column_names, top_k_similarities))
         
         result = {
             "Candidate column": l_column_ids[index],
-            "Top k columns": top_k_column_names
+            "Top k columns": top_k_columns
         }
         top_k_results.append(result)
 
@@ -159,7 +161,7 @@ def run_inference(hp):
         model_idx = hp.top_k
     else:
         model_idx = 20
-    model_path = os.path.join(hp.logdir, hp.task, f"model_{model_idx}_0.pt")
+    model_path = os.path.join(hp.logdir, hp.task, f"model_{model_idx}_{hp.run_id}.pt")
     ckpt = torch.load(model_path)
     print(f"Loaded model from {model_path}")
     model = load_checkpoint(ckpt, hp)
@@ -172,8 +174,6 @@ def run_inference(hp):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", type=str, default="arpa")
-    parser.add_argument("--logdir", type=str, default="../../models")
-    parser.add_argument("--run_id", type=int, default=0)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--max_len", type=int, default=128)
     parser.add_argument("--size", type=int, default=10000)
@@ -189,17 +189,26 @@ if __name__ == '__main__':
     parser.add_argument("--sample_meth", type=str, default='head')
     parser.add_argument("--gpt", type=bool, default=True)
     
-    parser.add_argument("--top_k", type=int, default=20)
-    parser.add_argument("--cand_table", type=str, default='data/tables/Cao.csv')
-    parser.add_argument("--use_gdc_embeddings", dest="use_gdc_embeddings", action="store_true")
-    parser.add_argument("--use_cta", dest="use_cta", action="store_true")
+    # Path to models directory (https://drive.google.com/drive/folders/1ntaEq4MDcEJ8gsZLU_uS-oosOnEmS12r?usp=sharing)
+    parser.add_argument("--logdir", type=str, default="../../models")
+    # Run ID
+    parser.add_argument("--run_id", type=int, default=1)
+    # Path to the candidate table
+    parser.add_argument("--cand_table", type=str, default='../data/extracted-tables/Cao_Clinical_data.csv')
+    # Top k results to return by cosine similarity
+    parser.add_argument("--top_k", type=int, default=50)
+    # Save the GDC embeddings
     parser.add_argument("--save_embeddings", dest="save_embeddings", action="store_true")
+    # Use stored GDC embeddings
+    parser.add_argument("--use_gdc_embeddings", dest="use_gdc_embeddings", action="store_true")
+    # Use CTA to further refine the results to top 1-5
+    parser.add_argument("--use_cta", dest="use_cta", action="store_true")
+    # Set the number of top results to run CTA on
     parser.add_argument("--cta_m", type=int, default=1)
+    # Output directory for the results
+    parser.add_argument("--output_dir", type=str, default='./arpa_result')
     
     hp = parser.parse_args()
+    if not os.path.exists(hp.output_dir):
+        os.makedirs(hp.output_dir)
     run_inference(hp)
-    
-    # ../data/extracted-tables/Cao_Clinical_data.csv
-    # ../data/extracted-tables/Huang_Meta_table.csv
-    
-    # TODO: add sim score to the results

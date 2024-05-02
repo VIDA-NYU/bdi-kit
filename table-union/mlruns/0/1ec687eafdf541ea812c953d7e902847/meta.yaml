@@ -1,0 +1,15 @@
+artifact_uri: file:///scratch/yl6624/ARPA/askem-arpa-h-project/table-union/mlruns/0/1ec687eafdf541ea812c953d7e902847/artifacts
+end_time: 1714686856777
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1ec687eafdf541ea812c953d7e902847
+run_name: luxuriant-stag-36
+run_uuid: 1ec687eafdf541ea812c953d7e902847
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1714683152214
+status: 3
+tags: []
+user_id: yl6624

@@ -1,7 +1,7 @@
 import json
 
 # read the json file
-with open("top_50_starmie_results.json", "r") as file:
+with open("results-cl/top_50_results.json", "r") as file:
     json_data = json.load(file)
 
 def calculate_precision_at_k(data, k):
