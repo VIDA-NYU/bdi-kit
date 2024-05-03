@@ -1,110 +1,208 @@
-Participant,Ethnicity,case_submitter_id,ethnicity
-C3L-00081,caucasian,C3L-00081,not hispanic or latino
-C3L-00415,caucasian,C3L-00415,not hispanic or latino
-C3L-00445,caucasian,C3L-00445,Not Reported
-C3L-00568,caucasian,C3L-00568,hispanic or latino
-C3L-00603,caucasian,C3L-00603,not hispanic or latino
-C3L-00904,caucasian,C3L-00904,not hispanic or latino
-C3L-00923,caucasian,C3L-00923,not hispanic or latino
-C3L-00927,caucasian,C3L-00927,not hispanic or latino
-C3L-00965,white(caucasian),C3L-00965,Not Reported
-C3L-00993,white(caucasian),C3L-00993,Not Reported
-C3L-01000,white(caucasian),C3L-01000,Not Reported
-C3L-01285,caucasian,C3L-01285,not hispanic or latino
-C3L-01455,caucasian,C3L-01455,not hispanic or latino
-C3L-01606,caucasian,C3L-01606,not hispanic or latino
-C3L-01663,caucasian,C3L-01663,not hispanic or latino
-C3L-01838,caucasian,C3L-01838,not hispanic or latino
-C3L-01884,caucasian,C3L-01884,not hispanic or latino
-C3L-02127,caucasian,C3L-02127,Not Reported
-C3L-02130,caucasian,C3L-02130,Not Reported
-C3L-02163,caucasian,C3L-02163,Not Reported
-C3L-02164,caucasian,C3L-02164,Not Reported
-C3L-02168,caucasian,C3L-02168,Not Reported
-C3L-02170,caucasian,C3L-02170,Not Reported
-C3L-02349,caucasian,C3L-02349,not hispanic or latino
-C3L-02358,caucasian,C3L-02358,not hispanic or latino
-C3L-02546,caucasian,C3L-02546,not hispanic or latino
-C3L-02552,caucasian,C3L-02552,not hispanic or latino
-C3L-02619,caucasian,C3L-02619,Not Reported
-C3L-02625,caucasian,C3L-02625,Not Reported
-C3L-02627,caucasian,C3L-02627,Not Reported
-C3L-02629,caucasian,C3L-02629,Not Reported
-C3L-02646,caucasian,C3L-02646,Not Reported
-C3L-02648,caucasian,C3L-02648,Not Reported
-C3L-02649,caucasian,C3L-02649,Not Reported
-C3L-02650,caucasian,C3L-02650,Not Reported
-C3L-02660,caucasian,C3L-02660,Not Reported
-C3L-02665,caucasian,C3L-02665,Not Reported
-C3L-02669,caucasian,C3L-02669,Not Reported
-C3L-02891,caucasian,C3L-02891,not hispanic or latino
-C3L-02951,caucasian,C3L-02951,not hispanic or latino
-C3L-02963,caucasian,C3L-02963,not hispanic or latino
-C3L-02964,caucasian,C3L-02964,not hispanic or latino
-C3L-02968,caucasian,C3L-02968,not hispanic or latino
-C3L-02969,caucasian,C3L-02969,not hispanic or latino
-C3L-03272,caucasian,C3L-03272,not hispanic or latino
-C3L-03678,,C3L-03678,not hispanic or latino
-C3L-03961,caucasian,C3L-03961,Not Reported
-C3L-03962,caucasian,C3L-03962,Not Reported
-C3L-03963,caucasian,C3L-03963,Not Reported
-C3L-03965,caucasian,C3L-03965,Not Reported
-C3L-04013,caucasian,C3L-04013,Not Reported
-C3L-04014,caucasian,C3L-04014,Not Reported
-C3L-04071,caucasian,C3L-04071,not hispanic or latino
-C3L-04391,caucasian,C3L-04391,not hispanic or latino
-C3N-00211,,C3N-00211,Not Reported
-C3N-00221,,C3N-00221,not hispanic or latino
-C3N-00221,tssdidnotcollectthisinformation,C3N-00221,not hispanic or latino
-C3N-00247,caucasian,C3N-00247,not hispanic or latino
-C3N-00497,caucasian,C3N-00497,Not Reported
-C3N-00555,asian,C3N-00555,Not Reported
-C3N-01017,asian,C3N-01017,Not Reported
-C3N-01020,asian,C3N-01020,Not Reported
-C3N-01025,asian,C3N-01025,Not Reported
-C3N-01028,asian,C3N-01028,Not Reported
-C3N-01194,caucasian,C3N-01194,Not Reported
-C3N-01411,asian,C3N-01411,Not Reported
-C3N-01846,slavic,C3N-01846,Not Reported
-C3N-01892,caucasian,C3N-01892,Not Reported
-C3N-01893,caucasian,C3N-01893,Not Reported
-C3N-02252,,C3N-02252,not hispanic or latino
-C3N-02283,caucasian,C3N-02283,Not Reported
-C3N-02284,caucasian,C3N-02284,Not Reported
-C3N-02285,caucasian,C3N-02285,Not Reported
-C3N-02288,caucasian,C3N-02288,Not Reported
-C3N-02289,caucasian,C3N-02289,Not Reported
-C3N-02300,caucasian,C3N-02300,Not Reported
-C3N-02339,slavic,C3N-02339,Not Reported
-C3N-02374,han,C3N-02374,Not Reported
-C3N-02375,han,C3N-02375,Not Reported
-C3N-02425,han,C3N-02425,Not Reported
-C3N-02426,han,C3N-02426,Not Reported
-C3N-02434,caucasian,C3N-02434,not hispanic or latino
-C3N-02435,caucasian,C3N-02435,not hispanic or latino
-C3N-02494,black,C3N-02494,not hispanic or latino
-C3N-02523,caucasian,C3N-02523,not hispanic or latino
-C3N-02575,han,C3N-02575,Not Reported
-C3N-02675,caucasian,C3N-02675,Not Reported
-C3N-03051,han,C3N-03051,Not Reported
-C3N-03072,han,C3N-03072,Not Reported
-C3N-03076,han,C3N-03076,Not Reported
-C3N-03092,slavic,C3N-03092,Not Reported
-C3N-03093,slavic,C3N-03093,Not Reported
-C3N-03204,han,C3N-03204,Not Reported
-C3N-03424,caucasian,C3N-03424,Not Reported
-C3N-03425,caucasian,C3N-03425,Not Reported
-C3N-03441,caucasian,C3N-03441,Not Reported
-C3N-03486,slavic,C3N-03486,Not Reported
-C3N-03662,slavic,C3N-03662,Not Reported
-C3N-03848,han,C3N-03848,Not Reported
-C3N-03851,han,C3N-03851,Not Reported
-C3N-03875,han,C3N-03875,Not Reported
-C3N-03877,han,C3N-03877,Not Reported
-C3N-03880,han,C3N-03880,Not Reported
-C3N-03882,han,C3N-03882,Not Reported
-C3N-03886,slavic,C3N-03886,Not Reported
-C3N-04124,han,C3N-04124,Not Reported
-C3N-04127,han,C3N-04127,Not Reported
-C3N-04155,slavic,C3N-04155,Not Reported
-C3N-04162,slavic,C3N-04162,Not Reported
+Participant,Ethnicity,id_x,case_submitter_id,ethnicity,id_y
+C3L-00081,caucasian,1,C3L-00081,not hispanic or latino,616
+C3L-00081,caucasian,2,C3L-00081,not hispanic or latino,616
+C3L-00415,caucasian,3,C3L-00415,not hispanic or latino,617
+C3L-00415,caucasian,4,C3L-00415,not hispanic or latino,617
+C3L-00445,caucasian,5,C3L-00445,Not Reported,618
+C3L-00445,caucasian,6,C3L-00445,Not Reported,618
+C3L-00568,caucasian,7,C3L-00568,hispanic or latino,619
+C3L-00568,caucasian,8,C3L-00568,hispanic or latino,619
+C3L-00603,caucasian,9,C3L-00603,not hispanic or latino,620
+C3L-00603,caucasian,10,C3L-00603,not hispanic or latino,620
+C3L-00904,caucasian,11,C3L-00904,not hispanic or latino,621
+C3L-00904,caucasian,12,C3L-00904,not hispanic or latino,621
+C3L-00923,caucasian,13,C3L-00923,not hispanic or latino,622
+C3L-00923,caucasian,14,C3L-00923,not hispanic or latino,622
+C3L-00927,caucasian,15,C3L-00927,not hispanic or latino,623
+C3L-00927,caucasian,16,C3L-00927,not hispanic or latino,623
+C3L-00965,white(caucasian),17,C3L-00965,Not Reported,624
+C3L-00993,white(caucasian),18,C3L-00993,Not Reported,625
+C3L-00993,white(caucasian),19,C3L-00993,Not Reported,625
+C3L-01000,white(caucasian),20,C3L-01000,Not Reported,626
+C3L-01000,white(caucasian),21,C3L-01000,Not Reported,626
+C3L-01285,caucasian,22,C3L-01285,not hispanic or latino,627
+C3L-01285,caucasian,23,C3L-01285,not hispanic or latino,627
+C3L-01455,caucasian,24,C3L-01455,not hispanic or latino,628
+C3L-01455,caucasian,25,C3L-01455,not hispanic or latino,628
+C3L-01606,caucasian,26,C3L-01606,not hispanic or latino,629
+C3L-01606,caucasian,27,C3L-01606,not hispanic or latino,629
+C3L-01663,caucasian,28,C3L-01663,not hispanic or latino,630
+C3L-01663,caucasian,29,C3L-01663,not hispanic or latino,630
+C3L-01838,caucasian,30,C3L-01838,not hispanic or latino,631
+C3L-01884,caucasian,31,C3L-01884,not hispanic or latino,632
+C3L-01884,caucasian,32,C3L-01884,not hispanic or latino,632
+C3L-02127,caucasian,33,C3L-02127,Not Reported,633
+C3L-02127,caucasian,34,C3L-02127,Not Reported,633
+C3L-02130,caucasian,35,C3L-02130,Not Reported,634
+C3L-02130,caucasian,36,C3L-02130,Not Reported,634
+C3L-02163,caucasian,37,C3L-02163,Not Reported,635
+C3L-02163,caucasian,38,C3L-02163,Not Reported,635
+C3L-02164,caucasian,39,C3L-02164,Not Reported,636
+C3L-02164,caucasian,40,C3L-02164,Not Reported,636
+C3L-02168,caucasian,41,C3L-02168,Not Reported,637
+C3L-02168,caucasian,42,C3L-02168,Not Reported,637
+C3L-02170,caucasian,43,C3L-02170,Not Reported,638
+C3L-02349,caucasian,44,C3L-02349,not hispanic or latino,639
+C3L-02349,caucasian,45,C3L-02349,not hispanic or latino,639
+C3L-02358,caucasian,46,C3L-02358,not hispanic or latino,640
+C3L-02358,caucasian,47,C3L-02358,not hispanic or latino,640
+C3L-02546,caucasian,48,C3L-02546,not hispanic or latino,641
+C3L-02546,caucasian,49,C3L-02546,not hispanic or latino,641
+C3L-02552,caucasian,50,C3L-02552,not hispanic or latino,642
+C3L-02552,caucasian,51,C3L-02552,not hispanic or latino,642
+C3L-02619,caucasian,52,C3L-02619,Not Reported,643
+C3L-02619,caucasian,53,C3L-02619,Not Reported,643
+C3L-02625,caucasian,54,C3L-02625,Not Reported,644
+C3L-02625,caucasian,55,C3L-02625,Not Reported,644
+C3L-02627,caucasian,56,C3L-02627,Not Reported,645
+C3L-02627,caucasian,57,C3L-02627,Not Reported,645
+C3L-02629,caucasian,58,C3L-02629,Not Reported,646
+C3L-02629,caucasian,59,C3L-02629,Not Reported,646
+C3L-02646,caucasian,60,C3L-02646,Not Reported,647
+C3L-02646,caucasian,61,C3L-02646,Not Reported,647
+C3L-02648,caucasian,62,C3L-02648,Not Reported,648
+C3L-02648,caucasian,63,C3L-02648,Not Reported,648
+C3L-02649,caucasian,64,C3L-02649,Not Reported,649
+C3L-02649,caucasian,65,C3L-02649,Not Reported,649
+C3L-02650,caucasian,66,C3L-02650,Not Reported,650
+C3L-02650,caucasian,67,C3L-02650,Not Reported,650
+C3L-02660,caucasian,68,C3L-02660,Not Reported,651
+C3L-02660,caucasian,69,C3L-02660,Not Reported,651
+C3L-02665,caucasian,70,C3L-02665,Not Reported,652
+C3L-02665,caucasian,71,C3L-02665,Not Reported,652
+C3L-02669,caucasian,72,C3L-02669,Not Reported,653
+C3L-02669,caucasian,73,C3L-02669,Not Reported,653
+C3L-02891,caucasian,74,C3L-02891,not hispanic or latino,654
+C3L-02891,caucasian,75,C3L-02891,not hispanic or latino,654
+C3L-02951,caucasian,76,C3L-02951,not hispanic or latino,655
+C3L-02951,caucasian,77,C3L-02951,not hispanic or latino,655
+C3L-02963,caucasian,78,C3L-02963,not hispanic or latino,656
+C3L-02963,caucasian,79,C3L-02963,not hispanic or latino,656
+C3L-02964,caucasian,80,C3L-02964,not hispanic or latino,657
+C3L-02964,caucasian,81,C3L-02964,not hispanic or latino,657
+C3L-02968,caucasian,82,C3L-02968,not hispanic or latino,658
+C3L-02968,caucasian,83,C3L-02968,not hispanic or latino,658
+C3L-02969,caucasian,84,C3L-02969,not hispanic or latino,659
+C3L-02969,caucasian,85,C3L-02969,not hispanic or latino,659
+C3L-03272,caucasian,86,C3L-03272,not hispanic or latino,660
+C3L-03272,caucasian,87,C3L-03272,not hispanic or latino,660
+C3L-03678,,88,C3L-03678,not hispanic or latino,661
+C3L-03961,caucasian,89,C3L-03961,Not Reported,662
+C3L-03961,caucasian,90,C3L-03961,Not Reported,662
+C3L-03962,caucasian,91,C3L-03962,Not Reported,663
+C3L-03962,caucasian,92,C3L-03962,Not Reported,663
+C3L-03963,caucasian,93,C3L-03963,Not Reported,664
+C3L-03963,caucasian,94,C3L-03963,Not Reported,664
+C3L-03965,caucasian,95,C3L-03965,Not Reported,665
+C3L-03965,caucasian,96,C3L-03965,Not Reported,665
+C3L-04013,caucasian,97,C3L-04013,Not Reported,666
+C3L-04013,caucasian,98,C3L-04013,Not Reported,666
+C3L-04014,caucasian,99,C3L-04014,Not Reported,667
+C3L-04014,caucasian,100,C3L-04014,Not Reported,667
+C3L-04071,caucasian,101,C3L-04071,not hispanic or latino,668
+C3L-04071,caucasian,102,C3L-04071,not hispanic or latino,668
+C3L-04391,caucasian,103,C3L-04391,not hispanic or latino,669
+C3L-04391,caucasian,104,C3L-04391,not hispanic or latino,669
+C3N-00211,,105,C3N-00211,Not Reported,670
+C3N-00221,,106,C3N-00221,not hispanic or latino,671
+C3N-00221,tssdidnotcollectthisinformation,107,C3N-00221,not hispanic or latino,671
+C3N-00247,caucasian,108,C3N-00247,not hispanic or latino,672
+C3N-00497,caucasian,109,C3N-00497,Not Reported,673
+C3N-00497,caucasian,110,C3N-00497,Not Reported,673
+C3N-00555,asian,111,C3N-00555,Not Reported,674
+C3N-00555,asian,112,C3N-00555,Not Reported,674
+C3N-01017,asian,113,C3N-01017,Not Reported,675
+C3N-01017,asian,114,C3N-01017,Not Reported,675
+C3N-01020,asian,115,C3N-01020,Not Reported,676
+C3N-01020,asian,116,C3N-01020,Not Reported,676
+C3N-01025,asian,117,C3N-01025,Not Reported,677
+C3N-01025,asian,118,C3N-01025,Not Reported,677
+C3N-01028,asian,119,C3N-01028,Not Reported,678
+C3N-01028,asian,120,C3N-01028,Not Reported,678
+C3N-01194,caucasian,121,C3N-01194,Not Reported,679
+C3N-01194,caucasian,122,C3N-01194,Not Reported,679
+C3N-01411,asian,123,C3N-01411,Not Reported,680
+C3N-01411,asian,124,C3N-01411,Not Reported,680
+C3N-01846,slavic,125,C3N-01846,Not Reported,681
+C3N-01846,slavic,126,C3N-01846,Not Reported,681
+C3N-01892,caucasian,127,C3N-01892,Not Reported,682
+C3N-01892,caucasian,128,C3N-01892,Not Reported,682
+C3N-01893,caucasian,129,C3N-01893,Not Reported,683
+C3N-01893,caucasian,130,C3N-01893,Not Reported,683
+C3N-02252,,131,C3N-02252,not hispanic or latino,684
+C3N-02252,,132,C3N-02252,not hispanic or latino,684
+C3N-02283,caucasian,133,C3N-02283,Not Reported,685
+C3N-02284,caucasian,134,C3N-02284,Not Reported,686
+C3N-02285,caucasian,135,C3N-02285,Not Reported,687
+C3N-02285,caucasian,136,C3N-02285,Not Reported,687
+C3N-02288,caucasian,137,C3N-02288,Not Reported,688
+C3N-02288,caucasian,138,C3N-02288,Not Reported,688
+C3N-02289,caucasian,139,C3N-02289,Not Reported,689
+C3N-02289,caucasian,140,C3N-02289,Not Reported,689
+C3N-02300,caucasian,141,C3N-02300,Not Reported,690
+C3N-02339,slavic,142,C3N-02339,Not Reported,691
+C3N-02339,slavic,143,C3N-02339,Not Reported,691
+C3N-02374,han,144,C3N-02374,Not Reported,692
+C3N-02374,han,145,C3N-02374,Not Reported,692
+C3N-02375,han,146,C3N-02375,Not Reported,693
+C3N-02375,han,147,C3N-02375,Not Reported,693
+C3N-02425,han,148,C3N-02425,Not Reported,694
+C3N-02425,han,149,C3N-02425,Not Reported,694
+C3N-02426,han,150,C3N-02426,Not Reported,695
+C3N-02426,han,151,C3N-02426,Not Reported,695
+C3N-02434,caucasian,152,C3N-02434,not hispanic or latino,696
+C3N-02434,caucasian,153,C3N-02434,not hispanic or latino,696
+C3N-02435,caucasian,154,C3N-02435,not hispanic or latino,697
+C3N-02435,caucasian,155,C3N-02435,not hispanic or latino,697
+C3N-02494,black,156,C3N-02494,not hispanic or latino,698
+C3N-02494,black,157,C3N-02494,not hispanic or latino,698
+C3N-02523,caucasian,158,C3N-02523,not hispanic or latino,699
+C3N-02523,caucasian,159,C3N-02523,not hispanic or latino,699
+C3N-02575,han,160,C3N-02575,Not Reported,700
+C3N-02575,han,161,C3N-02575,Not Reported,700
+C3N-02675,caucasian,162,C3N-02675,Not Reported,701
+C3N-02675,caucasian,163,C3N-02675,Not Reported,701
+C3N-03051,han,164,C3N-03051,Not Reported,702
+C3N-03051,han,165,C3N-03051,Not Reported,702
+C3N-03072,han,166,C3N-03072,Not Reported,703
+C3N-03072,han,167,C3N-03072,Not Reported,703
+C3N-03076,han,168,C3N-03076,Not Reported,704
+C3N-03076,han,169,C3N-03076,Not Reported,704
+C3N-03092,slavic,170,C3N-03092,Not Reported,705
+C3N-03092,slavic,171,C3N-03092,Not Reported,705
+C3N-03093,slavic,172,C3N-03093,Not Reported,706
+C3N-03093,slavic,173,C3N-03093,Not Reported,706
+C3N-03204,han,174,C3N-03204,Not Reported,707
+C3N-03204,han,175,C3N-03204,Not Reported,707
+C3N-03424,caucasian,176,C3N-03424,Not Reported,708
+C3N-03424,caucasian,177,C3N-03424,Not Reported,708
+C3N-03425,caucasian,178,C3N-03425,Not Reported,709
+C3N-03425,caucasian,179,C3N-03425,Not Reported,709
+C3N-03441,caucasian,180,C3N-03441,Not Reported,710
+C3N-03441,caucasian,181,C3N-03441,Not Reported,710
+C3N-03486,slavic,182,C3N-03486,Not Reported,711
+C3N-03486,slavic,183,C3N-03486,Not Reported,711
+C3N-03662,slavic,184,C3N-03662,Not Reported,712
+C3N-03662,slavic,185,C3N-03662,Not Reported,712
+C3N-03848,han,186,C3N-03848,Not Reported,713
+C3N-03848,han,187,C3N-03848,Not Reported,713
+C3N-03851,han,188,C3N-03851,Not Reported,714
+C3N-03851,han,189,C3N-03851,Not Reported,714
+C3N-03875,han,190,C3N-03875,Not Reported,715
+C3N-03875,han,191,C3N-03875,Not Reported,715
+C3N-03877,han,192,C3N-03877,Not Reported,716
+C3N-03877,han,193,C3N-03877,Not Reported,716
+C3N-03880,han,194,C3N-03880,Not Reported,717
+C3N-03880,han,195,C3N-03880,Not Reported,717
+C3N-03882,han,196,C3N-03882,Not Reported,718
+C3N-03882,han,197,C3N-03882,Not Reported,718
+C3N-03886,slavic,198,C3N-03886,Not Reported,719
+C3N-03886,slavic,199,C3N-03886,Not Reported,719
+C3N-04124,han,200,C3N-04124,Not Reported,720
+C3N-04124,han,201,C3N-04124,Not Reported,720
+C3N-04127,han,202,C3N-04127,Not Reported,721
+C3N-04127,han,203,C3N-04127,Not Reported,721
+C3N-04155,slavic,204,C3N-04155,Not Reported,722
+C3N-04155,slavic,205,C3N-04155,Not Reported,722
+C3N-04162,slavic,206,C3N-04162,Not Reported,723
+C3N-04162,slavic,207,C3N-04162,Not Reported,723
