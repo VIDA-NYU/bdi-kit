@@ -1,31 +1,31 @@
-case_id,ethnicity_x,case_submitter_id,ethnicity_y
-C3L-00104,Not-Hispanic or Latino,C3L-00104,not hispanic or latino
-C3L-00365,Not-Hispanic or Latino,C3L-00365,not hispanic or latino
-C3L-00674,Not-Hispanic or Latino,C3L-00674,not hispanic or latino
-C3L-00677,Not-Hispanic or Latino,C3L-00677,not hispanic or latino
-C3L-01327,Not-Hispanic or Latino,C3L-01327,not hispanic or latino
-C3L-01834,Not-Hispanic or Latino,C3L-01834,not hispanic or latino
-C3L-01887,Not-Hispanic or Latino,C3L-01887,not hispanic or latino
-C3L-02041,Not-Hispanic or Latino,C3L-02041,not hispanic or latino
-C3L-02465,Hispanic or Latino,C3L-02465,hispanic or latino
-C3L-02504,Not-Hispanic or Latino,C3L-02504,not hispanic or latino
-C3L-02542,Hispanic or Latino,C3L-02542,hispanic or latino
-C3L-02704,Not-Hispanic or Latino,C3L-02704,not hispanic or latino
-C3L-02705,Not-Hispanic or Latino,C3L-02705,not hispanic or latino
-C3L-02707,Not-Hispanic or Latino,C3L-02707,not hispanic or latino
-C3L-02708,Not-Hispanic or Latino,C3L-02708,not hispanic or latino
-C3L-02900,Not-Hispanic or Latino,C3L-02900,not hispanic or latino
-C3L-02955,Not-Hispanic or Latino,C3L-02955,not hispanic or latino
-C3L-02970,Not-Hispanic or Latino,C3L-02970,not hispanic or latino
-C3L-02984,Not-Hispanic or Latino,C3L-02984,not hispanic or latino
-C3L-03260,Not-Hispanic or Latino,C3L-03260,not hispanic or latino
-C3L-03266,Hispanic or Latino,C3L-03266,hispanic or latino
-C3L-03407,Hispanic or Latino,C3L-03407,hispanic or latino
-C3L-03681,Not-Hispanic or Latino,C3L-03681,not hispanic or latino
-C3L-03727,Not-Hispanic or Latino,C3L-03727,not hispanic or latino
-C3L-03728,Not-Hispanic or Latino,C3L-03728,not hispanic or latino
-C3L-03744,Not-Hispanic or Latino,C3L-03744,not hispanic or latino
-C3L-03748,Not-Hispanic or Latino,C3L-03748,not hispanic or latino
-C3L-04084,Not-Hispanic or Latino,C3L-04084,not hispanic or latino
-C3N-01505,Not-Hispanic or Latino,C3N-01505,not hispanic or latino
-C3N-01515,Not-Hispanic or Latino,C3N-01515,not hispanic or latino
+case_id,ethnicity_x,id_x,case_submitter_id,ethnicity_y,id_y
+C3L-00104,Not-Hispanic or Latino,1,C3L-00104,not hispanic or latino,327
+C3L-00365,Not-Hispanic or Latino,2,C3L-00365,not hispanic or latino,328
+C3L-00674,Not-Hispanic or Latino,3,C3L-00674,not hispanic or latino,329
+C3L-00677,Not-Hispanic or Latino,4,C3L-00677,not hispanic or latino,330
+C3L-01327,Not-Hispanic or Latino,19,C3L-01327,not hispanic or latino,345
+C3L-01834,Not-Hispanic or Latino,20,C3L-01834,not hispanic or latino,346
+C3L-01887,Not-Hispanic or Latino,21,C3L-01887,not hispanic or latino,347
+C3L-02041,Not-Hispanic or Latino,22,C3L-02041,not hispanic or latino,348
+C3L-02465,Hispanic or Latino,23,C3L-02465,hispanic or latino,349
+C3L-02504,Not-Hispanic or Latino,24,C3L-02504,not hispanic or latino,350
+C3L-02542,Hispanic or Latino,25,C3L-02542,hispanic or latino,351
+C3L-02704,Not-Hispanic or Latino,27,C3L-02704,not hispanic or latino,353
+C3L-02705,Not-Hispanic or Latino,28,C3L-02705,not hispanic or latino,354
+C3L-02707,Not-Hispanic or Latino,29,C3L-02707,not hispanic or latino,355
+C3L-02708,Not-Hispanic or Latino,30,C3L-02708,not hispanic or latino,356
+C3L-02900,Not-Hispanic or Latino,31,C3L-02900,not hispanic or latino,357
+C3L-02955,Not-Hispanic or Latino,32,C3L-02955,not hispanic or latino,358
+C3L-02970,Not-Hispanic or Latino,33,C3L-02970,not hispanic or latino,359
+C3L-02984,Not-Hispanic or Latino,34,C3L-02984,not hispanic or latino,360
+C3L-03260,Not-Hispanic or Latino,35,C3L-03260,not hispanic or latino,361
+C3L-03266,Hispanic or Latino,36,C3L-03266,hispanic or latino,362
+C3L-03407,Hispanic or Latino,42,C3L-03407,hispanic or latino,368
+C3L-03681,Not-Hispanic or Latino,43,C3L-03681,not hispanic or latino,369
+C3L-03727,Not-Hispanic or Latino,44,C3L-03727,not hispanic or latino,370
+C3L-03728,Not-Hispanic or Latino,45,C3L-03728,not hispanic or latino,371
+C3L-03744,Not-Hispanic or Latino,46,C3L-03744,not hispanic or latino,372
+C3L-03748,Not-Hispanic or Latino,48,C3L-03748,not hispanic or latino,373
+C3L-04084,Not-Hispanic or Latino,50,C3L-04084,not hispanic or latino,375
+C3N-01505,Not-Hispanic or Latino,63,C3N-01505,not hispanic or latino,388
+C3N-01515,Not-Hispanic or Latino,64,C3N-01515,not hispanic or latino,389

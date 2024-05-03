@@ -1,39 +1,76 @@
-Participant,Ethnicity,case_submitter_id,ethnicity
-C3N-01799,caucasian,C3N-01799,not hispanic or latino
-C3L-01890,caucasian,C3L-01890,not hispanic or latino
-C3L-00263,caucasian,C3L-00263,not hispanic or latino
-C3L-00893,hispanic,C3L-00893,hispanic or latino
-C3L-01889,caucasian,C3L-01889,not hispanic or latino
-C3L-00422,hispanic,C3L-00422,hispanic or latino
-C3L-00083,caucasian,C3L-00083,not hispanic or latino
-C3L-01682,european,C3L-01682,not hispanic or latino
-C3N-00737,caucasian,C3N-00737,not hispanic or latino
-C3L-00095,caucasian,C3L-00095,not hispanic or latino
-C3L-02345,caucasian,C3L-02345,not hispanic or latino
-C3L-00093,caucasian,C3L-00093,not hispanic or latino
-C3L-00913,caucasian,C3L-00913,not hispanic or latino
-C3L-00412,caucasian,C3L-00412,not hispanic or latino
-C3L-01330,caucasian,C3L-01330,not hispanic or latino
-C3L-00001,caucasian,C3L-00001,not hispanic or latino
-C3L-01632,caucasian,C3L-01632,not hispanic or latino
-C3L-02219,caucasian,C3L-02219,not hispanic or latino
-C3L-01862,caucasian,C3L-01862,not hispanic or latino
-C3N-00704,caucasian,C3N-00704,not hispanic or latino
-C3L-00094,white,C3L-00094,not hispanic or latino
-C3L-00144,caucasian,C3L-00144,not hispanic or latino
-C3N-00223,asian,C3N-00223,not hispanic or latino
-C3L-01924,caucasian,C3L-01924,not hispanic or latino
-C3L-01683,caucasian,C3L-01683,not hispanic or latino
-C3L-00009,caucasian,C3L-00009,not hispanic or latino
-C3L-00140,caucasian,C3L-00140,not hispanic or latino
-C3L-00368,caucasian,C3L-00368,not hispanic or latino
-C3L-00080,caucasian,C3L-00080,not hispanic or latino
-C3L-02348,caucasian,C3L-02348,not hispanic or latino
-C3L-02508,caucasian,C3L-02508,hispanic or latino
-C3L-00604,caucasian,C3L-00604,not hispanic or latino
-C3N-00199,caucasian,C3N-00199,not hispanic or latino
-C3L-02350,caucasian,C3L-02350,not hispanic or latino
-C3N-00738,black,C3N-00738,not hispanic or latino
-C3N-00959,caucasian,C3N-00959,not hispanic or latino
-C3L-02549,caucasian,C3L-02549,not hispanic or latino
-C3L-02365,european,C3L-02365,not hispanic or latino
+Participant,Ethnicity,id_x,case_submitter_id,ethnicity,id_y
+C3N-01799,caucasian,1,C3N-01799,not hispanic or latino,807
+C3N-01799,caucasian,2,C3N-01799,not hispanic or latino,807
+C3L-01890,caucasian,3,C3L-01890,not hispanic or latino,753
+C3L-01890,caucasian,4,C3L-01890,not hispanic or latino,753
+C3L-00263,caucasian,12,C3L-00263,not hispanic or latino,737
+C3L-00263,caucasian,13,C3L-00263,not hispanic or latino,737
+C3L-00893,hispanic,21,C3L-00893,hispanic or latino,744
+C3L-00893,hispanic,22,C3L-00893,hispanic or latino,744
+C3L-01889,caucasian,34,C3L-01889,not hispanic or latino,752
+C3L-01889,caucasian,35,C3L-01889,not hispanic or latino,752
+C3L-00422,hispanic,39,C3L-00422,hispanic or latino,741
+C3L-00422,hispanic,40,C3L-00422,hispanic or latino,741
+C3L-00083,caucasian,41,C3L-00083,not hispanic or latino,731
+C3L-00083,caucasian,42,C3L-00083,not hispanic or latino,731
+C3L-01682,european,48,C3L-01682,not hispanic or latino,749
+C3L-01682,european,49,C3L-01682,not hispanic or latino,749
+C3N-00737,caucasian,59,C3N-00737,not hispanic or latino,788
+C3N-00737,caucasian,60,C3N-00737,not hispanic or latino,788
+C3L-00095,caucasian,73,C3L-00095,not hispanic or latino,734
+C3L-00095,caucasian,74,C3L-00095,not hispanic or latino,734
+C3L-02345,caucasian,82,C3L-02345,not hispanic or latino,756
+C3L-02345,caucasian,83,C3L-02345,not hispanic or latino,756
+C3L-00093,caucasian,84,C3L-00093,not hispanic or latino,732
+C3L-00093,caucasian,85,C3L-00093,not hispanic or latino,732
+C3L-00913,caucasian,88,C3L-00913,not hispanic or latino,745
+C3L-00913,caucasian,89,C3L-00913,not hispanic or latino,745
+C3L-00412,caucasian,91,C3L-00412,not hispanic or latino,740
+C3L-00412,caucasian,92,C3L-00412,not hispanic or latino,740
+C3L-01330,caucasian,104,C3L-01330,not hispanic or latino,747
+C3L-01330,caucasian,105,C3L-01330,not hispanic or latino,747
+C3L-00001,caucasian,115,C3L-00001,not hispanic or latino,728
+C3L-00001,caucasian,116,C3L-00001,not hispanic or latino,728
+C3L-01632,caucasian,118,C3L-01632,not hispanic or latino,748
+C3L-01632,caucasian,119,C3L-01632,not hispanic or latino,748
+C3L-02219,caucasian,131,C3L-02219,not hispanic or latino,755
+C3L-02219,caucasian,132,C3L-02219,not hispanic or latino,755
+C3L-01862,caucasian,135,C3L-01862,not hispanic or latino,751
+C3N-00704,caucasian,136,C3N-00704,not hispanic or latino,787
+C3N-00704,caucasian,137,C3N-00704,not hispanic or latino,787
+C3L-00094,white,147,C3L-00094,not hispanic or latino,733
+C3L-00094,white,148,C3L-00094,not hispanic or latino,733
+C3L-00144,caucasian,149,C3L-00144,not hispanic or latino,736
+C3L-00144,caucasian,150,C3L-00144,not hispanic or latino,736
+C3N-00223,asian,151,C3N-00223,not hispanic or latino,769
+C3N-00223,asian,152,C3N-00223,not hispanic or latino,769
+C3L-01924,caucasian,154,C3L-01924,not hispanic or latino,754
+C3L-01924,caucasian,155,C3L-01924,not hispanic or latino,754
+C3L-01683,caucasian,158,C3L-01683,not hispanic or latino,750
+C3L-01683,caucasian,159,C3L-01683,not hispanic or latino,750
+C3L-00009,caucasian,163,C3L-00009,not hispanic or latino,729
+C3L-00009,caucasian,164,C3L-00009,not hispanic or latino,729
+C3L-00140,caucasian,172,C3L-00140,not hispanic or latino,735
+C3L-00140,caucasian,173,C3L-00140,not hispanic or latino,735
+C3L-00368,caucasian,176,C3L-00368,not hispanic or latino,739
+C3L-00368,caucasian,177,C3L-00368,not hispanic or latino,739
+C3L-00080,caucasian,181,C3L-00080,not hispanic or latino,730
+C3L-00080,caucasian,182,C3L-00080,not hispanic or latino,730
+C3L-02348,caucasian,192,C3L-02348,not hispanic or latino,757
+C3L-02348,caucasian,193,C3L-02348,not hispanic or latino,757
+C3L-02508,caucasian,194,C3L-02508,hispanic or latino,760
+C3L-02508,caucasian,195,C3L-02508,hispanic or latino,760
+C3L-00604,caucasian,199,C3L-00604,not hispanic or latino,743
+C3L-00604,caucasian,200,C3L-00604,not hispanic or latino,743
+C3N-00199,caucasian,201,C3N-00199,not hispanic or latino,766
+C3N-00199,caucasian,202,C3N-00199,not hispanic or latino,766
+C3L-02350,caucasian,208,C3L-02350,not hispanic or latino,758
+C3L-02350,caucasian,209,C3L-02350,not hispanic or latino,758
+C3N-00738,black,210,C3N-00738,not hispanic or latino,789
+C3N-00738,black,211,C3N-00738,not hispanic or latino,789
+C3N-00959,caucasian,212,C3N-00959,not hispanic or latino,790
+C3N-00959,caucasian,213,C3N-00959,not hispanic or latino,790
+C3L-02549,caucasian,221,C3L-02549,not hispanic or latino,761
+C3L-02549,caucasian,222,C3L-02549,not hispanic or latino,761
+C3L-02365,european,223,C3L-02365,not hispanic or latino,759
+C3L-02365,european,224,C3L-02365,not hispanic or latino,759
