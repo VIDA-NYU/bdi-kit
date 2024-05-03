@@ -1,0 +1,12 @@
+Table: Sample size of different data sets after excluding samples with low quality.,Unnamed: 1,Unnamed: 2,Unnamed: 3,Unnamed: 4
+,CCRCC-tumor,CCRCC-NAT*,Non-CCRCC tumor,Non-CCRCC NAT
+Protein/phospho,103,80,7,3
+CNV/Mutation,103,80,7,3
+RNA,103,72,7,2
+Methylation,100**,,7,
+,,,,
+,,,,
+,,,,
+,,,,
+* One NAT sample (CPT0012090003) was removed due to tumor contamination. ,,,,
+"** Three Methylation profiles (CPT0079480003,CPT0092790003,CPT0092730003) were removed due to high missing rate. ",,,,

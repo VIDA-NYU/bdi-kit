@@ -1,1 +1,61 @@
-{"FIGO_stage": {"match": "figo_stage", "default": "Unknown", "values": {"iiia": ["Stage IIIA"], "ii": ["Stage II"], "iiib": ["Stage IIIB"], "ia": ["Stage IA"], "ivb": ["Stage IVB"], "iiic2": ["Stage IIIC2"], "iiic1": ["Stage IIIC1"], "ib": ["Stage IB"]}, "ignore_case": true}, "Tumor_Site": {"match": "tissue_or_organ_of_origin", "default": "other", "values": {"specify": ["Other specified parts of pancreas", "Other specified parts of female genital organs", "Other specified parts of male genital organs"], "posterior endometrium": ["Posterior mediastinum"], "anterior endometrium": ["Anterior mediastinum"]}, "ignore_case": true}, "Gender": {"match": "gender", "default": "unknown", "values": {"female": ["female"]}, "ignore_case": true}}
+{
+    "FIGO_stage": {
+        "match": "figo_stage",
+        "default": "Unknown",
+        "values": {
+            "iiia": [
+                "Stage IIIA"
+            ],
+            "ii": [
+                "Stage II"
+            ],
+            "iiib": [
+                "Stage IIIB"
+            ],
+            "ia": [
+                "Stage IA"
+            ],
+            "ivb": [
+                "Stage IVB"
+            ],
+            "iiic2": [
+                "Stage IIIC2"
+            ],
+            "iiic1": [
+                "Stage IIIC1"
+            ],
+            "ib": [
+                "Stage IB"
+            ]
+        },
+        "ignore_case": true
+    },
+    "Tumor_Site": {
+        "match": "tissue_or_organ_of_origin",
+        "default": "other",
+        "values": {
+            "specify": [
+                "Other specified parts of pancreas",
+                "Other specified parts of female genital organs",
+                "Other specified parts of male genital organs"
+            ],
+            "posterior endometrium": [
+                "Posterior mediastinum"
+            ],
+            "anterior endometrium": [
+                "Anterior mediastinum"
+            ]
+        },
+        "ignore_case": true
+    },
+    "Gender": {
+        "match": "gender",
+        "default": "unknown",
+        "values": {
+            "female": [
+                "female"
+            ]
+        },
+        "ignore_case": true
+    }
+}
