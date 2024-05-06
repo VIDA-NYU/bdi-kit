@@ -32,7 +32,7 @@ class TFIDFMatcher(BaseMatcher):
         method = TFIDF(min_similarity=0)
         self.model = PolyFuzz(method)
     
-    def match(self, current_values, target_values, threshold=0.8):
+    def match(self, current_values, target_values, threshold=0.5):
         matches = super().match(current_values, target_values, threshold)
 
         return matches
