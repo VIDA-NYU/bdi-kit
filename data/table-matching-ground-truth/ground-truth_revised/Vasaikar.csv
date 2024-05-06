@@ -1,0 +1,15 @@
+original_paper_variable_names,GDC_format_variable_names
+SampleID,case_submitter_id
+Age,age_at_diagnosis
+Gender,gender
+PT,ajcc_pathologic_t
+PN,ajcc_pathologic_n
+Stage,ajcc_pathologic_stage
+Vascular_Invasion,vascular_invasion_present
+Lymphatic_Invasion,lymphatic_invasion_present
+Perineural_Invasion,perineural_invasion_present
+Synchronous_Tumors,synchronous_malignancy
+Vital.Status,vital_status
+Tumor.Status,last_known_disease_status
+
+

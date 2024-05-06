@@ -1,0 +1,214 @@
+Participant,Dominant.Histological.Subtype,id_x,case_submitter_id,primary_diagnosis,id_y
+C3N-01799,acinar,1,C3N-01799,"Adenocarcinoma, NOS",807
+C3N-01799,,2,C3N-01799,"Adenocarcinoma, NOS",807
+C3L-01890,acinar,3,C3L-01890,Lepidic adenocarcinoma,753
+C3L-01890,,4,C3L-01890,Lepidic adenocarcinoma,753
+C3N-00572,micropapillary,5,C3N-00572,"Adenocarcinoma, NOS",782
+C3N-00572,,6,C3N-00572,"Adenocarcinoma, NOS",782
+C3N-02423,acinar,7,C3N-02423,"Adenocarcinoma, NOS",824
+C3N-02423,,8,C3N-02423,"Adenocarcinoma, NOS",824
+C3N-02729,acinar,10,C3N-02729,"Adenocarcinoma, NOS",833
+C3N-02729,,11,C3N-02729,"Adenocarcinoma, NOS",833
+C3L-00263,acinar,12,C3L-00263,"Adenocarcinoma, NOS",737
+C3L-00263,,13,C3L-00263,"Adenocarcinoma, NOS",737
+C3N-01410,solid,14,C3N-01410,"Solid carcinoma, NOS",800
+C3N-01410,,15,C3N-01410,"Solid carcinoma, NOS",800
+C3N-00578,acinar,16,C3N-00578,Mucinous adenocarcinoma,784
+C3N-00578,,17,C3N-00578,Mucinous adenocarcinoma,784
+C3N-02587,invasive-mucinous,19,C3N-02587,"Adenocarcinoma, NOS",831
+C3N-02587,,20,C3N-02587,"Adenocarcinoma, NOS",831
+C3N-02587,acinar,63,C3N-02587,"Adenocarcinoma, NOS",831
+C3L-00893,acinar,21,C3L-00893,Acinar cell carcinoma,744
+C3L-00893,,22,C3L-00893,Acinar cell carcinoma,744
+C3N-01488,acinar,23,C3N-01488,"Adenocarcinoma, NOS",805
+C3N-01488,,24,C3N-01488,"Adenocarcinoma, NOS",805
+C3N-01413,acinar,25,C3N-01413,"Adenocarcinoma, NOS",801
+C3N-01413,,26,C3N-01413,"Adenocarcinoma, NOS",801
+C3N-01030,acinar,28,C3N-01030,Not Reported,795
+C3N-01030,,29,C3N-01030,Not Reported,795
+C3N-02588,acinar,30,C3N-02588,"Adenocarcinoma, NOS",832
+C3N-02588,,31,C3N-02588,"Adenocarcinoma, NOS",832
+C3N-00552,acinar,32,C3N-00552,"Solid carcinoma, NOS",778
+C3N-00552,,33,C3N-00552,"Solid carcinoma, NOS",778
+C3L-01889,lepidic,34,C3L-01889,"Adenocarcinoma, NOS",752
+C3L-01889,,35,C3L-01889,"Adenocarcinoma, NOS",752
+C3N-00169,acinar,37,C3N-00169,"Adenocarcinoma, NOS",763
+C3N-00169,,38,C3N-00169,"Adenocarcinoma, NOS",763
+C3L-00422,invasive-mucinous,39,C3L-00422,"Adenocarcinoma, NOS",741
+C3L-00422,,40,C3L-00422,"Adenocarcinoma, NOS",741
+C3L-00083,acinar,41,C3L-00083,"Adenocarcinoma, NOS",731
+C3L-00083,,42,C3L-00083,"Adenocarcinoma, NOS",731
+C3N-00551,papillary,43,C3N-00551,"Adenocarcinoma, NOS",777
+C3N-00551,,44,C3N-00551,"Adenocarcinoma, NOS",777
+C3N-01842,acinar,45,C3N-01842,"Adenocarcinoma, NOS",809
+C3N-02089,acinar,46,C3N-02089,Acinar cell carcinoma,815
+C3N-02089,,47,C3N-02089,Acinar cell carcinoma,815
+C3L-01682,acinar,48,C3L-01682,Acinar cell carcinoma,749
+C3L-01682,,49,C3L-01682,Acinar cell carcinoma,749
+C3N-01016,acinar,50,C3N-01016,Acinar cell carcinoma,791
+C3N-01016,,51,C3N-01016,Acinar cell carcinoma,791
+C3N-00580,papillary,52,C3N-00580,"Papillary adenocarcinoma, NOS",786
+C3N-00580,,53,C3N-00580,"Papillary adenocarcinoma, NOS",786
+11LU013,acinar,54,11LU013,Not Reported,724
+C3N-02000,acinar,55,C3N-02000,"Adenocarcinoma, NOS",810
+C3N-02000,,56,C3N-02000,"Adenocarcinoma, NOS",810
+C3N-01489,acinar,57,C3N-01489,"Adenocarcinoma, NOS",806
+C3N-01489,,58,C3N-01489,"Adenocarcinoma, NOS",806
+C3N-00737,acinar,59,C3N-00737,Adenocarcinoma with neuroendocrine differen.,788
+C3N-00737,,60,C3N-00737,Adenocarcinoma with neuroendocrine differen.,788
+C3N-01405,acinar,61,C3N-01405,"Solid carcinoma, NOS",799
+C3N-01405,,62,C3N-01405,"Solid carcinoma, NOS",799
+C3N-01416,papillary,64,C3N-01416,Acinar cell carcinoma,804
+C3N-01416,,65,C3N-01416,Acinar cell carcinoma,804
+C3N-02149,acinar,66,C3N-02149,Acinar cell carcinoma,817
+C3N-02149,,67,C3N-02149,Acinar cell carcinoma,817
+C3N-02424,solid,68,C3N-02424,"Adenocarcinoma, NOS",825
+C3N-02424,,69,C3N-02424,"Adenocarcinoma, NOS",825
+C3L-00279,acinar,70,C3L-00279,"Adenocarcinoma, NOS",738
+C3L-00279,,71,C3L-00279,"Adenocarcinoma, NOS",738
+C3N-02379,acinar,72,C3N-02379,"Adenocarcinoma, NOS",820
+C3N-02379,acinar,207,C3N-02379,"Adenocarcinoma, NOS",820
+C3N-02379,,216,C3N-02379,"Adenocarcinoma, NOS",820
+C3L-00095,acinar,73,C3L-00095,"Adenocarcinoma, NOS",734
+C3L-00095,,74,C3L-00095,"Adenocarcinoma, NOS",734
+C3N-02572,acinar,75,C3N-02572,"Adenocarcinoma, NOS",828
+C3N-02572,,76,C3N-02572,"Adenocarcinoma, NOS",828
+C3N-00559,acinar,77,C3N-00559,"Adenocarcinoma, NOS",780
+C3N-00559,,78,C3N-00559,"Adenocarcinoma, NOS",780
+11LU016,acinar,81,11LU016,Not Reported,725
+C3L-02345,acinar,82,C3L-02345,"Adenocarcinoma, NOS",756
+C3L-02345,,83,C3L-02345,"Adenocarcinoma, NOS",756
+C3L-00093,acinar,84,C3L-00093,"Adenocarcinoma, NOS",732
+C3L-00093,,85,C3L-00093,"Adenocarcinoma, NOS",732
+C3L-00510,acinar,86,C3L-00510,"Adenocarcinoma, NOS",742
+C3L-00510,,87,C3L-00510,"Adenocarcinoma, NOS",742
+C3L-00913,acinar,88,C3L-00913,"Adenocarcinoma, NOS",745
+C3L-00913,,89,C3L-00913,"Adenocarcinoma, NOS",745
+11LU022,acinar,90,11LU022,Not Reported,726
+C3L-00412,acinar,91,C3L-00412,Acinar cell carcinoma,740
+C3L-00412,,92,C3L-00412,Acinar cell carcinoma,740
+C3N-01415,acinar,93,C3N-01415,"Adenocarcinoma, NOS",803
+C3N-01415,,94,C3N-01415,"Adenocarcinoma, NOS",803
+C3N-00549,micropapillary,95,C3N-00549,"Adenocarcinoma, NOS",775
+C3N-00549,,96,C3N-00549,"Adenocarcinoma, NOS",775
+C3N-02433,acinar,97,C3N-02433,"Adenocarcinoma, NOS",826
+C3N-02433,,98,C3N-02433,"Adenocarcinoma, NOS",826
+C3N-01021,lepidic,100,C3N-01021,Acinar cell carcinoma,792
+C3N-01021,,101,C3N-01021,Acinar cell carcinoma,792
+C3N-00203,solid,102,C3N-00203,"Squamous cell carcinoma, NOS",767
+C3N-00203,,103,C3N-00203,"Squamous cell carcinoma, NOS",767
+C3L-01330,acinar,104,C3L-01330,Acinar cell carcinoma,747
+C3L-01330,,105,C3L-01330,Acinar cell carcinoma,747
+C3N-00574,micropapillary,106,C3N-00574,Adenosquamous carcinoma,783
+C3N-00574,,107,C3N-00574,Adenosquamous carcinoma,783
+11LU035,acinar,108,11LU035,Not Reported,727
+C3N-01071,acinar,109,C3N-01071,Acinar cell carcinoma,796
+C3N-01071,,110,C3N-01071,Acinar cell carcinoma,796
+C3N-00550,acinar,111,C3N-00550,"Papillary adenocarcinoma, NOS",776
+C3N-00550,,112,C3N-00550,"Papillary adenocarcinoma, NOS",776
+C3N-00167,papillary,113,C3N-00167,Acinar cell carcinoma,762
+C3N-00167,,114,C3N-00167,Acinar cell carcinoma,762
+C3L-00001,acinar,115,C3L-00001,"Adenocarcinoma, NOS",728
+C3L-00001,,116,C3L-00001,"Adenocarcinoma, NOS",728
+C3N-01074,solid,117,C3N-01074,"Solid carcinoma, NOS",798
+C3L-01632,acinar,118,C3L-01632,"Adenocarcinoma, NOS",748
+C3L-01632,,119,C3L-01632,"Adenocarcinoma, NOS",748
+C3N-02155,solid,120,C3N-02155,"Adenocarcinoma, NOS",818
+C3N-02155,,121,C3N-02155,"Adenocarcinoma, NOS",818
+C3N-00217,acinar,122,C3N-00217,Acinar cell carcinoma,768
+C3N-00217,,123,C3N-00217,Acinar cell carcinoma,768
+C3N-02002,acinar,124,C3N-02002,"Adenocarcinoma, NOS",811
+C3N-02002,,125,C3N-02002,"Adenocarcinoma, NOS",811
+C3N-02145,papillary,127,C3N-02145,Acinar cell carcinoma,816
+C3N-02145,,128,C3N-02145,Acinar cell carcinoma,816
+C3N-02586,micropapillary,129,C3N-02586,"Adenocarcinoma, NOS",830
+C3N-02586,,130,C3N-02586,"Adenocarcinoma, NOS",830
+C3L-02219,lepidic,131,C3L-02219,Acinar cell carcinoma,755
+C3L-02219,,132,C3L-02219,Acinar cell carcinoma,755
+C3N-00180,solid,133,C3N-00180,"Solid carcinoma, NOS",765
+C3N-00180,,134,C3N-00180,"Solid carcinoma, NOS",765
+C3L-01862,acinar,135,C3L-01862,"Adenocarcinoma, NOS",751
+C3N-00704,acinar,136,C3N-00704,Acinar cell carcinoma,787
+C3N-00704,,137,C3N-00704,Acinar cell carcinoma,787
+C3N-02158,acinar,138,C3N-02158,Acinar cell carcinoma,819
+C3N-02158,,139,C3N-02158,Acinar cell carcinoma,819
+C3N-02421,acinar,140,C3N-02421,"Adenocarcinoma, NOS",822
+C3N-02421,,141,C3N-02421,"Adenocarcinoma, NOS",822
+C3N-00556,sarcomatoid,142,C3N-00556,Adenosquamous carcinoma,779
+C3N-00556,,143,C3N-00556,Adenosquamous carcinoma,779
+C3N-00294,acinar,144,C3N-00294,"Adenocarcinoma, NOS",771
+C3N-01072,acinar,145,C3N-01072,Acinar cell carcinoma,797
+C3N-01072,,146,C3N-01072,Acinar cell carcinoma,797
+C3L-00094,acinar,147,C3L-00094,"Adenocarcinoma, NOS",733
+C3L-00094,,148,C3L-00094,"Adenocarcinoma, NOS",733
+C3L-00144,acinar,149,C3L-00144,"Adenocarcinoma, NOS",736
+C3L-00144,,150,C3L-00144,"Adenocarcinoma, NOS",736
+C3N-00223,acinar,151,C3N-00223,"Adenocarcinoma, NOS",769
+C3N-00223,,152,C3N-00223,"Adenocarcinoma, NOS",769
+C3N-02380,acinar,153,C3N-02380,"Adenocarcinoma, NOS",821
+C3N-02380,,162,C3N-02380,"Adenocarcinoma, NOS",821
+C3L-01924,acinar,154,C3L-01924,"Adenocarcinoma, NOS",754
+C3L-01924,,155,C3L-01924,"Adenocarcinoma, NOS",754
+C3N-00433,sarcomatoid,156,C3N-00433,"Adenocarcinoma, NOS",772
+C3N-00433,,157,C3N-00433,"Adenocarcinoma, NOS",772
+C3L-01683,sarcomatoid,158,C3L-01683,"Adenocarcinoma, NOS",750
+C3L-01683,,159,C3L-01683,"Adenocarcinoma, NOS",750
+C3N-00293,acinar,160,C3N-00293,"Adenocarcinoma, NOS",770
+C3N-00293,,161,C3N-00293,"Adenocarcinoma, NOS",770
+C3L-00009,acinar,163,C3L-00009,"Adenocarcinoma, NOS",729
+C3L-00009,,164,C3L-00009,"Adenocarcinoma, NOS",729
+C3N-00546,solid,165,C3N-00546,"Solid carcinoma, NOS",773
+C3N-00546,,166,C3N-00546,"Solid carcinoma, NOS",773
+C3N-01414,acinar,167,C3N-01414,Acinar cell carcinoma,802
+C3N-01414,,168,C3N-01414,Acinar cell carcinoma,802
+C3N-02087,sarcomatoid,169,C3N-02087,Acinar cell carcinoma,814
+C3N-02087,,170,C3N-02087,Acinar cell carcinoma,814
+C3L-00140,papillary,172,C3L-00140,"Papillary adenocarcinoma, NOS",735
+C3L-00140,,173,C3L-00140,"Papillary adenocarcinoma, NOS",735
+C3N-02529,acinar,174,C3N-02529,"Adenocarcinoma, NOS",827
+C3N-02529,,175,C3N-02529,"Adenocarcinoma, NOS",827
+C3L-00368,acinar,176,C3L-00368,"Adenocarcinoma, NOS",739
+C3L-00368,,177,C3L-00368,"Adenocarcinoma, NOS",739
+C3N-02067,acinar,178,C3N-02067,"Adenocarcinoma, NOS",813
+C3N-02067,,179,C3N-02067,"Adenocarcinoma, NOS",813
+C3N-02422,intestinal,180,C3N-02422,"Adenocarcinoma, NOS",823
+C3L-00080,acinar,181,C3L-00080,"Adenocarcinoma, NOS",730
+C3L-00080,,182,C3L-00080,"Adenocarcinoma, NOS",730
+C3N-00547,acinar,183,C3N-00547,Acinar cell carcinoma,774
+C3N-00547,,184,C3N-00547,Acinar cell carcinoma,774
+C3N-01023,acinar,185,C3N-01023,"Solid carcinoma, NOS",793
+C3N-01023,,186,C3N-01023,"Solid carcinoma, NOS",793
+C3N-01024,acinar,187,C3N-01024,"Adenocarcinoma, NOS",794
+C3N-01024,,188,C3N-01024,"Adenocarcinoma, NOS",794
+C3L-00973,papillary,190,C3L-00973,"Adenocarcinoma, NOS",746
+C3L-00973,,191,C3L-00973,"Adenocarcinoma, NOS",746
+C3L-02348,papillary,192,C3L-02348,"Adenocarcinoma, NOS",757
+C3L-02348,,193,C3L-02348,"Adenocarcinoma, NOS",757
+C3L-02508,invasive-mucinous,194,C3L-02508,"Adenocarcinoma, NOS",760
+C3L-02508,,195,C3L-02508,"Adenocarcinoma, NOS",760
+C3N-00560,solid,196,C3N-00560,"Adenocarcinoma, NOS",781
+C3N-00560,,197,C3N-00560,"Adenocarcinoma, NOS",781
+C3L-00604,acinar,199,C3L-00604,Acinar cell carcinoma,743
+C3L-00604,,200,C3L-00604,Acinar cell carcinoma,743
+C3N-00199,acinar,201,C3N-00199,"Adenocarcinoma, NOS",766
+C3N-00199,,202,C3N-00199,"Adenocarcinoma, NOS",766
+C3N-00579,acinar,203,C3N-00579,Acinar cell carcinoma,785
+C3N-00579,,204,C3N-00579,Acinar cell carcinoma,785
+C3N-02582,acinar,205,C3N-02582,"Adenocarcinoma, NOS",829
+C3N-02582,,206,C3N-02582,"Adenocarcinoma, NOS",829
+C3L-02350,acinar,208,C3L-02350,Acinar cell carcinoma,758
+C3L-02350,,209,C3L-02350,Acinar cell carcinoma,758
+C3N-00738,acinar,210,C3N-00738,"Adenocarcinoma, NOS",789
+C3N-00738,,211,C3N-00738,"Adenocarcinoma, NOS",789
+C3N-00959,acinar,212,C3N-00959,Acinar cell carcinoma,790
+C3N-00959,,213,C3N-00959,Acinar cell carcinoma,790
+C3N-02003,solid,214,C3N-02003,"Adenocarcinoma, NOS",812
+C3N-02003,,215,C3N-02003,"Adenocarcinoma, NOS",812
+C3N-00175,papillary,217,C3N-00175,"Adenocarcinoma, NOS",764
+C3N-00175,,218,C3N-00175,"Adenocarcinoma, NOS",764
+C3N-01823,acinar,219,C3N-01823,"Adenocarcinoma, NOS",808
+C3N-01823,,220,C3N-01823,"Adenocarcinoma, NOS",808
+C3L-02549,intestinal,221,C3L-02549,Lepidic adenocarcinoma,761
+C3L-02549,,222,C3L-02549,Lepidic adenocarcinoma,761
+C3L-02365,acinar,223,C3L-02365,"Adenocarcinoma, NOS",759
+C3L-02365,,224,C3L-02365,"Adenocarcinoma, NOS",759

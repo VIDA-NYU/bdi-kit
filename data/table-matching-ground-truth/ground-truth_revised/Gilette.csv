@@ -1,0 +1,15 @@
+original_paper_variable_names,GDC_format_variable_names
+Participant,case_submitter_id
+Type,tissue_type
+Smoking.Status,can be inferred from tobacco_smoking_status
+Age,age_at_diagnosis
+Gender,gender
+Ethnicity,ethnicity
+Height.cm,height
+Weight.kg,weight
+BMI,bmi
+Cigarettes.per.Day,cigarettes_per_day
+Pack.Years.Smoked,pack_years_smoked
+Smoking.History,tobacco_smoking_status
+Secondhand.Smoke,secondhand_smoke_as_child
+Dominant.Histological.Subtype,primary_diagnosis
