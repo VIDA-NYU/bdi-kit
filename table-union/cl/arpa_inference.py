@@ -23,6 +23,21 @@ def load_checkpoint(ckpt, hp):
 
     return model
 
+def sample_to_15_rows(table):
+    """
+    Guarantee that the table has 15 rows
+    """
+    if len(table) > 15:
+        unique_rows = table.drop_duplicates()
+        num_unique_rows = len(unique_rows)
+        if num_unique_rows <= 15:
+            needed_rows = 15 - num_unique_rows
+            additional_rows = table[~table.index.isin(unique_rows.index)].sample(n=needed_rows, replace=True, random_state=1)
+            table = pd.concat([unique_rows, additional_rows])
+        else:
+            table = unique_rows.sample(n=15, random_state=1)
+    return table
+
 def inference_on_tables(tables: List[pd.DataFrame],
                         model: BarlowTwinsSimCLR,
                         unlabeled: PretrainTableDataset,
@@ -66,6 +81,7 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
     tables = []
     for i, column in enumerate(table.columns):
         curr_table = pd.DataFrame(table[column])
+        curr_table = sample_to_15_rows(curr_table)
         tables.append(curr_table)
     vectors = inference_on_tables(tables, model, unlabeled, batch_size=128)
     l_features = [vec[-1] for vec in vectors]
@@ -83,6 +99,7 @@ def evaluate_arpa_matching(model: BarlowTwinsSimCLR,
         gdc_tables = []
         for i, column in enumerate(gdc_ds.columns):
             curr_table = pd.DataFrame(gdc_ds[column])
+            curr_table = sample_to_15_rows(curr_table)
             gdc_tables.append(curr_table)
         gdc_vectors = inference_on_tables(gdc_tables, model, unlabeled, batch_size=128)
         r_features = [vec[-1] for vec in gdc_vectors]
@@ -145,7 +162,6 @@ def gpt_cta(top_k_results, table, hp):
             "Target GDC variable name(s)": col_type
         }
         results.append(match)
-        # print(f"{candidate_column}: {col_type}")
 
     table_name = hp.cand_table.split('/')[-1].split('.')[0]
     results_path = f'./arpa_result/top_{m}_{table_name}.json'
@@ -194,9 +210,9 @@ if __name__ == '__main__':
     # Run ID
     parser.add_argument("--run_id", type=int, default=1)
     # Path to the candidate table
-    parser.add_argument("--cand_table", type=str, default='../data/extracted-tables/Cao_Clinical_data.csv')
+    parser.add_argument("--cand_table", type=str, default='../data/extracted-tables/Dou_UCEC_CPTAC3_meta_table_V2.1.csv')
     # Top k results to return by cosine similarity
-    parser.add_argument("--top_k", type=int, default=50)
+    parser.add_argument("--top_k", type=int, default=20)
     # Save the GDC embeddings
     parser.add_argument("--save_embeddings", dest="save_embeddings", action="store_true")
     # Use stored GDC embeddings
