@@ -32,7 +32,7 @@ def get_requires():
 long_description = read_readme()
 version = read_version()
 requires = get_requires()
-extra_requires = get_extra_requires()
+extra_requires = []
 
 setuptools.setup(
     name=package_name,
@@ -40,16 +40,16 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=requires,
     extras_require=extra_requires,
-    description="Mapper System",
+    description="BDI Library",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/VIDA-NYU/alpha-automl',
+    url='https://github.com/VIDA-NYU/',
     include_package_data=True,
     author='',
     author_email='',
     maintainer='',
     maintainer_email='',
-    keywords=['askem', 'table mapping', 'nyu'],
+    keywords=['askem', 'data integration', 'nyu'],
     license='Apache-2.0',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
