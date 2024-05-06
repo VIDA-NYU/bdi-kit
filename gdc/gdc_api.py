@@ -30,18 +30,10 @@ class GDCSchema:
     :param candidates: dict, the candidate gdc column names and their similarity score
     """
 
-    def __init__(self, column_name=None, subschema=None):
-        self.schema = load_gdc_schema()
+    def __init__(self, column_name=None, subschemas=None):
+        self.schema = load_gdc_schema(subschemas)
         self.properties = None
-
-        self.subschema = None
-        if subschema:
-            if subschema not in self.schema.keys():
-                logger.error(
-                    "Invalid subschema, make sure your subschema is in schema.keys!"
-                )
-            else:
-                self.subschema = subschema
+        self.subschemas = subschemas
 
         if column_name is not None:
             self.set_column_name(column_name)
@@ -75,12 +67,7 @@ class GDCSchema:
             column_name = self.column_name
         candidates = {}
 
-        if self.subschema:
-            items = {self.subschema: self.get_schema()[self.subschema]}.items()
-        else:
-            items = self.get_schema().items()
-
-        for parent, values in items:
+        for parent, values in self.get_schema().items():
             for key in values["properties"].keys():
                 discription = ""
                 if "description" in values["properties"][key]:
@@ -114,6 +101,17 @@ class GDCSchema:
             "please check the valid gdc candidate column names!"
             f"Valid candidates are: {self.candidates.keys()}"
         )
+    
+    def get_all_descriptions(self):
+        descriptions = {}
+        for parent, values in self.get_schema().items():
+            for key in values["properties"].keys():
+                if "description" in values["properties"][key]:
+                    discription = values["properties"][key]["description"]
+                elif "common" in values["properties"][key]:
+                    discription = values["properties"][key]["common"]["description"]
+                descriptions[f"{parent}::{key}"] = discription
+        return descriptions
 
     @_check_properties_valid
     def get_gdc_col_type(self):
@@ -170,9 +168,13 @@ class GDCSchema:
         return self.properties
 
 
-def load_gdc_schema():
+def load_gdc_schema(subschemas=None):
     if not os.path.exists(PATH_TO_GDC_SCHEMA):
         return {}
     with open(PATH_TO_GDC_SCHEMA, "r") as f:
         data = json.load(f)
-    return data
+
+    if subschemas:
+        return {subschema: data[subschema] for subschema in subschemas}
+    else:
+        return data
