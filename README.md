@@ -3,6 +3,23 @@
 ## Overview
 This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
 
+## Installation
+This package works with Python 3.8+ in Linux, Mac, and Windows.
+
+To install this library and the required dependencies, run:
+
+```
+1. git clone https://github.com/VIDA-NYU/askem-arpa-h-project.git
+2. cd askem-arpa-h-project
+3. pip install -e .
+```
+
+[Coming soon] You can install the latest stable version of this library from [PyPI](#):
+
+```
+pip install bdi
+```
+
 ## Features
 - **Data Integration**: Integrate diverse biomedical datasets.
 - **...**:
@@ -23,11 +40,3 @@ This project aims to assist users in performing data integration on biomedical d
 
 - **/visualization**:
   - Visualizations to aid in the mapping recommendation process.
-
-
-## Install Requirements
-
-To install the required dependencies, navigate to the project directory and run the following command:
-
-```bash
-pip install -r requirements.txt
