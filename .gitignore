@@ -3,10 +3,8 @@
 
 # Ignore Python bytecode files
 *.pyc
+*.py[co]
 __pycache__/
-
-# Data directories
-use-case-2/data/
 
 # Ignore Jupyter Notebook checkpoints
 .ipynb_checkpoints/
@@ -15,3 +13,52 @@ use-case-2/data/
 # Ignore vscode settings
 .vscode/
 **/.vscode
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+
+# Notebook checkpoints
+.ipynb_checkpoints
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+.coverage
+.tox
+nosetests.xml
+
+# Eclipse PyDev
+.project
+.pydevproject
+
+# PyCharm
+.idea
+
+# ViM
+.*.swp
+
+# Emacs
+\#*#
+
+# Archives
+*.tar
+*.tar.gz
+*.tar.bz2
+*.zip
+*.whl
+
+# Vagrant
+.vagrant
