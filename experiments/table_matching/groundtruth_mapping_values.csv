@@ -1,0 +1,44 @@
+source_variable,gdc_variable,source_value,gdc_value
+Gender,gender,Female,female
+Gender,gender,nan,unknown
+Race,race,White,white
+Race,race,nan,not reported
+Race,race,Asian,asian
+Race,race,Not Reported,not reported
+Race,race,Black or African American,black or african american
+Histologic_Grade_FIGO,tumor_grade,FIGO grade 1,G1
+Histologic_Grade_FIGO,tumor_grade,FIGO grade 2,G2
+Histologic_Grade_FIGO,tumor_grade,nan,Unknown
+Histologic_Grade_FIGO,tumor_grade,FIGO grade 3,G3
+tumor_Stage-Pathological,ajcc_pathologic_stage,Stage I,Stage I
+tumor_Stage-Pathological,ajcc_pathologic_stage,Stage IV,Stage IV
+tumor_Stage-Pathological,ajcc_pathologic_stage,nan,Unknown
+tumor_Stage-Pathological,ajcc_pathologic_stage,Stage III,Stage III
+tumor_Stage-Pathological,ajcc_pathologic_stage,Stage II,Stage II
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,pN0,N0
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,pNX,NX
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,nan,Unknown
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,pN2 (FIGO IIIC2),N2
+Path_Stage_Reg_Lymph_Nodes-pN,ajcc_pathologic_n,pN1 (FIGO IIIC1),N1
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT1a (FIGO IA),T1a
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,nan,Unknown
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT3a (FIGO IIIA),T3a
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT1 (FIGO I),T1
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT1b (FIGO IB),T1b
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT2 (FIGO II),T2
+Path_Stage_Primary_Tumor-pT,ajcc_pathologic_t,pT3b (FIGO IIIB),T3b
+Tumor_Focality,tumor_focality,Unifocal,Unifocal
+Tumor_Focality,tumor_focality,nan,Unknown
+Tumor_Focality,tumor_focality,Multifocal,Multifocal
+Tumor_Site,tissue_or_organ_of_origin,Anterior endometrium,Endometrium
+Tumor_Site,tissue_or_organ_of_origin,Posterior endometrium,Endometrium
+Tumor_Site,tissue_or_organ_of_origin,"Other, specify",Unknown
+Tumor_Site,tissue_or_organ_of_origin,nan,Unknown
+Histologic_type,morphology,Endometrioid,8380/3
+Histologic_type,morphology,Carcinosarcoma,8980/3
+Histologic_type,morphology,Serous,8441/3
+Histologic_type,morphology,Clear cell,8310/3
+Histologic_type,morphology,nan,Unknown
+Ethnicity,ethnicity,Not-Hispanic or Latino,not hispanic or latino
+Ethnicity,ethnicity,nan,
+Ethnicity,ethnicity,Hispanic or Latino,hispanic or latino
