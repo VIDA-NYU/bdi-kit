@@ -1,7 +1,7 @@
 from bdi import APIManager
 
 manager = APIManager()
-dataset_path =  './datasets/dou.csv'
+
 dataset = manager.load_dataset(dataset_path)
 print(dataset)
 manager.set_target_domain()
