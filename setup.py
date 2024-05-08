@@ -32,7 +32,7 @@ def get_requires():
 long_description = read_readme()
 version = read_version()
 requires = get_requires()
-extra_requires = []
+extra_requires = {}
 
 setuptools.setup(
     name=package_name,
