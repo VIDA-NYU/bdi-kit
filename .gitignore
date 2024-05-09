@@ -62,3 +62,11 @@ nosetests.xml
 
 # Vagrant
 .vagrant
+
+# DS_Store
+.DS_Store
+**/.DS_Store
+
+# Model
+*.pt
+**/*.pt

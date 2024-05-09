@@ -1,3 +1,7 @@
 polyfuzz
 valentine
 openai
+torch
+transformers
+tqdm
+scikit-learn
