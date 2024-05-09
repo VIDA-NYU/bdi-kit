@@ -1,13 +1,15 @@
 import os
-import numpy as np
-import torch
-from tqdm import tqdm
-import pandas as pd
 from typing import List
-from sklearn.metrics.pairwise import cosine_similarity
 
-from bdi.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_models import BarlowTwinsSimCLR
-from bdi.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_pretrained_dataset import PretrainTableDataset
+import numpy as np
+import pandas as pd
+import torch
+from bdi.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_models import \
+    BarlowTwinsSimCLR
+from bdi.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_pretrained_dataset import \
+    PretrainTableDataset
+from sklearn.metrics.pairwise import cosine_similarity
+from tqdm import tqdm
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 GDC_TABLE_PATH = os.path.join(dir_path, "tables/gdc_table.csv")
@@ -15,24 +17,21 @@ MODEL_PATH = os.path.join(dir_path, "models/model_20_1.pt")
 
 
 class ContrastiveLearningAPI:
-    def __init__(self,
-                 model_path=MODEL_PATH,
-                 top_k=10,
-                 batch_size=128):
+    def __init__(self, model_path=MODEL_PATH, top_k=10, batch_size=128):
         self.model_path = model_path
         self.unlabeled = PretrainTableDataset()
         self.batch_size = batch_size
-        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = self.load_checkpoint()
         self.top_k = top_k
 
-    def load_checkpoint(self, lm='roberta'):
-        ckpt = torch.load(self.model_path, map_location=torch.device('cpu'))
+    def load_checkpoint(self, lm="roberta"):
+        ckpt = torch.load(self.model_path, map_location=torch.device("cpu"))
         scale_loss = 0.1
         lambd = 3.9
         model = BarlowTwinsSimCLR(scale_loss, lambd, device=self.device, lm=lm)
         model = model.to(self.device)
-        model.load_state_dict(ckpt['model'])
+        model.load_state_dict(ckpt["model"])
 
         return model
 
@@ -49,37 +48,39 @@ class ContrastiveLearningAPI:
         gt_column_ids = gdc_ds.columns
 
         for index, similarities in enumerate(cosine_sim):
-            top_k_indices = np.argsort(similarities)[::-1][:self.top_k]
+            top_k_indices = np.argsort(similarities)[::-1][: self.top_k]
             top_k_column_names = [gt_column_ids[i] for i in top_k_indices]
             top_k_similarities = [str(round(similarities[i], 4)) for i in top_k_indices]
             top_k_columns = list(zip(top_k_column_names, top_k_similarities))
             result = {
                 "Candidate column": l_column_ids[index],
-                "Top k columns": top_k_columns
+                "Top k columns": top_k_columns,
             }
             top_k_results.append(result)
         recommendations = self._extract_recommendations_from_top_k(top_k_results)
         return recommendations, top_k_results
-    
+
     def _extract_recommendations_from_top_k(self, top_k_results):
         recommendations = set()
         for result in top_k_results:
             for name, _ in result["Top k columns"]:
                 recommendations.add(name)
         return list(recommendations)
-    
+
     def _sample_to_15_rows(self, table: pd.DataFrame):
         if len(table) > 15:
             unique_rows = table.drop_duplicates()
             num_unique_rows = len(unique_rows)
             if num_unique_rows <= 15:
                 needed_rows = 15 - num_unique_rows
-                additional_rows = table[~table.index.isin(unique_rows.index)].sample(n=needed_rows, replace=True, random_state=1)
+                additional_rows = table[~table.index.isin(unique_rows.index)].sample(
+                    n=needed_rows, replace=True, random_state=1
+                )
                 table = pd.concat([unique_rows, additional_rows])
             else:
                 table = unique_rows.sample(n=15, random_state=1)
         return table
-    
+
     def _load_table_tokens(self, table: pd.DataFrame):
         tables = []
         for i, column in enumerate(table.columns):
