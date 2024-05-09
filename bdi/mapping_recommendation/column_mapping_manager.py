@@ -3,9 +3,9 @@ from bdi.mapping_algorithms.column_mapping.algorithms import YurongAlgorithm
 
 class ColumnMappingManager():
 
-    def __init__(self, dataset, target_domain):
+    def __init__(self, dataset, global_table):
         self.dataset = dataset
-        self.target_domain = target_domain
+        self.global_table = global_table
         self.best_method = YurongAlgorithm()
     
     def map(self):
