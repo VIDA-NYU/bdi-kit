@@ -1,4 +1,5 @@
 from bdi.data_ingestion.dataset_loader import load_dataframe
+from bdi.mapping_recommendation.scope_reducing_manager import ScopeReducingManager
 from bdi.mapping_recommendation.value_mapping_manager import ValueMappingManager
 from bdi.mapping_recommendation.column_mapping_manager import ColumnMappingManager
 from bdi.utils import get_gdc_data
@@ -15,7 +16,7 @@ class APIManager():
         self.value_mappings = None
     
     def load_dataset(self, dataset_path):
-        self.dataset =  load_dataframe(dataset_path)
+        self.dataset = load_dataframe(dataset_path)
         self.column_manager = ColumnMappingManager(self.dataset, self.target_domain)
 
         return self.dataset
@@ -24,7 +25,8 @@ class APIManager():
         pass
 
     def reduce_scope(self):
-        pass
+        self.scope_manager = ScopeReducingManager(self.dataset, self.target_domain)
+        return self.scope_manager.reduce()
 
     def map_columns(self):
         self.column_mappings =  self.column_manager.map()
