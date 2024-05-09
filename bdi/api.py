@@ -6,6 +6,8 @@ from bdi.utils import get_gdc_data
 from os.path import join, dirname
 
 GDC_DATA_PATH = join(dirname(__file__), './resource/gdc_table.csv')
+TARGET_DATA_PATH = join(dirname(__file__), './resource/target.csv')
+EXAMPLE_DATA_PATH = join(dirname(__file__), './resource/cao.csv')
 
 
 class APIManager():
@@ -21,6 +23,8 @@ class APIManager():
     def load_global_table(self, global_table_path=None):
         if global_table_path is None:
             self.global_table = load_dataframe(GDC_DATA_PATH)
+        else:
+            self.global_table = load_dataframe(global_table_path)
         return self.global_table
     
     def load_dataset(self, dataset_path):
@@ -31,7 +35,7 @@ class APIManager():
         return self.dataset
 
     def reduce_scope(self):
-        self.scope_manager = ScopeReducingManager(self.dataset, self.target_domain)
+        self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         return self.scope_manager.reduce()
 
     def map_columns(self):
@@ -53,6 +57,8 @@ class APIManager():
 # print(api.dataset.head())
 
 # print(api.global_table.head())
+    
+
     
 
     
