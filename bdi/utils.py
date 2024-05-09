@@ -33,3 +33,13 @@ def get_gdc_values(column_name, gdc_schema):
                     return None
 
     return None
+
+def get_all_gdc_columns():
+    all_columns = []
+    gdc_schema = read_gdc_schema()
+    for key, values in gdc_schema.items():
+        for key in values['properties'].keys():
+            all_columns.append(key)
+    return all_columns
+
+
