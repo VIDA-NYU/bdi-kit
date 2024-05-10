@@ -1,13 +1,17 @@
-from bdi.mapping_algorithms.column_mapping.algorithms import YurongAlgorithm
+from bdi.mapping_algorithms.column_mapping.algorithms import SimFlood
+from enum import Enum
 
-
+class MappingAlgorithm(Enum):
+    YURONG = "YurongAlgorithm"
+    SIMFLOOD = "SimFlood"
+    
 class ColumnMappingManager():
 
-    def __init__(self, dataset, target_domain):
+    def __init__(self, dataset, global_table, algorithm=MappingAlgorithm.SIMFLOOD):
         self.dataset = dataset
-        self.target_domain = target_domain
-        self.best_method = YurongAlgorithm()
+        self.global_table = global_table
+        self.mapping_algorithm = eval(algorithm.value)(dataset, global_table)
     
     def map(self):
-        mappings =  self.best_method.map()
+        mappings =  self.mapping_algorithm.map()
         return mappings
