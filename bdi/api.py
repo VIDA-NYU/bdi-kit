@@ -32,6 +32,7 @@ class APIManager():
             self.load_global_table()
         self.dataset =  load_dataframe(dataset_path)
         self.column_manager = ColumnMappingManager(self.dataset, self.global_table)
+
         return self.dataset
 
     def reduce_scope(self):
