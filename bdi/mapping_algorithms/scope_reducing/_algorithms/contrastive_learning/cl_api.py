@@ -12,8 +12,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
-GDC_TABLE_PATH = os.path.join(dir_path, "tables/gdc_table.csv")
-MODEL_PATH = os.path.join(dir_path, "models/model_20_1.pt")
+GDC_TABLE_PATH = os.path.join(dir_path, "../../../../resource/gdc_table.csv")
+MODEL_PATH = os.path.join(dir_path, "../../../../resource/model_20_1.pt")
 
 
 class ContrastiveLearningAPI:
