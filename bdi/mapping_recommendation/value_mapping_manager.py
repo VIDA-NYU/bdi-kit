@@ -50,6 +50,8 @@ class ValueMappingManager():
         self.mapping_results = {}
 
         for current_column, target_column in self.column_mapping.items():
+            if self.target_domain[target_column] is None:
+                continue
             target_values_dict = {x.lower(): x for x in self.target_domain[target_column]}
             current_values_dict = {str(x).strip().lower(): str(x).strip() for x in self.dataset[current_column].unique()}
             self.mapping_results[current_column] = {'matches': None, 'coverage':  None, 
