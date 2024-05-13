@@ -7,8 +7,6 @@ from os.path import join, dirname
 import json
 
 GDC_DATA_PATH = join(dirname(__file__), './resource/gdc_table.csv')
-TARGET_DATA_PATH = join(dirname(__file__), './resource/target.csv')
-EXAMPLE_DATA_PATH = join(dirname(__file__), './resource/cao.csv')
 
 
 class APIManager():
@@ -58,31 +56,3 @@ class APIManager():
         self.value_mappings = self.value_manager.map()
 
         return self.value_mappings
-
-
-# if __name__ == '__main__':
-#     # ## no reduced scope
-#     # api = APIManager()
-#     schema_path = join(dirname(__file__), './resource/target.csv')
-#     # schema = api.load_global_table(schema_path)
-#     dataset_path = join(dirname(__file__), './resource/cao.csv')
-#     # dataset = api.load_dataset(dataset_path)
-#     # maps = api.map_columns()
-#     # print(maps)
-
-#     ## with reduced scope
-#     api = APIManager()
-#     schema = api.load_global_table(schema_path)
-#     dataset = api.load_dataset(dataset_path)
-#     json_file_path = join(dirname(__file__), './resource/cao_recommendations.json')
-#     with open(json_file_path, 'r') as json_file:
-#         data = json.load(json_file)
-#     api.column_manager.reduced_scope = data
-
-#     maps = api.map_columns()
-#     print(maps)
-    
-    
-    
-
-    
