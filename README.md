@@ -14,7 +14,7 @@ To install this library and the required dependencies, run:
 3. pip install -e .
 ```
 
-Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view).
+Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view) (we show how to use it in our examples).
 
 
 [Coming soon] You can install the latest stable version of this library from [PyPI](#):
