@@ -44,6 +44,7 @@ class APIManager():
 
     def map_columns(self):
         self.column_manager = ColumnMappingManager(self.dataset, self.global_table)
+        self.column_manager.reduced_scope = self.reduced_scope
         self.column_mappings = self.column_manager.map()
 
         return self.column_mappings
