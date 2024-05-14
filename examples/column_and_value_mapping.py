@@ -1,7 +1,7 @@
 from bdi import APIManager
 import os
 
-os.environ['BDI_MODEL_PATH'] = 'YOUR PATH HERE'
+os.environ['BDI_MODEL_PATH'] = '/Users/rlopez/Downloads/model_20_1.pt' # YOUR PATH HERE
 
 manager = APIManager()
 
