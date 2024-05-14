@@ -40,7 +40,7 @@ class ColumnMappingManager():
             for reduction in self.reduced_scope:
                 
                 dataset_column = reduction["Candidate column"]
-                global_table_columns = reduction["Top k columns"]
+                global_table_columns = [x[0] for x in reduction["Top k columns"]]
 
                 if dataset_column in self.dataset.columns:
                     reduced_dataset = self.dataset[[dataset_column]]
