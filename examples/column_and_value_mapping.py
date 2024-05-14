@@ -2,11 +2,12 @@ from bdi import APIManager
 
 manager = APIManager()
 
+dataset_path =  './datasets/cao.csv'
 dataset = manager.load_dataset(dataset_path)
+print('Dataset:')
 print(dataset)
-manager.set_target_domain()
 manager.reduce_scope()
 column_mappings = manager.map_columns()
+print('Column mappings')
 print(column_mappings)
-manager.map_values()
-
+value_mappings = manager.map_values()
