@@ -14,15 +14,15 @@ To install this library and the required dependencies, run:
 3. pip install -e .
 ```
 
+Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view).
+
+
 [Coming soon] You can install the latest stable version of this library from [PyPI](#):
 
 ```
 pip install bdi
 ```
 
-## Features
-- **Data Integration**: Integrate diverse biomedical datasets.
-- **...**:
 
 ## Folder Structure
 
