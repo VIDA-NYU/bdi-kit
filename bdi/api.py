@@ -4,7 +4,6 @@ from bdi.mapping_recommendation.value_mapping_manager import ValueMappingManager
 from bdi.mapping_recommendation.column_mapping_manager import ColumnMappingManager
 from bdi.utils import get_gdc_data
 from os.path import join, dirname
-import json
 
 GDC_DATA_PATH = join(dirname(__file__), './resource/gdc_table.csv')
 
@@ -34,25 +33,25 @@ class APIManager():
         if self.global_table is None:
             self.load_global_table()
         self.dataset = load_dataframe(dataset_path)
-        self.column_manager = ColumnMappingManager(
-            self.dataset, self.global_table)
 
         return self.dataset
 
     def reduce_scope(self):
-        self.scope_manager = ScopeReducingManager(
-            self.dataset, self.global_table)
+        self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
+
         return self.reduced_scope
 
     def map_columns(self):
+        self.column_manager = ColumnMappingManager(self.dataset, self.global_table)
+        self.column_manager.reduced_scope = self.reduced_scope
         self.column_mappings = self.column_manager.map()
+
         return self.column_mappings
 
     def map_values(self):
-        self.global_table = get_gdc_data(self.column_mappings.values())
-        self.value_manager = ValueMappingManager(
-            self.dataset, self.column_mappings, self.global_table)
+        self.global_table_all = get_gdc_data(self.column_mappings.values())
+        self.value_manager = ValueMappingManager(self.dataset, self.column_mappings, self.global_table_all)
         self.value_mappings = self.value_manager.map()
 
         return self.value_mappings
