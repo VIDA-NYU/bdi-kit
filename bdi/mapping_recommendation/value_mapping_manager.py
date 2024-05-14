@@ -53,7 +53,10 @@ class ValueMappingManager():
             if self.target_domain[target_column] is None:
                 continue
             target_values_dict = {x.lower(): x for x in self.target_domain[target_column]}
-            current_values_dict = {str(x).strip().lower(): str(x).strip() for x in self.dataset[current_column].unique()}
+            unique_values = self.dataset[current_column].unique()
+            if isinstance(unique_values[0], float):
+                continue
+            current_values_dict = {str(x).strip().lower(): str(x).strip() for x in unique_values}
             self.mapping_results[current_column] = {'matches': None, 'coverage':  None, 
                                                     'unique_values': None, 'unmatch_values': None}
             
