@@ -13,7 +13,7 @@ lm_mp = {
 
 
 class PretrainTableDataset(data.Dataset):
-    def __init__(self, max_len=256, lm="roberta", sample_meth="wordProb"):
+    def __init__(self, max_len=128, lm="roberta", sample_meth="head"):
         super().__init__()
         self.max_len = max_len
         self.tokenizer = AutoTokenizer.from_pretrained(lm_mp[lm])
