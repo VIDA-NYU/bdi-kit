@@ -206,7 +206,7 @@ if __name__ == '__main__':
     parser.add_argument("--gpt", type=bool, default=True)
     
     # Path to models directory (https://drive.google.com/drive/folders/1ntaEq4MDcEJ8gsZLU_uS-oosOnEmS12r?usp=sharing)
-    parser.add_argument("--logdir", type=str, default="../../models")
+    parser.add_argument("--logdir", type=str, default="../../../models")
     # Run ID
     parser.add_argument("--run_id", type=int, default=1)
     # Path to the candidate table
