@@ -28,6 +28,16 @@ class ValueMappingManager():
         total = total / len(sorted_results)
         print(f'Total: {total:.2f}%')
 
+    def skip_values(self, values):
+        max_length = 50
+        if isinstance(values[0], float):
+            return True
+        elif len(values) > max_length:
+            return True
+        else:
+            return False
+
+
     def map(self, include_unmatches=True):
         if self.mapping_results is None:
             self._match_values()
@@ -54,7 +64,8 @@ class ValueMappingManager():
                 continue
             target_values_dict = {x.lower(): x for x in self.target_domain[target_column]}
             unique_values = self.dataset[current_column].unique()
-            if isinstance(unique_values[0], float):
+
+            if self.skip_values(unique_values):
                 continue
             current_values_dict = {str(x).strip().lower(): str(x).strip() for x in unique_values}
             self.mapping_results[current_column] = {'matches': None, 'coverage':  None, 
