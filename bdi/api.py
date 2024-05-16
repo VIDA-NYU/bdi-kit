@@ -5,6 +5,9 @@ from bdi.mapping_recommendation.column_mapping_manager import ColumnMappingManag
 from bdi.visualization.mappings import plot_reduce_scope, plot_column_mappings, plot_value_mappings
 from bdi.utils import get_gdc_data
 from os.path import join, dirname
+import os
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false" # Disable huggingface messages
 
 GDC_DATA_PATH = join(dirname(__file__), './resource/gdc_table.csv')
 
