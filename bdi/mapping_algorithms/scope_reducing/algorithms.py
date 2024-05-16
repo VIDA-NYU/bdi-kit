@@ -20,7 +20,7 @@ class YurongReducer(BaseReducer):
     def __init__(self):
         super().__init__()
         model_path = os.environ.get('BDI_MODEL_PATH', MODEL_PATH)
-        self.api = ContrastiveLearningAPI(model_path=model_path)
+        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
 
     def reduce_scope(self, dataset: pd.DataFrame):
         union_scopes, scopes_json = self.api.get_recommendations(dataset)
