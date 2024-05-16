@@ -1,13 +1,18 @@
-from bdi.mapping_algorithms.column_mapping.algorithms import SimFlood
+from bdi.mapping_algorithms.column_mapping.algorithms import SimFlood,ComaAlgorithm,CupidAlgorithm,DistributionBasedAlgorithm,JaccardDistanceAlgorithm
 from enum import Enum
 
 class MappingAlgorithm(Enum):
     YURONG = "YurongAlgorithm"
     SIMFLOOD = "SimFlood"
+    COMA = "ComaAlgorithm"
+    CUPID = "CupidAlgorithm"
+    DISTRIBUTION_BASED = "DistributionBasedAlgorithm"
+    JACCARD_DISTANCE = "JaccardDistanceAlgorithm"
+
     
 class ColumnMappingManager():
 
-    def __init__(self, dataset, global_table, algorithm=MappingAlgorithm.SIMFLOOD):
+    def __init__(self, dataset, global_table, algorithm=MappingAlgorithm.COMA):
         self._dataset = dataset #TODO: move into database object (in data_ingestion folder)
         self._global_table = global_table #TODO: move into database object (in data_ingestion folder)
         self._reduced_scope = None #TODO: move into database object (in data_ingestion folder)
