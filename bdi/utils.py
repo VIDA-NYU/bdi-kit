@@ -43,3 +43,12 @@ def get_all_gdc_columns():
     return all_columns
 
 
+def get_gdc_metadata():
+    metadata = {}
+    gdc_schema = read_gdc_schema()
+
+    for key, values in gdc_schema.items():
+        for key, data in values['properties'].items():
+            metadata[key] = data
+
+    return metadata
