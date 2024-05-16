@@ -2,6 +2,7 @@ from bdi.data_ingestion.dataset_loader import load_dataframe
 from bdi.mapping_recommendation.scope_reducing_manager import ScopeReducingManager
 from bdi.mapping_recommendation.value_mapping_manager import ValueMappingManager
 from bdi.mapping_recommendation.column_mapping_manager import ColumnMappingManager
+from bdi.visualization.mappings import plot_reduce_scope, plot_column_mappings, plot_value_mappings
 from bdi.utils import get_gdc_data
 from os.path import join, dirname
 
@@ -39,6 +40,7 @@ class APIManager():
     def reduce_scope(self):
         self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
+        plot_reduce_scope(self.reduced_scope)
 
         return self.reduced_scope
 
@@ -46,6 +48,7 @@ class APIManager():
         self.column_manager = ColumnMappingManager(self.dataset, self.global_table)
         self.column_manager.reduced_scope = self.reduced_scope
         self.column_mappings = self.column_manager.map()
+        plot_column_mappings(self.column_mappings)
 
         return self.column_mappings
 
@@ -53,5 +56,6 @@ class APIManager():
         self.global_table_all = get_gdc_data(self.column_mappings.values())
         self.value_manager = ValueMappingManager(self.dataset, self.column_mappings, self.global_table_all)
         self.value_mappings = self.value_manager.map()
+        plot_value_mappings(self.value_mappings)
 
         return self.value_mappings
