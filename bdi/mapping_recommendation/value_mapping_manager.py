@@ -1,7 +1,5 @@
-import tabulate
 import pandas as pd
 import matplotlib.pyplot as plt
-from copy import deepcopy
 from bdi.mapping_algorithms.value_mapping.algorithms import TFIDFMatcher, LLMMatcher, EditMatcher
 
 
@@ -38,23 +36,12 @@ class ValueMappingManager():
             return False
 
 
-    def map(self, include_unmatches=True):
+    def map(self):
         if self.mapping_results is None:
             self._match_values()
-        
-        sorted_results = sorted(self.mapping_results.items(), key=lambda x: x[1]['coverage'], reverse=True)
 
-        for column_name, _ in sorted_results:
-            matches = deepcopy(self.mapping_results[column_name]['matches'])
-            print(f'Column {column_name}:')
+        return self.mapping_results
 
-            if include_unmatches:
-                for unmatch_value in self.mapping_results[column_name]['unmatch_values']:
-                    matches.append((unmatch_value, '-', '-'))
-            
-            matches_df = pd.DataFrame(matches)
-            print(tabulate.tabulate(matches_df, headers=['Current Value', 'Target Value', 'Similarity'], 
-                                    tablefmt='orgtbl', showindex=False), '\n')
 
     def _match_values(self):
         self.mapping_results = {}
