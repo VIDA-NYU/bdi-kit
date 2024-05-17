@@ -9,19 +9,13 @@ This package works with Python 3.8+ in Linux, Mac, and Windows.
 To install this library and the required dependencies, run:
 
 ```
-1. git clone https://github.com/VIDA-NYU/askem-arpa-h-project.git
-2. cd askem-arpa-h-project
+1. git clone https://github.com/VIDA-NYU/biomedical-data-integration.git
+2. cd biomedical-data-integration
 3. pip install -e .
 ```
 
 Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view) (we show how to use it in our examples).
 
-
-[Coming soon] You can install the latest stable version of this library from [PyPI](#):
-
-```
-pip install bdi
-```
 
 
 ## Folder Structure
