@@ -62,3 +62,24 @@ class APIManager():
         plot_value_mappings(self.value_mappings)
 
         return self.value_mappings
+
+    def update_reduced_scope(self, original_column, new_candidate_name, new_candidate_sim=1.0):
+        for index in range(len(self.reduced_scope)):
+            if self.reduced_scope[index]['Candidate column'] == original_column:
+                self.reduced_scope[index]['Top k columns'].append((new_candidate_name, new_candidate_sim))
+                print('Reduced scope updated!')
+                plot_reduce_scope(self.reduced_scope)
+                break
+
+    def update_column_mappings(self, original_column, new_target_column):
+        self.column_mappings[original_column] = new_target_column
+        print('Column mapping updated!')
+        plot_column_mappings(self.column_mappings)
+
+    def update_value_mappings(self, original_column, original_value, new_target_value, new_similarity=1.0):
+        for index in range(len(self.value_mappings[original_column]['matches'])):
+            if self.value_mappings[original_column]['matches'][index][0] == original_value:
+                self.value_mappings[original_column]['matches'][index] = (original_value, new_target_value, new_similarity)
+                print('Value mapping updated!')
+                plot_value_mappings(self.value_mappings)
+                break
