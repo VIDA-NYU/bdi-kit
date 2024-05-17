@@ -3,8 +3,9 @@ from copy import deepcopy
 from IPython.display import display
 from bdi.utils import get_gdc_metadata
 
+pd.set_option('display.max_colwidth', None)
 
-def plot_reduce_scope(reduced_scope, num_values=3):
+def plot_reduce_scope(reduced_scope, max_chars=150):
     gdc_metadata = get_gdc_metadata()
 
     for column_data in reduced_scope:
@@ -12,7 +13,9 @@ def plot_reduce_scope(reduced_scope, num_values=3):
         recommendations = []
         for candidate_name, candidate_similarity in column_data['Top k columns']:
             candidate_description = gdc_metadata[candidate_name].get('description', '')
-            candidate_values = ', '.join(gdc_metadata[candidate_name].get('enum', [])[:num_values])
+            candidate_description = truncate_text(candidate_description, max_chars)
+            candidate_values = ', '.join(gdc_metadata[candidate_name].get('enum', []))
+            candidate_values = truncate_text(candidate_values, max_chars)
             recommendations.append((candidate_name, candidate_similarity, candidate_description, candidate_values))
 
         print(f'\n{column_name}:')
@@ -38,3 +41,10 @@ def plot_value_mappings(value_mappings, include_unmatches=True):
         
         matches_df = pd.DataFrame(matches, columns=['Current Value', 'Target Value', 'Similarity'])
         display(matches_df)
+
+
+def truncate_text(text, max_chars):
+    if len(text) > max_chars:
+        return text[:max_chars] + '...'
+    else:
+        return text
