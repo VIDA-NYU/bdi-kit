@@ -4,7 +4,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import panel as pn
-from bdi.utils import read_gdc_schema
+from bdikit.utils import read_gdc_schema
 from Levenshtein import distance
 from sklearn.cluster import AffinityPropagation
 
