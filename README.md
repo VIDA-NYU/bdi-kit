@@ -1,6 +1,6 @@
-# bid-kit 
-
+# bdi-kit 
 This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
+
 
 ## Installation
 This package works with Python 3.8+ in Linux, Mac, and Windows.
@@ -18,6 +18,7 @@ Download the pre-trained model for mapping recommendations from [here](https://d
 
 ## Documentation
 See our examples [here](https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples).
+
 
 ## Folder Structure
 
