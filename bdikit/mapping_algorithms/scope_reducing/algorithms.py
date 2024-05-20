@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from bdi.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import \
+from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import \
     ContrastiveLearningAPI
 from os.path import join, dirname
 
@@ -19,7 +19,7 @@ class YurongReducer(BaseReducer):
 
     def __init__(self):
         super().__init__()
-        model_path = os.environ.get('BDI_MODEL_PATH', MODEL_PATH)
+        model_path = os.environ.get('BDIKIT_MODEL_PATH', MODEL_PATH)
         self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
 
     def reduce_scope(self, dataset: pd.DataFrame):
