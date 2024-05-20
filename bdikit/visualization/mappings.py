@@ -1,7 +1,7 @@
 import pandas as pd
 from copy import deepcopy
 from IPython.display import display
-from bdi.utils import get_gdc_metadata
+from bdikit.utils import get_gdc_metadata
 
 pd.set_option('display.max_colwidth', None)
 
