@@ -1,16 +1,22 @@
+[![PyPI version](https://badge.fury.io/py/bdi-kit.svg)](https://pypi.org/project/bdi-kit)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # bdi-kit 
 This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
 
 
 ## Installation
-This package works with Python 3.8+ in Linux, Mac, and Windows.
 
-To install this library and the required dependencies, run:
+You can install the latest stable version of this library from [PyPI](https://pypi.org/project/bdi-kit/):
 
 ```
-1. git clone https://github.com/VIDA-NYU/bdi-kit.git
-2. cd bdi-kit
-3. pip install -e .
+pip install bdi-kit
+```
+
+To install the latest development version:
+
+```
+pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 ```
 
 Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view) (we show how to use it in our examples).
