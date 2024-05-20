@@ -1,6 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-from bdi.mapping_algorithms.value_mapping.algorithms import TFIDFMatcher, LLMMatcher, EditMatcher
+from bdikit.mapping_algorithms.value_mapping.algorithms import TFIDFMatcher, LLMMatcher, EditMatcher
 
 
 class ValueMappingManager():

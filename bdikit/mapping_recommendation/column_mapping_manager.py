@@ -1,4 +1,4 @@
-from bdi.mapping_algorithms.column_mapping.algorithms import SimFlood,ComaAlgorithm,CupidAlgorithm,DistributionBasedAlgorithm,JaccardDistanceAlgorithm
+from bdikit.mapping_algorithms.column_mapping.algorithms import SimFlood,ComaAlgorithm,CupidAlgorithm,DistributionBasedAlgorithm,JaccardDistanceAlgorithm
 from enum import Enum
 
 class MappingAlgorithm(Enum):

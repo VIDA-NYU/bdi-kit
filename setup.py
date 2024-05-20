@@ -2,8 +2,8 @@ import re
 import setuptools
 from collections import defaultdict
 
-package_name = 'bdi'
-package_dir = 'bdi'
+package_name = 'bdi-kit'
+package_dir = 'bdikit'
 
 
 def read_readme():
@@ -40,10 +40,10 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=requires,
     extras_require=extra_requires,
-    description="BDI Library",
+    description="bdi-kit Library",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/VIDA-NYU/',
+    url='https://github.com/VIDA-NYU/bdi-kit',
     include_package_data=True,
     author='',
     author_email='',

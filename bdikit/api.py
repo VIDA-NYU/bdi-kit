@@ -1,9 +1,9 @@
-from bdi.data_ingestion.dataset_loader import load_dataframe
-from bdi.mapping_recommendation.scope_reducing_manager import ScopeReducingManager
-from bdi.mapping_recommendation.value_mapping_manager import ValueMappingManager
-from bdi.mapping_recommendation.column_mapping_manager import ColumnMappingManager
-from bdi.visualization.mappings import plot_reduce_scope, plot_column_mappings, plot_value_mappings
-from bdi.utils import get_gdc_data
+from bdikit.data_ingestion.dataset_loader import load_dataframe
+from bdikit.mapping_recommendation.scope_reducing_manager import ScopeReducingManager
+from bdikit.mapping_recommendation.value_mapping_manager import ValueMappingManager
+from bdikit.mapping_recommendation.column_mapping_manager import ColumnMappingManager
+from bdikit.visualization.mappings import plot_reduce_scope, plot_column_mappings, plot_value_mappings
+from bdikit.utils import get_gdc_data
 from os.path import join, dirname
 import os
 

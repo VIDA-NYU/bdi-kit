@@ -1,4 +1,4 @@
-from bdi.mapping_algorithms.scope_reducing.algorithms import YurongReducer
+from bdikit.mapping_algorithms.scope_reducing.algorithms import YurongReducer
 
 
 class ScopeReducingManager:
