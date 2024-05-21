@@ -118,7 +118,6 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
             for column_type in column_types:
                 if column_type in global_columns:
                     mappings[column] = column_type
-                    print(f"Column: {column} is of type: {column_type}")
                     break
         return mappings
 
