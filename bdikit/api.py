@@ -71,8 +71,10 @@ class APIManager():
                 plot_reduce_scope(self.reduced_scope)
                 break
 
-    def update_column_mappings(self, original_column, new_target_column):
-        self.column_mappings[original_column] = new_target_column
+    def update_column_mappings(self, new_mappings):
+        for original_column, new_target_column in new_mappings:
+            self.column_mappings[original_column] = new_target_column
+
         print('Column mapping updated!')
         plot_column_mappings(self.column_mappings)
 
