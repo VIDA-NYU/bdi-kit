@@ -5,7 +5,7 @@ from bdikit.utils import get_gdc_metadata
 
 pd.set_option('display.max_colwidth', None)
 
-def plot_reduce_scope(reduced_scope, num_columns, num_candidates, max_chars=150):
+def plot_reduce_scope(reduced_scope, num_columns=5, num_candidates=5, max_chars=150):
     gdc_metadata = get_gdc_metadata()
 
     if num_columns is None:
