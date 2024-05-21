@@ -96,10 +96,9 @@ class JaccardDistanceAlgorithm(BaseColumnMappingAlgorithm):
 
 class GPTAlgorithm(BaseColumnMappingAlgorithm):
     
-    def __init__(self, dataset, global_table, api_key="sk-proj-YOUR_API_KEY"):
+    def __init__(self, dataset, global_table):
         super().__init__(dataset, global_table)
-        self.api_key = api_key
-        self.client = OpenAI(api_key=self.api_key)
+        self.client = OpenAI()
     
     def map(self):
         global_columns = self._global_table.columns

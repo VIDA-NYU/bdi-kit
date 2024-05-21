@@ -2,7 +2,6 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import SimFlood,ComaAlg
 from enum import Enum
 
 class MappingAlgorithm(Enum):
-    YURONG = "YurongAlgorithm"
     SIMFLOOD = "SimFlood"
     COMA = "ComaAlgorithm"
     CUPID = "CupidAlgorithm"
@@ -13,7 +12,7 @@ class MappingAlgorithm(Enum):
     
 class ColumnMappingManager():
 
-    def __init__(self, dataset, global_table, algorithm=MappingAlgorithm.GPT):
+    def __init__(self, dataset, global_table, algorithm=MappingAlgorithm.SIMFLOOD):
         self._dataset = dataset #TODO: move into database object (in data_ingestion folder)
         self._global_table = global_table #TODO: move into database object (in data_ingestion folder)
         self._reduced_scope = None #TODO: move into database object (in data_ingestion folder)
