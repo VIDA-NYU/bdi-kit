@@ -1,6 +1,6 @@
-import re
+import os
 import setuptools
-from collections import defaultdict
+
 
 package_name = 'bdi-kit'
 package_dir = 'bdikit'
@@ -40,7 +40,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=requires,
     extras_require=extra_requires,
-    description="bdi-kit Library",
+    description="bdi-kit library",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/VIDA-NYU/bdi-kit',
