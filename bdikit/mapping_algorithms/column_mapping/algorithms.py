@@ -13,7 +13,7 @@ class BaseColumnMappingAlgorithm():
         raise NotImplementedError("Subclasses must implement this method")
 
 
-class SimFlood(BaseColumnMappingAlgorithm):
+class SimFloodAlgorithm(BaseColumnMappingAlgorithm):
 
     def __init__(self, dataset, global_table):
         super().__init__(dataset, global_table)

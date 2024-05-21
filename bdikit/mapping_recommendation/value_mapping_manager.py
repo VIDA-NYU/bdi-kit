@@ -1,12 +1,20 @@
 import pandas as pd
+from enum import Enum
 import matplotlib.pyplot as plt
-from bdikit.mapping_algorithms.value_mapping.algorithms import TFIDFMatcher, LLMMatcher, EditMatcher
+from bdikit.mapping_algorithms.value_mapping.algorithms import TFIDFAlgorithm, LLMAlgorithm, EditAlgorithm, EmbeddingAlgorithm
+
+
+class MappingAlgorithm(Enum):
+    TFIDF = "TFIDFAlgorithm"
+    EDIT = "EditAlgorithm"
+    EMBEDDINGS = "EmbeddingAlgorithm"
+    LLM = "LLMAlgorithm"
 
 
 class ValueMappingManager():
 
-    def __init__(self, dataset, column_mapping, target_domain):
-        self.matcher_method = EditMatcher()
+    def __init__(self, dataset, column_mapping, target_domain, algorithm=MappingAlgorithm.EDIT.value):
+        self.matcher_method = eval(algorithm)()
         self.dataset = dataset
         self.column_mapping = column_mapping
         self.target_domain = target_domain
