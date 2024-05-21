@@ -40,24 +40,24 @@ class APIManager():
 
         return self.dataset
 
-    def reduce_scope(self):
+    def reduce_scope(self, num_columns=5, num_candidates=5):
         self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
-        plot_reduce_scope(self.reduced_scope)
+        plot_reduce_scope(self.reduced_scope, num_columns, num_candidates)
 
         return self.reduced_scope
 
-    def map_columns(self):
-        self.column_manager = ColumnMappingManager(self.dataset, self.global_table)
+    def map_columns(self, algorithm='SimFloodAlgorithm'):
+        self.column_manager = ColumnMappingManager(self.dataset, self.global_table, algorithm)
         self.column_manager.reduced_scope = self.reduced_scope
         self.column_mappings = self.column_manager.map()
         plot_column_mappings(self.column_mappings)
 
         return self.column_mappings
 
-    def map_values(self):
+    def map_values(self, algorithm='EditAlgorithm'):
         self.global_table_all = get_gdc_data(self.column_mappings.values())
-        self.value_manager = ValueMappingManager(self.dataset, self.column_mappings, self.global_table_all)
+        self.value_manager = ValueMappingManager(self.dataset, self.column_mappings, self.global_table_all, algorithm)
         self.value_mappings = self.value_manager.map()
         plot_value_mappings(self.value_mappings)
 
