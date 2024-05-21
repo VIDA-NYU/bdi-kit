@@ -5,13 +5,19 @@ from bdikit.utils import get_gdc_metadata
 
 pd.set_option('display.max_colwidth', None)
 
-def plot_reduce_scope(reduced_scope, max_chars=150):
+def plot_reduce_scope(reduced_scope, num_columns, num_candidates, max_chars=150):
     gdc_metadata = get_gdc_metadata()
 
-    for column_data in reduced_scope:
+    if num_columns is None:
+        num_columns = len(reduced_scope)
+
+    if num_candidates is None:
+        num_candidates = len(reduced_scope[0]['Top k columns'])
+
+    for column_data in reduced_scope[:num_columns]:
         column_name = column_data['Candidate column']
         recommendations = []
-        for candidate_name, candidate_similarity in column_data['Top k columns']:
+        for candidate_name, candidate_similarity in column_data['Top k columns'][:num_candidates]:
             candidate_description = gdc_metadata[candidate_name].get('description', '')
             candidate_description = truncate_text(candidate_description, max_chars)
             candidate_values = ', '.join(gdc_metadata[candidate_name].get('enum', []))

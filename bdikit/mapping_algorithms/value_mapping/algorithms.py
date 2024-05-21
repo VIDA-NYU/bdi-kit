@@ -5,7 +5,7 @@ from polyfuzz.models import EditDistance, TFIDF, Embeddings
 from flair.embeddings import TransformerWordEmbeddings
 
 
-class BaseMatcher():
+class BaseAlgorithm():
 
     def __init__(self, *args):
         pass
@@ -26,7 +26,7 @@ class BaseMatcher():
         return matches
 
 
-class TFIDFMatcher(BaseMatcher):
+class TFIDFAlgorithm(BaseAlgorithm):
 
     def __init__(self):
         method = TFIDF(min_similarity=0)
@@ -38,7 +38,7 @@ class TFIDFMatcher(BaseMatcher):
         return matches
 
 
-class EditMatcher(BaseMatcher):
+class EditAlgorithm(BaseAlgorithm):
 
     def __init__(self):
         method = EditDistance(n_jobs=-1)
@@ -50,7 +50,7 @@ class EditMatcher(BaseMatcher):
         return matches
 
 
-class EmbeddingMatcher(BaseMatcher):
+class EmbeddingAlgorithm(BaseAlgorithm):
 
     def __init__(self, model_path='bert-base-multilingual-cased'):
         embeddings = TransformerWordEmbeddings(model_path)
@@ -63,7 +63,7 @@ class EmbeddingMatcher(BaseMatcher):
         return matches
 
 
-class LLMMatcher(BaseMatcher):
+class LLMAlgorithm(BaseAlgorithm):
 
     def __init__(self):
         self.client = OpenAI()
