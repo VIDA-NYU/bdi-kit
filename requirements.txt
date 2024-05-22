@@ -7,3 +7,4 @@ tqdm
 scikit-learn
 tabulate
 flair
+requests
