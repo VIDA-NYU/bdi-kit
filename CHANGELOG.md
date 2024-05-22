@@ -1,6 +1,6 @@
 Changelog
 =========
-0.1.0.dev0 (yyyy-mm-dd)
+0.1.0 (2024-05-21)
 ------------------------
 
 * Add a scope reducer for GDC.
