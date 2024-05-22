@@ -43,7 +43,6 @@ class APIManager():
     def reduce_scope(self, num_columns=5, num_candidates=5):
         self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
-        plot_reduce_scope(self.reduced_scope, num_columns, num_candidates)
 
         return self.reduced_scope
 
