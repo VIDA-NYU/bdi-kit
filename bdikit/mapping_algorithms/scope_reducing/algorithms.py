@@ -1,10 +1,7 @@
-import os
 import pandas as pd
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import \
     ContrastiveLearningAPI
-from os.path import join, dirname
-
-MODEL_PATH = join(dirname(__file__), "../../../resource/model_20_1.pt")
+from bdikit.download import get_cached_model_or_download
 
 
 class BaseReducer:
@@ -19,7 +16,7 @@ class YurongReducer(BaseReducer):
 
     def __init__(self):
         super().__init__()
-        model_path = os.environ.get('BDIKIT_MODEL_PATH', MODEL_PATH)
+        model_path = get_cached_model_or_download('cl-reducer-v0.1')
         self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
 
     def reduce_scope(self, dataset: pd.DataFrame):

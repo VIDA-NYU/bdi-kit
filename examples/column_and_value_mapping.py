@@ -1,7 +1,7 @@
 from bdikit import APIManager
 import os
 
-os.environ['BDIKIT_MODEL_PATH'] = '/Users/rlopez/Downloads/model_20_1.pt' # YOUR PATH HERE
+
 manager = APIManager()
 
 dataset_path =  './datasets/dou.csv'
