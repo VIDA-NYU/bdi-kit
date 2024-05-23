@@ -8,3 +8,4 @@ scikit-learn
 tabulate
 flair
 requests
+scipy<1.13
