@@ -25,6 +25,25 @@ Download the pre-trained model for mapping recommendations from [here](https://d
 ## Documentation
 See our examples [here](https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples).
 
+## Contributing
+We format code using the [black](https://black.readthedocs.io/en/stable/) code formatter.
+The CI runs for every pull request and will fail if code is not properly formatted.
+To make sure formatting is correct, you can do the following steps.
+
+Make sure you have black installed:
+```
+pip install black
+```
+
+To format the code, anyone can use the command before committing your changes:
+```
+make format
+```
+
+Or you can use the black command directly:
+```
+black ./bdikit/
+```
 
 ## Folder Structure
 
