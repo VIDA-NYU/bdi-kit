@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "bdi-kit"
+version = "0.2.0.dev0"
+description = "A toolkit for biomedical data integration"
+authors = ["Your Name <you@example.com>"]
+license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/VIDA-NYU/bdi-kit"
+repository = "https://github.com/VIDA-NYU/bdi-kit"
+packages = [{ include = "bdikit" }]
+
+[tool.poetry.dependencies]
+python = "^3.8, <3.13"
+scipy = "<1.13"
+matplotlib = "<3.9"
+polyfuzz = "^0.4.2"
+valentine = "^0.2.0"
+openai = "^1.30.3"
+torch = "^2.3.0"
+transformers = "^4.41.1"
+tqdm = "^4.66.4"
+scikit-learn = "^1.0.2"
+tabulate = "^0.9.0"
+flair = "^0.13.1"
+requests = "^2.32.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+jupyter = "^1.0.0"
+pytest = "^8.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
