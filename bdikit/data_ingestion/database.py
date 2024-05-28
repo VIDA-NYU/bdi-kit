@@ -3,6 +3,7 @@ import os
 
 from .column import Column, ColumnType
 
+
 class Database:
     """
     A class representing a database that stores dataframes.
@@ -14,7 +15,7 @@ class Database:
         load_data(df_name, file_path): Load data from a CSV file into a dataframe and store it in the database.
         load_data_from_folder(folder_path): Load data from all CSV files in a folder.
         get_dataframe(df_name): Retrieve a dataframe by its name.
-        get_dataframe_names(): Get the names of all dataframes stored in the database. 
+        get_dataframe_names(): Get the names of all dataframes stored in the database.
         describe_database(): Print out the names, shape, columns, and head of all dataframes stored in the database.
     """
 
@@ -32,7 +33,8 @@ class Database:
         """
         if df_name in self.dataframes:
             raise ValueError(
-                f"Dataframe associated with file name '{df_name}' already exists in the database.")
+                f"Dataframe associated with file name '{df_name}' already exists in the database."
+            )
 
         df = pd.read_csv(file_path)
         self.dataframes[df_name] = df
@@ -41,7 +43,6 @@ class Database:
         for c in df.columns:
             column = Column(df_name, c, ColumnType.STRING)
             self.columns.add(column)
-
 
     def load_data_from_folder(self, folder_path):
         """
@@ -76,7 +77,7 @@ class Database:
             list: A list of dataframe names.
         """
         return list(self.dataframes.keys())
-    
+
     def get_columns(self):
         """
         Get the names of all columns stored in the database.
@@ -97,7 +98,6 @@ class Database:
             print(f"\t\t- Columns: {self.dataframes[df_name].columns}")
             # print(f"\t\t- Data types: {self.dataframes[df_name].dtypes}")
             # print(f"\t\t- Head: \n{self.dataframes[df_name].head()}")
-
 
 
 # def main():
