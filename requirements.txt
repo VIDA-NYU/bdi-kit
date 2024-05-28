@@ -5,8 +5,11 @@ torch
 transformers
 tqdm
 scikit-learn
-tabulate
 flair
 requests
 scipy<1.13
 matplotlib<3.9
+altair
+bokeh
+panel
+Levenshtein
