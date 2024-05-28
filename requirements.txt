@@ -9,7 +9,7 @@ flair
 requests
 scipy<1.13
 matplotlib<3.9
-altair==5.3.0
-bokeh==3.2.1
-panel==1.2.3
+altair
+bokeh
+panel
 Levenshtein
