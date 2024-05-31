@@ -7,12 +7,11 @@ pd.set_option('display.max_colwidth', None)
 
 def plot_reduce_scope(reduced_scope, dataset):
     scope_explorer = ScopeReducerExplorer(dataset, reduced_scope)
-    return scope_explorer.explore()
+    display(scope_explorer.explore())
 
 def plot_column_mappings(column_mappings):
     column_mappings_df = pd.DataFrame(column_mappings.items(), columns=['Original Column', 'Target Column'])
     display(column_mappings_df)
-
 
 def plot_value_mappings(value_mappings, include_unmatches=True):
     sorted_results = sorted(value_mappings.items(), key=lambda x: x[1]['coverage'], reverse=True)
