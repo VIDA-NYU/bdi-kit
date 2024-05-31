@@ -19,8 +19,6 @@ To install the latest development version:
 pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 ```
 
-Download the pre-trained model for mapping recommendations from [here](https://drive.google.com/file/d/1YdCTd-kUMjDJaltQwXN4X9ezTCsfjyft/view) (we show how to use it in our examples).
-
 
 ## Documentation
 See our examples [here](https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples).
