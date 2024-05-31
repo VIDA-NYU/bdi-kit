@@ -43,7 +43,7 @@ class APIManager():
     def reduce_scope(self):
         self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
-        return plot_reduce_scope(self.reduced_scope, self.dataset)
+        plot_reduce_scope(self.reduced_scope, self.dataset)
 
     def map_columns(self, algorithm='SimFloodAlgorithm'):
         self.column_manager = ColumnMappingManager(self.dataset, self.global_table, algorithm)
