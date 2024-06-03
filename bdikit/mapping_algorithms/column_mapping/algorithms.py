@@ -1,3 +1,5 @@
+import pandas as pd
+from typing import Dict
 from valentine import valentine_match
 from valentine.algorithms import (
     SimilarityFlooding,
@@ -5,7 +7,9 @@ from valentine.algorithms import (
     Cupid,
     DistributionBased,
     JaccardDistanceMatcher,
+    BaseMatcher,
 )
+from valentine.algorithms.matcher_results import MatcherResults
 from openai import OpenAI
 
 
@@ -14,18 +18,19 @@ class BaseColumnMappingAlgorithm:
         self._dataset = dataset
         self._global_table = global_table
 
-    def map(self):
+    def map(self) -> Dict[str, str]:
         raise NotImplementedError("Subclasses must implement this method")
 
 
-class SimFloodAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
+class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
+    def __init__(self, dataset, global_table, matcher: BaseMatcher):
         super().__init__(dataset, global_table)
+        self.matcher = matcher
 
-    def map(self):
-        matcher = SimilarityFlooding()
-        matches = valentine_match(self._dataset, self._global_table, matcher)
-
+    def map(self) -> Dict[str, str]:
+        matches: MatcherResults = valentine_match(
+            self._dataset, self._global_table, self.matcher
+        )
         mappings = {}
         for match in matches.one_to_one():
             dataset_candidate = match[0][1]
@@ -34,68 +39,29 @@ class SimFloodAlgorithm(BaseColumnMappingAlgorithm):
         return mappings
 
 
-class ComaAlgorithm(BaseColumnMappingAlgorithm):
+class SimFloodAlgorithm(ValentineColumnMappingAlgorithm):
     def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table)
-
-    def map(self):
-        matcher = Coma()
-        matches = valentine_match(self._dataset, self._global_table, matcher)
-
-        mappings = {}
-        for match in matches.one_to_one():
-            dataset_candidate = match[0][1]
-            global_table_candidate = match[1][1]
-            mappings[dataset_candidate] = global_table_candidate
-        return mappings
+        super().__init__(dataset, global_table, SimilarityFlooding())
 
 
-class CupidAlgorithm(BaseColumnMappingAlgorithm):
+class ComaAlgorithm(ValentineColumnMappingAlgorithm):
     def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table)
-
-    def map(self):
-        matcher = Cupid()
-        matches = valentine_match(self._dataset, self._global_table, matcher)
-
-        mappings = {}
-        for match in matches.one_to_one():
-            dataset_candidate = match[0][1]
-            global_table_candidate = match[1][1]
-            mappings[dataset_candidate] = global_table_candidate
-        return mappings
+        super().__init__(dataset, global_table, Coma())
 
 
-class DistributionBasedAlgorithm(BaseColumnMappingAlgorithm):
+class CupidAlgorithm(ValentineColumnMappingAlgorithm):
     def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table)
-
-    def map(self):
-        matcher = DistributionBased()
-        matches = valentine_match(self._dataset, self._global_table, matcher)
-
-        mappings = {}
-        for match in matches.one_to_one():
-            dataset_candidate = match[0][1]
-            global_table_candidate = match[1][1]
-            mappings[dataset_candidate] = global_table_candidate
-        return mappings
+        super().__init__(dataset, global_table, Cupid())
 
 
-class JaccardDistanceAlgorithm(BaseColumnMappingAlgorithm):
+class DistributionBasedAlgorithm(ValentineColumnMappingAlgorithm):
     def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table)
+        super().__init__(dataset, global_table, DistributionBased())
 
-    def map(self):
-        matcher = JaccardDistanceMatcher()
-        matches = valentine_match(self._dataset, self._global_table, matcher)
 
-        mappings = {}
-        for match in matches.one_to_one():
-            dataset_candidate = match[0][1]
-            global_table_candidate = match[1][1]
-            mappings[dataset_candidate] = global_table_candidate
-        return mappings
+class JaccardDistanceAlgorithm(ValentineColumnMappingAlgorithm):
+    def __init__(self, dataset, global_table):
+        super().__init__(dataset, global_table, JaccardDistanceMatcher())
 
 
 class GPTAlgorithm(BaseColumnMappingAlgorithm):
