@@ -15,143 +15,154 @@ pn.extension("tabulator")
 pn.extension("mathjax")
 pn.extension("vega")
 
+
 def clean_reduced_scope(reduced_scope, max_chars_samples):
     gdc_metadata = get_gdc_metadata()
 
     candidates_dfs = {}
 
     for column_data in reduced_scope:
-        column_name = column_data['Candidate column']
+        column_name = column_data["Candidate column"]
         recommendations = []
-        for candidate_name, candidate_similarity in column_data['Top k columns']:
-            candidate_description = gdc_metadata[candidate_name].get('description', '')
+        for candidate_name, candidate_similarity in column_data["Top k columns"]:
+            candidate_description = gdc_metadata[candidate_name].get("description", "")
             candidate_description = candidate_description
-            candidate_values = ', '.join(gdc_metadata[candidate_name].get('enum', []))
+            candidate_values = ", ".join(gdc_metadata[candidate_name].get("enum", []))
             candidate_values = truncate_text(candidate_values, max_chars_samples)
-            recommendations.append((candidate_name, candidate_similarity, candidate_description, candidate_values))
+            recommendations.append(
+                (
+                    candidate_name,
+                    candidate_similarity,
+                    candidate_description,
+                    candidate_values,
+                )
+            )
 
-        candidates_dfs[column_name] = pd.DataFrame(recommendations, columns=['Candidate', 'Similarity', 'Description', 'Values (sample)'])
+        candidates_dfs[column_name] = pd.DataFrame(
+            recommendations,
+            columns=["Candidate", "Similarity", "Description", "Values (sample)"],
+        )
 
     return candidates_dfs
 
 
 def truncate_text(text, max_chars):
     if len(text) > max_chars:
-        return text[:max_chars] + '...'
+        return text[:max_chars] + "..."
     else:
         return text
 
+
 class ScopeReducerExplorer:
-    def __init__(self,
-                 dataset,
-                 reduced_scope,
-                 max_chars_samples=150,
-                 height=600) -> None:
+    def __init__(
+        self, dataset, reduced_scope, max_chars_samples=150, height=600
+    ) -> None:
         self.dataset = dataset
         self.reduced_scope = reduced_scope
-        self.candidates_dfs = clean_reduced_scope(reduced_scope, max_chars_samples=max_chars_samples)
+        self.candidates_dfs = clean_reduced_scope(
+            reduced_scope, max_chars_samples=max_chars_samples
+        )
         self.height = height
-        self.max_candidates = len(reduced_scope[0]['Top k columns'])
+        self.max_candidates = len(reduced_scope[0]["Top k columns"])
 
     def _plot_column_histogram(self, column):
-        if self.dataset [column].dtype == 'float64':
+        if self.dataset[column].dtype == "float64":
             print(column)
-            chart = alt.Chart(self.dataset .fillna('Null'), height=300).mark_bar().encode(
-                        alt.X(column, bin=True),
-                        y='count()',
-                    ).properties(
-                        width="container",
-                        title='Histogram of '+column
-                    )
+            chart = (
+                alt.Chart(self.dataset.fillna("Null"), height=300)
+                .mark_bar()
+                .encode(
+                    alt.X(column, bin=True),
+                    y="count()",
+                )
+                .properties(width="container", title="Histogram of " + column)
+            )
             return chart
         else:
-            values = list(self.dataset [column].unique())
-            if len(values) == len(self.dataset [column]):
-                string = f'''Values are unique. 
-                Some samples: {values[:5]}'''
+            values = list(self.dataset[column].unique())
+            if len(values) == len(self.dataset[column]):
+                string = f"""Values are unique. 
+                Some samples: {values[:5]}"""
                 return pn.pane.Markdown(string)
             else:
                 if np.nan in values:
                     values.remove(np.nan)
                 values.sort()
-                
-                chart = alt.Chart(self.dataset .fillna('Null'), height=300).mark_bar().encode(
-                            x=alt.X(
-                                column+":N",
-                                sort=values,
-                            ),
-                            y="count()",
-                        ).properties(
-                            width="container",
-                            title='Histogram of '+column
-                        )
+
+                chart = (
+                    alt.Chart(self.dataset.fillna("Null"), height=300)
+                    .mark_bar()
+                    .encode(
+                        x=alt.X(
+                            column + ":N",
+                            sort=values,
+                        ),
+                        y="count()",
+                    )
+                    .properties(width="container", title="Histogram of " + column)
+                )
         return chart
 
     def _candidates_table(self, column, n_candidates):
-        df = self.candidates_dfs[column].loc[:n_candidates-1]
-    
+        df = self.candidates_dfs[column].loc[: n_candidates - 1]
+
         bokeh_formatters = {
             #'Similarity': {'type': 'progress', 'min': 0.0, 'max': 1.0, 'legend': True}, # Show similarity as bars - Not working properly
-            'Description': {'type': 'textarea'},
-            'Values (sample)': {'type': 'textarea'}
+            "Description": {"type": "textarea"},
+            "Values (sample)": {"type": "textarea"},
         }
-        text_align = {
-            'Similarity': 'center',
-            'index': 'center'
-        }
+        text_align = {"Similarity": "center", "index": "center"}
         widths = {
-            'index': '7%',
-            'Candidate': '20%',
-            'Similarity': '10%',
-            'Description': '33%',
-            'Values (sample)': '30%'
+            "index": "7%",
+            "Candidate": "20%",
+            "Similarity": "10%",
+            "Description": "33%",
+            "Values (sample)": "30%",
         }
-    
-        table_candidates = pn.widgets.Tabulator(df,
-                                                formatters=bokeh_formatters, 
-                                                text_align=text_align,
-                                                widths=widths,
-                                                sizing_mode='stretch_width',
-                                                height=self.height,
-                                                embed_content=True,
-                                                header_align='center',
-                                                theme='simple',
-                                                disabled=True
-                                               )
+
+        table_candidates = pn.widgets.Tabulator(
+            df,
+            formatters=bokeh_formatters,
+            text_align=text_align,
+            widths=widths,
+            sizing_mode="stretch_width",
+            height=self.height,
+            embed_content=True,
+            header_align="center",
+            theme="simple",
+            disabled=True,
+        )
         return table_candidates
 
     def explore(self):
-        select_column = pn.widgets.Select(name='Column selected',
-                                          options=list(self.candidates_dfs.keys()),
-                                          align='center'
-                                         )
-        select_n_candidates = pn.widgets.EditableIntSlider(name='Number of candidates',
-                                                           start=1, end=self.max_candidates, 
-                                                           step=1, value=min(5, self.max_candidates),
-                                                           align='center'
-                                                          )
+        select_column = pn.widgets.Select(
+            name="Column selected",
+            options=list(self.candidates_dfs.keys()),
+            align="center",
+        )
+        select_n_candidates = pn.widgets.EditableIntSlider(
+            name="Number of candidates",
+            start=1,
+            end=self.max_candidates,
+            step=1,
+            value=min(5, self.max_candidates),
+            align="center",
+        )
         cand_table = pn.bind(self._candidates_table, select_column, select_n_candidates)
         column_hist = pn.bind(self._plot_column_histogram, select_column)
-        
+
         explorer = pn.Column(
-                        pn.Row(
-                            '# Scope Reducing Explorer',
-                            pn.Spacer(width=30),
-                            select_column,
-                            pn.Spacer(width=30),
-                            select_n_candidates,
-                            align=('start','center')
-                        ),
-                        pn.Spacer(height=30),
-                        pn.Row(
-                            pn.Column(
-                                column_hist,
-                                width=500
-                            ),
-                            pn.Spacer(width=30),
-                            cand_table
-                        ),
-                        styles=dict(background="white")
+            pn.Row(
+                "# Scope Reducing Explorer",
+                pn.Spacer(width=30),
+                select_column,
+                pn.Spacer(width=30),
+                select_n_candidates,
+                align=("start", "center"),
+            ),
+            pn.Spacer(height=30),
+            pn.Row(pn.Column(column_hist, width=500), pn.Spacer(width=30), cand_table),
+            styles=dict(background="white"),
         )
 
         return explorer

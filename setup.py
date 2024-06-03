@@ -17,7 +17,7 @@ def read_version():
         for line in file:
             parts = line.strip().split(' ')
             if parts and parts[0] == '__version__':
-                return parts[-1].strip("'")
+                return parts[-1].strip("'").strip("\"")
 
     raise KeyError('Version not found in {0}'.format(module_path))
 

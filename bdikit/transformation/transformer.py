@@ -8,9 +8,8 @@ class Transformer:
         if not self.is_schema_valid(schema):
             raise ValueError("Invalid schema")
         self.schema = schema
-    
-    def transform(self, df: pd.DataFrame):
 
+    def transform(self, df: pd.DataFrame):
         for column in self.schema:
             if column not in df.columns:
                 continue
@@ -24,7 +23,7 @@ class Transformer:
                 df[column] = df[column].str.lower().map(values).fillna(default)
             else:
                 df[column] = df[column].map(values).fillna(default)
-            
+
         return df
 
     @staticmethod
