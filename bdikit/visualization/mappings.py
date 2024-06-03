@@ -17,6 +17,7 @@ def plot_column_mappings(column_mappings):
     )
     display(column_mappings_df)
 
+
 def plot_value_mappings(value_mappings, include_unmatches=True):
     sorted_results = sorted(
         value_mappings.items(), key=lambda x: x[1]["coverage"], reverse=True
