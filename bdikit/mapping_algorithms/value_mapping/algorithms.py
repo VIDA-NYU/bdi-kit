@@ -9,6 +9,7 @@ import pandas as pd
 
 
 class BaseAlgorithm:
+
     def __init__(self, *args):
         pass
 
@@ -51,6 +52,7 @@ class EditAlgorithm(BaseAlgorithm):
 
 
 class EmbeddingAlgorithm(BaseAlgorithm):
+
     def __init__(self, model_path="bert-base-multilingual-cased"):
         embeddings = TransformerWordEmbeddings(model_path)
         method = Embeddings(embeddings, min_similarity=0, model_id="embedding_model")
@@ -110,25 +112,32 @@ class AutoFuzzyJoinAlgorithm(BaseAlgorithm):
         pass
 
     def match(self, current_values, target_values, threshold=0.8):
-        
+
         current_values = sorted(list(set(current_values)))
         target_values = sorted(list(set(target_values)))
-        
-        df_curr_values = pd.DataFrame({'id': range(1, len(current_values)+1), 'title': current_values})
-        df_target_values = pd.DataFrame({'id': range(1, len(target_values)+1), 'title': target_values})
-        
+
+        df_curr_values = pd.DataFrame(
+            {"id": range(1, len(current_values) + 1), "title": current_values}
+        )
+        df_target_values = pd.DataFrame(
+            {"id": range(1, len(target_values) + 1), "title": target_values}
+        )
+
         matches = []
         try:
-            autofj = AutoFJ( precision_target=threshold, join_function_space="autofj_md",  verbose=True)
+            autofj = AutoFJ(
+                precision_target=threshold,
+                join_function_space="autofj_md",
+                verbose=True,
+            )
             LR_joins = autofj.join(df_curr_values, df_target_values, id_column="id")
             if len(LR_joins) > 0:
                 for index, row in LR_joins.iterrows():
-                    title_l = row['title_l']
-                    title_r = row['title_r']
+                    title_l = row["title_l"]
+                    title_r = row["title_r"]
                     similarity = ratio(title_l, title_r)
                     if similarity >= threshold:
                         matches.append((title_l, title_r, similarity))
-        except Exception as e:         
+        except Exception as e:
             return matches
         return matches
-
