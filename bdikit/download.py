@@ -60,7 +60,7 @@ if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Please provide a model_id as a command line argument.")
         sys.exit(1)
-    
+
     model_id = sys.argv[1]
     model_path = get_cached_model_or_download(model_id)
     print(f"Downloaded model: {model_path}")

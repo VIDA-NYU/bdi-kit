@@ -1,7 +1,8 @@
 import pandas as pd
 import torch
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_preprocessor import \
-    preprocess
+from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_preprocessor import (
+    preprocess,
+)
 from torch.utils import data
 from transformers import AutoTokenizer
 
