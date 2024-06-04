@@ -13,3 +13,4 @@ altair
 bokeh
 panel
 Levenshtein
+autofj
