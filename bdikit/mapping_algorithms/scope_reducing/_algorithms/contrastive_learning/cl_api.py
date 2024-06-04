@@ -4,10 +4,12 @@ from typing import List
 import numpy as np
 import pandas as pd
 import torch
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_models import \
-    BarlowTwinsSimCLR
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_pretrained_dataset import \
-    PretrainTableDataset
+from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_models import (
+    BarlowTwinsSimCLR,
+)
+from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_pretrained_dataset import (
+    PretrainTableDataset,
+)
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 
