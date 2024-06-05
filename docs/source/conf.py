@@ -88,4 +88,5 @@ autodoc_mock_imports = [
     "valentine",
     "altair",
     "panel",
+    "tqdm"
 ]
