@@ -1,3 +1,4 @@
+from typing import List, NamedTuple
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
@@ -8,17 +9,49 @@ from Levenshtein import ratio
 import pandas as pd
 
 
+class ValueMatch(NamedTuple):
+    """
+    Represents a match between a current value and a target value with a
+    similarity score.
+    """
+
+    current_value: str
+    target_value: str
+    similarity: float
+
+
 class BaseAlgorithm:
+    """
+    Base class for value matching algorithms, i.e., algorithms that match
+    values from a source (current) domain to values from a target domain.
+    """
 
-    def __init__(self, *args):
-        pass
+    def match(
+        self, current_values: List[str], target_values: List[str]
+    ) -> List[ValueMatch]:
+        raise NotImplementedError("Subclasses must implement this method")
 
-    def match(self, current_values, target_values, threshold=0.8):
+
+class PolyFuzzAlgorithm(BaseAlgorithm):
+    """
+    Base class for value matching algorithms based on the PolyFuzz library.
+    """
+
+    def __init__(self, polyfuzz_model: PolyFuzz):
+        self.model = polyfuzz_model
+
+    def match(
+        self,
+        current_values: List[str],
+        target_values: List[str],
+        threshold: float = 0.8,
+    ) -> List[ValueMatch]:
+
         self.model.match(current_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by="Similarity", ascending=False, inplace=True)
-        matches = []
 
+        matches = []
         for _, row in match_results.iterrows():
             current_value = row["From"]
             target_value = row["To"]
@@ -29,46 +62,45 @@ class BaseAlgorithm:
         return matches
 
 
-class TFIDFAlgorithm(BaseAlgorithm):
+class TFIDFAlgorithm(PolyFuzzAlgorithm):
+    """
+    Value matching algorithm based on the TF-IDF similarity between values.
+    """
+
     def __init__(self):
-        method = TFIDF(min_similarity=0)
-        self.model = PolyFuzz(method)
-
-    def match(self, current_values, target_values, threshold=0.8):
-        matches = super().match(current_values, target_values, threshold)
-
-        return matches
+        super().__init__(PolyFuzz(method=TFIDF(min_similarity=0)))
 
 
-class EditAlgorithm(BaseAlgorithm):
+class EditAlgorithm(PolyFuzzAlgorithm):
+    """
+    Value matching algorithm based on the edit distance between values.
+    """
+
     def __init__(self):
-        method = EditDistance(n_jobs=-1)
-        self.model = PolyFuzz(method)
-
-    def match(self, current_values, target_values, threshold=0.8):
-        matches = super().match(current_values, target_values, threshold)
-
-        return matches
+        super().__init__(PolyFuzz(method=EditDistance(n_jobs=-1)))
 
 
-class EmbeddingAlgorithm(BaseAlgorithm):
+class EmbeddingAlgorithm(PolyFuzzAlgorithm):
+    """
+    Value matching algorithm based on the cosine similarity of value embeddings.
+    """
 
-    def __init__(self, model_path="bert-base-multilingual-cased"):
+    def __init__(self, model_path: str = "bert-base-multilingual-cased"):
         embeddings = TransformerWordEmbeddings(model_path)
         method = Embeddings(embeddings, min_similarity=0, model_id="embedding_model")
-        self.model = PolyFuzz(method)
-
-    def match(self, current_values, target_values, threshold=0.8):
-        matches = super().match(current_values, target_values, threshold)
-
-        return matches
+        super().__init__(PolyFuzz(method))
 
 
 class LLMAlgorithm(BaseAlgorithm):
     def __init__(self):
         self.client = OpenAI()
 
-    def match(self, current_values, target_values, threshold=0.8):
+    def match(
+        self,
+        current_values: List[str],
+        target_values: List[str],
+        threshold: float = 0.8,
+    ) -> List[ValueMatch]:
         target_values_set = set(target_values)
         matches = []
 
@@ -111,7 +143,12 @@ class AutoFuzzyJoinAlgorithm(BaseAlgorithm):
     def __init__(self):
         pass
 
-    def match(self, current_values, target_values, threshold=0.8):
+    def match(
+        self,
+        current_values: List[str],
+        target_values: List[str],
+        threshold: float = 0.8,
+    ) -> List[ValueMatch]:
 
         current_values = sorted(list(set(current_values)))
         target_values = sorted(list(set(target_values)))
