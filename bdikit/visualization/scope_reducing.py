@@ -1,12 +1,13 @@
 import json
 import logging
+
 import altair as alt
 import numpy as np
 import pandas as pd
 import panel as pn
-from bdikit.utils import read_gdc_schema
-from bdikit.utils import get_gdc_metadata
+from bdikit.utils import get_gdc_metadata, read_gdc_schema
 from Levenshtein import distance
+from natsort import index_natsorted
 from sklearn.cluster import AffinityPropagation
 
 logger = logging.getLogger(__name__)
@@ -182,12 +183,15 @@ class SRHeatMapManager:
         # Selected column
         self.selected_row = None
 
+        self.reduced_scope = self._load_json()
+
     def _load_json(self):
         with open(self.json_path) as f:
             data = json.load(f)
         return data
 
     def _write_json(self, data):
+        self.reduced_scope = data
         with open(self.json_path, "w") as f:
             json.dump(data, f)
 
@@ -379,19 +383,43 @@ class SRHeatMapManager:
         # value = selected_row["Value"]
         # self._accept_match(column, rec)
         self.selected_row = selected_row
-        return pn.widgets.DataFrame(selected_row)
+        return pn.widgets.DataFrame(selected_row, height=50)
 
     def _plot_pane(
-        self, clusters=[], subschemas=[], threshold=0.5, acc_click=0, rej_click=0
+        self,
+        select_column=None,
+        subschemas=[],
+        n_similar=0,
+        threshold=0.5,
+        acc_click=0,
+        rej_click=0,
     ):
         heatmap_rec_list = self.rec_list_df[self.rec_list_df["Value"] >= threshold]
-        if clusters:
+        if select_column:
             clustered_cols = []
-            for cluster in clusters:
-                clustered_cols.extend(self.clusters[cluster])
+            for cluster_key, cluster_list in self.clusters.items():
+                cluster_list = cluster_list.tolist()
+                if select_column in cluster_list:
+                    clustered_cols.extend(cluster_list)
+                    similarities = [distance(w1, select_column) for w1 in cluster_list]
+                    clustered_cols = sorted(
+                        cluster_list, key=lambda x: similarities[cluster_list.index(x)]
+                    )
+                    clustered_cols = clustered_cols[: n_similar + 1]
             heatmap_rec_list = heatmap_rec_list[
                 heatmap_rec_list["Column"].isin(clustered_cols)
             ]
+            heatmap_rec_list = heatmap_rec_list.sort_values(
+                by="Column",
+                key=lambda x: np.argsort(
+                    index_natsorted(
+                        heatmap_rec_list["Column"].apply(
+                            lambda x: clustered_cols.index(x)
+                        )
+                    )
+                ),
+            )
+
         if subschemas:
             subschema_rec_cols = self.rec_cols_gdc[
                 self.rec_cols_gdc["parent"].isin(subschemas)
@@ -411,14 +439,22 @@ class SRHeatMapManager:
         )
 
     def plot_heatmap(self):
-        select_cluster = pn.widgets.MultiChoice(
-            name="Column cluster", options=list(self.clusters.keys()), width=220
+        select_column = pn.widgets.Select(
+            name="Column",
+            options=list(self.rec_table_df["Column"]),
+            width=220,
         )
+        # select_cluster = pn.widgets.MultiChoice(
+        #     name="Column cluster", options=list(self.clusters.keys()), width=220
+        # )
         select_rec_groups = pn.widgets.MultiChoice(
             name="Recommendation subschema", options=self.subschemas, width=220
         )
+        n_similar_slider = pn.widgets.IntSlider(
+            name="N Similar", start=1, end=5, value=5, width=220
+        )
         thresh_slider = pn.widgets.EditableFloatSlider(
-            name="Threshold", start=0, end=1.0, step=0.01, value=0.5, width=220
+            name="Threshold", start=0, end=1.0, step=0.01, value=0.1, width=220
         )
 
         acc_button = pn.widgets.Button(name="Accept Match", button_type="success")
@@ -436,21 +472,25 @@ class SRHeatMapManager:
 
         heatmap_bind = pn.bind(
             self._plot_pane,
-            select_cluster,
+            select_column,
             select_rec_groups,
+            n_similar_slider,
             thresh_slider,
             acc_button.param.clicks,
             rej_button.param.clicks,
         )
 
-        column_left = pn.Column(
+        column_left = pn.Row(
             "# Column",
-            select_cluster,
+            select_column,
             select_rec_groups,
+            n_similar_slider,
             thresh_slider,
-            acc_button,
-            rej_button,
             styles=dict(background="WhiteSmoke"),
         )
 
-        return pn.Row(column_left, pn.Column(heatmap_bind), scroll=True)
+        buttons_down = pn.Row(acc_button, rej_button, align="start")
+
+        return pn.Column(
+            column_left, pn.Column(heatmap_bind), buttons_down, scroll=True
+        )
