@@ -2,13 +2,15 @@ import pandas as pd
 from copy import deepcopy
 from IPython.display import display
 from bdikit.visualization.scope_reducing import ScopeReducerExplorer
+from bdikit.visualization.scope_reducing import SRHeatMapManager
 
 pd.set_option("display.max_colwidth", None)
 
 
 def plot_reduce_scope(reduced_scope, dataset):
-    scope_explorer = ScopeReducerExplorer(dataset, reduced_scope)
-    display(scope_explorer.explore())
+    scope_explorer = SRHeatMapManager(dataset, reduced_scope)
+    scope_explorer.get_heatmap()
+    display(scope_explorer.plot_heatmap())
 
 
 def plot_column_mappings(column_mappings):

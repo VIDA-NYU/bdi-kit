@@ -170,8 +170,11 @@ class ScopeReducerExplorer:
 
 
 class SRHeatMapManager:
-    def __init__(self) -> None:
+    def __init__(
+        self, dataset, reduced_scope=None, max_chars_samples=150, height=600
+    ) -> None:
         self.json_path = "reduced_scope.json"
+        self.dataset = dataset
 
         self.rec_table_df = None
         self.rec_list_df = None
@@ -183,7 +186,14 @@ class SRHeatMapManager:
         # Selected column
         self.selected_row = None
 
+        if reduced_scope is not None:
+            self._write_json(reduced_scope)
         self.reduced_scope = self._load_json()
+
+        self.candidates_dfs = clean_reduced_scope(
+            self.reduced_scope, max_chars_samples=max_chars_samples
+        )
+        self.height = height
 
     def _load_json(self):
         with open(self.json_path) as f:
@@ -203,7 +213,9 @@ class SRHeatMapManager:
 
         for d in recommendations:
             col_dict = {"Column": d["Candidate column"]}
+            candidates_info = self.candidates_dfs[d["Candidate column"]]
             for c in d["Top k columns"]:
+                cadidate_info = candidates_info[candidates_info["Candidate"] == c[0]]
                 rec_cols.add(c[0])
                 col_dict[c[0]] = c[1]
                 rec_list.append(
@@ -211,6 +223,8 @@ class SRHeatMapManager:
                         "Column": d["Candidate column"],
                         "Recommendation": c[0],
                         "Value": c[1],
+                        "Description": cadidate_info["Description"].values[0],
+                        "Values (sample)": cadidate_info["Values (sample)"].values[0],
                     }
                 )
             rec_table.append(col_dict)
@@ -367,7 +381,9 @@ class SRHeatMapManager:
                 tooltip=[
                     alt.Tooltip("Column", title="Column"),
                     alt.Tooltip("Recommendation", title="Recommendation"),
-                    alt.Tooltip("Value", title="Value"),
+                    alt.Tooltip("Value", title="Correlation Score"),
+                    alt.Tooltip("Description", title="Description"),
+                    alt.Tooltip("Values (sample)", title="Values (sample)"),
                 ],
             )
             .add_params(single)
@@ -376,7 +392,7 @@ class SRHeatMapManager:
 
     def _plot_selected_row(self, heatmap_rec_list, selection):
         if not selection:
-            return "## No selection"
+            return ""
         selected_row = heatmap_rec_list.iloc[selection]
         column = selected_row["Column"].values[0]
         rec = selected_row["Recommendation"].values[0]
@@ -384,6 +400,84 @@ class SRHeatMapManager:
         # self._accept_match(column, rec)
         self.selected_row = selected_row
         return pn.widgets.DataFrame(selected_row, height=50)
+
+    def _candidates_table(self, heatmap_rec_list, selection):
+        if not selection:
+            return pn.pane.Markdown("## No selection")
+        selection[0] -= 1
+        selected_row = heatmap_rec_list.iloc[selection]
+        self.selected_row = selected_row
+        column = selected_row["Column"].values[0]
+        rec = selected_row["Recommendation"].values[0]
+        df = self.candidates_dfs[column][
+            self.candidates_dfs[column]["Candidate"] == rec
+        ]
+
+        bokeh_formatters = {
+            #'Similarity': {'type': 'progress', 'min': 0.0, 'max': 1.0, 'legend': True}, # Show similarity as bars - Not working properly
+            "Description": {"type": "textarea"},
+            "Values (sample)": {"type": "textarea"},
+        }
+        text_align = {"Similarity": "center", "index": "center"}
+        widths = {
+            "index": "7%",
+            "Candidate": "20%",
+            "Similarity": "10%",
+            "Description": "33%",
+            "Values (sample)": "30%",
+        }
+
+        table_candidates = pn.widgets.Tabulator(
+            df,
+            formatters=bokeh_formatters,
+            text_align=text_align,
+            widths=widths,
+            sizing_mode="stretch_width",
+            height=self.height,
+            embed_content=True,
+            header_align="center",
+            theme="simple",
+            disabled=True,
+        )
+        return table_candidates
+
+    def _plot_column_histogram(self, column):
+        if self.dataset[column].dtype == "float64":
+            print(column)
+            chart = (
+                alt.Chart(self.dataset.fillna("Null"), height=300)
+                .mark_bar()
+                .encode(
+                    alt.X(column, bin=True),
+                    y="count()",
+                )
+                .properties(width="container", title="Histogram of " + column)
+            )
+            return chart
+        else:
+            values = list(self.dataset[column].unique())
+            if len(values) == len(self.dataset[column]):
+                string = f"""Values are unique. 
+                Some samples: {values[:5]}"""
+                return pn.pane.Markdown(string)
+            else:
+                if np.nan in values:
+                    values.remove(np.nan)
+                values.sort()
+
+                chart = (
+                    alt.Chart(self.dataset.fillna("Null"), height=300)
+                    .mark_bar()
+                    .encode(
+                        x=alt.X(
+                            column + ":N",
+                            sort=values,
+                        ),
+                        y="count()",
+                    )
+                    .properties(width="container", title="Histogram of " + column)
+                )
+        return chart
 
     def _plot_pane(
         self,
@@ -429,12 +523,24 @@ class SRHeatMapManager:
             ]
 
         heatmap_pane = self._plot_heatmap_base(heatmap_rec_list)
+        cand_table = pn.bind(
+            self._candidates_table,
+            heatmap_rec_list,
+            heatmap_pane.selection.param.single,
+        )
+        column_hist = self._plot_column_histogram(select_column)
         return pn.Column(
             heatmap_pane,
-            pn.bind(
-                self._plot_selected_row,
-                heatmap_rec_list,
-                heatmap_pane.selection.param.single,
+            # pn.bind(
+            #     self._plot_selected_row,
+            #     heatmap_rec_list,
+            #     heatmap_pane.selection.param.single,
+            # ),
+            pn.Row(
+                pn.Column(column_hist, width=500),
+                pn.Spacer(width=30),
+                pn.Column(cand_table, width=700),
+                height=450,
             ),
         )
 
