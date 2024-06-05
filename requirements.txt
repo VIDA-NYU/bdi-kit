@@ -11,7 +11,7 @@ scipy<1.13
 matplotlib<3.9
 altair
 bokeh
-panel==1.4.4
+panel!=1.4.3
 Levenshtein
 autofj
 natsort
