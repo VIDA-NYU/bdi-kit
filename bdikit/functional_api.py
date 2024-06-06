@@ -1,7 +1,8 @@
 from enum import Enum
 from os.path import join, dirname
-from typing import Union, Type
+from typing import Union, Type, List, Optional
 import pandas as pd
+from bdikit.download import get_cached_model_or_download
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
     BaseColumnMappingAlgorithm,
     SimFloodAlgorithm,
@@ -10,6 +11,9 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     DistributionBasedAlgorithm,
     JaccardDistanceAlgorithm,
     GPTAlgorithm,
+)
+from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
+    ContrastiveLearningAPI,
 )
 
 GDC_DATA_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
@@ -73,3 +77,39 @@ def _load_table_for_standard(name: str) -> pd.DataFrame:
         return pd.read_csv(GDC_DATA_PATH)
     else:
         raise ValueError(f"The {name} standard is not supported")
+
+
+def top_matches(
+    source: pd.DataFrame,
+    columns: Optional[List[str]] = None,
+    target: Union[str, pd.DataFrame] = "gdc",
+    top_k: int = 10,
+) -> pd.DataFrame:
+    """
+    Returns the top-k matches between the source and target tables.
+    """
+
+    if isinstance(target, str):
+        target_table = _load_table_for_standard(target)
+    else:
+        target_table = target
+
+    if columns is not None and len(columns) > 0:
+        selected_columns = source[columns]
+    else:
+        selected_columns = source
+
+    model_path = get_cached_model_or_download("cl-reducer-v0.1")
+    api = ContrastiveLearningAPI(model_path=model_path, top_k=top_k)
+    _, scopes_json = api.get_recommendations(selected_columns, target=target_table)
+
+    dfs = []
+    for scope in scopes_json:
+        matches = pd.DataFrame(
+            scope["Top k columns"], columns=["matches", "similarity"]
+        )
+        matches["source"] = scope["Candidate column"]
+        matches = matches[["source", "matches", "similarity"]]
+        dfs.append(matches.sort_values(by="similarity", ascending=False))
+
+    return pd.concat(dfs, ignore_index=True)

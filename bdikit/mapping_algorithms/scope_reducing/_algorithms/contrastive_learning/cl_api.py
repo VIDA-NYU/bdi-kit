@@ -1,5 +1,5 @@
 import os
-from typing import List
+from typing import List, Optional, Union
 
 import numpy as np
 import pandas as pd
@@ -37,8 +37,16 @@ class ContrastiveLearningAPI:
 
         return model
 
-    def get_recommendations(self, table: pd.DataFrame):
-        gdc_ds = pd.read_csv(GDC_TABLE_PATH)
+    def get_recommendations(
+        self, table: pd.DataFrame, target: Optional[Union[str, pd.DataFrame]] = None
+    ):
+        if target is None or (isinstance(target, str) and target == "gdc"):
+            gdc_ds = pd.read_csv(GDC_TABLE_PATH)
+        elif isinstance(target, pd.DataFrame):
+            gdc_ds = target
+        else:
+            raise ValueError("Target must be a DataFrame or 'gdc'")
+
         l_features = self._load_table_tokens(table)
         r_features = self._load_table_tokens(gdc_ds)
         cosine_sim = cosine_similarity(l_features, r_features)
