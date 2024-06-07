@@ -25,10 +25,10 @@ class ColumnMappingTest(unittest.TestCase):
             table2 = pd.DataFrame(
                 {"column_1a": ["a1", "b1", "c1"], "col2": ["a2", "b2", "c2"]}
             )
-            column_matcher = ColumnMatcher(dataset=table1, global_table=table2)
+            column_matcher = ColumnMatcher()
 
             # when
-            mapping = column_matcher.map()
+            mapping = column_matcher.map(dataset=table1, global_table=table2)
 
             # then
             print(mapping)
