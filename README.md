@@ -1,5 +1,9 @@
 [![PyPI version](https://badge.fury.io/py/bdi-kit.svg)](https://pypi.org/project/bdi-kit)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Documentation Status](https://readthedocs.org/projects/bdi-kit/badge/?version=latest)](https://bdi-kit.readthedocs.io/en/latest/?badge=latest)
+[![Tests](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml)
+[![Lint](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml)
+
 
 # bdi-kit 
 This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
@@ -21,7 +25,7 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 
 
 ## Documentation
-See our examples [here](https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples).
+Documentation is available [here](https://bdi-kit.readthedocs.io/).
 
 ## Contributing
 We format code using the [black](https://black.readthedocs.io/en/stable/) code formatter.
