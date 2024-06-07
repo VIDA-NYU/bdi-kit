@@ -1,5 +1,9 @@
 import bdikit as bdi
 import pandas as pd
+from bdikit.mapping_algorithms.value_mapping.value_mappers import (
+    FunctionValueMapper,
+    IdentityValueMapper,
+)
 
 
 def test_bdi_match_columns_with_dataframes():
@@ -124,3 +128,56 @@ def test_bdi_top_matches_gdc():
     assert len(df_matches[df_filter]) == 5
     assert "ethnicity" in df_matches[df_filter]["matches"].tolist()
     assert "race" in df_matches[df_filter]["matches"].tolist()
+
+
+def test_map_column_values():
+    """
+    Ensures that the map_column_values function correctly maps the values of
+    a column and assings the target name.
+    """
+    # given
+    str_column = pd.Series(data=["a", "b", "c", "d", "e"], name="column_str")
+    value_mapper = FunctionValueMapper(function=lambda x: x.upper())
+    target_column_name = "string column"
+
+    # when
+    mapped_column = bdi.map_column_values(
+        str_column, target=target_column_name, value_mapper=value_mapper
+    )
+
+    # then
+    upper_cased_values = ["A", "B", "C", "D", "E"]
+    assert mapped_column.name == target_column_name
+    assert mapped_column.eq(upper_cased_values).all()
+
+
+def test_map_dataframe_column_values():
+    # given
+    str_column_1 = ["a", "b", "c", "d", "e"]
+    str_column_2 = ["a", "b", "c", "d", "e"]
+    df_base = pd.DataFrame({"column_str_1": str_column_1, "column_str_2": str_column_2})
+
+    value_mapping_spec = [
+        {
+            "from": "column_str_1",
+            "to": "string column 1",
+            "mapper": IdentityValueMapper(),
+        },
+        {
+            "from": "column_str_2",
+            "to": "string column 2",
+            "mapper": FunctionValueMapper(function=lambda x: x.upper()),
+        },
+    ]
+
+    # when
+    df_mapped = bdi.materialize_mapping(df_base, target=value_mapping_spec)
+
+    # then
+    assert len(df_mapped.columns) == 2
+
+    assert "string column 1" in df_mapped.columns
+    assert df_mapped["string column 1"].eq(str_column_1).all()
+
+    assert "string column 2" in df_mapped.columns
+    assert df_mapped["string column 2"].eq(["A", "B", "C", "D", "E"]).all()

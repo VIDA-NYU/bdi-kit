@@ -12,6 +12,7 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     JaccardDistanceAlgorithm,
     GPTAlgorithm,
 )
+from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
     ContrastiveLearningAPI,
 )
@@ -113,3 +114,25 @@ def top_matches(
         dfs.append(matches.sort_values(by="similarity", ascending=False))
 
     return pd.concat(dfs, ignore_index=True)
+
+
+def materialize_mapping(
+    input_dataframe: pd.DataFrame, target: List[dict]
+) -> pd.DataFrame:
+    output_dataframe = pd.DataFrame()
+    for mapping_spec in target:
+        from_column_name = mapping_spec["from"]
+        to_column_name = mapping_spec["to"]
+        value_mapper = mapping_spec["mapper"]
+        output_dataframe[to_column_name] = map_column_values(
+            input_dataframe[from_column_name], to_column_name, value_mapper
+        )
+    return output_dataframe
+
+
+def map_column_values(
+    input_column: pd.Series, target: str, value_mapper: ValueMapper
+) -> pd.Series:
+    new_column = value_mapper.map(input_column)
+    new_column.name = target
+    return new_column
