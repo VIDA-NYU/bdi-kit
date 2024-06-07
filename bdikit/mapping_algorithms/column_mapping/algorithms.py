@@ -14,23 +14,16 @@ from openai import OpenAI
 
 
 class BaseColumnMappingAlgorithm:
-    def __init__(self, dataset, global_table):
-        self._dataset = dataset
-        self._global_table = global_table
-
-    def map(self) -> Dict[str, str]:
+    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
         raise NotImplementedError("Subclasses must implement this method")
 
 
 class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table, matcher: BaseMatcher):
-        super().__init__(dataset, global_table)
+    def __init__(self, matcher: BaseMatcher):
         self.matcher = matcher
 
-    def map(self) -> Dict[str, str]:
-        matches: MatcherResults = valentine_match(
-            self._dataset, self._global_table, self.matcher
-        )
+    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
+        matches: MatcherResults = valentine_match(dataset, global_table, self.matcher)
         mappings = {}
         for match in matches.one_to_one():
             dataset_candidate = match[0][1]
@@ -40,42 +33,41 @@ class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
 
 
 class SimFloodAlgorithm(ValentineColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table, SimilarityFlooding())
+    def __init__(self):
+        super().__init__(SimilarityFlooding())
 
 
 class ComaAlgorithm(ValentineColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table, Coma())
+    def __init__(self):
+        super().__init__(Coma())
 
 
 class CupidAlgorithm(ValentineColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table, Cupid())
+    def __init__(self):
+        super().__init__(Cupid())
 
 
 class DistributionBasedAlgorithm(ValentineColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table, DistributionBased())
+    def __init__(self):
+        super().__init__(DistributionBased())
 
 
 class JaccardDistanceAlgorithm(ValentineColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table, JaccardDistanceMatcher())
+    def __init__(self):
+        super().__init__(JaccardDistanceMatcher())
 
 
 class GPTAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self, dataset, global_table):
-        super().__init__(dataset, global_table)
+    def __init__(self):
         self.client = OpenAI()
 
-    def map(self):
-        global_columns = self._global_table.columns
+    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame):
+        global_columns = global_table.columns
         labels = ", ".join(global_columns)
-        candidate_columns = self._dataset.columns
+        candidate_columns = dataset.columns
         mappings = {}
         for column in candidate_columns:
-            col = self._dataset[column]
+            col = dataset[column]
             values = col.drop_duplicates().dropna()
             if len(values) > 15:
                 rows = values.sample(15).tolist()

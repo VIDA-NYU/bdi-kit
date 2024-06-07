@@ -35,12 +35,12 @@ class ColumnMappingMethod(Enum):
         self.method_class = method_class
 
     @staticmethod
-    def get_class(method_name: str):
+    def get_instance(method_name: str) -> BaseColumnMappingAlgorithm:
         methods = {
             method.method_name: method.method_class for method in ColumnMappingMethod
         }
         try:
-            return methods[method_name]
+            return methods[method_name]()
         except KeyError:
             names = ", ".join(list(methods.keys()))
             raise ValueError(
@@ -63,8 +63,8 @@ def match_columns(
     else:
         target_table = target
 
-    matcher_instance = ColumnMappingMethod.get_class(method)(source, target_table)
-    matches = matcher_instance.map()
+    matcher_instance = ColumnMappingMethod.get_instance(method)
+    matches = matcher_instance.map(source, target_table)
 
     return pd.DataFrame(matches.items(), columns=["source", "target"])
 
