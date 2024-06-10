@@ -386,18 +386,23 @@ class SRHeatMapManager:
                 .encode(
                     y=alt.X("Column:O", sort=None),
                     x=alt.X(f"Recommendation:O", sort=None),
-                    color=alt.condition(single, "Value:Q", alt.value("lightgray")),
+                    color=alt.condition(
+                        single,
+                        alt.Color("Value:Q").scale(domainMax=1, domainMin=0),
+                        alt.value("lightgray"),
+                    ),
                     # color="Value:Q",
                     tooltip=[
                         alt.Tooltip("Column", title="Column"),
                         alt.Tooltip("Recommendation", title="Recommendation"),
-                        alt.Tooltip("Value", title="Correlation Score"),
+                        alt.Tooltip("Value", title="Similarity"),
                         alt.Tooltip("Description", title="Description"),
                         alt.Tooltip("Values (sample)", title="Values (sample)"),
                     ],
                     facet=alt.Facet("Subschema:O", columns=1),
                 )
                 .add_params(single)
+                .configure(background="#f5f5f5")
             )
         else:
             base = (
@@ -406,7 +411,11 @@ class SRHeatMapManager:
                 .encode(
                     y=alt.X("Column:O", sort=None),
                     x=alt.X(f"Recommendation:O", sort=None),
-                    color=alt.condition(single, "Value:Q", alt.value("lightgray")),
+                    color=alt.condition(
+                        single,
+                        alt.Color("Value:Q").scale(domainMax=1, domainMin=0),
+                        alt.value("lightgray"),
+                    ),
                     # color="Value:Q",
                     tooltip=[
                         alt.Tooltip("Column", title="Column"),
@@ -417,6 +426,7 @@ class SRHeatMapManager:
                     ],
                 )
                 .add_params(single)
+                .configure(background="#f5f5f5")
             )
         return pn.pane.Vega(base)
 
@@ -463,11 +473,11 @@ class SRHeatMapManager:
             text_align=text_align,
             widths=widths,
             sizing_mode="stretch_width",
-            height=self.height,
             embed_content=True,
             header_align="center",
-            theme="simple",
             disabled=True,
+            theme="bootstrap5",
+            theme_classes=["thead-dark", "table-sm"],
         )
         return table_candidates
 
@@ -481,6 +491,7 @@ class SRHeatMapManager:
                     y="count()",
                 )
                 .properties(width="container", title="Histogram of " + column)
+                .configure(background="#f5f5f5")
             )
             return chart
         else:
@@ -505,6 +516,7 @@ class SRHeatMapManager:
                         y="count()",
                     )
                     .properties(width="container", title="Histogram of " + column)
+                    .configure(background="#f5f5f5")
                 )
         return chart
 
@@ -560,17 +572,19 @@ class SRHeatMapManager:
         )
         column_hist = self._plot_column_histogram(select_column)
         return pn.Column(
-            heatmap_pane,
-            # pn.bind(
-            #     self._plot_selected_row,
-            #     heatmap_rec_list,
-            #     heatmap_pane.selection.param.single,
-            # ),
             pn.Row(
-                pn.Column(column_hist, width=500),
-                pn.Spacer(width=30),
-                pn.Column(cand_table, width=700),
-                height=450,
+                heatmap_pane,
+                scroll=True,
+                width=1200,
+                styles=dict(background="WhiteSmoke"),
+            ),
+            pn.Spacer(height=5),
+            pn.Card(
+                pn.Row(
+                    pn.Column(column_hist, width=500), pn.Column(cand_table, width=700)
+                ),
+                title="Detailed Analysis",
+                styles={"background": "WhiteSmoke"},
             ),
         )
 
@@ -578,27 +592,32 @@ class SRHeatMapManager:
         select_column = pn.widgets.Select(
             name="Column",
             options=list(self.rec_table_df["Column"]),
-            width=220,
+            width=120,
         )
         # select_cluster = pn.widgets.MultiChoice(
         #     name="Column cluster", options=list(self.clusters.keys()), width=220
         # )
-        select_rec_groups = pn.widgets.MultiChoice(
-            name="Recommendation subschema", options=self.subschemas, width=220
-        )
+
         n_similar_slider = pn.widgets.IntSlider(
-            name="N Similar", start=0, end=5, value=0, width=220
+            name="N Similar", start=0, end=5, value=0, width=100
         )
-        thresh_slider = pn.widgets.EditableFloatSlider(
-            name="Threshold", start=0, end=1.0, step=0.01, value=0.1, width=220
+        thresh_slider = pn.widgets.FloatSlider(
+            name="Threshold", start=0, end=1.0, step=0.01, value=0.1, width=100
         )
 
         acc_button = pn.widgets.Button(name="Accept Match", button_type="success")
 
         rej_button = pn.widgets.Button(name="Decline Match", button_type="danger")
 
-        # Style
+        # Subschemas
+        select_rec_groups = pn.widgets.MultiChoice(
+            name="Recommendation subschema", options=self.subschemas, width=180
+        )
         show_subschema = pn.widgets.Checkbox(name="Show subschema", value=False)
+        subschema_col = pn.Column(
+            select_rec_groups,
+            show_subschema,
+        )
 
         def on_click_accept_match(event):
             self._accept_match()
@@ -620,17 +639,18 @@ class SRHeatMapManager:
             rej_button.param.clicks,
         )
 
-        column_left = pn.Row(
+        buttons_down = pn.Row(acc_button, rej_button)
+
+        column_top = pn.Row(
             select_column,
-            show_subschema,
-            select_rec_groups,
+            subschema_col,
             n_similar_slider,
             thresh_slider,
+            buttons_down,
+            width=1200,
             styles=dict(background="WhiteSmoke"),
         )
 
-        buttons_down = pn.Row(acc_button, rej_button, align="start")
-
         return pn.Column(
-            column_left, pn.Column(heatmap_bind), buttons_down, scroll=True
+            column_top, pn.Spacer(height=5), pn.Column(heatmap_bind), scroll=True
         )
