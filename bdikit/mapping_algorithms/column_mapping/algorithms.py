@@ -85,8 +85,7 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
                 rows = values.sample(15).tolist()
             else:
                 rows = values.tolist()
-            serialized_input = f"{column}: {
-                ', '.join([str(row) for row in rows])}"
+            serialized_input = f"{column}: {', '.join([str(row) for row in rows])}"
             context = serialized_input.lower()
             column_types = self.get_column_type(context, labels)
             for column_type in column_types:
