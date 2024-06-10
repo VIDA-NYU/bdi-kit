@@ -74,3 +74,6 @@ nosetests.xml
 # Model
 *.pt
 **/*.pt
+
+# Scope Reducing Json
+examples/*.json

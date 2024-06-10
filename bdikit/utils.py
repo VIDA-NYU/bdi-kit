@@ -53,3 +53,14 @@ def get_gdc_metadata():
             metadata[key] = data
 
     return metadata
+
+
+def get_gdc_layered_metadata():
+    metadata = {}
+    gdc_schema = read_gdc_schema()
+
+    for subschema, values in gdc_schema.items():
+        for key, data in values["properties"].items():
+            metadata[key] = (subschema, data)
+
+    return metadata

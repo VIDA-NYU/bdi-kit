@@ -10,7 +10,7 @@ pd.set_option("display.max_colwidth", None)
 def plot_reduce_scope(reduced_scope, dataset):
     scope_explorer = SRHeatMapManager(dataset, reduced_scope)
     scope_explorer.get_heatmap()
-    display(scope_explorer.plot_heatmap())
+    return scope_explorer.plot_heatmap()
 
 
 def plot_column_mappings(column_mappings):

@@ -5,7 +5,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 import panel as pn
-from bdikit.utils import get_gdc_metadata, read_gdc_schema
+from bdikit.utils import get_gdc_layered_metadata, get_gdc_metadata, read_gdc_schema
 from Levenshtein import distance
 from natsort import index_natsorted
 from sklearn.cluster import AffinityPropagation
@@ -18,7 +18,7 @@ pn.extension("vega")
 
 
 def clean_reduced_scope(reduced_scope, max_chars_samples):
-    gdc_metadata = get_gdc_metadata()
+    gdc_metadata = get_gdc_layered_metadata()
 
     candidates_dfs = {}
 
@@ -26,9 +26,10 @@ def clean_reduced_scope(reduced_scope, max_chars_samples):
         column_name = column_data["Candidate column"]
         recommendations = []
         for candidate_name, candidate_similarity in column_data["Top k columns"]:
-            candidate_description = gdc_metadata[candidate_name].get("description", "")
+            subschema, gdc_data = gdc_metadata[candidate_name]
+            candidate_description = gdc_data.get("description", "")
             candidate_description = candidate_description
-            candidate_values = ", ".join(gdc_metadata[candidate_name].get("enum", []))
+            candidate_values = ", ".join(gdc_data.get("enum", []))
             candidate_values = truncate_text(candidate_values, max_chars_samples)
             recommendations.append(
                 (
@@ -36,12 +37,19 @@ def clean_reduced_scope(reduced_scope, max_chars_samples):
                     candidate_similarity,
                     candidate_description,
                     candidate_values,
+                    subschema,
                 )
             )
 
         candidates_dfs[column_name] = pd.DataFrame(
             recommendations,
-            columns=["Candidate", "Similarity", "Description", "Values (sample)"],
+            columns=[
+                "Candidate",
+                "Similarity",
+                "Description",
+                "Values (sample)",
+                "Subschema",
+            ],
         )
 
     return candidates_dfs
@@ -225,6 +233,7 @@ class SRHeatMapManager:
                         "Value": c[1],
                         "Description": cadidate_info["Description"].values[0],
                         "Values (sample)": cadidate_info["Values (sample)"].values[0],
+                        "Subschema": cadidate_info["Subschema"].values[0],
                     }
                 )
             rec_table.append(col_dict)
@@ -368,26 +377,47 @@ class SRHeatMapManager:
             clusters[exemplar] = cluster
         self.clusters = clusters
 
-    def _plot_heatmap_base(self, heatmap_rec_list):
+    def _plot_heatmap_base(self, heatmap_rec_list, show_subschema):
         single = alt.selection_point(name="single")
-        base = (
-            alt.Chart(heatmap_rec_list)
-            .mark_rect(size=100)
-            .encode(
-                y=alt.X("Column:O", sort=None),
-                x=alt.X(f"Recommendation:O", sort=None),
-                color=alt.condition(single, "Value:Q", alt.value("lightgray")),
-                # color="Value:Q",
-                tooltip=[
-                    alt.Tooltip("Column", title="Column"),
-                    alt.Tooltip("Recommendation", title="Recommendation"),
-                    alt.Tooltip("Value", title="Correlation Score"),
-                    alt.Tooltip("Description", title="Description"),
-                    alt.Tooltip("Values (sample)", title="Values (sample)"),
-                ],
+        if show_subschema:
+            base = (
+                alt.Chart(heatmap_rec_list)
+                .mark_rect(size=100)
+                .encode(
+                    y=alt.X("Column:O", sort=None),
+                    x=alt.X(f"Recommendation:O", sort=None),
+                    color=alt.condition(single, "Value:Q", alt.value("lightgray")),
+                    # color="Value:Q",
+                    tooltip=[
+                        alt.Tooltip("Column", title="Column"),
+                        alt.Tooltip("Recommendation", title="Recommendation"),
+                        alt.Tooltip("Value", title="Correlation Score"),
+                        alt.Tooltip("Description", title="Description"),
+                        alt.Tooltip("Values (sample)", title="Values (sample)"),
+                    ],
+                    facet=alt.Facet("Subschema:O", columns=1),
+                )
+                .add_params(single)
             )
-            .add_params(single)
-        )
+        else:
+            base = (
+                alt.Chart(heatmap_rec_list)
+                .mark_rect(size=100)
+                .encode(
+                    y=alt.X("Column:O", sort=None),
+                    x=alt.X(f"Recommendation:O", sort=None),
+                    color=alt.condition(single, "Value:Q", alt.value("lightgray")),
+                    # color="Value:Q",
+                    tooltip=[
+                        alt.Tooltip("Column", title="Column"),
+                        alt.Tooltip("Recommendation", title="Recommendation"),
+                        alt.Tooltip("Value", title="Correlation Score"),
+                        alt.Tooltip("Description", title="Description"),
+                        alt.Tooltip("Values (sample)", title="Values (sample)"),
+                    ],
+                )
+                .add_params(single)
+            )
         return pn.pane.Vega(base)
 
     def _plot_selected_row(self, heatmap_rec_list, selection):
@@ -443,7 +473,6 @@ class SRHeatMapManager:
 
     def _plot_column_histogram(self, column):
         if self.dataset[column].dtype == "float64":
-            print(column)
             chart = (
                 alt.Chart(self.dataset.fillna("Null"), height=300)
                 .mark_bar()
@@ -485,6 +514,7 @@ class SRHeatMapManager:
         subschemas=[],
         n_similar=0,
         threshold=0.5,
+        show_subschema=False,
         acc_click=0,
         rej_click=0,
     ):
@@ -522,7 +552,7 @@ class SRHeatMapManager:
                 heatmap_rec_list["Recommendation"].isin(subschema_rec_cols)
             ]
 
-        heatmap_pane = self._plot_heatmap_base(heatmap_rec_list)
+        heatmap_pane = self._plot_heatmap_base(heatmap_rec_list, show_subschema)
         cand_table = pn.bind(
             self._candidates_table,
             heatmap_rec_list,
@@ -557,7 +587,7 @@ class SRHeatMapManager:
             name="Recommendation subschema", options=self.subschemas, width=220
         )
         n_similar_slider = pn.widgets.IntSlider(
-            name="N Similar", start=1, end=5, value=5, width=220
+            name="N Similar", start=0, end=5, value=0, width=220
         )
         thresh_slider = pn.widgets.EditableFloatSlider(
             name="Threshold", start=0, end=1.0, step=0.01, value=0.1, width=220
@@ -566,6 +596,9 @@ class SRHeatMapManager:
         acc_button = pn.widgets.Button(name="Accept Match", button_type="success")
 
         rej_button = pn.widgets.Button(name="Decline Match", button_type="danger")
+
+        # Style
+        show_subschema = pn.widgets.Checkbox(name="Show subschema", value=False)
 
         def on_click_accept_match(event):
             self._accept_match()
@@ -582,13 +615,14 @@ class SRHeatMapManager:
             select_rec_groups,
             n_similar_slider,
             thresh_slider,
+            show_subschema,
             acc_button.param.clicks,
             rej_button.param.clicks,
         )
 
         column_left = pn.Row(
-            "# Column",
             select_column,
+            show_subschema,
             select_rec_groups,
             n_similar_slider,
             thresh_slider,
