@@ -12,7 +12,7 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     JaccardDistanceAlgorithm,
     GPTAlgorithm,
     ContrastiveLearningAlgorithm,
-    TwoPhaseMatcherAlgorithm
+    TwoPhaseMatcherAlgorithm,
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
