@@ -13,8 +13,7 @@ class ScopeReducingManager:
         reducings = self.best_method.reduce_scope(self.dataset)
         self.visualization_manager = SRHeatMapManager(self.dataset, reducings)
         return reducings
-    
+
     def get_heatmap(self):
         self.visualization_manager.get_heatmap()
         return self.visualization_manager.plot_heatmap()
-

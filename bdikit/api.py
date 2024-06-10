@@ -67,17 +67,19 @@ class APIManager:
         self.scope_manager = ScopeReducingManager(self.dataset, self.global_table)
         self.reduced_scope = self.scope_manager.reduce()
         return self.scope_manager.get_heatmap()
-    
+
     def update_scope(self, reduced_scope=None):
         if self.scope_manager is None:
-            logger.warning("Scope manager not initialized. Please run reduce_scope() first.")
+            logger.warning(
+                "Scope manager not initialized. Please run reduce_scope() first."
+            )
             return
-        
+
         if reduced_scope is None:
             self.reduced_scope = self.scope_manager.visualization_manager.reduced_scope
         else:
             self.reduced_scope = reduced_scope
-        
+
         return self.reduced_scope
 
     def map_columns(self, algorithm="SimFloodAlgorithm"):
