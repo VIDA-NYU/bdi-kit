@@ -12,7 +12,7 @@ from valentine.algorithms import (
 from valentine.algorithms.matcher_results import MatcherResults
 from openai import OpenAI
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
-    ContrastiveLearningAPI
+    ContrastiveLearningAPI,
 )
 from bdikit.download import get_cached_model_or_download
 
@@ -21,7 +21,9 @@ class BaseColumnMappingAlgorithm:
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
         raise NotImplementedError("Subclasses must implement this method")
 
-    def _fill_missing_matches(self,  dataset: pd.DataFrame, matches: Dict[str, str]) -> Dict[str, str]:
+    def _fill_missing_matches(
+        self, dataset: pd.DataFrame, matches: Dict[str, str]
+    ) -> Dict[str, str]:
         for column in dataset.columns:
             if column not in matches:
                 matches[column] = ""
@@ -33,8 +35,7 @@ class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
         self.matcher = matcher
 
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
-        matches: MatcherResults = valentine_match(
-            dataset, global_table, self.matcher)
+        matches: MatcherResults = valentine_match(dataset, global_table, self.matcher)
         mappings = {}
         for match in matches.one_to_one():
             dataset_candidate = match[0][1]
@@ -126,7 +127,9 @@ class ContrastiveLearningAlgorithm(BaseColumnMappingAlgorithm):
         matches = {}
         for column, scope in zip(dataset.columns, scopes_json):
             candidate = scope["Top k columns"][0][0]
-            if candidate in global_table.columns:  # this check protects against the case where the candidate generated from the model is not in the global table
+            if (
+                candidate in global_table.columns
+            ):  # this check protects against the case where the candidate generated from the model is not in the global table
                 matches[column] = candidate
         return self._fill_missing_matches(dataset, matches)
 
@@ -136,16 +139,23 @@ class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
         model_path = get_cached_model_or_download("cl-reducer-v0.1")
         self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
 
-    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame, algorithm: BaseColumnMappingAlgorithm = SimFloodAlgorithm()):
+    def map(
+        self,
+        dataset: pd.DataFrame,
+        global_table: pd.DataFrame,
+        algorithm: BaseColumnMappingAlgorithm = SimFloodAlgorithm(),
+    ):
         union_scopes, scopes_json = self.api.get_recommendations(dataset)
         matches = {}
         for column, scope in zip(dataset.columns, scopes_json):
-            candidates = [cand[0] for cand in scope["Top k columns"]
-                          if cand[0] in global_table.columns]
+            candidates = [
+                cand[0]
+                for cand in scope["Top k columns"]
+                if cand[0] in global_table.columns
+            ]
             reduced_dataset = dataset[[column]]
             reduced_global_table = global_table[candidates]
-            partial_matches = algorithm.map(
-                reduced_dataset, reduced_global_table)
+            partial_matches = algorithm.map(reduced_dataset, reduced_global_table)
 
             if len(partial_matches.keys()) > 0:
                 candidate_col = next(iter(partial_matches))
