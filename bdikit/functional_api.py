@@ -11,6 +11,8 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     DistributionBasedAlgorithm,
     JaccardDistanceAlgorithm,
     GPTAlgorithm,
+    ContrastiveLearningAlgorithm,
+    TwoPhaseMatcherAlgorithm
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
@@ -27,6 +29,8 @@ class ColumnMappingMethod(Enum):
     DISTRIBUTION_BASED = ("distribution_based", DistributionBasedAlgorithm)
     JACCARD_DISTANCE = ("jaccard_distance", JaccardDistanceAlgorithm)
     GPT = ("gpt", GPTAlgorithm)
+    CT_LEARGNING = ("ct_learning", ContrastiveLearningAlgorithm)
+    TWO_PHASE = ("two_phase", TwoPhaseMatcherAlgorithm)
 
     def __init__(
         self, method_name: str, method_class: Type[BaseColumnMappingAlgorithm]
