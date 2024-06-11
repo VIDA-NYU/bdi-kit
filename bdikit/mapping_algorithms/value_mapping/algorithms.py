@@ -127,7 +127,7 @@ class LLMAlgorithm(BaseAlgorithm):
             try:
                 response_dict = ast.literal_eval(response_message)
                 target_value = response_dict["term"]
-                score = round(float(response_dict["score"]), 1)
+                score = float(response_dict["score"])
                 if target_value in target_values_set and score >= threshold:
                     matches.append((current_value, target_value, score))
             except:

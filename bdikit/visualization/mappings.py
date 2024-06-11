@@ -34,4 +34,7 @@ def plot_value_mappings(value_mappings, include_unmatches=True):
         matches_df = pd.DataFrame(
             matches, columns=["Current Value", "Target Value", "Similarity"]
         )
+        matches_df["Similarity"] = matches_df["Similarity"].apply(
+            lambda x: round(x, 1) if isinstance(x, float) else x
+        )
         display(matches_df)
