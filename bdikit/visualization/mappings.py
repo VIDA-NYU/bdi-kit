@@ -29,9 +29,12 @@ def plot_value_mappings(value_mappings, include_unmatches=True):
 
         if include_unmatches:
             for unmatch_value in value_mappings[column_name]["unmatch_values"]:
-                matches.append((unmatch_value, "-", "-"))
+                matches.append((unmatch_value, "[No match found]", "-"))
 
         matches_df = pd.DataFrame(
             matches, columns=["Current Value", "Target Value", "Similarity"]
+        )
+        matches_df["Similarity"] = matches_df["Similarity"].apply(
+            lambda x: round(x, 1) if isinstance(x, float) else x
         )
         display(matches_df)

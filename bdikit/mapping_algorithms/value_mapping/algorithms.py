@@ -126,10 +126,10 @@ class LLMAlgorithm(BaseAlgorithm):
             response_message = completion.choices[0].message.content
             try:
                 response_dict = ast.literal_eval(response_message)
-                if response_dict["term"] in target_values_set:
-                    matches.append(
-                        (current_value, response_dict["term"], response_dict["score"])
-                    )
+                target_value = response_dict["term"]
+                score = float(response_dict["score"])
+                if target_value in target_values_set and score >= threshold:
+                    matches.append((current_value, target_value, score))
             except:
                 print(
                     f'Errors parsing response for "{current_value}": {response_message}'
