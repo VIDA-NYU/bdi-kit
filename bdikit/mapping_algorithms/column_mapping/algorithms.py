@@ -117,26 +117,24 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
 
 
 class ContrastiveLearningAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self):
-        model_path = get_cached_model_or_download("cl-reducer-v0.1")
-        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
+    def __init__(self, model_name: str = "cl-reducer-v0.1"):
+        model_path = get_cached_model_or_download(model_name)
+        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=1)
 
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame):
         union_scopes, scopes_json = self.api.get_recommendations(dataset)
         matches = {}
         for column, scope in zip(dataset.columns, scopes_json):
             candidate = scope["Top k columns"][0][0]
-            if (
-                candidate in global_table.columns
-            ):  # this check protects against the case where the candidate generated from the model is not in the global table
+            if candidate in global_table.columns:
                 matches[column] = candidate
         return self._fill_missing_matches(dataset, matches)
 
 
 class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self):
-        model_path = get_cached_model_or_download("cl-reducer-v0.1")
-        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=20)
+    def __init__(self, model_name: str = "cl-reducer-v0.1", top_k: int = 20):
+        model_path = get_cached_model_or_download(model_name)
+        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=top_k)
 
     def map(
         self,
