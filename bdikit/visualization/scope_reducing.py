@@ -445,13 +445,15 @@ class SRHeatMapManager:
 
     def _candidates_info(self, heatmap_rec_list, selection, n_samples=20):
         if not selection:
-            return pn.pane.Markdown("""
+            return pn.pane.Markdown(
+                """
                 
                 ### Selected Recommendation
                 
                 *No selection.*
 
-            """)
+            """
+            )
         selection[0] -= 1
         selected_row = heatmap_rec_list.iloc[selection]
         self.selected_row = selected_row
@@ -465,16 +467,16 @@ class SRHeatMapManager:
         _, gdc_data = self.gdc_metadata[rec]
         values = gdc_data.get("enum", [])
 
-        sample = '\n\n'
+        sample = "\n\n"
         for i, v in enumerate(values[:n_samples]):
             sample += f"""            - {v}\n"""
-        if len(values)==0:
-            sample = '*No values provided.*'
-        is_sample = f' ({n_samples} samples)' if len(values)>n_samples else ''
+        if len(values) == 0:
+            sample = "*No values provided.*"
+        is_sample = f" ({n_samples} samples)" if len(values) > n_samples else ""
 
-        descrip = df.loc[rec_rank,'Description']
-        if len(df.loc[rec_rank,'Description'])==0:
-            descrip = '*No description provided.*'
+        descrip = df.loc[rec_rank, "Description"]
+        if len(df.loc[rec_rank, "Description"]) == 0:
+            descrip = "*No description provided.*"
 
         rec_info = f"""
             ### Selected Recommendation
@@ -635,12 +637,11 @@ class SRHeatMapManager:
             pn.Spacer(height=5),
             pn.Card(
                 pn.Row(
-                    pn.Column(column_hist, width=500), 
+                    pn.Column(column_hist, width=500),
                     pn.Column(cand_info, width=700),
                 ),
                 title="Detailed Analysis",
                 styles={"background": "WhiteSmoke"},
-                height=500,
                 scroll=True,
             ),
         )
