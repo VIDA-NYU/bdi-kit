@@ -1,4 +1,5 @@
 import pandas as pd
+from typing import Callable
 
 
 class ValueMapper:
@@ -34,7 +35,7 @@ class FunctionValueMapper(ValueMapper):
     provided custom function.
     """
 
-    def __init__(self, function):
+    def __init__(self, function: Callable[[pd.Series], pd.Series]):
         self.function = function
 
     def map(self, input_column: pd.Series) -> pd.Series:

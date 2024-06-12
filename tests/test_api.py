@@ -146,7 +146,7 @@ def test_map_column_values():
     )
 
     # then
-    upper_cased_values = ["A", "B", "C", "D", "E"]
+    upper_cased_values = pd.Series(["A", "B", "C", "D", "E"])
     assert mapped_column.name == target_column_name
     assert mapped_column.eq(upper_cased_values).all()
 
@@ -159,19 +159,19 @@ def test_map_dataframe_column_values():
 
     value_mapping_spec = [
         {
-            "from": "column_str_1",
-            "to": "string column 1",
+            "source": "column_str_1",
+            "target": "string column 1",
             "mapper": IdentityValueMapper(),
         },
         {
-            "from": "column_str_2",
-            "to": "string column 2",
+            "source": "column_str_2",
+            "target": "string column 2",
             "mapper": FunctionValueMapper(function=lambda x: x.upper()),
         },
     ]
 
     # when
-    df_mapped = bdi.materialize_mapping(df_base, target=value_mapping_spec)
+    df_mapped = bdi.materialize_mapping(df_base, mapping_spec=value_mapping_spec)
 
     # then
     assert len(df_mapped.columns) == 2
@@ -181,3 +181,33 @@ def test_map_dataframe_column_values():
 
     assert "string column 2" in df_mapped.columns
     assert df_mapped["string column 2"].eq(["A", "B", "C", "D", "E"]).all()
+
+
+def test_value_mapping_dataframe():
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
+    )
+    df_target = pd.DataFrame(
+        {"tgt_column": ["apple", "banana", "orange", "kiwi", "grapes"]}
+    )
+
+    df_matches = pd.DataFrame({"source": ["src_column"], "target": ["tgt_column"]})
+
+    # when
+    value_mappings = bdi.match_values(df_source, df_target, df_matches, method="tfidf")
+
+    # then
+    assert value_mappings is not None
+    assert "src_column" in value_mappings
+    assert value_mappings["src_column"]["matches"] is not None
+    assert value_mappings["src_column"]["target"] == "tgt_column"
+
+    src_column_mapping = value_mappings["src_column"]
+    assert len(src_column_mapping["matches"]) == 3
+    assert len(src_column_mapping["matches"]) == 3
+
+
+# TODO
+# def test_preview_value_mappings():
+#     pass

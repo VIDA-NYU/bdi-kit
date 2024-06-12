@@ -3,7 +3,7 @@ import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
 from polyfuzz.models import EditDistance, TFIDF, Embeddings
-from flair.embeddings import TransformerWordEmbeddings
+from flair.embeddings import TransformerWordEmbeddings, WordEmbeddings
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
@@ -88,6 +88,17 @@ class EmbeddingAlgorithm(PolyFuzzAlgorithm):
     def __init__(self, model_path: str = "bert-base-multilingual-cased"):
         embeddings = TransformerWordEmbeddings(model_path)
         method = Embeddings(embeddings, min_similarity=0, model_id="embedding_model")
+        super().__init__(PolyFuzz(method))
+
+
+class FastTextAlgorithm(PolyFuzzAlgorithm):
+    """
+    Value matching algorithm based on the cosine similarity of FastText embeddings.
+    """
+
+    def __init__(self, model_name: str = "en-crawl"):
+        embeddings = WordEmbeddings(model_name)
+        method = Embeddings(embeddings, min_similarity=0)
         super().__init__(PolyFuzz(method))
 
 
