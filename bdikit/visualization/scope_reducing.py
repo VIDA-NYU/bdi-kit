@@ -191,6 +191,8 @@ class SRHeatMapManager:
         self.rec_cols_gdc = None
         self.clusters = None
 
+        self.gdc_metadata = get_gdc_layered_metadata()
+
         # Selected column
         self.selected_row = None
 
@@ -440,6 +442,58 @@ class SRHeatMapManager:
         # self._accept_match(column, rec)
         self.selected_row = selected_row
         return pn.widgets.DataFrame(selected_row, height=50)
+    
+    def _candidates_info(self, heatmap_rec_list, selection, n_samples=20):
+        if not selection:
+            return pn.pane.Markdown("""
+                
+                ### Selected Recommendation
+                
+                *No selection.*
+
+            """)
+        selection[0] -= 1
+        selected_row = heatmap_rec_list.iloc[selection]
+        self.selected_row = selected_row
+        column = selected_row["Column"].values[0]
+        rec = selected_row["Recommendation"].values[0]
+        df = self.candidates_dfs[column][
+            self.candidates_dfs[column]["Candidate"] == rec
+        ]
+
+        rec_rank = df.index[0]
+        _, gdc_data = self.gdc_metadata[rec]
+        values = gdc_data.get("enum", [])
+
+        sample = '\n\n'
+        for i, v in enumerate(values[:n_samples]):
+            sample += f"""            - {v}\n"""
+        if len(values)==0:
+            sample = '*No values provided.*'
+        is_sample = f' ({n_samples} samples)' if len(values)>n_samples else ''
+
+        descrip = df.loc[rec_rank,'Description']
+        if len(df.loc[rec_rank,'Description'])==0:
+            descrip = '*No description provided.*'
+
+        rec_info = f"""
+            ### Selected Recommendation
+
+            **Name:** {rec}
+
+            **Rank:** {rec_rank+1}
+
+            **Similarity:** {df.loc[rec_rank,'Similarity']}
+
+            **Subschema:** {df.loc[rec_rank,'Subschema']}
+
+            **Description:** {descrip}
+
+            **Values{is_sample}:** {sample}
+
+        """
+        rec_pane = pn.pane.Markdown(rec_info)
+        return rec_pane
 
     def _candidates_table(self, heatmap_rec_list, selection):
         if not selection:
@@ -565,8 +619,8 @@ class SRHeatMapManager:
             ]
 
         heatmap_pane = self._plot_heatmap_base(heatmap_rec_list, show_subschema)
-        cand_table = pn.bind(
-            self._candidates_table,
+        cand_info = pn.bind(
+            self._candidates_info,
             heatmap_rec_list,
             heatmap_pane.selection.param.single,
         )
@@ -581,10 +635,13 @@ class SRHeatMapManager:
             pn.Spacer(height=5),
             pn.Card(
                 pn.Row(
-                    pn.Column(column_hist, width=500), pn.Column(cand_table, width=700)
+                    pn.Column(column_hist, width=500), 
+                    pn.Column(cand_info, width=700),
                 ),
                 title="Detailed Analysis",
                 styles={"background": "WhiteSmoke"},
+                height=500,
+                scroll=True,
             ),
         )
 
