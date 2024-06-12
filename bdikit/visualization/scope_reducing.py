@@ -442,7 +442,7 @@ class SRHeatMapManager:
         # self._accept_match(column, rec)
         self.selected_row = selected_row
         return pn.widgets.DataFrame(selected_row, height=50)
-    
+
     def _candidates_info(self, heatmap_rec_list, selection, n_samples=20):
         if not selection:
             return pn.pane.Markdown("""
