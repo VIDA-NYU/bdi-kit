@@ -422,7 +422,7 @@ class SRHeatMapManager:
                     tooltip=[
                         alt.Tooltip("Column", title="Column"),
                         alt.Tooltip("Recommendation", title="Recommendation"),
-                        alt.Tooltip("Value", title="Correlation Score"),
+                        alt.Tooltip("Value", title="Similarity"),
                         alt.Tooltip("Description", title="Description"),
                         alt.Tooltip("Values (sample)", title="Values (sample)"),
                     ],
