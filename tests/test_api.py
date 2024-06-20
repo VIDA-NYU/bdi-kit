@@ -208,6 +208,40 @@ def test_value_mapping_dataframe():
     assert len(src_column_mapping["matches"]) == 3
 
 
-# TODO
-# def test_preview_value_mappings():
-#     pass
+def test_end_to_end_api_integration():
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
+    )
+    df_target = pd.DataFrame(
+        {"tgt_column": ["apple", "banana", "orange", "kiwi", "grapes"]}
+    )
+
+    # when
+    column_mappings = bdi.match_columns(df_source, df_target, method="coma")
+    # then
+    assert column_mappings is not None
+    assert column_mappings.empty == False
+    assert "source" in column_mappings.columns
+    assert "target" in column_mappings.columns
+
+    # when
+    value_mappings = bdi.match_values(
+        df_source, df_target, column_mappings, method="tfidf"
+    )
+
+    assert value_mappings is not None
+    assert "src_column" in value_mappings
+    assert value_mappings["src_column"]["matches"] is not None
+    assert value_mappings["src_column"]["target"] == "tgt_column"
+
+    src_column_mapping = value_mappings["src_column"]
+    assert len(src_column_mapping["matches"]) == 3
+    assert len(src_column_mapping["matches"]) == 3
+
+    # when
+    harmonization_spec = bdi.update_mappings(value_mappings, [])
+    df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
+
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
