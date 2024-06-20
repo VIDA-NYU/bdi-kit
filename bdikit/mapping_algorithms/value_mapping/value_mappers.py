@@ -1,5 +1,6 @@
 import pandas as pd
-from typing import Callable
+from typing import Any, Callable
+from collections import defaultdict
 
 
 class ValueMapper:
@@ -52,12 +53,12 @@ class DictionaryMapper(ValueMapper):
     values stored in the provided dictionary.
     """
 
-    def __init__(self, dictionary: dict):
-        self.dictionary = dictionary
+    def __init__(self, dictionary: dict, missing_data_value: Any = None):
+        self.dictionary = defaultdict(lambda: missing_data_value, dictionary)
 
     def map(self, input_column: pd.Series) -> pd.Series:
         """
         Transforms the values in the input_column to the values specified in
         the dictionary provided using the object constructor.
         """
-        return input_column.map(self.dictionary)
+        return input_column.map(self.dictionary, na_action="ignore")
