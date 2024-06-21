@@ -366,6 +366,65 @@ def preview_value_mappings(
         return result
 
 
+def preview_domains(
+    dataset: pd.DataFrame,
+    column_mapping: Tuple[str, str],
+    target: Union[str, pd.DataFrame] = "gdc",
+    limit: int = 10,
+) -> pd.DataFrame:
+    """
+    Preview the domain of the given columns in the source and target datasets.
+
+    Args:
+        dataset (pd.DataFrame): The source dataset containing the columns to preview.
+        column_mapping (Tuple[str, str]): The mapping between the source and target columns.
+            The first and second positions should contain the names of the
+            source and target columns respectively.
+        target (Union[str, pd.DataFrame], optional): The target dataset or standard vocabulary name.
+            If a string is provided and it is equal to "gdc", the target domain will be retrieved from the GDC data.
+            If a DataFrame is provided, the target domain will be retrieved from the specified DataFrame.
+            Defaults to "gdc".
+        limit (int, optional): The maximum number of unique values to include in the preview.
+            Defaults to 10.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing a sample of the source and target domain values.
+            The DataFrame will have two columns: "source_domain_sample" and "target_domain_sample".
+    """
+    source_column, target_column = column_mapping
+
+    source_domain = dataset[source_column].unique()
+
+    if isinstance(target, str) and target == "gdc":
+        target_domain = np.array(get_gdc_data([target_column])[target_column])
+    elif isinstance(target, pd.DataFrame):
+        target_domain = target[target_column].unique()
+    else:
+        raise ValueError(
+            "The target must be a DataFrame or a standard vocabulary name."
+        )
+
+    output_size = min(max(len(source_domain), len(target_domain)), limit)
+
+    if len(source_domain) > output_size:
+        source_domain = source_domain[:output_size]
+    if len(target_domain) > output_size:
+        target_domain = target_domain[:output_size]
+
+    if len(source_domain) < output_size:
+        source_domain = np.append(
+            source_domain, np.full(output_size - len(source_domain), "")
+        )
+    if len(target_domain) < output_size:
+        target_domain = np.append(
+            target_domain, np.full(output_size - len(target_domain), "")
+        )
+
+    return pd.DataFrame(
+        {"source_domain_sample": source_domain, "target_domain_sample": target_domain}
+    )
+
+
 def update_mappings(value_mappings: Dict, user_mappings: List) -> List:
     user_mappings_dict = {
         user_mapping["source"] + "__" + user_mapping["target"]: user_mapping
