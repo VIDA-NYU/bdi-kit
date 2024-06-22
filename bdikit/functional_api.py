@@ -1,6 +1,7 @@
 from enum import Enum
 from os.path import join, dirname
 from typing import Union, Type, List, Dict, TypedDict, Set, Optional, Tuple, Callable
+import itertools
 import pandas as pd
 import numpy as np
 from bdikit.utils import get_gdc_data
@@ -167,7 +168,7 @@ class ValueMatchingMethod(Enum):
 
 
 def materialize_mapping(
-    input_table: pd.DataFrame, mapping_spec: List[dict]
+    input_table: pd.DataFrame, mapping_spec: Union[List[dict], pd.DataFrame]
 ) -> pd.DataFrame:
     """
     Takes an input DataFrame and a target mapping specification and returns a
@@ -178,6 +179,17 @@ def materialize_mapping(
     mapper that is used to transform the values of the input column to the
     output column.
     """
+    if isinstance(mapping_spec, pd.DataFrame):
+        mapping_spec = mapping_spec.to_dict(orient="records")
+
+    for mapping in mapping_spec:
+        if "source" not in mapping or "target" not in mapping:
+            raise ValueError(
+                "Each mapping specification should contain 'source', 'target' and 'mapper' (optional) keys."
+            )
+        if "mapper" not in mapping:
+            mapping["mapper"] = create_mapper(mapping)
+
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec:
         from_column_name = column_spec["source"]
@@ -198,6 +210,7 @@ def map_column_values(
 
 
 class ValueMatchingResult(TypedDict):
+    source: str
     target: str
     matches: List[ValueMatch]
     coverage: float
@@ -210,7 +223,7 @@ def match_values(
     target: Union[str, pd.DataFrame],
     column_mapping: pd.DataFrame,
     method: str = ValueMatchingMethod.EDIT.name,
-) -> Dict[str, ValueMatchingResult]:
+) -> List[ValueMatchingResult]:
     """
     Maps the values of the dataset columns to the target domain using the given method name.
     """
@@ -238,9 +251,9 @@ def _match_values(
     target_domain: Dict[str, Optional[List[str]]],
     column_mapping: Dict[str, str],
     value_matcher: BaseAlgorithm,
-) -> Dict[str, ValueMatchingResult]:
+) -> List[ValueMatchingResult]:
 
-    mapping_results: dict[str, ValueMatchingResult] = {}
+    mapping_results: List[ValueMatchingResult] = []
 
     for source_column, target_column in column_mapping.items():
 
@@ -280,12 +293,15 @@ def _match_values(
         source_values = set(source_values_dict.values())
         match_values = set([x[0] for x in matches])
 
-        mapping_results[source_column] = ValueMatchingResult(
-            target=target_column,
-            matches=matches,
-            coverage=coverage,
-            unique_values=source_values,
-            unmatch_values=source_values - match_values,
+        mapping_results.append(
+            ValueMatchingResult(
+                source=source_column,
+                target=target_column,
+                matches=matches,
+                coverage=coverage,
+                unique_values=source_values,
+                unmatch_values=source_values - match_values,
+            )
         )
 
     return mapping_results
@@ -330,7 +346,8 @@ def preview_value_mappings(
     )
 
     result = []
-    for source_column, matching_result in value_mappings.items():
+    for matching_result in value_mappings:
+
         # transform matches and unmatched values into DataFrames
         matches_df = pd.DataFrame(
             data=matching_result["matches"],
@@ -351,7 +368,7 @@ def preview_value_mappings(
 
         result.append(
             {
-                "source": source_column,
+                "source": matching_result["source"],
                 "target": matching_result["target"],
                 "mapping": pd.concat([matches_df, unmatched_df], ignore_index=True),
             }
@@ -425,82 +442,167 @@ def preview_domains(
     )
 
 
-def update_mappings(value_mappings: Dict, user_mappings: List) -> List:
-    user_mappings_dict = {
-        user_mapping["source"] + "__" + user_mapping["target"]: user_mapping
-        for user_mapping in user_mappings
-    }
+ValueMatchingLike = Union[List[ValueMatchingResult], List[Dict], pd.DataFrame]
 
+
+def update_mappings(
+    value_mappings: ValueMatchingLike, user_mappings: Optional[ValueMatchingLike] = None
+) -> List:
+
+    if user_mappings is None:
+        user_mappings = []
+
+    if isinstance(value_mappings, pd.DataFrame):
+        value_mappings = value_mappings.to_dict(orient="records")
+
+    if isinstance(user_mappings, pd.DataFrame):
+        user_mappings = user_mappings.to_dict(orient="records")
+
+    def create_key(source: str, target: str) -> str:
+        return source + "__" + target
+
+    def check_duplicates(mappings: List):
+        keys = set()
+        for mapping in mappings:
+            key = create_key(mapping["source"], mapping["target"])
+            if key in keys:
+                raise ValueError(
+                    f"Duplicate mapping for source: {mapping['source']}, target: {mapping['target']}"
+                )
+            keys.add(key)
+
+    # first check duplicates in each individual list
+    check_duplicates(user_mappings)
+    check_duplicates(value_mappings)
+
+    mapping_keys = set()
     final_mappings = []
-    for source_column, mapping in value_mappings.items():
-        # if the mapping is provided by the user, we ignore it here
-        # since the user mappings take precedence
-        key = source_column + "__" + mapping["target"]
-        if key not in user_mappings_dict:
-            final_mappings.append(
-                {
-                    "source": source_column,
-                    "target": mapping["target"],
-                    "mapper": create_mapper(mapping),
-                }
-            )
 
-    # include all user mappings
-    for user_mapping in user_mappings:
-        mapper_spec = user_mapping.get("mapper", None)
-        if not isinstance(mapper_spec, ValueMapper):
-            user_mapping["mapper"] = create_mapper(mapper_spec)
-        final_mappings.append(user_mapping)
+    # include all unique user mappings first, as they take precedence
+    for mapping in itertools.chain(user_mappings, value_mappings):
+
+        source_column = mapping["source"]
+        target_column = mapping["target"]
+
+        # ignore duplicate mappings accross user and value mappings
+        key = create_key(source_column, target_column)
+        if key in mapping_keys:
+            continue
+        else:
+            mapping_keys.add(key)
+
+        # try creating a mapper object from the mapping
+        mapper = create_mapper(mapping)
+
+        final_mappings.append(
+            {
+                "source": source_column,
+                "target": target_column,
+                "mapper": mapper,
+            }
+        )
 
     return final_mappings
 
 
 def create_mapper(
-    input: Union[None, pd.DataFrame, Dict, Callable[[pd.Series], pd.Series]]
+    input: Union[
+        None,
+        ValueMapper,
+        pd.DataFrame,
+        ValueMatchingResult,
+        List[ValueMatch],
+        Dict,
+        Callable[[pd.Series], pd.Series],
+    ]
 ):
     """
     Tries to instantiate an appropriate ValueMapper object for the given input argument.
-    Depending on the input type, it creates one of the following objects:
-    - If input is a function (or lambda function), it creates a FunctionValueMapper object.
-    - If input is a dictionary or Pandas DataFrame, it creates a DictionaryMapper object.
+    Depending on the input type, it may create one of the following objects:
     - If input is None, it creates an IdentityValueMapper object.
+    - If input is a ValueMapper, it returns the input object.
+    - If input is a function (or lambda function), it creates a FunctionValueMapper object.
+    - If input is a list of ValueMatch objects or tuples (<source_value>, <target_value>),
+      it creates a DictionaryMapper object.
+    - If input is a DataFrame with two columns ("current_value", "target_value"),
+      it creates a DictionaryMapper object.
+    - If input is a dictionary containing a "source" and "target" key, it tries to create
+        a ValueMapper object based on the specification given in "mapper" or "matches" keys.
+
+    Args:
+        input:
+            The input argument to create a ValueMapper object from.
+
+    Returns:
+        ValueMapper: An instance of a ValueMapper.
     """
+    # If no input is provided, we create an IdentityValueMapper by default
+    # to not change the values from the source column
     if input is None:
         return IdentityValueMapper()
 
+    # If the input is already a ValueMapper, no need to create a new one
     if isinstance(input, ValueMapper):
         return input
 
+    # If the input is a function, we can create a FunctionValueMapper
+    # that applies the function to the values of the source column
     if callable(input):
         return FunctionValueMapper(input)
 
-    if (
-        isinstance(input, dict)
-        and "matches" in input
-        and isinstance(input["matches"], list)
-    ):
-        # This is a dictionary returned by match_values function
-        matches = input["matches"]
-        mapping_dict = {}
-        for match in matches:
-            if isinstance(match, ValueMatch):
-                mapping_dict[match.current_value] = match.target_value
-            elif isinstance(match, tuple) and len(match) >= 2:
-                if isinstance(match[0], str) and isinstance(match[1], str):
-                    mapping_dict[match[0]] = match[1]
-                else:
-                    raise ValueError(
-                        "Tuple in matches must contain two strings: (current_value, target_value)"
-                    )
-            else:
-                raise ValueError(
-                    "Matches must be a list of ValueMatch objects or tuples"
-                )
-        return DictionaryMapper(mapping_dict)
+    # This could be a list of value matches produced by match_values(),
+    # so can create a DictionaryMapper based on the value matches
+    if isinstance(input, List):
+        return _create_mapper_from_value_matches(input)
 
+    # If the input is a DataFrame with two columns, we can create a
+    # DictionaryMapper based on the values in the DataFrame
     if isinstance(input, pd.DataFrame) and all(
         k in input.columns for k in ["current_value", "target_value"]
     ):
         return DictionaryMapper(
             input.set_index("current_value")["target_value"].to_dict()
         )
+
+    if isinstance(input, Dict):
+        if all(k in input for k in ["source", "target"]):
+            # This could be the mapper created by update_mappings() or a
+            # specification defined by the user
+            if "mapper" in input:
+                if isinstance(input["mapper"], ValueMapper):
+                    # If it contains a ValueMapper object, just return it
+                    return input["mapper"]
+                else:
+                    # Else, 'mapper' may contain one of the basic values that
+                    # can be used to create a ValueMapper object defined above,
+                    # so call this funtion recursively create it
+                    return create_mapper(input["mapper"])
+
+            # This could be the ouput of match_values(), so can create a
+            # DictionaryMapper based on the value matches
+            if "matches" in input and isinstance(input["matches"], List):
+                return _create_mapper_from_value_matches(input["matches"])
+
+            # This could be the output of match_columns(), but the user did not
+            # define any mapper, so we create an IdentityValueMapper to map the
+            # column to the target name but keeping the values as they are
+            return IdentityValueMapper()
+
+    raise ValueError(f"Failed to create a ValueMapper for given input: {input}")
+
+
+def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMapper:
+    mapping_dict = {}
+    for match in matches:
+        if isinstance(match, ValueMatch):
+            mapping_dict[match.current_value] = match.target_value
+        elif isinstance(match, tuple) and len(match) == 2:
+            if isinstance(match[0], str) and isinstance(match[1], str):
+                mapping_dict[match[0]] = match[1]
+            else:
+                raise ValueError(
+                    "Tuple in matches must contain two strings: (source_value, target_value)"
+                )
+        else:
+            raise ValueError("Matches must be a list of ValueMatch objects or tuples")
+    return DictionaryMapper(mapping_dict)

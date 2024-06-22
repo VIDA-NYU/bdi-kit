@@ -198,14 +198,13 @@ def test_value_mapping_dataframe():
     value_mappings = bdi.match_values(df_source, df_target, df_matches, method="tfidf")
 
     # then
-    assert value_mappings is not None
-    assert "src_column" in value_mappings
-    assert value_mappings["src_column"]["matches"] is not None
-    assert value_mappings["src_column"]["target"] == "tgt_column"
-
-    src_column_mapping = value_mappings["src_column"]
-    assert len(src_column_mapping["matches"]) == 3
-    assert len(src_column_mapping["matches"]) == 3
+    assert len(value_mappings) == 1
+    mapping = value_mappings[0]
+    assert mapping is not None
+    assert mapping["source"] == "src_column"
+    assert mapping["target"] == "tgt_column"
+    assert isinstance(mapping["matches"], list)
+    assert len(mapping["matches"]) == 3
 
 
 def test_end_to_end_api_integration():
@@ -224,24 +223,67 @@ def test_end_to_end_api_integration():
     assert column_mappings.empty == False
     assert "source" in column_mappings.columns
     assert "target" in column_mappings.columns
+    assert len(column_mappings.index) == 1
 
-    # when
+    # when: pass output of match_columns() directly to materialize_mapping(),
+    # the column must be ranamed to the target column without any value mapping
+    df_mapped = bdi.materialize_mapping(df_source, column_mappings)
+    # then
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == [
+        "Red Apple",
+        "Banana",
+        "Oorange",
+        "Strawberry",
+    ]
+
+    # when: we pass the output of match_columns()
     value_mappings = bdi.match_values(
         df_source, df_target, column_mappings, method="tfidf"
     )
 
-    assert value_mappings is not None
-    assert "src_column" in value_mappings
-    assert value_mappings["src_column"]["matches"] is not None
-    assert value_mappings["src_column"]["target"] == "tgt_column"
+    # then: a list of value matches must be computed
+    assert len(value_mappings) == 1
+    mapping = value_mappings[0]
+    assert mapping is not None
+    assert mapping["source"] == "src_column"
+    assert mapping["target"] == "tgt_column"
+    assert isinstance(mapping["matches"], list)
+    assert len(mapping["matches"]) == 3
 
-    src_column_mapping = value_mappings["src_column"]
-    assert len(src_column_mapping["matches"]) == 3
-    assert len(src_column_mapping["matches"]) == 3
+    # when: pass output of match_values() to materialize_mapping(),
+    df_mapped = bdi.materialize_mapping(df_source, value_mappings)
 
-    # when
+    # then: the column must be ranamed and values must be mapped to the
+    # matching values found during the value matching step
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
+
+    # when: pass output of match_values() to update_mappings() and then to
+    # materialize_mapping()
     harmonization_spec = bdi.update_mappings(value_mappings, [])
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
+    # then: the column must be ranamed and values must be mapped
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
+
+    # when: user mappings are specified in update_mappings()
+    user_mappings = [
+        {
+            "source": "src_column",
+            "target": "tgt_column",
+            "matches": [
+                ("Red Apple", "APPLE"),
+                ("Banana", "BANANA"),
+                ("Oorange", "ORANGE"),
+            ],
+        }
+    ]
+    harmonization_spec = bdi.update_mappings(value_mappings, user_mappings)
+    df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
+
+    # then: user mappings take precedence, so the column must be ranamed and
+    # values must be mapped according the provide user_mappings
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", None]
