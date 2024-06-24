@@ -76,18 +76,39 @@ class ColumnMappingMethod(Enum):
 def match_columns(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: str = ColumnMappingMethod.SIMFLOOD.name,
+    method: Union[str, BaseColumnMappingAlgorithm] = ColumnMappingMethod.SIMFLOOD.name,
 ) -> pd.DataFrame:
     """
-    Performs schema mapping between the source table and the given target. The target
-    either is a DataFrame or a string representing a standard data vocabulary.
+    Performs schema mapping between the source table and the given target schema. The
+    target either is a DataFrame or a string representing a standard data vocabulary
+    supported by the library. Currently, only the GDC (Genomic Data Commons) standard
+    vocabulary is supported.
+
+    Parameters:
+        source (pd.DataFrame): The source table to be mapped.
+        target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
+        method (Union[str, BaseColumnMappingAlgorithm], optional): The method used for mapping. Defaults to ColumnMappingMethod.SIMFLOOD.name.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
+
+    Raises:
+        ValueError: If the method is neither a string nor an instance of BaseColumnMappingAlgorithm.
     """
     if isinstance(target, str):
         target_table = _load_table_for_standard(target)
     else:
         target_table = target
 
-    matcher_instance = ColumnMappingMethod.get_instance(method)
+    if isinstance(method, str):
+        matcher_instance = ColumnMappingMethod.get_instance(method)
+    elif isinstance(method, BaseColumnMappingAlgorithm):
+        matcher_instance = method
+    else:
+        raise ValueError(
+            "The method must be a string or an instance of BaseColumnMappingAlgorithm"
+        )
+
     matches = matcher_instance.map(source, target_table)
 
     return pd.DataFrame(matches.items(), columns=["source", "target"])
