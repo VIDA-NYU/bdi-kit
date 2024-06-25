@@ -1,7 +1,6 @@
 import pandas as pd
 from copy import deepcopy
 from IPython.display import display
-from bdikit.visualization.scope_reducing import ScopeReducerExplorer
 from bdikit.visualization.scope_reducing import SRHeatMapManager
 
 pd.set_option("display.max_colwidth", None)
