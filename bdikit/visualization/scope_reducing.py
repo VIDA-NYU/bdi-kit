@@ -97,6 +97,12 @@ class SRHeatMapManager:
             )
         self.height = height
 
+        # Undo/Redo
+        # The undo/redo stack is a list of data
+        # Data is like this: {'Candidate column': 'Country', 'Top k columns': [['country_of_birth', '0.5726'], ...]}
+        self.undo_stack = []
+        self.redo_stack = []
+
     def _load_json(self):
         with open(self.json_path) as f:
             data = json.load(f)
@@ -231,6 +237,10 @@ class SRHeatMapManager:
                         "Candidate column": candidate_name,
                         "Top k columns": [[top_k_name, top_k_score]],
                     }
+
+                    # record the action
+                    self._record_user_action("accept", d)
+
                     self._write_json(recommendations)
                     self.get_heatmap()
                     return
@@ -253,6 +263,10 @@ class SRHeatMapManager:
                 "Candidate column": candidate_name,
                 "Top k columns": new_top_k,
             }
+
+            # record the action
+            self._record_user_action("reject", d)
+            
             self._write_json(recommendations)
             self.get_heatmap()
             return
@@ -508,6 +522,8 @@ class SRHeatMapManager:
         show_subschema=False,
         acc_click=0,
         rej_click=0,
+        undo_click=0,
+        redo_click=0,
     ):
         heatmap_rec_list = self.rec_list_df[self.rec_list_df["Value"] >= threshold]
         if select_column:
@@ -569,6 +585,42 @@ class SRHeatMapManager:
             ),
         )
 
+    def _record_user_action(self, action, data):
+        if self.redo_stack:
+            self.redo_stack = []
+        self.undo_stack.append(data)
+    
+    def _undo_user_action(self):
+        if len(self.undo_stack) == 0:
+            return
+        data = self.undo_stack.pop()
+        recommendations = self._load_json()
+        for idx, d in enumerate(recommendations):
+            candidate_name = d["Candidate column"]
+            if candidate_name == data["Candidate column"]:
+                recommendations[idx] = data
+
+                self.redo_stack.append(d)
+                self._write_json(recommendations)
+                self.get_heatmap()
+                return
+    
+    def _redo_user_action(self):
+        if len(self.redo_stack) == 0:
+            return
+        data = self.redo_stack.pop()
+        recommendations = self._load_json()
+        for idx, d in enumerate(recommendations):
+            candidate_name = d["Candidate column"]
+            if candidate_name == data["Candidate column"]:
+                recommendations[idx] = data
+
+                self.undo_stack.append(d)
+                self._write_json(recommendations)
+                self.get_heatmap()
+                return
+                
+
     def plot_heatmap(self):
         select_column = pn.widgets.Select(
             name="Column",
@@ -590,6 +642,9 @@ class SRHeatMapManager:
 
         rej_button = pn.widgets.Button(name="Decline Match", button_type="danger")
 
+        undo_button = pn.widgets.Button(name="Undo", button_type="primary")
+        redo_button = pn.widgets.Button(name="Redo", button_type="primary")
+
         # Subschemas
         if self.ground_truth == "gdc":
             select_rec_groups = pn.widgets.MultiChoice(
@@ -606,9 +661,17 @@ class SRHeatMapManager:
 
         def on_click_reject_match(event):
             self._reject_match()
+        
+        def on_click_undo(event):
+            self._undo_user_action()
+        
+        def on_click_redo(event):
+            self._redo_user_action()
 
         acc_button.on_click(on_click_accept_match)
         rej_button.on_click(on_click_reject_match)
+        undo_button.on_click(on_click_undo)
+        redo_button.on_click(on_click_redo)
 
         heatmap_bind = pn.bind(
             self._plot_pane,
@@ -619,9 +682,12 @@ class SRHeatMapManager:
             show_subschema if self.ground_truth == "gdc" else False,
             acc_button.param.clicks,
             rej_button.param.clicks,
+            undo_button.param.clicks,
+            redo_button.param.clicks,
         )
 
         buttons_down = pn.Row(acc_button, rej_button)
+        buttons_redo_undo = pn.Row(undo_button, redo_button)
 
         column_top = pn.Row(
             select_column,
@@ -629,6 +695,7 @@ class SRHeatMapManager:
             n_similar_slider,
             thresh_slider,
             buttons_down,
+            buttons_redo_undo,
             width=1200,
             styles=dict(background="WhiteSmoke"),
         )
