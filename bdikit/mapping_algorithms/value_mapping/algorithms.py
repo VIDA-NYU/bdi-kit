@@ -1,9 +1,10 @@
-from typing import List, NamedTuple
+from typing import List, NamedTuple, Callable
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
 from polyfuzz.models import EditDistance, TFIDF, Embeddings
 from flair.embeddings import TransformerWordEmbeddings, WordEmbeddings
+from rapidfuzz import fuzz
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
@@ -76,8 +77,16 @@ class EditAlgorithm(PolyFuzzAlgorithm):
     Value matching algorithm based on the edit distance between values.
     """
 
-    def __init__(self):
-        super().__init__(PolyFuzz(method=EditDistance(n_jobs=-1)))
+    def __init__(self, scorer: Callable[[str, str], float] = fuzz.ratio):
+        # Return scores between 0 and 1
+        normalized_scorer = lambda str1, str2: scorer(str1, str2) / 100.0
+        super().__init__(
+            PolyFuzz(
+                method=EditDistance(
+                    n_jobs=-1, scorer=normalized_scorer, normalize=False
+                )
+            )
+        )
 
 
 class EmbeddingAlgorithm(PolyFuzzAlgorithm):
