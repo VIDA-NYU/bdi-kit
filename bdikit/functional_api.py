@@ -291,7 +291,9 @@ def _match_values(
         source_values_dict: Dict[str, str] = {
             str(x).strip().lower(): str(x).strip() for x in unique_values
         }
-        target_values_dict: Dict[str, str] = {x.lower(): x for x in target_domain_list}
+        target_values_dict: Dict[str, str] = {
+            str(x).lower(): x for x in target_domain_list
+        }
 
         # 3. Apply the value matcher to create value mapping dictionaries
         matches_lowercase = value_matcher.match(
