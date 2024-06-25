@@ -68,7 +68,7 @@ class TFIDFAlgorithm(PolyFuzzAlgorithm):
     """
 
     def __init__(self):
-        super().__init__(PolyFuzz(method=TFIDF(min_similarity=0)))
+        super().__init__(PolyFuzz(method=TFIDF(n_gram_range=(1, 3), min_similarity=0)))
 
 
 class EditAlgorithm(PolyFuzzAlgorithm):
