@@ -76,7 +76,7 @@ class ColumnMappingMethod(Enum):
 def match_columns(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseColumnMappingAlgorithm] = ColumnMappingMethod.SIMFLOOD.name,
+    method: Union[str, BaseColumnMappingAlgorithm] = "coma",
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -87,7 +87,7 @@ def match_columns(
     Parameters:
         source (pd.DataFrame): The source table to be mapped.
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
-        method (Union[str, BaseColumnMappingAlgorithm], optional): The method used for mapping. Defaults to ColumnMappingMethod.SIMFLOOD.name.
+        method (str, optional): The method used for mapping. Defaults to "coma".
 
     Returns:
         pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
