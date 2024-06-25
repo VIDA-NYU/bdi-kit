@@ -407,30 +407,30 @@ class SRHeatMapManager:
                 descrip = "*No description provided.*"
 
             rec_info = f"""
-                ### Selected Recommendation
+            ### Selected Recommendation
 
-                **Name:** {rec}
+            **Name:** {rec}
 
-                **Rank:** {rec_rank+1}
+            **Rank:** {rec_rank+1}
 
-                **Similarity:** {df.loc[rec_rank,'Similarity']}
+            **Similarity:** {df.loc[rec_rank,'Similarity']}
 
-                **Subschema:** {df.loc[rec_rank,'Subschema']}
+            **Subschema:** {df.loc[rec_rank,'Subschema']}
 
-                **Description:** {descrip}
+            **Description:** {descrip}
 
-                **Values{is_sample}:** {sample}
+            **Values{is_sample}:** {sample}
 
-            """
+        """
         else:
             rec_info = f"""
-                ### Selected Recommendation
+            ### Selected Recommendation
 
-                **Name:** {rec}
+            **Name:** {rec}
 
-                **Similarity:** {selected_row["Value"].values[0]}
+            **Similarity:** {selected_row["Value"].values[0]}
 
-            """
+        """
         rec_pane = pn.pane.Markdown(rec_info)
         return rec_pane
 
@@ -642,8 +642,8 @@ class SRHeatMapManager:
 
         rej_button = pn.widgets.Button(name="Decline Match", button_type="danger")
 
-        undo_button = pn.widgets.Button(name="Undo", button_type="primary")
-        redo_button = pn.widgets.Button(name="Redo", button_type="primary")
+        undo_button = pn.widgets.Button(name="Undo", button_style="outline", button_type="warning")
+        redo_button = pn.widgets.Button(name="Redo", button_style="outline", button_type="primary")
 
         # Subschemas
         if self.ground_truth == "gdc":
@@ -686,8 +686,8 @@ class SRHeatMapManager:
             redo_button.param.clicks,
         )
 
-        buttons_down = pn.Row(acc_button, rej_button)
-        buttons_redo_undo = pn.Row(undo_button, redo_button)
+        buttons_down = pn.Column(acc_button, rej_button)
+        buttons_redo_undo = pn.Column(undo_button, redo_button)
 
         column_top = pn.Row(
             select_column,
