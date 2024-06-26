@@ -1,5 +1,5 @@
 import os
-from typing import List, Optional, Union
+from typing import List, Dict, Tuple, Optional
 
 import numpy as np
 import pandas as pd
@@ -12,22 +12,39 @@ from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.c
 )
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
+from bdikit.download import get_cached_model_or_download
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 GDC_TABLE_PATH = os.path.join(dir_path, "../../../../resource/gdc_table.csv")
-MODEL_PATH = os.path.join(dir_path, "../../../../resource/model_20_1.pt")
+DEFAULT_CL_MODEL = "cl-reducer-v0.1"
 
 
 class ContrastiveLearningAPI:
-    def __init__(self, model_path=MODEL_PATH, top_k=10, batch_size=128):
-        self.model_path = model_path
+    def __init__(
+        self,
+        model_path: Optional[str] = None,
+        model_name: Optional[str] = None,
+        batch_size: int = 128,
+    ):
+        if model_name and model_path:
+            raise ValueError(
+                "Only one of model_name or model_path should be provided "
+                "(they are mutually exclusive)"
+            )
+
+        if model_path:
+            self.model_path = model_path
+        elif model_name:
+            self.model_path = get_cached_model_or_download(model_name)
+        else:
+            raise ValueError("Either model_name or model_path must be provided")
+
         self.unlabeled = PretrainTableDataset()
         self.batch_size = batch_size
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.model = self.load_checkpoint()
-        self.top_k = top_k
 
-    def load_checkpoint(self, lm="roberta"):
+    def load_checkpoint(self, lm: str = "roberta"):
         ckpt = torch.load(self.model_path, map_location=torch.device("cpu"))
         scale_loss = 0.1
         lambd = 3.9
@@ -37,28 +54,25 @@ class ContrastiveLearningAPI:
 
         return model
 
+    def get_embeddings(self, table: pd.DataFrame) -> List[np.ndarray]:
+        return self._load_table_tokens(table)
+
     def get_recommendations(
-        self, table: pd.DataFrame, target: Optional[Union[str, pd.DataFrame]] = None
-    ):
-        if target is None or (isinstance(target, str) and target == "gdc"):
-            gdc_ds = pd.read_csv(GDC_TABLE_PATH)
-        elif isinstance(target, pd.DataFrame):
-            gdc_ds = target
-        else:
-            raise ValueError("Target must be a DataFrame or 'gdc'")
+        self, table: pd.DataFrame, target: pd.DataFrame, top_k: int = 10
+    ) -> Tuple[List, List[Dict]]:
 
         l_features = self._load_table_tokens(table)
-        r_features = self._load_table_tokens(gdc_ds)
+        r_features = self._load_table_tokens(target)
         cosine_sim = cosine_similarity(l_features, r_features)
 
         # print(f"l_features - {len(l_features)}:{l_features[0].shape}\nr-feature - {len(r_features)}:{r_features[0].shape}\nCosine - {cosine_sim.shape}")
 
         top_k_results = []
         l_column_ids = table.columns
-        gt_column_ids = gdc_ds.columns
+        gt_column_ids = target.columns
 
         for index, similarities in enumerate(cosine_sim):
-            top_k_indices = np.argsort(similarities)[::-1][: self.top_k]
+            top_k_indices = np.argsort(similarities)[::-1][:top_k]
             top_k_column_names = [gt_column_ids[i] for i in top_k_indices]
             top_k_similarities = [str(round(similarities[i], 4)) for i in top_k_indices]
             top_k_columns = list(zip(top_k_column_names, top_k_similarities))
@@ -70,7 +84,7 @@ class ContrastiveLearningAPI:
         recommendations = self._extract_recommendations_from_top_k(top_k_results)
         return recommendations, top_k_results
 
-    def _extract_recommendations_from_top_k(self, top_k_results):
+    def _extract_recommendations_from_top_k(self, top_k_results: List[dict]):
         recommendations = set()
         for result in top_k_results:
             for name, _ in result["Top k columns"]:
@@ -91,9 +105,9 @@ class ContrastiveLearningAPI:
                 table = unique_rows.sample(n=15, random_state=1)
         return table
 
-    def _load_table_tokens(self, table: pd.DataFrame):
+    def _load_table_tokens(self, table: pd.DataFrame) -> List[np.ndarray]:
         tables = []
-        for i, column in enumerate(table.columns):
+        for _, column in enumerate(table.columns):
             curr_table = pd.DataFrame(table[column])
             curr_table = self._sample_to_15_rows(curr_table)
             tables.append(curr_table)
@@ -101,7 +115,7 @@ class ContrastiveLearningAPI:
         print(f"Table features extracted from {len(table.columns)} columns")
         return [vec[-1] for vec in vectors]
 
-    def _inference_on_tables(self, tables: List[pd.DataFrame]):
+    def _inference_on_tables(self, tables: List[pd.DataFrame]) -> List[List]:
         total = len(tables)
         batch = []
         results = []

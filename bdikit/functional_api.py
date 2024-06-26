@@ -5,7 +5,6 @@ import itertools
 import pandas as pd
 import numpy as np
 from bdikit.utils import get_gdc_data
-from bdikit.download import get_cached_model_or_download
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
     BaseColumnMappingAlgorithm,
     SimFloodAlgorithm,
@@ -19,7 +18,10 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
-    ContrastiveLearningAPI,
+    DEFAULT_CL_MODEL,
+)
+from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
+    CLTopkColumnMatcher,
 )
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
     ValueMatch,
@@ -145,17 +147,18 @@ def top_matches(
     else:
         selected_columns = source
 
-    model_path = get_cached_model_or_download("cl-reducer-v0.1")
-    api = ContrastiveLearningAPI(model_path=model_path, top_k=top_k)
-    _, scopes_json = api.get_recommendations(selected_columns, target=target_table)
+    topk_matcher = CLTopkColumnMatcher(model_name=DEFAULT_CL_MODEL)
+    top_k_matches = topk_matcher.get_recommendations(
+        selected_columns, target=target_table, top_k=top_k
+    )
 
     dfs = []
-    for scope in scopes_json:
+    for match in top_k_matches:
         matches = pd.DataFrame(
-            scope["Top k columns"], columns=["matches", "similarity"]
+            match["top_k_columns"], columns=["matches", "similarity"]
         )
-        matches["source"] = scope["Candidate column"]
-        matches = matches[["source", "matches", "similarity"]]
+        matches["source"] = match["source_column"]
+        matches = matches[["source", "matches", "similarity"]]  # reorder columns
         dfs.append(matches.sort_values(by="similarity", ascending=False))
 
     return pd.concat(dfs, ignore_index=True)

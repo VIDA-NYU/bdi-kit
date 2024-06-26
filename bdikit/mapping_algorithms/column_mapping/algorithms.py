@@ -12,9 +12,12 @@ from valentine.algorithms import (
 from valentine.algorithms.matcher_results import MatcherResults
 from openai import OpenAI
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
-    ContrastiveLearningAPI,
+    DEFAULT_CL_MODEL,
 )
-from bdikit.download import get_cached_model_or_download
+from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
+    TopkColumnMatcher,
+    CLTopkColumnMatcher,
+)
 
 
 class BaseColumnMappingAlgorithm:
@@ -94,7 +97,9 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
                     break
         return self._fill_missing_matches(dataset, mappings)
 
-    def get_column_type(self, context, labels, m=10, model="gpt-4-turbo-preview"):
+    def get_column_type(
+        self, context: str, labels: str, m: int = 10, model: str = "gpt-4-turbo-preview"
+    ):
         messages = [
             {"role": "system", "content": "You are an assistant for column matching."},
             {
@@ -117,46 +122,59 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
 
 
 class ContrastiveLearningAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self, model_name: str = "cl-reducer-v0.1"):
-        model_path = get_cached_model_or_download(model_name)
-        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=1)
+    def __init__(self, model_name: str = DEFAULT_CL_MODEL):
+        self.topk_matcher = CLTopkColumnMatcher(model_name=model_name)
 
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame):
-        union_scopes, scopes_json = self.api.get_recommendations(dataset)
+        topk_matches = self.topk_matcher.get_recommendations(
+            dataset, global_table, top_k=1
+        )
         matches = {}
-        for column, scope in zip(dataset.columns, scopes_json):
-            candidate = scope["Top k columns"][0][0]
+        for column, top_k_match in zip(dataset.columns, topk_matches):
+            candidate = top_k_match["top_k_columns"][0][0]
             if candidate in global_table.columns:
                 matches[column] = candidate
         return self._fill_missing_matches(dataset, matches)
 
 
 class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
-    def __init__(self, model_name: str = "cl-reducer-v0.1", top_k: int = 20):
-        model_path = get_cached_model_or_download(model_name)
-        self.api = ContrastiveLearningAPI(model_path=model_path, top_k=top_k)
+
+    def __init__(
+        self,
+        top_k: int = 20,
+        top_k_matcher: TopkColumnMatcher = CLTopkColumnMatcher(DEFAULT_CL_MODEL),
+        schema_matcher: BaseColumnMappingAlgorithm = SimFloodAlgorithm(),
+    ):
+        self.api = top_k_matcher
+        self.schema_matcher = schema_matcher
+        self.top_k = top_k
 
     def map(
         self,
         dataset: pd.DataFrame,
         global_table: pd.DataFrame,
-        algorithm: BaseColumnMappingAlgorithm = SimFloodAlgorithm(),
     ):
-        union_scopes, scopes_json = self.api.get_recommendations(dataset)
+        topk_column_matches = self.api.get_recommendations(
+            dataset, global_table, self.top_k
+        )
+
         matches = {}
-        for column, scope in zip(dataset.columns, scopes_json):
+        for column, scope in zip(dataset.columns, topk_column_matches):
             candidates = [
                 cand[0]
-                for cand in scope["Top k columns"]
+                for cand in scope["top_k_columns"]
                 if cand[0] in global_table.columns
             ]
             reduced_dataset = dataset[[column]]
             reduced_global_table = global_table[candidates]
-            partial_matches = algorithm.map(reduced_dataset, reduced_global_table)
-
+            partial_matches = self.schema_matcher.map(
+                reduced_dataset, reduced_global_table
+            )
             if len(partial_matches.keys()) > 0:
                 candidate_col = next(iter(partial_matches))
                 target_col = partial_matches[candidate_col]
                 matches[candidate_col] = target_col
+            if column in partial_matches:
+                matches[column] = partial_matches[column]
 
         return self._fill_missing_matches(dataset, matches)
