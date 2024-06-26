@@ -224,7 +224,7 @@ def preprocess(column: pd.Series, tfidfDict: dict, max_tokens: int, method: str)
     Returns list of sampled tokens
     """
     tokens = []
-    colVals = [val for entity in column for val in str(entity).split(" ")]
+    colVals = [str(entity) for entity in column]
     if method == "head" or method == "tfidf_row":
         for val in colVals:
             if val not in tokens:
