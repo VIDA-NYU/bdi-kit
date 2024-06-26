@@ -32,14 +32,8 @@ class PretrainTableDataset(data.Dataset):
             tokens = preprocess(
                 table[column], tfidfDict, max_tokens, self.sample_meth
             )  # from preprocessor.py
-            col_text = (
-                self.tokenizer.cls_token
-                + " "
-                + column
-                + self.tokenizer.sep_token
-                + self.tokenizer.sep_token.join(tokens[:max_tokens])
-                + " "
-            )
+            col_text = self.tokenizer.cls_token + column +  self.tokenizer.sep_token  + \
+                        self.tokenizer.sep_token.join(tokens[:max_tokens])
             column_mp[column] = len(res)
             res += self.tokenizer.encode(
                 text=col_text,
