@@ -1,7 +1,7 @@
 API
-=========
+====
 
-.. module:: bdikit.api
 
-.. autoclass:: APIManager
-   :members:
+.. automodule:: bdikit.functional_api
+    :members:
+    :exclude-members: ColumnMappingMethod, ValueMatchingMethod, ValueMatchingResult

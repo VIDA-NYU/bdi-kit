@@ -33,6 +33,7 @@ master_doc = "index"
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
     "nbsphinx",
     "nbsphinx_link",
     "sphinxemoji.sphinxemoji",
@@ -88,5 +89,6 @@ autodoc_mock_imports = [
     "valentine",
     "altair",
     "panel",
-    "tqdm"
+    "tqdm",
+    "rapidfuzz",
 ]
