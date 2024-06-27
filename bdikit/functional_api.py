@@ -436,8 +436,8 @@ def preview_domains(
     Args:
         dataset (pd.DataFrame): The source dataset containing the columns to preview.
         column_mapping (Tuple[str, str]): The mapping between the source and target columns.
-            The first and second positions should contain the names of the
-            source and target columns respectively.
+            The first and second positions should contain the names of the source and target
+            columns respectively.
         target (Union[str, pd.DataFrame], optional): The target dataset or standard vocabulary name.
             If a string is provided and it is equal to "gdc", the target domain will be retrieved
             from the GDC data.
@@ -448,8 +448,8 @@ def preview_domains(
 
     Returns:
         pd.DataFrame: A DataFrame containing the source and target domain values (or a sample of
-            them if the parameter `limit` was specified). The DataFrame will have two columns:
-            "source_domain" and "target_domain".
+        them if the parameter `limit` was specified). The DataFrame will have two columns:
+        "source_domain" and "target_domain".
     """
     source_column, target_column = column_mapping
 
@@ -507,12 +507,12 @@ def update_mappings(
     precedence over the mappings provided in ther first parameter.
 
     Args:
-        value_mappings (ValueMatchingLike): The value mappings used to create the data
-        harmonization plan. It can be a pandas DataFrame or a list of dictionaries
-        (ValueMatchingResult).
+        mappings (ValueMatchingLike): The value mappings used to create the data
+            harmonization plan. It can be a pandas DataFrame or a list of dictionaries
+            (ValueMatchingResult).
         user_mappings (Optional[ValueMatchingLike]): The user mappings to be included in
-        the update. It can be a pandas DataFrame or a list of dictionaries (ValueMatchingResult).
-        Defaults to None.
+            the update. It can be a pandas DataFrame or a list of dictionaries (ValueMatchingResult).
+            Defaults to None.
 
     Returns:
         List: The data harmonization plan that can be used as input to the materialize_mappings()
@@ -595,6 +595,7 @@ def create_mapper(
     """
     Tries to instantiate an appropriate ValueMapper object for the given input argument.
     Depending on the input type, it may create one of the following objects:
+
     - If input is None, it creates an IdentityValueMapper object.
     - If input is a ValueMapper, it returns the input object.
     - If input is a function (or lambda function), it creates a FunctionValueMapper object.
@@ -603,11 +604,10 @@ def create_mapper(
     - If input is a DataFrame with two columns ("current_value", "target_value"),
       it creates a DictionaryMapper object.
     - If input is a dictionary containing a "source" and "target" key, it tries to create
-        a ValueMapper object based on the specification given in "mapper" or "matches" keys.
+      a ValueMapper object based on the specification given in "mapper" or "matches" keys.
 
     Args:
-        input:
-            The input argument to create a ValueMapper object from.
+        input: The input argument to create a ValueMapper object from.
 
     Returns:
         ValueMapper: An instance of a ValueMapper.
