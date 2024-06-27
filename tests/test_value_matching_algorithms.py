@@ -39,7 +39,7 @@ class ValueMatchingAlgorithmsTest(unittest.TestCase):
 
         # when
         matches = edit_distance_matcher.match(
-            current_values, target_values, threshold=0.2
+            current_values, target_values, threshold=0.5
         )
 
         # then
@@ -52,4 +52,4 @@ class ValueMatchingAlgorithmsTest(unittest.TestCase):
         self.assertEqual(mapped_matches["Oorange"][0], "orange")
 
         scores = [match[2] for match in matches]
-        self.assertTrue(all(score > 0.2 for score in scores))
+        self.assertTrue(all(score > 0.5 for score in scores))

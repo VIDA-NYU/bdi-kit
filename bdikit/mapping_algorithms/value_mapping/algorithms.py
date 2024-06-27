@@ -1,9 +1,10 @@
-from typing import List, NamedTuple
+from typing import List, NamedTuple, Callable
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
 from polyfuzz.models import EditDistance, TFIDF, Embeddings
-from flair.embeddings import TransformerWordEmbeddings
+from flair.embeddings import TransformerWordEmbeddings, WordEmbeddings
+from rapidfuzz import fuzz
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
@@ -44,7 +45,7 @@ class PolyFuzzAlgorithm(BaseAlgorithm):
         self,
         current_values: List[str],
         target_values: List[str],
-        threshold: float = 0.8,
+        threshold: float = 0.25,
     ) -> List[ValueMatch]:
 
         self.model.match(current_values, target_values)
@@ -68,7 +69,7 @@ class TFIDFAlgorithm(PolyFuzzAlgorithm):
     """
 
     def __init__(self):
-        super().__init__(PolyFuzz(method=TFIDF(min_similarity=0)))
+        super().__init__(PolyFuzz(method=TFIDF(n_gram_range=(1, 3), min_similarity=0)))
 
 
 class EditAlgorithm(PolyFuzzAlgorithm):
@@ -76,8 +77,16 @@ class EditAlgorithm(PolyFuzzAlgorithm):
     Value matching algorithm based on the edit distance between values.
     """
 
-    def __init__(self):
-        super().__init__(PolyFuzz(method=EditDistance(n_jobs=-1)))
+    def __init__(self, scorer: Callable[[str, str], float] = fuzz.ratio):
+        # Return scores between 0 and 1
+        normalized_scorer = lambda str1, str2: scorer(str1, str2) / 100.0
+        super().__init__(
+            PolyFuzz(
+                method=EditDistance(
+                    n_jobs=-1, scorer=normalized_scorer, normalize=False
+                )
+            )
+        )
 
 
 class EmbeddingAlgorithm(PolyFuzzAlgorithm):
@@ -88,6 +97,17 @@ class EmbeddingAlgorithm(PolyFuzzAlgorithm):
     def __init__(self, model_path: str = "bert-base-multilingual-cased"):
         embeddings = TransformerWordEmbeddings(model_path)
         method = Embeddings(embeddings, min_similarity=0, model_id="embedding_model")
+        super().__init__(PolyFuzz(method))
+
+
+class FastTextAlgorithm(PolyFuzzAlgorithm):
+    """
+    Value matching algorithm based on the cosine similarity of FastText embeddings.
+    """
+
+    def __init__(self, model_name: str = "en-crawl"):
+        embeddings = WordEmbeddings(model_name)
+        method = Embeddings(embeddings, min_similarity=0)
         super().__init__(PolyFuzz(method))
 
 
