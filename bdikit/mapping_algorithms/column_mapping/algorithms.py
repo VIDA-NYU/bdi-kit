@@ -1,5 +1,5 @@
 import pandas as pd
-from typing import Dict
+from typing import Dict, Optional
 from valentine import valentine_match
 from valentine.algorithms import (
     SimilarityFlooding,
@@ -142,10 +142,19 @@ class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
     def __init__(
         self,
         top_k: int = 20,
-        top_k_matcher: TopkColumnMatcher = CLTopkColumnMatcher(DEFAULT_CL_MODEL),
+        top_k_matcher: Optional[TopkColumnMatcher] = None,
         schema_matcher: BaseColumnMappingAlgorithm = SimFloodAlgorithm(),
     ):
-        self.api = top_k_matcher
+        if top_k_matcher is None:
+            self.api = CLTopkColumnMatcher(DEFAULT_CL_MODEL)
+        elif isinstance(top_k_matcher, TopkColumnMatcher):
+            self.api = top_k_matcher
+        else:
+            raise ValueError(
+                f"Invalid top_k_matcher type: {type(top_k_matcher)}. "
+                "Must be a subclass of {TopkColumnMatcher.__name__}"
+            )
+
         self.schema_matcher = schema_matcher
         self.top_k = top_k
 
@@ -170,10 +179,7 @@ class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
             partial_matches = self.schema_matcher.map(
                 reduced_dataset, reduced_global_table
             )
-            if len(partial_matches.keys()) > 0:
-                candidate_col = next(iter(partial_matches))
-                target_col = partial_matches[candidate_col]
-                matches[candidate_col] = target_col
+
             if column in partial_matches:
                 matches[column] = partial_matches[column]
 

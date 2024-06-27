@@ -21,8 +21,8 @@ def test_basic_column_mapping_algorithms():
         # Uncomment the following lines to test matchers that require
         # downloading large models
         #
-        # TwoPhaseMatcherAlgorithm(schema_matcher=ComaAlgorithm()),
-        # ContrastiveLearningAlgorithm()
+        TwoPhaseMatcherAlgorithm(schema_matcher=ComaAlgorithm()),
+        ContrastiveLearningAlgorithm(),
     ]:
         # given
         table1 = pd.DataFrame(
@@ -36,7 +36,7 @@ def test_basic_column_mapping_algorithms():
         mapping = column_matcher.map(dataset=table1, global_table=table2)
 
         # then
-        assert (
-            {"column_1": "column_1a", "col_2": "col2"} == mapping,
-            f"{type(column_matcher).__name__} failed to map columns",
-        )
+        assert {
+            "column_1": "column_1a",
+            "col_2": "col2",
+        } == mapping, f"{type(column_matcher).__name__} failed to map columns"
