@@ -6,7 +6,17 @@
 
 
 # bdi-kit 
-This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
+
+The `bdi-kit` is a library that assist users in performing data harmonization. It provides state-of-the-art tools to streamline the process of integrating and transforming disparate datasets (with a focus on biomedical data), and includes APIs and visualizations for peforming tasks such as:
+- Schema matching
+- Value matching
+- Data transformation to a target schema/standard
+
+**Warning:** `bdi-kit` is currently in *alpha* stage and under heavy development. Expect APIs to change.
+
+## Documentation
+
+Documentation is available at [https://bdi-kit.readthedocs.io/](https://bdi-kit.readthedocs.io/).
 
 
 ## Installation
@@ -24,10 +34,8 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 ```
 
 
-## Documentation
-Documentation is available [here](https://bdi-kit.readthedocs.io/).
-
 ## Contributing
+
 We format code using the [black](https://black.readthedocs.io/en/stable/) code formatter.
 The CI runs for every pull request and will fail if code is not properly formatted.
 To make sure formatting is correct, you can do the following steps.
@@ -46,20 +54,3 @@ Or you can use the black command directly:
 ```
 black ./bdikit/
 ```
-
-## Folder Structure
-
-- **/data_ingestion**:
-  - Contains scripts and tools for ingesting data into the system.
-
-- **/mapping_algorithms**:
-  - Algorithms and utilities for schema and value mapping.
-
-- **/mapping_recommendation**:
-  - Interacts with mapping_algorithms and users to suggest mappings for data integration. The output is a mapping plan.
-
-- **/transformation**:
-  - Transforms the data given a mapping plan.
-
-- **/visualization**:
-  - Visualizations to aid in the mapping recommendation process.
