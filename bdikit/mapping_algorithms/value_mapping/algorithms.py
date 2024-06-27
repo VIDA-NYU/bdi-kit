@@ -45,7 +45,7 @@ class PolyFuzzAlgorithm(BaseAlgorithm):
         self,
         current_values: List[str],
         target_values: List[str],
-        threshold: float = 0.8,
+        threshold: float = 0.25,
     ) -> List[ValueMatch]:
 
         self.model.match(current_values, target_values)
