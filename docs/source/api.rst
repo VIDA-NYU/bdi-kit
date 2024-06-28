@@ -2,6 +2,6 @@ API
 ====
 
 
-.. automodule:: bdikit.functional_api
+.. automodule:: bdikit.api
     :members:
     :exclude-members: ColumnMappingMethod, ValueMatchingMethod, ValueMatchingResult
