@@ -1,0 +1,19 @@
+{
+    "include": [
+        "bdikit/**/*.py"
+    ],
+    "typeCheckingMode": "strict",
+    "reportUnknownMemberType":"none",
+    "reportUnknownVariableType": "none",
+    "reportUnknownArgumentType": "none",
+    "reportUnknownContextType": "none",
+    "reportUnknownModuleType": "none",
+    "reportUnknownFunctionType": "none",
+    "reportUnknownElementType": "none",
+    "reportUnknownAttributeType": "none",
+    "reportUnknownPropertyType": "none",
+    "reportMissingTypeStubs": "none",
+    "reportUnknownParameterType": "none",
+    "reportMissingTypeArgument": "none",
+    "reportUnnecessaryIsInstance": "none",
+}
