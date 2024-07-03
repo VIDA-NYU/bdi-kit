@@ -16,7 +16,7 @@ from bdikit.download import get_cached_model_or_download
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 GDC_TABLE_PATH = os.path.join(dir_path, "../../../../resource/gdc_table.csv")
-DEFAULT_CL_MODEL = "cl-reducer-v0.1"
+DEFAULT_CL_MODEL = "bdi-cl-v0.2"
 
 
 class ContrastiveLearningAPI:
