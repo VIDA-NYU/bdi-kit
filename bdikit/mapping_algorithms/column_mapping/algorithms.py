@@ -20,7 +20,7 @@ from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
 )
 
 
-class BaseColumnMappingAlgorithm:
+class BaseSchemaMatcher:
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
         raise NotImplementedError("Subclasses must implement this method")
 
@@ -33,7 +33,7 @@ class BaseColumnMappingAlgorithm:
         return matches
 
 
-class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
+class ValentineSchemaMatcher(BaseSchemaMatcher):
     def __init__(self, matcher: BaseMatcher):
         self.matcher = matcher
 
@@ -47,32 +47,32 @@ class ValentineColumnMappingAlgorithm(BaseColumnMappingAlgorithm):
         return self._fill_missing_matches(dataset, mappings)
 
 
-class SimFloodAlgorithm(ValentineColumnMappingAlgorithm):
+class SimFloodSchemaMatcher(ValentineSchemaMatcher):
     def __init__(self):
         super().__init__(SimilarityFlooding())
 
 
-class ComaAlgorithm(ValentineColumnMappingAlgorithm):
+class ComaSchemaMatcher(ValentineSchemaMatcher):
     def __init__(self):
         super().__init__(Coma())
 
 
-class CupidAlgorithm(ValentineColumnMappingAlgorithm):
+class CupidSchemaMatcher(ValentineSchemaMatcher):
     def __init__(self):
         super().__init__(Cupid())
 
 
-class DistributionBasedAlgorithm(ValentineColumnMappingAlgorithm):
+class DistributionBasedSchemaMatcher(ValentineSchemaMatcher):
     def __init__(self):
         super().__init__(DistributionBased())
 
 
-class JaccardDistanceAlgorithm(ValentineColumnMappingAlgorithm):
+class JaccardSchemaMatcher(ValentineSchemaMatcher):
     def __init__(self):
         super().__init__(JaccardDistanceMatcher())
 
 
-class GPTAlgorithm(BaseColumnMappingAlgorithm):
+class GPTSchemaMatcher(BaseSchemaMatcher):
     def __init__(self):
         self.client = OpenAI()
 
@@ -121,7 +121,7 @@ class GPTAlgorithm(BaseColumnMappingAlgorithm):
         return col_type_content.split(";")
 
 
-class ContrastiveLearningAlgorithm(BaseColumnMappingAlgorithm):
+class ContrastiveLearningSchemaMatcher(BaseSchemaMatcher):
     def __init__(self, model_name: str = DEFAULT_CL_MODEL):
         self.topk_matcher = CLTopkColumnMatcher(model_name=model_name)
 
@@ -137,13 +137,13 @@ class ContrastiveLearningAlgorithm(BaseColumnMappingAlgorithm):
         return self._fill_missing_matches(dataset, matches)
 
 
-class TwoPhaseMatcherAlgorithm(BaseColumnMappingAlgorithm):
+class TwoPhaseSchemaMatcher(BaseSchemaMatcher):
 
     def __init__(
         self,
         top_k: int = 20,
         top_k_matcher: Optional[TopkColumnMatcher] = None,
-        schema_matcher: BaseColumnMappingAlgorithm = SimFloodAlgorithm(),
+        schema_matcher: BaseSchemaMatcher = SimFloodSchemaMatcher(),
     ):
         if top_k_matcher is None:
             self.api = CLTopkColumnMatcher(DEFAULT_CL_MODEL)

@@ -1,28 +1,28 @@
 import pandas as pd
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
-    SimFloodAlgorithm,
-    JaccardDistanceAlgorithm,
-    DistributionBasedAlgorithm,
-    ComaAlgorithm,
-    CupidAlgorithm,
-    TwoPhaseMatcherAlgorithm,
-    ContrastiveLearningAlgorithm,
+    SimFloodSchemaMatcher,
+    JaccardSchemaMatcher,
+    DistributionBasedSchemaMatcher,
+    ComaSchemaMatcher,
+    CupidSchemaMatcher,
+    TwoPhaseSchemaMatcher,
+    ContrastiveLearningSchemaMatcher,
 )
 
 
 def test_basic_column_mapping_algorithms():
     for column_matcher in [
-        SimFloodAlgorithm(),
-        JaccardDistanceAlgorithm(),
-        DistributionBasedAlgorithm(),
-        ComaAlgorithm(),
-        CupidAlgorithm(),
+        SimFloodSchemaMatcher(),
+        JaccardSchemaMatcher(),
+        DistributionBasedSchemaMatcher(),
+        ComaSchemaMatcher(),
+        CupidSchemaMatcher(),
         #
         # Uncomment the following lines to test matchers that require
         # downloading large models
         #
-        TwoPhaseMatcherAlgorithm(schema_matcher=ComaAlgorithm()),
-        ContrastiveLearningAlgorithm(),
+        TwoPhaseSchemaMatcher(schema_matcher=ComaSchemaMatcher()),
+        ContrastiveLearningSchemaMatcher(),
     ]:
         # given
         table1 = pd.DataFrame(

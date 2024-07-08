@@ -6,15 +6,15 @@ import pandas as pd
 import numpy as np
 from bdikit.utils import get_gdc_data
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
-    BaseColumnMappingAlgorithm,
-    SimFloodAlgorithm,
-    ComaAlgorithm,
-    CupidAlgorithm,
-    DistributionBasedAlgorithm,
-    JaccardDistanceAlgorithm,
-    GPTAlgorithm,
-    ContrastiveLearningAlgorithm,
-    TwoPhaseMatcherAlgorithm,
+    BaseSchemaMatcher,
+    SimFloodSchemaMatcher,
+    ComaSchemaMatcher,
+    CupidSchemaMatcher,
+    DistributionBasedSchemaMatcher,
+    JaccardSchemaMatcher,
+    GPTSchemaMatcher,
+    ContrastiveLearningSchemaMatcher,
+    TwoPhaseSchemaMatcher,
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
@@ -46,27 +46,23 @@ DEFAULT_VALUE_MATCHING_METHOD = "tfidf"
 DEFAULT_SCHEMA_MATCHING_METHOD = "coma"
 
 
-class ColumnMappingMethod(Enum):
-    SIMFLOOD = ("similarity_flooding", SimFloodAlgorithm)
-    COMA = ("coma", ComaAlgorithm)
-    CUPID = ("cupid", CupidAlgorithm)
-    DISTRIBUTION_BASED = ("distribution_based", DistributionBasedAlgorithm)
-    JACCARD_DISTANCE = ("jaccard_distance", JaccardDistanceAlgorithm)
-    GPT = ("gpt", GPTAlgorithm)
-    CT_LEARGNING = ("ct_learning", ContrastiveLearningAlgorithm)
-    TWO_PHASE = ("two_phase", TwoPhaseMatcherAlgorithm)
+class SchemaMatchers(Enum):
+    SIMFLOOD = ("similarity_flooding", SimFloodSchemaMatcher)
+    COMA = ("coma", ComaSchemaMatcher)
+    CUPID = ("cupid", CupidSchemaMatcher)
+    DISTRIBUTION_BASED = ("distribution_based", DistributionBasedSchemaMatcher)
+    JACCARD_DISTANCE = ("jaccard_distance", JaccardSchemaMatcher)
+    GPT = ("gpt", GPTSchemaMatcher)
+    CT_LEARGNING = ("ct_learning", ContrastiveLearningSchemaMatcher)
+    TWO_PHASE = ("two_phase", TwoPhaseSchemaMatcher)
 
-    def __init__(
-        self, method_name: str, method_class: Type[BaseColumnMappingAlgorithm]
-    ):
+    def __init__(self, method_name: str, method_class: Type[BaseSchemaMatcher]):
         self.method_name = method_name
         self.method_class = method_class
 
     @staticmethod
-    def get_instance(method_name: str) -> BaseColumnMappingAlgorithm:
-        methods = {
-            method.method_name: method.method_class for method in ColumnMappingMethod
-        }
+    def get_instance(method_name: str) -> BaseSchemaMatcher:
+        methods = {method.method_name: method.method_class for method in SchemaMatchers}
         try:
             return methods[method_name]()
         except KeyError:
@@ -77,10 +73,10 @@ class ColumnMappingMethod(Enum):
             )
 
 
-def match_columns(
+def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseColumnMappingAlgorithm] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -105,8 +101,8 @@ def match_columns(
         target_table = target
 
     if isinstance(method, str):
-        matcher_instance = ColumnMappingMethod.get_instance(method)
-    elif isinstance(method, BaseColumnMappingAlgorithm):
+        matcher_instance = SchemaMatchers.get_instance(method)
+    elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
     else:
         raise ValueError(
@@ -659,7 +655,7 @@ def create_mapper(
             if "matches" in input and isinstance(input["matches"], List):
                 return _create_mapper_from_value_matches(input["matches"])
 
-            # This could be the output of match_columns(), but the user did not
+            # This could be the output of match_schema(), but the user did not
             # define any mapper, so we create an IdentityValueMapper to map the
             # column to the target name but keeping the values as they are
             return IdentityValueMapper()
