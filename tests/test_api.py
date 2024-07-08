@@ -6,13 +6,13 @@ from bdikit.mapping_algorithms.value_mapping.value_mappers import (
 )
 
 
-def test_bdi_match_columns_with_dataframes():
+def test_bdi_match_schema_with_dataframes():
     # given
     source = pd.DataFrame({"column_1": ["a1", "b1", "c1"], "col_2": ["a2", "b2", "c2"]})
     target = pd.DataFrame({"column_1a": ["a1", "b1", "c1"], "col2": ["a2", "b2", "c2"]})
 
     # when
-    df_matches = bdi.match_columns(source, target=target, method="similarity_flooding")
+    df_matches = bdi.match_schema(source, target=target, method="similarity_flooding")
 
     # then assert that the df_matches contains a row with the value 'column_1'
     # in the column 'source' and the value 'column_1a' in the 'target' value
@@ -26,7 +26,7 @@ def test_bdi_match_columns_with_dataframes():
     assert df_matches[df_filter]["target"].values[0] == "col2"
 
 
-def test_bdi_match_columns_to_gdc():
+def test_bdi_match_schema_to_gdc():
     # given
     source = pd.DataFrame(
         {
@@ -48,7 +48,7 @@ def test_bdi_match_columns_to_gdc():
     )
 
     # when
-    df_matches = bdi.match_columns(source, target="gdc", method="coma")
+    df_matches = bdi.match_schema(source, target="gdc", method="coma")
 
     # then df_matches must contain target columns that come from the GDC dictionary
     assert df_matches.empty == False
@@ -217,7 +217,7 @@ def test_end_to_end_api_integration():
     )
 
     # when
-    column_mappings = bdi.match_columns(df_source, df_target, method="coma")
+    column_mappings = bdi.match_schema(df_source, df_target, method="coma")
     # then
     assert column_mappings is not None
     assert column_mappings.empty == False
@@ -225,7 +225,7 @@ def test_end_to_end_api_integration():
     assert "target" in column_mappings.columns
     assert len(column_mappings.index) == 1
 
-    # when: pass output of match_columns() directly to materialize_mapping(),
+    # when: pass output of match_schema() directly to materialize_mapping(),
     # the column must be ranamed to the target column without any value mapping
     df_mapped = bdi.materialize_mapping(df_source, column_mappings)
     # then
@@ -237,7 +237,7 @@ def test_end_to_end_api_integration():
         "Strawberry",
     ]
 
-    # when: we pass the output of match_columns()
+    # when: we pass the output of match_schema()
     value_mappings = bdi.match_values(
         df_source, df_target, column_mappings, method="tfidf"
     )
