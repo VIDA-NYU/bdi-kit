@@ -471,8 +471,8 @@ def preview_value_mappings(
 
 
 def preview_domain(
+    dataset: Union[str, pd.DataFrame],
     column: str,
-    dataset: Union[str, pd.DataFrame] = "gdc",
     limit: Optional[int] = None,
 ) -> pd.DataFrame:
     """
@@ -480,13 +480,12 @@ def preview_domain(
     (if applicable) of the given column of the source or target dataset.
 
     Args:
-        column(str): The column name to show the preview domain about.
         dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
         containing the column to preview.
             If a string is provided and it is equal to "gdc", the domain will be retrieved
             from the GDC data.
             If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
-            Defaults to "gdc".
+        column(str): The column whose domain be previewed.
         limit (int, optional): The maximum number of unique values to include in the preview.
             Defaults to None.
 
