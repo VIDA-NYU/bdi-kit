@@ -35,22 +35,28 @@ def get_gdc_values(column_name, gdc_schema):
     return None
 
 
-def get_all_gdc_columns():
-    all_columns = []
-    gdc_schema = read_gdc_schema()
-    for key, values in gdc_schema.items():
-        for key in values["properties"].keys():
-            all_columns.append(key)
-    return all_columns
-
-
 def get_gdc_metadata():
     metadata = {}
     gdc_schema = read_gdc_schema()
 
-    for key, values in gdc_schema.items():
-        for key, data in values["properties"].items():
-            metadata[key] = data
+    for attrib_data in gdc_schema.values():
+        for attrib_name, attrib_properties in attrib_data["properties"].items():
+            metadata[attrib_name] = {}
+            attrib_description = attrib_properties.get("description", "")
+            metadata[attrib_name]["description"] = attrib_description
+
+            value_names = attrib_properties.get("enum", [])
+            metadata[attrib_name]["value_names"] = value_names
+
+            descriptions = attrib_properties.get("enumDef", {})
+            value_descriptions = []
+            for value_name in value_names:
+                description = ""
+                if value_name in descriptions:
+                    description = descriptions[value_name].get("description", "")
+                value_descriptions.append(description)
+
+            metadata[attrib_name]["value_descriptions"] = value_descriptions
 
     return metadata
 

@@ -5,7 +5,7 @@ import itertools
 import copy
 import pandas as pd
 import numpy as np
-from bdikit.utils import get_gdc_data
+from bdikit.utils import get_gdc_data, get_gdc_metadata
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
     BaseSchemaMatcher,
     SimFloodSchemaMatcher,
@@ -470,75 +470,61 @@ def preview_value_mappings(
         return result
 
 
-def preview_domains(
-    dataset: pd.DataFrame,
-    column_mapping: Tuple[str, str],
-    target: Union[str, pd.DataFrame] = "gdc",
+def preview_domain(
+    column: str,
+    dataset: Union[str, pd.DataFrame] = "gdc",
     limit: Optional[int] = None,
 ) -> pd.DataFrame:
     """
-    Preview the domain (set of unique values) of the given columns in the source and target
-    dataset (or target data dictionary).
+    Preview the domain, e.g. set of unique values, column description and value description
+    (if applicable) of the given column of the source or target dataset.
 
     Args:
-        dataset (pd.DataFrame): The source dataset containing the columns to preview.
-        column_mapping (Tuple[str, str]): The mapping between the source and target columns.
-            The first and second positions should contain the names of the source and target
-            columns respectively.
-        target (Union[str, pd.DataFrame], optional): The target dataset or standard vocabulary name.
-            If a string is provided and it is equal to "gdc", the target domain will be retrieved
+        column(str): The column name to show the preview domain about.
+        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
+        containing the column to preview.
+            If a string is provided and it is equal to "gdc", the domain will be retrieved
             from the GDC data.
-            If a DataFrame is provided, the target domain will be retrieved from the specified DataFrame.
+            If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
             Defaults to "gdc".
         limit (int, optional): The maximum number of unique values to include in the preview.
-            Defaults to 10.
+            Defaults to None.
 
     Returns:
-        pd.DataFrame: A DataFrame containing the source and target domain values (or a sample of
-        them if the parameter `limit` was specified). The DataFrame will have two columns:
-        "source_domain" and "target_domain".
+        pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
+        them if the parameter `limit` was specified), column description and value description
+        (if applicable).
     """
-    source_column, target_column = column_mapping
 
-    source_domain = dataset[source_column].unique()
-
-    if isinstance(target, str) and target == "gdc":
-        gdc_col_domain = get_gdc_data([target_column])[target_column]
-        target_domain = (
-            np.array([]) if gdc_col_domain is None else np.array(gdc_col_domain)
-        )
-    elif isinstance(target, pd.DataFrame):
-        target_domain = target[target_column].unique()
+    if isinstance(dataset, str) and dataset == "gdc":
+        gdc_metadata = get_gdc_metadata()
+        value_names = gdc_metadata[column]["value_names"]
+        value_descriptions = gdc_metadata[column]["value_descriptions"]
+        column_description = gdc_metadata[column]["description"]
+        assert len(value_names) == len(value_descriptions)
+    elif isinstance(dataset, pd.DataFrame):
+        value_names = dataset[column].unique()
+        value_descriptions = []
+        column_description = ""
     else:
         raise ValueError(
-            "The target must be a DataFrame or a standard vocabulary name."
+            "The dataset must be a DataFrame or a standard vocabulary name."
         )
 
-    # Find the final output size based on the the largest domain size and limit parameter
-    largest_domain_size = max(len(source_domain), len(target_domain))
-    output_size = (
-        largest_domain_size if limit is None else min(largest_domain_size, limit)
-    )
+    if isinstance(limit, int):
+        value_names = value_names[:limit]
+        value_descriptions = value_descriptions[:limit]
 
-    # Truncate the domains to the output size if they are larger
-    if len(source_domain) > output_size:
-        source_domain = source_domain[:output_size]
-    if len(target_domain) > output_size:
-        target_domain = target_domain[:output_size]
+    domain = {"value_name": value_names}
 
-    # Fill the domains with empty strings if they are smaller than the output size
-    if len(source_domain) < output_size:
-        source_domain = np.append(
-            source_domain, np.full(output_size - len(source_domain), "")
-        )
-    if len(target_domain) < output_size:
-        target_domain = np.append(
-            target_domain, np.full(output_size - len(target_domain), "")
-        )
+    if len(value_descriptions) > 0:
+        domain["value_description"] = value_descriptions
 
-    return pd.DataFrame(
-        {"source_domain": source_domain, "target_domain": target_domain}
-    )
+    if len(column_description) > 0:
+        empty_rows_size = len(value_names) - 1
+        domain["column_description"] = [column_description] + [""] * empty_rows_size
+
+    return pd.DataFrame(domain)
 
 
 ValueMatchingLike = Union[List[ValueMatchingResult], List[Dict], pd.DataFrame]
