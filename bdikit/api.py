@@ -655,6 +655,13 @@ def create_mapper(
             if "matches" in input and isinstance(input["matches"], List):
                 return _create_mapper_from_value_matches(input["matches"])
 
+            # This could be the ouput of preview_value_mappings(), so we can
+            # create a DictionaryMapper based on the value matches
+            if "mapping" in input and isinstance(input["mapping"], pd.DataFrame):
+                return DictionaryMapper(
+                    input["mapping"].set_index("source")["target"].to_dict()
+                )
+
             # This could be the output of match_schema(), but the user did not
             # define any mapper, so we create an IdentityValueMapper to map the
             # column to the target name but keeping the values as they are
