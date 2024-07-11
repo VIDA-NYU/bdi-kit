@@ -2,6 +2,7 @@ from enum import Enum
 from os.path import join, dirname
 from typing import Union, Type, List, Dict, TypedDict, Set, Optional, Tuple, Callable
 import itertools
+import copy
 import pandas as pd
 import numpy as np
 from bdikit.utils import get_gdc_data
@@ -80,7 +81,7 @@ def match_schema(
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
-    target either is a DataFrame or a string representing a standard data vocabulary
+    target is either a DataFrame or a string representing a standard data vocabulary
     supported by the library. Currently, only the GDC (Genomic Data Commons) standard
     vocabulary is supported.
 
@@ -205,20 +206,42 @@ def materialize_mapping(
     The mapping specification is a list of dictionaries, where each dictionary
     defines one column in the output table and how it is created. It includes
     the names of the input (source) and output (target) columns and the value
-    mapper that is used to transform the values of the input column to the
-    output column.
+    mapper used to transform the values of the input column into the
+    target output column.
+
+    Parameters:
+        input_table (pd.DataFrame): The input (source) DataFrame.
+        mapping_spec (Union[List[dict], pd.DataFrame]): The target mapping
+          specification. It can be a list of dictionaries or a DataFrame.
+
+    Returns:
+        pd.DataFrame: A DataFrame, which is created according to the target
+        mapping specifications.
     """
     if isinstance(mapping_spec, pd.DataFrame):
         mapping_spec = mapping_spec.to_dict(orient="records")
+    elif isinstance(mapping_spec, List):
+        # create a shallow copy to avoid modifying the input object
+        mapping_spec = [copy.copy(m) for m in mapping_spec]
 
+    # input validation
     for mapping in mapping_spec:
         if "source" not in mapping or "target" not in mapping:
             raise ValueError(
-                "Each mapping specification should contain 'source', 'target' and 'mapper' (optional) keys."
+                "Each mapping specification should contain 'source', 'target' "
+                f"and 'mapper' (optional) keys but found only {mapping.keys()}."
             )
+
+        if mapping["source"] not in input_table.columns:
+            raise ValueError(
+                f"The source column '{mapping['source']}' is not present in "
+                " the input table."
+            )
+
         if "mapper" not in mapping:
             mapping["mapper"] = create_mapper(mapping)
 
+    # exectute the actual mapping plan
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec:
         from_column_name = column_spec["source"]
@@ -254,12 +277,41 @@ def match_values(
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
 ) -> List[ValueMatchingResult]:
     """
-    Maps the values of the dataset columns to the target domain using the given method name.
+    Finds matches between column values from the source dataset and column
+    values of the target domain (a pd.DataFrame or a standard dictionary such
+    as 'gdc') using the method provided in `method`.
+
+    Args:
+        source (pd.DataFrame): The source dataset containing the columns to be
+          matched.
+        target (Union[str, pd.DataFrame]): The target domain to match the
+          values to. It can be either a DataFrame or a standard vocabulary name.
+        column_mapping (pd.DataFrame): A DataFrame containing the mapping
+          between source and target columns.
+        method (str, optional): The name of the method to use for value
+          matching.
+
+    Returns:
+        List[ValueMatchingResult]: A list of ValueMatchingResult objects
+        representing the matches between the source and target values.
+
+    Raises:
+        ValueError: If the column_mapping DataFrame does not contain 'source' and
+          'target' columns.
+        ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
+        ValueError: If the source column is not present in the source dataset.
     """
     if not all(k in column_mapping.columns for k in ["source", "target"]):
         raise ValueError(
             "The column_mapping DataFrame must contain 'source' and 'target' columns."
         )
+
+    column_mapping_dict = column_mapping.set_index("source")["target"].to_dict()
+    for source_column in column_mapping_dict.keys():
+        if source_column not in source.columns:
+            raise ValueError(
+                f"The source column '{source_column}' is not present in the source dataset."
+            )
 
     if isinstance(target, str) and target == "gdc":
         column_names = column_mapping["target"].unique().tolist()
@@ -274,7 +326,6 @@ def match_values(
             "The target must be a DataFrame or a standard vocabulary name."
         )
 
-    column_mapping_dict = column_mapping.set_index("source")["target"].to_dict()
     value_matcher = ValueMatchingMethod.get_instance(method)
     matches = _match_values(source, target_domain, column_mapping_dict, value_matcher)
     return matches
@@ -497,10 +548,10 @@ def update_mappings(
     mappings: ValueMatchingLike, user_mappings: Optional[ValueMatchingLike] = None
 ) -> List:
     """
-    Creates a "data harmonization" plan based on provide schema or value mappings.
-    These mappings can either be computed the library's functions or provided by the user.
+    Creates a "data harmonization" plan based on the provided schema and/or value mappings.
+    These mappings can either be computed by the library's functions or provided by the user.
     If the user mappings are provided (using the user_mappings parameter), they will take
-    precedence over the mappings provided in ther first parameter.
+    precedence over the mappings provided in the first parameter.
 
     Args:
         mappings (ValueMatchingLike): The value mappings used to create the data
@@ -511,7 +562,7 @@ def update_mappings(
             Defaults to None.
 
     Returns:
-        List: The data harmonization plan that can be used as input to the materialize_mappings()
+        List: The data harmonization plan that can be used as input to the :py:func:`~bdikit.materialize_mapping()`
         function. Concretely, the harmonization plan is a list of dictionaries, where each
         dictionary contains the source column, target column, and mapper object that will be used
         to transform the input to the output data.
@@ -650,7 +701,7 @@ def create_mapper(
                     # so call this funtion recursively create it
                     return create_mapper(input["mapper"])
 
-            # This could be the ouput of match_values(), so can create a
+            # This could be the ouput of match_values(), so we can create a
             # DictionaryMapper based on the value matches
             if "matches" in input and isinstance(input["matches"], List):
                 return _create_mapper_from_value_matches(input["matches"])
