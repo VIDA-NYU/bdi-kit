@@ -14,3 +14,5 @@ bokeh
 panel!=1.4.3
 Levenshtein
 autofj
+natsort
+jupyter_bokeh
