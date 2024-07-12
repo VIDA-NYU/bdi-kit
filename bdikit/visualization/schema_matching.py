@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+from datetime import datetime
 from os.path import dirname, exists, join
 from typing import Any, Dict, List, Optional, Tuple, Union
 
@@ -26,11 +27,12 @@ from bdikit.models.contrastive_learning.cl_api import (
 from bdikit.utils import get_gdc_layered_metadata, read_gdc_schema
 
 GDC_DATA_PATH = join(dirname(__file__), "../resource/gdc_table.csv")
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("bdiviz")
 
 pn.extension("tabulator")
 pn.extension("mathjax")
 pn.extension("vega")
+pn.extension("floatpanel")
 
 
 def generate_top_k_matches(
@@ -186,6 +188,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         # Data is like this: {'Candidate column': 'Country', 'Top k columns': [['country_of_birth', '0.5726'], ...]}
         self.undo_stack = []
         self.redo_stack = []
+        self.logs = []
+
+        self._get_heatmap()
 
     def _load_json(self) -> List[Dict]:
         with open(self.json_path) as f:
@@ -197,7 +202,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         with open(self.json_path, "w") as f:
             json.dump(data, f)
 
-    def get_heatmap(self) -> None:
+    def _get_heatmap(self) -> None:
         recommendations = self._load_json()
         rec_cols = set()
         rec_table = []
@@ -324,9 +329,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
                     # record the action
                     self._record_user_action("accept", d)
+                    self._record_log("accept", candidate_name, top_k_name)
 
                     self._write_json(recommendations)
-                    self.get_heatmap()
+                    self._get_heatmap()
                     return
 
     def _reject_match(self) -> None:
@@ -350,9 +356,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
             # record the action
             self._record_user_action("reject", d)
+            self._record_log("reject", candidate_name, match_name)
 
             self._write_json(recommendations)
-            self.get_heatmap()
+            self._get_heatmap()
             return
 
     def get_clusters(self) -> None:
@@ -527,9 +534,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
     def _plot_column_histogram(
         self, column: str, dataset: pd.DataFrame
-    ) -> "pn.pane.Markdown | alt.Chart":
+    ) -> "pn.pane.Markdown | alt.LayerChart":
         if pd.api.types.is_numeric_dtype(dataset[column]):
-            x = alt.X(column, bin=True).axis(labelAngle=-45)
+            x = alt.Y(column, bin=True).axis(labelAngle=-45)
+            text_color = "transparent"
         else:
             values = list(dataset[column].unique())
             if len(values) == len(dataset[column]):
@@ -540,22 +548,33 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 if np.nan in values:
                     values.remove(np.nan)
                 values.sort()
-                x = alt.X(
+                x = alt.Y(
                     column + ":N",
                     sort=values,
-                ).axis(labelAngle=-45)
+                ).axis(
+                    None
+                )  # .axis(labelAngle=-45)
+            text_color = "black"
 
         chart = (
             alt.Chart(dataset.fillna("Null"), height=300)
             .mark_bar()
             .encode(
-                x=x,
-                y="count()",
+                x="count()",
+                y=x,
             )
+        )
+        text = (
+            alt.Chart(dataset.fillna("Null"), height=300)
+            .mark_text(color=text_color, fontWeight="bold", fontSize=12, align="right")
+            .encode(x="count()", y=x, text=alt.Text(column))
+        )
+        layered = (
+            alt.layer(chart, text)
             .properties(width="container", title="Histogram of " + column)
             .configure(background="#f5f5f5")
         )
-        return chart
+        return layered
 
     def _plot_target_histogram(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
@@ -665,7 +684,15 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             heatmap_pane.selection.param.single,
         )
 
+        plot_history = self._plot_history()
+
         return pn.Column(
+            pn.FloatPanel(
+                plot_history,
+                name="Operation Logs",
+                width=500,
+                offsetx=600,
+            ),
             pn.Row(
                 heatmap_pane,
                 scroll=True,
@@ -707,7 +734,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
                 self.redo_stack.append(d)
                 self._write_json(recommendations)
-                self.get_heatmap()
+                self._record_log("undo", data["source_column"], "")
+                self._get_heatmap()
                 return
 
     def _redo_user_action(self) -> None:
@@ -722,8 +750,38 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
                 self.undo_stack.append(d)
                 self._write_json(recommendations)
-                self.get_heatmap()
+                self._record_log("redo", data["source_column"], "")
+                self._get_heatmap()
                 return
+
+    def _record_log(self, action: str, source_column: str, target_column: str) -> None:
+        timestamp = datetime.now()
+        self.logs.append((timestamp, action, source_column, target_column))
+
+    def _plot_history(self) -> pn.Feed:
+        texts = []
+        for timestamp, action, source_column, target_column in self.logs:
+            if action in ["accept", "reject"]:
+                texts.append(
+                    pn.pane.Markdown(
+                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **{action.upper()}** _{source_column}_ to _{target_column}_"
+                    )
+                )
+            elif action == "undo":
+                texts.append(
+                    pn.pane.Markdown(
+                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **UNDO** _{source_column}_"
+                    )
+                )
+            elif action == "redo":
+                texts.append(
+                    pn.pane.Markdown(
+                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **REDO** _{source_column}_"
+                    )
+                )
+        return pn.Feed(
+            *texts, load_buffer=5, view_latest=True, styles={"padding": "0px"}
+        )
 
     def plot_heatmap(self) -> pn.Column:
         select_column = pn.widgets.Select(
@@ -744,7 +802,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         acc_button = pn.widgets.Button(name="Accept Match", button_type="success")
 
-        rej_button = pn.widgets.Button(name="Decline Match", button_type="danger")
+        rej_button = pn.widgets.Button(name="Reject Match", button_type="danger")
 
         undo_button = pn.widgets.Button(
             name="Undo", button_style="outline", button_type="warning"
