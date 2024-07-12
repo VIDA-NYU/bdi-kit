@@ -190,6 +190,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.redo_stack = []
         self.logs = []
 
+        self._get_heatmap()
+
     def _load_json(self) -> List[Dict]:
         with open(self.json_path) as f:
             data = json.load(f)
@@ -200,7 +202,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         with open(self.json_path, "w") as f:
             json.dump(data, f)
 
-    def get_heatmap(self) -> None:
+    def _get_heatmap(self) -> None:
         recommendations = self._load_json()
         rec_cols = set()
         rec_table = []
@@ -330,7 +332,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                     self._record_log("accept", candidate_name, top_k_name)
 
                     self._write_json(recommendations)
-                    self.get_heatmap()
+                    self._get_heatmap()
                     return
 
     def _reject_match(self) -> None:
@@ -357,7 +359,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self._record_log("reject", candidate_name, match_name)
 
             self._write_json(recommendations)
-            self.get_heatmap()
+            self._get_heatmap()
             return
 
     def get_clusters(self) -> None:
@@ -532,9 +534,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
     def _plot_column_histogram(
         self, column: str, dataset: pd.DataFrame
-    ) -> "pn.pane.Markdown | alt.Chart":
+    ) -> "pn.pane.Markdown | alt.LayerChart":
         if pd.api.types.is_numeric_dtype(dataset[column]):
-            x = alt.X(column, bin=True).axis(labelAngle=-45)
+            x = alt.Y(column, bin=True).axis(labelAngle=-45)
+            text_color = "transparent"
         else:
             values = list(dataset[column].unique())
             if len(values) == len(dataset[column]):
@@ -545,22 +548,33 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 if np.nan in values:
                     values.remove(np.nan)
                 values.sort()
-                x = alt.X(
+                x = alt.Y(
                     column + ":N",
                     sort=values,
-                ).axis(labelAngle=-45)
+                ).axis(
+                    None
+                )  # .axis(labelAngle=-45)
+            text_color = "black"
 
         chart = (
             alt.Chart(dataset.fillna("Null"), height=300)
             .mark_bar()
             .encode(
-                x=x,
-                y="count()",
+                x="count()",
+                y=x,
             )
+        )
+        text = (
+            alt.Chart(dataset.fillna("Null"), height=300)
+            .mark_text(color=text_color, fontWeight="bold", fontSize=12, align="right")
+            .encode(x="count()", y=x, text=alt.Text(column))
+        )
+        layered = (
+            alt.layer(chart, text)
             .properties(width="container", title="Histogram of " + column)
             .configure(background="#f5f5f5")
         )
-        return chart
+        return layered
 
     def _plot_target_histogram(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
@@ -721,7 +735,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 self.redo_stack.append(d)
                 self._write_json(recommendations)
                 self._record_log("undo", data["source_column"], "")
-                self.get_heatmap()
+                self._get_heatmap()
                 return
 
     def _redo_user_action(self) -> None:
@@ -737,7 +751,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 self.undo_stack.append(d)
                 self._write_json(recommendations)
                 self._record_log("redo", data["source_column"], "")
-                self.get_heatmap()
+                self._get_heatmap()
                 return
 
     def _record_log(self, action: str, source_column: str, target_column: str) -> None:
