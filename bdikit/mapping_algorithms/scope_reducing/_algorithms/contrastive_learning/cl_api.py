@@ -1,6 +1,6 @@
 import os
 from typing import List, Dict, Tuple, Optional
-
+from bdikit.config import get_device
 import numpy as np
 import pandas as pd
 import torch
@@ -41,7 +41,7 @@ class ContrastiveLearningAPI:
 
         self.unlabeled = PretrainTableDataset()
         self.batch_size = batch_size
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = get_device()
         self.model = self.load_checkpoint()
 
     def load_checkpoint(self, lm: str = "roberta"):

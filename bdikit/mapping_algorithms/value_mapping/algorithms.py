@@ -8,6 +8,11 @@ from rapidfuzz import fuzz
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
+import flair
+import torch
+from bdikit.config import get_device
+
+flair.device = torch.device(get_device())
 
 
 class ValueMatch(NamedTuple):
