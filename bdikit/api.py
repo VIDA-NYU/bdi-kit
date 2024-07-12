@@ -26,13 +26,13 @@ from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
 )
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
     ValueMatch,
-    BaseAlgorithm,
-    TFIDFAlgorithm,
-    LLMAlgorithm,
-    EditAlgorithm,
-    EmbeddingAlgorithm,
-    AutoFuzzyJoinAlgorithm,
-    FastTextAlgorithm,
+    BaseValueMatcher,
+    TFIDFValueMatcher,
+    GPTValueMatcher,
+    EditDistanceValueMatcher,
+    EmbeddingValueMatcher,
+    AutoFuzzyJoinValueMatcher,
+    FastTextValueMatcher,
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import (
     ValueMapper,
@@ -170,23 +170,21 @@ def top_matches(
     return pd.concat(dfs, ignore_index=True)
 
 
-class ValueMatchingMethod(Enum):
-    TFIDF = ("tfidf", TFIDFAlgorithm)
-    EDIT = ("edit_distance", EditAlgorithm)
-    EMBEDDINGS = ("embedding", EmbeddingAlgorithm)
-    AUTOFJ = ("auto_fuzzy_join", AutoFuzzyJoinAlgorithm)
-    FASTTEXT = ("fasttext", FastTextAlgorithm)
-    GPT = ("gpt", LLMAlgorithm)
+class ValueMatchers(Enum):
+    TFIDF = ("tfidf", TFIDFValueMatcher)
+    EDIT = ("edit_distance", EditDistanceValueMatcher)
+    EMBEDDINGS = ("embedding", EmbeddingValueMatcher)
+    AUTOFJ = ("auto_fuzzy_join", AutoFuzzyJoinValueMatcher)
+    FASTTEXT = ("fasttext", FastTextValueMatcher)
+    GPT = ("gpt", GPTValueMatcher)
 
-    def __init__(self, method_name: str, method_class: Type[BaseAlgorithm]):
+    def __init__(self, method_name: str, method_class: Type[BaseValueMatcher]):
         self.method_name = method_name
         self.method_class = method_class
 
     @staticmethod
-    def get_instance(method_name: str) -> BaseAlgorithm:
-        methods = {
-            method.method_name: method.method_class for method in ValueMatchingMethod
-        }
+    def get_instance(method_name: str) -> BaseValueMatcher:
+        methods = {method.method_name: method.method_class for method in ValueMatchers}
         try:
             return methods[method_name]()
         except KeyError:
@@ -326,7 +324,7 @@ def match_values(
             "The target must be a DataFrame or a standard vocabulary name."
         )
 
-    value_matcher = ValueMatchingMethod.get_instance(method)
+    value_matcher = ValueMatchers.get_instance(method)
     matches = _match_values(source, target_domain, column_mapping_dict, value_matcher)
     return matches
 
@@ -335,7 +333,7 @@ def _match_values(
     dataset: pd.DataFrame,
     target_domain: Dict[str, Optional[List[str]]],
     column_mapping: Dict[str, str],
-    value_matcher: BaseAlgorithm,
+    value_matcher: BaseValueMatcher,
 ) -> List[ValueMatchingResult]:
 
     mapping_results: List[ValueMatchingResult] = []
