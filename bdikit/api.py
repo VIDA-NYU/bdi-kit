@@ -476,7 +476,7 @@ def preview_domain(
     limit: Optional[int] = None,
 ) -> pd.DataFrame:
     """
-    Preview the domain, e.g. set of unique values, column description and value description
+    Preview the domain, i.e. set of unique values, column description and value description
     (if applicable) of the given column of the source or target dataset.
 
     Args:
@@ -485,7 +485,7 @@ def preview_domain(
             If a string is provided and it is equal to "gdc", the domain will be retrieved
             from the GDC data.
             If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
-        column(str): The column whose domain be previewed.
+        column(str): The column name to show the domain.
         limit (int, optional): The maximum number of unique values to include in the preview.
             Defaults to None.
 
