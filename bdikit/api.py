@@ -271,9 +271,9 @@ class ValueMatchingResult(TypedDict):
 def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
-    column_mapping: pd.DataFrame,
+    column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
-) -> List[ValueMatchingResult]:
+) -> Union[pd.DataFrame, List[Dict]]:
     """
     Finds matches between column values from the source dataset and column
     values of the target domain (a pd.DataFrame or a standard dictionary such
@@ -282,10 +282,18 @@ def match_values(
     Args:
         source (pd.DataFrame): The source dataset containing the columns to be
           matched.
+
         target (Union[str, pd.DataFrame]): The target domain to match the
           values to. It can be either a DataFrame or a standard vocabulary name.
-        column_mapping (pd.DataFrame): A DataFrame containing the mapping
-          between source and target columns.
+
+        column_mapping (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
+          DataFrame containing the mappings between source and target columns.
+
+          - If a tuple is provided, it should contain two strings where the first
+            is the source column and the second is the target column.
+          - If a DataFrame is provided, it should contain 'source' and 'target'
+            column names where each row specifies a column mapping.
+
         method (str, optional): The name of the method to use for value
           matching.
 
@@ -299,12 +307,28 @@ def match_values(
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
         ValueError: If the source column is not present in the source dataset.
     """
-    if not all(k in column_mapping.columns for k in ["source", "target"]):
+    if isinstance(column_mapping, pd.DataFrame):
+        if not all(k in column_mapping.columns for k in ["source", "target"]):
+            raise ValueError(
+                "The column_mapping DataFrame must contain 'source' and 'target' columns."
+            )
+        mapping_df = column_mapping
+    elif isinstance(column_mapping, tuple):
+        mapping_df = pd.DataFrame(
+            [
+                {
+                    "source": column_mapping[0],
+                    "target": column_mapping[1],
+                }
+            ]
+        )
+    else:
         raise ValueError(
-            "The column_mapping DataFrame must contain 'source' and 'target' columns."
+            "The column_mapping must be a DataFrame or a tuple of two strings "
+            "containing the 'source' and 'target' columns."
         )
 
-    column_mapping_dict = column_mapping.set_index("source")["target"].to_dict()
+    column_mapping_dict = mapping_df.set_index("source")["target"].to_dict()
     for source_column in column_mapping_dict.keys():
         if source_column not in source.columns:
             raise ValueError(
@@ -312,7 +336,7 @@ def match_values(
             )
 
     if isinstance(target, str) and target == "gdc":
-        column_names = column_mapping["target"].unique().tolist()
+        column_names = mapping_df["target"].unique().tolist()
         target_domain = get_gdc_data(column_names)
     elif isinstance(target, pd.DataFrame):
         target_domain = {
@@ -326,7 +350,49 @@ def match_values(
 
     value_matcher = ValueMatchers.get_instance(method)
     matches = _match_values(source, target_domain, column_mapping_dict, value_matcher)
-    return matches
+
+    result = [
+        {
+            "source": matching_result["source"],
+            "target": matching_result["target"],
+            "coverage": matching_result["coverage"],
+            "matches": _value_matching_result_to_df(matching_result),
+        }
+        for matching_result in matches
+    ]
+
+    if isinstance(column_mapping, tuple):
+        # If only a single mapping is provided (as a tuple), we return the result
+        # directly as a DataFrame to make it easier to display it in notebooks.
+        assert len(result) == 1
+        assert isinstance(result[0]["matches"], pd.DataFrame)
+        return result[0]["matches"]
+    else:
+        return result
+
+
+def _value_matching_result_to_df(matching_result: ValueMatchingResult) -> pd.DataFrame:
+    """
+    Transforms the list of matches and unmatched values into a DataFrame.
+    """
+    matches_df = pd.DataFrame(
+        data=matching_result["matches"],
+        columns=["source", "target", "similarity"],
+    )
+
+    unmatched_values = matching_result["unmatch_values"]
+    unmatched_df = pd.DataFrame(
+        data=list(
+            zip(
+                unmatched_values,
+                [None] * len(unmatched_values),
+                [None] * len(unmatched_values),
+            )
+        ),
+        columns=["source", "target", "similarity"],
+    )
+
+    return pd.concat([matches_df, unmatched_df], ignore_index=True)
 
 
 def _match_values(
@@ -399,73 +465,6 @@ def _skip_values(unique_values: np.ndarray, max_length: int = 50):
         return True
     else:
         return False
-
-
-def preview_value_mappings(
-    dataset: pd.DataFrame,
-    column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    target: Union[str, pd.DataFrame] = "gdc",
-    method: str = "tfidf",
-) -> List[Dict]:
-    """
-    Print the value mappings in a human-readable format.
-    """
-    if isinstance(column_mapping, pd.DataFrame):
-        mapping_df = column_mapping
-    elif isinstance(column_mapping, tuple):
-        mapping_df = pd.DataFrame(
-            [
-                {
-                    "source": column_mapping[0],
-                    "target": column_mapping[1],
-                }
-            ]
-        )
-    else:
-        raise ValueError(
-            "The column_mapping must be a DataFrame or a tuple of two strings."
-        )
-
-    value_mappings = match_values(
-        dataset, target=target, column_mapping=mapping_df, method=method
-    )
-
-    result = []
-    for matching_result in value_mappings:
-
-        # transform matches and unmatched values into DataFrames
-        matches_df = pd.DataFrame(
-            data=matching_result["matches"],
-            columns=["source", "target", "similarity"],
-        )
-
-        unmatched_values = matching_result["unmatch_values"]
-        unmatched_df = pd.DataFrame(
-            data=list(
-                zip(
-                    unmatched_values,
-                    [None] * len(unmatched_values),
-                    [None] * len(unmatched_values),
-                )
-            ),
-            columns=["source", "target", "similarity"],
-        )
-
-        result.append(
-            {
-                "source": matching_result["source"],
-                "target": matching_result["target"],
-                "mapping": pd.concat([matches_df, unmatched_df], ignore_index=True),
-            }
-        )
-
-    if isinstance(column_mapping, tuple):
-        # If only a single mapping is provided (as a tuple), we return the result
-        # directly as a DataFrame to make it easier to display it in notebooks.
-        assert len(result) == 1
-        return result[0]["mapping"]
-    else:
-        return result
 
 
 def preview_domain(
@@ -684,16 +683,16 @@ def create_mapper(
                     # so call this funtion recursively create it
                     return create_mapper(input["mapper"])
 
-            # This could be the ouput of match_values(), so we can create a
-            # DictionaryMapper based on the value matches
+            # This could be the a list of value matches (i.e., ValueMatch
+            # or tuple(source, target)) provided by the user
             if "matches" in input and isinstance(input["matches"], List):
                 return _create_mapper_from_value_matches(input["matches"])
 
-            # This could be the ouput of preview_value_mappings(), so we can
-            # create a DictionaryMapper based on the value matches
-            if "mapping" in input and isinstance(input["mapping"], pd.DataFrame):
+            if "matches" in input and isinstance(input["matches"], pd.DataFrame):
+                # This could be the ouput of match_values(), so we can
+                # create a DictionaryMapper based on the value matches
                 return DictionaryMapper(
-                    input["mapping"].set_index("source")["target"].to_dict()
+                    input["matches"].set_index("source")["target"].to_dict()
                 )
 
             # This could be the output of match_schema(), but the user did not

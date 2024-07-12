@@ -203,8 +203,8 @@ def test_value_mapping_dataframe():
     assert mapping is not None
     assert mapping["source"] == "src_column"
     assert mapping["target"] == "tgt_column"
-    assert isinstance(mapping["matches"], list)
-    assert len(mapping["matches"]) == 3
+    assert isinstance(mapping["matches"], pd.DataFrame)
+    assert len(mapping["matches"].index) == len(df_source.index)
 
 
 def test_end_to_end_api_integration():
@@ -248,8 +248,8 @@ def test_end_to_end_api_integration():
     assert mapping is not None
     assert mapping["source"] == "src_column"
     assert mapping["target"] == "tgt_column"
-    assert isinstance(mapping["matches"], list)
-    assert len(mapping["matches"]) == 3
+    assert isinstance(mapping["matches"], pd.DataFrame)
+    assert len(mapping["matches"]) == len(df_source)
 
     # when: pass output of match_values() to materialize_mapping(),
     df_mapped = bdi.materialize_mapping(df_source, value_mappings)
