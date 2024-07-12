@@ -16,3 +16,4 @@ Levenshtein
 autofj
 natsort
 jupyter_bokeh
+conllu<5.0.0
