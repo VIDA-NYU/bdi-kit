@@ -4,4 +4,4 @@ API
 
 .. automodule:: bdikit.api
     :members:
-    :exclude-members: SchemaMatchers, ValueMatchingMethod, ValueMatchingResult
+    :exclude-members: SchemaMatchers, ValueMatchers, ValueMatchingResult

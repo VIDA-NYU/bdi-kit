@@ -1,19 +1,19 @@
 import unittest
 import pandas as pd
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
-    TFIDFAlgorithm,
-    EditAlgorithm,
+    TFIDFValueMatcher,
+    EditDistanceValueMatcher,
 )
 
 
-class ValueMatchingAlgorithmsTest(unittest.TestCase):
+class ValueMatchingTest(unittest.TestCase):
 
     def test_tfidf_value_matching(self):
         # given
         current_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
         target_values = ["apple", "banana", "orange", "kiwi"]
 
-        tfidf_matcher = TFIDFAlgorithm()
+        tfidf_matcher = TFIDFValueMatcher()
 
         # when
         matches = tfidf_matcher.match(current_values, target_values)
@@ -35,7 +35,7 @@ class ValueMatchingAlgorithmsTest(unittest.TestCase):
         current_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
         target_values = ["apple", "bananana", "orange", "kiwi"]
 
-        edit_distance_matcher = EditAlgorithm()
+        edit_distance_matcher = EditDistanceValueMatcher()
 
         # when
         matches = edit_distance_matcher.match(
