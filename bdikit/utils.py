@@ -1,5 +1,8 @@
 import json
 from os.path import join, dirname
+import pandas as pd
+import hashlib
+import os
 
 GDC_SCHEMA_PATH = join(dirname(__file__), "./resource/gdc_schema.json")
 
@@ -70,3 +73,26 @@ def get_gdc_layered_metadata():
             metadata[key] = (subschema, data)
 
     return metadata
+
+
+def hash_dataframe(df: pd.DataFrame) -> str:
+
+    hash_object = hashlib.sha256()
+
+    columns_string = ",".join(df.columns) + "\n"
+    hash_object.update(columns_string.encode())
+
+    for row in df.itertuples(index=False, name=None):
+        row_string = ",".join(map(str, row)) + "\n"
+        hash_object.update(row_string.encode())
+
+    return hash_object.hexdigest()
+
+
+def write_embeddings_to_cache(embedding_file: str, embeddings: list):
+
+    os.makedirs(os.path.dirname(embedding_file), exist_ok=True)
+
+    with open(embedding_file, "w") as file:
+        for vec in embeddings:
+            file.write(",".join([str(val) for val in vec]) + "\n")
