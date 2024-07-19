@@ -18,7 +18,7 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     TwoPhaseSchemaMatcher,
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
+from bdikit.models.contrastive_learning.cl_api import (
     DEFAULT_CL_MODEL,
 )
 from bdikit.mapping_algorithms.column_mapping.topk_matchers import (

@@ -2,7 +2,7 @@ from typing import List, NamedTuple, TypedDict
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
+from bdikit.models.contrastive_learning.cl_api import (
     ContrastiveLearningAPI,
     DEFAULT_CL_MODEL,
 )

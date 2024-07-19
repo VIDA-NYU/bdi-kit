@@ -20,7 +20,7 @@ from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
     TopkColumnMatcher,
     TopkMatching,
 )
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
+from bdikit.models.contrastive_learning.cl_api import (
     DEFAULT_CL_MODEL,
 )
 from bdikit.utils import get_gdc_layered_metadata, read_gdc_schema

@@ -11,7 +11,7 @@ from valentine.algorithms import (
 )
 from valentine.algorithms.matcher_results import MatcherResults
 from openai import OpenAI
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_api import (
+from bdikit.models.contrastive_learning.cl_api import (
     DEFAULT_CL_MODEL,
 )
 from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
