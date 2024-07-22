@@ -3,8 +3,13 @@ from os.path import join, dirname
 import pandas as pd
 import hashlib
 import os
+from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR
 
 GDC_SCHEMA_PATH = join(dirname(__file__), "./resource/gdc_schema.json")
+GDC_TABLE_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
+
+__gdc_df = None
+__gdc_hash = None
 
 
 def read_gdc_schema():
@@ -96,3 +101,48 @@ def write_embeddings_to_cache(embedding_file: str, embeddings: list):
     with open(embedding_file, "w") as file:
         for vec in embeddings:
             file.write(",".join([str(val) for val in vec]) + "\n")
+
+
+def load_gdc_data():
+    global __gdc_df, __gdc_hash
+    if __gdc_df is None or __gdc_hash is None:
+        __gdc_df = pd.read_csv(GDC_TABLE_PATH)
+        __gdc_hash = hash_dataframe(__gdc_df)
+
+
+def get_gdc_dataframe():
+    global __gdc_df
+    load_gdc_data()
+
+    return __gdc_df
+
+
+def check_gdc_cache(table: pd.DataFrame):
+    global __gdc_df, __gdc_hash
+    load_gdc_data()
+
+    table_hash = hash_dataframe(table)
+
+    df_hash_file = None
+    features = None
+
+    # check if table for computing embedding is the same as the GDC table we have in resources
+    if table_hash == __gdc_hash:
+        df_hash_file = os.path.join(BDIKIT_EMBEDDINGS_CACHE_DIR, __gdc_hash)
+        # Found file in cache
+        if os.path.isfile(df_hash_file):
+            try:
+                # Load embeddings from disk
+                with open(df_hash_file, "r") as file:
+                    features = [
+                        [float(val) for val in vec.split(",")]
+                        for vec in file.read().split("\n")
+                        if vec.strip()
+                    ]
+                    if len(features) != len(__gdc_df.columns):
+                        features = None
+                        raise ValueError("Mismatch in the number of features")
+            except Exception as e:
+                print(f"Error loading features from cache: {e}")
+                features = None
+    return df_hash_file, features

@@ -17,6 +17,8 @@ BUILTIN_MODELS_BOX_URL = {
     "bdi-cl-v0.2": "https://nyu.box.com/shared/static/1vdc28kzbpoj6ey95bksaww541p9gj31.pt",
 }
 
+BDIKIT_EMBEDDINGS_CACHE_DIR = os.path.join(BDIKIT_CACHE_DIR, "embeddings")
+
 
 def download_file_url(url: str, destination: str):
     # start the download stream

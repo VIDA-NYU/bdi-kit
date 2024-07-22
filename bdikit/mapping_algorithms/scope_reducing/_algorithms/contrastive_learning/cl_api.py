@@ -13,19 +13,10 @@ from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.c
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 from bdikit.download import get_cached_model_or_download
-from bdikit.utils import hash_dataframe, write_embeddings_to_cache
+from bdikit.utils import check_gdc_cache, write_embeddings_to_cache
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-GDC_TABLE_PATH = os.path.join(dir_path, "../../../../resource/gdc_table.csv")
+
 DEFAULT_CL_MODEL = "bdi-cl-v0.2"
-
-default_os_cache_dir = os.getenv(
-    "XDG_CACHE_HOME", os.path.join(os.path.expanduser("~"), ".cache")
-)
-BDIKIT_CACHE_DIR = os.getenv(
-    "BDIKIT_CACHE", os.path.join(default_os_cache_dir, "bdikit")
-)
-BDIKIT_EMBEDDINGS_CACHE_DIR = os.path.join(BDIKIT_CACHE_DIR, "embeddings")
 
 
 class ContrastiveLearningAPI:
@@ -114,40 +105,9 @@ class ContrastiveLearningAPI:
                 table = unique_rows.sample(n=15, random_state=1)
         return table
 
-    def _check_gdc_cache(self, table: pd.DataFrame):
-
-        gdc_df = pd.read_csv(GDC_TABLE_PATH)
-        gdc_hash = hash_dataframe(gdc_df)
-
-        table_hash = hash_dataframe(table)
-
-        df_hash_file = None
-        features = None
-
-        # check if table for computing embedding is the same as the GDC table we have in resources
-        if table_hash == gdc_hash:
-            df_hash_file = os.path.join(BDIKIT_EMBEDDINGS_CACHE_DIR, gdc_hash)
-            # Found file in cache
-            if os.path.isfile(df_hash_file):
-                try:
-                    # Load embeddings from disk
-                    with open(df_hash_file, "r") as file:
-                        features = [
-                            [float(val) for val in vec.split(",")]
-                            for vec in file.read().split("\n")
-                            if vec.strip()
-                        ]
-                        if len(features) != len(gdc_df.columns):
-                            features = None
-                            raise ValueError("Mismatch in the number of features")
-                except Exception as e:
-                    print(f"Error loading features from cache: {e}")
-                    features = None
-        return df_hash_file, features
-
     def _load_table_tokens(self, table: pd.DataFrame) -> List[np.ndarray]:
 
-        embedding_file, embeddings = self._check_gdc_cache(table)
+        embedding_file, embeddings = check_gdc_cache(table)
 
         if embeddings != None:
             print(f"Table features loaded for {len(table.columns)} columns")
