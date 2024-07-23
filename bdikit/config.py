@@ -1,6 +1,8 @@
 import os
 import torch
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 
 BDIKIT_DEVICE: str = os.getenv("BDIKIT_DEVICE", default="cpu")
 
