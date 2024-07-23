@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import Enum
 from os.path import join, dirname
 from typing import Union, Type, List, Dict, TypedDict, Set, Optional, Tuple, Callable
@@ -195,6 +196,63 @@ class ValueMatchers(Enum):
 
 
 MappingSpecLike = Union[List[Dict], List[pd.DataFrame], pd.DataFrame]
+"""
+The `MappingSpecLike` is a type alias that specifies mappings between source
+and target columns. It must include the source and target column names
+and a value mapper object that transforms the values of the source column
+into the target.
+
+If the mapping specification is a `List`, it must contain either dictionaries
+or DataFrames as described below. If the list items are dictionaries, they must have:
+
+- `source`: The name of the source column.
+- `target`: The name of the target column.
+- `mapper` (optional): A ValueMapper instance or an object that can be used to
+  create one using :py:func:`~bdikit.create_mapper()`). Examples of valid objects
+  are Python functions or lambda functions. If empty, an IdentityValueMapper
+  is used by default.
+- `matches` (optional): Specifies the value mappings as follows:
+
+    - A DataFrame containing the matches (returned by :py:func:`~bdikit.match_values()`);
+    - a list of ValueMatch objects or tuples (<source_value>, <target_value>).
+
+Alternatively, the list contains a DataFrame, it must be a data frame returned by
+:py:func:`~bdikit.match_values()`) that specifies the value mappings (as described
+in the `matches` key above).
+
+If the mapping specification is a DataFrame, it must be compatible with the dictionaries
+above and contain `source`, `target`, and `mapper` or `matcher` columns.
+
+Example:
+
+.. code-block:: python
+
+    mapping_spec = [
+      {
+        "source": "source_column1",
+        "target": "target_column1",
+      },
+      {
+        "source": "source_column2",
+        "target": "target_column2",
+        "mapper": lambda age: -age * 365.25,
+      },
+      {
+        "source": "source_column3",
+        "target": "target_column3",
+        "matches": [
+          ("source_value1", "target_value1"),
+          ("source_value2", "target_value2"),
+        ]
+      },
+      {
+        "source": "source_column",
+        "target": "target_column",
+        "matches": df_value_mapping_1
+      },
+      df_value_mapping_2, # a DataFrame returned by match_values()
+    ]
+"""
 
 
 def materialize_mapping(
@@ -519,7 +577,7 @@ def update_mappings(
     Args:
         mappings (MappingSpecLike): The value mappings used to create the data
             harmonization plan. It can be a pandas DataFrame or a list of dictionaries
-            (ValueMatchingResult).
+            (MappingSpecLike).
         user_mappings (Optional[MappingSpecLike]): The user mappings to be included in
             the update. It can be a pandas DataFrame or a list of dictionaries (MappingSpecLike).
             Defaults to None.
