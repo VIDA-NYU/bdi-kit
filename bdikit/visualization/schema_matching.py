@@ -128,6 +128,34 @@ def gdc_clean_heatmap_recommendations(
     return candidates_dfs
 
 
+def clean_heatmap_recommendations(
+    heatmap_recommendations: List[Dict], target: pd.DataFrame
+):
+    candidates_dfs = {}
+
+    for column_data in heatmap_recommendations:
+        column_name = column_data["source_column"]
+        recommendations = []
+        for candidate_name, candidate_similarity in column_data["top_k_columns"]:
+            candidate_values = ", ".join(
+                target[candidate_name].astype(str).unique()[:5]
+            )
+            recommendations.append(
+                (
+                    candidate_name,
+                    candidate_similarity,
+                    candidate_values,
+                )
+            )
+
+        candidates_dfs[column_name] = pd.DataFrame(
+            recommendations,
+            columns=["Candidate", "Similarity", "Values (sample)"],
+        )
+
+    return candidates_dfs
+
+
 def truncate_text(text: str, max_chars: int):
     if len(text) > max_chars:
         return text[:max_chars] + "..."
@@ -181,6 +209,11 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self.candidates_dfs = gdc_clean_heatmap_recommendations(
                 self.heatmap_recommendations, max_chars_samples=max_chars_samples
             )
+        elif isinstance(target, pd.DataFrame):
+            self.candidates_dfs = clean_heatmap_recommendations(
+                self.heatmap_recommendations, target
+            )
+
         self.height = height
 
         # Undo/Redo
@@ -576,9 +609,19 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         )
         return layered
 
+    def _plot_source_histogram(
+        self, source_column: str, heatmap_rec_list: pd.DataFrame, selection: List[int]
+    ) -> "pn.pane.Markdown | alt.LayerChart":
+        if not selection:
+            return self._plot_column_histogram(source_column, self.source)
+
+        column, _ = self._update_column_selection(heatmap_rec_list, selection)
+
+        return self._plot_column_histogram(column, self.source)
+
     def _plot_target_histogram(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
-    ) -> "pn.pane.Markdown | alt.Chart":
+    ) -> "pn.pane.Markdown | alt.LayerChart":
         if not isinstance(self.target, pd.DataFrame):
             return pn.pane.Markdown("No ground truth provided.")
         if not selection:
@@ -613,6 +656,37 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             df,
             name=f"Value Matches {mapping['source']} to {mapping['target']}",
             height=200,
+        )
+
+    def _plot_value_comparisons(
+        self, source_column: str, heatmap_rec_list: pd.DataFrame, selection: List[int]
+    ) -> "pn.widgets.Tabulator | pn.pane.Markdown":
+        if not selection:
+            column = source_column
+            rec = None
+        else:
+            column, rec = self._update_column_selection(heatmap_rec_list, selection)
+        value_comparisons = {
+            "Source Value": self.source[column].dropna().unique()[:5],
+        }
+
+        candidate_df = self.candidates_dfs[column]
+        for idx, row in candidate_df.iterrows():
+            candidate = row["Candidate"]
+            values = row["Values (sample)"].split(", ")[:5]
+            value_comparisons[candidate] = values
+
+        frozen_columns = ["Source Value"]
+        if rec:
+            frozen_columns.append(rec)
+
+        return pn.widgets.Tabulator(
+            pd.DataFrame(
+                dict([(k, pd.Series(v)) for k, v in value_comparisons.items()])
+            ).fillna(""),
+            frozen_columns=frozen_columns,
+            show_index=False,
+            width=700,
         )
 
     def _plot_pane(
@@ -676,15 +750,27 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 heatmap_pane.selection.param.single,
             )
 
-        column_hist = self._plot_column_histogram(select_column, self.source)
-
-        value_matches = pn.bind(
-            self._plot_value_matches,
+        column_hist = pn.bind(
+            self._plot_source_histogram,
+            select_column,
             heatmap_rec_list,
             heatmap_pane.selection.param.single,
         )
 
+        # value_matches = pn.bind(
+        #     self._plot_value_matches,
+        #     heatmap_rec_list,
+        #     heatmap_pane.selection.param.single,
+        # )
+
         plot_history = self._plot_history()
+
+        value_comparisons = pn.bind(
+            self._plot_value_comparisons,
+            select_column,
+            heatmap_rec_list,
+            heatmap_pane.selection.param.single,
+        )
 
         return pn.Column(
             pn.FloatPanel(
@@ -701,11 +787,17 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             ),
             pn.Spacer(height=5),
             pn.Card(
-                value_matches,
-                title="Value Matches",
+                value_comparisons,
+                title="Value Comparisons",
                 styles={"background": "WhiteSmoke"},
                 scroll=True,
             ),
+            # pn.Card(
+            #     value_matches,
+            #     title="Value Matches",
+            #     styles={"background": "WhiteSmoke"},
+            #     scroll=True,
+            # ),
             pn.Card(
                 pn.Row(
                     pn.Column(column_hist, width=500),
