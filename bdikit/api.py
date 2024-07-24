@@ -202,8 +202,9 @@ and target columns. It must include the source and target column names
 and a value mapper object that transforms the values of the source column
 into the target.
 
-If the mapping specification is a `List`, it must contain either dictionaries
-or DataFrames as described below. If the list items are dictionaries, they must have:
+The mapping specification can be a DataFrame, a list of dictionaries or a list of DataFrames.
+
+If it is a list of dictionaries, they must have:
 
 - `source`: The name of the source column.
 - `target`: The name of the target column.
@@ -211,12 +212,11 @@ or DataFrames as described below. If the list items are dictionaries, they must 
   create one using :py:func:`~bdikit.create_mapper()`). Examples of valid objects
   are Python functions or lambda functions. If empty, an IdentityValueMapper
   is used by default.
-- `matches` (optional): Specifies the value mappings as follows:
+- `matches` (optional): Specifies the value mappings. It can be a DataFrame containing 
+  the matches (returned by :py:func:`~bdikit.match_values()`), a list of ValueMatch 
+  objects, or a list of tuples (<source_value>, <target_value>).
 
-    - A DataFrame containing the matches (returned by :py:func:`~bdikit.match_values()`);
-    - a list of ValueMatch objects or tuples (<source_value>, <target_value>).
-
-Alternatively, the list contains a DataFrame, it must be a data frame returned by
+Alternatively, the list can contain DataFrames, it must be a list returned by
 :py:func:`~bdikit.match_values()`) that specifies the value mappings (as described
 in the `matches` key above).
 
@@ -269,8 +269,8 @@ def materialize_mapping(
 
     Parameters:
         input_table (pd.DataFrame): The input (source) DataFrame.
-        mapping_spec (MappingSpecLike): The target mapping
-          specification. It can be a list of dictionaries or a DataFrame.
+        mapping_spec (MappingSpecLike): The target mapping specification. It can
+            be a DataFrame, a list of dictionaries or a list of DataFrames.
 
     Returns:
         pd.DataFrame: A DataFrame, which is created according to the target
@@ -576,10 +576,9 @@ def update_mappings(
 
     Args:
         mappings (MappingSpecLike): The value mappings used to create the data
-            harmonization plan. It can be a pandas DataFrame or a list of dictionaries
-            (MappingSpecLike).
+            harmonization plan. It can be a DataFrame, a list of dictionaries or a list of DataFrames.
         user_mappings (Optional[MappingSpecLike]): The user mappings to be included in
-            the update. It can be a pandas DataFrame or a list of dictionaries (MappingSpecLike).
+            the update. It can be a DataFrame, a list of dictionaries or a list of DataFrames.
             Defaults to None.
 
     Returns:
