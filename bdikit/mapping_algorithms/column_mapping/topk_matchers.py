@@ -19,7 +19,6 @@ class TopkMatching(TypedDict):
 
 
 class TopkColumnMatcher:
-
     def get_recommendations(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[TopkMatching]:  # type: ignore
