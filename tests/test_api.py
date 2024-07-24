@@ -239,9 +239,9 @@ def test_end_to_end_api_integration():
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
 
-    # when: pass output of match_values() to update_mappings() and then to
+    # when: pass output of match_values() to merge_mappings() and then to
     # materialize_mapping()
-    harmonization_spec = bdi.update_mappings(value_mappings, [])
+    harmonization_spec = bdi.merge_mappings(value_mappings, [])
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
     # then: the column must be ranamed and values must be mapped
@@ -249,7 +249,7 @@ def test_end_to_end_api_integration():
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
 
-    # when: user mappings are specified in update_mappings()
+    # when: user mappings are specified in merge_mappings()
     user_mappings = [
         {
             "source": "src_column",
@@ -261,7 +261,7 @@ def test_end_to_end_api_integration():
             ],
         }
     ]
-    harmonization_spec = bdi.update_mappings(value_mappings, user_mappings)
+    harmonization_spec = bdi.merge_mappings(value_mappings, user_mappings)
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
     # then: user mappings take precedence, so the column must be ranamed and
