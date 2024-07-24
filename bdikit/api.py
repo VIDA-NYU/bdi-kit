@@ -463,7 +463,7 @@ class ColumnMappingSpec(TypedDict):
     mapper: ValueMapper
 
 
-def update_mappings(
+def merge_mappings(
     mappings: MappingSpecLike, user_mappings: Optional[MappingSpecLike] = None
 ) -> List:
     """
@@ -704,7 +704,7 @@ def create_mapper(
 
     if isinstance(input, Dict):
         if all(k in input for k in ["source", "target"]):
-            # This could be the mapper created by update_mappings() or a
+            # This could be the mapper created by merge_mappings() or a
             # specification defined by the user
             if "mapper" in input:
                 if isinstance(input["mapper"], ValueMapper):
