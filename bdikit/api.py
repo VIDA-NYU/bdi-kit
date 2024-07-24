@@ -195,108 +195,6 @@ class ValueMatchers(Enum):
             )
 
 
-MappingSpecLike = Union[List[Dict], List[pd.DataFrame], pd.DataFrame]
-"""
-The `MappingSpecLike` is a type alias that specifies mappings between source
-and target columns. It must include the source and target column names
-and a value mapper object that transforms the values of the source column
-into the target.
-
-The mapping specification can be a DataFrame, a list of dictionaries or a list of DataFrames.
-
-If it is a list of dictionaries, they must have:
-
-- `source`: The name of the source column.
-- `target`: The name of the target column.
-- `mapper` (optional): A ValueMapper instance or an object that can be used to
-  create one using :py:func:`~bdikit.create_mapper()`). Examples of valid objects
-  are Python functions or lambda functions. If empty, an IdentityValueMapper
-  is used by default.
-- `matches` (optional): Specifies the value mappings. It can be a DataFrame containing 
-  the matches (returned by :py:func:`~bdikit.match_values()`), a list of ValueMatch 
-  objects, or a list of tuples (<source_value>, <target_value>).
-
-Alternatively, the list can contain DataFrames, it must be a list returned by
-:py:func:`~bdikit.match_values()`) that specifies the value mappings (as described
-in the `matches` key above).
-
-If the mapping specification is a DataFrame, it must be compatible with the dictionaries
-above and contain `source`, `target`, and `mapper` or `matcher` columns.
-
-Example:
-
-.. code-block:: python
-
-    mapping_spec = [
-      {
-        "source": "source_column1",
-        "target": "target_column1",
-      },
-      {
-        "source": "source_column2",
-        "target": "target_column2",
-        "mapper": lambda age: -age * 365.25,
-      },
-      {
-        "source": "source_column3",
-        "target": "target_column3",
-        "matches": [
-          ("source_value1", "target_value1"),
-          ("source_value2", "target_value2"),
-        ]
-      },
-      {
-        "source": "source_column",
-        "target": "target_column",
-        "matches": df_value_mapping_1
-      },
-      df_value_mapping_2, # a DataFrame returned by match_values()
-    ]
-"""
-
-
-def materialize_mapping(
-    input_table: pd.DataFrame, mapping_spec: MappingSpecLike
-) -> pd.DataFrame:
-    """
-    Takes an input DataFrame and a target mapping specification and returns a
-    new DataFrame created according to the given target mapping specification.
-    The mapping specification is a list of dictionaries, where each dictionary
-    defines one column in the output table and how it is created. It includes
-    the names of the input (source) and output (target) columns and the value
-    mapper used to transform the values of the input column into the
-    target output column.
-
-    Parameters:
-        input_table (pd.DataFrame): The input (source) DataFrame.
-        mapping_spec (MappingSpecLike): The target mapping specification. It can
-            be a DataFrame, a list of dictionaries or a list of DataFrames.
-
-    Returns:
-        pd.DataFrame: A DataFrame, which is created according to the target
-        mapping specifications.
-    """
-    mapping_spec_list = _normalize_mapping_spec(mapping_spec)
-
-    for mapping in mapping_spec_list:
-        if mapping["source"] not in input_table.columns:
-            raise ValueError(
-                f"The source column '{mapping['source']}' is not present in "
-                " the input table."
-            )
-
-    # exectute the actual mapping plan
-    output_dataframe = pd.DataFrame()
-    for column_spec in mapping_spec_list:
-        from_column_name = column_spec["source"]
-        to_column_name = column_spec["target"]
-        value_mapper = column_spec["mapper"]
-        output_dataframe[to_column_name] = value_mapper.map(
-            input_table[from_column_name]
-        )
-    return output_dataframe
-
-
 class ValueMatchingResult(TypedDict):
     source: str
     target: str
@@ -702,6 +600,48 @@ def _df_to_mapping_spec_dict(spec: Union[Dict, pd.DataFrame]) -> Dict:
         raise ValueError(f"Invalid mapping specification: {str(spec)}")
 
 
+def materialize_mapping(
+    input_table: pd.DataFrame, mapping_spec: MappingSpecLike
+) -> pd.DataFrame:
+    """
+    Takes an input DataFrame and a target mapping specification and returns a
+    new DataFrame created according to the given target mapping specification.
+    The mapping specification is a list of dictionaries, where each dictionary
+    defines one column in the output table and how it is created. It includes
+    the names of the input (source) and output (target) columns and the value
+    mapper used to transform the values of the input column into the
+    target output column.
+
+    Parameters:
+        input_table (pd.DataFrame): The input (source) DataFrame.
+        mapping_spec (MappingSpecLike): The target mapping specification. It can
+            be a DataFrame, a list of dictionaries or a list of DataFrames.
+
+    Returns:
+        pd.DataFrame: A DataFrame, which is created according to the target
+        mapping specifications.
+    """
+    mapping_spec_list = _normalize_mapping_spec(mapping_spec)
+
+    for mapping in mapping_spec_list:
+        if mapping["source"] not in input_table.columns:
+            raise ValueError(
+                f"The source column '{mapping['source']}' is not present in "
+                " the input table."
+            )
+
+    # exectute the actual mapping plan
+    output_dataframe = pd.DataFrame()
+    for column_spec in mapping_spec_list:
+        from_column_name = column_spec["source"]
+        to_column_name = column_spec["target"]
+        value_mapper = column_spec["mapper"]
+        output_dataframe[to_column_name] = value_mapper.map(
+            input_table[from_column_name]
+        )
+    return output_dataframe
+
+
 def create_mapper(
     input: Union[
         None,
@@ -811,3 +751,64 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
         else:
             raise ValueError("Matches must be a list of ValueMatch objects or tuples")
     return DictionaryMapper(mapping_dict)
+
+
+MappingSpecLike = Union[List[Union[Dict, pd.DataFrame]], pd.DataFrame]
+"""
+The `MappingSpecLike` is a type alias that specifies mappings between source
+and target columns. It must include the source and target column names
+and a value mapper object that transforms the values of the source column
+into the target.
+
+The mapping specification can be (1) a DataFrame or (2) a list of dictionaries or DataFrames.
+
+If it is a list of dictionaries, they must have:
+
+- `source`: The name of the source column.
+- `target`: The name of the target column.
+- `mapper` (optional): A ValueMapper instance or an object that can be used to
+  create one using :py:func:`~bdikit.create_mapper()`). Examples of valid objects
+  are Python functions or lambda functions. If empty, an IdentityValueMapper
+  is used by default.
+- `matches` (optional): Specifies the value mappings. It can be a DataFrame containing
+  the matches (returned by :py:func:`~bdikit.match_values()`), a list of ValueMatch
+  objects, or a list of tuples (<source_value>, <target_value>).
+
+Alternatively, the list can contain DataFrames. In this case, the DataFrames must
+contain not only the value mappings (as described in the `matches` key above) but
+also the `source` and `target` columns as DataFrame attributes. The DataFrames created
+by :py:func:`~bdikit.match_values()` include this information by default.
+
+If the mapping specification is a DataFrame, it must be compatible with the dictionaries
+above and contain `source`, `target`, and `mapper` or `matcher` columns.
+
+Example:
+
+.. code-block:: python
+
+    mapping_spec = [
+      {
+        "source": "source_column1",
+        "target": "target_column1",
+      },
+      {
+        "source": "source_column2",
+        "target": "target_column2",
+        "mapper": lambda age: -age * 365.25,
+      },
+      {
+        "source": "source_column3",
+        "target": "target_column3",
+        "matches": [
+          ("source_value1", "target_value1"),
+          ("source_value2", "target_value2"),
+        ]
+      },
+      {
+        "source": "source_column",
+        "target": "target_column",
+        "matches": df_value_mapping_1
+      },
+      df_value_mapping_2, # a DataFrame returned by match_values()
+    ]
+"""
