@@ -59,11 +59,15 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
 
         matches = []
         for _, row in match_results.iterrows():
-            source_value = row["From"]
-            target_value = row["To"]
-            similarity = row["Similarity"]
-            if similarity >= self.threshold:
-                matches.append(ValueMatch(source_value, target_value, similarity))
+            source = row[0]
+            top_matches = row[1:]
+            indexes = range(0, len(top_matches) - 1, 2)
+
+            for index in indexes:
+                target = top_matches[index]
+                similarity = top_matches[index + 1]
+                if similarity >= self.threshold:
+                    matches.append((source, target, similarity))
 
         return matches
 
