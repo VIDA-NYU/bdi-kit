@@ -13,9 +13,9 @@ from bdikit.models.contrastive_learning.cl_pretrained_dataset import (
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 from bdikit.download import get_cached_model_or_download
+from bdikit.utils import check_gdc_cache, write_embeddings_to_cache
 
-dir_path = os.path.dirname(os.path.realpath(__file__))
-GDC_TABLE_PATH = os.path.join(dir_path, "../../../../resource/gdc_table.csv")
+
 DEFAULT_CL_MODEL = "bdi-cl-v0.2"
 
 
@@ -106,6 +106,13 @@ class ContrastiveLearningAPI:
         return table
 
     def _load_table_tokens(self, table: pd.DataFrame) -> List[np.ndarray]:
+
+        embedding_file, embeddings = check_gdc_cache(table, self.model_path)
+
+        if embeddings != None:
+            print(f"Table features loaded for {len(table.columns)} columns")
+            return embeddings
+
         tables = []
         for _, column in enumerate(table.columns):
             curr_table = pd.DataFrame(table[column])
@@ -113,7 +120,12 @@ class ContrastiveLearningAPI:
             tables.append(curr_table)
         vectors = self._inference_on_tables(tables)
         print(f"Table features extracted from {len(table.columns)} columns")
-        return [vec[-1] for vec in vectors]
+        embeddings = [vec[-1] for vec in vectors]
+
+        if embedding_file != None:
+            write_embeddings_to_cache(embedding_file, embeddings)
+
+        return embeddings
 
     def _inference_on_tables(self, tables: List[pd.DataFrame]) -> List[List]:
         total = len(tables)
