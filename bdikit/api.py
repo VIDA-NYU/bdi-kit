@@ -1,7 +1,19 @@
 from __future__ import annotations
 from enum import Enum
 from os.path import join, dirname
-from typing import Union, Type, List, Dict, TypedDict, Set, Optional, Tuple, Callable
+from typing import (
+    Union,
+    Type,
+    List,
+    Dict,
+    TypedDict,
+    Set,
+    Optional,
+    Tuple,
+    Callable,
+    Mapping,
+    Any,
+)
 import itertools
 import pandas as pd
 import numpy as np
@@ -21,9 +33,7 @@ from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.models.contrastive_learning.cl_api import (
     DEFAULT_CL_MODEL,
 )
-from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
-    CLTopkColumnMatcher,
-)
+from bdikit.mapping_algorithms.column_mapping.topk_matchers import CLTopkColumnMatcher
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
     ValueMatch,
     BaseValueMatcher,
@@ -62,10 +72,13 @@ class SchemaMatchers(Enum):
         self.method_class = method_class
 
     @staticmethod
-    def get_instance(method_name: str) -> BaseSchemaMatcher:
+    def get_instance(
+        method_name: str, **method_kwargs: Mapping[str, Any]
+    ) -> BaseSchemaMatcher:
         methods = {method.method_name: method.method_class for method in SchemaMatchers}
+
         try:
-            return methods[method_name]()
+            return methods[method_name](**method_kwargs)
         except KeyError:
             names = ", ".join(list(methods.keys()))
             raise ValueError(
@@ -78,6 +91,7 @@ def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method_args: Dict[str, Any] = None,
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -89,6 +103,7 @@ def match_schema(
         source (pd.DataFrame): The source table to be mapped.
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
         method (str, optional): The method used for mapping. Defaults to "coma".
+        method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
 
     Returns:
         pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
@@ -102,7 +117,9 @@ def match_schema(
         target_table = target
 
     if isinstance(method, str):
-        matcher_instance = SchemaMatchers.get_instance(method)
+        if method_args is None:
+            method_args = {}
+        matcher_instance = SchemaMatchers.get_instance(method, **method_args)
     elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
     else:
@@ -183,10 +200,12 @@ class ValueMatchers(Enum):
         self.method_class = method_class
 
     @staticmethod
-    def get_instance(method_name: str) -> BaseValueMatcher:
+    def get_instance(
+        method_name: str, **method_kwargs: Mapping[str, Any]
+    ) -> BaseValueMatcher:
         methods = {method.method_name: method.method_class for method in ValueMatchers}
         try:
-            return methods[method_name]()
+            return methods[method_name](**method_kwargs)
         except KeyError:
             names = ", ".join(list(methods.keys()))
             raise ValueError(
@@ -209,6 +228,7 @@ def match_values(
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
+    method_args: Dict[str, Any] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between column values from the source dataset and column
@@ -232,6 +252,8 @@ def match_values(
 
         method (str, optional): The name of the method to use for value
           matching.
+        method_args (Dict[str, Any], optional): The additional arguments of the
+            method for value matching.
 
     Returns:
         Union[pd.DataFrame, List[pd.DataFrame]]: A list of DataFrame objects containing
@@ -285,7 +307,9 @@ def match_values(
             "The target must be a DataFrame or a standard vocabulary name."
         )
 
-    value_matcher = ValueMatchers.get_instance(method)
+    if method_args is None:
+        method_args = {}
+    value_matcher = ValueMatchers.get_instance(method, **method_args)
     matches = _match_values(source, target_domain, column_mapping_dict, value_matcher)
 
     result = [

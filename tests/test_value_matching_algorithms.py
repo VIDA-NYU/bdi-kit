@@ -35,11 +35,12 @@ class ValueMatchingTest(unittest.TestCase):
         current_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
         target_values = ["apple", "bananana", "orange", "kiwi"]
 
-        edit_distance_matcher = EditDistanceValueMatcher()
+        edit_distance_matcher = EditDistanceValueMatcher(threshold=0.5)
 
         # when
         matches = edit_distance_matcher.match(
-            current_values, target_values, threshold=0.5
+            current_values,
+            target_values,
         )
 
         # then

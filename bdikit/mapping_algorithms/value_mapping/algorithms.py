@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, Callable
+from typing import List, NamedTuple, Callable, Tuple, Union
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
@@ -10,7 +10,7 @@ from Levenshtein import ratio
 import pandas as pd
 import flair
 import torch
-from bdikit.config import get_device
+from bdikit.config import get_device, VALUE_MATCHING_THRESHOLD
 
 flair.device = torch.device(get_device())
 
@@ -43,14 +43,14 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
     Base class for value matching algorithms based on the PolyFuzz library.
     """
 
-    def __init__(self, polyfuzz_model: PolyFuzz):
+    def __init__(self, polyfuzz_model: PolyFuzz, threshold: float):
         self.model = polyfuzz_model
+        self.threshold = threshold
 
     def match(
         self,
         current_values: List[str],
         target_values: List[str],
-        threshold: float = 0.25,
     ) -> List[ValueMatch]:
 
         self.model.match(current_values, target_values)
@@ -62,7 +62,7 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
             current_value = row["From"]
             target_value = row["To"]
             similarity = row["Similarity"]
-            if similarity >= threshold:
+            if similarity >= self.threshold:
                 matches.append((current_value, target_value, similarity))
 
         return matches
@@ -73,8 +73,27 @@ class TFIDFValueMatcher(PolyFuzzValueMatcher):
     Value matching algorithm based on the TF-IDF similarity between values.
     """
 
-    def __init__(self):
-        super().__init__(PolyFuzz(method=TFIDF(n_gram_range=(1, 3), min_similarity=0)))
+    def __init__(
+        self,
+        n_gram_range: Tuple[int, int] = (1, 3),
+        clean_string: bool = True,
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+        top_n: int = 1,
+        cosine_method: str = "sparse",
+    ):
+
+        super().__init__(
+            PolyFuzz(
+                method=TFIDF(
+                    n_gram_range=n_gram_range,
+                    clean_string=clean_string,
+                    min_similarity=threshold,
+                    top_n=top_n,
+                    cosine_method=cosine_method,
+                )
+            ),
+            threshold,
+        )
 
 
 class EditDistanceValueMatcher(PolyFuzzValueMatcher):
@@ -82,15 +101,21 @@ class EditDistanceValueMatcher(PolyFuzzValueMatcher):
     Value matching algorithm based on the edit distance between values.
     """
 
-    def __init__(self, scorer: Callable[[str, str], float] = fuzz.ratio):
+    def __init__(
+        self,
+        scorer: Callable[[str, str], float] = fuzz.ratio,
+        n_jobs: int = -1,
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+    ):
         # Return scores between 0 and 1
         normalized_scorer = lambda str1, str2: scorer(str1, str2) / 100.0
         super().__init__(
             PolyFuzz(
                 method=EditDistance(
-                    n_jobs=-1, scorer=normalized_scorer, normalize=False
+                    n_jobs=n_jobs, scorer=normalized_scorer, normalize=False
                 )
-            )
+            ),
+            threshold,
         )
 
 
@@ -99,10 +124,21 @@ class EmbeddingValueMatcher(PolyFuzzValueMatcher):
     Value matching algorithm based on the cosine similarity of value embeddings.
     """
 
-    def __init__(self, model_path: str = "bert-base-multilingual-cased"):
-        embeddings = TransformerWordEmbeddings(model_path)
-        method = Embeddings(embeddings, min_similarity=0, model_id="embedding_model")
-        super().__init__(PolyFuzz(method))
+    def __init__(
+        self,
+        model_name: str = "bert-base-multilingual-cased",
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+        top_n: int = 1,
+        cosine_method: str = "sparse",
+    ):
+        embeddings = TransformerWordEmbeddings(model_name)
+        method = Embeddings(
+            embeddings,
+            min_similarity=threshold,
+            top_n=top_n,
+            cosine_method=cosine_method,
+        )
+        super().__init__(PolyFuzz(method), threshold)
 
 
 class FastTextValueMatcher(PolyFuzzValueMatcher):
@@ -110,21 +146,35 @@ class FastTextValueMatcher(PolyFuzzValueMatcher):
     Value matching algorithm based on the cosine similarity of FastText embeddings.
     """
 
-    def __init__(self, model_name: str = "en-crawl"):
+    def __init__(
+        self,
+        model_name: str = "en-crawl",
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+        top_n: int = 1,
+        cosine_method: str = "sparse",
+    ):
         embeddings = WordEmbeddings(model_name)
-        method = Embeddings(embeddings, min_similarity=0)
-        super().__init__(PolyFuzz(method))
+        method = Embeddings(
+            embeddings,
+            min_similarity=threshold,
+            top_n=top_n,
+            cosine_method=cosine_method,
+        )
+        super().__init__(PolyFuzz(method), threshold)
 
 
 class GPTValueMatcher(BaseValueMatcher):
-    def __init__(self):
+    def __init__(
+        self,
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+    ):
         self.client = OpenAI()
+        self.threshold = threshold
 
     def match(
         self,
         current_values: List[str],
         target_values: List[str],
-        threshold: float = 0.8,
     ) -> List[ValueMatch]:
         target_values_set = set(target_values)
         matches = []
@@ -153,7 +203,7 @@ class GPTValueMatcher(BaseValueMatcher):
                 response_dict = ast.literal_eval(response_message)
                 target_value = response_dict["term"]
                 score = float(response_dict["score"])
-                if target_value in target_values_set and score >= threshold:
+                if target_value in target_values_set and score >= self.threshold:
                     matches.append((current_value, target_value, score))
             except:
                 print(
@@ -164,15 +214,16 @@ class GPTValueMatcher(BaseValueMatcher):
 
 
 class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
-
-    def __init__(self):
-        pass
+    def __init__(
+        self,
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+    ):
+        self.threshold = threshold
 
     def match(
         self,
         current_values: List[str],
         target_values: List[str],
-        threshold: float = 0.8,
     ) -> List[ValueMatch]:
 
         current_values = sorted(list(set(current_values)))
@@ -188,17 +239,17 @@ class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
         matches = []
         try:
             autofj = AutoFJ(
-                precision_target=threshold,
+                precision_target=self.threshold,
                 join_function_space="autofj_md",
                 verbose=True,
             )
             LR_joins = autofj.join(df_curr_values, df_target_values, id_column="id")
             if len(LR_joins) > 0:
-                for index, row in LR_joins.iterrows():
+                for _, row in LR_joins.iterrows():
                     title_l = row["title_l"]
                     title_r = row["title_r"]
                     similarity = ratio(title_l, title_r)
-                    if similarity >= threshold:
+                    if similarity >= self.threshold:
                         matches.append((title_l, title_r, similarity))
         except Exception as e:
             return matches
