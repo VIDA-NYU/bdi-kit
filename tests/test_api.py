@@ -268,3 +268,40 @@ def test_end_to_end_api_integration():
     # values must be mapped according the provide user_mappings
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", None]
+
+
+def test_top_matches_and_match_values_integration():
+    # given
+    df_source = pd.DataFrame(
+        {"fruits": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
+    )
+    df_target = pd.DataFrame(
+        {
+            "fruit_types": ["apple", "banana", "orange", "kiwi", "grapes"],
+            "fruit_names": ["apple", "banana", "melon", "kiwi", "grapes"],
+            "fruit_id": ["1", "2", "3", "4", "5"],
+        }
+    )
+
+    # when
+    df_matches = bdi.top_matches(df_source, target=df_target)
+
+    # then
+    assert len(df_matches.index) == 3
+    assert "source" in df_matches.columns
+    assert "target" in df_matches.columns
+    assert "similarity" in df_matches.columns
+
+    # when
+    df_matches = bdi.match_values(
+        df_source, df_target, column_mapping=df_matches, method="tfidf"
+    )
+    assert isinstance(df_matches, list)
+    assert len(df_matches) == 3
+    for df in df_matches:
+        assert isinstance(df, pd.DataFrame)
+        assert "source" in df.columns
+        assert "target" in df.columns
+        assert "similarity" in df.columns
+        assert df.attrs["source"] == "fruits"
+        assert df.attrs["target"] in ["fruit_types", "fruit_names", "fruit_id"]

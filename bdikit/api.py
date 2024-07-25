@@ -228,7 +228,7 @@ def match_values(
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
-    method_args: Dict[str, Any] = None,
+    method_args: Optional[Dict[str, Any]] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between column values from the source dataset and column
@@ -287,8 +287,10 @@ def match_values(
             "containing the 'source' and 'target' columns."
         )
 
-    column_mapping_dict = mapping_df.set_index("source")["target"].to_dict()
-    for source_column in column_mapping_dict.keys():
+    column_mapping_list = mapping_df.to_dict(orient="records")
+
+    for mapping in column_mapping_list:
+        source_column = mapping["source"]
         if source_column not in source.columns:
             raise ValueError(
                 f"The source column '{source_column}' is not present in the source dataset."
@@ -310,7 +312,7 @@ def match_values(
     if method_args is None:
         method_args = {}
     value_matcher = ValueMatchers.get_instance(method, **method_args)
-    matches = _match_values(source, target_domain, column_mapping_dict, value_matcher)
+    matches = _match_values(source, target_domain, column_mapping_list, value_matcher)
 
     result = [
         _value_matching_result_to_df(matching_result) for matching_result in matches
@@ -356,13 +358,14 @@ def _value_matching_result_to_df(matching_result: ValueMatchingResult) -> pd.Dat
 def _match_values(
     dataset: pd.DataFrame,
     target_domain: Dict[str, Optional[List[str]]],
-    column_mapping: Dict[str, str],
+    column_mapping: List[Dict],
     value_matcher: BaseValueMatcher,
 ) -> List[ValueMatchingResult]:
 
     mapping_results: List[ValueMatchingResult] = []
 
-    for source_column, target_column in column_mapping.items():
+    for mapping in column_mapping:
+        source_column, target_column = mapping["source"], mapping["target"]
 
         # 1. Select candidate columns for value mapping
         target_domain_list = target_domain[target_column]
