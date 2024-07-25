@@ -10,13 +10,13 @@ class ValueMatchingTest(unittest.TestCase):
 
     def test_tfidf_value_matching(self):
         # given
-        current_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
+        source_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
         target_values = ["apple", "banana", "orange", "kiwi"]
 
         tfidf_matcher = TFIDFValueMatcher()
 
         # when
-        matches = tfidf_matcher.match(current_values, target_values)
+        matches = tfidf_matcher.match(source_values, target_values)
 
         # then
         self.assertEqual(len(matches), 3)
@@ -32,14 +32,14 @@ class ValueMatchingTest(unittest.TestCase):
 
     def test_edit_distance_value_matching(self):
         # given
-        current_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
+        source_values = ["Red Apple", "Banana", "Oorange", "Strawberry"]
         target_values = ["apple", "bananana", "orange", "kiwi"]
 
         edit_distance_matcher = EditDistanceValueMatcher(threshold=0.5)
 
         # when
         matches = edit_distance_matcher.match(
-            current_values,
+            source_values,
             target_values,
         )
 

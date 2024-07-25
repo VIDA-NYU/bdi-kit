@@ -584,7 +584,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         mapping = mappings[0]
         df = pd.DataFrame(
             {
-                "Source Value": [match.current_value for match in mapping["matches"]],
+                "Source Value": [match.source_value for match in mapping["matches"]],
                 "Target Value": [match.target_value for match in mapping["matches"]],
                 "Similarity": [match.similarity for match in mapping["matches"]],
             }
