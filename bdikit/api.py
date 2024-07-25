@@ -394,7 +394,7 @@ def _match_values(
         for source_value, target_value, similarity in matches_lowercase:
             matches.append(
                 ValueMatch(
-                    current_value=source_values_dict[source_value],
+                    source_value=source_values_dict[source_value],
                     target_value=target_values_dict[target_value],
                     similarity=similarity,
                 )
@@ -690,7 +690,7 @@ def create_mapper(
     - If input is a function (or lambda function), it creates a FunctionValueMapper object.
     - If input is a list of ValueMatch objects or tuples (<source_value>, <target_value>),
       it creates a DictionaryMapper object.
-    - If input is a DataFrame with two columns ("current_value", "target_value"),
+    - If input is a DataFrame with two columns ("source_value", "target_value"),
       it creates a DictionaryMapper object.
     - If input is a dictionary containing a "source" and "target" key, it tries to create
       a ValueMapper object based on the specification given in "mapper" or "matches" keys.
@@ -723,10 +723,10 @@ def create_mapper(
     # If the input is a DataFrame with two columns, we can create a
     # DictionaryMapper based on the values in the DataFrame
     if isinstance(input, pd.DataFrame) and all(
-        k in input.columns for k in ["current_value", "target_value"]
+        k in input.columns for k in ["source_value", "target_value"]
     ):
         return DictionaryMapper(
-            input.set_index("current_value")["target_value"].to_dict()
+            input.set_index("source_value")["target_value"].to_dict()
         )
 
     if isinstance(input, Dict):
@@ -767,7 +767,7 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
     mapping_dict = {}
     for match in matches:
         if isinstance(match, ValueMatch):
-            mapping_dict[match.current_value] = match.target_value
+            mapping_dict[match.source_value] = match.target_value
         elif isinstance(match, tuple) and len(match) == 2:
             if isinstance(match[0], str) and isinstance(match[1], str):
                 mapping_dict[match[0]] = match[1]

@@ -17,11 +17,11 @@ flair.device = torch.device(get_device())
 
 class ValueMatch(NamedTuple):
     """
-    Represents a match between a current value and a target value with a
+    Represents a match between a source value and a target value with a
     similarity score.
     """
 
-    current_value: str
+    source_value: str
     target_value: str
     similarity: float
 
@@ -29,11 +29,11 @@ class ValueMatch(NamedTuple):
 class BaseValueMatcher:
     """
     Base class for value matching algorithms, i.e., algorithms that match
-    values from a source (current) domain to values from a target domain.
+    values from a source domain to values from a target domain.
     """
 
     def match(
-        self, current_values: List[str], target_values: List[str]
+        self, source_values: List[str], target_values: List[str]
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
@@ -49,21 +49,21 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
 
     def match(
         self,
-        current_values: List[str],
+        source_values: List[str],
         target_values: List[str],
     ) -> List[ValueMatch]:
 
-        self.model.match(current_values, target_values)
+        self.model.match(source_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by="Similarity", ascending=False, inplace=True)
 
         matches = []
         for _, row in match_results.iterrows():
-            current_value = row["From"]
+            source_value = row["From"]
             target_value = row["To"]
             similarity = row["Similarity"]
             if similarity >= self.threshold:
-                matches.append((current_value, target_value, similarity))
+                matches.append((source_value, target_value, similarity))
 
         return matches
 
@@ -173,13 +173,13 @@ class GPTValueMatcher(BaseValueMatcher):
 
     def match(
         self,
-        current_values: List[str],
+        source_values: List[str],
         target_values: List[str],
     ) -> List[ValueMatch]:
         target_values_set = set(target_values)
         matches = []
 
-        for current_value in current_values:
+        for source_value in source_values:
             completion = self.client.chat.completions.create(
                 model="gpt-4-turbo-preview",
                 messages=[
@@ -190,7 +190,7 @@ class GPTValueMatcher(BaseValueMatcher):
                     },
                     {
                         "role": "user",
-                        "content": f'For the term: "{current_value}", choose a value from this list {target_values}. '
+                        "content": f'For the term: "{source_value}", choose a value from this list {target_values}. '
                         "Return the value from the list with a similarity score, between 0 and 1, with 1 indicating the highest similarity. "
                         "DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. "
                         'Only provide a Python dictionary. For example {"term": "term from the list", "score": 0.8}.',
@@ -204,10 +204,10 @@ class GPTValueMatcher(BaseValueMatcher):
                 target_value = response_dict["term"]
                 score = float(response_dict["score"])
                 if target_value in target_values_set and score >= self.threshold:
-                    matches.append((current_value, target_value, score))
+                    matches.append((source_value, target_value, score))
             except:
                 print(
-                    f'Errors parsing response for "{current_value}": {response_message}'
+                    f'Errors parsing response for "{source_value}": {response_message}'
                 )
 
         return matches
@@ -222,15 +222,15 @@ class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
 
     def match(
         self,
-        current_values: List[str],
+        source_values: List[str],
         target_values: List[str],
     ) -> List[ValueMatch]:
 
-        current_values = sorted(list(set(current_values)))
+        source_values = sorted(list(set(source_values)))
         target_values = sorted(list(set(target_values)))
 
-        df_curr_values = pd.DataFrame(
-            {"id": range(1, len(current_values) + 1), "title": current_values}
+        df_source_values = pd.DataFrame(
+            {"id": range(1, len(source_values) + 1), "title": source_values}
         )
         df_target_values = pd.DataFrame(
             {"id": range(1, len(target_values) + 1), "title": target_values}
@@ -243,7 +243,7 @@ class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
                 join_function_space="autofj_md",
                 verbose=True,
             )
-            LR_joins = autofj.join(df_curr_values, df_target_values, id_column="id")
+            LR_joins = autofj.join(df_source_values, df_target_values, id_column="id")
             if len(LR_joins) > 0:
                 for _, row in LR_joins.iterrows():
                     title_l = row["title_l"]
