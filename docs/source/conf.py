@@ -92,3 +92,5 @@ autodoc_mock_imports = [
     "tqdm",
     "rapidfuzz",
 ]
+
+autodoc_type_aliases = {'MappingSpecLike': 'MappingSpecLike'}

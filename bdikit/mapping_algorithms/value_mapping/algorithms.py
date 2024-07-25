@@ -8,6 +8,11 @@ from rapidfuzz import fuzz
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
+import flair
+import torch
+from bdikit.config import get_device
+
+flair.device = torch.device(get_device())
 
 
 class ValueMatch(NamedTuple):
@@ -21,7 +26,7 @@ class ValueMatch(NamedTuple):
     similarity: float
 
 
-class BaseAlgorithm:
+class BaseValueMatcher:
     """
     Base class for value matching algorithms, i.e., algorithms that match
     values from a source (current) domain to values from a target domain.
@@ -33,7 +38,7 @@ class BaseAlgorithm:
         raise NotImplementedError("Subclasses must implement this method")
 
 
-class PolyFuzzAlgorithm(BaseAlgorithm):
+class PolyFuzzValueMatcher(BaseValueMatcher):
     """
     Base class for value matching algorithms based on the PolyFuzz library.
     """
@@ -63,7 +68,7 @@ class PolyFuzzAlgorithm(BaseAlgorithm):
         return matches
 
 
-class TFIDFAlgorithm(PolyFuzzAlgorithm):
+class TFIDFValueMatcher(PolyFuzzValueMatcher):
     """
     Value matching algorithm based on the TF-IDF similarity between values.
     """
@@ -72,7 +77,7 @@ class TFIDFAlgorithm(PolyFuzzAlgorithm):
         super().__init__(PolyFuzz(method=TFIDF(n_gram_range=(1, 3), min_similarity=0)))
 
 
-class EditAlgorithm(PolyFuzzAlgorithm):
+class EditDistanceValueMatcher(PolyFuzzValueMatcher):
     """
     Value matching algorithm based on the edit distance between values.
     """
@@ -89,7 +94,7 @@ class EditAlgorithm(PolyFuzzAlgorithm):
         )
 
 
-class EmbeddingAlgorithm(PolyFuzzAlgorithm):
+class EmbeddingValueMatcher(PolyFuzzValueMatcher):
     """
     Value matching algorithm based on the cosine similarity of value embeddings.
     """
@@ -100,7 +105,7 @@ class EmbeddingAlgorithm(PolyFuzzAlgorithm):
         super().__init__(PolyFuzz(method))
 
 
-class FastTextAlgorithm(PolyFuzzAlgorithm):
+class FastTextValueMatcher(PolyFuzzValueMatcher):
     """
     Value matching algorithm based on the cosine similarity of FastText embeddings.
     """
@@ -111,7 +116,7 @@ class FastTextAlgorithm(PolyFuzzAlgorithm):
         super().__init__(PolyFuzz(method))
 
 
-class LLMAlgorithm(BaseAlgorithm):
+class GPTValueMatcher(BaseValueMatcher):
     def __init__(self):
         self.client = OpenAI()
 
@@ -158,7 +163,7 @@ class LLMAlgorithm(BaseAlgorithm):
         return matches
 
 
-class AutoFuzzyJoinAlgorithm(BaseAlgorithm):
+class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
 
     def __init__(self):
         pass

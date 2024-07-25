@@ -130,27 +130,6 @@ def test_bdi_top_matches_gdc():
     assert "race" in df_matches[df_filter]["target"].tolist()
 
 
-def test_map_column_values():
-    """
-    Ensures that the map_column_values function correctly maps the values of
-    a column and assings the target name.
-    """
-    # given
-    str_column = pd.Series(data=["a", "b", "c", "d", "e"], name="column_str")
-    value_mapper = FunctionValueMapper(function=lambda x: x.upper())
-    target_column_name = "string column"
-
-    # when
-    mapped_column = bdi.map_column_values(
-        str_column, target=target_column_name, value_mapper=value_mapper
-    )
-
-    # then
-    upper_cased_values = pd.Series(["A", "B", "C", "D", "E"])
-    assert mapped_column.name == target_column_name
-    assert mapped_column.eq(upper_cased_values).all()
-
-
 def test_map_dataframe_column_values():
     # given
     str_column_1 = ["a", "b", "c", "d", "e"]
@@ -201,10 +180,10 @@ def test_value_mapping_dataframe():
     assert len(value_mappings) == 1
     mapping = value_mappings[0]
     assert mapping is not None
-    assert mapping["source"] == "src_column"
-    assert mapping["target"] == "tgt_column"
-    assert isinstance(mapping["matches"], list)
-    assert len(mapping["matches"]) == 3
+    assert isinstance(mapping, pd.DataFrame)
+    assert mapping.attrs["source"] == "src_column"
+    assert mapping.attrs["target"] == "tgt_column"
+    assert len(mapping) == len(df_source)
 
 
 def test_end_to_end_api_integration():
@@ -246,29 +225,31 @@ def test_end_to_end_api_integration():
     assert len(value_mappings) == 1
     mapping = value_mappings[0]
     assert mapping is not None
-    assert mapping["source"] == "src_column"
-    assert mapping["target"] == "tgt_column"
-    assert isinstance(mapping["matches"], list)
-    assert len(mapping["matches"]) == 3
+    assert isinstance(mapping, pd.DataFrame)
+    assert len(mapping) == len(df_source)
+    assert mapping.attrs["source"] == "src_column"
+    assert mapping.attrs["target"] == "tgt_column"
 
     # when: pass output of match_values() to materialize_mapping(),
     df_mapped = bdi.materialize_mapping(df_source, value_mappings)
 
     # then: the column must be ranamed and values must be mapped to the
     # matching values found during the value matching step
+    assert isinstance(df_mapped, pd.DataFrame)
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
 
-    # when: pass output of match_values() to update_mappings() and then to
+    # when: pass output of match_values() to merge_mappings() and then to
     # materialize_mapping()
-    harmonization_spec = bdi.update_mappings(value_mappings, [])
+    harmonization_spec = bdi.merge_mappings(value_mappings, [])
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
     # then: the column must be ranamed and values must be mapped
+    assert isinstance(df_mapped, pd.DataFrame)
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
 
-    # when: user mappings are specified in update_mappings()
+    # when: user mappings are specified in merge_mappings()
     user_mappings = [
         {
             "source": "src_column",
@@ -280,7 +261,7 @@ def test_end_to_end_api_integration():
             ],
         }
     ]
-    harmonization_spec = bdi.update_mappings(value_mappings, user_mappings)
+    harmonization_spec = bdi.merge_mappings(value_mappings, user_mappings)
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
     # then: user mappings take precedence, so the column must be ranamed and

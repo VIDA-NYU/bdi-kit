@@ -1,13 +1,13 @@
 import os
 from typing import List, Dict, Tuple, Optional
-
+from bdikit.config import get_device
 import numpy as np
 import pandas as pd
 import torch
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_models import (
+from bdikit.models.contrastive_learning.cl_models import (
     BarlowTwinsSimCLR,
 )
-from bdikit.mapping_algorithms.scope_reducing._algorithms.contrastive_learning.cl_pretrained_dataset import (
+from bdikit.models.contrastive_learning.cl_pretrained_dataset import (
     PretrainTableDataset,
 )
 from sklearn.metrics.pairwise import cosine_similarity
@@ -41,7 +41,7 @@ class ContrastiveLearningAPI:
 
         self.unlabeled = PretrainTableDataset()
         self.batch_size = batch_size
-        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.device = get_device()
         self.model = self.load_checkpoint()
 
     def load_checkpoint(self, lm: str = "roberta"):

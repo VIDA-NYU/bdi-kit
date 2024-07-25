@@ -1,7 +1,7 @@
-API
-====
+API Reference
+=============
 
 
 .. automodule:: bdikit.api
     :members:
-    :exclude-members: SchemaMatchers, ValueMatchingMethod, ValueMatchingResult
+    :exclude-members: SchemaMatchers, ValueMatchers, ValueMatchingResult, ColumnMappingSpec
