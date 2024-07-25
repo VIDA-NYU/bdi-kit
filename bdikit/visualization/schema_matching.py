@@ -11,9 +11,10 @@ import pandas as pd
 import panel as pn
 from Levenshtein import distance
 from natsort import index_natsorted
+from polyfuzz import PolyFuzz
+from polyfuzz.models import RapidFuzz
 from sklearn.cluster import AffinityPropagation
 
-from bdikit import ValueMatchingResult, match_values
 from bdikit.download import BDIKIT_CACHE_DIR
 from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
     CLTopkColumnMatcher,
@@ -21,9 +22,7 @@ from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
     TopkColumnMatcher,
     TopkMatching,
 )
-from bdikit.models.contrastive_learning.cl_api import (
-    DEFAULT_CL_MODEL,
-)
+from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
 from bdikit.utils import get_gdc_layered_metadata, read_gdc_schema
 
 GDC_DATA_PATH = join(dirname(__file__), "../resource/gdc_table.csv")
@@ -64,30 +63,6 @@ def generate_top_k_matches(
     return output_json
 
 
-def generate_value_matches(
-    source: pd.DataFrame,
-    target: Union[pd.DataFrame, str],
-    column_mapping: Tuple[str, str],
-) -> List[ValueMatchingResult]:
-    if not isinstance(target, pd.DataFrame) and target == "gdc":
-        target = pd.read_csv(GDC_DATA_PATH)
-    mapping_df = pd.DataFrame(
-        [
-            {
-                "source": column_mapping[0],
-                "target": column_mapping[1],
-            }
-        ]
-    )
-    mappings = match_values(
-        source,
-        column_mapping=mapping_df,
-        target=target,
-        method="tfidf",
-    )
-    return mappings
-
-
 def gdc_clean_heatmap_recommendations(
     heatmap_recommendations: List[Dict], max_chars_samples: int = 150
 ) -> Dict[str, pd.DataFrame]:
@@ -103,7 +78,7 @@ def gdc_clean_heatmap_recommendations(
             candidate_description = gdc_data.get("description", "")
             candidate_description = candidate_description
             candidate_values = ", ".join(gdc_data.get("enum", []))
-            candidate_values = truncate_text(candidate_values, max_chars_samples)
+            # candidate_values = truncate_text(candidate_values, max_chars_samples)
             recommendations.append(
                 (
                     candidate_name,
@@ -137,9 +112,7 @@ def clean_heatmap_recommendations(
         column_name = column_data["source_column"]
         recommendations = []
         for candidate_name, candidate_similarity in column_data["top_k_columns"]:
-            candidate_values = ", ".join(
-                target[candidate_name].astype(str).unique()[:5]
-            )
+            candidate_values = ", ".join(target[candidate_name].astype(str).unique())
             recommendations.append(
                 (
                     candidate_name,
@@ -176,7 +149,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.json_path = "heatmap_recommendations.json"
         self.source = source
         self.target = target  # IMPORTANT!!!
-        self.top_k = max(1, min(top_k, 20))
+        self.top_k = max(1, min(top_k, 40))
 
         self.rec_table_df = None
         self.rec_list_df = None
@@ -224,6 +197,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.logs = []
 
         self._get_heatmap()
+
+        # Value matches
+        self.value_matches_dfs = self._generate_all_value_matches()
 
     def _load_json(self) -> List[Dict]:
         with open(self.json_path) as f:
@@ -342,6 +318,35 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             return ["True", "False"]
         else:
             return None
+
+    def _generate_all_value_matches(self):
+        value_matches_dfs = {}
+        rapidfuzz_matcher = RapidFuzz(n_jobs=1)
+        value_matcher = PolyFuzz(rapidfuzz_matcher)
+
+        for source_column in self.source.columns:
+            if pd.api.types.is_numeric_dtype(self.source[source_column]):
+                continue
+
+            source_values = list(self.source[source_column].dropna().unique())[:20]
+
+            value_comparison = {
+                "Source Value": source_values,
+            }
+
+            for _, row in self.candidates_dfs[source_column].iterrows():
+                target_values = row["Values (sample)"].split(", ")
+
+                value_matcher.match(source_values, target_values)
+                match_results = value_matcher.get_matches()
+
+                value_comparison[row["Candidate"]] = list(match_results["To"])
+
+            value_matches_dfs[source_column] = pd.DataFrame(
+                dict([(k, pd.Series(v)) for k, v in value_comparison.items()])
+            ).fillna("")
+
+        return value_matches_dfs
 
     def _accept_match(self) -> None:
         if self.selected_row is None:
@@ -666,15 +671,11 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             rec = None
         else:
             column, rec = self._update_column_selection(heatmap_rec_list, selection)
-        value_comparisons = {
-            "Source Value": self.source[column].dropna().unique()[:5],
-        }
 
-        candidate_df = self.candidates_dfs[column]
-        for idx, row in candidate_df.iterrows():
-            candidate = row["Candidate"]
-            values = row["Values (sample)"].split(", ")[:5]
-            value_comparisons[candidate] = values
+        if column not in self.value_matches_dfs:
+            return pn.pane.Markdown("No value matches found.")
+
+        value_comparisons = self.value_matches_dfs[column]
 
         frozen_columns = ["Source Value"]
         if rec:
@@ -757,12 +758,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             heatmap_pane.selection.param.single,
         )
 
-        # value_matches = pn.bind(
-        #     self._plot_value_matches,
-        #     heatmap_rec_list,
-        #     heatmap_pane.selection.param.single,
-        # )
-
         plot_history = self._plot_history()
 
         value_comparisons = pn.bind(
@@ -792,12 +787,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 styles={"background": "WhiteSmoke"},
                 scroll=True,
             ),
-            # pn.Card(
-            #     value_matches,
-            #     title="Value Matches",
-            #     styles={"background": "WhiteSmoke"},
-            #     scroll=True,
-            # ),
             pn.Card(
                 pn.Row(
                     pn.Column(column_hist, width=500),
