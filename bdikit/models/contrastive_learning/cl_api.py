@@ -1,4 +1,3 @@
-import os
 from typing import List, Dict, Tuple, Optional
 from bdikit.config import get_device
 import numpy as np
@@ -14,12 +13,13 @@ from sklearn.metrics.pairwise import cosine_similarity
 from tqdm import tqdm
 from bdikit.download import get_cached_model_or_download
 from bdikit.utils import check_gdc_cache, write_embeddings_to_cache
+from bdikit.models import ColumnEmbedder
 
 
 DEFAULT_CL_MODEL = "bdi-cl-v0.2"
 
 
-class ContrastiveLearningAPI:
+class ContrastiveLearningAPI(ColumnEmbedder):
     def __init__(
         self,
         model_path: Optional[str] = None,

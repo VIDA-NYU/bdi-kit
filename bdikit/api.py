@@ -28,12 +28,13 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     GPTSchemaMatcher,
     ContrastiveLearningSchemaMatcher,
     TwoPhaseSchemaMatcher,
+    SpladeSchemaMatcher,
 )
-from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
-from bdikit.models.contrastive_learning.cl_api import (
-    DEFAULT_CL_MODEL,
+from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
+    TopkColumnMatcher,
+    CLTopkColumnMatcher,
+    SpladeMaxSimTopkColumnMatcher,
 )
-from bdikit.mapping_algorithms.column_mapping.topk_matchers import CLTopkColumnMatcher
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
     ValueMatch,
     BaseValueMatcher,
@@ -43,6 +44,7 @@ from bdikit.mapping_algorithms.value_mapping.algorithms import (
     EmbeddingValueMatcher,
     AutoFuzzyJoinValueMatcher,
     FastTextValueMatcher,
+    SpladeValueMatcher,
 )
 from bdikit.mapping_algorithms.value_mapping.value_mappers import (
     ValueMapper,
@@ -65,6 +67,7 @@ class SchemaMatchers(Enum):
     JACCARD_DISTANCE = ("jaccard_distance", JaccardSchemaMatcher)
     GPT = ("gpt", GPTSchemaMatcher)
     CT_LEARGNING = ("ct_learning", ContrastiveLearningSchemaMatcher)
+    SPLADE = ("splade", SpladeSchemaMatcher)
     TWO_PHASE = ("two_phase", TwoPhaseSchemaMatcher)
 
     def __init__(self, method_name: str, method_class: Type[BaseSchemaMatcher]):
@@ -143,11 +146,33 @@ def _load_table_for_standard(name: str) -> pd.DataFrame:
         raise ValueError(f"The {name} standard is not supported")
 
 
+class TopkMatchers(Enum):
+    CT_LEARGNING = ("ct_learning", CLTopkColumnMatcher)
+    SPLADE_MAX_SIM = ("splade_max_sim", SpladeMaxSimTopkColumnMatcher)
+
+    def __init__(self, method_name: str, method_class: Type[TopkColumnMatcher]):
+        self.method_name = method_name
+        self.method_class = method_class
+
+    @staticmethod
+    def get_instance(method_name: str) -> TopkColumnMatcher:
+        methods = {method.method_name: method.method_class for method in TopkMatchers}
+        try:
+            return methods[method_name]()
+        except KeyError:
+            names = ", ".join(list(methods.keys()))
+            raise ValueError(
+                f"The {method_name} algorithm is not supported. "
+                f"Supported algorithms are: {names}"
+            )
+
+
 def top_matches(
     source: pd.DataFrame,
     columns: Optional[List[str]] = None,
     target: Union[str, pd.DataFrame] = "gdc",
     top_k: int = 10,
+    method: str = "ct_learning",
 ) -> pd.DataFrame:
     """
     Returns the top-k matches between the source and target tables.
@@ -172,7 +197,7 @@ def top_matches(
     else:
         selected_columns = source
 
-    topk_matcher = CLTopkColumnMatcher(model_name=DEFAULT_CL_MODEL)
+    topk_matcher = TopkMatchers.get_instance(method_name=method)
     top_k_matches = topk_matcher.get_recommendations(
         selected_columns, target=target_table, top_k=top_k
     )
@@ -194,6 +219,7 @@ class ValueMatchers(Enum):
     AUTOFJ = ("auto_fuzzy_join", AutoFuzzyJoinValueMatcher)
     FASTTEXT = ("fasttext", FastTextValueMatcher)
     GPT = ("gpt", GPTValueMatcher)
+    SPLADE = ("splade", SpladeValueMatcher)
 
     def __init__(self, method_name: str, method_class: Type[BaseValueMatcher]):
         self.method_name = method_name

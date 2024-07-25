@@ -7,6 +7,7 @@ from bdikit.mapping_algorithms.column_mapping.algorithms import (
     CupidSchemaMatcher,
     TwoPhaseSchemaMatcher,
     ContrastiveLearningSchemaMatcher,
+    SpladeSchemaMatcher,
 )
 
 
@@ -23,6 +24,7 @@ def test_basic_column_mapping_algorithms():
         #
         TwoPhaseSchemaMatcher(schema_matcher=ComaSchemaMatcher()),
         ContrastiveLearningSchemaMatcher(),
+        SpladeSchemaMatcher(),
     ]:
         # given
         table1 = pd.DataFrame(

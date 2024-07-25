@@ -18,6 +18,7 @@ from bdikit.models.contrastive_learning.cl_api import (
 from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
     TopkColumnMatcher,
     CLTopkColumnMatcher,
+    SpladeTopkColumnMatcher,
 )
 
 
@@ -178,6 +179,22 @@ class GPTSchemaMatcher(BaseSchemaMatcher):
 class ContrastiveLearningSchemaMatcher(BaseSchemaMatcher):
     def __init__(self, model_name: str = DEFAULT_CL_MODEL):
         self.topk_matcher = CLTopkColumnMatcher(model_name=model_name)
+
+    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame):
+        topk_matches = self.topk_matcher.get_recommendations(
+            dataset, global_table, top_k=1
+        )
+        matches = {}
+        for column, top_k_match in zip(dataset.columns, topk_matches):
+            candidate = top_k_match["top_k_columns"][0][0]
+            if candidate in global_table.columns:
+                matches[column] = candidate
+        return self._fill_missing_matches(dataset, matches)
+
+
+class SpladeSchemaMatcher(BaseSchemaMatcher):
+    def __init__(self, model_name: str = "naver/splade-cocondenser-ensembledistil"):
+        self.topk_matcher = SpladeTopkColumnMatcher(model_name=model_name)
 
     def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame):
         topk_matches = self.topk_matcher.get_recommendations(

@@ -8,9 +8,12 @@ from rapidfuzz import fuzz
 from autofj import AutoFJ
 from Levenshtein import ratio
 import pandas as pd
+import numpy as np
 import flair
 import torch
 from bdikit.config import get_device, VALUE_MATCHING_THRESHOLD
+from sklearn.metrics.pairwise import cosine_similarity
+from bdikit.models.splade import SpladeEmbedder
 
 flair.device = torch.device(get_device())
 
@@ -253,4 +256,60 @@ class AutoFuzzyJoinValueMatcher(BaseValueMatcher):
                         matches.append((title_l, title_r, similarity))
         except Exception as e:
             return matches
+        return matches
+
+
+class SpladeValueMatcher(BaseValueMatcher):
+    def __init__(self, model_id: str = "naver/splade-cocondenser-ensembledistil"):
+        self.splade_embedder = SpladeEmbedder(model_id)
+
+    def match(
+        self,
+        current_values: List[str],
+        target_values: List[str],
+        threshold: float = 0.25,
+    ) -> List[ValueMatch]:
+
+        source_embs = self.splade_embedder.embed_values(
+            current_values, embed_values=True
+        )
+        target_embs = self.splade_embedder.embed_values(
+            target_values, embed_values=True
+        )
+
+        assert (
+            source_embs.values is not None
+        ), "Embeddings for individual values were not computed"
+        assert (
+            target_embs.values is not None
+        ), "Embeddings for individual values were not computed"
+
+        l_source_embeddings = []
+        l_source_values = []
+        for value_text, value_vector in source_embs.values.items():
+            l_source_embeddings.append(value_vector)
+            l_source_values.append(value_text)
+
+        r_target_embeddings = []
+        r_target_value = []
+        for value_text, value_vector in target_embs.values.items():
+            r_target_embeddings.append(value_vector)
+            r_target_value.append(value_text)
+
+        cosine_sim = cosine_similarity(l_source_embeddings, r_target_embeddings)  # type: ignore
+
+        matches = []
+        for index, similarities in enumerate(cosine_sim):
+            similarity = similarities[np.argmax(similarities)]
+            source_value = l_source_values[index]
+            target_value = r_target_value[np.argmax(similarities)]
+            if similarity >= threshold:
+                matches.append(
+                    (
+                        source_value,
+                        target_value,
+                        similarity,
+                    )
+                )
+
         return matches
