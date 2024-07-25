@@ -117,7 +117,7 @@ def get_gdc_dataframe():
     return __gdc_df
 
 
-def check_gdc_cache(table: pd.DataFrame):
+def check_gdc_cache(table: pd.DataFrame, model_path: str):
     global __gdc_df, __gdc_hash
     load_gdc_data()
 
@@ -128,7 +128,10 @@ def check_gdc_cache(table: pd.DataFrame):
 
     # check if table for computing embedding is the same as the GDC table we have in resources
     if table_hash == __gdc_hash:
-        df_hash_file = os.path.join(BDIKIT_EMBEDDINGS_CACHE_DIR, __gdc_hash)
+        model_name = model_path.split("/")[-1]
+        cache_model_path = os.path.join(BDIKIT_EMBEDDINGS_CACHE_DIR, model_name)
+        df_hash_file = os.path.join(cache_model_path, __gdc_hash)
+
         # Found file in cache
         if os.path.isfile(df_hash_file):
             try:

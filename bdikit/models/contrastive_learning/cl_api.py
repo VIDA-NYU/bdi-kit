@@ -107,7 +107,7 @@ class ContrastiveLearningAPI:
 
     def _load_table_tokens(self, table: pd.DataFrame) -> List[np.ndarray]:
 
-        embedding_file, embeddings = check_gdc_cache(table)
+        embedding_file, embeddings = check_gdc_cache(table, self.model_path)
 
         if embeddings != None:
             print(f"Table features loaded for {len(table.columns)} columns")
