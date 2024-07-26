@@ -688,6 +688,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             frozen_columns=frozen_columns,
             show_index=False,
             width=700,
+            height=200,
         )
 
     def _plot_pane(
@@ -772,7 +773,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 plot_history,
                 name="Operation Logs",
                 width=500,
-                offsetx=600,
+                align="end",
             ),
             pn.Row(
                 heatmap_pane,
@@ -784,7 +785,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             pn.Card(
                 value_comparisons,
                 title="Value Comparisons",
-                styles={"background": "WhiteSmoke"},
+                styles=dict(background="WhiteSmoke"),
                 scroll=True,
             ),
             pn.Card(
@@ -839,30 +840,28 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         timestamp = datetime.now()
         self.logs.append((timestamp, action, source_column, target_column))
 
-    def _plot_history(self) -> pn.Feed:
-        texts = []
+    def _plot_history(self) -> pn.widgets.Tabulator:
+        history_dict = {
+            "Timestamp": [],
+            "Action": [],
+            "Source Column": [],
+            "Target Column": [],
+        }
         for timestamp, action, source_column, target_column in self.logs:
             if action in ["accept", "reject"]:
-                texts.append(
-                    pn.pane.Markdown(
-                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **{action.upper()}** _{source_column}_ to _{target_column}_"
-                    )
-                )
-            elif action == "undo":
-                texts.append(
-                    pn.pane.Markdown(
-                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **UNDO** _{source_column}_"
-                    )
-                )
-            elif action == "redo":
-                texts.append(
-                    pn.pane.Markdown(
-                        f"[{timestamp.strftime('%m/%d/%Y, %H:%M:%S')}] **REDO** _{source_column}_"
-                    )
-                )
-        return pn.Feed(
-            *texts, load_buffer=5, view_latest=True, styles={"padding": "0px"}
-        )
+                history_dict["Timestamp"].append(timestamp)
+                history_dict["Action"].append(action)
+                history_dict["Source Column"].append(source_column)
+                history_dict["Target Column"].append(target_column)
+
+            elif action in ["undo", "redo"]:
+                history_dict["Timestamp"].append(timestamp)
+                history_dict["Action"].append(action)
+                history_dict["Source Column"].append(source_column)
+                history_dict["Target Column"].append("")
+        history_df = pd.DataFrame(history_dict)
+
+        return pn.widgets.Tabulator(history_df, show_index=False)
 
     def plot_heatmap(self) -> pn.Column:
         select_column = pn.widgets.Select(
