@@ -14,6 +14,7 @@ The `bdi-kit` is a library that assist users in performing data harmonization. I
 
 **Warning:** `bdi-kit` is currently in *alpha* stage and under heavy development. Expect APIs to change.
 
+
 ## Documentation
 
 Documentation is available at [https://bdi-kit.readthedocs.io/](https://bdi-kit.readthedocs.io/).
@@ -36,21 +37,4 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 
 ## Contributing
 
-We format code using the [black](https://black.readthedocs.io/en/stable/) code formatter.
-The CI runs for every pull request and will fail if code is not properly formatted.
-To make sure formatting is correct, you can do the following steps.
-
-Make sure you have black installed:
-```
-pip install black
-```
-
-To format the code, anyone can use the command before committing your changes:
-```
-make format
-```
-
-Or you can use the black command directly:
-```
-black ./bdikit/
-```
+To learn more about making a contribution to bdi-kit, please see our [Contributing guide](./CONTRIBUTING.md).

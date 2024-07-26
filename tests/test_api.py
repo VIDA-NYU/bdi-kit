@@ -2,7 +2,7 @@ import bdikit as bdi
 import numpy as np
 import pandas as pd
 import numpy as np
-from bdikit.mapping_algorithms.value_mapping.value_mappers import (
+from bdikit.mapping_functions import (
     FunctionValueMapper,
     IdentityValueMapper,
 )
@@ -361,26 +361,34 @@ def test_top_value_matches():
         }
     )
     column_mapping = ("fruits", "fruit_names")
-
     # when
     matches = bdi.top_value_matches(df_source, df_target, column_mapping)
 
     # then
     assert len(matches) == 4  # number of dataframes in the list
 
+    # when
     df_match = matches[0]  # top matches for apple
+
+    # then
     assert len(df_match) == 2
     assert "source" in df_match.columns
     assert "target" in df_match.columns
     assert "similarity" in df_match.columns
 
+    # when
     df_match = matches[1]  # top matches for banana
+
+    # then
     assert len(df_match) == 2
     assert "source" in df_match.columns
     assert "target" in df_match.columns
     assert "similarity" in df_match.columns
 
+    # when
     df_match = matches[2]  # top matches for orange
+
+    # then
     assert len(df_match) == 1
     assert "source" in df_match.columns
     assert "target" in df_match.columns

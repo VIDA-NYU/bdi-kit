@@ -1,6 +1,6 @@
 import unittest
 import pandas as pd
-from bdikit.mapping_algorithms.value_mapping.algorithms import (
+from bdikit.value_matching.polyfuzz import (
     TFIDFValueMatcher,
     EditDistanceValueMatcher,
 )
