@@ -1,8 +1,27 @@
 from __future__ import annotations
 import logging
-
 from collections import defaultdict
-from os.path import join, dirname
+import itertools
+import pandas as pd
+import numpy as np
+import panel as pn
+from IPython.display import display, Markdown
+
+from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.one2one.matcher_factory import SchemaMatchers
+from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
+from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
+from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult
+from bdikit.value_matching.matcher_factory import ValueMatchers
+from bdikit.standards.standard_factory import Standards
+
+from bdikit.mapping_functions import (
+    ValueMapper,
+    FunctionValueMapper,
+    DictionaryMapper,
+    IdentityValueMapper,
+)
+
 from typing import (
     Union,
     List,
@@ -13,32 +32,11 @@ from typing import (
     Callable,
     Any,
 )
-import itertools
-import pandas as pd
-import numpy as np
-import panel as pn
-from IPython.display import display, Markdown
-from bdikit.utils import get_gdc_data, get_gdc_metadata
 
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
-from bdikit.schema_matching.one2one.matcher_factory import SchemaMatchers
-from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
-from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
-from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult
-from bdikit.value_matching.matcher_factory import ValueMatchers
-
-from bdikit.mapping_functions import (
-    ValueMapper,
-    FunctionValueMapper,
-    DictionaryMapper,
-    IdentityValueMapper,
-)
+from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
 
 pn.extension("tabulator")
 
-GDC_DATA_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
-DEFAULT_VALUE_MATCHING_METHOD = "tfidf"
-DEFAULT_SCHEMA_MATCHING_METHOD = "coma"
 logger = logging.getLogger(__name__)
 
 
@@ -92,10 +90,10 @@ def _load_table_for_standard(name: str) -> pd.DataFrame:
     Load the table for the given standard data vocabulary. Currently, only the
     GDC standard is supported.
     """
-    if name == "gdc":
-        return pd.read_csv(GDC_DATA_PATH)
-    else:
-        raise ValueError(f"The {name} standard is not supported")
+    standard = Standards.get_standard(name)
+    df = standard.get_dataframe_rep()
+
+    return df
 
 
 def top_matches(
@@ -439,9 +437,10 @@ def _format_value_matching_input(
                 f"The source column '{source_column}' is not present in the source dataset."
             )
 
-    if isinstance(target, str) and target == "gdc":
+    if isinstance(target, str):
         column_names = mapping_df["target"].unique().tolist()
-        target_domain = get_gdc_data(column_names)
+        standard = Standards.get_standard(target)
+        target_domain = standard.get_column_values(column_names)
     elif isinstance(target, pd.DataFrame):
         target_domain = {
             column_name: target[column_name].unique().tolist()
@@ -518,11 +517,12 @@ def preview_domain(
         (if applicable).
     """
 
-    if isinstance(dataset, str) and dataset == "gdc":
-        gdc_metadata = get_gdc_metadata()
-        value_names = gdc_metadata[column]["value_names"]
-        value_descriptions = gdc_metadata[column]["value_descriptions"]
-        column_description = gdc_metadata[column]["description"]
+    if isinstance(dataset, str):
+        standard = Standards.get_standard(dataset)
+        column_metadata = standard.get_column_metadata([column])
+        value_names = column_metadata[column]["value_names"]
+        value_descriptions = column_metadata[column]["value_descriptions"]
+        column_description = column_metadata[column]["description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[column].unique()
