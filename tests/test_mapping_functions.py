@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from bdikit.mapping_algorithms.value_mapping.value_mappers import (
+from bdikit.mapping_functions import (
     FunctionValueMapper,
     DictionaryMapper,
     IdentityValueMapper,
