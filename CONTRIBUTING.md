@@ -39,7 +39,20 @@ Contributors can add new methods for schema and value matching by following thes
 
 2. Define a class in the module that implements either `BaseValueMatcher` (for value matching) or `BaseSchemaMatcher` (for schema matching).
 
-3. Add a new entry in `matcher_factory.py` (e.g., `bdikit/value_matching/matcher_factory.py`). Make sure to add the correct import path for your 
+3. Add a new entry to the Enum class (e.g. `ValueMatchers`) in `matcher_factory.py` (e.g., `bdikit/value_matching/matcher_factory.py`). 
+Make sure to add the correct import path for your module to ensure it can be accessed without errors.
+
+
+Adding New Standards
+--------------------
+
+Contributors can extend bdi-kit to additional standards  a by following these steps:
+
+1. Create a Python module inside the "standards" folder (`bdikit/standards`).
+
+2. Define a class in the module that implements `BaseStandard`.
+
+3. Add a new entry to the class `Standards(Enum)` in `bdikit/standards/standard_factory.py`. Make sure to add the correct import path for your 
 module to ensure it can be accessed without errors.
 
 

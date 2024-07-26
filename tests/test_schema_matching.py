@@ -1,4 +1,5 @@
 import pandas as pd
+
 from bdikit.schema_matching.best.valentine import (
     SimFloodSchemaMatcher,
     JaccardSchemaMatcher,
@@ -7,7 +8,9 @@ from bdikit.schema_matching.best.valentine import (
     CupidSchemaMatcher,
 )
 from bdikit.schema_matching.best.twophase import TwoPhaseSchemaMatcher
-from bdikit.schema_matching.best.contrastivelearning import ContrastiveLearningSchemaMatcher
+from bdikit.schema_matching.best.contrastivelearning import (
+    ContrastiveLearningSchemaMatcher,
+)
 
 
 def test_basic_column_mapping_algorithms():

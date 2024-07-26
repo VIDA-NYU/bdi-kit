@@ -56,7 +56,7 @@ class TFIDFValueMatcher(PolyFuzzValueMatcher):
         n_gram_range: Tuple[int, int] = (1, 3),
         clean_string: bool = True,
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_k: int = 1,
+        top_n: int = 1,
         cosine_method: str = "sparse",
     ):
 
@@ -66,7 +66,7 @@ class TFIDFValueMatcher(PolyFuzzValueMatcher):
                     n_gram_range=n_gram_range,
                     clean_string=clean_string,
                     min_similarity=threshold,
-                    top_n=top_k,
+                    top_n=top_n,
                     cosine_method=cosine_method,
                 )
             ),
@@ -106,14 +106,14 @@ class EmbeddingValueMatcher(PolyFuzzValueMatcher):
         self,
         model_name: str = "bert-base-multilingual-cased",
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_k: int = 1,
+        top_n: int = 1,
         cosine_method: str = "sparse",
     ):
         embeddings = TransformerWordEmbeddings(model_name)
         method = Embeddings(
             embeddings,
             min_similarity=threshold,
-            top_n=top_k,
+            top_n=top_n,
             cosine_method=cosine_method,
         )
         super().__init__(PolyFuzz(method), threshold)
@@ -128,14 +128,14 @@ class FastTextValueMatcher(PolyFuzzValueMatcher):
         self,
         model_name: str = "en-crawl",
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_k: int = 1,
+        top_n: int = 1,
         cosine_method: str = "sparse",
     ):
         embeddings = WordEmbeddings(model_name)
         method = Embeddings(
             embeddings,
             min_similarity=threshold,
-            top_n=top_k,
+            top_n=top_n,
             cosine_method=cosine_method,
         )
         super().__init__(PolyFuzz(method), threshold)

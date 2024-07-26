@@ -1,5 +1,5 @@
 import unittest
-import pandas as pd
+
 from bdikit.value_matching.polyfuzz import (
     TFIDFValueMatcher,
     EditDistanceValueMatcher,
