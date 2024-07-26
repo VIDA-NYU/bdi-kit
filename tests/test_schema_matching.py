@@ -1,5 +1,5 @@
 import pandas as pd
-from bdikit.mapping_algorithms.column_mapping.algorithms import (
+from bdikit.schema_matching.best import (
     SimFloodSchemaMatcher,
     JaccardSchemaMatcher,
     DistributionBasedSchemaMatcher,
@@ -33,7 +33,7 @@ def test_basic_column_mapping_algorithms():
         )
 
         # when
-        mapping = column_matcher.map(dataset=table1, global_table=table2)
+        mapping = column_matcher.map(source=table1, target=table2)
 
         # then
         assert {
