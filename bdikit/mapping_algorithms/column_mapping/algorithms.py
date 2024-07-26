@@ -19,6 +19,9 @@ from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
     TopkColumnMatcher,
     CLTopkColumnMatcher,
 )
+from bdikit.mapping_algorithms.value_mapping.algorithms import (
+    TFIDFValueMatcher,
+)
 
 
 class BaseSchemaMatcher:
@@ -126,6 +129,46 @@ class JaccardSchemaMatcher(ValentineSchemaMatcher):
         )
 
 
+class MaxValSimSchemaMatcher(BaseSchemaMatcher):
+    def unique_string_values(self, column: pd.Series) -> pd.Series:
+        if pd.api.types.is_string_dtype(column):
+            return pd.Series(column.unique(), name=column.name)
+        else:
+            return pd.Series(column.unique().astype(str), name=column.name)
+
+    def map(self, dataset: pd.DataFrame, global_table: pd.DataFrame) -> Dict[str, str]:
+        schema_mapping = {}
+        for source_column_name in dataset.columns:
+            scores = []
+
+            source_column = dataset[source_column_name]
+            source_values = self.unique_string_values(source_column).to_list()
+
+            print("\nSource column: ", source_column_name)
+            for target_column_name in global_table.columns:
+
+                target_column = global_table[target_column_name]
+                target_values = self.unique_string_values(target_column).to_list()
+
+                value_matcher = TFIDFValueMatcher()
+                value_matches = value_matcher.match(source_values, target_values)
+
+                score = sum([m.similarity for m in value_matches])
+                print("value_matches: ", value_matches)
+                print(
+                    f"source: {source_column_name} target: {target_column_name} score: {score}"
+                )
+
+                scores.append((source_column_name, target_column_name, score))
+
+            sorted_columns = sorted(scores, key=lambda it: it[2], reverse=True)
+            print("Top k reranked columns: ", sorted_columns)
+
+            schema_mapping[source_column_name] = sorted_columns[0][1]
+
+        return schema_mapping
+
+
 class GPTSchemaMatcher(BaseSchemaMatcher):
     def __init__(self):
         self.client = OpenAI()
@@ -196,7 +239,7 @@ class TwoPhaseSchemaMatcher(BaseSchemaMatcher):
         self,
         top_k: int = 20,
         top_k_matcher: Optional[TopkColumnMatcher] = None,
-        schema_matcher: BaseSchemaMatcher = SimFloodSchemaMatcher(),
+        schema_matcher: BaseSchemaMatcher = MaxValSimSchemaMatcher(),
     ):
         if top_k_matcher is None:
             self.api = CLTopkColumnMatcher(DEFAULT_CL_MODEL)
