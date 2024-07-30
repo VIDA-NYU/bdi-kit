@@ -400,6 +400,22 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self._get_heatmap()
             return
 
+    def _discard_column(self, select_column: Optional[str]) -> None:
+        if not select_column and select_column not in self.source.columns:
+            logger.critical(f"Invalid column: {select_column}")
+            return
+
+        logger.critical(f"Discarding column: {select_column}")
+        recommendations = self._load_json()
+        for idx, d in enumerate(recommendations):
+            candidate_name = d["source_column"]
+            if candidate_name == select_column:
+                recommendations.pop(idx)
+                self._write_json(recommendations)
+                self._record_log("discard", candidate_name, "")
+                self._get_heatmap()
+                return
+
     def get_clusters(self) -> None:
         words = self.rec_table_df["Column"].to_numpy()
         lev_similarity = -1 * np.array(
@@ -700,6 +716,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         show_subschema: bool = False,
         acc_click: int = 0,
         rej_click: int = 0,
+        discard_click: int = 0,
         undo_click: int = 0,
         redo_click: int = 0,
     ) -> pn.Column:
@@ -884,6 +901,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         rej_button = pn.widgets.Button(name="Reject Match", button_type="danger")
 
+        discard_button = pn.widgets.Button(name="Discard Column", button_type="warning")
+
         undo_button = pn.widgets.Button(
             name="Undo", button_style="outline", button_type="warning"
         )
@@ -908,6 +927,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         def on_click_reject_match(event: Any) -> None:
             self._reject_match()
 
+        def on_click_discard_column(event: Any) -> None:
+            self._discard_column(select_column.value)
+
         def on_click_undo(event: Any) -> None:
             self._undo_user_action()
 
@@ -916,6 +938,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         acc_button.on_click(on_click_accept_match)
         rej_button.on_click(on_click_reject_match)
+        discard_button.on_click(on_click_discard_column)
         undo_button.on_click(on_click_undo)
         redo_button.on_click(on_click_redo)
 
@@ -936,11 +959,12 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             ),
             acc_button.param.clicks,
             rej_button.param.clicks,
+            discard_button.param.clicks,
             undo_button.param.clicks,
             redo_button.param.clicks,
         )
 
-        buttons_down = pn.Column(acc_button, rej_button)
+        buttons_down = pn.Column(acc_button, rej_button, discard_button)
         buttons_redo_undo = pn.Column(undo_button, redo_button)
 
         column_top = pn.Row(
