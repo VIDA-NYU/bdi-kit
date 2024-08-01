@@ -1,5 +1,5 @@
-API Reference
-=============
+`bdikit.api` (Module)
+=====================
 
 
 .. automodule:: bdikit.api

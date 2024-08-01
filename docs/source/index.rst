@@ -1,16 +1,31 @@
 Overview
 =========
 
-This project aims to assist users in performing data integration on biomedical data. It provides tools to streamline the process of integrating disparate biomedical datasets.
+The bdi-kit is a library that assist users in performing data harmonization.
+It provides state-of-the-art tools to streamline the process of integrating and
+transforming disparate datasets (with a focus on biomedical data), and includes
+APIs and visualizations for peforming tasks such as:
+
+- Schema matching
+- Value matching
+- Data transformation to a target schema/standard
+
+**Warning:** bdi-kit is currently in *alpha* stage and under heavy development. Expect APIs to change.
 
 You can find the source code in our `GitHub repository <https://github.com/VIDA-NYU/bdi-kit>`__.
 
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Getting Started
 
    installation
    getting-started
    examples
+
+.. toctree::
+   :maxdepth: 1
+   :caption: API Reference
+
    api
+   schema-matching

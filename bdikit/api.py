@@ -507,7 +507,7 @@ def merge_mappings(
             Defaults to None.
 
     Returns:
-        List: The data harmonization plan that can be used as input to the :py:func:`~bdikit.materialize_mapping()`
+        List: The data harmonization plan that can be used as input to the :py:func:`~bdikit.api.materialize_mapping()`
         function. Concretely, the harmonization plan is a list of dictionaries, where each
         dictionary contains the source column, target column, and mapper object that will be used
         to transform the input to the output data.
@@ -794,17 +794,17 @@ If it is a list of dictionaries, they must have:
 - `source`: The name of the source column.
 - `target`: The name of the target column.
 - `mapper` (optional): A ValueMapper instance or an object that can be used to
-  create one using :py:func:`~bdikit.create_mapper()`). Examples of valid objects
+  create one using :py:func:`~bdikit.api.create_mapper()`. Examples of valid objects
   are Python functions or lambda functions. If empty, an IdentityValueMapper
   is used by default.
 - `matches` (optional): Specifies the value mappings. It can be a DataFrame containing
-  the matches (returned by :py:func:`~bdikit.match_values()`), a list of ValueMatch
+  the matches (returned by :py:func:`~bdikit.api.match_values()`), a list of ValueMatch
   objects, or a list of tuples (<source_value>, <target_value>).
 
 Alternatively, the list can contain DataFrames. In this case, the DataFrames must
 contain not only the value mappings (as described in the `matches` key above) but
 also the `source` and `target` columns as DataFrame attributes. The DataFrames created
-by :py:func:`~bdikit.match_values()` include this information by default.
+by :py:func:`~bdikit.api.match_values()` include this information by default.
 
 If the mapping specification is a DataFrame, it must be compatible with the dictionaries
 above and contain `source`, `target`, and `mapper` or `matcher` columns.
