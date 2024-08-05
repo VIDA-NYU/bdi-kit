@@ -6,6 +6,7 @@ from os.path import dirname, exists, join
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import altair as alt
+import datamart_profiler
 import numpy as np
 import pandas as pd
 import panel as pn
@@ -26,6 +27,15 @@ from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
 from bdikit.utils import get_gdc_layered_metadata, read_gdc_schema
 
 GDC_DATA_PATH = join(dirname(__file__), "../resource/gdc_table.csv")
+
+# Schema.org types
+SCHEMA_ENUMERATION = "http://schema.org/Enumeration"
+SCHEMA_TEXT = "http://schema.org/Text"
+SCHEMA_FLOAT = "http://schema.org/Float"
+SCHEMA_INTEGER = "http://schema.org/Integer"
+SCHEMA_BOOLEAN = "http://schema.org/Boolean"
+
+
 logger = logging.getLogger("bdiviz")
 
 pn.extension("tabulator")
@@ -63,72 +73,6 @@ def generate_top_k_matches(
     return output_json
 
 
-def gdc_clean_heatmap_recommendations(
-    heatmap_recommendations: List[Dict], max_chars_samples: int = 150
-) -> Dict[str, pd.DataFrame]:
-    gdc_metadata = get_gdc_layered_metadata()
-
-    candidates_dfs = {}
-
-    for column_data in heatmap_recommendations:
-        column_name = column_data["source_column"]
-        recommendations = []
-        for candidate_name, candidate_similarity in column_data["top_k_columns"]:
-            subschema, gdc_data = gdc_metadata[candidate_name]
-            candidate_description = gdc_data.get("description", "")
-            candidate_description = candidate_description
-            candidate_values = ", ".join(gdc_data.get("enum", []))
-            # candidate_values = truncate_text(candidate_values, max_chars_samples)
-            recommendations.append(
-                (
-                    candidate_name,
-                    candidate_similarity,
-                    candidate_description,
-                    candidate_values,
-                    subschema,
-                )
-            )
-
-        candidates_dfs[column_name] = pd.DataFrame(
-            recommendations,
-            columns=[
-                "Candidate",
-                "Similarity",
-                "Description",
-                "Values (sample)",
-                "Subschema",
-            ],
-        )
-
-    return candidates_dfs
-
-
-def clean_heatmap_recommendations(
-    heatmap_recommendations: List[Dict], target: pd.DataFrame
-):
-    candidates_dfs = {}
-
-    for column_data in heatmap_recommendations:
-        column_name = column_data["source_column"]
-        recommendations = []
-        for candidate_name, candidate_similarity in column_data["top_k_columns"]:
-            candidate_values = ", ".join(target[candidate_name].astype(str).unique())
-            recommendations.append(
-                (
-                    candidate_name,
-                    candidate_similarity,
-                    candidate_values,
-                )
-            )
-
-        candidates_dfs[column_name] = pd.DataFrame(
-            recommendations,
-            columns=["Candidate", "Similarity", "Values (sample)"],
-        )
-
-    return candidates_dfs
-
-
 def truncate_text(text: str, max_chars: int):
     if len(text) > max_chars:
         return text[:max_chars] + "..."
@@ -155,7 +99,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.rec_list_df = None
         self.rec_cols = None
         self.subschemas = None
-        self.rec_cols_gdc = None
         self.clusters = None
 
         # Selected column
@@ -176,14 +119,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         self._write_json(self.heatmap_recommendations)
 
-        if not isinstance(target, pd.DataFrame) and target == "gdc":
-            self.candidates_dfs = gdc_clean_heatmap_recommendations(
-                self.heatmap_recommendations, max_chars_samples=max_chars_samples
-            )
-        elif isinstance(target, pd.DataFrame):
-            self.candidates_dfs = clean_heatmap_recommendations(
-                self.heatmap_recommendations, target
-            )
+        self.candidates_dfs = self._clean_heatmap_recommendations()
 
         self.height = height
 
@@ -198,6 +134,95 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         # Value matches
         self.value_matches_dfs = self._generate_all_value_matches()
+
+    def _clean_heatmap_recommendations(self):
+        candidates_dfs = {}
+        if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
+            gdc_metadata = get_gdc_layered_metadata()
+            for column_data in self.heatmap_recommendations:
+                column_name = column_data["source_column"]
+                recommendations = []
+                for candidate_name, candidate_similarity in column_data[
+                    "top_k_columns"
+                ]:
+                    subschema, gdc_data = gdc_metadata[candidate_name]
+                    candidate_description = gdc_data.get("description", "")
+                    candidate_description = candidate_description
+                    candidate_type = self._gdc_get_column_type(gdc_data)
+                    candidate_values = ", ".join(gdc_data.get("enum", []))
+                    # candidate_values = truncate_text(candidate_values, max_chars_samples)
+                    recommendations.append(
+                        (
+                            candidate_name,
+                            candidate_similarity,
+                            candidate_values,
+                            candidate_type,
+                            candidate_description,
+                            subschema,
+                        )
+                    )
+                candidates_dfs[column_name] = pd.DataFrame(
+                    recommendations,
+                    columns=[
+                        "Candidate",
+                        "Similarity",
+                        "Values (sample)",
+                        "Type",
+                        "Description",
+                        "Subschema",
+                    ],
+                )
+        else:
+            profiled_data = datamart_profiler.process_dataset(
+                self.target, coverage=False, indexes=False
+            )["columns"]
+            for column_data in self.heatmap_recommendations:
+                column_name = column_data["source_column"]
+                recommendations = []
+                for candidate_name, candidate_similarity in column_data[
+                    "top_k_columns"
+                ]:
+                    # check candidate type generated by profiler
+                    profiled_cand = next(
+                        profiled_cand
+                        for profiled_cand in profiled_data
+                        if profiled_cand["name"] == candidate_name
+                    )
+                    if SCHEMA_ENUMERATION in profiled_cand["semantic_types"]:
+                        candidate_type = "enum"
+                    elif SCHEMA_BOOLEAN in profiled_cand["semantic_types"]:
+                        candidate_type = "boolean"
+                    elif (
+                        SCHEMA_FLOAT in profiled_cand["structural_type"]
+                        or SCHEMA_INTEGER in profiled_cand["structural_type"]
+                    ):
+                        candidate_type = "number"
+                    else:
+                        candidate_type = "string"
+
+                    candidate_values = ", ".join(
+                        self.target[candidate_name].astype(str).unique()
+                    )
+                    recommendations.append(
+                        (
+                            candidate_name,
+                            candidate_similarity,
+                            candidate_values,
+                            candidate_type,
+                        )
+                    )
+
+                candidates_dfs[column_name] = pd.DataFrame(
+                    recommendations,
+                    columns=[
+                        "Candidate",
+                        "Similarity",
+                        "Values (sample)",
+                        "Type",
+                    ],
+                )
+
+        return candidates_dfs
 
     def _load_json(self) -> List[Dict]:
         with open(self.json_path) as f:
@@ -259,34 +284,13 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     def get_cols_subschema(self) -> None:
         subschemas = []
         schema = read_gdc_schema()
-        data_dict = {
-            "parent": [],
-            "column_name": [],
-            "column_type": [],
-            "column_description": [],
-            "column_values": [],
-        }
         for parent, values in schema.items():
             for candidate in values["properties"].keys():
                 if candidate in self.rec_cols:
                     if parent not in subschemas:
                         subschemas.append(parent)
-                    data_dict["parent"].append(parent)
-                    data_dict["column_name"].append(candidate)
-                    data_dict["column_type"].append(
-                        self._gdc_get_column_type(values["properties"][candidate])
-                    )
-                    data_dict["column_description"].append(
-                        self._gdc_get_column_description(
-                            values["properties"][candidate]
-                        )
-                    )
-                    data_dict["column_values"].append(
-                        self._gdc_get_column_values(values["properties"][candidate])
-                    )
 
         self.subschemas = subschemas
-        self.rec_cols_gdc = pd.DataFrame(data_dict)
 
     def _gdc_get_column_type(self, properties: Dict) -> "str | None":
         if "enum" in properties:
@@ -751,11 +755,13 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 ),
             )
 
+        candidates_df = self.candidates_dfs[select_column]
+
         def _filter_datatype(heatmap_rec: pd.Series) -> bool:
             if (
-                self.rec_cols_gdc[
-                    self.rec_cols_gdc["column_name"] == heatmap_rec["Recommendation"]
-                ]["column_type"]
+                candidates_df[
+                    candidates_df["Candidate"] == heatmap_rec["Recommendation"]
+                ]["Type"]
                 == select_candidate_type
             ).any():
                 return True
@@ -768,9 +774,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             ]
 
         if subschemas:
-            subschema_rec_cols = self.rec_cols_gdc[
-                self.rec_cols_gdc["parent"].isin(subschemas)
-            ]["column_name"].to_list()
+            subschema_rec_cols = candidates_df[
+                candidates_df["Subschema"].isin(subschemas)
+            ]["Candidate"].to_list()
             heatmap_rec_list = heatmap_rec_list[
                 heatmap_rec_list["Recommendation"].isin(subschema_rec_cols)
             ]
@@ -907,9 +913,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             options=list(self.rec_table_df["Column"]),
             width=120,
         )
-        # select_cluster = pn.widgets.MultiChoice(
-        #     name="Column cluster", options=list(self.clusters.keys()), width=220
-        # )
 
         select_candidate_type = pn.widgets.Select(
             name="Candidate type",
