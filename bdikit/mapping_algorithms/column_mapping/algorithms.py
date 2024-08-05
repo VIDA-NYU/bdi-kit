@@ -220,8 +220,18 @@ class TwoPhaseSchemaMatcher(BaseSchemaMatcher):
             dataset, global_table, self.top_k
         )
 
+        def zip_by_key():
+            top_k_matches_dict = {
+                scope["source_column"]: scope for scope in topk_column_matches
+            }
+            return [
+                (column, top_k_matches_dict[column])
+                for column in dataset.columns
+                if column in top_k_matches_dict
+            ]
+
         matches = {}
-        for column, scope in zip(dataset.columns, topk_column_matches):
+        for column, scope in zip_by_key():
             candidates = [
                 cand[0]
                 for cand in scope["top_k_columns"]
