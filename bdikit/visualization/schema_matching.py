@@ -158,8 +158,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.rec_cols_gdc = None
         self.clusters = None
 
-        self.gdc_metadata = get_gdc_layered_metadata()
-
         # Selected column
         self.selected_row = None
 
@@ -511,8 +509,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             ]
 
             rec_rank = df.index[0]
-            _, gdc_data = self.gdc_metadata[rec]
-            values = gdc_data.get("enum", [])
+            values = df["Values (sample)"].values[0].split(", ")
 
             sample = "\n\n"
             for i, v in enumerate(values[:n_samples]):
@@ -693,6 +690,13 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         value_comparisons = self.value_matches_dfs[column]
 
+        value_comparisons = value_comparisons[
+            ["Source Value"]
+            + list(
+                heatmap_rec_list[heatmap_rec_list["Column"] == column]["Recommendation"]
+            )
+        ]
+
         frozen_columns = ["Source Value"]
         if rec:
             frozen_columns.append(rec)
@@ -710,6 +714,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     def _plot_pane(
         self,
         select_column: Optional[str] = None,
+        select_candidate_type: str = "All",
         subschemas: List[str] = [],
         n_similar: int = 0,
         threshold: float = 0.5,
@@ -745,6 +750,22 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                     )
                 ),
             )
+
+        def _filter_datatype(heatmap_rec: pd.Series) -> bool:
+            if (
+                self.rec_cols_gdc[
+                    self.rec_cols_gdc["column_name"] == heatmap_rec["Recommendation"]
+                ]["column_type"]
+                == select_candidate_type
+            ).any():
+                return True
+            else:
+                return False
+
+        if select_candidate_type != "All":
+            heatmap_rec_list = heatmap_rec_list[
+                heatmap_rec_list.apply(_filter_datatype, axis=1)
+            ]
 
         if subschemas:
             subschema_rec_cols = self.rec_cols_gdc[
@@ -890,6 +911,12 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         #     name="Column cluster", options=list(self.clusters.keys()), width=220
         # )
 
+        select_candidate_type = pn.widgets.Select(
+            name="Candidate type",
+            options=["All", "enum", "number", "string", "boolean"],
+            width=120,
+        )
+
         n_similar_slider = pn.widgets.IntSlider(
             name="N Similar", start=0, end=5, value=0, width=100
         )
@@ -945,6 +972,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         heatmap_bind = pn.bind(
             self._plot_pane,
             select_column,
+            select_candidate_type,
             (
                 select_rec_groups
                 if (not isinstance(self.target, pd.DataFrame) and self.target == "gdc")
@@ -969,6 +997,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         column_top = pn.Row(
             select_column,
+            select_candidate_type,
             (
                 subschema_col
                 if (not isinstance(self.target, pd.DataFrame) and self.target == "gdc")
