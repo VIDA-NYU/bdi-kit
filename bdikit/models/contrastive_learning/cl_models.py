@@ -1,7 +1,11 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer, logging
+
+# Suppress the warning messages about untrained layer when loading the roberta  model
+# in line: self.bert = AutoModel.from_pretrained(lm_mp[lm])
+logging.set_verbosity_error()
 
 lm_mp = {"roberta": "roberta-base", "distilbert": "distilbert-base-uncased"}
 
