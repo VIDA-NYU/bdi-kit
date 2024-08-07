@@ -4,6 +4,8 @@ Change Log
 0.3.0-dev0 (YYYY-MM-DD)
 -----------------------
 
+- feat: Consistently use np.nan for missing values
+- docs: Add documentation for schema mapping methods
 
 
 0.2.0 (2024-07-26)
