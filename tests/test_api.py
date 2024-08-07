@@ -1,4 +1,5 @@
 import bdikit as bdi
+import numpy as np
 import pandas as pd
 from bdikit.mapping_algorithms.value_mapping.value_mappers import (
     FunctionValueMapper,
@@ -237,7 +238,7 @@ def test_end_to_end_api_integration():
     # matching values found during the value matching step
     assert isinstance(df_mapped, pd.DataFrame)
     assert "tgt_column" in df_mapped.columns
-    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
+    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", np.nan]
 
     # when: pass output of match_values() to merge_mappings() and then to
     # materialize_mapping()
@@ -247,7 +248,7 @@ def test_end_to_end_api_integration():
     # then: the column must be ranamed and values must be mapped
     assert isinstance(df_mapped, pd.DataFrame)
     assert "tgt_column" in df_mapped.columns
-    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", None]
+    assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", np.nan]
 
     # when: user mappings are specified in merge_mappings()
     user_mappings = [
@@ -267,7 +268,7 @@ def test_end_to_end_api_integration():
     # then: user mappings take precedence, so the column must be ranamed and
     # values must be mapped according the provide user_mappings
     assert "tgt_column" in df_mapped.columns
-    assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", None]
+    assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", np.nan]
 
 
 def test_top_matches_and_match_values_integration():

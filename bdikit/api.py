@@ -91,7 +91,7 @@ def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
-    method_args: Dict[str, Any] = None,
+    method_args: Dict[str, Any] = {},
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -117,8 +117,6 @@ def match_schema(
         target_table = target
 
     if isinstance(method, str):
-        if method_args is None:
-            method_args = {}
         matcher_instance = SchemaMatchers.get_instance(method, **method_args)
     elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
@@ -327,7 +325,9 @@ def match_values(
         return result
 
 
-def _value_matching_result_to_df(matching_result: ValueMatchingResult) -> pd.DataFrame:
+def _value_matching_result_to_df(
+    matching_result: ValueMatchingResult, default_unmatched: Any = np.nan
+) -> pd.DataFrame:
     """
     Transforms the list of matches and unmatched values into a DataFrame.
     """
@@ -341,8 +341,8 @@ def _value_matching_result_to_df(matching_result: ValueMatchingResult) -> pd.Dat
         data=list(
             zip(
                 unmatched_values,
-                [None] * len(unmatched_values),
-                [None] * len(unmatched_values),
+                [default_unmatched] * len(unmatched_values),
+                [default_unmatched] * len(unmatched_values),
             )
         ),
         columns=["source", "target", "similarity"],

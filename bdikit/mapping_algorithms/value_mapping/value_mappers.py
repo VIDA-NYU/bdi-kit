@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from typing import Any, Callable
 from collections import defaultdict
 
@@ -53,12 +54,12 @@ class DictionaryMapper(ValueMapper):
     values stored in the provided dictionary.
     """
 
-    def __init__(self, dictionary: dict, missing_data_value: Any = None):
-        self.dictionary = defaultdict(lambda: missing_data_value, dictionary)
+    def __init__(self, dictionary: dict, missing_key_value: Any = np.nan):
+        self.dictionary = defaultdict(lambda: missing_key_value, dictionary)
 
     def map(self, input_column: pd.Series) -> pd.Series:
         """
         Transforms the values in the input_column to the values specified in
         the dictionary provided using the object constructor.
         """
-        return input_column.map(self.dictionary, na_action="ignore")
+        return input_column.map(self.dictionary, na_action=None)
