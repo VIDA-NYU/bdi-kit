@@ -11,7 +11,7 @@ from bdikit.models.contrastive_learning.cl_pretrained_dataset import (
     PretrainTableDataset,
 )
 from sklearn.metrics.pairwise import cosine_similarity
-from tqdm import tqdm
+from tqdm.auto import tqdm
 from bdikit.download import get_cached_model_or_download
 from bdikit.utils import check_gdc_cache, write_embeddings_to_cache
 

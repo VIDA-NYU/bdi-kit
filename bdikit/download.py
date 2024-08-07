@@ -1,7 +1,7 @@
 import os
 import sys
 import requests
-from tqdm.autonotebook import tqdm
+from tqdm.auto import tqdm
 
 
 default_os_cache_dir = os.getenv(
