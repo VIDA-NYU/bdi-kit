@@ -474,7 +474,9 @@ def _format_value_matching_input(
     return target_domain, column_mapping_list
 
 
-def _value_matching_result_to_df(matching_result: ValueMatchingResult, default_unmatched: Any = np.nan) -> pd.DataFrame:
+def _value_matching_result_to_df(
+    matching_result: ValueMatchingResult, default_unmatched: Any = np.nan
+) -> pd.DataFrame:
     """
     Transforms the list of matches and unmatched values into a DataFrame.
     """
