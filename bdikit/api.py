@@ -1,4 +1,5 @@
 from __future__ import annotations
+import logging
 from enum import Enum
 from os.path import join, dirname
 from typing import (
@@ -55,6 +56,7 @@ from bdikit.mapping_algorithms.value_mapping.value_mappers import (
 GDC_DATA_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
 DEFAULT_VALUE_MATCHING_METHOD = "tfidf"
 DEFAULT_SCHEMA_MATCHING_METHOD = "coma"
+logger = logging.getLogger(__name__)
 
 
 class SchemaMatchers(Enum):
@@ -226,7 +228,7 @@ def match_values(
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
-    method_args: Optional[Dict[str, Any]] = None,
+    method_args: Dict[str, Any] = {},
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between column values from the source dataset and column
@@ -264,6 +266,168 @@ def match_values(
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
         ValueError: If the source column is not present in the source dataset.
     """
+
+    if "top_n" in method_args and method_args["top_n"] > 1:
+        logger.warning(
+            f"Ignoring 'top_n' argument, use the 'top_value_matches()' method to get top-k value matches."
+        )
+        method_args["top_n"] = 1
+
+    matches = _match_values(source, target, column_mapping, method, method_args)
+
+    if isinstance(column_mapping, tuple):
+        # If only a single mapping is provided (as a tuple), we return the result
+        # directly as a DataFrame to make it easier to display it in notebooks.
+        assert len(matches) == 1
+        return matches[0]
+    else:
+        return matches
+
+
+def top_value_matches(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    top_k: int = 5,
+    method: str = DEFAULT_VALUE_MATCHING_METHOD,
+    method_args: Dict[str, Any] = {},
+) -> List[pd.DataFrame]:
+    """
+    Finds top value matches between column values from the source dataset and column
+    values of the target domain (a pd.DataFrame or a standard dictionary such
+    as 'gdc') using the method provided in `method`.
+
+    Args:
+        source (pd.DataFrame): The source dataset containing the columns to be
+          matched.
+
+        target (Union[str, pd.DataFrame]): The target domain to match the
+          values to. It can be either a DataFrame or a standard vocabulary name.
+
+        column_mapping (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
+          DataFrame containing the mappings between source and target columns.
+
+          - If a tuple is provided, it should contain two strings where the first
+            is the source column and the second is the target column.
+          - If a DataFrame is provided, it should contain 'source' and 'target'
+            column names where each row specifies a column mapping.
+
+        top_k (int, optional): The number of top matches to return. Defaults to 5.
+
+        method (str, optional): The name of the method to use for value
+          matching.
+        method_args (Dict[str, Any], optional): The additional arguments of the
+            method for value matching.
+
+    Returns:
+        List[pd.DataFrame]: A list of DataFrame objects containing
+        the results of value matching between the source and target values.
+
+    Raises:
+        ValueError: If the column_mapping DataFrame does not contain 'source' and
+          'target' columns.
+        ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
+        ValueError: If the source column is not present in the source dataset.
+    """
+
+    if "top_n" in method_args:
+        logger.warning(
+            f"Ignoring 'top_n' argument, using top_k argument instead (top_k={top_k})"
+        )
+
+    method_args["top_n"] = top_k
+
+    matches = _match_values(source, target, column_mapping, method, method_args)
+
+    match_list = []
+    for match in matches:
+        for _, group in match.groupby("source", dropna=False):
+            match_list.append(
+                group.reset_index(drop=True).sort_values(
+                    by=["similarity"], ascending=False
+                )
+            )
+
+    return match_list
+
+
+def _match_values(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    method: str,
+    method_args: Dict[str, Any],
+) -> List[pd.DataFrame]:
+
+    target_domain, column_mapping_list = _format_value_matching_input(
+        source, target, column_mapping
+    )
+    value_matcher = ValueMatchers.get_instance(method, **method_args)
+    mapping_results: List[ValueMatchingResult] = []
+
+    for mapping in column_mapping_list:
+        source_column, target_column = mapping["source"], mapping["target"]
+
+        # 1. Select candidate columns for value mapping
+        target_domain_list = target_domain[target_column]
+        if target_domain_list is None or len(target_domain_list) == 0:
+            continue
+
+        unique_values = source[source_column].unique()
+        if _skip_values(unique_values):
+            continue
+
+        # 2. Remove blank spaces to the unique values
+        source_values_dict: Dict[str, Any] = {str(x).strip(): x for x in unique_values}
+        target_values_dict: Dict[str, str] = {
+            str(x).strip(): x for x in target_domain_list
+        }
+
+        # 3. Apply the value matcher to create value mapping dictionaries
+        raw_matches = value_matcher.match(
+            list(source_values_dict.keys()), list(target_values_dict.keys())
+        )
+
+        # 4. Transform the matches to the original
+        matches: List[ValueMatch] = []
+        for source_value, target_value, similarity in raw_matches:
+            matches.append(
+                ValueMatch(
+                    source_value=source_values_dict[source_value],
+                    target_value=target_values_dict[target_value],
+                    similarity=similarity,
+                )
+            )
+
+        # 5. Calculate the coverage and unmatched values
+        source_values = set(source_values_dict.values())
+        match_values = set([x[0] for x in matches])
+        coverage = len(match_values) / len(source_values_dict)
+
+        mapping_results.append(
+            ValueMatchingResult(
+                source=source_column,
+                target=target_column,
+                matches=matches,
+                coverage=coverage,
+                unique_values=source_values,
+                unmatch_values=source_values - match_values,
+            )
+        )
+
+    mapping_df_list = [
+        _value_matching_result_to_df(mapping_result)
+        for mapping_result in mapping_results
+    ]
+
+    return mapping_df_list
+
+
+def _format_value_matching_input(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+):
     if isinstance(column_mapping, pd.DataFrame):
         if not all(k in column_mapping.columns for k in ["source", "target"]):
             raise ValueError(
@@ -307,22 +471,7 @@ def match_values(
             "The target must be a DataFrame or a standard vocabulary name."
         )
 
-    if method_args is None:
-        method_args = {}
-    value_matcher = ValueMatchers.get_instance(method, **method_args)
-    matches = _match_values(source, target_domain, column_mapping_list, value_matcher)
-
-    result = [
-        _value_matching_result_to_df(matching_result) for matching_result in matches
-    ]
-
-    if isinstance(column_mapping, tuple):
-        # If only a single mapping is provided (as a tuple), we return the result
-        # directly as a DataFrame to make it easier to display it in notebooks.
-        assert len(result) == 1
-        return result[0]
-    else:
-        return result
+    return target_domain, column_mapping_list
 
 
 def _value_matching_result_to_df(
@@ -337,6 +486,7 @@ def _value_matching_result_to_df(
     )
 
     unmatched_values = matching_result["unmatch_values"]
+
     unmatched_df = pd.DataFrame(
         data=list(
             zip(
@@ -353,70 +503,6 @@ def _value_matching_result_to_df(
     result.attrs["target"] = matching_result["target"]
     result.attrs["coverage"] = matching_result["coverage"]
     return result
-
-
-def _match_values(
-    dataset: pd.DataFrame,
-    target_domain: Dict[str, Optional[List[str]]],
-    column_mapping: List[Dict],
-    value_matcher: BaseValueMatcher,
-) -> List[ValueMatchingResult]:
-
-    mapping_results: List[ValueMatchingResult] = []
-
-    for mapping in column_mapping:
-        source_column, target_column = mapping["source"], mapping["target"]
-
-        # 1. Select candidate columns for value mapping
-        target_domain_list = target_domain[target_column]
-        if target_domain_list is None or len(target_domain_list) == 0:
-            continue
-
-        unique_values = dataset[source_column].unique()
-        if _skip_values(unique_values):
-            continue
-
-        # 2. Transform the unique values to lowercase
-        source_values_dict: Dict[str, str] = {
-            str(x).strip().lower(): str(x).strip() for x in unique_values
-        }
-        target_values_dict: Dict[str, str] = {
-            str(x).lower(): x for x in target_domain_list
-        }
-
-        # 3. Apply the value matcher to create value mapping dictionaries
-        matches_lowercase = value_matcher.match(
-            list(source_values_dict.keys()), list(target_values_dict.keys())
-        )
-
-        # 4. Transform the matches to the original case
-        matches: List[ValueMatch] = []
-        for source_value, target_value, similarity in matches_lowercase:
-            matches.append(
-                ValueMatch(
-                    source_value=source_values_dict[source_value],
-                    target_value=target_values_dict[target_value],
-                    similarity=similarity,
-                )
-            )
-
-        # 5. Calculate the coverage and unmatched values
-        coverage = len(matches) / len(source_values_dict)
-        source_values = set(source_values_dict.values())
-        match_values = set([x[0] for x in matches])
-
-        mapping_results.append(
-            ValueMatchingResult(
-                source=source_column,
-                target=target_column,
-                matches=matches,
-                coverage=coverage,
-                unique_values=source_values,
-                unmatch_values=source_values - match_values,
-            )
-        )
-
-    return mapping_results
 
 
 def _skip_values(unique_values: np.ndarray, max_length: int = 50):
@@ -544,12 +630,12 @@ def merge_mappings(
 
     # include all unique user mappings first, as they take precedence
     for mapping in itertools.chain(user_mapping_spec_list, mapping_spec_list):
-
         source_column = mapping["source"]
         target_column = mapping["target"]
 
-        # ignore duplicate mappings accross user and value mappings
+        # ignore duplicate mappings across user and value mappings
         key = create_key(source_column, target_column)
+
         if key in mapping_keys:
             continue
         else:
@@ -657,7 +743,7 @@ def materialize_mapping(
                 " the input table."
             )
 
-    # exectute the actual mapping plan
+    # execute the actual mapping plan
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec_list:
         from_column_name = column_spec["source"]
