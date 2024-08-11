@@ -320,9 +320,13 @@ def match_values(
     ]
 
     if isinstance(column_mapping, tuple):
+        if len(matches) == 0:
+            return pd.DataFrame(columns=["source", "target", "similarity"])
         # If only a single mapping is provided (as a tuple), we return the result
         # directly as a DataFrame to make it easier to display it in notebooks.
-        assert len(result) == 1
+        assert (
+            len(result) == 1
+        ), f"Expected one result for a single column mapping, but got: {len(result)}"
         return result[0]
     else:
         return result
