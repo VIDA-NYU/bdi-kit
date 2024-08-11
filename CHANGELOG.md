@@ -6,6 +6,8 @@ Change Log
 
 - feat: Consistently use np.nan for missing values
 - docs: Add documentation for schema mapping methods
+- feat: Add view_value_matches() method
+- docs: Add example for view_value_matches() method
 
 
 0.2.0 (2024-07-26)
