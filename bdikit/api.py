@@ -17,6 +17,8 @@ from typing import (
 import itertools
 import pandas as pd
 import numpy as np
+import panel as pn
+from IPython.display import display, Markdown
 from bdikit.utils import get_gdc_data, get_gdc_metadata
 from bdikit.mapping_algorithms.column_mapping.algorithms import (
     BaseSchemaMatcher,
@@ -51,6 +53,7 @@ from bdikit.mapping_algorithms.value_mapping.value_mappers import (
     IdentityValueMapper,
 )
 
+pn.extension("tabulator")
 
 GDC_DATA_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
 DEFAULT_VALUE_MATCHING_METHOD = "tfidf"
@@ -323,6 +326,37 @@ def match_values(
         return result[0]
     else:
         return result
+
+
+def view_value_matches(
+    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit_matches: bool = True
+):
+    """
+    Shows the value match results in a DataFrame fashion.
+
+    Args:
+        matches (Union[pd.DataFrame, List[pd.DataFrame]]): The value match results
+          obtained by the method match_values().
+
+        edit_matches (bool): Whether or not to edit the values within the DataFrame.
+    """
+    if isinstance(matches, pd.DataFrame):
+        match_list = [matches]
+    elif isinstance(matches, list):
+        match_list = matches
+
+    else:
+        raise ValueError("The matches must be a DataFrame or a list of DataFrames")
+
+    for match in match_list:
+        display(
+            Markdown(
+                f"<br>**Source column:** {match.attrs['source']}<br>"
+                f"**Target column:** {match.attrs['target']}<br>"
+            )
+        )
+        match_widget = pn.widgets.Tabulator(match, disabled=not edit_matches)
+        display(match_widget)
 
 
 def _value_matching_result_to_df(
