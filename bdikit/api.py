@@ -370,7 +370,7 @@ def match_values(
 
 
 def view_value_matches(
-    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit_matches: bool = True
+    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = True
 ):
     """
     Shows the value match results in a DataFrame fashion.
@@ -396,8 +396,11 @@ def view_value_matches(
                 f"**Target column:** {match.attrs['target']}<br>"
             )
         )
-        match_widget = pn.widgets.Tabulator(match, disabled=not edit_matches)
-        display(match_widget)
+        if edit:
+            match_widget = pn.widgets.Tabulator(match, disabled=not edit)
+            display(match_widget)
+        else:
+            display(match)
 
 
 def _value_matching_result_to_df(
