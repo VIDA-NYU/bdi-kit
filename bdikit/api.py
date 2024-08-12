@@ -416,22 +416,20 @@ def _match_values(
         if _skip_values(unique_values):
             continue
 
-        # 2. Transform the unique values to lowercase
-        source_values_dict: Dict[str, str] = {
-            str(x).strip().lower(): str(x).strip() for x in unique_values
-        }
+        # 2. Remove blank spaces to the unique values
+        source_values_dict: Dict[str, Any] = {str(x).strip(): x for x in unique_values}
         target_values_dict: Dict[str, str] = {
-            str(x).lower(): x for x in target_domain_list
+            str(x).strip(): x for x in target_domain_list
         }
 
         # 3. Apply the value matcher to create value mapping dictionaries
-        matches_lowercase = value_matcher.match(
+        raw_matches = value_matcher.match(
             list(source_values_dict.keys()), list(target_values_dict.keys())
         )
 
-        # 4. Transform the matches to the original case
+        # 4. Transform the matches to the original
         matches: List[ValueMatch] = []
-        for source_value, target_value, similarity in matches_lowercase:
+        for source_value, target_value, similarity in raw_matches:
             matches.append(
                 ValueMatch(
                     source_value=source_values_dict[source_value],
