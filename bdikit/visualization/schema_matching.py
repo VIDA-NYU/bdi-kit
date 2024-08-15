@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+import random
 from datetime import datetime
 from os.path import dirname, exists, join
 from typing import Any, Dict, List, Optional, Tuple, Union
@@ -119,6 +120,15 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     ) -> None:
         self.json_path = "heatmap_recommendations.json"
 
+        # Sources color palette
+        self.source_colors = [
+            "#ffa600",
+            "#ff6361",
+            "#bc5090",
+            "#58508d",
+            "#003f5c",
+        ]
+
         # Source and target data
         self.source = source.sample(min(1000, len(source))).reset_index(drop=True)
         self.additional_sources = (
@@ -178,6 +188,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.logs = []
 
         self._get_heatmap()
+        self._gen_clusters()
 
         # Value matches
         self.value_matches_dfs = self._generate_all_value_matches()
@@ -339,6 +350,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             self.get_cols_subschema()
 
+    def _gen_clusters(self) -> None:
         if self.additional_sources is None:
             self.clusters = self.get_clusters()
         else:
@@ -537,8 +549,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             alt.Tooltip("Recommendation", title="Recommendation"),
             alt.Tooltip("Value", title="Similarity"),
         ]
-        # facet = alt.Facet(alt.Undefined)
-        facet = alt.Facet("DataFrame:O", columns=1)
+        facet = alt.Facet(alt.Undefined)
+        # facet = alt.Facet("DataFrame", columns=1)
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             tooltip.extend(
                 [
@@ -549,25 +561,72 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             if show_subschema:
                 facet = alt.Facet("Subschema:O", columns=1)
 
+        # x_values = list(heatmap_rec_list["Recommendation"].unique())
+
         base = (
             alt.Chart(heatmap_rec_list)
-            .mark_rect(size=100)
+            .transform_calculate(
+                Column=alt.datum["DataFrame"] + ">" + alt.datum["Column"]
+            )
             .encode(
                 y=alt.Y("Column:O", sort=None),
-                x=alt.X(f"Recommendation:O", sort=None).axis(labelAngle=-45),
+                x=alt.X("Recommendation:O", sort=None).axis(labelAngle=-45),
                 color=alt.condition(
                     single,
                     alt.Color("Value:Q").scale(domainMax=1, domainMin=0),
                     alt.value("lightgray"),
-                ),
-                # color="Value:Q",
+                ),  # type: ignore
                 tooltip=tooltip,
-                facet=facet,
+                # facet=facet,
             )
             .add_params(single)
-            .configure(background="#f5f5f5")
         )
-        return pn.pane.Vega(base)
+        background = base.mark_rect(size=100)
+
+        box_sources = []
+        if self.additional_sources:
+            y_source = heatmap_rec_list[heatmap_rec_list["DataFrame"] == "source"]
+            box_source_base = (
+                alt.Chart(y_source)
+                .transform_calculate(
+                    Column=alt.datum["DataFrame"] + ">" + alt.datum["Column"]
+                )
+                .encode(
+                    text="DataFrame:O",
+                    y="Column:O",
+                )
+            )
+            box_source = box_source_base.mark_rect(
+                color="", stroke="gray", strokeWidth=1
+            )
+            box_source_text = box_source.mark_text(baseline="middle", color="gray")
+            box_sources.append(box_source)
+            box_sources.append(box_source_text)
+
+            for idx, (name, _) in enumerate(self.additional_sources.items()):
+                color = self.source_colors[idx]
+
+                y_source = heatmap_rec_list[heatmap_rec_list["DataFrame"] == name]
+                box_source_base = (
+                    alt.Chart(y_source)
+                    .transform_calculate(
+                        Column=alt.datum["DataFrame"] + ">" + alt.datum["Column"]
+                    )
+                    .encode(
+                        text="DataFrame:O",
+                        y="Column:O",
+                    )
+                )
+                box_source = box_source_base.mark_rect(
+                    color="", stroke=color, strokeWidth=1
+                )
+                box_source_text = box_source.mark_text(baseline="middle", color=color)
+                box_sources.append(box_source)
+                box_sources.append(box_source_text)
+
+        # rule1 = background.mark_rect(color="", stroke="orange", strokeWidth=2).transform_filter(alt.FieldEqualPredicate(field='DataFrame', equal='source'))
+        # rule2 = background.mark_rect(color="", stroke="yellow", strokeWidth=2).transform_filter(alt.FieldOneOfPredicate(field='DataFrame', oneOf=list(self.additional_sources.keys())))
+        return pn.pane.Vega(alt.layer(background, *box_sources))
 
     def _update_column_selection(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
