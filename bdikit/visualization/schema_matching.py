@@ -14,7 +14,8 @@ from Levenshtein import distance
 from natsort import index_natsorted
 from polyfuzz import PolyFuzz
 from polyfuzz.models import RapidFuzz
-from sklearn.cluster import AffinityPropagation
+from sklearn.cluster import AffinityPropagation, KMeans
+from transformers import AutoModel, AutoTokenizer
 
 from bdikit.download import BDIKIT_CACHE_DIR
 from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
@@ -45,7 +46,10 @@ pn.extension("floatpanel")
 
 
 def generate_top_k_matches(
-    source: pd.DataFrame, target: Union[pd.DataFrame, str], top_k: int = 10
+    source: pd.DataFrame,
+    target: Union[pd.DataFrame, str],
+    top_k: int = 10,
+    additional_sources: Optional[Dict[str, pd.DataFrame]] = None,
 ) -> List[Dict]:
     if isinstance(target, pd.DataFrame):
         target_df = target
@@ -55,6 +59,7 @@ def generate_top_k_matches(
         raise ValueError("Invalid target value. Must be a DataFrame or 'gdc'.")
 
     topk_matcher = CLTopkColumnMatcher(model_name=DEFAULT_CL_MODEL)
+
     top_k_matches = topk_matcher.get_recommendations(
         source, target=target_df, top_k=top_k
     )
@@ -64,12 +69,31 @@ def generate_top_k_matches(
         source_dict = {
             "source_column": match["source_column"],
             "top_k_columns": [],
+            "source_dataset": "source",
         }
         for column in match["top_k_columns"]:
             source_dict["top_k_columns"].append(
                 [column.column_name, float(column.score)]
             )
         output_json.append(source_dict)
+
+    if additional_sources:
+        for name, df in additional_sources.items():
+            additional_top_k_matches = topk_matcher.get_recommendations(
+                df, target=target_df, top_k=top_k
+            )
+            for match in additional_top_k_matches:
+                source_dict = {
+                    "source_column": match["source_column"],
+                    "top_k_columns": [],
+                    "source_dataset": name,
+                }
+                for column in match["top_k_columns"]:
+                    source_dict["top_k_columns"].append(
+                        [column.column_name, float(column.score)]
+                    )
+                output_json.append(source_dict)
+
     return output_json
 
 
@@ -84,6 +108,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     def __init__(
         self,
         source: pd.DataFrame,
+        additional_sources: Optional[
+            Dict[str, pd.DataFrame]
+        ] = None,  # {"Dou": dou_df, ...}
         target: Union[pd.DataFrame, str] = "gdc",
         top_k: int = 10,
         heatmap_recommendations: Optional[List[Dict]] = None,
@@ -91,8 +118,25 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         height: int = 600,
     ) -> None:
         self.json_path = "heatmap_recommendations.json"
-        self.source = source
-        self.target = target  # IMPORTANT!!!
+
+        # Source and target data
+        self.source = source.sample(min(1000, len(source))).reset_index(drop=True)
+        self.additional_sources = (
+            {
+                name: df.sample(min(1000, len(df))).reset_index(drop=True)
+                for name, df in additional_sources.items()
+            }
+            if additional_sources
+            else None
+        )
+        self.target = target
+
+        # Source columns lookup
+        self.source_columns = [(column, "source") for column in source.columns]
+        if self.additional_sources:
+            for name, df in self.additional_sources.items():
+                self.source_columns.extend([(column, name) for column in df.columns])
+
         self.top_k = max(1, min(top_k, 40))
 
         self.rec_table_df = None
@@ -111,7 +155,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         else:
             if heatmap_recommendations is None:
                 self.heatmap_recommendations = generate_top_k_matches(
-                    self.source, target=target, top_k=self.top_k
+                    self.source,
+                    target=target,
+                    top_k=self.top_k,
+                    additional_sources=self.additional_sources,
                 )
             else:
                 self.heatmap_recommendations = heatmap_recommendations
@@ -261,6 +308,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                     "Column": d["source_column"],
                     "Recommendation": c[0],
                     "Value": c[1],
+                    "DataFrame": d["source_dataset"],
                 }
                 # [GDC] get description and values
                 if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
@@ -291,7 +339,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             self.get_cols_subschema()
 
-        self.get_clusters()
+        if self.additional_sources is None:
+            self.clusters = self.get_clusters()
+        else:
+            self.clusters = self._gen_cross_sources_clusters()
 
     def get_cols_subschema(self) -> None:
         subschemas = []
@@ -338,11 +389,25 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         rapidfuzz_matcher = RapidFuzz(n_jobs=1)
         value_matcher = PolyFuzz(rapidfuzz_matcher)
 
-        for source_column in self.source.columns:
-            if pd.api.types.is_numeric_dtype(self.source[source_column]):
-                continue
+        for source_column, source_df in self.source_columns:
+            if source_df == "source":
+                if pd.api.types.is_numeric_dtype(self.source[source_column]):
+                    continue
 
-            source_values = list(self.source[source_column].dropna().unique())[:20]
+                source_values = list(self.source[source_column].dropna().unique())[:20]
+
+            elif self.additional_sources and source_df in self.additional_sources:
+                if pd.api.types.is_numeric_dtype(
+                    self.additional_sources[source_df][source_column]
+                ):
+                    continue
+
+                source_values = list(
+                    self.additional_sources[source_df][source_column].dropna().unique()
+                )[:20]
+
+            else:
+                continue
 
             value_comparison = {
                 "Source Value": source_values,
@@ -367,16 +432,18 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             return
         col_name = self.selected_row["Column"].values[0]
         match_name = self.selected_row["Recommendation"].values[0]
+        col_source_df = self.selected_row["DataFrame"].values[0]
         recommendations = self.heatmap_recommendations
         for idx, d in enumerate(recommendations):
             candidate_name = d["source_column"]
             if candidate_name != col_name:
                 continue
             for top_k_name, top_k_score in d["top_k_columns"]:
-                if top_k_name == match_name:
+                if top_k_name == match_name and col_source_df == d["source_dataset"]:
                     recommendations[idx] = {
                         "source_column": candidate_name,
                         "top_k_columns": [[top_k_name, top_k_score]],
+                        "source_dataset": col_source_df,
                     }
 
                     # record the action
@@ -392,6 +459,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             return
         col_name = self.selected_row["Column"].values[0]
         match_name = self.selected_row["Recommendation"].values[0]
+        col_source_df = self.selected_row["DataFrame"].values[0]
         recommendations = self.heatmap_recommendations
         for idx, d in enumerate(recommendations):
             candidate_name = d["source_column"]
@@ -399,11 +467,12 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 continue
             new_top_k = []
             for top_k_name, top_k_score in d["top_k_columns"]:
-                if top_k_name != match_name:
+                if top_k_name != match_name or col_source_df != d["source_dataset"]:
                     new_top_k.append([top_k_name, top_k_score])
             recommendations[idx] = {
                 "source_column": candidate_name,
                 "top_k_columns": new_top_k,
+                "source_dataset": col_source_df,
             }
 
             # record the action
@@ -431,7 +500,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 self._get_heatmap()
                 return
 
-    def get_clusters(self) -> None:
+    def get_clusters(self) -> Dict[str, List[Tuple[str, str]]]:
         words = self.rec_table_df["Column"].to_numpy()
         lev_similarity = -1 * np.array(
             [[distance(w1, w2) for w1 in words] for w2 in words]
@@ -448,12 +517,15 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         clusters = {}
         for cluster_id in np.unique(affprop.labels_):
             exemplar = words[affprop.cluster_centers_indices_[cluster_id]]
-            cluster = np.unique(words[np.nonzero(affprop.labels_ == cluster_id)])
+            cluster = np.unique(
+                words[np.nonzero(affprop.labels_ == cluster_id)]
+            ).tolist()
             cluster_str = ", ".join(cluster)
             logger.debug(" - *%s:* %s" % (exemplar, cluster_str))
             cluster_names.append(exemplar)
-            clusters[exemplar] = cluster
-        self.clusters = clusters
+            clusters[exemplar] = [(column, "source") for column in cluster]
+
+        return clusters
 
     def _plot_heatmap_base(
         self, heatmap_rec_list: pd.DataFrame, show_subschema: bool
@@ -465,7 +537,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             alt.Tooltip("Recommendation", title="Recommendation"),
             alt.Tooltip("Value", title="Similarity"),
         ]
-        facet = alt.Facet(alt.Undefined)
+        # facet = alt.Facet(alt.Undefined)
+        facet = alt.Facet("DataFrame:O", columns=1)
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             tooltip.extend(
                 [
@@ -498,13 +571,14 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
     def _update_column_selection(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
-    ) -> Tuple[str, str]:
+    ) -> Tuple[str, str, str]:
         selected_idx = [selection[0] - 1]
         selected_row = heatmap_rec_list.iloc[selected_idx]
         self.selected_row = selected_row
         column = selected_row["Column"].values[0]
         rec = selected_row["Recommendation"].values[0]
-        return column, rec
+        source_df = selected_row["DataFrame"].values[0]
+        return column, rec, source_df
 
     def _gdc_candidates_info(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int], n_samples: int = 20
@@ -519,7 +593,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
             """
             )
-        column, rec = self._update_column_selection(heatmap_rec_list, selection)
+        column, rec, _ = self._update_column_selection(heatmap_rec_list, selection)
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             df = self.candidates_dfs[column][
                 self.candidates_dfs[column]["Candidate"] == rec
@@ -567,7 +641,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     ) -> pn.widgets.Tabulator:
         if not selection:
             return pn.pane.Markdown("## No selection")
-        column, rec = self._update_column_selection(heatmap_rec_list, selection)
+        column, rec, _ = self._update_column_selection(heatmap_rec_list, selection)
         df = self.candidates_dfs[column][
             self.candidates_dfs[column]["Candidate"] == rec
         ]
@@ -650,9 +724,18 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         if not selection:
             return self._plot_column_histogram(source_column, self.source)
 
-        column, _ = self._update_column_selection(heatmap_rec_list, selection)
+        column, _, source_df = self._update_column_selection(
+            heatmap_rec_list, selection
+        )
 
-        return self._plot_column_histogram(column, self.source)
+        if source_df == "source":
+            return self._plot_column_histogram(column, self.source)
+        elif self.additional_sources and source_df in self.additional_sources:
+            return self._plot_column_histogram(
+                column, self.additional_sources[source_df]
+            )
+        else:
+            return pn.pane.Markdown("No source data found.")
 
     def _plot_target_histogram(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
@@ -662,36 +745,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         if not selection:
             return pn.pane.Markdown("## No selection")
 
-        _, rec = self._update_column_selection(heatmap_rec_list, selection)
+        _, rec, _ = self._update_column_selection(heatmap_rec_list, selection)
 
         return self._plot_column_histogram(rec, self.target)
-
-    def _plot_value_matches(
-        self, heatmap_rec_list: pd.DataFrame, selection: List[int]
-    ) -> "pn.widgets.DataFrame | pn.pane.Markdown":
-        if not selection:
-            return pn.pane.Markdown("## No selection")
-
-        column, rec = self._update_column_selection(heatmap_rec_list, selection)
-
-        column_mapping = (column, rec)
-        mappings = generate_value_matches(self.source, self.target, column_mapping)
-        if not mappings or not mappings[0]["matches"]:
-            return pn.pane.Markdown("No value matches found.")
-        mapping = mappings[0]
-        df = pd.DataFrame(
-            {
-                "Source Value": [match.source_value for match in mapping["matches"]],
-                "Target Value": [match.target_value for match in mapping["matches"]],
-                "Similarity": [match.similarity for match in mapping["matches"]],
-            }
-        )
-
-        return pn.widgets.DataFrame(
-            df,
-            name=f"Value Matches {mapping['source']} to {mapping['target']}",
-            height=200,
-        )
 
     def _plot_value_comparisons(
         self, source_column: str, heatmap_rec_list: pd.DataFrame, selection: List[int]
@@ -700,7 +756,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             column = source_column
             rec = None
         else:
-            column, rec = self._update_column_selection(heatmap_rec_list, selection)
+            column, rec, _ = self._update_column_selection(heatmap_rec_list, selection)
 
         if column not in self.value_matches_dfs:
             return pn.pane.Markdown("No value matches found.")
@@ -744,16 +800,20 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     ) -> pn.Column:
         heatmap_rec_list = self.rec_list_df[self.rec_list_df["Value"] >= threshold]
         if select_column:
+            clustered_tuples = []
             clustered_cols = []
-            for cluster_key, cluster_list in self.clusters.items():
-                cluster_list = cluster_list.tolist()
+            for cluster_key, cluster_tuples in self.clusters.items():
+                cluster_list = [col for col, _ in cluster_tuples]
                 if select_column in cluster_list:
-                    clustered_cols.extend(cluster_list)
+                    clustered_tuples.extend(cluster_tuples)
                     similarities = [distance(w1, select_column) for w1 in cluster_list]
-                    clustered_cols = sorted(
-                        cluster_list, key=lambda x: similarities[cluster_list.index(x)]
+                    clustered_tuples = sorted(
+                        clustered_tuples,
+                        key=lambda x: similarities[cluster_list.index(x[0])],
                     )
-                    clustered_cols = clustered_cols[: n_similar + 1]
+                    clustered_tuples = clustered_tuples[: n_similar + 1]
+                    clustered_cols = [col for col, _ in clustered_tuples]
+                    break
             heatmap_rec_list = heatmap_rec_list[
                 heatmap_rec_list["Column"].isin(clustered_cols)
             ]
@@ -930,7 +990,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
     def plot_heatmap(self) -> pn.Column:
         select_column = pn.widgets.Select(
             name="Column",
-            options=list(self.rec_table_df["Column"]),
+            options=list(self.source.columns),
             width=120,
         )
 
@@ -1069,6 +1129,43 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             with open(cache_path) as f:
                 return json.load(f)
         return None
+
+    def _get_encodings(self) -> np.ndarray:
+        tokenizer = AutoTokenizer.from_pretrained("alvaroalon2/biobert_diseases_ner")
+        model = AutoModel.from_pretrained("alvaroalon2/biobert_diseases_ner")
+
+        encoded_input = tokenizer(
+            [column_name for column_name, _ in self.source_columns],
+            padding=True,
+            truncation=True,
+            return_tensors="pt",
+        )
+        embeddings = model(**encoded_input).pooler_output
+        return embeddings.detach().numpy()
+
+    def _gen_cross_sources_clusters(self) -> Optional[Dict[str, List[Tuple[str, str]]]]:
+        embeddings = self._get_encodings()
+        if len(self.source_columns) != embeddings.shape[0]:
+            logger.critical(f"source_columns and embeddings must have same length!")
+            return
+
+        n_clusters = len(self.source.columns)
+
+        kmeans = KMeans(n_clusters=n_clusters, init=embeddings[:n_clusters, :]).fit(
+            embeddings
+        )
+
+        clusters = {}
+        for cluster in range(n_clusters):
+            clusters[self.source.columns[cluster]] = [
+                (self.source.columns[cluster], "source")
+            ]
+            for idx, source_column in enumerate(
+                self.source_columns[n_clusters:], start=n_clusters
+            ):
+                if kmeans.predict(np.array([embeddings[idx]])) == cluster:
+                    clusters[self.source.columns[cluster]].append((source_column))
+        return clusters
 
     def get_recommendations(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
