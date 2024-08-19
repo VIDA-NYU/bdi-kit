@@ -199,25 +199,27 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             gdc_metadata = get_gdc_layered_metadata()
             for column_data in self.heatmap_recommendations:
                 column_name = column_data["source_column"]
-                recommendations = []
+                if column_name not in candidates_dfs:
+                    recommendations = []
+                else:
+                    recommendations = candidates_dfs[column_name].values.tolist()
                 for candidate_name, candidate_similarity in column_data[
                     "top_k_columns"
                 ]:
                     subschema, gdc_data = gdc_metadata[candidate_name]
                     candidate_description = gdc_data.get("description", "")
-                    candidate_description = candidate_description
                     candidate_type = self._gdc_get_column_type(gdc_data)
                     candidate_values = ", ".join(gdc_data.get("enum", []))
                     # candidate_values = truncate_text(candidate_values, max_chars_samples)
                     recommendations.append(
-                        (
+                        [
                             candidate_name,
                             candidate_similarity,
                             candidate_values,
                             candidate_type,
                             candidate_description,
                             subschema,
-                        )
+                        ]
                     )
                 candidates_dfs[column_name] = pd.DataFrame(
                     recommendations,
@@ -279,7 +281,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                         "Type",
                     ],
                 )
-
         return candidates_dfs
 
     def _load_json(self) -> "List[Dict] | None":
@@ -324,14 +325,15 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 # [GDC] get description and values
                 if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
                     candidates_info = self.candidates_dfs[d["source_column"]]
-                    cadidate_info = candidates_info[
+                    print(c[0])
+                    candidate_info = candidates_info[
                         candidates_info["Candidate"] == c[0]
                     ]
-                    rec_row["Description"] = cadidate_info["Description"].values[0]
-                    rec_row["Values (sample)"] = cadidate_info[
+                    rec_row["Description"] = candidate_info["Description"].values[0]
+                    rec_row["Values (sample)"] = candidate_info[
                         "Values (sample)"
                     ].values[0]
-                    rec_row["Subschema"] = cadidate_info["Subschema"].values[0]
+                    rec_row["Subschema"] = candidate_info["Subschema"].values[0]
                 rec_list.append(rec_row)
             rec_table.append(col_dict)
 
