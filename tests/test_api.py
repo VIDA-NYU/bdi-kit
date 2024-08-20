@@ -70,13 +70,22 @@ def test_bdi_top_matches_with_dataframes():
         {
             "color": ["red", "blue", "green", "yellow"],
             "tumor_length": [12, 23, 34, 45],
-            "tumor_magnitude": [12, 23, 34, 45],
+            "tumor_width": [12, 23, 34, 45],
             "tumor_size": [12, 23, 34, 45],
         }
     )
 
+    #
+    # First test with method ct_learning and default args
+    #
+
     # when
-    df_matches = bdi.top_matches(source, target=target, top_k=3)
+    df_matches = bdi.top_matches(
+        source,
+        target=target,
+        top_k=3,
+        method="ct_learning",
+    )
 
     # then
     assert len(df_matches.index) == 3
@@ -86,7 +95,31 @@ def test_bdi_top_matches_with_dataframes():
 
     df_filter = df_matches["source"] == "tumor_size"
     assert "tumor_size" in df_matches[df_filter]["target"].tolist()
-    assert "tumor_magnitude" in df_matches[df_filter]["target"].tolist()
+    assert "tumor_width" in df_matches[df_filter]["target"].tolist()
+    assert "tumor_length" in df_matches[df_filter]["target"].tolist()
+
+    #
+    # Now test with ct_learning and euclidean distance
+    #
+
+    # when
+    df_matches = bdi.top_matches(
+        source,
+        target=target,
+        top_k=3,
+        method="ct_learning",
+        method_args={"metric": "euclidean"},
+    )
+
+    # then
+    assert len(df_matches.index) == 3
+    assert "source" in df_matches.columns
+    assert "target" in df_matches.columns
+    assert "similarity" in df_matches.columns
+
+    df_filter = df_matches["source"] == "tumor_size"
+    assert "tumor_size" in df_matches[df_filter]["target"].tolist()
+    assert "tumor_width" in df_matches[df_filter]["target"].tolist()
     assert "tumor_length" in df_matches[df_filter]["target"].tolist()
 
 

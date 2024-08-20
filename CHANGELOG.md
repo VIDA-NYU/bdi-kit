@@ -8,7 +8,8 @@ Change Log
 - docs: Add documentation for schema mapping methods
 - feat: Add view_value_matches() method
 - docs: Add example for view_value_matches() method
-
+- feat: Support passing method arguments to top_matches()
+- feat: Support euclidean distance in CLTopkColumnMatcher
 
 0.2.0 (2024-07-26)
 ------------------

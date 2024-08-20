@@ -1,11 +1,13 @@
+from abc import ABCMeta, abstractmethod
 from typing import List, NamedTuple, TypedDict
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from bdikit.models.contrastive_learning.cl_api import (
     ContrastiveLearningAPI,
     DEFAULT_CL_MODEL,
 )
+from bdikit.models import ColumnEmbedder
 
 
 class ColumnScore(NamedTuple):
@@ -18,18 +20,18 @@ class TopkMatching(TypedDict):
     top_k_columns: List[ColumnScore]
 
 
-class TopkColumnMatcher:
+class TopkColumnMatcher(metaclass=ABCMeta):
+    @abstractmethod
     def get_recommendations(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
-    ) -> List[TopkMatching]:  # type: ignore
+    ) -> List[TopkMatching]:
         pass
 
 
-class CLTopkColumnMatcher(TopkColumnMatcher):
-    def __init__(self, model_name: str = DEFAULT_CL_MODEL):
-        # TODO: we can generalize this api to accept any embedding model
-        # and not just our contrastive learning model
-        self.api = ContrastiveLearningAPI(model_name=model_name)
+class EmbeddingSimilarityTopkColumnMatcher(TopkColumnMatcher):
+    def __init__(self, column_embedder: ColumnEmbedder, metric: str = "cosine"):
+        self.api = column_embedder
+        self.metric = metric
 
     def get_recommendations(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int = 10
@@ -41,10 +43,16 @@ class CLTopkColumnMatcher(TopkColumnMatcher):
         """
         l_features = self.api.get_embeddings(source)
         r_features = self.api.get_embeddings(target)
-        cosine_sim = cosine_similarity(l_features, r_features)  # type: ignore
+        if self.metric == "cosine":
+            sim = cosine_similarity(l_features, r_features)  # type: ignore
+        elif self.metric == "euclidean":
+            sim = euclidean_distances(l_features, r_features)  # type: ignore
+            sim = 1 / (1 + sim)
+        else:
+            raise ValueError(f"Invalid metric: {self.metric}")
 
         top_k_results = []
-        for index, similarities in enumerate(cosine_sim):
+        for index, similarities in enumerate(sim):
             top_k_indices = np.argsort(similarities)[::-1][:top_k]
             top_k_columns = [
                 ColumnScore(column_name=target.columns[i], score=similarities[i])
@@ -58,3 +66,10 @@ class CLTopkColumnMatcher(TopkColumnMatcher):
             )
 
         return top_k_results
+
+
+class CLTopkColumnMatcher(EmbeddingSimilarityTopkColumnMatcher):
+    def __init__(self, model_name: str = DEFAULT_CL_MODEL, metric: str = "cosine"):
+        super().__init__(
+            column_embedder=ContrastiveLearningAPI(model_name=model_name), metric=metric
+        )

@@ -36,7 +36,10 @@ from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
 from bdikit.models.contrastive_learning.cl_api import (
     DEFAULT_CL_MODEL,
 )
-from bdikit.mapping_algorithms.column_mapping.topk_matchers import CLTopkColumnMatcher
+from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
+    TopkColumnMatcher,
+    CLTopkColumnMatcher,
+)
 from bdikit.mapping_algorithms.value_mapping.algorithms import (
     ValueMatch,
     BaseValueMatcher,
@@ -146,11 +149,35 @@ def _load_table_for_standard(name: str) -> pd.DataFrame:
         raise ValueError(f"The {name} standard is not supported")
 
 
+class TopkMatchers(Enum):
+    CT_LEARNING = ("ct_learning", CLTopkColumnMatcher)
+
+    def __init__(self, method_name: str, method_class: Type[TopkColumnMatcher]):
+        self.method_name = method_name
+        self.method_class = method_class
+
+    @staticmethod
+    def get_instance(
+        method_name: str, **method_kwargs: Mapping[str, Any]
+    ) -> TopkColumnMatcher:
+        methods = {method.method_name: method.method_class for method in TopkMatchers}
+        try:
+            return methods[method_name](**method_kwargs)
+        except KeyError:
+            names = ", ".join(list(methods.keys()))
+            raise ValueError(
+                f"The {method_name} algorithm is not supported. "
+                f"Supported algorithms are: {names}"
+            )
+
+
 def top_matches(
     source: pd.DataFrame,
     columns: Optional[List[str]] = None,
     target: Union[str, pd.DataFrame] = "gdc",
     top_k: int = 10,
+    method: Union[str, TopkColumnMatcher] = "ct_learning",
+    method_args: Dict[str, Any] = {},
 ) -> pd.DataFrame:
     """
     Returns the top-k matches between the source and target tables.
@@ -175,7 +202,15 @@ def top_matches(
     else:
         selected_columns = source
 
-    topk_matcher = CLTopkColumnMatcher(model_name=DEFAULT_CL_MODEL)
+    if isinstance(method, str):
+        topk_matcher = TopkMatchers.get_instance(method, **method_args)
+    elif isinstance(method, TopkColumnMatcher):
+        topk_matcher = method
+    else:
+        raise ValueError(
+            "The method must be a string or an instance of TopkColumnMatcher"
+        )
+
     top_k_matches = topk_matcher.get_recommendations(
         selected_columns, target=target_table, top_k=top_k
     )
