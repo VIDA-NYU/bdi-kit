@@ -113,13 +113,13 @@ class ContrastiveLearningAPI:
             print(f"Table features loaded for {len(table.columns)} columns")
             return embeddings
 
+        print(f"Extracting features from {len(table.columns)} columns...")
         tables = []
         for _, column in enumerate(table.columns):
             curr_table = pd.DataFrame(table[column])
             curr_table = self._sample_to_15_rows(curr_table)
             tables.append(curr_table)
         vectors = self._inference_on_tables(tables)
-        print(f"Table features extracted from {len(table.columns)} columns")
         embeddings = [vec[-1] for vec in vectors]
 
         if embedding_file != None:
