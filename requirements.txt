@@ -17,4 +17,4 @@ autofj
 natsort
 jupyter_bokeh
 conllu<5.0.0
-nltk!=3.8.2
+nltk<3.8.2
