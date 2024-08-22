@@ -99,7 +99,7 @@ def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
-    method_args: Dict[str, Any] = {},
+    method_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -125,6 +125,8 @@ def match_schema(
         target_table = target
 
     if isinstance(method, str):
+        if method_args is None:
+            method_args = {}
         matcher_instance = SchemaMatchers.get_instance(method, **method_args)
     elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
@@ -177,7 +179,7 @@ def top_matches(
     target: Union[str, pd.DataFrame] = "gdc",
     top_k: int = 10,
     method: Union[str, TopkColumnMatcher] = "ct_learning",
-    method_args: Dict[str, Any] = {},
+    method_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
     Returns the top-k matches between the source and target tables.
@@ -203,6 +205,8 @@ def top_matches(
         selected_columns = source
 
     if isinstance(method, str):
+        if method_args is None:
+            method_args = {}
         topk_matcher = TopkMatchers.get_instance(method, **method_args)
     elif isinstance(method, TopkColumnMatcher):
         topk_matcher = method
