@@ -1,16 +1,20 @@
 Change Log
 ==========
 
-0.3.0-dev0 (YYYY-MM-DD)
------------------------
+0.3.0 (2024-08-22)
+------------------
+Below is a detailed list of important changes included in this release.
 
+New Features and Improvements: 
 - feat: Consistently use np.nan for missing values
-- docs: Add documentation for schema mapping methods
 - feat: Add view_value_matches() method
-- docs: Add example for view_value_matches() method
 - feat: Add new schema matcher based on value matching
 - feat: Support passing method arguments to top_matches()
 - feat: Support euclidean distance in CLTopkColumnMatcher
+
+Documentation:
+- docs: Add documentation for schema mapping methods
+- docs: Add example for view_value_matches() method
 
 0.2.0 (2024-07-26)
 ------------------
