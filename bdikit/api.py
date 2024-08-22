@@ -1,6 +1,7 @@
 from __future__ import annotations
 import logging
 from enum import Enum
+from collections import defaultdict
 from os.path import join, dirname
 from typing import (
     Union,
@@ -419,22 +420,30 @@ def view_value_matches(
         match_list = [matches]
     elif isinstance(matches, list):
         match_list = matches
-
     else:
         raise ValueError("The matches must be a DataFrame or a list of DataFrames")
 
-    for match in match_list:
+    # Grouping DataFrames by metadata (source and target columns)
+    grouped_matches = defaultdict(list)
+    for match_df in match_list:
+        grouped_matches[match_df.attrs["source"], match_df.attrs["target"]].append(
+            match_df
+        )
+
+    # Display grouped DataFrames
+    for (source_col, target_col), match_dfs in grouped_matches.items():
         display(
             Markdown(
-                f"<br>**Source column:** {match.attrs['source']}<br>"
-                f"**Target column:** {match.attrs['target']}<br>"
+                f"<br>**Source column:** {source_col}<br>"
+                f"**Target column:** {target_col}<br>"
             )
         )
-        if edit:
-            match_widget = pn.widgets.Tabulator(match, disabled=not edit)
-            display(match_widget)
-        else:
-            display(match)
+        for match_df in match_dfs:
+            if edit:
+                match_widget = pn.widgets.Tabulator(match_df, disabled=not edit)
+                display(match_widget)
+            else:
+                display(match_df)
 
 
 def _match_values(
