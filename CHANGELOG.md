@@ -1,6 +1,10 @@
 Change Log
 ==========
 
+0.4.0.dev0 (yyyy-mm-dd)
+------------------------
+
+
 0.3.0 (2024-08-22)
 ------------------
 Below is a detailed list of important changes included in this release.
@@ -15,6 +19,7 @@ New Features and Improvements:
 Documentation:
 - docs: Add documentation for schema mapping methods
 - docs: Add example for view_value_matches() method
+
 
 0.2.0 (2024-07-26)
 ------------------
@@ -55,7 +60,6 @@ New Features and Improvements:
 - feat: Allow configuring device (gpu/cpu) via env vars
 - feat: Allow sending arguments for the matching algorithms (#75)
 - feat: Adding embedding cache for gdc case (#76)
-
 
 Infrastructure:
 - Setup CI infrastructure for automated tests
@@ -111,6 +115,7 @@ Documentation:
 - Improve API documentation and fix typos
 - Improve documentation and minor typos
 - Clarify description of MappingSpecLike
+
 
 0.1.0 (2024-05-21)
 -------------------
