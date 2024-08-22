@@ -379,7 +379,7 @@ def view_value_matches(
         matches (Union[pd.DataFrame, List[pd.DataFrame]]): The value match results
           obtained by the method match_values().
 
-        edit_matches (bool): Whether or not to edit the values within the DataFrame.
+        edit (bool): Whether or not to edit the values within the DataFrame.
     """
     if isinstance(matches, pd.DataFrame):
         match_list = [matches]
@@ -733,7 +733,7 @@ def materialize_mapping(
                 " the input table."
             )
 
-    # exectute the actual mapping plan
+    # execute the actual mapping plan
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec_list:
         from_column_name = column_spec["source"]
@@ -816,7 +816,7 @@ def create_mapper(
                 else:
                     # Else, 'mapper' may contain one of the basic values that
                     # can be used to create a ValueMapper object defined above,
-                    # so call this funtion recursively create it
+                    # so call this function recursively create it
                     return create_mapper(input["mapper"])
 
             # This could be the a list of value matches (i.e., ValueMatch
@@ -825,7 +825,7 @@ def create_mapper(
                 return _create_mapper_from_value_matches(input["matches"])
 
             if "matches" in input and isinstance(input["matches"], pd.DataFrame):
-                # This could be the ouput of match_values(), so we can
+                # This could be the output of match_values(), so we can
                 # create a DictionaryMapper based on the value matches
                 return DictionaryMapper(
                     input["matches"].set_index("source")["target"].to_dict()
