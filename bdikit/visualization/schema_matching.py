@@ -99,17 +99,16 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         self.top_k = max(1, min(top_k, 40))
 
-        self.rec_table_df = None
-        self.rec_list_df = None
-        self.rec_cols = None
+        self.rec_table_df: Optional[pd.DataFrame] = None
+        self.rec_list_df: Optional[pd.DataFrame] = None
+        self.rec_cols: Optional[List[str]] = None
         self.subschemas = None
-        self.clusters = None
 
         # Selected column
         self.selected_row = None
 
         # Embeddings
-        self.l_features = {}
+        self.l_features: Dict[str, List[np.ndarray]] = {}
         self.r_features = None
 
         # Load cached results
@@ -137,7 +136,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         self.logs = []
 
         self._get_heatmap()
-        self._gen_clusters()
+        self.clusters = self._gen_clusters()
 
         # Value matches
         self.value_matches_dfs = self._generate_all_value_matches()
@@ -176,7 +175,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 "source_dataset": self.source_prefix,
             }
             for column in match["top_k_columns"]:
-                source_dict["top_k_columns"].append(
+                source_dict["top_k_columns"].append(  # type: ignore
                     [column.column_name, float(column.score)]
                 )
             output_json.append(source_dict)
@@ -194,7 +193,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                         "source_dataset": name,
                     }
                     for column in match["top_k_columns"]:
-                        source_dict["top_k_columns"].append(
+                        source_dict["top_k_columns"].append(  # type: ignore
                             [column.column_name, float(column.score)]
                         )
                     output_json.append(source_dict)
@@ -207,7 +206,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         target: pd.DataFrame,
         l_features: List[np.ndarray],
         r_features: List[np.ndarray],
-    ) -> List[Dict]:
+    ) -> List[Dict[str, Any]]:
         sim = cosine_similarity(l_features, r_features)  # type: ignore
 
         top_k_results = []
@@ -265,7 +264,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                         "Subschema",
                     ],
                 )
-        else:
+        elif isinstance(self.target, pd.DataFrame):
             profiled_data = datamart_profiler.process_dataset(
                 self.target, coverage=False, indexes=False
             )["columns"]
@@ -314,6 +313,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                         "Type",
                     ],
                 )
+        else:
+            raise ValueError("Invalid target value. Must be a DataFrame or 'gdc'.")
         return candidates_dfs
 
     def _load_json(self) -> "List[Dict] | None":
@@ -385,14 +386,14 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             self.get_cols_subschema()
 
-    def _gen_clusters(self) -> None:
+    def _gen_clusters(self) -> Dict[str, List[Tuple[str, str]]]:
         knn = NearestNeighbors(n_neighbors=5)
         l_features_flat = []
         for _, l_features in self.l_features.items():
             l_features_flat.extend(l_features)
         knn.fit(np.array(l_features_flat))
         clusters_idx = [
-            knn.kneighbors([l_feature], return_distance=False)[0]
+            knn.kneighbors([l_feature], return_distance=False)[0]  # type: ignore
             for l_feature in self.l_features[self.source_prefix]
         ]
 
@@ -403,7 +404,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             for idx in cluster_idx:
                 cluster.append(self.source_columns[idx])
             clusters[source_column] = cluster
-        self.clusters = clusters
+        return clusters
 
     def get_cols_subschema(self) -> None:
         subschemas = []
@@ -675,7 +676,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             values = df["Values (sample)"].values[0].split(", ")
 
             sample = "\n\n"
-            for i, v in enumerate(values[:n_samples]):
+            for _, v in enumerate(values[:n_samples]):
                 sample += f"""            - {v}\n"""
             if len(values) == 0:
                 sample = "*No values provided.*"
@@ -710,7 +711,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
     def _candidates_table(
         self, heatmap_rec_list: pd.DataFrame, selection: List[int]
-    ) -> pn.widgets.Tabulator:
+    ) -> "pn.widgets.Tabulator | pn.pane.Markdown":
         if not selection:
             return pn.pane.Markdown("## No selection")
         column, rec, _ = self._update_column_selection(heatmap_rec_list, selection)
@@ -869,6 +870,8 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         undo_click: int = 0,
         redo_click: int = 0,
     ) -> pn.Column:
+        if self.rec_list_df is None:
+            raise ValueError("Heatmap rec_list_df not generated.")
         heatmap_rec_list = self.rec_list_df[self.rec_list_df["Value"] >= threshold]
         if select_column:
             clustered_tuples = []
@@ -914,20 +917,20 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             cand_info = pn.bind(
                 self._gdc_candidates_info,
                 heatmap_rec_list,
-                heatmap_pane.selection.param.single,
+                heatmap_pane.selection.param.single,  # type: ignore
             )
         else:
             cand_info = pn.bind(
                 self._plot_target_histogram,
                 heatmap_rec_list,
-                heatmap_pane.selection.param.single,
+                heatmap_pane.selection.param.single,  # type: ignore
             )
 
         column_hist = pn.bind(
             self._plot_source_histogram,
             select_column,
             heatmap_rec_list,
-            heatmap_pane.selection.param.single,
+            heatmap_pane.selection.param.single,  # type: ignore
         )
 
         plot_history = self._plot_history()
@@ -936,7 +939,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self._plot_value_comparisons,
             select_column,
             heatmap_rec_list,
-            heatmap_pane.selection.param.single,
+            heatmap_pane.selection.param.single,  # type: ignore
         )
 
         return pn.Column(
@@ -1043,7 +1046,11 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         return pn.widgets.Tabulator(history_df, show_index=False)
 
     def _plot_chat_pane(self) -> pn.chat.ChatInterface:
-        def callback(contents: str, user: any, instance: any) -> Optional[str]:
+        def callback(contents: str, user: Any, instance: Any) -> Optional[str]:
+            if self.assistant is None:
+                raise ValueError(
+                    "AI Assistant not initialized, initialize it by setting ai_assitant to True."
+                )
             message = self.assistant.ask(contents)
             self.chat_history.append(message)
             return message
@@ -1118,7 +1125,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             select_column,
             select_candidate_type,
             (
-                select_rec_groups
+                select_rec_groups  # type: ignore
                 if (not isinstance(self.target, pd.DataFrame) and self.target == "gdc")
                 else None
             ),
@@ -1138,7 +1145,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             select_column,
             select_candidate_type,
             (
-                subschema_col
+                subschema_col  # type: ignore
                 if (not isinstance(self.target, pd.DataFrame) and self.target == "gdc")
                 else None
             ),
@@ -1158,7 +1165,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             column_top,
             (
                 pn.FloatPanel(
-                    chat_pane,
+                    chat_pane,  # type: ignore
                     name="Chat with AI Assistant",
                     width=600,
                     align="end",
@@ -1173,12 +1180,12 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
     # For caching purposes
     def _get_data_checksum(self) -> str:
-        return hashlib.sha1(pd.util.hash_pandas_object(self.source).values).hexdigest()
+        return hashlib.sha1(pd.util.hash_pandas_object(self.source).values).hexdigest()  # type: ignore
 
     def _get_ground_truth_checksum(self) -> str:
         if isinstance(self.target, pd.DataFrame):
             gt_checksum = hashlib.sha1(
-                pd.util.hash_pandas_object(self.target).values
+                pd.util.hash_pandas_object(self.target).values  # type: ignore
             ).hexdigest()
         else:
             gt_checksum = self.target
@@ -1236,6 +1243,6 @@ class LLMAssistant:
             },
         ]
         answers = self.client.chat.completions.create(
-            model=model, messages=messages, temperature=0.3
+            model=model, messages=messages, temperature=0.3  # type: ignore
         )
         return answers.choices[0].message.content
