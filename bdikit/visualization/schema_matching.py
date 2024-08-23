@@ -147,6 +147,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self.assistant = LLMAssistant()
             self.chat_history = []
 
+        # Panel configurations
+        self.panel_floatpanel_config = {"headerControls": {"close": "remove"}}
+        self.ai_assistant_status = "minimized"
+
     def _generate_top_k_matches(self) -> List[Dict]:
         if isinstance(self.target, pd.DataFrame):
             target_df = self.target
@@ -781,7 +785,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         )
         text = (
             alt.Chart(dataset.fillna("Null"), height=300)
-            .mark_text(color=text_color, fontWeight="bold", fontSize=12, align="right")
+            .mark_text(color=text_color, fontWeight="bold", fontSize=12, align="left")
             .encode(x="count()", y=x, text=alt.Text(column))
         )
         layered = (
@@ -853,7 +857,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             ).fillna(""),
             frozen_columns=frozen_columns,
             show_index=False,
-            width=700,
+            width=1180,
             height=200,
         )
 
@@ -949,6 +953,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 width=500,
                 align="end",
                 theme="secondary",
+                config=self.panel_floatpanel_config,
             ),
             pn.Row(
                 heatmap_pane,
@@ -961,16 +966,14 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 value_comparisons,
                 title="Value Comparisons",
                 styles=dict(background="WhiteSmoke"),
-                scroll=True,
             ),
             pn.Card(
                 pn.Row(
-                    pn.Column(column_hist, width=500),
-                    pn.Column(cand_info, width=500),
+                    pn.Column(column_hist, width=600, scroll=True),
+                    pn.Column(cand_info, width=600, scroll=True),
                 ),
                 title="Detailed Analysis",
                 styles={"background": "WhiteSmoke"},
-                scroll=True,
             ),
         )
 
@@ -1090,6 +1093,15 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             name="Redo", button_style="outline", button_type="primary"
         )
 
+        if self.ai_assistant_status == "minimized":
+            ai_assistant_button = pn.widgets.Button(
+                name="Show AI Assistant", button_type="primary"
+            )
+        else:
+            ai_assistant_button = pn.widgets.Button(
+                name="Hide AI Assistant", button_type="primary"
+            )
+
         # Subschemas
         if not isinstance(self.target, pd.DataFrame) and self.target == "gdc":
             select_rec_groups = pn.widgets.MultiChoice(
@@ -1114,11 +1126,18 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         def on_click_redo(event: Any) -> None:
             self._redo_user_action()
 
+        def on_click_ai_assistant(event: Any) -> None:
+            if self.ai_assistant_status == "minimized":
+                self.ai_assistant_status = "normalized"
+            else:
+                self.ai_assistant_status = "minimized"
+
         acc_button.on_click(on_click_accept_match)
         rej_button.on_click(on_click_reject_match)
         discard_button.on_click(on_click_discard_column)
         undo_button.on_click(on_click_undo)
         redo_button.on_click(on_click_redo)
+        ai_assistant_button.on_click(on_click_ai_assistant)
 
         heatmap_bind = pn.bind(
             self._plot_pane,
@@ -1140,6 +1159,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         buttons_down = pn.Column(acc_button, rej_button, discard_button)
         buttons_redo_undo = pn.Column(undo_button, redo_button)
+        buttons_floatpanel = pn.Column(ai_assistant_button)
 
         column_top = pn.Row(
             select_column,
@@ -1153,26 +1173,31 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             thresh_slider,
             buttons_down,
             buttons_redo_undo,
+            buttons_floatpanel,
             width=1200,
             styles=dict(background="WhiteSmoke"),
         )
 
         # AI Assistant
+
         if self.assistant:
             chat_pane = self._plot_chat_pane()
 
-        return pn.Column(
-            column_top,
-            (
-                pn.FloatPanel(
+        def plot_ai_assistant(clicks: int) -> Optional[pn.FloatPanel]:
+            if self.assistant:
+                return pn.FloatPanel(
                     chat_pane,  # type: ignore
                     name="Chat with AI Assistant",
                     width=600,
                     align="end",
+                    status=self.ai_assistant_status,
+                    config=self.panel_floatpanel_config,
                 )
-                if self.assistant
-                else None
-            ),
+            return None
+
+        return pn.Column(
+            column_top,
+            pn.bind(plot_ai_assistant, ai_assistant_button.param.clicks),
             pn.Spacer(height=5),
             pn.Column(heatmap_bind),
             scroll=True,
