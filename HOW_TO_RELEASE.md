@@ -8,7 +8,7 @@
 
 2. Change the version in `bdikit/__init__.py` to the new version, e.g., `2.0.0` (using the format MAJOR.MINOR.PATCH).
 
-3. In `CHANGELOG.md`, change the first version, e.g. `2.0.0.dev0 (yyyy-mm-dd)` to the to-be-released version and date and listall changes included in the release.
+3. In `CHANGELOG.md`, change the first version, e.g. `2.0.0.dev0 (yyyy-mm-dd)` to the to-be-released version and date and list all changes included in the release.
 
 4. Commit with title "Bump version for release {version}" and push to remote. This commit will include the file changes done in steps 2 and 3 above.
 ```bash
@@ -28,7 +28,7 @@ git merge devel
 git push origin main
 ```
 
-7. Verify that CI and the publication to TestPyPI completed successfuly and test the package. E.g., using Python 3.10:
+7. Verify that CI and the publication to TestPyPI completed successfully and test the package. E.g., using Python 3.10:
 ```bash
 # Create a new venv and activate it
 mkdir /tmp/bdikit-test/ && cd /tmp/bdikit-test/
@@ -61,7 +61,7 @@ git push --tags
 11. Head to https://github.com/VIDA-NYU/bdi-kit/releases/ and update the release
     with the CHANGELOG for the released version.
 
-12. Switch to `devel` branch and merge the release (to make sure `devel` is always on top of `main`). If you didn't have to make any changes to `main` this will do nothing.
+12. Switch to `devel` branch and merge the release (to make sure `devel` is always on top of `main`). If you didn't make any changes to `main`, this will do nothing.
 ```bash
 git checkout devel
 git merge main
