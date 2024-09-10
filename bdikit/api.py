@@ -499,10 +499,8 @@ def _match_values(
     return mapping_results
 
 
-def _skip_values(unique_values: np.ndarray, max_length: int = 50):
-    if isinstance(unique_values[0], float):
-        return True
-    elif len(unique_values) > max_length:
+def _skip_values(unique_values: np.ndarray):
+    if pd.api.types.is_numeric_dtype(unique_values):
         return True
     else:
         return False
