@@ -1,0 +1,104 @@
+﻿重命名编号_20190228,Sample ID,Clinical Info,Profile,TiO2,WES,RNA-Seq,Mutation counts,TP53 mut (0:no; 1:yes),EGFR mut (0:no; 1:yes),KRAS mut (0:no; 1:yes),Gender (1:Male;2:Female),Age,Age Group (1: <=60; 2:>60),Histological Type,Histological Subtypes,"Subtype Code (acinar=1, papillary=2,lepidic=3,solid=4,micropapillary=5,other=6,mixed=7)",Degree of differentiation (1:Poor; 2: Moderate; 3: Well),Gross tumor volume,Tumor stage,Tumor stage(A/B),Tumor purity (%),Stroma (%),Immune cells (%),Normal tissue (%),Necrosis (%),CD8 level,HLA-DR in tumor cells,HLA-DR in TILs,Smoke Status (0:Non-smoker; 1:Smoker),Date of surgical resection (year/month/day),DFS,DFS-day,DFS-month,OS,OS-day,OS-month,Date of recurrence,Date of death,Last date visited
+LADC_01,LUAD_01,X,X,X,X,,56,1,0,0,2,42,1,Adenocarcinoma,papillary predominant,2,1,1.8x1.7cm,T2aN0M0,IB,90,5,5,0,0,low,high,high,0,12/18/2014,1,439,14.44 ,1,1179,38.78 ,3/1/2016,3/11/2018,3/11/2018
+LADC_02,LUAD_02,X,X,X,X,,67,1,1,0,1,54,1,Adenocarcinoma,papillary predominant,2,2,2.2x1.5cm,T2aN0M0,IB,60,25,5,10,0,low,high,high,1,12/18/2014,0,1287,42.34 ,0,1287,42.34 ,,,6/27/2018
+LADC_03,LUAD_03,X,X,X,X,,73,0,0,0,1,58,1,Adenocarcinoma,papillary predominant,2,1,3x2cm,T1cN0M0,IA3,50,25,10,15,0,low,high,high,1,12/25/2014,0,1280,42.11 ,0,1280,42.11 ,,,6/27/2018
+LADC_04,LUAD_04,X,X,X,X,,776,1,0,1,1,70,2,Adenocarcinoma,acinar predominant,1,1,2x1.5cm,T2aN0M0,IB,60,15,5,20,0,low,high,low,1,11/5/2014,0,1470,48.36 ,0,1470,48.36 ,,,11/14/2018
+LADC_05,LUAD_05,X,X,X,X,,93,0,1,0,2,60,1,Adenocarcinoma,acinar predominant,1,2,3.5x1.5cm,T2aN0M0,IB,90,5,5,0,0,medium,high,high,0,11/20/2014,0,946,31.12 ,0,946,31.12 ,,,6/23/2017
+LADC_06,LUAD_06,X,X,X,X,,80,0,0,0,2,52,1,Adenocarcinoma,acinar predominant,1,1,3x2cm,T2aN0M0,IB,60,30,10,0,0,low,high,low,0,11/17/2014,1,318,10.46 ,1,510,16.78 ,10/1/2015,4/10/2016,4/10/2016
+LADC_07,LUAD_07,X,X,X,X,,66,1,0,0,2,63,2,Adenocarcinoma,acinar predominant,1,3,3x2cm,T2aN0M0,IB,90,7,3,0,0,low,high,low,0,12/1/2014,1,1445,47.53 ,0,1445,47.53 ,11/15/2018,,11/15/2018
+LADC_08,LUAD_08,X,X,X,X,,276,0,0,1,2,65,2,Adenocarcinoma,acinar predominant,1,2,3x2cm,T3N0M0,IIB,80,10,10,0,0,low,low,high,0,12/22/2014,1,100,3.29 ,1,555,18.26 ,4/1/2015,6/29/2016,6/29/2016
+LADC_09,LUAD_09,X,X,X,X,,56,1,0,0,2,65,2,Adenocarcinoma,acinar predominant,1,2,1.7x1.3cm,T2aN0M0,IB,80,18,2,0,0,low,high,low,0,6/23/2015,0,1111,36.55 ,0,1111,36.55 ,,,7/8/2018
+LADC_10,LUAD_10,X,X,X,X,,75,1,0,0,2,52,1,Adenocarcinoma,acinar predominant,1,1,4x3cm,T2aN2M0,IIIA,50,45,5,0,0,low,high,high,0,6/22/2015,1,406,13.36 ,1,578,19.01 ,8/1/2016,1/20/2017,1/20/2017
+LADC_11,LUAD_11,X,X,X,X,,118,0,1,0,1,56,1,Adenocarcinoma,acinar predominant,1,2,3x2.7cm,T2aN0M0,IB,50,45,5,0,0,low,high,high,1,7/16/2015,0,734,24.14 ,0,734,24.14 ,,,7/19/2017
+LADC_12,LUAD_12,X,X,X,X,,83,0,1,0,2,59,1,Adenocarcinoma,acinar predominant,1,2,4x1.7cm,T2aN0M0,IB,70,15,15,0,0,low,high,high,1,7/10/2015,0,979,32.20 ,0,979,32.20 ,,,3/15/2018
+LADC_13,LUAD_13,X,X,X,X,,33,0,0,0,2,59,1,Adenocarcinoma,acinar predominant,1,2,1.5x1.5cm,T2aN0M0,IB,50,10,10,0,30,low,high,high,0,9/7/2015,1,126,4.14 ,1,554,18.22 ,1/11/2016,3/14/2017,3/14/2017
+LADC_14,LUAD_14,X,X,X,X,,270,0,0,0,1,57,1,Adenocarcinoma,acinar + lepidic,7,2,4.5x3.5cm,T2bN0M0,IIA,70,27,3,0,0,low,high,high,1,8/4/2015,1,1099,36.15 ,0,1099,36.15 ,8/7/2018,,8/7/2018
+LADC_15,LUAD_15,X,X,X,X,,21,1,0,0,2,50,1,Adenocarcinoma,solid predominant,4,1,2x1.6cm,T2aN2M0,IIIA,80,5,5,0,10,low,high,high,0,7/27/2015,0,638,20.99 ,0,638,20.99 ,,,4/25/2017
+LADC_16,LUAD_16,X,X,X,X,,105,0,1,0,2,75,2,Adenocarcinoma,papillary predominant,2,1,4.5x4.5x4cm,T2bN1M0,IIB,80,15,2,3,0,low,high,high,0,6/26/2014,0,1252,41.18 ,0,1252,41.18 ,,,11/29/2017
+LADC_17,LUAD_17,X,X,X,X,X,1803,1,0,0,1,73,2,Adenocarcinoma,solid predominant,4,1,3x3x3.2cm,T2aN0M0,IB,80,10,10,0,0,medium,high,high,1,8/8/2014,1,967,31.81 ,1,967,31.81 ,4/1/2017,4/1/2017,4/1/2017
+LADC_18,LUAD_18,X,X,X,X,X,80,1,1,0,2,55,1,Adenocarcinoma,acinar predominant,1,2,4x3x3cm,T2aN0M0,IB,80,10,10,0,0,medium,high,high,0,8/18/2014,0,1568,51.58 ,0,1568,51.58 ,,,12/3/2018
+LADC_19,LUAD_19,X,X,X,X,X,103,1,1,0,2,56,1,Adenocarcinoma,solid predominant,4,1,4x3.5x3cm,T2aN0M0,IB,60,35,5,0,0,low,high,high,0,8/18/2014,1,577,18.98 ,0,1712,56.32 ,3/17/2016,,4/26/2019
+LADC_20,LUAD_20,X,X,X,X,X,1176,0,1,0,1,57,1,Adenocarcinoma,papillary predominant,2,1,2.5x1.7x1.5cm,T2aN0M0,IB,80,10,10,0,0,medium,high,high,1,8/21/2014,0,1516,49.87 ,0,1516,49.87 ,,,10/15/2018
+LADC_21,LUAD_21,X,X,X,X,,166,1,0,1,1,68,2,Adenocarcinoma,acinar predominant,1,1,5x5x4cm,T2bN2M0,IIIA,70,20,10,0,0,medium,high,high,1,9/1/2014,1,1430,47.04 ,0,1570,51.64 ,8/1/2018,,12/19/2018
+LADC_22,LUAD_22,X,X,X,X,X,68,0,1,0,1,42,1,Adenocarcinoma,acinar predominant,1,2,2.9x1.5x3.6cm,T2aN2M0,IIIA,70,28,2,0,0,low,low,high,0,9/9/2014,1,935,30.76 ,1,935,30.76 ,4/1/2017,4/1/2017,4/1/2017
+LADC_23,LUAD_23,X,X,X,X,X,54,0,1,0,2,54,1,Adenocarcinoma,acinar predominant,1,3,0.8x0.3x0.9cm/1x0.3x0.1cm/1.4x1.1x1.3cm,T1aN0M0,IA1,70,25,5,0,0,low,high,high,0,10/10/2014,0,1515,49.84 ,0,1515,49.84 ,,,12/3/2018
+LADC_24,LUAD_24,X,X,X,X,X,181,1,0,0,1,73,2,Adenocarcinoma,solid predominant,4,1,3.2x3x2.5cm,T2aN2M0,IIIA,80,5,5,10,0,medium,high,high,1,10/14/2014,1,1175,38.65 ,1,1175,38.65 ,1/1/2018,1/1/2018,1/1/2018
+LADC_25,LUAD_25,X,X,X,X,X,100,1,0,0,2,61,2,Adenocarcinoma,acinar predominant,1,3,1.0x0.5x0.5cm,T1aN0M0,IA1,60,25,5,10,0,low,high,high,0,10/20/2014,1,267,8.78 ,0,1505,49.51 ,7/14/2015,,12/3/2018
+LADC_26,LUAD_26,X,X,X,X,X,944,1,0,0,1,64,2,Adenocarcinoma,solid predominant,4,1,6x3x4cm,T3N0M0,IIB,95,2,3,0,0,high,low,high,1,10/20/2014,1,275,9.05 ,1,559,18.39 ,7/22/2015,5/1/2016,5/1/2016
+LADC_27,LUAD_27,X,X,X,X,X,71,1,1,0,1,31,1,Adenocarcinoma,solid predominant,4,1,3.5x2.5x2.5cm,T2aN2M0,IIIA,80,5,3,10,2,high,high,high,0,10/27/2014,1,549,18.06 ,1,1128,37.11 ,4/28/2016,11/28/2017,11/28/2017
+LADC_28,LUAD_28,X,X,X,X,X,83,1,0,0,2,61,2,Adenocarcinoma,acinar predominant,1,2,3.3x2x1.7cm,T2aN0M0,IB,60,35,5,0,0,medium,high,high,0,10/31/2014,0,1578,51.91 ,0,1578,51.91 ,,,2/25/2019
+LADC_29,LUAD_29,X,X,X,X,X,132,1,1,0,2,73,2,Adenocarcinoma,lepidic predominant,3,3,1.7x1x0.5cm,T1bN0M0,IA2,50,35,5,10,0,low,high,high,0,11/3/2014,1,759,24.97 ,0,1548,50.92 ,12/1/2016,,1/29/2019
+LADC_30,LUAD_30,X,X,X,X,X,339,0,0,0,2,67,2,Adenocarcinoma,acinar predominant,1,2,4x2.5x1.5cm,T2aN0M0,IB,90,0,10,0,0,low,high,high,1,11/13/2014,1,1388,45.66 ,1,1388,45.66 ,9/1/2018,9/1/2018,9/1/2018
+LADC_31,LUAD_31,X,X,X,X,,203,1,0,0,1,41,1,Adenocarcinoma,solid predominant,4,1,1.5x1.3x0.6cm,T2aN2M0,IIIA,70,5,5,20,0,low,high,high,0,11/17/2014,1,379,12.47 ,0,1477,48.59 ,12/1/2015,,12/3/2018
+LADC_32,LUAD_32,X,X,X,X,,32,1,0,0,2,46,1,Adenocarcinoma,lepidic predominant,3,3,0.5x0.5x0.5cm,T1aN0M0,IA1,80,10,10,0,0,medium,high,high,0,11/24/2014,0,1460,48.03 ,0,1460,48.03 ,,,11/23/2018
+LADC_33,LUAD_33,X,X,X,X,X,106,0,1,0,2,52,1,Adenocarcinoma,acinar predominant,1,2,1.8x1.2x1cm,T2aN0M0,IB,60,38,2,0,0,low,high,high,0,11/27/2014,0,1467,48.26 ,0,1467,48.26 ,,,12/3/2018
+LADC_34,LUAD_34,X,X,X,X,X,76,1,1,0,2,62,2,Adenocarcinoma,acinar predominant,1,2,3.9x4x3cm,T2aN2M0,IIIA,70,20,10,0,0,medium,high,high,0,12/4/2014,1,166,5.46 ,1,1155,37.99 ,5/19/2015,2/1/2018,2/1/2018
+LADC_35,LUAD_35,X,X,X,X,X,72,0,0,0,2,43,1,Adenocarcinoma,acinar (50%) + solid (50%),7,1,3.2x2.5x2.5cm,T2aN1M0,IIB,70,28,2,0,0,low,high,high,0,1/5/2015,1,388,12.76 ,0,1591,52.34 ,1/28/2016,,5/15/2019
+LADC_36,LUAD_36,X,X,X,X,,49,0,1,0,2,59,1,Adenocarcinoma,papillary predominant,2,2,1.3x1.1x0.5cm,T1bN0M0,IA2,60,25,15,0,0,high,high,high,0,1/12/2015,0,1537,50.56 ,0,1537,50.56 ,,,3/29/2019
+LADC_37,LUAD_37,X,X,X,X,X,590,1,0,0,1,68,2,Adenocarcinoma,papillary predominant,2,2,2.6x2x2cm,T4N0M0,IIIA,60,10,5,0,25,low,low,high,1,1/12/2015,1,1250,41.12 ,1,1250,41.12 ,6/15/2018,6/15/2018,6/15/2018
+LADC_38,LUAD_38,X,X,X,X,X,83,0,1,0,2,65,2,Adenocarcinoma,acinar predominant,1,2,2.5x2x1.5cm,T1cN0M0,IA3,65,20,10,0,5,low,high,high,0,2/10/2015,0,1522,50.07 ,0,1522,50.07 ,,,4/12/2019
+LADC_39,LUAD_39,X,X,X,X,X,68,1,1,0,2,48,1,Adenocarcinoma,acinar predominant,1,1,2.6x2x1.9cm,T4N2M1a,IVA,65,30,5,0,0,medium,high,high,0,2/12/2015,1,112,3.68 ,1,475,15.63 ,6/4/2015,6/1/2016,6/1/2016
+LADC_40,LUAD_40,X,X,X,X,X,64,0,0,0,2,60,1,Adenocarcinoma,papillary predominant,2,2,2.1x1.8x1.8cm,T1cN0M0,IA3,95,2,3,0,0,medium,high,low,0,2/13/2015,0,1552,51.05 ,0,1552,51.05 ,,,5/15/2019
+LADC_41,LUAD_41,X,X,X,X,X,99,0,1,0,2,74,2,Adenocarcinoma,acinar predominant,1,2,2x1x0.9cm/1.8x1x0.6cm,T4N0M0,IIIA,80,10,10,0,0,medium,high,low,0,3/17/2015,1,555,18.26 ,0,1357,44.64 ,9/22/2016,,12/3/2018
+LADC_42,LUAD_42,X,X,X,X,X,82,0,0,0,2,55,1,Adenocarcinoma,solid predominant,4,1,2.7x2.7x3cm/3.5x4x4cm,T3N2M0,IIIB,60,20,20,0,0,high,low,high,0,4/2/2015,1,160,5.26 ,0,169,5.56 ,9/9/2015,,9/18/2015
+LADC_43,LUAD_43,X,X,X,X,RNA-Seq data only for tumor sample,89,0,1,0,2,55,1,Adenocarcinoma,papillary predominant,2,2,4x5x5cm,T2bN2M0,IIIA,80,10,5,0,5,high,high,high,0,4/9/2015,1,327,10.76 ,0,1334,43.88 ,3/1/2016,,12/3/2018
+LADC_44,LUAD_44,X,X,X,X,X,185,0,0,0,2,51,1,Adenocarcinoma,papillary predominant,2,1,4.5x3x4.5cm,T2bN2M0,IIIA,50,10,5,30,5,medium,high,high,0,4/13/2015,1,714,23.49 ,0,1483,48.78 ,3/27/2017,,5/5/2019
+LADC_45,LUAD_45,X,X,X,X,X,22,0,0,0,2,26,1,Adenocarcinoma,solid predominant,4,1,4.2x3.8x3cm,T2bN0M0,IIA,95,2,3,0,0,high,low,high,0,4/20/2015,0,1323,43.52 ,0,1323,43.52 ,,,12/3/2018
+LADC_46,LUAD_46,X,X,X,X,X,67,1,1,0,2,60,1,Adenocarcinoma,papillary predominant,2,2,3.4x2x2.7cm,T3N0M0,IIB,70,20,5,0,5,medium,high,high,0,4/27/2015,1,493,16.22 ,0,1485,48.85 ,9/1/2016,,5/21/2019
+LADC_47,LUAD_47,X,X,X,X,X,74,1,1,0,2,50,1,Adenocarcinoma,solid predominant,4,1,3.5x1.8x1.5cm）,T3N0M0,IIB,70,25,5,0,0,low,high,high,0,4/28/2015,0,1469,48.32 ,0,1469,48.32 ,,,5/6/2019
+LADC_48,LUAD_48,X,X,X,X,X,103,1,1,0,2,63,2,Adenocarcinoma,acinar predominant,1,2,2x1.5x1.5cm,T3N2M0,IIIB,50,30,20,0,0,high,high,high,0,4/30/2015,1,93,3.06 ,0,1468,48.29 ,8/1/2015,,5/7/2019
+LADC_49,LUAD_49,X,X,X,X,X,89,1,1,0,2,36,1,Adenocarcinoma,solid (90%) + acinar (10%),4,1,5x5x4.5cm,T3N2M0,IIIB,80,5,5,0,10,low,high,high,0,5/7/2015,1,89,2.93 ,1,452,14.87 ,8/4/2015,8/1/2016,8/4/2016
+LADC_50,LUAD_50,X,X,X,X,X,115,1,1,0,2,46,1,Adenocarcinoma,acinar predominant,1,2,3x2.5x3cm,T1cN0M0,IA3,50,35,5,0,10,low,high,high,0,5/25/2015,1,1284,42.24 ,0,1288,42.37 ,11/29/2018,,12/3/2018
+LADC_51,LUAD_51,X,X,X,X,X,117,0,0,0,1,63,2,Adenocarcinoma,solid predominant,4,1,6x2x2.5cm,T3N1M0,IIIA,60,25,15,0,0,medium,high,high,1,6/2/2015,0,1280,42.11 ,0,1280,42.11 ,,,12/3/2018
+LADC_52,LUAD_52,X,X,X,X,X,70,0,1,0,2,67,2,Adenocarcinoma,papillary predominant,2,2,3.1x2.1x1.5cm,T2aN0M0,IB,60,20,15,5,0,medium,low,high,0,6/8/2015,0,1274,41.91 ,0,1274,41.91 ,,,12/3/2018
+LADC_53,LUAD_53,X,X,X,X,X,76,1,1,0,1,66,2,Adenocarcinoma,acinar predominant,1,2,2.5x2x3cm,T2aN2M0,IIIA,50,30,20,0,0,high,high,high,0,6/15/2015,1,535,17.60 ,1,535,17.60 ,12/1/2016,12/1/2016,12/1/2016
+LADC_54,LUAD_54,X,X,X,X,X,95,1,1,0,2,67,2,Adenocarcinoma,acinar (70%) + solid (30%),1,1,2.5x3x3cm,T1cN0M0,IA3,50,30,18,0,2,high,high,high,0,6/18/2015,1,356,11.71 ,0,1264,41.58 ,6/8/2016,,12/3/2018
+LADC_55,LUAD_55,X,X,X,X,X,47,0,1,0,1,45,1,Adenocarcinoma,acinar predominant,1,1,2x1.5x1.5cm,T2aN0M0,IB,50,48,2,0,0,low,high,low,0,6/29/2015,1,240,7.89 ,0,1253,41.22 ,2/24/2016,,12/3/2018
+LADC_56,LUAD_56,X,X,X,X,X,59,0,0,0,1,59,1,Adenocarcinoma,acinar predominant,1,2,2.2x1.5x1cm,T2aN0M0,IB,70,20,5,0,5,medium,high,high,1,7/6/2015,0,1246,40.99 ,0,1246,40.99 ,,,12/3/2018
+LADC_57,LUAD_57,X,X,X,X,X,38,0,1,0,1,61,2,Adenocarcinoma,papillary predominant,2,2,3.5x2.7x1.5cm,T2aN0M0,IB,90,5,5,0,0,low,high,low,0,7/6/2015,0,1367,44.97 ,0,1367,44.97 ,,,4/3/2019
+LADC_58,LUAD_58,X,X,X,X,RNA-Seq data only for tumor sample,328,1,1,0,1,63,2,Adenocarcinoma,solid predominant,4,1,4x2.5x3cm,T2aN2M0,IIIA,80,8,2,0,10,medium,high,high,1,7/6/2015,1,310,10.20 ,1,665,21.88 ,5/11/2016,5/1/2017,5/1/2017
+LADC_59,LUAD_59,X,X,X,X,,93,0,0,1,1,52,1,Adenocarcinoma,acinar predominant,1,1,8x5x4cm,T4N1M0,IIIA,95,2,3,0,0,low,low,low,1,7/6/2015,1,849,27.93 ,0,849,27.93 ,11/1/2017,,11/1/2017
+LADC_60,LUAD_60,X,X,X,X,X,305,1,0,0,2,72,2,Adenocarcinoma,solid predominant,4,1,6x5x4cm/2.5x1x0.2cm,T3N2M0,IIIB,50,40,10,0,0,high,high,high,0,7/16/2015,1,450,14.80 ,0,839,27.60 ,10/8/2016,,11/1/2017
+LADC_61,LUAD_61,X,X,X,X,X,79,0,0,0,2,52,1,Adenocarcinoma,papillary predominant,2,2,4.3x3x3.5cm,T2bN1M0,IIB,85,8,5,2,0,medium,high,high,0,7/21/2015,1,864,28.42 ,1,864,28.42 ,12/1/2017,12/1/2017,12/1/2017
+LADC_62,LUAD_62,X,X,X,X,,68,1,1,0,2,48,1,Adenocarcinoma,papillary predominant,2,1,7x5x7.5cm,T4N2M0,IIIB,80,15,5,0,0,low,high,high,0,8/31/2015,1,1067,35.10 ,1,1067,35.10 ,8/2/2018,8/2/2018,8/2/2018
+LADC_63,LUAD_63,X,X,,X,X,89,1,0,0,2,74,2,Adenocarcinoma,solid predominant,4,1,5.5x5x5cm,T3N2M0,IIIB,70,15,10,0,5,high,high,low,0,11/30/2015,1,800,26.32 ,1,1094,35.99 ,2/7/2018,11/28/2018,11/28/2018
+LADC_64,LUAD_64,X,X,,X,,172,1,1,0,1,59,1,Adenocarcinoma,acinar predominant,1,1,4.5x3.2x3cm,T2bN0M0,IIA,50,45,3,0,2,low,high,high,1,12/8/2015,0,1091,35.89 ,0,1091,35.89 ,,,12/3/2018
+LADC_65,LUAD_65,X,X,,X,,150,0,1,0,1,65,2,Adenocarcinoma,acinar (80%) + papillary (20%),1,2,2.7x1.6x1.7cm,T2aN0M0,IB,50,35,5,0,10,low,high,high,0,12/15/2015,1,928,30.53 ,0,1084,35.66 ,6/30/2018,,12/3/2018
+LADC_66,LUAD_66,X,X,,X,X,116,0,0,0,2,61,2,Adenocarcinoma,acinar predominant,1,1,2.8x2.5x1.8cm/2.8x2.5x2cm,T4N1M0,IIIA,90,6,2,2,0,medium,high,high,0,1/11/2016,0,1225,40.30 ,0,1225,40.30 ,,,5/20/2019
+LADC_67,LUAD_67,X,X,,X,X,156,1,1,0,2,50,1,Adenocarcinoma,papillary (80%) + acinar (20%) ,2,2,3.5x2.2x3.1cm,T2aN2M0,IIIA,80,15,2,0,3,low,high,high,0,1/14/2016,1,534,17.57 ,0,1054,34.67 ,7/1/2017,,12/3/2018
+LADC_68,LUAD_68,X,X,,X,X,82,0,0,0,2,59,1,Adenocarcinoma,solid predominant,4,1,4x3.8x2.8cm,T2aN1M0,IIB,90,8,2,0,0,medium,high,high,0,2/1/2016,1,106,3.49 ,1,455,14.97 ,5/17/2016,5/1/2017,5/1/2017
+LADC_69,LUAD_69,X,X,,X,,72,1,1,0,1,72,2,Adenocarcinoma,papillary predominant,2,2,4.5x4x3cm,T2bN0M0,IIA,90,5,5,0,0,high,high,low,0,2/14/2016,0,1023,33.65 ,0,1023,33.65 ,,,12/3/2018
+LADC_70,LUAD_70,X,X,,X,,29,0,1,0,2,72,2,Adenocarcinoma,acinar predominant,1,2,4x3.8x3cm,T2aN0M0,IB,50,40,10,0,0,medium,high,high,0,2/29/2016,0,630,20.72 ,0,630,20.72 ,,,11/20/2017
+LADC_71,LUAD_71,X,X,,X,X,96,0,1,0,2,73,2,Adenocarcinoma,acinar predominant,1,1,3.5x1.5x2cm,T2aN0M0,IB,50,40,5,0,5,low,low,high,0,3/7/2016,1,481,15.82 ,0,1141,37.53 ,7/1/2017,,4/22/2019
+LADC_72,LUAD_72,X,X,,X,X,137,1,1,0,2,69,2,Adenocarcinoma,solid predominant,4,1,4.7x4x2.8cm,T2bN1M0,IIB,70,20,10,0,0,low,high,high,0,3/14/2016,0,994,32.70 ,0,994,32.70 ,,,12/3/2018
+LADC_73,LUAD_73,X,X,,X,X,438,1,0,0,1,55,1,Adenocarcinoma,solid predominant,4,1,5x3.5x3cm,T2bN0M0,IIA,60,10,10,0,20,medium,low,high,1,5/5/2016,0,1098,36.12 ,0,1098,36.12 ,,,5/8/2019
+LADC_74,LUAD_74,X,X,,X,X,685,1,0,0,1,44,1,Adenocarcinoma,solid predominant,4,2,2.3x2.1x1.6cm,T1cN0M0,IA3,70,20,10,0,0,low,low,high,1,5/9/2016,0,938,30.86 ,0,938,30.86 ,,,12/3/2018
+LADC_75,LUAD_75,X,X,X,X,,800,1,0,1,2,69,2,Adenocarcinoma,acinar predominant,1,2,3.2x3x2.1cm,T2aN2M0,IIIA,80,17,3,0,0,low,high,high,0,1/26/2015,1,400,13.16 ,1,636,20.92 ,3/1/2016,10/23/2016,10/23/2016
+LADC_76,LUAD_76,X,X,X,X,,32,0,1,0,1,54,1,Adenocarcinoma,micropapillary predominant,5,1,3.5x2x1cm,T2aN2M0,IIIA,60,0,10,30,0,medium,high,high,0,1/27/2015,1,339,11.15 ,0,1494,49.14 ,1/1/2016,,3/1/2019
+LADC_77,LUAD_77,X,X,X,X,,6,0,0,0,1,70,2,Adenocarcinoma,papillary predominant,2,2,3×2.2×2cm,T2aN2M0,IIIA,80,0,5,15,0,low,high,high,1,2/3/2015,1,514,16.91 ,1,1002,32.96 ,7/1/2016,11/1/2017,11/1/2017
+LADC_78,LUAD_78,X,X,X,X,,123,1,1,0,2,66,2,Adenocarcinoma,lepidic predominant,3,2,4x1.5x2cm,T2aN2M0,IIIA,70,20,5,0,5,low,high,low,0,4/9/2015,0,1483,48.78 ,0,1483,48.78 ,,,5/1/2019
+LADC_79,LUAD_79,X,X,X,X,,48,1,0,0,2,63,2,Adenocarcinoma,NA,NA,1,2x2x1.5cm,T1bN0M0,IA2,60,20,15,5,0,medium,high,high,0,4/13/2015,1,1096,36.05 ,0,1418,46.64 ,4/13/2018,,3/1/2019
+LADC_80,LUAD_80,X,X,X,X,,22,1,1,0,2,62,2,Adenocarcinoma,acinar predominant,1,1,2.6×2×1.1cm,T1cN2M0,IIIA,50,0,20,30,0,medium,high,low,1,4/29/2015,1,1251,41.15 ,0,1251,41.15 ,10/1/2018,,10/1/2018
+LADC_81,LUAD_81,X,X,X,X,,227,0,0,0,1,63,2,Adenocarcinoma,other,6,1,6.5×5.6×5cm,T3N0M0,IIB,80,5,15,0,0,medium,low,high,1,5/5/2015,0,1457,47.93 ,0,1457,47.93 ,,,5/1/2019
+LADC_82,LUAD_82,X,X,X,X,,49,0,1,0,2,63,2,Adenocarcinoma,acinar predominant,1,2,3x2x1.2cm,T2aN0M0,IB,60,30,5,0,5,medium,high,high,0,5/14/2015,0,1448,47.63 ,0,1448,47.63 ,,,5/1/2019
+LADC_83,LUAD_83,X,X,X,X,,233,1,0,0,2,70,2,Adenocarcinoma,solid predominant,4,2,5.6×4.1×2.8cm,T3N2M0,IIIB,80,10,10,0,0,low,high,low,0,5/18/2015,0,1140,37.50 ,0,1140,37.50 ,,,7/1/2018
+LADC_84,LUAD_84,X,X,X,X,,23,0,0,0,2,63,2,Adenocarcinoma,solid (70%) + lepidic (30%),4,2,1.3x0.7x1.2cm,T1bN0M0,IA2,70,5,10,5,10,low,high,high,0,6/2/2015,0,1368,45.00 ,0,1368,45.00 ,,,3/1/2019
+LADC_85,LUAD_85,X,X,X,X,,85,0,0,0,1,67,2,Adenocarcinoma,acinar predominant,1,2,1.6x1.1cm,T1bN0M0,IA2,60,38,2,0,0,low,high,high,0,6/2/2015,0,1217,40.03 ,0,1217,40.03 ,,,10/1/2018
+LADC_86,LUAD_86,X,X,X,X,,55,0,0,0,2,73,2,Adenocarcinoma,acinar (80%) + micropapillary (20%),1,2,2.5x2.9x3.0cm,T1cN0M0,IA3,75,10,10,0,5,low,high,high,0,6/12/2015,1,569,18.72 ,1,903,29.70 ,1/1/2017,12/1/2017,12/1/2017
+LADC_87,LUAD_87,X,X,X,X,,49,0,1,0,2,61,2,Adenocarcinoma,acinar predominant,1,2,5x3.5x3.5cm,T2bN0M0,IIA,60,25,15,0,0,low,high,high,0,10/27/2015,0,1282,42.17 ,0,1282,42.17 ,,,5/1/2019
+LADC_88,LUAD_88,X,X,X,X,,34,0,1,0,2,71,2,Adenocarcinoma,papillary + micropapillary ,7,2,2.5×1.9×1.5cm,T1cN2M0,IIIA,70,5,15,0,10,low,high,high,0,11/16/2015,1,1020,33.55 ,0,1262,41.51 ,9/1/2018,,5/1/2019
+LADC_89,LUAD_89,X,X,,X,X,149,1,0,0,2,52,1,Adenocarcinoma,solid predominant,4,1,1.7x1.3x1.7cm,T1bN2M0,IIIA,80,10,5,5,0,low,high,high,0,8/15/2014,0,1571,51.68 ,0,1571,51.68 ,,,12/3/2018
+LADC_90,LUAD_90,X,X,X,X,X,220,0,0,0,1,76,2,Adenocarcinoma,lepidic predominant,3,2,1.5x0.9x1cm,T2aN0M0,IB,80,15,3,0,2,medium,high,high,0,12/9/2014,0,1617,53.19 ,0,1617,53.19 ,,,5/14/2019
+LADC_91,LUAD_91,X,X,X,X,X,131,0,0,0,1,51,1,Adenocarcinoma,acinar predominant,1,2,2.5x2x1.5cm,T1cN0M0,IA3,70,15,5,10,0,medium,high,high,0,12/26/2014,1,456,15.00 ,0,1496,49.21 ,3/26/2016,,1/30/2019
+LADC_92,LUAD_92,X,X,X,X,,74,1,0,0,2,66,2,Adenocarcinoma,lepidic predominant,3,2,4x1.5x2cm,T2aN0M0,IB,60,25,15,0,0,low,high,high,0,4/13/2015,0,1498,49.28 ,0,1498,49.28 ,,,5/20/2019
+LADC_93,LUAD_93,X,X,,X,,234,1,1,0,2,72,2,Adenocarcinoma,acinar predominant,1,2,4x2.5x2.5cm,T2aN0M0,IB,50,45,5,0,0,low,high,high,0,4/12/2010,1,203,6.68 ,1,203,6.68 ,11/1/2010,11/1/2010,11/1/2010
+LADC_94,LUAD_94,X,X,,X,,701,1,0,0,1,69,2,Adenocarcinoma,acinar predominant,1,2,2.5x1.2x0.7cm,T2aN0M0,IB,50,45,5,0,0,medium,low,high,1,4/13/2010,0,2009,66.09 ,0,2009,66.09 ,,,10/13/2015
+LADC_95,LUAD_95,X,X,,X,,191,1,1,0,1,45,1,Adenocarcinoma,acinar predominant,1,2,3x2.8x2cm,T2aN1M1a,IVA,50,45,5,0,0,medium,high,high,0,4/13/2010,1,1346,44.28 ,0,2277,74.90 ,12/19/2013,,7/7/2016
+LADC_96,LUAD_96,X,X,,X,,235,1,1,0,2,59,1,Adenocarcinoma,other,6,1,2.5x2.5x1.5cm,T2aN2M0,IIIA,80,15,5,0,0,low,high,high,0,3/31/2010,1,488,16.05 ,0,2204,72.50 ,8/1/2011,,4/12/2016
+LADC_97,LUAD_97,X,X,,X,,129,1,1,0,2,41,1,Adenocarcinoma,acinar + lepidic,7,1,4x3.4x3cm,T2aN0M0,IB,70,15,5,0,10,low,high,low,0,3/25/2010,0,2381,78.32 ,0,2381,78.32 ,,,9/30/2016
+LADC_98,LUAD_98,X,X,,X,,129,1,0,1,2,68,2,Adenocarcinoma,acinar predominant,1,1,4x3x1cm,T2aN0M0,IB,70,20,10,0,0,low,high,high,0,3/29/2010,0,2377,78.19 ,0,2377,78.19 ,,,9/30/2016
+LADC_99,LUAD_99,X,X,,X,,155,0,0,0,1,63,2,Adenocarcinoma,acinar predominant,1,2,3x2.5x2.5cm,T2aN0M0,IB,80,18,2,0,0,medium,low,high,1,11/18/2010,1,622,20.46 ,1,683,22.47 ,8/1/2012,10/1/2012,10/1/2012
+LADC_100,LUAD_100,X,X,,X,,120,0,1,0,1,67,2,Adenocarcinoma,micropapillary predominant,5,3,2.5x2.5x2cm,T2aN0M0,IB,80,3,15,2,0,low,high,high,0,11/16/2010,1,1323,43.52 ,0,2009,66.09 ,7/1/2014,,5/17/2016
+LADC_101,LUAD_101,X,X,,X,,98,0,1,0,2,46,1,Adenocarcinoma,acinar predominant,1,2,2x1.5x1cm,T2aN0M0,IB,80,10,10,0,0,medium,high,high,0,11/15/2010,1,1159,38.13 ,0,2054,67.57 ,1/17/2014,,6/30/2016
+LADC_102,LUAD_102,X,X,,X,,96,1,1,0,1,47,1,Adenocarcinoma,acinar predominant,1,1,4x4x3cm,T2aN1M0,IIB,80,8,2,0,10,low,high,high,0,2/15/2011,1,576,18.95 ,0,2159,71.02 ,9/13/2012,,1/13/2017
+LADC_103,LUAD_103,X,X,,X,,56,0,0,0,1,51,1,Adenocarcinoma,acinar predominant,1,3,3x2.5x2.5cm,T2aN0M0,IB,80,15,5,0,0,medium,high,high,1,1/17/2011,0,1709,56.22 ,0,1709,56.22 ,,,9/22/2015

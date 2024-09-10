@@ -1,0 +1,111 @@
+Case_ID,Tumor/Normal,Gender,Age,BMI,Race,Ethnicity_Self_Identify,Tumor_Site,Tumor_Site_Other,Tumor_Size_cm,Tumor_Focality,Histologic_Type,Grade,Tumor_Stage_Pathological,Path_Stage_Primary_Tumor_pT,Path_Stage_Reg_Lymph_Nodes_pN
+C3L-00004,TN,Male,72,22.8,White,White,Lower pole,,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3,pNX
+C3L-00010,TN,Male,30,34.15,White,White,Upper pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pN0
+C3L-00011,TN,Female,63,27.47,White,White,Lower pole,,12.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
+C3L-00026,TN,Female,65,28.23,White,White,Lower pole,,2.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-00079,TN,Male,49,37.88,White,white,Other,mid-inferior,14.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN1
+C3L-00088,TN,Male,72,32.82,White,white,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3L-00096,TN,Male,52,27.44,White,White,Lower pole,,12.3,Multifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pN0
+C3L-00097,TN,Male,59,36.81,White,white,Upper pole,,3.7,Multifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00103,TN,Male,56,28.7,White,White,Middle,,11.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3b,pN0
+C3L-00183,TN,Female,33,36.39,White,Patient not interviewed,Middle,,6.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3L-00359,T,Female,73,42.92,White,White,Lower pole,,3.0,Unifocal,non-Clear Cell renal cell carcinoma,G1,Stage I,pT1a,pNX
+C3L-00360,TN,Male,72,38.94,White,WHITE,Other,posterior central,3.7,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
+C3L-00369,TN,Male,89,27.35,White,White,Lower pole,,12.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3L-00416,TN,Male,62,32.0,White,White,Other,HILAR,6.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3b,pNX
+C3L-00418,TN,Female,56,59.88,White,White,Other,Inferior to Mid Pole,8.7,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3L-00447,TN,Male,35,36.57,White,White,Upper pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
+C3L-00448,TN,Male,66,26.18,White,White,Other,mid anterior,1.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00561,TN,Male,50,27.47,White,White,Middle,,10.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3b,pN0
+C3L-00581,TN,Male,52,33.66,White,White,Lower pole,,13.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2b,pNX
+C3L-00583,TN,Male,55,37.72,White,Hispanic,Other,Central,4.0,Multifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-00606,TN,Female,75,42.33,White,White,Middle,,7.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN0
+C3L-00607,TN,Male,66,37.96,White,Caucasion,Middle,,7.5,Multifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3L-00610,T,Female,57,40.74,White,Caucasion,Other,"Reports only indicate ""deep renal tumor""",6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
+C3L-00765,T,Female,61,21.96,White,Medical Record Does Not State,Lower pole,,5.6,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3L-00766,T,Female,57,68.59,White,Caucasion,Upper pole,,2.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00790,T,Male,44,38.99,White,Medical Record Does Not State,Middle,,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3L-00791,TN,Male,76,29.49,White,Medical record does not state.,Lower pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT1b,pN1
+C3L-00792,T,Female,>=90,29.6,White,Medical record does not state,Lower pole,,8.7,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
+C3L-00796,T,Male,67,30.81,White,Medical record does not state,Lower pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3L-00799,T,Male,41,35.66,White,Caucasion,Middle,,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00800,T,Male,41,29.01,White,White,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00812,T,Male,74,27.04,White,White,Upper pole,,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00813,T,Male,61,19.49,White,Medical record does not state,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3L-00814,TN,Male,83,30.56,Not Reported,Medical Record Does Not State,Middle,,3.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00817,T,Male,80,33.96,White,Medical record does not state,Lower pole,,1.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-00902,TN,Female,69,19.72,White,White,Middle,,5.0,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
+C3L-00907,TN,Male,55,47.25,White,WHITE,Other,Right Lower Pole,4.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3L-00908,TN,Female,60,27.85,White,White,Other,Left Central Anterior,10.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2b,pNX
+C3L-00910,TN,Female,75,36.36,White,White,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
+C3L-00917,TN,Male,37,45.37,White,Hispanic,Middle,,3.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-01281,TN,Male,66,34.76,White,White,Lower pole,,11.5,Multifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
+C3L-01283,T,Male,37,30.86,White,Hispanic,Middle,,2.4,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-01286,TN,Male,58,46.17,White,White,Other,"Hilum, recurrent clear cell renal cell carcinoma, original tumor had sarcomatoid features",6.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3L-01287,TN,Male,60,25.31,White,White,Other,Right Inferior,10.5,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
+C3L-01288,T,Female,70,39.45,White,White,Middle,,2.8,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1a,pNX
+C3L-01302,TN,Female,71,36.0,White,White,Upper pole,,8.5,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3a,pN0
+C3L-01313,TN,Male,63,29.38,White,White,Other,Mid to inferior aspect,9.0,Unifocal,Clear cell renal cell carcinoma,G4,Stage III,pT3a,pNX
+C3L-01352,T,Female,76,26.95,White,Hispanic,Middle,,3.4,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-01553,T,Male,59,46.17,White,Medical record does not state,Lower pole,,1.9,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-01557,T,Male,51,48.46,Black or African American,Medical record does not state,Other,Tumor invades the lower and middle poles,9.6,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pN0
+C3L-01560,T,Female,54,38.08,White,Medical record does not state,Lower pole,,1.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-01603,TN,Male,63,42.77,White,White,Other,"Left Upper Pole, Lateral aspect",4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3L-01607,TN,Male,83,27.52,White,White,Lower pole,,6.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3L-01836,TN,Male,47,29.41,White,White,Upper pole,,4.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
+C3L-01861,TN,Male,57,28.63,White,White,Other,Left,3.5,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1a,pNX
+C3L-01882,TN,Male,48,48.79,White,White,Other,Left,2.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pN0
+C3L-01885,TN,Male,67,35.27,White,White,Other,Right,3.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00148,TN,Male,52,28.41,,Caucasian,Other,Kidney,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00149,TN,Female,68,27.05,,Caucasian,Other,Kidney,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT4,pN0
+C3N-00150,TN,Female,55,18.42,,Caucasian,Other,"Kidney, not otherwise specified",12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT3,pN0
+C3N-00154,T,Male,68,28.08,,Caucasian,Other,Kidney,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pN0
+C3N-00168,TN,Male,47,18.78,,Asian,Other,Pole,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pN0
+C3N-00177,TN,Male,52,24.06,,Vietnam,Other,Pole,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3,pN0
+C3N-00194,TN,Female,51,26.96,White,white,Other,MID TO LOWER POLE,12.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT2b,pNX
+C3N-00242,TN,Male,69,39.2,White,Whte,Other,"RIGHT, unspecified",3.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00244,TN,Male,46,44.3,White,White,Other,upper and middle pole,2.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00246,TN,Male,44,45.77,White,white,Lower pole,,3.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00305,T,Female,60,19.0,,Caucasian,Middle,,1.0,Multifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1a,pNX
+C3N-00310,TN,Male,84,28.0,,Caucasian,Middle,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-00312,TN,Male,68,30.0,,Caucasian,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3N-00313,T,Female,31,22.0,,Caucasian,Middle,,4.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00314,TN,Male,78,31.0,,Caucasian,Middle,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00315,T,Male,68,28.0,,Caucasian,Upper pole,,7.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage I,pT1b,pNX
+C3N-00317,TN,Female,74,23.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00320,TN,Male,67,32.0,,Caucasian,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-00380,T,Female,57,46.0,,Slavonic,Upper pole,,4.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00390,TN,Male,58,29.05,,Slavonic,Upper pole,,14.1,Unifocal,Clear cell renal cell carcinoma,G2,Stage IV,pT3a,pNX
+C3N-00435,TN,Male,72,26.99,,Slavonic,Upper pole,,10.5,Unifocal,non-Clear Cell renal cell carcinoma,G3,Stage III,pT3,pN1
+C3N-00437,TN,Female,69,37.0,,Caucasian,Upper pole,,6.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3N-00491,TN,Male,54,30.0,,Caucasian,Upper pole,,6.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage IV,pT1b,pNX
+C3N-00492,TN,Female,49,26.0,,Caucasian,Lower pole,,11.0,Unifocal,non-Clear Cell renal cell carcinoma,G3,Stage II,pT2b,pNX
+C3N-00494,TN,Male,66,34.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00495,TN,Male,67,16.0,,Caucasian,Upper pole,,4.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00573,TN,Male,61,22.04,,Asian,Other,"Left kidney, unspecified pole",11.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2b,pN0
+C3N-00577,TN,Male,72,21.83,,Asian,Other,"Left kidney, not otherwise specified",14.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT3,pN1
+C3N-00646,TN,Female,57,27.72,,Caucasian,Other,Kidney,3.2,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-00733,TN,Male,56,27.77,White,American,Other,Involves all three poles,8.6,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-00831,TN,Male,52,30.0,,Caucasian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pNX
+C3N-00832,T,Male,79,23.0,,Caucasian,Lower pole,,4.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-00834,TN,Male,65,30.0,,Caucasian,Upper pole,,5.0,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
+C3N-00852,TN,Male,62,28.71,,Slavonic,Other,Entire kidney,13.6,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3N-00953,TN,Male,41,22.43,Asian,Indian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
+C3N-01175,TN,Female,60,14.0,,Caucasian,Middle,,3.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-01176,TN,Male,71,29.0,,Caucasian,Upper pole,,6.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-01178,TN,Female,58,25.0,,Caucasian,Upper pole,,7.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-01179,TN,Male,72,26.0,,Caucasian,Middle,,2.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-01180,T,Male,51,24.0,,Caucasian,Upper pole,,5.0,Unifocal,non-Clear Cell renal cell carcinoma,G2,Stage I,pT1b,pNX
+C3N-01200,TN,Female,56,26.37,,Slavonic,Other,Complete replacement of the left kidney's parenchyma,16.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage IV,pT4,pN0
+C3N-01213,T,Male,68,22.68,,Slavonic,Upper pole,,8.3,Unifocal,Clear cell renal cell carcinoma,G1,Stage III,pT3a,pNX
+C3N-01214,TN,Male,60,21.38,,Slavonic,Upper pole,,8.4,Unifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pN0
+C3N-01220,TN,Male,51,23.89,,Slavonic,Middle,,6.8,Unifocal,Clear cell renal cell carcinoma,G4,Stage IV,pT3a,pNX
+C3N-01261,TN,Male,67,24.02,,Slavonic,Upper pole,,5.2,Unifocal,Clear cell renal cell carcinoma,G1,Stage I,pT1b,pNX
+C3N-01361,TN,Male,48,39.0,,Caucasian,Middle,,2.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1a,pNX
+C3N-01522,TN,Male,80,30.78,,Slavonic,Upper pole,,5.5,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pN0
+C3N-01524,TN,Male,61,28.38,,Slavonic,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
+C3N-01646,TN,Male,69,25.0,,Caucasian,Upper pole,,10.0,Unifocal,Clear cell renal cell carcinoma,G3,Stage III,pT3a,pNX
+C3N-01648,TN,Male,69,28.0,,Caucasian,Upper pole,,7.0,Multifocal,Clear cell renal cell carcinoma,G2,Stage II,pT2a,pNX
+C3N-01649,TN,Male,51,35.0,,Caucasian,Upper pole,,8.0,Unifocal,Clear cell renal cell carcinoma,G2,Stage III,pT3a,pNX
+C3N-01651,TN,Male,58,25.0,,Caucasian,Middle,,10.0,Multifocal,Clear cell renal cell carcinoma,G3,Stage II,pT2a,pNX
+C3N-01808,TN,Male,47,28.75,White,American,Upper pole,,5.8,Unifocal,Clear cell renal cell carcinoma,G2,Stage I,pT1b,pNX

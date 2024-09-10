@@ -1,0 +1,154 @@
+,Country,Race,Myometrial_invasion_Specify,Progesterone_Receptor,MSH6,CIBERSORT_Mast _cells _resting,CNV_class,ESTIMATE_ImmuneScore,Path_Stage_Reg_Lymph_Nodes-pN,Path_Stage_Primary_Tumor-pT
+0,United States,White,under 50 %,Cannot be determined,Loss of nuclear expression,0.0,CNV_LOW,4885.608881,pN0,pT1a (FIGO IA)
+1,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,3632.199987,pNX,pT1a (FIGO IA)
+2,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,6602.912323,pN0,pT1a (FIGO IA)
+3,,,,,,,,,,
+4,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.065981557,CNV_LOW,4462.910274,pNX,pT1a (FIGO IA)
+5,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_HIGH,6545.943147,pNX,pT1a (FIGO IA)
+6,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.21207275,CNV_LOW,5622.138932,pNX,pT1a (FIGO IA)
+7,Other_specify,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,2928.488048,pNX,pT1a (FIGO IA)
+8,United States,White,50 % or more,Cannot be determined,Intact nuclear expression,0.099926731,CNV_HIGH,2838.299899,pNX,pT3a (FIGO IIIA)
+9,United States,White,Not identified,Cannot be determined,Intact nuclear expression,0.021773803,CNV_LOW,8463.786011,pN0,pT1 (FIGO I)
+10,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.042382678,CNV_LOW,5269.577209,pNX,pT1a (FIGO IA)
+11,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,5850.431589,pNX,pT1a (FIGO IA)
+12,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_HIGH,6285.433874,pN2 (FIGO IIIC2),pT3a (FIGO IIIA)
+13,United States,White,50 % or more,Cannot be determined,Intact nuclear expression,0.106293289,CNV_LOW,5255.761765,pN0,pT1b (FIGO IB)
+14,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.007330618,CNV_HIGH,3256.99141,pN0,pT1a (FIGO IA)
+15,United States,White,50 % or more,Positive,Intact nuclear expression,0.0,CNV_HIGH,6074.369909,pNX,pT1b (FIGO IB)
+16,United States,White,Not identified,Cannot be determined,Intact nuclear expression,0.027745052,CNV_LOW,2936.879453,pNX,pT1a (FIGO IA)
+17,United States,White,Not identified,Cannot be determined,Intact nuclear expression,0.034316037,CNV_HIGH,3924.864459,pN0,pT1a (FIGO IA)
+18,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,3696.358111,pN0,pT2 (FIGO II)
+19,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.047224779,CNV_LOW,6698.972556,pN0,pT1a (FIGO IA)
+20,Other_specify,Asian,under 50 %,Cannot be determined,Intact nuclear expression,0.016645745,CNV_LOW,3523.379962,pNX,pT1a (FIGO IA)
+21,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,6767.884691,pN2 (FIGO IIIC2),pT2 (FIGO II)
+22,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,4850.828051,pNX,pT1a (FIGO IA)
+23,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.018269735,CNV_LOW,4977.8832,pNX,pT1a (FIGO IA)
+24,Other_specify,White,under 50 %,Cannot be determined,Intact nuclear expression,0.092315548,CNV_LOW,3893.125442,pNX,pT1a (FIGO IA)
+25,Other_specify,White,50 % or more,Cannot be determined,Intact nuclear expression,0.072599294,CNV_LOW,4977.305287,pN0,pT1b (FIGO IB)
+26,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.0,CNV_LOW,5163.497494,pNX,pT1a (FIGO IA)
+27,Other_specify,White,50 % or more,Cannot be determined,Cannot be determined,0.130442357,CNV_LOW,5780.984035,pN0,pT3a (FIGO IIIA)
+28,Other_specify,White,Not identified,Cannot be determined,Cannot be determined,0.02840326,CNV_LOW,6771.601901,pNX,pT1a (FIGO IA)
+29,Other_specify,White,50 % or more,Cannot be determined,Loss of nuclear expression,0.0,CNV_LOW,6643.16418,pN0,pT2 (FIGO II)
+30,United States,White,50 % or more,Cannot be determined,Intact nuclear expression,0.011250673,CNV_HIGH,4354.875244,pN1 (FIGO IIIC1),pT1b (FIGO IB)
+31,Other_specify,White,under 50 %,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,6164.963056,pNX,pT1a (FIGO IA)
+32,United States,White,50 % or more,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,5550.608927,pN0,pT2 (FIGO II)
+33,Other_specify,White,Not identified,Cannot be determined,Cannot be determined,0.076648017,CNV_LOW,4402.548423,pNX,pT1a (FIGO IA)
+34,Other_specify,White,50 % or more,Cannot be determined,Intact nuclear expression,0.081171027,CNV_LOW,8516.249705,pNX,pT1b (FIGO IB)
+35,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.05073331,CNV_LOW,6057.850781,pNX,pT1a (FIGO IA)
+36,Other_specify,White,50 % or more,Cannot be determined,Cannot be determined,0.0,CNV_LOW,5643.777667,pN0,pT1b (FIGO IB)
+37,Other_specify,White,Not identified,Cannot be determined,Cannot be determined,0.046598774,CNV_LOW,5752.438575,pN0,pT1a (FIGO IA)
+38,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.028764852,CNV_LOW,4851.094335,pNX,pT1a (FIGO IA)
+39,Other_specify,White,under 50 %,Cannot be determined,Intact nuclear expression,0.034147031,CNV_LOW,5768.565065,pN0,pT1a (FIGO IA)
+40,Other_specify,White,50 % or more,Positive,Intact nuclear expression,0.052446093,CNV_HIGH,6255.195762,pNX,pT1b (FIGO IB)
+41,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.05178604,CNV_HIGH,4979.833929,pN0,pT1a (FIGO IA)
+42,Other_specify,White,50 % or more,Cannot be determined,Cannot be determined,0.093350416,CNV_HIGH,6499.908029,pN1 (FIGO IIIC1),pT1b (FIGO IB)
+43,Other_specify,White,50 % or more,Cannot be determined,Intact nuclear expression,0.097073479,CNV_LOW,6239.261385,pNX,pT1b (FIGO IB)
+44,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.0,CNV_LOW,7668.0101,pN0,pT1a (FIGO IA)
+45,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.032160254,CNV_LOW,6434.325792,pNX,pT1a (FIGO IA)
+46,Other_specify,White,50 % or more,Cannot be determined,Cannot be determined,0.064674674,CNV_HIGH,5528.531387,pN0,pT1b (FIGO IB)
+47,Other_specify,White,50 % or more,Cannot be determined,Cannot be determined,0.051687953,CNV_LOW,6298.298259,pN0,pT1b (FIGO IB)
+48,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.0,CNV_LOW,7805.287716,pN0,pT1a (FIGO IA)
+49,Other_specify,Not Reported,50 % or more,Cannot be determined,Cannot be determined,0.0,CNV_LOW,6267.438479,pN0,pT1b (FIGO IB)
+50,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.079300673,CNV_LOW,5760.986958,pNX,pT1a (FIGO IA)
+51,,,,,,,,,,
+52,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.071131317,CNV_LOW,6691.117149,pNX,pT1a (FIGO IA)
+53,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.026757166,CNV_HIGH,5924.849456,pNX,pT1a (FIGO IA)
+54,United States,White,Not identified,Cannot be determined,Intact nuclear expression,0.0,CNV_LOW,6666.469204,pNX,pT1a (FIGO IA)
+55,United States,White,under 50 %,Cannot be determined,Intact nuclear expression,0.017436486,CNV_LOW,6385.554716,pNX,pT1a (FIGO IA)
+56,Other_specify,White,under 50 %,Cannot be determined,Cannot be determined,0.0,CNV_LOW,5590.277688,pNX,pT1a (FIGO IA)
+57,United States,White,50 % or more,Negative,Intact nuclear expression,0.00596616,CNV_HIGH,3163.142174,pN1 (FIGO IIIC1),pT3b (FIGO IIIB)
+58,Ukraine,,50 % or more,Cannot be determined,Cannot be determined,0.018592465,CNV_LOW,6137.36728,pN0,pT1b (FIGO IB)
+59,United States,Black or African American,Not identified,Cannot be determined,Cannot be determined,0.024691718,CNV_LOW,4838.564981,pN1 (FIGO IIIC1),pT2 (FIGO II)
+60,Ukraine,,under 50 %,Positive,Cannot be determined,0.033777368,CNV_LOW,6229.435198,pN0,pT1a (FIGO IA)
+61,Ukraine,,under 50 %,Positive,Cannot be determined,0.032059529,CNV_LOW,3671.485686,pNX,pT1a (FIGO IA)
+62,Ukraine,,under 50 %,Positive,Cannot be determined,0.045550741,CNV_LOW,5246.146449,pNX,pT1a (FIGO IA)
+63,Ukraine,,50 % or more,Positive,Cannot be determined,0.0,CNV_LOW,6318.746917,pN0,pT2 (FIGO II)
+64,Ukraine,,Not identified,Positive,Cannot be determined,0.0,CNV_LOW,3796.214544,pNX,pT1a (FIGO IA)
+65,Ukraine,,50 % or more,Positive,Cannot be determined,0.002898656,CNV_LOW,9711.938731,pN0,pT1b (FIGO IB)
+66,Ukraine,,under 50 %,Positive,Cannot be determined,0.050744634,CNV_LOW,6014.318353,pN0,pT1a (FIGO IA)
+67,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,5108.003671,pN0,pT1a (FIGO IA)
+68,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,8381.068241,pN0,pT1a (FIGO IA)
+69,Ukraine,,50 % or more,Positive,Cannot be determined,0.003860163,CNV_HIGH,3551.918217,pNX,pT1b (FIGO IB)
+70,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_HIGH,6024.521674,pN0,pT1a (FIGO IA)
+71,Ukraine,,under 50 %,Negative,Cannot be determined,0.0,CNV_HIGH,7879.766432,pN1 (FIGO IIIC1),pT3a (FIGO IIIA)
+72,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,4260.000421,pNX,pT1a (FIGO IA)
+73,Ukraine,,under 50 %,Positive,Cannot be determined,0.013040807,CNV_LOW,5698.605048,pN0,pT1a (FIGO IA)
+74,Ukraine,,under 50 %,Positive,Cannot be determined,0.026044313,CNV_LOW,3325.590092,pN0,pT1a (FIGO IA)
+75,Ukraine,,under 50 %,Positive,Cannot be determined,0.041334208,CNV_LOW,5415.732444,pNX,pT1a (FIGO IA)
+76,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,5071.823771,pN0,pT1a (FIGO IA)
+77,Ukraine,,50 % or more,Positive,Cannot be determined,0.010357642,CNV_LOW,6780.561618,pN0,pT1b (FIGO IB)
+78,United States,White,50 % or more,Positive,Cannot be determined,0.0,CNV_LOW,6798.100266,pN0,pT1b (FIGO IB)
+79,United States,White,50 % or more,Cannot be determined,Cannot be determined,0.0,CNV_LOW,5784.902177,pN0,pT3a (FIGO IIIA)
+80,United States,Black or African American,under 50 %,Unknown,Unknown,0.020993106,CNV_LOW,2870.606208,pN0,pT1a (FIGO IA)
+81,Ukraine,,under 50 %,Negative,Cannot be determined,0.0,CNV_HIGH,9583.565561,pNX,pT1a (FIGO IA)
+82,Ukraine,,under 50 %,Positive,Cannot be determined,0.032382459,CNV_LOW,2157.90896,pN0,pT3a (FIGO IIIA)
+83,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,4772.594927,pNX,pT1a (FIGO IA)
+84,Ukraine,,under 50 %,Positive,Cannot be determined,0.020947178,CNV_LOW,5804.812736,pN0,pT1a (FIGO IA)
+85,Poland,,50 % or more,Positive,Cannot be determined,0.047959996,CNV_LOW,5177.586543,pN0,pT3b (FIGO IIIB)
+86,United States,White,under 50 %,Unknown,Unknown,0.01460814,CNV_LOW,4333.723559,pNX,pT1a (FIGO IA)
+87,Poland,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,5297.723765,pN0,pT1a (FIGO IA)
+88,Poland,,under 50 %,Positive,Cannot be determined,0.0,,4787.338006,pN0,pT2 (FIGO II)
+89,Poland,,50 % or more,Positive,Cannot be determined,0.071758177,CNV_HIGH,4986.748413,pN0,pT3b (FIGO IIIB)
+90,Ukraine,,50 % or more,Positive,Cannot be determined,0.0,CNV_LOW,4308.368448,pN0,pT2 (FIGO II)
+91,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,5583.319319,pNX,pT3a (FIGO IIIA)
+92,Ukraine,,50 % or more,Positive,Cannot be determined,0.026629608,CNV_LOW,4241.500932,pNX,pT1b (FIGO IB)
+93,Ukraine,,under 50 %,Positive,Cannot be determined,0.014877105,CNV_LOW,8247.18979,pN0,pT3a (FIGO IIIA)
+94,Ukraine,,50 % or more,Positive,Cannot be determined,0.036807022,CNV_LOW,4751.649418,pN1 (FIGO IIIC1),pT1b (FIGO IB)
+95,Poland,,50 % or more,Positive,Cannot be determined,0.012959135,CNV_HIGH,7726.246196,pN2 (FIGO IIIC2),pT1b (FIGO IB)
+96,Poland,,50 % or more,Negative,Cannot be determined,0.0,CNV_HIGH,7310.646586,pN0,pT1b (FIGO IB)
+97,United States,White,50 % or more,Cannot be determined,Cannot be determined,0.0,CNV_LOW,4373.982627,pNX,pT2 (FIGO II)
+98,Ukraine,,under 50 %,Positive,Cannot be determined,0.0,CNV_LOW,6104.870732,pNX,pT1a (FIGO IA)
+99,Ukraine,,under 50 %,Positive,Cannot be determined,0.083143647,CNV_HIGH,5789.410018,pNX,pT1a (FIGO IA)
+100,Ukraine,,50 % or more,Positive,Cannot be determined,0.004351604,CNV_HIGH,9113.414303,pN0,pT2 (FIGO II)
+101,United States,Black or African American,under 50 %,Cannot be determined,Cannot be determined,0.0,CNV_HIGH,8568.337599,pN0,pT2 (FIGO II)
+102,Ukraine,,under 50 %,Negative,Cannot be determined,0.042631692,CNV_HIGH,6081.794155,pN0,pT1a (FIGO IA)
+103,Ukraine,,under 50 %,,,,,,,
+104,,,,,,,,,,
+105,,,,,,,,,,
+106,,,,,,,,,,
+107,,,,,,,,,,
+108,,,,,,,,,,
+109,,,,,,,,,,
+110,,,,,,,,,,
+111,,,,,,,,,,
+112,,,,,,,,,,
+113,,,,,,,,,,
+114,,,,,,,,,,
+115,,,,,,,,,,
+116,,,,,,,,,,
+117,,,,,,,,,,
+118,,,,,,,,,,
+119,,,,,,,,,,
+120,,,,,,,,,,
+121,,,,,,,,,,
+122,,,,,,,,,,
+123,,,,,,,,,,
+124,,,,,,,,,,
+125,,,,,,,,,,
+126,,,,,,,,,,
+127,,,,,,,,,,
+128,,,,,,,,,,
+129,,,,,,,,,,
+130,,,,,,,,,,
+131,,,,,,,,,,
+132,,,,,,,,,,
+133,,,,,,,,,,
+134,,,,,,,,,,
+135,,,,,,,,,,
+136,,,,,,,,,,
+137,,,,,,,,,,
+138,,,,,,,,,,
+139,,,,,,,,,,
+140,,,,,,,,,,
+141,,,,,,,,,,
+142,,,,,,,,,,
+143,,,,,,,,,,
+144,,,,,,,,,,
+145,,,,,,,,,,
+146,,,,,,,,,,
+147,,,,,,,,,,
+148,,,,,,,,,,
+149,,,,,,,,,,
+150,,,,,,,,,,
+151,,,,,,,,,,
+152,,,,,,,,,,

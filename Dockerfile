@@ -1,4 +1,4 @@
-FROM python:3.11.6 AS bdi-jupyter
+FROM --platform=linux/amd64 python:3.11.6 AS bdi-jupyter
 
 # Install JupyterHub and dependencies
 RUN pip3 --disable-pip-version-check install --no-cache-dir \

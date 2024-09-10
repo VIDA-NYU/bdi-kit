@@ -1,0 +1,15 @@
+source,target
+Tumor/Normal,history_of_tumor
+Gender,gender
+Age,age_at_diagnosis
+BMI,bmi
+Race,race
+Ethnicity_Self_Identify,ethnicity
+Tumor_Site,site_of_resection_or_biopsy
+Tumor_Size_cm,greatest_tumor_dimension
+Tumor_Focality,tumor_focality
+Histologic_Type,primary_diagnosis
+Grade,tumor_grade
+Tumor_Stage_Pathological,ajcc_pathologic_stage
+Path_Stage_Primary_Tumor_pT,ajcc_pathologic_t
+Path_Stage_Reg_Lymph_Nodes_pN,ajcc_pathologic_n

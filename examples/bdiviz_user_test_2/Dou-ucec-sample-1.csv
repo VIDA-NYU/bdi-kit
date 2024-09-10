@@ -1,0 +1,154 @@
+,BMI,Ethnicity,Proteomics_Tumor_Normal,Estrogen_Receptor,PMS2,CIBERSORT_Mast _cells _activated,Genomics_subtype,ESTIMATE_StromalScore,Clin_Stage_Dist_Mets-cM,Path_Stage_Dist_Mets-pM
+0,38.88,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,MSI-H,2821.088429,cM0,Staging Incomplete
+1,39.76,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.015087431,MSI-H,2714.248104,cM0,Staging Incomplete
+2,51.19,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.033824616,CNV_low,3856.501277,cM0,Staging Incomplete
+3,,,Tumor,,,,,,,
+4,32.69,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,3012.556593,cM0,No pathologic evidence of distant metastasis
+5,20.28,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,1717.74787,cM0,Staging Incomplete
+6,55.67,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,3414.419984,cM0,Staging Incomplete
+7,25.68,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.049418849,CNV_low,2309.012756,cM0,Staging Incomplete
+8,21.57,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,2515.79784,cM0,Staging Incomplete
+9,34.26,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.0,MSI-H,4181.251111,cM0,Staging Incomplete
+10,36.57,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,4669.852221,Staging Incomplete,Staging Incomplete
+11,27.83,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.018873801,POLE,2304.797045,cM0,Staging Incomplete
+12,34.84,Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.134807458,CNV_high,2212.345792,cM0,Staging Incomplete
+13,68.39,Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.0,MSI-H,2869.70182,Staging Incomplete,No pathologic evidence of distant metastasis
+14,25.37,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,1945.541934,cM0,Staging Incomplete
+15,26.22,Not-Hispanic or Latino,Tumor,Positive,Intact nuclear expression,0.07237302,CNV_high,2379.6735,cM0,Staging Incomplete
+16,42.98,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.0,MSI-H,613.0876971,cM0,Staging Incomplete
+17,55.86,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,2953.951139,cM0,Staging Incomplete
+18,42.19,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.018753335,CNV_low,1184.03053,cM0,Staging Incomplete
+19,27.82,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.0,CNV_low,5176.758433,cM0,Staging Incomplete
+20,34.72,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,864.2241924,cM0,No pathologic evidence of distant metastasis
+21,21.45,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,POLE,3748.640733,cM0,Staging Incomplete
+22,25.03,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.001126745,POLE,1706.11003,cM0,Staging Incomplete
+23,38.54,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,3006.948997,cM0,No pathologic evidence of distant metastasis
+24,65.71,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,2565.123134,cM0,Staging Incomplete
+25,46.64,Not reported,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,4634.296239,cM0,Staging Incomplete
+26,45.83,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.035334153,POLE,2347.226471,cM0,Staging Incomplete
+27,22.86,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.019248281,CNV_low,6048.630658,cM0,Staging Incomplete
+28,46.41,Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,3824.192222,cM0,No pathologic evidence of distant metastasis
+29,71.09,Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.031426484,MSI-H,4745.871875,cM0,No pathologic evidence of distant metastasis
+30,44.81,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,2073.093302,Staging Incomplete,No pathologic evidence of distant metastasis
+31,43.0,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.046995801,MSI-H,4019.134039,cM0,No pathologic evidence of distant metastasis
+32,32.32,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.045033677,CNV_low,4267.943026,cM0,No pathologic evidence of distant metastasis
+33,47.82,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,4455.576971,cM0,Staging Incomplete
+34,45.53,Not reported,Tumor,Cannot be determined,Loss of nuclear expression,0.0,CNV_low,8257.35682,Staging Incomplete,Staging Incomplete
+35,31.58,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,3909.219425,Staging Incomplete,Staging Incomplete
+36,17.64,Not reported,Tumor,Cannot be determined,Cannot be determined,0.056142168,MSI-H,4238.332575,Staging Incomplete,Staging Incomplete
+37,36.84,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,2629.892485,cM0,Staging Incomplete
+38,37.69,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,4333.499845,Staging Incomplete,Staging Incomplete
+39,28.5,Not reported,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,5102.751057,cM0,Staging Incomplete
+40,34.89,Not reported,Tumor,Positive,Intact nuclear expression,0.0,CNV_high,3781.400158,Staging Incomplete,Staging Incomplete
+41,39.14,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_high,5711.460988,Staging Incomplete,Staging Incomplete
+42,38.44,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_high,6791.999903,Staging Incomplete,Staging Incomplete
+43,59.78,Not reported,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,6134.476114,Staging Incomplete,Staging Incomplete
+44,38.89,Not reported,Tumor,Cannot be determined,Cannot be determined,0.014757236,CNV_low,4435.707788,Staging Incomplete,Staging Incomplete
+45,38.41,Not reported,Tumor,Cannot be determined,Cannot be determined,0.002601277,CNV_low,4965.604393,Staging Incomplete,Staging Incomplete
+46,31.83,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_high,6515.371607,Staging Incomplete,Staging Incomplete
+47,34.37,Not reported,Tumor,Cannot be determined,Cannot be determined,0.005498505,CNV_low,5548.489367,Staging Incomplete,Staging Incomplete
+48,17.11,Not reported,Tumor,Cannot be determined,Cannot be determined,0.0,MSI-H,3346.731612,Staging Incomplete,Staging Incomplete
+49,32.06,Not reported,Tumor,Cannot be determined,Cannot be determined,0.129636775,MSI-H,5035.794842,Staging Incomplete,Staging Incomplete
+50,31.96,Not-Hispanic or Latino,Tumor,Cannot be determined,Loss of nuclear expression,0.0,MSI-H,3702.652027,cM0,No pathologic evidence of distant metastasis
+51,,,Tumor,,,,,,,
+52,41.44,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_low,3554.390593,cM0,No pathologic evidence of distant metastasis
+53,31.63,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.0,CNV_high,3821.608966,cM1,pM1
+54,37.11,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.008075333,POLE,4282.074991,cM0,No pathologic evidence of distant metastasis
+55,31.96,Not-Hispanic or Latino,Tumor,Cannot be determined,Intact nuclear expression,0.005250649,CNV_low,4262.424062,Staging Incomplete,No pathologic evidence of distant metastasis
+56,46.45,Not reported,Tumor,Cannot be determined,Cannot be determined,0.030856792,MSI-H,1682.151896,Staging Incomplete,Staging Incomplete
+57,27.66,Not-Hispanic or Latino,Tumor,Positive,Intact nuclear expression,0.0,CNV_high,4255.959916,Staging Incomplete,pM1
+58,27.1,,Tumor,Cannot be determined,Cannot be determined,0.019894683,POLE,3508.374749,cM0,No pathologic evidence of distant metastasis
+59,46.85,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.0,CNV_low,4684.861932,Staging Incomplete,Staging Incomplete
+60,26.0,,Tumor,Positive,Cannot be determined,0.0,MSI-H,3627.437843,cM0,Staging Incomplete
+61,31.0,,Tumor,Positive,Cannot be determined,0.0,CNV_low,2569.07483,cM0,Staging Incomplete
+62,27.0,,Tumor,Positive,Cannot be determined,0.0,CNV_low,3740.58003,cM0,Staging Incomplete
+63,35.0,,Tumor,Positive,Cannot be determined,0.013628498,CNV_low,3563.533329,cM0,Staging Incomplete
+64,35.0,,Tumor,Positive,Cannot be determined,0.024953588,CNV_low,1840.583053,cM0,Staging Incomplete
+65,31.22,,Tumor,Positive,Cannot be determined,0.0,POLE,4369.682108,cM0,Staging Incomplete
+66,31.0,,Tumor,Positive,Cannot be determined,0.0,CNV_low,5520.164395,cM0,Staging Incomplete
+67,32.83,,Tumor,Positive,Cannot be determined,0.013023059,MSI-H,3171.067885,cM0,Staging Incomplete
+68,29.52,,Tumor,Positive,Cannot be determined,0.036358248,MSI-H,5147.204936,cM0,Staging Incomplete
+69,29.07,,Tumor,Positive,Cannot be determined,0.0,CNV_high,2317.879694,cM0,Staging Incomplete
+70,21.83,,Tumor,Positive,Cannot be determined,0.095529589,CNV_high,3770.318861,cM0,Staging Incomplete
+71,27.0,,Tumor,Negative,Cannot be determined,0.073013728,CNV_high,4660.078921,cM0,Staging Incomplete
+72,34.0,,Tumor,Positive,Cannot be determined,0.109393005,MSI-H,1368.770354,cM0,Staging Incomplete
+73,36.81,,Tumor,Positive,Cannot be determined,0.0,CNV_low,4548.865546,cM0,Staging Incomplete
+74,46.0,,Tumor,Positive,Cannot be determined,0.0,CNV_low,3237.700172,cM0,Staging Incomplete
+75,27.31,,Tumor,Positive,Cannot be determined,0.0,CNV_low,3739.873076,cM0,Staging Incomplete
+76,20.55,,Tumor,Positive,Cannot be determined,0.039742974,MSI-H,2390.647801,cM0,Staging Incomplete
+77,17.85,,Tumor,Positive,Cannot be determined,0.0,MSI-H,3323.981653,cM0,Staging Incomplete
+78,29.62,Not-Hispanic or Latino,Tumor,Positive,Cannot be determined,0.061907521,CNV_low,4279.438113,Staging Incomplete,Staging Incomplete
+79,38.97,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.128791658,CNV_low,2750.595162,Staging Incomplete,Staging Incomplete
+80,48.46,Not-Hispanic or Latino,Tumor,Unknown,Unknown,0.0,MSI-H,2616.128221,cM0,No pathologic evidence of distant metastasis
+81,30.47,,Tumor,Positive,Cannot be determined,0.034636055,CNV_high,5319.12579,cM1,Staging Incomplete
+82,34.53,,Tumor,Positive,Cannot be determined,0.0,CNV_low,1325.965485,cM0,Staging Incomplete
+83,33.65,,Tumor,Positive,Cannot be determined,0.0,CNV_low,2236.194057,cM0,Staging Incomplete
+84,28.84,,Tumor,Positive,Cannot be determined,0.0,MSI-H,3142.491368,cM0,Staging Incomplete
+85,36.0,,Tumor,Positive,Cannot be determined,0.0,CNV_low,1989.365377,cM0,No pathologic evidence of distant metastasis
+86,23.88,Not-Hispanic or Latino,Tumor,Unknown,Unknown,0.0,CNV_low,1380.859986,cM0,No pathologic evidence of distant metastasis
+87,27.0,,Tumor,Positive,Cannot be determined,0.006719297,MSI-H,2258.605402,cM0,No pathologic evidence of distant metastasis
+88,44.0,,Tumor,Positive,Cannot be determined,0.071420892,MSI-H,2629.193014,cM0,No pathologic evidence of distant metastasis
+89,31.0,,Tumor,Positive,Cannot be determined,0.0,CNV_high,4781.4706,cM1,pM1
+90,39.2,,Tumor,Positive,Cannot be determined,0.01372593,MSI-H,3118.051953,cM0,Staging Incomplete
+91,30.48,,Tumor,Positive,Cannot be determined,0.108706228,MSI-H,2514.266274,cM0,Staging Incomplete
+92,36.2,,Tumor,Positive,Cannot be determined,0.00227769,CNV_low,4181.890175,cM0,Staging Incomplete
+93,26.14,,Tumor,Positive,Cannot be determined,0.0,MSI-H,3607.302476,cM0,Staging Incomplete
+94,30.85,,Tumor,Positive,Cannot be determined,0.0,CNV_low,4265.396681,cM0,Staging Incomplete
+95,34.0,,Tumor,Positive,Cannot be determined,0.0,CNV_high,4617.267994,cM0,No pathologic evidence of distant metastasis
+96,31.0,,Tumor,Negative,Cannot be determined,0.01149725,CNV_high,3784.055606,cM0,No pathologic evidence of distant metastasis
+97,40.72,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.037907652,CNV_low,1445.656243,Staging Incomplete,Staging Incomplete
+98,29.37,,Tumor,Positive,Cannot be determined,0.049773167,MSI-H,2659.994806,cM0,Staging Incomplete
+99,29.4,,Tumor,Positive,Cannot be determined,0.0,CNV_high,2795.977059,cM0,Staging Incomplete
+100,35.42,,Tumor,Positive,Cannot be determined,0.0,CNV_high,4336.999577,cM0,Staging Incomplete
+101,24.32,Not-Hispanic or Latino,Tumor,Cannot be determined,Cannot be determined,0.058770763,CNV_high,4822.4358,Staging Incomplete,Staging Incomplete
+102,34.06,,Tumor,Negative,Cannot be determined,0.005492839,CNV_high,5933.572259,cM0,Staging Incomplete
+103,,,Tumor,,,,,,,
+104,,,Adjacent_normal,,,,,,,
+105,,,Adjacent_normal,,,,,,,
+106,,,Adjacent_normal,,,,,,,
+107,,,Adjacent_normal,,,,,,,
+108,,,Adjacent_normal,,,,,,,
+109,,,Adjacent_normal,,,,,,,
+110,,,Adjacent_normal,,,,,,,
+111,,,Adjacent_normal,,,,,,,
+112,,,Adjacent_normal,,,,,,,
+113,,,Adjacent_normal,,,,,,,
+114,,,Adjacent_normal,,,,,,,
+115,,,Adjacent_normal,,,,,,,
+116,,,Adjacent_normal,,,,,,,
+117,,,Adjacent_normal,,,,,,,
+118,,,Adjacent_normal,,,,,,,
+119,,,Adjacent_normal,,,,,,,
+120,,,Adjacent_normal,,,,,,,
+121,,,Adjacent_normal,,,,,,,
+122,,,Adjacent_normal,,,,,,,
+123,,,Adjacent_normal,,,,,,,
+124,,,Adjacent_normal,,,,,,,
+125,,,Adjacent_normal,,,,,,,
+126,,,Adjacent_normal,,,,,,,
+127,,,Adjacent_normal,,,,,,,
+128,,,Adjacent_normal,,,,,,,
+129,,,Myometrium_normal,,,,,,,
+130,,,Myometrium_normal,,,,,,,
+131,,,Myometrium_normal,,,,,,,
+132,,,Myometrium_normal,,,,,,,
+133,,,Myometrium_normal,,,,,,,
+134,,,Myometrium_normal,,,,,,,
+135,,,Enriched_normal,,,,,,,
+136,,,Enriched_normal,,,,,,,
+137,,,Enriched_normal,,,,,,,
+138,,,Enriched_normal,,,,,,,
+139,,,Enriched_normal,,,,,,,
+140,,,Enriched_normal,,,,,,,
+141,,,Enriched_normal,,,,,,,
+142,,,Enriched_normal,,,,,,,
+143,,,Enriched_normal,,,,,,,
+144,,,Enriched_normal,,,,,,,
+145,,,Enriched_normal,,,,,,,
+146,,,Enriched_normal,,,,,,,
+147,,,Enriched_normal,,,,,,,
+148,,,Enriched_normal,,,,,,,
+149,,,Enriched_normal,,,,,,,
+150,,,Enriched_normal,,,,,,,
+151,,,Enriched_normal,,,,,,,
+152,,,Enriched_normal,,,,,,,

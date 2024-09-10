@@ -2,7 +2,7 @@ from typing import List, NamedTuple, Callable, Tuple, Union
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
-from polyfuzz.models import EditDistance, TFIDF, Embeddings
+from polyfuzz.models import EditDistance, TFIDF, Embeddings, RapidFuzz
 from flair.embeddings import TransformerWordEmbeddings, WordEmbeddings
 from rapidfuzz import fuzz
 from autofj import AutoFJ
@@ -159,6 +159,23 @@ class FastTextValueMatcher(PolyFuzzValueMatcher):
             min_similarity=threshold,
             top_n=top_n,
             cosine_method=cosine_method,
+        )
+        super().__init__(PolyFuzz(method), threshold)
+
+
+class RapidFuzzValueMatcher(PolyFuzzValueMatcher):
+    """
+    Value matching algorithm based on the cosine similarity of value embeddings.
+    """
+
+    def __init__(
+        self,
+        threshold: float = VALUE_MATCHING_THRESHOLD,
+        top_n: int = 1,
+        cosine_method: str = "sparse",
+    ):
+        method = RapidFuzz(
+            n_jobs=1,
         )
         super().__init__(PolyFuzz(method), threshold)
 

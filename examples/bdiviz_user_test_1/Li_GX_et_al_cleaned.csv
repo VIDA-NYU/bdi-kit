@@ -1,0 +1,101 @@
+,type,purity,ploidy,consent_age,stage,vital,grade,medical_history_bmi,medical_history_weight_at_time_of_surgery_kg,medical_history_alcohol_consumption,medical_history_tobacco_smoking_history,Tissue Type
+0,Tumor,0.537,2.0,71,Stage I,Living,GX: Cannot be assessed,22.63,62.0,not reported,not reported,
+1,Tumor,0.644,2.0,39,unknown,Living,GX: Cannot be assessed,18.15,41.0,light drinker,past smoker unknown years,
+2,Tumor,0.386,2.0,54,Stage I,Living,GX: Cannot be assessed,18.48,54.0,not reported,not reported,
+3,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Solid Tissue Normal
+4,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Primary Tumor
+5,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Solid Tissue Normal
+6,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Primary Tumor
+7,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Solid Tissue Normal
+8,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Primary Tumor
+9,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Solid Tissue Normal
+10,Tumor,0.57,2.01,56,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",59.88,169.0,light drinker,not reported,Primary Tumor
+11,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Primary Tumor
+12,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Solid Tissue Normal
+13,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Primary Tumor
+14,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Solid Tissue Normal
+15,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Primary Tumor
+16,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Solid Tissue Normal
+17,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Primary Tumor
+18,Tumor,0.5625,1.901408,71,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",29.0,91.0,light drinker,non-smoker,Solid Tissue Normal
+19,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Primary Tumor
+20,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Solid Tissue Normal
+21,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Primary Tumor
+22,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Solid Tissue Normal
+23,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Primary Tumor
+24,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Solid Tissue Normal
+25,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Primary Tumor
+26,Tumor,0.52,1.99,67,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",24.02,67.0,non-drinker,non-smoker,Solid Tissue Normal
+27,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+28,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Primary Tumor
+29,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+30,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Primary Tumor
+31,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+32,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Primary Tumor
+33,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+34,Tumor,0.66,1.96,84,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,84.0,light drinker,past smoker more than 15 years,Primary Tumor
+35,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Primary Tumor
+36,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+37,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Primary Tumor
+38,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+39,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Primary Tumor
+40,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+41,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Primary Tumor
+42,Tumor,0.12,2.03,69,Stage II,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",28.0,87.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+43,Tumor,0.6725,1.901408,76,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,Primary Tumor
+44,Tumor,0.6725,1.901408,76,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,Primary Tumor
+45,Tumor,0.6725,1.901408,76,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,Primary Tumor
+46,Tumor,0.6725,1.901408,76,Stage III,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",29.49,88.0,not reported,not reported,Primary Tumor
+47,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Solid Tissue Normal
+48,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Primary Tumor
+49,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Solid Tissue Normal
+50,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Primary Tumor
+51,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Solid Tissue Normal
+52,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Primary Tumor
+53,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Solid Tissue Normal
+54,Tumor,0.62,1.93,35,Stage I,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",36.57,118.0,non-drinker,current smoker,Primary Tumor
+55,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+56,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Primary Tumor
+57,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+58,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Primary Tumor
+59,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+60,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Primary Tumor
+61,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+62,Tumor,0.54,1.94,66,Stage IV,Living,"G4: Nuclei bizarre and multilobulated, 20Âµm or greater; nucleoli prominent, chromatin clumped",34.76,98.0,light drinker,past smoker within 15 years,Primary Tumor
+63,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Primary Tumor
+64,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+65,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Primary Tumor
+66,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+67,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Primary Tumor
+68,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+69,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Primary Tumor
+70,Tumor,0.525,2.014085,63,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",42.77,128.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+71,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+72,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Primary Tumor
+73,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+74,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Primary Tumor
+75,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+76,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Primary Tumor
+77,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Solid Tissue Normal
+78,Tumor,0.485,1.964268,58,Stage III,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",25.0,75.0,light drinker,past smoker within 15 years,Primary Tumor
+79,Tumor,0.19,1.97,57,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,Primary Tumor
+80,Tumor,0.19,1.97,57,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,Primary Tumor
+81,Tumor,0.19,1.97,57,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,Primary Tumor
+82,Tumor,0.19,1.97,57,Stage I,Living,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",68.59,167.0,not reported,not reported,Primary Tumor
+83,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Primary Tumor
+84,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Solid Tissue Normal
+85,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Primary Tumor
+86,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Solid Tissue Normal
+87,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Primary Tumor
+88,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Solid Tissue Normal
+89,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Primary Tumor
+90,Tumor,0.24,1.89,55,Stage IV,Living,"G3: Nuclei very irregular, approximately 20Âµm; nucleoli large and prominent",18.42,52.0,non-drinker,not reported,Solid Tissue Normal
+91,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+92,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Primary Tumor
+93,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+94,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Primary Tumor
+95,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+96,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Primary Tumor
+97,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Solid Tissue Normal
+98,Tumor,0.4875,1.901408,69,Stage I,Living,"G1: Nuclei round, uniform, approximately 10Âµm; nucleoli inconspicuous",19.72,57.0,light drinker,past smoker more than 15 years,Primary Tumor
+99,Tumor,0.5125,2.014085,72,Stage III,Deceased,"G2: Nuclei slightly irregular, approximately 15Âµm; nucleoli evident",32.82,104.0,non-drinker,past smoker more than 15 years,Primary Tumor

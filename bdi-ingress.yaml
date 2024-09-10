@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bdiviz-demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+    # The following 2 lines redirect HTTP traffic to HTTPS for you
+    haproxy.org/ssl-redirect: "true"
+    haproxy.org/ssl-redirect-code: "301"
+    # The following line record the user's IP address in the 'X-Forwarded-For' header
+    haproxy.org/forwarded-for: "true"
+    # Only NYU networks are allowed by default, uncomment this to allow the whole internet
+    hpc.nyu.edu/access: "public"
+spec:
+  rules:
+    - host: bdiviz-demo.users.hsrn.nyu.edu
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                # This is the name and port of your Service
+                name: bdiviz-demo
+                port:
+                  number: 8888
