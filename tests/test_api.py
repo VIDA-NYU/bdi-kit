@@ -341,3 +341,55 @@ def test_top_matches_and_match_values_integration():
         assert "similarity" in df.columns
         assert df.attrs["source"] == "fruits"
         assert df.attrs["target"] in ["fruit_types", "fruit_names", "fruit_id"]
+
+
+def test_top_value_matches():
+    # given
+    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
+    df_target = pd.DataFrame(
+        {
+            "fruit_names": [
+                "apple",
+                "red apple",
+                "banana",
+                "mx banana",
+                "melon",
+                "kiwi",
+                "grapes",
+            ],
+            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
+        }
+    )
+    column_mapping = ("fruits", "fruit_names")
+    # when
+    matches = bdi.top_value_matches(df_source, df_target, column_mapping)
+
+    # then
+    assert len(matches) == 4  # number of dataframes in the list
+
+    # when
+    df_match = matches[0]  # top matches for apple
+
+    # then
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    # when
+    df_match = matches[1]  # top matches for banana
+
+    # then
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    # when
+    df_match = matches[2]  # top matches for orange
+
+    # then
+    assert len(df_match) == 1
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
