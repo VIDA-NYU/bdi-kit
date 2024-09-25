@@ -42,6 +42,7 @@ pn.extension("tabulator")  # type: ignore
 pn.extension("mathjax")  # type: ignore
 pn.extension("vega")  # type: ignore
 pn.extension("floatpanel")  # type: ignore
+pn.extension("jsoneditor")  # type: ignore
 
 
 def truncate_text(text: str, max_chars: int):
@@ -99,7 +100,6 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
 
         self.top_k = max(1, min(top_k, 40))
 
-        self.rec_table_df: Optional[pd.DataFrame] = None
         self.rec_list_df: Optional[pd.DataFrame] = None
         self.rec_cols: Optional[List[str]] = None
         self.subschemas = None
@@ -378,12 +378,10 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
         rec_cols = list(rec_cols)
         rec_cols.sort()
 
-        rec_table_df = pd.DataFrame(rec_table)
         rec_list_df = pd.DataFrame(rec_list)
         rec_list_df["Value"] = pd.to_numeric(rec_list_df["Value"])
         rec_list_df["DataFrame"] = rec_list_df["DataFrame"].astype(str)
 
-        self.rec_table_df = rec_table_df
         self.rec_list_df = rec_list_df
         self.rec_cols = rec_cols
 
@@ -392,7 +390,9 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             self.get_cols_subschema()
 
     def _gen_clusters(self) -> Dict[str, List[Tuple[str, str]]]:
-        knn = NearestNeighbors(n_neighbors=min(10, len(self.source.columns)), metric="cosine")
+        knn = NearestNeighbors(
+            n_neighbors=min(10, len(self.source.columns)), metric="cosine"
+        )
         l_features_flat = []
         for _, l_features in self.l_features.items():
             l_features_flat.extend(l_features)
@@ -558,11 +558,14 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             logger.critical(f"Invalid column: {select_column}")
             return
 
+        selected = select_column
+        if self.selected_row is not None:
+            selected = self.selected_row["Column"].values[0]
         logger.critical(f"Discarding column: {select_column}")
         recommendations = self.heatmap_recommendations
         for idx, d in enumerate(recommendations):
             candidate_name = d["source_column"]
-            if candidate_name == select_column:
+            if candidate_name == selected:
                 recommendations.pop(idx)
                 self._write_json(recommendations)
                 self._record_user_action("discard", d)
@@ -634,7 +637,7 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
             )
             .add_params(single, search_input)
         )
-        background = base.mark_rect(size=100)
+        background = base.mark_rect()
 
         box_sources = []
         if self.additional_sources:
@@ -1283,9 +1286,22 @@ class BDISchemaMatchingHeatMap(TopkColumnMatcher):
                 )
             return None
 
+        def plot_json_file(clicks: int) -> pn.Row:
+            return pn.Row(
+                pn.FloatPanel(
+                    pn.widgets.JSONEditor(
+                        value=self.heatmap_recommendations, width=500
+                    ),
+                    name="JSON Viewer",
+                    width=540,
+                    align="end",
+                )
+            )
+
         return pn.Column(
             column_top,
             pn.bind(plot_ai_assistant, ai_assistant_button.param.clicks),
+            # pn.bind(plot_json_file, acc_button.param.clicks),
             pn.Spacer(height=5),
             pn.Column(heatmap_bind),
             scroll=True,

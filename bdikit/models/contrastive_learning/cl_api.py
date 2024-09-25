@@ -114,7 +114,7 @@ class ContrastiveLearningAPI(ColumnEmbedder):
             print(f"Table features loaded for {len(table.columns)} columns")
             return embeddings
 
-        print(f"Extracting features from {len(table.columns)} columns...")
+        # print(f"Extracting features from {len(table.columns)} columns...")
         tables = []
         for _, column in enumerate(table.columns):
             curr_table = pd.DataFrame(table[column])
@@ -133,7 +133,7 @@ class ContrastiveLearningAPI(ColumnEmbedder):
         batch = []
         results = []
 
-        for tid, table in tqdm(enumerate(tables), total=total):
+        for tid, table in enumerate(tables):
             x, _ = self.unlabeled._tokenize(table)
             batch.append((x, x, []))
 
