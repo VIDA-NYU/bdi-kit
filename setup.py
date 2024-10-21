@@ -40,6 +40,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=requires,
     extras_require=extra_requires,
+    python_requires='>=3.9',
     description="bdi-kit library",
     long_description=long_description,
     long_description_content_type='text/markdown',
