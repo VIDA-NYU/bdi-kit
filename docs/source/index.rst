@@ -4,7 +4,7 @@ Overview
 The bdi-kit is a library that assist users in performing data harmonization.
 It provides state-of-the-art tools to streamline the process of integrating and
 transforming disparate datasets (with a focus on biomedical data), and includes
-APIs and visualizations for peforming tasks such as:
+APIs for performing tasks such as:
 
 - Schema matching
 - Value matching
