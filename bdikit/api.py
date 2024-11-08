@@ -405,7 +405,7 @@ def top_value_matches(
 
 
 def view_value_matches(
-    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = True
+    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = False
 ):
     """
     Shows the value match results in a DataFrame fashion.
