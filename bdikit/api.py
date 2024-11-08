@@ -383,12 +383,12 @@ def top_value_matches(
     if method_args is None:
         method_args = {}
 
-    if "top_n" in method_args:
+    if "top_k" in method_args:
         logger.warning(
-            f"Ignoring 'top_n' argument, using top_k argument instead (top_k={top_k})"
+            f"Ignoring 'top_k' argument, using top_k argument instead (top_k={top_k})"
         )
 
-    method_args["top_n"] = top_k
+    method_args["top_k"] = top_k
 
     matches = _match_values(source, target, column_mapping, method, method_args)
 
