@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, Callable, Tuple, Union
+from typing import List, NamedTuple, Callable, Tuple
 import ast
 from openai import OpenAI
 from polyfuzz import PolyFuzz
@@ -59,11 +59,15 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
 
         matches = []
         for _, row in match_results.iterrows():
-            source_value = row["From"]
-            target_value = row["To"]
-            similarity = row["Similarity"]
-            if similarity >= self.threshold:
-                matches.append(ValueMatch(source_value, target_value, similarity))
+            source = row[0]
+            top_matches = row[1:]
+            indexes = range(0, len(top_matches) - 1, 2)
+
+            for index in indexes:
+                target = top_matches[index]
+                similarity = top_matches[index + 1]
+                if similarity >= self.threshold:
+                    matches.append(ValueMatch(source, target, similarity))
 
         return matches
 
@@ -78,7 +82,7 @@ class TFIDFValueMatcher(PolyFuzzValueMatcher):
         n_gram_range: Tuple[int, int] = (1, 3),
         clean_string: bool = True,
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_n: int = 1,
+        top_k: int = 1,
         cosine_method: str = "sparse",
     ):
 
@@ -88,7 +92,7 @@ class TFIDFValueMatcher(PolyFuzzValueMatcher):
                     n_gram_range=n_gram_range,
                     clean_string=clean_string,
                     min_similarity=threshold,
-                    top_n=top_n,
+                    top_n=top_k,
                     cosine_method=cosine_method,
                 )
             ),
@@ -128,14 +132,14 @@ class EmbeddingValueMatcher(PolyFuzzValueMatcher):
         self,
         model_name: str = "bert-base-multilingual-cased",
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_n: int = 1,
+        top_k: int = 1,
         cosine_method: str = "sparse",
     ):
         embeddings = TransformerWordEmbeddings(model_name)
         method = Embeddings(
             embeddings,
             min_similarity=threshold,
-            top_n=top_n,
+            top_n=top_k,
             cosine_method=cosine_method,
         )
         super().__init__(PolyFuzz(method), threshold)
@@ -150,14 +154,14 @@ class FastTextValueMatcher(PolyFuzzValueMatcher):
         self,
         model_name: str = "en-crawl",
         threshold: float = VALUE_MATCHING_THRESHOLD,
-        top_n: int = 1,
+        top_k: int = 1,
         cosine_method: str = "sparse",
     ):
         embeddings = WordEmbeddings(model_name)
         method = Embeddings(
             embeddings,
             min_similarity=threshold,
-            top_n=top_n,
+            top_n=top_k,
             cosine_method=cosine_method,
         )
         super().__init__(PolyFuzz(method), threshold)

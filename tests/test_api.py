@@ -1,6 +1,7 @@
 import bdikit as bdi
 import numpy as np
 import pandas as pd
+import numpy as np
 from bdikit.mapping_algorithms.value_mapping.value_mappers import (
     FunctionValueMapper,
     IdentityValueMapper,
@@ -239,7 +240,7 @@ def test_end_to_end_api_integration():
     assert len(column_mappings.index) == 1
 
     # when: pass output of match_schema() directly to materialize_mapping(),
-    # the column must be ranamed to the target column without any value mapping
+    # the column must be renamed to the target column without any value mapping
     df_mapped = bdi.materialize_mapping(df_source, column_mappings)
     # then
     assert "tgt_column" in df_mapped.columns
@@ -275,10 +276,11 @@ def test_end_to_end_api_integration():
 
     # when: pass output of match_values() to merge_mappings() and then to
     # materialize_mapping()
+
     harmonization_spec = bdi.merge_mappings(value_mappings, [])
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
-    # then: the column must be ranamed and values must be mapped
+    # then: the column must be renamed and values must be mapped
     assert isinstance(df_mapped, pd.DataFrame)
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["apple", "banana", "orange", np.nan]
@@ -298,7 +300,7 @@ def test_end_to_end_api_integration():
     harmonization_spec = bdi.merge_mappings(value_mappings, user_mappings)
     df_mapped = bdi.materialize_mapping(df_source, harmonization_spec)
 
-    # then: user mappings take precedence, so the column must be ranamed and
+    # then: user mappings take precedence, so the column must be renamed and
     # values must be mapped according the provide user_mappings
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", np.nan]
@@ -339,3 +341,47 @@ def test_top_matches_and_match_values_integration():
         assert "similarity" in df.columns
         assert df.attrs["source"] == "fruits"
         assert df.attrs["target"] in ["fruit_types", "fruit_names", "fruit_id"]
+
+
+def test_top_value_matches():
+    # given
+    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
+    df_target = pd.DataFrame(
+        {
+            "fruit_names": [
+                "apple",
+                "red apple",
+                "banana",
+                "mx banana",
+                "melon",
+                "kiwi",
+                "grapes",
+            ],
+            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
+        }
+    )
+    column_mapping = ("fruits", "fruit_names")
+
+    # when
+    matches = bdi.top_value_matches(df_source, df_target, column_mapping)
+
+    # then
+    assert len(matches) == 4  # number of dataframes in the list
+
+    df_match = matches[0]  # top matches for apple
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    df_match = matches[1]  # top matches for banana
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    df_match = matches[2]  # top matches for orange
+    assert len(df_match) == 1
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
