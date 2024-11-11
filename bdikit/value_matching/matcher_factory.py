@@ -19,6 +19,7 @@ class ValueMatchers(Enum):
         "bdikit.value_matching.polyfuzz.FastTextValueMatcher",
     )
     GPT = ("gpt", "bdikit.value_matching.gpt.GPTValueMatcher")
+    GENE = ("gene", "bdikit.value_matching.gene.Gene")
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name
