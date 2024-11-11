@@ -4,4 +4,4 @@
 
 .. automodule:: bdikit.api
     :members:
-    :exclude-members: SchemaMatchers, ValueMatchers, TopkMatchers, ValueMatchingResult, ColumnMappingSpec
+    :exclude-members: ColumnMappingSpec

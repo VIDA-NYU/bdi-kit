@@ -1,13 +1,13 @@
 import pandas as pd
-from bdikit.schema_matching.best.valentine import (
+from bdikit.schema_matching.one2one.valentine import (
     SimFloodSchemaMatcher,
     JaccardSchemaMatcher,
     DistributionBasedSchemaMatcher,
     ComaSchemaMatcher,
     CupidSchemaMatcher,
 )
-from bdikit.schema_matching.best.twophase import TwoPhaseSchemaMatcher
-from bdikit.schema_matching.best.contrastivelearning import ContrastiveLearningSchemaMatcher
+from bdikit.schema_matching.one2one.twophase import TwoPhaseSchemaMatcher
+from bdikit.schema_matching.one2one.contrastivelearning import ContrastiveLearningSchemaMatcher
 
 
 def test_basic_column_mapping_algorithms():
