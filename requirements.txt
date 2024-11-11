@@ -1,5 +1,5 @@
 polyfuzz
-valentine
+valentine>0.2.0
 openai
 torch
 transformers
@@ -13,4 +13,4 @@ panel!=1.4.3
 Levenshtein
 autofj
 conllu<5.0.0
-nltk<3.8.2
+nltk>=3.9.1
