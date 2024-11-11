@@ -1,6 +1,6 @@
 import pandas as pd
 from openai import OpenAI
-from bdikit.schema_matching.best.base import BaseSchemaMatcher
+from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
 
 
 class GPTSchemaMatcher(BaseSchemaMatcher):

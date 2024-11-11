@@ -1,42 +1,42 @@
 import importlib
 from enum import Enum
 from typing import Mapping, Any
-from bdikit.schema_matching.best.base import BaseSchemaMatcher
+from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
 
 
 class SchemaMatchers(Enum):
     SIMFLOOD = (
         "similarity_flooding",
-        "bdikit.schema_matching.best.valentine.SimFloodSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.SimFloodSchemaMatcher",
     )
     COMA = (
         "coma",
-        "bdikit.schema_matching.best.valentine.ComaSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.ComaSchemaMatcher",
     )
     CUPID = (
         "cupid",
-        "bdikit.schema_matching.best.valentine.CupidSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.CupidSchemaMatcher",
     )
     DISTRIBUTION_BASED = (
         "distribution_based",
-        "bdikit.schema_matching.best.valentine.DistributionBasedSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.DistributionBasedSchemaMatcher",
     )
     JACCARD_DISTANCE = (
         "jaccard_distance",
-        "bdikit.schema_matching.best.valentine.JaccardDistanceSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.JaccardDistanceSchemaMatcher",
     )
-    GPT = ("gpt", "bdikit.schema_matching.best.gpt.GPTSchemaMatcher")
+    GPT = ("gpt", "bdikit.schema_matching.one2one.gpt.GPTSchemaMatcher")
     CT_LEARNING = (
         "ct_learning",
-        "bdikit.schema_matching.best.contrastivelearning.ContrastiveLearningSchemaMatcher",
+        "bdikit.schema_matching.one2one.contrastivelearning.ContrastiveLearningSchemaMatcher",
     )
     TWO_PHASE = (
         "two_phase",
-        "bdikit.schema_matching.best.twophase.TwoPhaseSchemaMatcher",
+        "bdikit.schema_matching.one2one.twophase.TwoPhaseSchemaMatcher",
     )
     MAX_VAL_SIM = (
         "max_val_sim",
-        "bdikit.schema_matching.best.maxvalsim.MaxValSimSchemaMatcher",
+        "bdikit.schema_matching.one2one.maxvalsim.MaxValSimSchemaMatcher",
     )
 
     def __init__(self, matcher_name: str, matcher_path: str):
