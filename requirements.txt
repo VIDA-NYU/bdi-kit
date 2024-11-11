@@ -5,12 +5,11 @@ torch
 transformers
 tqdm
 scikit-learn
-flair
+flair>=0.14.0
 requests
 scipy<1.13
 matplotlib<3.9
 panel!=1.4.3
 Levenshtein
 autofj
-conllu<5.0.0
 nltk>=3.9.1
