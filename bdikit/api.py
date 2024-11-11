@@ -20,8 +20,8 @@ import panel as pn
 from IPython.display import display, Markdown
 from bdikit.utils import get_gdc_data, get_gdc_metadata
 
-from bdikit.schema_matching.best.base import BaseSchemaMatcher
-from bdikit.schema_matching.best.matcher_factory import SchemaMatchers
+from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.one2one.matcher_factory import SchemaMatchers
 from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
 from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult

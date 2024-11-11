@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Optional
-from bdikit.schema_matching.best.base import BaseSchemaMatcher
+from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
 from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
 from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
 from bdikit.schema_matching.topk.contrastivelearning import CLTopkSchemaMatcher

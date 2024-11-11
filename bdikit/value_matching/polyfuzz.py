@@ -41,7 +41,7 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
                 target = top_matches[index]
                 similarity = top_matches[index + 1]
                 if similarity >= self.threshold:
-                    matches.append((source, target, similarity))
+                    matches.append(ValueMatch(source, target, similarity))
 
         return matches
 
