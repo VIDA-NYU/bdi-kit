@@ -1,5 +1,6 @@
 include LICENSE.txt
 include README.md
 include requirements.txt
+include extra_requirements.txt
 include bdikit/resource/*.json
 include bdikit/resource/*.csv
