@@ -10,6 +10,4 @@ requests
 scipy<1.13
 matplotlib<3.9
 panel!=1.4.3
-Levenshtein
-autofj
 nltk>=3.9.1
