@@ -2,14 +2,9 @@ import os
 import sys
 import requests
 from tqdm.auto import tqdm
+from bdikit.config import BDIKIT_CACHE_DIR
 
 
-default_os_cache_dir = os.getenv(
-    "XDG_CACHE_HOME", os.path.join(os.path.expanduser("~"), ".cache")
-)
-BDIKIT_CACHE_DIR = os.getenv(
-    "BDIKIT_CACHE", os.path.join(default_os_cache_dir, "bdikit")
-)
 BDIKIT_MODELS_CACHE_DIR = os.path.join(BDIKIT_CACHE_DIR, "models")
 
 BUILTIN_MODELS_BOX_URL = {
