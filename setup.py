@@ -1,5 +1,4 @@
 import os
-import re
 import setuptools
 from collections import defaultdict
 
@@ -40,9 +39,8 @@ def get_extra_requires():
             if k.strip() and not k.startswith("#"):
                 tags = set()
                 if ":" in k:
-                    k, v = k.split(":")
+                    k, v = k.rsplit(":", 1)
                     tags.update(vv.strip() for vv in v.split(","))
-                tags.add(re.split("[<=>]", k)[0])
                 for t in tags:
                     extra_dependencies[t].add(k)
 
@@ -50,7 +48,6 @@ def get_extra_requires():
         extra_dependencies["full"] = set(
             vv for v in extra_dependencies.values() for vv in v
         )
-
     return extra_dependencies
 
 
