@@ -23,7 +23,7 @@ jobs:
 
       - name: Install the bdikit package
         run: |
-          pip install -e .
+          pip install -e .[full]
 
       - name: Test with pytest
         run: |
