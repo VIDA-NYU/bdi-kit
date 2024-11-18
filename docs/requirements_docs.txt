@@ -5,3 +5,4 @@ sphinxemoji
 docutils
 Jinja2
 sphinx_rtd_theme
+ipython
