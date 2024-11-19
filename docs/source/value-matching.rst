@@ -16,7 +16,7 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - Class
       - Description
     * - ``gpt``
-      - :class:`~bdikit.mapping_algorithms.value_mapping.algorithms.GPTValueMatcher`
+      - :class:`~bdikit.value_matching.gpt.GPTValueMatcher`
       - | Leverages a large language model (GPT-4) to identify and select the most accurate value matches.
 
 .. list-table:: Methods from other libraries
@@ -26,14 +26,14 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - Class
       - Description
     * - ``tfidf``
-      - :class:`~bdikit.mapping_algorithms.value_mapping.algorithms.TFIDFValueMatcher`
+      - :class:`~bdikit.value_matching.polyfuzzs.TFIDFValueMatcher`
       - | Employs a character-based n-gram TF-IDF approach to approximate edit distance by capturing the frequency and contextual importance of n-gram patterns within strings. This method leverages the Term Frequency-Inverse Document Frequency (TF-IDF) weighting to quantify the similarity between strings based on their shared n-gram features.
     * - ``edit_distance``
-      - :class:`~bdikit.mapping_algorithms.value_mapping.algorithms.EditDistanceValueMatcher`
+      - :class:`~bdikit.value_matching.polyfuzz.EditDistanceValueMatcher`
       - | Uses the edit distance between lists of strings using a customizable scorer that supports various distance and similarity metrics.
     * - ``embedding``
-      - :class:`~bdikit.mapping_algorithms.value_mapping.algorithms.EmbeddingValueMatcher`
+      - :class:`~bdikit.value_matching.polyfuzz.EmbeddingValueMatcher`
       - | A value-matching algorithm that leverages the cosine similarity of value embeddings for precise comparisons. By default, it utilizes the `bert-base-multilingual-cased` model to generate contextualized embeddings, enabling effective multilingual matching.​.
     * - ``fasttext``
-      - :class:`~bdikit.mapping_algorithms.value_mapping.algorithms.FastTextValueMatcher`
+      - :class:`~bdikit.value_matching.polyfuzz.FastTextValueMatcher`
       - | This method uses the cosine similarity of FastText embeddings to accurately compare and align values, capturing both semantic and subword-level similarities..
