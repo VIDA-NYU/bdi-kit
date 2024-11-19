@@ -29,3 +29,4 @@ You can find the source code in our `GitHub repository <https://github.com/VIDA-
 
    api
    schema-matching
+   value-matching
