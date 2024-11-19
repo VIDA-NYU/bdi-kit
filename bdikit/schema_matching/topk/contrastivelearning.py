@@ -1,7 +1,11 @@
-from abc import ABCMeta, abstractmethod
-from typing import List, NamedTuple, TypedDict
 import pandas as pd
 import numpy as np
+from typing import List
+from bdikit.schema_matching.topk.base import (
+    ColumnScore,
+    TopkMatching,
+    BaseTopkSchemaMatcher,
+)
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from bdikit.models.contrastive_learning.cl_api import (
     ContrastiveLearningAPI,
@@ -10,25 +14,7 @@ from bdikit.models.contrastive_learning.cl_api import (
 from bdikit.models import ColumnEmbedder
 
 
-class ColumnScore(NamedTuple):
-    column_name: str
-    score: float
-
-
-class TopkMatching(TypedDict):
-    source_column: str
-    top_k_columns: List[ColumnScore]
-
-
-class TopkColumnMatcher(metaclass=ABCMeta):
-    @abstractmethod
-    def get_recommendations(
-        self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
-    ) -> List[TopkMatching]:
-        pass
-
-
-class EmbeddingSimilarityTopkColumnMatcher(TopkColumnMatcher):
+class EmbeddingSimilarityTopkSchemaMatcher(BaseTopkSchemaMatcher):
     def __init__(self, column_embedder: ColumnEmbedder, metric: str = "cosine"):
         self.api = column_embedder
         self.metric = metric
@@ -68,7 +54,7 @@ class EmbeddingSimilarityTopkColumnMatcher(TopkColumnMatcher):
         return top_k_results
 
 
-class CLTopkColumnMatcher(EmbeddingSimilarityTopkColumnMatcher):
+class CLTopkSchemaMatcher(EmbeddingSimilarityTopkSchemaMatcher):
     def __init__(self, model_name: str = DEFAULT_CL_MODEL, metric: str = "cosine"):
         super().__init__(
             column_embedder=ContrastiveLearningAPI(model_name=model_name), metric=metric
