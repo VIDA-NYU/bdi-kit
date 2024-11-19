@@ -23,7 +23,7 @@ class SchemaMatchers(Enum):
     )
     JACCARD_DISTANCE = (
         "jaccard_distance",
-        "bdikit.schema_matching.one2one.valentine.JaccardDistanceSchemaMatcher",
+        "bdikit.schema_matching.one2one.valentine.JaccardSchemaMatcher",
     )
     GPT = ("gpt", "bdikit.schema_matching.one2one.gpt.GPTSchemaMatcher")
     CT_LEARNING = (
