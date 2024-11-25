@@ -651,7 +651,10 @@ def preview_domain(
         value_names = value_names[:limit]
         value_descriptions = value_descriptions[:limit]
 
-    domain = {"value_name": value_names}
+    domain = {}
+
+    if len(value_names) > 0:
+        domain["value_name"] = value_names
 
     if len(value_descriptions) > 0:
         domain["value_description"] = value_descriptions
