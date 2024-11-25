@@ -385,3 +385,39 @@ def test_top_value_matches():
     assert "source" in df_match.columns
     assert "target" in df_match.columns
     assert "similarity" in df_match.columns
+
+def test_preview_domain():
+    # given
+    source = pd.DataFrame(
+        {
+            "name": ["John Doe", "Jane Doe", "Alice Smith", "Bob Smith"],
+            "age": [30, 25, 45, 35],
+        }
+    )
+
+    # when
+    preview = bdi.preview_domain(source, "age")
+
+    # then
+    # preview must contain only the column "value_name" and the unique 
+    # values of the column "age"
+    assert preview is not None
+    assert isinstance(preview, pd.DataFrame)
+    assert "value_name" in preview.columns
+    assert "column_description" not in preview.columns
+    assert "value_description" not in preview.columns
+    assert source["age"].eq(preview["value_name"]).all()
+
+    # when
+    preview = bdi.preview_domain("gdc", "age_at_diagnosis")
+
+    # then
+    # preview must contain only the column "column_description" since there
+    # are sample values in the GDC dictionary
+    assert preview is not None
+    assert isinstance(preview, pd.DataFrame)
+    assert "value_name" not in preview.columns
+    assert "value_description" not in preview.columns
+    assert "column_description" in preview.columns
+
+
