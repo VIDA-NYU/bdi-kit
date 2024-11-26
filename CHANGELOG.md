@@ -1,7 +1,7 @@
 Change Log
 ==========
 
-0.4.0.dev0 (yyyy-mm-dd)
+0.4.0 (2024-11-26)
 ------------------------
 
 We are pleased to announce the release of bdikit version 0.4.0.
