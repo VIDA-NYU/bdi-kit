@@ -1,4 +1,3 @@
-import os
 from typing import List, Dict, Tuple, Optional
 from bdikit.config import get_device
 import numpy as np
@@ -13,7 +12,7 @@ from bdikit.models.contrastive_learning.cl_pretrained_dataset import (
 from sklearn.metrics.pairwise import cosine_similarity
 from tqdm.auto import tqdm
 from bdikit.download import get_cached_model_or_download
-from bdikit.utils import check_gdc_cache, write_embeddings_to_cache
+from bdikit.utils import check_embedding_cache, write_embeddings_to_cache
 from bdikit.models import ColumnEmbedder
 
 
@@ -108,7 +107,7 @@ class ContrastiveLearningAPI(ColumnEmbedder):
 
     def _load_table_tokens(self, table: pd.DataFrame) -> List[np.ndarray]:
 
-        embedding_file, embeddings = check_gdc_cache(table, self.model_path)
+        embedding_file, embeddings = check_embedding_cache(table, self.model_path)
 
         if embeddings != None:
             print(f"Table features loaded for {len(table.columns)} columns")
