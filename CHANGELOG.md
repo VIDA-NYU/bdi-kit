@@ -4,9 +4,29 @@ Change Log
 0.4.0.dev0 (yyyy-mm-dd)
 ------------------------
 
+We are pleased to announce the release of bdikit version 0.4.0.
+This version includes some new features and breaking changes,
+including a change in the minimum Python version supported (3.9)
+and support to search top-k best-value matches for a given pair
+of table attributes.
+
+Below is a list of the main changes included in this release:
+
+- chore: Update instructions
+- fix: Check whether the values are numeric
+- fix: Add supported versions of Python
+- chore: remove bdi-viz (#84)
+- feat: Support for top-k value matches
+- chore: ensure nltk version is >=3.9.1 to fix a security issue
+- chore: Remove unnecessary transitive dependency: conllu<5.0.0
+- chore: Fix syntax highlighting in docs
+- docs: Add documentation for value-matching methods
+- fix: Address preview_domain() issue when there are no sample values (#92)
+
 
 0.3.0 (2024-08-22)
 ------------------
+
 Below is a detailed list of important changes included in this release.
 
 New Features and Improvements: 
