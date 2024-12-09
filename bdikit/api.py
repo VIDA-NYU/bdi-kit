@@ -1,101 +1,42 @@
 from __future__ import annotations
 import logging
-from enum import Enum
 from collections import defaultdict
-from os.path import join, dirname
-from typing import (
-    Union,
-    Type,
-    List,
-    Dict,
-    TypedDict,
-    Set,
-    Optional,
-    Tuple,
-    Callable,
-    Mapping,
-    Any,
-)
 import itertools
 import pandas as pd
 import numpy as np
 import panel as pn
 from IPython.display import display, Markdown
-from bdikit.utils import get_gdc_data, get_gdc_metadata
-from bdikit.mapping_algorithms.column_mapping.algorithms import (
-    BaseSchemaMatcher,
-    SimFloodSchemaMatcher,
-    ComaSchemaMatcher,
-    CupidSchemaMatcher,
-    DistributionBasedSchemaMatcher,
-    JaccardSchemaMatcher,
-    GPTSchemaMatcher,
-    ContrastiveLearningSchemaMatcher,
-    TwoPhaseSchemaMatcher,
-    MaxValSimSchemaMatcher,
-)
-from bdikit.mapping_algorithms.value_mapping.value_mappers import ValueMapper
-from bdikit.models.contrastive_learning.cl_api import (
-    DEFAULT_CL_MODEL,
-)
-from bdikit.mapping_algorithms.column_mapping.topk_matchers import (
-    TopkColumnMatcher,
-    CLTopkColumnMatcher,
-)
-from bdikit.mapping_algorithms.value_mapping.algorithms import (
-    ValueMatch,
-    BaseValueMatcher,
-    TFIDFValueMatcher,
-    GPTValueMatcher,
-    EditDistanceValueMatcher,
-    EmbeddingValueMatcher,
-    AutoFuzzyJoinValueMatcher,
-    FastTextValueMatcher,
-)
-from bdikit.mapping_algorithms.value_mapping.value_mappers import (
+from bdikit.schema_matching.best.base import BaseSchemaMatcher
+from bdikit.schema_matching.best.matcher_factory import SchemaMatchers
+from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
+from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
+from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult
+from bdikit.value_matching.matcher_factory import ValueMatchers
+from bdikit.standards.standard_factory import Standards
+
+from bdikit.mapping_functions import (
     ValueMapper,
     FunctionValueMapper,
     DictionaryMapper,
     IdentityValueMapper,
 )
 
+from typing import (
+    Union,
+    List,
+    Dict,
+    TypedDict,
+    Optional,
+    Tuple,
+    Callable,
+    Any,
+)
+
+from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
+
 pn.extension("tabulator")
 
-GDC_DATA_PATH = join(dirname(__file__), "./resource/gdc_table.csv")
-DEFAULT_VALUE_MATCHING_METHOD = "tfidf"
-DEFAULT_SCHEMA_MATCHING_METHOD = "coma"
 logger = logging.getLogger(__name__)
-
-
-class SchemaMatchers(Enum):
-    SIMFLOOD = ("similarity_flooding", SimFloodSchemaMatcher)
-    COMA = ("coma", ComaSchemaMatcher)
-    CUPID = ("cupid", CupidSchemaMatcher)
-    DISTRIBUTION_BASED = ("distribution_based", DistributionBasedSchemaMatcher)
-    JACCARD_DISTANCE = ("jaccard_distance", JaccardSchemaMatcher)
-    GPT = ("gpt", GPTSchemaMatcher)
-    CT_LEARGNING = ("ct_learning", ContrastiveLearningSchemaMatcher)
-    TWO_PHASE = ("two_phase", TwoPhaseSchemaMatcher)
-    MAX_VAL_SIM = ("max_val_sim", MaxValSimSchemaMatcher)
-
-    def __init__(self, method_name: str, method_class: Type[BaseSchemaMatcher]):
-        self.method_name = method_name
-        self.method_class = method_class
-
-    @staticmethod
-    def get_instance(
-        method_name: str, **method_kwargs: Mapping[str, Any]
-    ) -> BaseSchemaMatcher:
-        methods = {method.method_name: method.method_class for method in SchemaMatchers}
-
-        try:
-            return methods[method_name](**method_kwargs)
-        except KeyError:
-            names = ", ".join(list(methods.keys()))
-            raise ValueError(
-                f"The {method_name} algorithm is not supported. "
-                f"Supported algorithms are: {names}"
-            )
 
 
 def match_schema(
@@ -130,7 +71,7 @@ def match_schema(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        matcher_instance = SchemaMatchers.get_instance(method, **method_args)
+        matcher_instance = SchemaMatchers.get_matcher(method, **method_args)
     elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
     else:
@@ -148,32 +89,10 @@ def _load_table_for_standard(name: str) -> pd.DataFrame:
     Load the table for the given standard data vocabulary. Currently, only the
     GDC standard is supported.
     """
-    if name == "gdc":
-        return pd.read_csv(GDC_DATA_PATH)
-    else:
-        raise ValueError(f"The {name} standard is not supported")
+    standard = Standards.get_standard(name)
+    df = standard.get_dataframe_rep()
 
-
-class TopkMatchers(Enum):
-    CT_LEARNING = ("ct_learning", CLTopkColumnMatcher)
-
-    def __init__(self, method_name: str, method_class: Type[TopkColumnMatcher]):
-        self.method_name = method_name
-        self.method_class = method_class
-
-    @staticmethod
-    def get_instance(
-        method_name: str, **method_kwargs: Mapping[str, Any]
-    ) -> TopkColumnMatcher:
-        methods = {method.method_name: method.method_class for method in TopkMatchers}
-        try:
-            return methods[method_name](**method_kwargs)
-        except KeyError:
-            names = ", ".join(list(methods.keys()))
-            raise ValueError(
-                f"The {method_name} algorithm is not supported. "
-                f"Supported algorithms are: {names}"
-            )
+    return df
 
 
 def top_matches(
@@ -181,7 +100,7 @@ def top_matches(
     columns: Optional[List[str]] = None,
     target: Union[str, pd.DataFrame] = "gdc",
     top_k: int = 10,
-    method: Union[str, TopkColumnMatcher] = "ct_learning",
+    method: Union[str, BaseTopkSchemaMatcher] = "ct_learning",
     method_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
@@ -210,12 +129,12 @@ def top_matches(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        topk_matcher = TopkMatchers.get_instance(method, **method_args)
-    elif isinstance(method, TopkColumnMatcher):
+        topk_matcher = TopkMatchers.get_matcher(method, **method_args)
+    elif isinstance(method, BaseTopkSchemaMatcher):
         topk_matcher = method
     else:
         raise ValueError(
-            "The method must be a string or an instance of TopkColumnMatcher"
+            "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
     top_k_matches = topk_matcher.get_recommendations(
@@ -232,47 +151,11 @@ def top_matches(
     return pd.concat(dfs, ignore_index=True)
 
 
-class ValueMatchers(Enum):
-    TFIDF = ("tfidf", TFIDFValueMatcher)
-    EDIT = ("edit_distance", EditDistanceValueMatcher)
-    EMBEDDINGS = ("embedding", EmbeddingValueMatcher)
-    AUTOFJ = ("auto_fuzzy_join", AutoFuzzyJoinValueMatcher)
-    FASTTEXT = ("fasttext", FastTextValueMatcher)
-    GPT = ("gpt", GPTValueMatcher)
-
-    def __init__(self, method_name: str, method_class: Type[BaseValueMatcher]):
-        self.method_name = method_name
-        self.method_class = method_class
-
-    @staticmethod
-    def get_instance(
-        method_name: str, **method_kwargs: Mapping[str, Any]
-    ) -> BaseValueMatcher:
-        methods = {method.method_name: method.method_class for method in ValueMatchers}
-        try:
-            return methods[method_name](**method_kwargs)
-        except KeyError:
-            names = ", ".join(list(methods.keys()))
-            raise ValueError(
-                f"The {method_name} algorithm is not supported. "
-                f"Supported algorithms are: {names}"
-            )
-
-
-class ValueMatchingResult(TypedDict):
-    source: str
-    target: str
-    matches: List[ValueMatch]
-    coverage: float
-    unique_values: Set[str]
-    unmatch_values: Set[str]
-
-
 def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    method: str = DEFAULT_VALUE_MATCHING_METHOD,
+    method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
@@ -383,12 +266,12 @@ def top_value_matches(
     if method_args is None:
         method_args = {}
 
-    if "top_k" in method_args:
+    if "top_n" in method_args:
         logger.warning(
-            f"Ignoring 'top_k' argument, using top_k argument instead (top_k={top_k})"
+            f"Ignoring 'top_n' argument, using top_k argument instead (top_k={top_k})"
         )
 
-    method_args["top_k"] = top_k
+    method_args["top_n"] = top_k
 
     matches = _match_values(source, target, column_mapping, method, method_args)
 
@@ -405,7 +288,7 @@ def top_value_matches(
 
 
 def view_value_matches(
-    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = False
+    matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = True
 ):
     """
     Shows the value match results in a DataFrame fashion.
@@ -457,7 +340,7 @@ def _match_values(
     target_domain, column_mapping_list = _format_value_matching_input(
         source, target, column_mapping
     )
-    value_matcher = ValueMatchers.get_instance(method, **method_args)
+    value_matcher = ValueMatchers.get_matcher(method, **method_args)
     mapping_results: List[ValueMatchingResult] = []
 
     for mapping in column_mapping_list:
@@ -553,9 +436,10 @@ def _format_value_matching_input(
                 f"The source column '{source_column}' is not present in the source dataset."
             )
 
-    if isinstance(target, str) and target == "gdc":
+    if isinstance(target, str):
         column_names = mapping_df["target"].unique().tolist()
-        target_domain = get_gdc_data(column_names)
+        standard = Standards.get_standard(target)
+        target_domain = standard.get_column_values(column_names)
     elif isinstance(target, pd.DataFrame):
         target_domain = {
             column_name: target[column_name].unique().tolist()
@@ -632,11 +516,12 @@ def preview_domain(
         (if applicable).
     """
 
-    if isinstance(dataset, str) and dataset == "gdc":
-        gdc_metadata = get_gdc_metadata()
-        value_names = gdc_metadata[column]["value_names"]
-        value_descriptions = gdc_metadata[column]["value_descriptions"]
-        column_description = gdc_metadata[column]["description"]
+    if isinstance(dataset, str):
+        standard = Standards.get_standard(dataset)
+        column_metadata = standard.get_column_metadata([column])
+        value_names = column_metadata[column]["value_names"]
+        value_descriptions = column_metadata[column]["value_descriptions"]
+        column_description = column_metadata[column]["description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[column].unique()

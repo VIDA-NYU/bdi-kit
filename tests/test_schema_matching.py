@@ -1,11 +1,14 @@
 import pandas as pd
-from bdikit.mapping_algorithms.column_mapping.algorithms import (
+
+from bdikit.schema_matching.best.valentine import (
     SimFloodSchemaMatcher,
     JaccardSchemaMatcher,
     DistributionBasedSchemaMatcher,
     ComaSchemaMatcher,
     CupidSchemaMatcher,
-    TwoPhaseSchemaMatcher,
+)
+from bdikit.schema_matching.best.twophase import TwoPhaseSchemaMatcher
+from bdikit.schema_matching.best.contrastivelearning import (
     ContrastiveLearningSchemaMatcher,
 )
 
@@ -33,7 +36,7 @@ def test_basic_column_mapping_algorithms():
         )
 
         # when
-        mapping = column_matcher.map(dataset=table1, global_table=table2)
+        mapping = column_matcher.map(source=table1, target=table2)
 
         # then
         assert {
