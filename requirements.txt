@@ -5,7 +5,7 @@ torch
 transformers
 tqdm
 scikit-learn
-flair>=0.14.0
+flair[word-embeddings]>=0.14.0
 requests
 scipy<1.13
 matplotlib<3.9
