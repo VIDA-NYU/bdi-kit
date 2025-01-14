@@ -3,7 +3,7 @@ from os.path import join, dirname
 
 
 RAW_GDC_PATH = join(dirname(__file__), "./gdc_raw_schema.json")
-FORMATTED_GDC_PATH = join(dirname(__file__), "../bdikit/resource/gdc_schema.json")
+FORMATTED_GDC_PATH = join(dirname(__file__), "../../bdikit/resource/gdc_schema.json")
 
 metadata = {}
 
