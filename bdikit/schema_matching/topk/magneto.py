@@ -26,7 +26,6 @@ class MagnetoBase(BaseSchemaMatcher, BaseTopkSchemaMatcher):
         # There is an issue in Magneto to get the top-1 match, so get top 2 and then filter
         self.magneto.params["topk"] = 2  # Magneto does not provide a method to set topk
         raw_matches = self.magneto.get_matches(source, target)
-        print("raw_matches", raw_matches)
 
         # Organizing data into the desired structure
         sorted_dict = {}

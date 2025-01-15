@@ -39,22 +39,22 @@ class SchemaMatchers(Enum):
         "bdikit.schema_matching.one2one.maxvalsim.MaxValSimSchemaMatcher",
     )
     MAGNETO = (
-        "magneto",
+        "magneto_zs_bp",
         "bdikit.schema_matching.topk.magneto.Magneto",
     )
 
     MAGNETO_FT = (
-        "magneto_ft",
+        "magneto_ft_bp",
         "bdikit.schema_matching.topk.magneto.MagnetoFT",
     )
 
     MAGNETO_GPT = (
-        "magneto_gpt",
+        "magneto_zs_llm",
         "bdikit.schema_matching.topk.magneto.MagnetoGPT",
     )
 
     MAGNETO_FTGPT = (
-        "magneto_ftgpt",
+        "magneto_ft_llm",
         "bdikit.schema_matching.topk.magneto.MagnetoFTGPT",
     )
 
