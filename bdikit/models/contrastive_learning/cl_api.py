@@ -24,7 +24,7 @@ class ContrastiveLearningAPI(ColumnEmbedder):
         self,
         model_path: Optional[str] = None,
         model_name: Optional[str] = None,
-        batch_size: int = 128,
+        batch_size: int = 1,
     ):
         if model_name and model_path:
             raise ValueError(

@@ -837,7 +837,9 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
         if isinstance(match, ValueMatch):
             mapping_dict[match.source_value] = match.target_value
         elif (isinstance(match, tuple) or isinstance(match, list)) and len(match) == 2:
-            if isinstance(match[0], str) and isinstance(match[1], str):
+            if (isinstance(match[0], str) or pd.isna(match[0])) and (
+                isinstance(match[1], str) or pd.isna(match[1])
+            ):
                 mapping_dict[match[0]] = match[1]
             else:
                 raise ValueError(

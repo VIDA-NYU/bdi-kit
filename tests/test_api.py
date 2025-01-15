@@ -221,6 +221,108 @@ def test_value_mapping_dataframe():
     assert len(mapping) == len(df_source)
 
 
+def test_materialize_mapping():
+
+    # Case 1: when source value is missing, the target value must be np.nan
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Red Apple", "Banana", "Oorange"]}
+    )
+    # when
+    column_mappings = [
+        {
+            "source": "src_column",
+            "target": "tgt_column",
+            "matches": [
+                ["Red Apple", "APPLE"],
+                ["Banana", "BANANA"],
+                ["Oorange", "ORANGE"],
+            ],
+        }
+    ]
+
+    # then
+    df_mapped = bdi.materialize_mapping(df_source, column_mappings)
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE"]
+
+    # 
+    # Case 2: when user provides source values None and np.nan, the target value must be provided target value
+    # 
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Red Apple", "Banana", "Oorange", None, np.nan]}
+    )
+    # when
+    column_mappings = [
+        {
+            "source": "src_column",
+            "target": "tgt_column",
+            "matches": [
+                ["Red Apple", "APPLE"],
+                ["Banana", "BANANA"],
+                ["Oorange", "ORANGE"],
+                [None, "UNKOWN"],
+                [np.nan, "UNKOWN"],
+            ],
+        }
+    ]
+
+    # then
+    df_mapped = bdi.materialize_mapping(df_source, column_mappings)
+    print()
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", "UNKOWN", "UNKOWN"]
+
+
+    # 
+    # Case 3: when user provides source values None and np.nan, the target value must be provided target value
+    #
+    
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Strawberry", None, np.nan]}
+    )
+    # when
+    column_mappings = [
+        {
+            "source": "src_column",
+            "target": "tgt_column",
+            "matches": [
+            ],
+        }
+    ]
+
+    # then
+    df_mapped = bdi.materialize_mapping(df_source, column_mappings)
+    print()
+    assert "tgt_column" in df_mapped.columns
+    assert pd.isna(df_mapped["tgt_column"].iloc[0])
+    assert pd.isna(df_mapped["tgt_column"].iloc[1])
+    assert pd.isna(df_mapped["tgt_column"].iloc[2])
+
+
+    # when
+    column_mappings = [
+        {
+            "source": "src_column",
+            "target": "tgt_column",
+            "matches": [
+                ["Strawberry", "STRAWBERRY"],
+                [None, "UNKOWN"],
+                [np.nan, "UNKOWN"],
+            ],
+        }
+    ]
+
+    # then
+    df_mapped = bdi.materialize_mapping(df_source, column_mappings)
+    
+    assert "tgt_column" in df_mapped.columns
+    assert df_mapped["tgt_column"].tolist() == ["STRAWBERRY", "UNKOWN", "UNKOWN"]
+    
+
+
 def test_end_to_end_api_integration():
     # given
     df_source = pd.DataFrame(
@@ -291,9 +393,9 @@ def test_end_to_end_api_integration():
             "source": "src_column",
             "target": "tgt_column",
             "matches": [
-                ("Red Apple", "APPLE"),
-                ("Banana", "BANANA"),
-                ("Oorange", "ORANGE"),
+                ["Red Apple", "APPLE"],
+                ["Banana", "BANANA"],
+                ["Oorange", "ORANGE"],
             ],
         }
     ]

@@ -56,9 +56,13 @@ class GDC(BaseStandard):
         return column_metadata
 
     def get_dataframe_rep(self) -> pd.DataFrame:
-        reshaped_data = {
-            key: list(value["value_data"].keys()) for key, value in self.data.items()
-        }
+        reshaped_data = {}
+        for key, value in self.data.items():
+            values = list(value["value_data"].keys())
+            if len(values) == 0:
+                values = list(value["synthetic_value_data"].keys())
+
+            reshaped_data[key] = values
 
         # Ensure all lists have the same length by padding with None
         max_length = max(len(v) for v in reshaped_data.values())
