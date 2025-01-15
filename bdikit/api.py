@@ -836,7 +836,7 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
     for match in matches:
         if isinstance(match, ValueMatch):
             mapping_dict[match.source_value] = match.target_value
-        elif isinstance(match, tuple) and len(match) == 2:
+        elif (isinstance(match, tuple) or isinstance(match, list)) and len(match) == 2:
             if isinstance(match[0], str) and isinstance(match[1], str):
                 mapping_dict[match[0]] = match[1]
             else:
@@ -844,7 +844,9 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
                     "Tuple in matches must contain two strings: (source_value, target_value)"
                 )
         else:
-            raise ValueError("Matches must be a list of ValueMatch objects or tuples")
+            raise ValueError(
+                "Matches must be a list of ValueMatch objects or tuples with two values."
+            )
     return DictionaryMapper(mapping_dict)
 
 
