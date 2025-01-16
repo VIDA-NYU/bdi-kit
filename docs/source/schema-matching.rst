@@ -16,16 +16,16 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - Class
       - Description
     * - ``magneto_zs_bp``
-      - :class:`~bdikit.schema_matching.topk.magneto.Magneto`
+      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoZSBP`
       - | Uses a zero-shot small language model as retriever with the bipartite algorithm as reranker in Magneto.
     * - ``magneto_ft_bp``
-      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoFT`
+      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoFTBP`
       - | Uses a fine-tuned small language model as retriever with the bipartite algorithm as reranker in Magneto.
     * - ``magneto_zs_llm``
-      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoGPT`
+      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoZSLLM`
       - | Uses a zero-shot small language model as retriever with a large language model as reranker in Magneto.
     * - ``magneto_ft_llm``
-      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoFTGPT`
+      - :class:`~bdikit.schema_matching.topk.magneto.MagnetoFTLLM`
       - | Uses a fine-tuned small language model as retriever with a large language model as reranker in Magneto.
     * - ``ct_learning``
       - :class:`~bdikit.schema_matching.one2one.contrastivelearning.ContrastiveLearningSchemaMatcher`

@@ -76,12 +76,12 @@ class MagnetoBase(BaseSchemaMatcher, BaseTopkSchemaMatcher):
         return top_k_results
 
 
-class Magneto(MagnetoBase):
+class MagnetoZSBP(MagnetoBase):
     def __init__(self):
         super().__init__()
 
 
-class MagnetoFT(MagnetoBase):
+class MagnetoFTBP(MagnetoBase):
     def __init__(
         self,
         encoding_mode: str = "header_values_verbose",
@@ -93,13 +93,13 @@ class MagnetoFT(MagnetoBase):
         super().__init__(kwargs)
 
 
-class MagnetoGPT(MagnetoBase):
+class MagnetoZSLLM(MagnetoBase):
     def __init__(self):
         kwargs = {"use_bp_reranker": False, "use_gpt_reranker": True}
         super().__init__(kwargs)
 
 
-class MagnetoFTGPT(MagnetoBase):
+class MagnetoFTLLM(MagnetoBase):
     def __init__(
         self,
         encoding_mode: str = "header_values_verbose",
