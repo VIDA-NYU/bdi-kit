@@ -55,7 +55,7 @@ def match_schema(
     Parameters:
         source (pd.DataFrame): The source table to be mapped.
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
-        method (str, optional): The method used for mapping. Defaults to "coma".
+        method (str, optional): The method used for mapping. Defaults to "ct_learning".
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
 
     Returns:
