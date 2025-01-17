@@ -1,14 +1,25 @@
 Change Log
 ==========
 
-0.5.0.dev0 (yyyy-mm-dd)
-------------------------
+0.5.0 (2025-01-17)
+------------------
 
-- 
+We are pleased to announce the release of bdikit version 0.5.0.
+This version includes some new features, such as [Magneto](https://arxiv.org/pdf/2412.08194)  
+as a schema matching method, and streamlines the integration of new algorithms and standards.
+
+Below is a list of the main changes included in this release:
+
+- feat: Restructure packages to add new algorithms easier (#87)
+- feat: Streamline the addition of new standards (#88)
+- feat: Add Magneto (#94)
+- chore: Update the download and upload artifact in Github actions (#95)
+- chore: Add an extra dependency to enable `flair` to load embeddings
+- test: Add tests for more value matching methods
 
 
 0.4.0 (2024-11-26)
-------------------------
+------------------
 
 We are pleased to announce the release of bdikit version 0.4.0.
 This version includes some new features and breaking changes,
