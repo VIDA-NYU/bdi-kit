@@ -101,7 +101,7 @@ def top_matches(
     columns: Optional[List[str]] = None,
     target: Union[str, pd.DataFrame] = "gdc",
     top_k: int = 10,
-    method: Union[str, BaseTopkSchemaMatcher] = "ct_learning",
+    method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
