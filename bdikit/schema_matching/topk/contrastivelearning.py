@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from typing import List
-from bdikit.schema_matching.topk.base import (
+from bdikit.schema_matching.base import (
     ColumnScore,
     TopkMatching,
     BaseTopkSchemaMatcher,
@@ -54,7 +54,7 @@ class EmbeddingSimilarityTopkSchemaMatcher(BaseTopkSchemaMatcher):
         return top_k_results
 
 
-class CLTopkSchemaMatcher(EmbeddingSimilarityTopkSchemaMatcher):
+class ContrastiveLearning(EmbeddingSimilarityTopkSchemaMatcher):
     def __init__(self, model_name: str = DEFAULT_CL_MODEL, metric: str = "cosine"):
         super().__init__(
             column_embedder=ContrastiveLearningAPI(model_name=model_name), metric=metric

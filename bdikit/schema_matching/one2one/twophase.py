@@ -1,21 +1,20 @@
 import pandas as pd
 from typing import Optional
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
 from bdikit.schema_matching.one2one.valentine import SimFloodSchemaMatcher
 from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
-from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
-from bdikit.schema_matching.topk.contrastivelearning import CLTopkSchemaMatcher
+from bdikit.schema_matching.topk.contrastivelearning import ContrastiveLearning
 
 
-class TwoPhaseSchemaMatcher(BaseSchemaMatcher):
+class TwoPhaseSchemaMatcher(BaseOne2oneSchemaMatcher):
     def __init__(
         self,
         top_k: int = 20,
         top_k_matcher: Optional[BaseTopkSchemaMatcher] = None,
-        schema_matcher: BaseSchemaMatcher = SimFloodSchemaMatcher(),
+        schema_matcher: BaseOne2oneSchemaMatcher = SimFloodSchemaMatcher(),
     ):
         if top_k_matcher is None:
-            self.api = CLTopkSchemaMatcher(DEFAULT_CL_MODEL)
+            self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
         elif isinstance(top_k_matcher, BaseTopkSchemaMatcher):
             self.api = top_k_matcher
         else:

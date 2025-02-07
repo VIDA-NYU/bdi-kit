@@ -28,7 +28,7 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - :class:`~bdikit.schema_matching.topk.magneto.MagnetoFTLLM`
       - | Uses a fine-tuned small language model as retriever with a large language model as reranker in Magneto.
     * - ``ct_learning``
-      - :class:`~bdikit.schema_matching.one2one.contrastivelearning.ContrastiveLearningSchemaMatcher`
+      - :class:`~bdikit.schema_matching.topk.contrastivelearning.ContrastiveLearning`
       - | Uses a contrastive (CT) learning model to learn embeddings for columns and retrieves the best match most similar columns using the cosine similarity between the column embeddings.
     * - ``two_phase``
       - :class:`~bdikit.schema_matching.one2one.twophase.TwoPhaseSchemaMatcher`

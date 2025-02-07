@@ -1,9 +1,8 @@
 import pandas as pd
 from typing import Dict, Any, List
 from magneto import Magneto as Magneto_Lib
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
 from bdikit.download import get_cached_model_or_download
-from bdikit.schema_matching.topk.base import (
+from bdikit.schema_matching.base import (
     ColumnScore,
     TopkMatching,
     BaseTopkSchemaMatcher,
@@ -12,7 +11,7 @@ from bdikit.schema_matching.topk.base import (
 DEFAULT_MAGNETO_MODEL = "magneto-gdc-v0.1"
 
 
-class MagnetoBase(BaseSchemaMatcher, BaseTopkSchemaMatcher):
+class MagnetoBase(BaseTopkSchemaMatcher):
     def __init__(self, kwargs: Dict[str, Any] = None):
         if kwargs is None:
             kwargs = {}

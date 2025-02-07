@@ -1,9 +1,9 @@
 import pandas as pd
 from openai import OpenAI
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher
 
 
-class GPTSchemaMatcher(BaseSchemaMatcher):
+class GPTSchemaMatcher(BaseOne2oneSchemaMatcher):
     def __init__(self):
         self.client = OpenAI()
 

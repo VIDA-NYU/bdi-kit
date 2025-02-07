@@ -7,7 +7,7 @@ from bdikit.schema_matching.one2one.valentine import (
     CupidSchemaMatcher,
 )
 from bdikit.schema_matching.one2one.twophase import TwoPhaseSchemaMatcher
-from bdikit.schema_matching.one2one.contrastivelearning import ContrastiveLearningSchemaMatcher
+from bdikit.schema_matching.topk.contrastivelearning import ContrastiveLearning
 
 
 def test_basic_column_mapping_algorithms():
@@ -22,7 +22,7 @@ def test_basic_column_mapping_algorithms():
         # downloading large models
         #
         TwoPhaseSchemaMatcher(schema_matcher=ComaSchemaMatcher()),
-        ContrastiveLearningSchemaMatcher(),
+        ContrastiveLearning(),
     ]:
         # given
         table1 = pd.DataFrame(

@@ -1,6 +1,6 @@
 import pandas as pd
 from typing import Dict, Callable
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher
 from valentine import valentine_match
 from valentine.algorithms.matcher_results import MatcherResults
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
@@ -14,7 +14,7 @@ from valentine.algorithms import (
 )
 
 
-class ValentineSchemaMatcher(BaseSchemaMatcher):
+class ValentineSchemaMatcher(BaseOne2oneSchemaMatcher):
     def __init__(self, matcher: BaseMatcher):
         self.matcher = matcher
 
