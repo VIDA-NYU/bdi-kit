@@ -747,7 +747,7 @@ def create_mapper(
         Dict,
         ColumnMappingSpec,
         Callable[[pd.Series], pd.Series],
-    ]
+    ],
 ):
     """
     Tries to instantiate an appropriate ValueMapper object for the given input argument.
