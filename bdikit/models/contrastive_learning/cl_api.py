@@ -45,7 +45,9 @@ class ContrastiveLearningAPI(ColumnEmbedder):
         self.model = self.load_checkpoint()
 
     def load_checkpoint(self, lm: str = "roberta"):
-        ckpt = torch.load(self.model_path, map_location=torch.device("cpu"))
+        ckpt = torch.load(
+            self.model_path, map_location=torch.device("cpu"), weights_only=False
+        )
         scale_loss = 0.1
         lambd = 3.9
         model = BarlowTwinsSimCLR(scale_loss, lambd, device=self.device, lm=lm)
