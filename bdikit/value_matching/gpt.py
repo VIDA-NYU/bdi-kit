@@ -1,3 +1,4 @@
+import ast
 from typing import List
 from openai import OpenAI
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
@@ -17,17 +18,22 @@ class GPTValueMatcher(BaseValueMatcher):
         source_values: List[str],
         target_values: List[str],
     ) -> List[ValueMatch]:
+
+        if (
+            len(source_values) > 25
+        ):  # TODO: Improve this, avoid calling the API if the number of source values is too high (e.g. IDs)
+            return []
+
         target_values_set = set(target_values)
         matches = []
 
         for source_value in source_values:
             completion = self.client.chat.completions.create(
-                model="gpt-4-turbo-preview",
+                model="gpt-4o-mini",
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an intelligent system that given a term, you have to choose a value from a list that best matches the term. "
-                        "These terms belong to the medical domain, and the list contains terms in the Genomics Data Commons (GDC) format.",
+                        "content": "You are an intelligent system that given a term, you have to choose a value from a list that best matches the term.",
                     },
                     {
                         "role": "user",
