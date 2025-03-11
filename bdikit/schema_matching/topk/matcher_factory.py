@@ -13,6 +13,11 @@ class TopkMatchers(Enum):
         "bdikit.schema_matching.topk.contrastivelearning.CLTopkSchemaMatcher",
     )
 
+    MAX_VAL_SIM = (
+        "max_val_sim",
+        "bdikit.schema_matching.topk.maxvalsim.MaxValSimSchemaMatcher",
+    )
+
     MAGNETO_ZS_BP = (
         "magneto_zs_bp",
         "bdikit.schema_matching.topk.magneto.MagnetoZSBP",

@@ -27,6 +27,10 @@ class PolyFuzzValueMatcher(BaseValueMatcher):
         target_values: List[str],
     ) -> List[ValueMatch]:
 
+        if len(target_values) == 0:
+            matches = [ValueMatch(source, None, 0.0) for source in source_values]
+            return matches
+
         self.model.match(source_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by="Similarity", ascending=False, inplace=True)
