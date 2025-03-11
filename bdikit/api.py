@@ -45,6 +45,7 @@ def match_schema(
     target: Union[str, pd.DataFrame] = "gdc",
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
     Performs schema mapping between the source table and the given target schema. The
@@ -57,6 +58,7 @@ def match_schema(
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
         method (str, optional): The method used for mapping. Defaults to "ct_learning".
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
@@ -65,7 +67,7 @@ def match_schema(
         ValueError: If the method is neither a string nor an instance of BaseColumnMappingAlgorithm.
     """
     if isinstance(target, str):
-        target_table = _load_table_for_standard(target)
+        target_table = _load_table_for_standard(target, standard_args)
     else:
         target_table = target
 
@@ -85,12 +87,14 @@ def match_schema(
     return pd.DataFrame(matches.items(), columns=["source", "target"])
 
 
-def _load_table_for_standard(name: str) -> pd.DataFrame:
+def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
     """
     Load the table for the given standard data vocabulary. Currently, only the
     GDC standard is supported.
     """
-    standard = Standards.get_standard(name)
+    if standard_args is None:
+        standard_args = {}
+    standard = Standards.get_standard(name, **standard_args)
     df = standard.get_dataframe_rep()
 
     return df
@@ -103,6 +107,7 @@ def top_matches(
     top_k: int = 10,
     method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
     Returns the top-k matches between the source and target tables.
@@ -112,13 +117,16 @@ def top_matches(
         columns (Optional[List[str]], optional): The list of columns to consider for matching. Defaults to None.
         target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
         top_k (int, optional): The number of top matches to return. Defaults to 10.
+        method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
+        method_args (Optional[Dict[str, Any]], optional): The additional arguments of the method for schema matching.
+        standard_args (Optional[Dict[str, Any]], optional): The additional arguments of the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
     """
 
     if isinstance(target, str):
-        target_table = _load_table_for_standard(target)
+        target_table = _load_table_for_standard(target, standard_args)
     else:
         target_table = target
 
@@ -158,6 +166,7 @@ def match_values(
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between column values from the source dataset and column
@@ -183,6 +192,8 @@ def match_values(
           matching.
         method_args (Dict[str, Any], optional): The additional arguments of the
             method for value matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the
+            standard vocabulary.
 
     Returns:
         Union[pd.DataFrame, List[pd.DataFrame]]: A list of DataFrame objects containing
@@ -198,13 +209,18 @@ def match_values(
     if method_args is None:
         method_args = {}
 
+    if standard_args is None:
+        standard_args = {}
+
     if "top_k" in method_args and method_args["top_k"] > 1:
         logger.warning(
             f"Ignoring 'top_k' argument, use the 'top_value_matches()' method to get top-k value matches."
         )
         method_args["top_k"] = 1
 
-    matches = _match_values(source, target, column_mapping, method, method_args)
+    matches = _match_values(
+        source, target, column_mapping, method, method_args, standard_args
+    )
 
     if isinstance(column_mapping, tuple):
         if len(matches) == 0:
@@ -226,6 +242,7 @@ def top_value_matches(
     top_k: int = 5,
     method: str = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> List[pd.DataFrame]:
     """
     Finds top value matches between column values from the source dataset and column
@@ -253,6 +270,8 @@ def top_value_matches(
           matching.
         method_args (Dict[str, Any], optional): The additional arguments of the
             method for value matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the
+            standard vocabulary.
 
     Returns:
         List[pd.DataFrame]: A list of DataFrame objects containing
@@ -267,6 +286,9 @@ def top_value_matches(
     if method_args is None:
         method_args = {}
 
+    if standard_args is None:
+        standard_args = {}
+
     if "top_k" in method_args:
         logger.warning(
             f"Ignoring 'top_k' argument, using top_k argument instead (top_k={top_k})"
@@ -274,7 +296,9 @@ def top_value_matches(
 
     method_args["top_k"] = top_k
 
-    matches = _match_values(source, target, column_mapping, method, method_args)
+    matches = _match_values(
+        source, target, column_mapping, method, method_args, standard_args
+    )
 
     match_list = []
     for match in matches:
@@ -336,10 +360,11 @@ def _match_values(
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     method: str,
     method_args: Dict[str, Any],
+    standard_args: Dict[str, Any],
 ) -> List[pd.DataFrame]:
 
     target_domain, column_mapping_list = _format_value_matching_input(
-        source, target, column_mapping
+        source, target, column_mapping, standard_args
     )
     value_matcher = ValueMatchers.get_matcher(method, **method_args)
     mapping_results: List[ValueMatchingResult] = []
@@ -406,6 +431,7 @@ def _format_value_matching_input(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    standard_args: Dict[str, Any],
 ):
     if isinstance(column_mapping, pd.DataFrame):
         if not all(k in column_mapping.columns for k in ["source", "target"]):
@@ -439,7 +465,7 @@ def _format_value_matching_input(
 
     if isinstance(target, str):
         column_names = mapping_df["target"].unique().tolist()
-        standard = Standards.get_standard(target)
+        standard = Standards.get_standard(target, **standard_args)
         target_domain = standard.get_column_values(column_names)
     elif isinstance(target, pd.DataFrame):
         target_domain = {
@@ -496,6 +522,7 @@ def preview_domain(
     dataset: Union[str, pd.DataFrame],
     column: str,
     limit: Optional[int] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
     Preview the domain, i.e. set of unique values, column description and value description
@@ -510,6 +537,7 @@ def preview_domain(
         column(str): The column name to show the domain.
         limit (int, optional): The maximum number of unique values to include in the preview.
             Defaults to None.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
@@ -518,7 +546,9 @@ def preview_domain(
     """
 
     if isinstance(dataset, str):
-        standard = Standards.get_standard(dataset)
+        if standard_args is None:
+            standard_args = {}
+        standard = Standards.get_standard(dataset, **standard_args)
         column_metadata = standard.get_column_metadata([column])
         value_names = column_metadata[column]["value_names"]
         value_descriptions = column_metadata[column]["value_descriptions"]
