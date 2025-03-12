@@ -12,37 +12,11 @@ from bdikit.schema_matching.topk.base import (
 DEFAULT_MAGNETO_MODEL = "magneto-gdc-v0.1"
 
 
-class MagnetoBase(BaseSchemaMatcher, BaseTopkSchemaMatcher):
+class MagnetoBase(BaseTopkSchemaMatcher):
     def __init__(self, kwargs: Dict[str, Any] = None):
         if kwargs is None:
             kwargs = {}
         self.magneto = Magneto_Lib(**kwargs)
-
-    def map(
-        self,
-        source: pd.DataFrame,
-        target: pd.DataFrame,
-    ):
-        # There is an issue in Magneto to get the top-1 match, so get top 2 and then filter
-        self.magneto.params["topk"] = 2  # Magneto does not provide a method to set topk
-        raw_matches = self.magneto.get_matches(source, target)
-
-        # Organizing data into the desired structure
-        sorted_dict = {}
-        for (source, target), score in raw_matches.items():
-            source_column = source[1]
-            target_column = target[1]
-            if source_column not in sorted_dict:
-                sorted_dict[source_column] = []
-            sorted_dict[source_column].append((target_column, score))
-
-        # Sorting the lists by value in descending order and get top 1
-        formatted_matches = {}
-        for key in sorted_dict:
-            sorted_matches = sorted(sorted_dict[key], key=lambda x: x[1], reverse=True)
-            formatted_matches[key] = sorted_matches[0][0]
-
-        return formatted_matches
 
     def get_recommendations(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
@@ -68,7 +42,7 @@ class MagnetoBase(BaseSchemaMatcher, BaseTopkSchemaMatcher):
             top_k_columns = [ColumnScore(name, score) for name, score in sorted_matches]
             top_k_results.append(
                 {
-                    "source_column": [key] * len(top_k_columns),
+                    "source_column": key,
                     "top_k_columns": top_k_columns,
                 }
             )

@@ -39,7 +39,7 @@ class SchemaMatchers(Enum):
     )
     MAX_VAL_SIM = (
         "max_val_sim",
-        "bdikit.schema_matching.one2one.maxvalsim.MaxValSimSchemaMatcher",
+        "bdikit.schema_matching.topk.maxvalsim.MaxValSimSchemaMatcher",
     )
 
     MAGNETO_ZS_BP = (

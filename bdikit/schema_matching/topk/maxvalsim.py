@@ -1,17 +1,21 @@
 import pandas as pd
-from typing import Optional
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from typing import Optional, List
 from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
-from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
+from bdikit.schema_matching.topk.base import (
+    BaseTopkSchemaMatcher,
+    TopkMatching,
+    ColumnScore,
+)
 from bdikit.schema_matching.topk.contrastivelearning import CLTopkSchemaMatcher
 from bdikit.value_matching.polyfuzz import TFIDFValueMatcher
 from bdikit.value_matching.base import BaseValueMatcher
 
 
-class MaxValSimSchemaMatcher(BaseSchemaMatcher):
+class MaxValSimSchemaMatcher(BaseTopkSchemaMatcher):
     def __init__(
         self,
         top_k: int = 20,
+        contribution_factor: float = 0.5,
         top_k_matcher: Optional[BaseTopkSchemaMatcher] = None,
         value_matcher: Optional[BaseValueMatcher] = None,
     ):
@@ -36,6 +40,7 @@ class MaxValSimSchemaMatcher(BaseSchemaMatcher):
             )
 
         self.top_k = top_k
+        self.contribution_factor = contribution_factor
 
     def unique_string_values(self, column: pd.Series) -> pd.Series:
         column = column.dropna()
@@ -44,19 +49,20 @@ class MaxValSimSchemaMatcher(BaseSchemaMatcher):
         else:
             return pd.Series(column.unique().astype(str), name=column.name)
 
-    def map(
-        self,
-        source: pd.DataFrame,
-        target: pd.DataFrame,
-    ):
-        topk_column_matches = self.api.get_recommendations(source, target, self.top_k)
-
+    def get_recommendations(
+        self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
+    ) -> List[TopkMatching]:
+        max_topk = max(
+            top_k, self.top_k
+        )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
+        topk_column_matches = self.api.get_recommendations(source, target, max_topk)
         matches = {}
+        top_k_results = []
+
         for source_column_name, scope in zip(source.columns, topk_column_matches):
 
             source_column_name = scope["source_column"]
             top_k_columns = scope["top_k_columns"]
-
             source_column = source[source_column_name]
 
             if not pd.api.types.is_string_dtype(source_column):
@@ -71,12 +77,28 @@ class MaxValSimSchemaMatcher(BaseSchemaMatcher):
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
                 value_matches = self.value_matcher.match(source_values, target_values)
-                score = sum([m.similarity for m in value_matches]) / len(target_values)
-                score = (top_column.score + score) / 2.0
+                if len(target_values) == 0:
+                    value_score = 0.0
+                else:
+                    value_score = sum([m.similarity for m in value_matches]) / len(
+                        target_values
+                    )
+
+                score = (self.contribution_factor * value_score) + (
+                    (1 - self.contribution_factor) * top_column.score
+                )
                 scores.append((source_column_name, target_column_name, score))
 
-            sorted_columns = sorted(scores, key=lambda it: it[2], reverse=True)
+            sorted_columns = sorted(scores, key=lambda it: it[2], reverse=True)[:top_k]
+            sorted_columns = [
+                ColumnScore(name, score) for _, name, score in sorted_columns
+            ]
 
-            matches[source_column_name] = sorted_columns[0][1]
+            top_k_results.append(
+                {
+                    "source_column": source_column_name,
+                    "top_k_columns": sorted_columns,
+                }
+            )
 
-        return self._fill_missing_matches(source, matches)
+        return top_k_results
