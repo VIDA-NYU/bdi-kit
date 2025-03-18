@@ -102,8 +102,8 @@ def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.Dat
 
 def top_matches(
     source: pd.DataFrame,
-    columns: Optional[List[str]] = None,
     target: Union[str, pd.DataFrame] = "gdc",
+    columns: Optional[List[str]] = None,
     top_k: int = 10,
     method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
@@ -114,8 +114,8 @@ def top_matches(
 
     Args:
         source (pd.DataFrame): The source table.
-        columns (Optional[List[str]], optional): The list of columns to consider for matching. Defaults to None.
         target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
+        columns (Optional[List[str]], optional): The list of columns to consider for matching. Defaults to None.
         top_k (int, optional): The number of top matches to return. Defaults to 10.
         method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
         method_args (Optional[Dict[str, Any]], optional): The additional arguments of the method for schema matching.
