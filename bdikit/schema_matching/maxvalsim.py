@@ -1,17 +1,17 @@
 import pandas as pd
 from typing import Optional, List
 from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
-from bdikit.schema_matching.topk.base import (
+from bdikit.schema_matching.base import (
     BaseTopkSchemaMatcher,
     TopkMatching,
     ColumnScore,
 )
-from bdikit.schema_matching.topk.contrastivelearning import CLTopkSchemaMatcher
+from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 from bdikit.value_matching.polyfuzz import TFIDFValueMatcher
 from bdikit.value_matching.base import BaseValueMatcher
 
 
-class MaxValSimSchemaMatcher(BaseTopkSchemaMatcher):
+class MaxValSim(BaseTopkSchemaMatcher):
     def __init__(
         self,
         top_k: int = 20,
@@ -20,7 +20,7 @@ class MaxValSimSchemaMatcher(BaseTopkSchemaMatcher):
         value_matcher: Optional[BaseValueMatcher] = None,
     ):
         if top_k_matcher is None:
-            self.api = CLTopkSchemaMatcher(DEFAULT_CL_MODEL)
+            self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
         elif isinstance(top_k_matcher, BaseTopkSchemaMatcher):
             self.api = top_k_matcher
         else:
@@ -49,13 +49,13 @@ class MaxValSimSchemaMatcher(BaseTopkSchemaMatcher):
         else:
             return pd.Series(column.unique().astype(str), name=column.name)
 
-    def get_recommendations(
+    def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[TopkMatching]:
         max_topk = max(
             top_k, self.top_k
         )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
-        topk_column_matches = self.api.get_recommendations(source, target, max_topk)
+        topk_column_matches = self.api.get_topk_matches(source, target, max_topk)
         matches = {}
         top_k_results = []
 

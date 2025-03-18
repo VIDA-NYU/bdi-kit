@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from typing import List
-from bdikit.schema_matching.topk.base import (
+from bdikit.schema_matching.base import (
     ColumnScore,
     TopkMatching,
     BaseTopkSchemaMatcher,
@@ -14,12 +14,12 @@ from bdikit.models.contrastive_learning.cl_api import (
 from bdikit.models import ColumnEmbedder
 
 
-class EmbeddingSimilarityTopkSchemaMatcher(BaseTopkSchemaMatcher):
+class EmbeddingSimilarity(BaseTopkSchemaMatcher):
     def __init__(self, column_embedder: ColumnEmbedder, metric: str = "cosine"):
         self.api = column_embedder
         self.metric = metric
 
-    def get_recommendations(
+    def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int = 10
     ) -> List[TopkMatching]:
         """
@@ -54,7 +54,7 @@ class EmbeddingSimilarityTopkSchemaMatcher(BaseTopkSchemaMatcher):
         return top_k_results
 
 
-class CLTopkSchemaMatcher(EmbeddingSimilarityTopkSchemaMatcher):
+class ContrastiveLearning(EmbeddingSimilarity):
     def __init__(self, model_name: str = DEFAULT_CL_MODEL, metric: str = "cosine"):
         super().__init__(
             column_embedder=ContrastiveLearningAPI(model_name=model_name), metric=metric

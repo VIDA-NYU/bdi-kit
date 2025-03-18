@@ -1,28 +1,28 @@
 import pandas as pd
-from bdikit.schema_matching.one2one.valentine import (
-    SimFloodSchemaMatcher,
-    JaccardSchemaMatcher,
-    DistributionBasedSchemaMatcher,
-    ComaSchemaMatcher,
-    CupidSchemaMatcher,
+from bdikit.schema_matching.valentine import (
+    SimFlood,
+    Jaccard,
+    DistributionBased,
+    Coma,
+    Cupid,
 )
-from bdikit.schema_matching.one2one.twophase import TwoPhaseSchemaMatcher
-from bdikit.schema_matching.one2one.contrastivelearning import ContrastiveLearningSchemaMatcher
 
+from bdikit.schema_matching.twophase import TwoPhase
+from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 
 def test_basic_column_mapping_algorithms():
     for column_matcher in [
-        SimFloodSchemaMatcher(),
-        JaccardSchemaMatcher(),
-        DistributionBasedSchemaMatcher(),
-        ComaSchemaMatcher(),
-        CupidSchemaMatcher(),
+        SimFlood(),
+        Jaccard(),
+        DistributionBased(),
+        Coma(),
+        Cupid(),
         #
         # Uncomment the following lines to test matchers that require
         # downloading large models
         #
-        TwoPhaseSchemaMatcher(schema_matcher=ComaSchemaMatcher()),
-        ContrastiveLearningSchemaMatcher(),
+        TwoPhase(schema_matcher=Coma()),
+        ContrastiveLearning(),
     ]:
         # given
         table1 = pd.DataFrame(
@@ -33,7 +33,7 @@ def test_basic_column_mapping_algorithms():
         )
 
         # when
-        mapping = column_matcher.map(source=table1, target=table2)
+        mapping = column_matcher.get_one2one_match(source=table1, target=table2)
 
         # then
         assert {

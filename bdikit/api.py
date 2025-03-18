@@ -7,10 +7,11 @@ import numpy as np
 import panel as pn
 from IPython.display import display, Markdown
 
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
-from bdikit.schema_matching.one2one.matcher_factory import SchemaMatchers
-from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
-from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
+from bdikit.schema_matching.matcher_factory import (
+    get_one2one_schema_matcher,
+    get_topk_schema_matcher,
+)
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult
 from bdikit.value_matching.matcher_factory import ValueMatchers
 from bdikit.standards.standard_factory import Standards
@@ -43,7 +44,7 @@ logger = logging.getLogger(__name__)
 def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method: Union[str, BaseOne2oneSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
@@ -74,15 +75,15 @@ def match_schema(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        matcher_instance = SchemaMatchers.get_matcher(method, **method_args)
-    elif isinstance(method, BaseSchemaMatcher):
+        matcher_instance = get_one2one_schema_matcher(method, **method_args)
+    elif isinstance(method, BaseOne2oneSchemaMatcher):
         matcher_instance = method
     else:
         raise ValueError(
             "The method must be a string or an instance of BaseColumnMappingAlgorithm"
         )
 
-    matches = matcher_instance.map(source, target_table)
+    matches = matcher_instance.get_one2one_match(source, target_table)
 
     return pd.DataFrame(matches.items(), columns=["source", "target"])
 
@@ -138,7 +139,7 @@ def top_matches(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        topk_matcher = TopkMatchers.get_matcher(method, **method_args)
+        topk_matcher = get_topk_schema_matcher(method, **method_args)
     elif isinstance(method, BaseTopkSchemaMatcher):
         topk_matcher = method
     else:
@@ -146,7 +147,7 @@ def top_matches(
             "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
-    top_k_matches = topk_matcher.get_recommendations(
+    top_k_matches = topk_matcher.get_topk_matches(
         selected_columns, target=target_table, top_k=top_k
     )
 

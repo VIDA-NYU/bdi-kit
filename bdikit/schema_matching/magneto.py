@@ -1,13 +1,8 @@
 import pandas as pd
 from typing import Dict, Any, List
 from magneto import Magneto as Magneto_Lib
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
 from bdikit.download import get_cached_model_or_download
-from bdikit.schema_matching.topk.base import (
-    ColumnScore,
-    TopkMatching,
-    BaseTopkSchemaMatcher,
-)
+from bdikit.schema_matching.base import ColumnScore, TopkMatching, BaseTopkSchemaMatcher
 
 DEFAULT_MAGNETO_MODEL = "magneto-gdc-v0.1"
 
@@ -18,7 +13,7 @@ class MagnetoBase(BaseTopkSchemaMatcher):
             kwargs = {}
         self.magneto = Magneto_Lib(**kwargs)
 
-    def get_recommendations(
+    def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[TopkMatching]:
         self.magneto.params["topk"] = (
