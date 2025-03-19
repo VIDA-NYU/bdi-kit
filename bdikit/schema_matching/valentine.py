@@ -1,24 +1,26 @@
 import pandas as pd
 from typing import Dict, Callable
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher
 from valentine import valentine_match
 from valentine.algorithms.matcher_results import MatcherResults
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
 from valentine.algorithms import (
-    SimilarityFlooding,
-    Coma,
-    Cupid,
-    DistributionBased,
+    SimilarityFlooding as SimilarityFloodingMatcher,
+    Coma as ComaMatcher,
+    Cupid as CupidMatcher,
+    DistributionBased as DistributionBasedMatcher,
     JaccardDistanceMatcher,
     BaseMatcher,
 )
 
 
-class ValentineSchemaMatcher(BaseSchemaMatcher):
+class Valentine(BaseOne2oneSchemaMatcher):
     def __init__(self, matcher: BaseMatcher):
         self.matcher = matcher
 
-    def map(self, source: pd.DataFrame, target: pd.DataFrame) -> Dict[str, str]:
+    def get_one2one_match(
+        self, source: pd.DataFrame, target: pd.DataFrame
+    ) -> Dict[str, str]:
         matches: MatcherResults = valentine_match(source, target, self.matcher)
         mappings = {}
         for match in matches.one_to_one():
@@ -28,23 +30,25 @@ class ValentineSchemaMatcher(BaseSchemaMatcher):
         return self._fill_missing_matches(source, mappings)
 
 
-class SimFloodSchemaMatcher(ValentineSchemaMatcher):
+class SimFlood(Valentine):
     def __init__(
         self, coeff_policy: str = "inverse_average", formula: str = "formula_c"
     ):
-        super().__init__(SimilarityFlooding(coeff_policy=coeff_policy, formula=formula))
+        super().__init__(
+            SimilarityFloodingMatcher(coeff_policy=coeff_policy, formula=formula)
+        )
 
 
-class ComaSchemaMatcher(ValentineSchemaMatcher):
+class Coma(Valentine):
     def __init__(
         self, max_n: int = 0, use_instances: bool = False, java_xmx: str = "1024m"
     ):
         super().__init__(
-            Coma(max_n=max_n, use_instances=use_instances, java_xmx=java_xmx)
+            ComaMatcher(max_n=max_n, use_instances=use_instances, java_xmx=java_xmx)
         )
 
 
-class CupidSchemaMatcher(ValentineSchemaMatcher):
+class Cupid(Valentine):
     def __init__(
         self,
         leaf_w_struct: float = 0.2,
@@ -58,7 +62,7 @@ class CupidSchemaMatcher(ValentineSchemaMatcher):
         parallelism: int = 1,
     ):
         super().__init__(
-            Cupid(
+            CupidMatcher(
                 leaf_w_struct=leaf_w_struct,
                 w_struct=w_struct,
                 th_accept=th_accept,
@@ -72,7 +76,7 @@ class CupidSchemaMatcher(ValentineSchemaMatcher):
         )
 
 
-class DistributionBasedSchemaMatcher(ValentineSchemaMatcher):
+class DistributionBased(Valentine):
     def __init__(
         self,
         threshold1: float = 0.15,
@@ -81,7 +85,7 @@ class DistributionBasedSchemaMatcher(ValentineSchemaMatcher):
         process_num: int = 1,
     ):
         super().__init__(
-            DistributionBased(
+            DistributionBasedMatcher(
                 threshold1=threshold1,
                 threshold2=threshold2,
                 quantiles=quantiles,
@@ -90,7 +94,7 @@ class DistributionBasedSchemaMatcher(ValentineSchemaMatcher):
         )
 
 
-class JaccardSchemaMatcher(ValentineSchemaMatcher):
+class Jaccard(Valentine):
     def __init__(
         self,
         threshold_dist: float = 0.8,

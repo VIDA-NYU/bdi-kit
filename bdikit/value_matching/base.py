@@ -25,13 +25,27 @@ class ValueMatchingResult(TypedDict):
     unmatch_values: Set[str]
 
 
-class BaseValueMatcher:
+class BaseOne2oneValueMatcher:
     """
     Base class for value matching algorithms, i.e., algorithms that match
     values from a source domain to values from a target domain.
     """
 
-    def match(
+    def get_one2one_match(
         self, source_values: List[str], target_values: List[str]
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
+
+
+class BaseTopkValueMatcher(BaseOne2oneValueMatcher):
+    def get_topk_matches(
+        self, source_values: List[str], target_values: List[str], top_k: int
+    ) -> List[ValueMatch]:
+        raise NotImplementedError("Subclasses must implement this method")
+
+    def get_one2one_match(
+        self, source_values: List[str], target_values: List[str]
+    ) -> List[ValueMatch]:
+        matches = self.get_topk_matches(source_values, target_values, 1)
+
+        return matches

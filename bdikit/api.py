@@ -7,12 +7,21 @@ import numpy as np
 import panel as pn
 from IPython.display import display, Markdown
 
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
-from bdikit.schema_matching.one2one.matcher_factory import SchemaMatchers
-from bdikit.schema_matching.topk.base import BaseTopkSchemaMatcher
-from bdikit.schema_matching.topk.matcher_factory import TopkMatchers
-from bdikit.value_matching.base import BaseValueMatcher, ValueMatch, ValueMatchingResult
-from bdikit.value_matching.matcher_factory import ValueMatchers
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
+from bdikit.schema_matching.matcher_factory import (
+    get_one2one_schema_matcher,
+    get_topk_schema_matcher,
+)
+from bdikit.value_matching.base import (
+    BaseOne2oneValueMatcher,
+    BaseTopkValueMatcher,
+    ValueMatch,
+    ValueMatchingResult,
+)
+from bdikit.value_matching.matcher_factory import (
+    get_one2one_value_matcher,
+    get_topk_value_matcher,
+)
 from bdikit.standards.standard_factory import Standards
 
 from bdikit.mapping_functions import (
@@ -43,7 +52,7 @@ logger = logging.getLogger(__name__)
 def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method: Union[str, BaseOne2oneSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
@@ -74,23 +83,22 @@ def match_schema(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        matcher_instance = SchemaMatchers.get_matcher(method, **method_args)
-    elif isinstance(method, BaseSchemaMatcher):
+        matcher_instance = get_one2one_schema_matcher(method, **method_args)
+    elif isinstance(method, BaseOne2oneSchemaMatcher):
         matcher_instance = method
     else:
         raise ValueError(
             "The method must be a string or an instance of BaseColumnMappingAlgorithm"
         )
 
-    matches = matcher_instance.map(source, target_table)
+    matches = matcher_instance.get_one2one_match(source, target_table)
 
     return pd.DataFrame(matches.items(), columns=["source", "target"])
 
 
 def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
     """
-    Load the table for the given standard data vocabulary. Currently, only the
-    GDC standard is supported.
+    Load the table for the given standard data vocabulary.
     """
     if standard_args is None:
         standard_args = {}
@@ -138,7 +146,7 @@ def top_matches(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        topk_matcher = TopkMatchers.get_matcher(method, **method_args)
+        topk_matcher = get_topk_schema_matcher(method, **method_args)
     elif isinstance(method, BaseTopkSchemaMatcher):
         topk_matcher = method
     else:
@@ -146,7 +154,7 @@ def top_matches(
             "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
-    top_k_matches = topk_matcher.get_recommendations(
+    top_k_matches = topk_matcher.get_topk_matches(
         selected_columns, target=target_table, top_k=top_k
     )
 
@@ -164,7 +172,7 @@ def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
+    method: Union[str, BaseOne2oneValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
@@ -206,20 +214,19 @@ def match_values(
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
         ValueError: If the source column is not present in the source dataset.
     """
-    if method_args is None:
-        method_args = {}
 
     if standard_args is None:
         standard_args = {}
 
-    if "top_k" in method_args and method_args["top_k"] > 1:
-        logger.warning(
-            f"Ignoring 'top_k' argument, use the 'top_value_matches()' method to get top-k value matches."
-        )
-        method_args["top_k"] = 1
+    if isinstance(method, str):
+        if method_args is None:
+            method_args = {}
+        matcher_instance = get_one2one_value_matcher(method, **method_args)
+    elif isinstance(method, BaseOne2oneValueMatcher):
+        matcher_instance = method
 
     matches = _match_values(
-        source, target, column_mapping, method, method_args, standard_args
+        source, target, column_mapping, matcher_instance, standard_args
     )
 
     if isinstance(column_mapping, tuple):
@@ -240,7 +247,7 @@ def top_value_matches(
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
     top_k: int = 5,
-    method: str = DEFAULT_VALUE_MATCHING_METHOD,
+    method: Union[str, BaseTopkValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> List[pd.DataFrame]:
@@ -283,21 +290,19 @@ def top_value_matches(
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
         ValueError: If the source column is not present in the source dataset.
     """
-    if method_args is None:
-        method_args = {}
 
     if standard_args is None:
         standard_args = {}
 
-    if "top_k" in method_args:
-        logger.warning(
-            f"Ignoring 'top_k' argument, using top_k argument instead (top_k={top_k})"
-        )
-
-    method_args["top_k"] = top_k
+    if isinstance(method, str):
+        if method_args is None:
+            method_args = {}
+        matcher_instance = get_topk_value_matcher(method, **method_args)
+    elif isinstance(method, BaseTopkValueMatcher):
+        matcher_instance = method
 
     matches = _match_values(
-        source, target, column_mapping, method, method_args, standard_args
+        source, target, column_mapping, matcher_instance, standard_args, top_k
     )
 
     match_list = []
@@ -358,15 +363,15 @@ def _match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    method: str,
-    method_args: Dict[str, Any],
+    value_matcher: Union[BaseOne2oneValueMatcher, BaseTopkValueMatcher],
     standard_args: Dict[str, Any],
+    top_k: int = 1,
 ) -> List[pd.DataFrame]:
 
     target_domain, column_mapping_list = _format_value_matching_input(
         source, target, column_mapping, standard_args
     )
-    value_matcher = ValueMatchers.get_matcher(method, **method_args)
+
     mapping_results: List[ValueMatchingResult] = []
 
     for mapping in column_mapping_list:
@@ -388,9 +393,14 @@ def _match_values(
         }
 
         # 3. Apply the value matcher to create value mapping dictionaries
-        raw_matches = value_matcher.match(
-            list(source_values_dict.keys()), list(target_values_dict.keys())
-        )
+        if isinstance(value_matcher, BaseTopkValueMatcher):
+            raw_matches = value_matcher.get_topk_matches(
+                list(source_values_dict.keys()), list(target_values_dict.keys()), top_k
+            )
+        else:
+            raw_matches = value_matcher.get_one2one_match(
+                list(source_values_dict.keys()), list(target_values_dict.keys())
+            )
 
         # 4. Transform the matches to the original
         matches: List[ValueMatch] = []

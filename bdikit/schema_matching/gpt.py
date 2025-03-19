@@ -1,13 +1,13 @@
 import pandas as pd
 from openai import OpenAI
-from bdikit.schema_matching.one2one.base import BaseSchemaMatcher
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher
 
 
-class GPTSchemaMatcher(BaseSchemaMatcher):
+class GPT(BaseOne2oneSchemaMatcher):
     def __init__(self):
         self.client = OpenAI()
 
-    def map(self, source: pd.DataFrame, target: pd.DataFrame):
+    def get_one2one_match(self, source: pd.DataFrame, target: pd.DataFrame):
         target_columns = target.columns
         labels = ", ".join(target_columns)
         candidate_columns = source.columns

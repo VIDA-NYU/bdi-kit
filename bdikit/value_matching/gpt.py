@@ -1,11 +1,11 @@
 import ast
 from typing import List
 from openai import OpenAI
-from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
+from bdikit.value_matching.base import BaseOne2oneValueMatcher, ValueMatch
 from bdikit.config import VALUE_MATCHING_THRESHOLD
 
 
-class GPTValueMatcher(BaseValueMatcher):
+class GPT(BaseOne2oneValueMatcher):
     def __init__(
         self,
         threshold: float = VALUE_MATCHING_THRESHOLD,
@@ -13,7 +13,7 @@ class GPTValueMatcher(BaseValueMatcher):
         self.client = OpenAI()
         self.threshold = threshold
 
-    def match(
+    def get_one2one_match(
         self,
         source_values: List[str],
         target_values: List[str],

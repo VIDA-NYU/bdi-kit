@@ -1,7 +1,9 @@
 import os
 import hashlib
+import importlib
 import pandas as pd
 from os.path import join, dirname, isfile
+from typing import Mapping, Dict, Any
 from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR
 
 
@@ -58,3 +60,21 @@ def check_embedding_cache(table: pd.DataFrame, model_path: str):
                 embeddings = None
 
     return embedding_file, embeddings
+
+
+def create_matcher(
+    matcher_name: str,
+    available_matchers: Dict[str, str],
+    **matcher_kwargs: Mapping[str, Any],
+):
+    if matcher_name not in available_matchers:
+        names = ", ".join(list(available_matchers.keys()))
+        raise ValueError(
+            f"The {matcher_name} algorithm is not supported. "
+            f"Supported algorithms are: {names}"
+        )
+    # Load the class dynamically
+    module_path, class_name = available_matchers[matcher_name].rsplit(".", 1)
+    module = importlib.import_module(module_path)
+
+    return getattr(module, class_name)(**matcher_kwargs)
