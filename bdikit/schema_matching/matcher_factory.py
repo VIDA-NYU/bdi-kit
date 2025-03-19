@@ -1,7 +1,7 @@
-import importlib
 from enum import Enum
-from typing import Mapping, Dict, Any
+from typing import Mapping, Any
 from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
+from bdikit.utils import create_matcher
 
 
 class One2oneSchemaMatchers(Enum):
@@ -80,24 +80,6 @@ topk_schema_matchers = {
     method.matcher_name: method.matcher_path for method in TopkSchemaMatchers
 }
 one2one_schema_matchers.update(topk_schema_matchers)
-
-
-def create_matcher(
-    matcher_name: str,
-    available_matchers: Dict[str, str],
-    **matcher_kwargs: Mapping[str, Any],
-):
-    if matcher_name not in available_matchers:
-        names = ", ".join(list(available_matchers.keys()))
-        raise ValueError(
-            f"The {matcher_name} algorithm is not supported. "
-            f"Supported algorithms are: {names}"
-        )
-    # Load the class dynamically
-    module_path, class_name = available_matchers[matcher_name].rsplit(".", 1)
-    module = importlib.import_module(module_path)
-
-    return getattr(module, class_name)(**matcher_kwargs)
 
 
 def get_one2one_schema_matcher(

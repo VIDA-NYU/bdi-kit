@@ -7,8 +7,8 @@ from bdikit.schema_matching.base import (
     ColumnScore,
 )
 from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
-from bdikit.value_matching.polyfuzz import TFIDFValueMatcher
-from bdikit.value_matching.base import BaseValueMatcher
+from bdikit.value_matching.polyfuzz import TFIDF
+from bdikit.value_matching.base import BaseOne2oneValueMatcher
 
 
 class MaxValSim(BaseTopkSchemaMatcher):
@@ -17,7 +17,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
         top_k: int = 20,
         contribution_factor: float = 0.5,
         top_k_matcher: Optional[BaseTopkSchemaMatcher] = None,
-        value_matcher: Optional[BaseValueMatcher] = None,
+        value_matcher: Optional[BaseOne2oneValueMatcher] = None,
     ):
         if top_k_matcher is None:
             self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
@@ -30,13 +30,13 @@ class MaxValSim(BaseTopkSchemaMatcher):
             )
 
         if value_matcher is None:
-            self.value_matcher = TFIDFValueMatcher()
-        elif isinstance(value_matcher, BaseValueMatcher):
+            self.value_matcher = TFIDF()
+        elif isinstance(value_matcher, BaseOne2oneValueMatcher):
             self.value_matcher = value_matcher
         else:
             raise ValueError(
                 f"Invalid value_matcher type: {type(value_matcher)}. "
-                "Must be a subclass of {BaseValueMatcher.__name__}"
+                "Must be a subclass of {BaseOne2oneValueMatcher.__name__}"
             )
 
         self.top_k = top_k
@@ -76,7 +76,9 @@ class MaxValSim(BaseTopkSchemaMatcher):
                 target_column_name = top_column.column_name
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
-                value_matches = self.value_matcher.match(source_values, target_values)
+                value_matches = self.value_matcher.get_one2one_match(
+                    source_values, target_values
+                )
                 if len(target_values) == 0:
                     value_score = 0.0
                 else:

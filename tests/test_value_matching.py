@@ -1,16 +1,16 @@
 from bdikit.value_matching.polyfuzz import (
-    TFIDFValueMatcher,
-    EditDistanceValueMatcher,
-    FastTextValueMatcher,
-    EmbeddingValueMatcher,
+    TFIDF,
+    EditDistance,
+    FastText,
+    Embedding,
 )
 
 
 def test_textual_transformation_matching():
     threshold = 0.5
     for value_matcher in [
-        TFIDFValueMatcher(threshold=threshold),
-        EditDistanceValueMatcher(threshold=threshold),
+        TFIDF(threshold=threshold),
+        EditDistance(threshold=threshold),
     ]:
     
         # given
@@ -18,7 +18,7 @@ def test_textual_transformation_matching():
         target_values = ["apple", "banana", "orange", "kiwi"]
 
         # when
-        matches = value_matcher.match(source_values, target_values)
+        matches = value_matcher.get_one2one_match(source_values, target_values)
 
         # then
         assert len(matches) == 3
@@ -35,14 +35,14 @@ def test_textual_transformation_matching():
 
 def test_semantic_matching():
     threshold = 0.4
-    value_matcher = FastTextValueMatcher(threshold=threshold)
+    value_matcher = FastText(threshold=threshold)
 
     # given
     source_values = ["Computer", "Display", "Pencil"]
     target_values = ["PC", "Monitor", "Football field"]
 
     # when
-    matches = value_matcher.match(source_values, target_values)
+    matches = value_matcher.get_one2one_match(source_values, target_values)
 
     # then
     assert len(matches) == 2
@@ -56,14 +56,14 @@ def test_semantic_matching():
     assert all(score > threshold for score in scores)
 
     threshold = 0.6
-    value_matcher = EmbeddingValueMatcher(threshold=threshold)
+    value_matcher = Embedding(threshold=threshold)
 
     # given
     source_values = ["Computer", "Display", "Pencil"]
     target_values = ["PC", "Monitor", "Football field"]
 
     # when
-    matches = value_matcher.match(source_values, target_values)
+    matches = value_matcher.get_one2one_match(source_values, target_values)
 
     # then
     assert len(matches) == 2
