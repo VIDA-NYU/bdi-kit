@@ -8,7 +8,7 @@ from bdikit.mapping_functions import (
 )
 
 
-def test_bdi_match_schema_with_dataframes():
+def test_match_schema_with_dataframes():
     # given
     source = pd.DataFrame({"column_1": ["a1", "b1", "c1"], "col_2": ["a2", "b2", "c2"]})
     target = pd.DataFrame({"column_1a": ["a1", "b1", "c1"], "col2": ["a2", "b2", "c2"]})
@@ -28,7 +28,7 @@ def test_bdi_match_schema_with_dataframes():
     assert df_matches[df_filter]["target"].values[0] == "col2"
 
 
-def test_bdi_match_schema_to_gdc():
+def test_match_schema_with_gdc():
     # given
     source = pd.DataFrame(
         {
@@ -64,7 +64,7 @@ def test_bdi_match_schema_to_gdc():
     assert df_matches[df_filter]["target"].values[0] == "figo_stage"
 
 
-def test_bdi_top_matches_with_dataframes():
+def test_top_matches_with_dataframes():
     # given
     source = pd.DataFrame({"tumor_size": ["a1", "b1", "c1"]})
     target = pd.DataFrame(
@@ -124,7 +124,7 @@ def test_bdi_top_matches_with_dataframes():
     assert "tumor_length" in df_matches[df_filter]["target"].tolist()
 
 
-def test_bdi_top_matches_gdc():
+def test_top_matches_with_gdc():
     # given
     source = pd.DataFrame(
         {
@@ -165,7 +165,7 @@ def test_bdi_top_matches_gdc():
     assert "race" in df_matches[df_filter]["target"].tolist()
 
 
-def test_map_dataframe_column_values():
+def test_materialize_mapping():
     # given
     str_column_1 = ["a", "b", "c", "d", "e"]
     str_column_2 = ["a", "b", "c", "d", "e"]
@@ -197,7 +197,7 @@ def test_map_dataframe_column_values():
     assert df_mapped["string column 2"].eq(["A", "B", "C", "D", "E"]).all()
 
 
-def test_value_mapping_dataframe():
+def test_match_values():
     # given
     df_source = pd.DataFrame(
         {"src_column": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
@@ -219,6 +219,93 @@ def test_value_mapping_dataframe():
     assert mapping.attrs["source"] == "src_column"
     assert mapping.attrs["target"] == "tgt_column"
     assert len(mapping) == len(df_source)
+
+
+def test_top_value_matches():
+    # given
+    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
+    df_target = pd.DataFrame(
+        {
+            "fruit_names": [
+                "apple",
+                "red apple",
+                "banana",
+                "mx banana",
+                "melon",
+                "kiwi",
+                "grapes",
+            ],
+            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
+        }
+    )
+    column_mapping = ("fruits", "fruit_names")
+    # when
+    matches = bdi.top_value_matches(df_source, df_target, column_mapping)
+
+    # then
+    assert len(matches) == 4  # number of dataframes in the list
+
+    # when
+    df_match = matches[0]  # top matches for apple
+
+    # then
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    # when
+    df_match = matches[1]  # top matches for banana
+
+    # then
+    assert len(df_match) == 2
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+    # when
+    df_match = matches[2]  # top matches for orange
+
+    # then
+    assert len(df_match) == 1
+    assert "source" in df_match.columns
+    assert "target" in df_match.columns
+    assert "similarity" in df_match.columns
+
+
+def test_preview_domain():
+    # given
+    source = pd.DataFrame(
+        {
+            "name": ["John Doe", "Jane Doe", "Alice Smith", "Bob Smith"],
+            "age": [30, 25, 45, 35],
+        }
+    )
+
+    # when
+    preview = bdi.preview_domain(source, "age")
+
+    # then
+    # preview must contain only the column "value_name" and the unique 
+    # values of the column "age"
+    assert preview is not None
+    assert isinstance(preview, pd.DataFrame)
+    assert "value_name" in preview.columns
+    assert "column_description" not in preview.columns
+    assert "value_description" not in preview.columns
+    assert source["age"].eq(preview["value_name"]).all()
+
+    # when
+    preview = bdi.preview_domain("gdc", "age_at_diagnosis")
+
+    # then
+    # preview must contain only the column "column_description" since there
+    # are sample values in the GDC dictionary
+    assert preview is not None
+    assert isinstance(preview, pd.DataFrame)
+    assert "value_name" not in preview.columns
+    assert "value_description" not in preview.columns
+    assert "column_description" in preview.columns
 
 
 def test_end_to_end_api_integration():
@@ -341,89 +428,3 @@ def test_top_matches_and_match_values_integration():
         assert "similarity" in df.columns
         assert df.attrs["source"] == "fruits"
         assert df.attrs["target"] in ["fruit_types", "fruit_names", "fruit_id"]
-
-
-def test_top_value_matches():
-    # given
-    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
-    df_target = pd.DataFrame(
-        {
-            "fruit_names": [
-                "apple",
-                "red apple",
-                "banana",
-                "mx banana",
-                "melon",
-                "kiwi",
-                "grapes",
-            ],
-            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
-        }
-    )
-    column_mapping = ("fruits", "fruit_names")
-    # when
-    matches = bdi.top_value_matches(df_source, df_target, column_mapping)
-
-    # then
-    assert len(matches) == 4  # number of dataframes in the list
-
-    # when
-    df_match = matches[0]  # top matches for apple
-
-    # then
-    assert len(df_match) == 2
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
-
-    # when
-    df_match = matches[1]  # top matches for banana
-
-    # then
-    assert len(df_match) == 2
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
-
-    # when
-    df_match = matches[2]  # top matches for orange
-
-    # then
-    assert len(df_match) == 1
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
-
-def test_preview_domain():
-    # given
-    source = pd.DataFrame(
-        {
-            "name": ["John Doe", "Jane Doe", "Alice Smith", "Bob Smith"],
-            "age": [30, 25, 45, 35],
-        }
-    )
-
-    # when
-    preview = bdi.preview_domain(source, "age")
-
-    # then
-    # preview must contain only the column "value_name" and the unique 
-    # values of the column "age"
-    assert preview is not None
-    assert isinstance(preview, pd.DataFrame)
-    assert "value_name" in preview.columns
-    assert "column_description" not in preview.columns
-    assert "value_description" not in preview.columns
-    assert source["age"].eq(preview["value_name"]).all()
-
-    # when
-    preview = bdi.preview_domain("gdc", "age_at_diagnosis")
-
-    # then
-    # preview must contain only the column "column_description" since there
-    # are sample values in the GDC dictionary
-    assert preview is not None
-    assert isinstance(preview, pd.DataFrame)
-    assert "value_name" not in preview.columns
-    assert "value_description" not in preview.columns
-    assert "column_description" in preview.columns

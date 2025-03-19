@@ -6,7 +6,7 @@ from bdikit.value_matching.polyfuzz import (
 )
 
 
-def test_textual_transformation_matching():
+def test_textual_transformation_value_matching_algorithms():
     threshold = 0.5
     for value_matcher in [
         TFIDF(threshold=threshold),
@@ -33,7 +33,7 @@ def test_textual_transformation_matching():
         assert all(score > threshold for score in scores)
 
 
-def test_semantic_matching():
+def test_semantic_value_matching_algorithms():
     threshold = 0.4
     value_matcher = FastText(threshold=threshold)
 
