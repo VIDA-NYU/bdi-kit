@@ -12,7 +12,7 @@ def test_textual_transformation_value_matching_algorithms():
         TFIDF(threshold=threshold),
         EditDistance(threshold=threshold),
     ]:
-    
+
         # given
         source_values = ["Red Apple", "Banana", "Oorange", "dragon-fruits"]
         target_values = ["apple", "banana", "orange", "kiwi"]

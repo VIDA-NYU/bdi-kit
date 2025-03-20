@@ -286,7 +286,7 @@ def test_preview_domain():
     preview = bdi.preview_domain(source, "age")
 
     # then
-    # preview must contain only the column "value_name" and the unique 
+    # preview must contain only the column "value_name" and the unique
     # values of the column "age"
     assert preview is not None
     assert isinstance(preview, pd.DataFrame)
