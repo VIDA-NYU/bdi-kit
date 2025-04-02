@@ -8,6 +8,10 @@ from bdikit.value_matching.base import BaseValueMatcher
 
 
 class MaxValSim(BaseTopkSchemaMatcher):
+    """
+    This schema matching method first uses a a top-k column matcher (e.g., ct_learning) to prune the search space (keeping only the top-k most likely matches), and then uses a value matcher method to choose the best match from the pruned search space.
+    """
+
     def __init__(
         self,
         top_k: int = 20,
