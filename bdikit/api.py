@@ -93,8 +93,12 @@ def match_schema(
         )
 
     matches = matcher_instance.match_schema(source, target_table)
+    matches = pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    matches.attrs["method_name"] = matcher_instance.__class__.__name__
+    matches.attrs["method_description"] = matcher_instance.__doc__
+
+    return matches
 
 
 def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
@@ -203,7 +207,13 @@ def rank_schema_matches(
     matches = topk_matcher.rank_schema_matches(
         selected_columns, target=target_table, top_k=top_k
     )
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+    matches = pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+    matches.attrs["method_name"] = topk_matcher.__class__.__name__
+    matches.attrs["method_description"] = topk_matcher.__doc__
+
+    return matches
 
 
 def match_values(
@@ -851,6 +861,44 @@ def _df_to_mapping_spec_dict(spec: Union[Dict, pd.DataFrame]) -> Dict:
         }
     else:
         raise ValueError(f"Invalid mapping specification: {str(spec)}")
+
+
+def evaluate_schema_matches(
+    schema_matches: pd.DataFrame,
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame] = "gdc",
+    standard_args: Optional[Dict[str, Any]] = None,
+    use_method_info=True,
+) -> pd.DataFrame:
+    from bdikit.matching_evaluation.gpt import evaluate_match
+
+    method_name = schema_matches.attrs["method_name"]
+    method_description = schema_matches.attrs["method_description"]
+    print(f"Method: {method_name}")
+    print(f"Description: {method_description}")
+    evaluated_matches = schema_matches.copy()
+
+    evaluated_matches["response"], evaluated_matches["explanation"] = zip(
+        *evaluated_matches.apply(
+            lambda row: evaluate_match(
+                {
+                    "source_column": row["source"],
+                    "target_column": row["target"],
+                    "similarity": row["similarity"],
+                    "source_domain": preview_domain(source, row["source"]),
+                    "target_domain": preview_domain(
+                        target, row["target"], standard_args=standard_args
+                    ),
+                    "method_name": method_name,
+                    "method_description": method_description,
+                    "use_method_info": use_method_info,
+                }
+            ),
+            axis=1,
+        )
+    )
+
+    return evaluated_matches
 
 
 def materialize_mapping(
