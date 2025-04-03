@@ -93,7 +93,7 @@ def match_schema(
 
     matches = matcher_instance.get_one2one_match(source, target_table)
 
-    return pd.DataFrame(matches.items(), columns=["source", "target"])
+    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
 
 def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
@@ -154,18 +154,10 @@ def top_matches(
             "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
-    top_k_matches = topk_matcher.get_topk_matches(
+    matches = topk_matcher.get_topk_matches(
         selected_columns, target=target_table, top_k=top_k
     )
-
-    dfs = []
-    for match in top_k_matches:
-        matches = pd.DataFrame(match["top_k_columns"], columns=["target", "similarity"])
-        matches["source"] = match["source_column"]
-        matches = matches[["source", "target", "similarity"]]  # reorder columns
-        dfs.append(matches.sort_values(by="similarity", ascending=False))
-
-    return pd.concat(dfs, ignore_index=True)
+    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
 
 def match_values(

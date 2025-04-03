@@ -1,6 +1,6 @@
 import pandas as pd
-from typing import Dict, Callable
-from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher
+from typing import List, Callable
+from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, ColumnMatch
 from valentine import valentine_match
 from valentine.algorithms.matcher_results import MatcherResults
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
@@ -20,14 +20,18 @@ class Valentine(BaseOne2oneSchemaMatcher):
 
     def get_one2one_match(
         self, source: pd.DataFrame, target: pd.DataFrame
-    ) -> Dict[str, str]:
-        matches: MatcherResults = valentine_match(source, target, self.matcher)
-        mappings = {}
-        for match in matches.one_to_one():
-            source_candidate = match[0][1]
-            target_candidate = match[1][1]
-            mappings[source_candidate] = target_candidate
-        return self._fill_missing_matches(source, mappings)
+    ) -> List[ColumnMatch]:
+        raw_matches: MatcherResults = valentine_match(source, target, self.matcher)
+        matches = []
+
+        for match_data, score in raw_matches.one_to_one().items():
+            source_column = match_data[0][1]
+            target_column = match_data[1][1]
+            matches.append(ColumnMatch(source_column, target_column, score))
+
+        matches = self._sort_matches(matches)
+
+        return self._fill_missing_matches(source, matches)
 
 
 class SimFlood(Valentine):

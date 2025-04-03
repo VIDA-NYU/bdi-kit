@@ -1,50 +1,79 @@
-from typing import List, NamedTuple, TypedDict, Dict
+from typing import List, NamedTuple
+from collections import defaultdict
 import pandas as pd
+
+
+class ColumnMatch(NamedTuple):
+    """
+    Represents a match between a source column and a target column with a
+    similarity score.
+    """
+
+    source_column: str
+    target_column: str
+    similarity: float
 
 
 class BaseOne2oneSchemaMatcher:
     def get_one2one_match(
         self, source: pd.DataFrame, target: pd.DataFrame
-    ) -> Dict[str, str]:
+    ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
     def _fill_missing_matches(
-        self, dataset: pd.DataFrame, matches: Dict[str, str]
-    ) -> Dict[str, str]:
-        for column in dataset.columns:
-            if column not in matches:
-                matches[column] = ""
+        self, dataset: pd.DataFrame, matches: List[ColumnMatch]
+    ) -> List[ColumnMatch]:
+        all_source_columns = set(dataset.columns)
+
+        for match in matches:
+            if match.source_column in all_source_columns:
+                all_source_columns.remove(match.source_column)
+
+        # Fill missing matches with empty strings
+        for source_column in all_source_columns:
+            matches.append(ColumnMatch(source_column, "", ""))
+
         return matches
 
-
-class ColumnScore(NamedTuple):
-    column_name: str
-    score: float
-
-
-class TopkMatching(TypedDict):
-    source_column: str
-    top_k_columns: List[ColumnScore]
+    def _sort_matches(self, matches: List[ColumnMatch]) -> List[ColumnMatch]:
+        return sorted(matches, key=lambda x: x.similarity, reverse=True)
 
 
 class BaseTopkSchemaMatcher(BaseOne2oneSchemaMatcher):
 
     def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
-    ) -> List[TopkMatching]:
+    ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
     def get_one2one_match(
         self,
         source: pd.DataFrame,
         target: pd.DataFrame,
-    ) -> Dict[str, str]:
-        top_matches = self.get_topk_matches(source, target, 1)
-        matches = {}
-
-        for top_match in top_matches:
-            source_column = top_match["source_column"]
-            target_column = top_match["top_k_columns"][0].column_name
-            matches[source_column] = target_column
+    ) -> List[ColumnMatch]:
+        matches = self.get_topk_matches(source, target, 1)
 
         return matches
+
+    def _sort_ranked_matches(self, matches: List[ColumnMatch]) -> List[ColumnMatch]:
+        # Step 1: Group matches by source_column
+        grouped_matches = defaultdict(list)
+        for match in matches:
+            grouped_matches[match.source_column].append(match)
+
+        # Step 2: Sort each group internally by similarity (descending)
+        for source_col in grouped_matches:
+            grouped_matches[source_col].sort(key=lambda x: x.similarity, reverse=True)
+
+        # Step 3: Sort groups by the highest similarity in each group, then flatten the result
+        sorted_matches = sorted(
+            (
+                match for group in grouped_matches.values() for match in group
+            ),  # Flatten groups
+            key=lambda x: grouped_matches[x.source_column][
+                0
+            ].similarity,  # Sort by highest similarity per group
+            reverse=True,
+        )
+
+        return sorted_matches
