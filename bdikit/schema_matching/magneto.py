@@ -13,6 +13,26 @@ class MagnetoBase(BaseTopkSchemaMatcher):
             kwargs = {}
         self.magneto = Magneto_Lib(**kwargs)
 
+    def get_one2one_match(
+        self, source: pd.DataFrame, target: pd.DataFrame
+    ) -> List[ColumnMatch]:
+        # Temporary workaround due to Magneto's top-1 matching issue
+        # Issue details: https://github.com/VIDA-NYU/magneto-matcher/issues/10
+        # Once resolved, this function will be removed to use the default implementation in the parent class.
+        matches = self.get_topk_matches(
+            source, target, 2
+        )  # Get top-2 matches to avoid the issue
+
+        best_matches = {}
+        for match in matches:
+            if (
+                match.source_column not in best_matches
+                or match.similarity > best_matches[match.source_column].similarity
+            ):
+                best_matches[match.source_column] = match
+
+        return list(best_matches.values())
+
     def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[ColumnMatch]:
