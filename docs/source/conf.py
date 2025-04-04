@@ -10,8 +10,10 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+
 import os
 import sys
+import subprocess
 
 sys.path.insert(0, os.path.abspath("../../"))
 
@@ -22,8 +24,6 @@ project = "bdi-kit"
 copyright = "2024, NYU"
 author = "NYU"
 
-# The full version, including alpha/beta/rc tags
-release = ""
 master_doc = "index"
 
 # -- General configuration ---------------------------------------------------
@@ -93,13 +93,71 @@ autodoc_mock_imports = [
     "rapidfuzz",
 ]
 
-autodoc_type_aliases = {'MappingSpecLike': 'MappingSpecLike'}
+autodoc_type_aliases = {"MappingSpecLike": "MappingSpecLike"}
 
 # These folders are copied to the documentation's HTML output
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # These paths are either relative to html_static_path
 # or fully qualified paths (eg. https://...)
 html_css_files = [
-    'css/custom.css',
+    "css/custom.css",
 ]
+
+
+def get_all_versions():
+    result = subprocess.run(
+        ["git", "tag", "--sort=-creatordate"],
+        stdout=subprocess.PIPE,
+        text=True,
+        check=True,
+    )
+    tags = result.stdout.strip().split("\n") if result.stdout else []
+    return tags
+
+
+def format_version_listings(current_version):
+    is_stable_version = "dev" not in current_version
+
+    if is_stable_version:
+        formatted_current_version = f"{current_version} (stable)"
+    else:
+        formatted_current_version = "dev"
+
+    all_versions = get_all_versions()
+    latest_stable = all_versions[0]
+
+    if is_stable_version:
+        first_other_versions = ("dev", "latest")
+        if latest_stable == current_version:
+            all_versions.pop(0)
+    else:
+        first_other_versions = (f"{latest_stable} (stable)", "stable")
+        all_versions.pop(0)
+
+    other_versions = []
+    for version in all_versions:
+        other_versions.append((version, version))
+
+    remaining_versions = [first_other_versions] + other_versions
+
+    return formatted_current_version, remaining_versions
+
+
+def read_version():
+    module_path = os.path.join('../../bdikit/__init__.py')
+    with open(module_path) as file:
+        for line in file:
+            parts = line.strip().split(' ')
+            if parts and parts[0] == '__version__':
+                return parts[-1].strip("'").strip("\"")
+
+    raise KeyError('Version not found in {0}'.format(module_path))
+
+current_version = read_version()
+current_version, other_versions = format_version_listings(current_version)
+
+html_context = {
+    "current_version": f"{current_version}",
+    "versions": other_versions,
+}
