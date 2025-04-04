@@ -26,7 +26,7 @@ make format
 
 Or you can use the black command directly:
 ```
-black ./bdikit/
+black ./bdikit/ ./tests/ ./scripts/
 ```
 
 
