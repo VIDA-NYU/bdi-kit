@@ -25,7 +25,7 @@ class TopkValueMatchers(Enum):
     )
     FASTTEXT = (
         "fasttext",
-        "bdikit.value_matching.polyfuzz.FastTextValue",
+        "bdikit.value_matching.polyfuzz.FastText",
     )
 
     def __init__(self, matcher_name: str, matcher_path: str):
