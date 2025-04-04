@@ -3,7 +3,11 @@ import torch
 from rapidfuzz import fuzz
 from polyfuzz import PolyFuzz as PolyFuzzLib
 from typing import List, Callable, Tuple
-from bdikit.value_matching.base import BaseTopkValueMatcher, BaseOne2oneValueMatcher, ValueMatch
+from bdikit.value_matching.base import (
+    BaseTopkValueMatcher,
+    BaseOne2oneValueMatcher,
+    ValueMatch,
+)
 from polyfuzz.models import (
     EditDistance as EditDistanceMatcher,
     TFIDF as TFIDFMatcher,
