@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
 from typing import List
-from bdikit.schema_matching.base import (
-    ColumnScore,
-    TopkMatching,
-    BaseTopkSchemaMatcher,
-)
+from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances
 from bdikit.models.contrastive_learning.cl_api import (
     ContrastiveLearningAPI,
@@ -21,7 +17,7 @@ class EmbeddingSimilarity(BaseTopkSchemaMatcher):
 
     def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int = 10
-    ) -> List[TopkMatching]:
+    ) -> List[ColumnMatch]:
         """
         Returns the top-k matching columns in the target table for each column
         in the source table. The ranking is based on the cosine similarity of
@@ -41,15 +37,12 @@ class EmbeddingSimilarity(BaseTopkSchemaMatcher):
         for index, similarities in enumerate(sim):
             top_k_indices = np.argsort(similarities)[::-1][:top_k]
             top_k_columns = [
-                ColumnScore(column_name=target.columns[i], score=similarities[i])
+                ColumnMatch(source.columns[index], target.columns[i], similarities[i])
                 for i in top_k_indices
             ]
-            top_k_results.append(
-                {
-                    "source_column": source.columns[index],
-                    "top_k_columns": top_k_columns,
-                }
-            )
+            top_k_results += top_k_columns
+
+        top_k_results = self._sort_ranked_matches(top_k_results)
 
         return top_k_results
 

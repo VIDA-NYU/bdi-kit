@@ -1,11 +1,9 @@
 import pandas as pd
+from collections import defaultdict
 from typing import Optional, List
 from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
-from bdikit.schema_matching.base import (
-    BaseTopkSchemaMatcher,
-    TopkMatching,
-    ColumnScore,
-)
+from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
+
 from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 from bdikit.value_matching.polyfuzz import TFIDF
 from bdikit.value_matching.base import BaseOne2oneValueMatcher
@@ -51,7 +49,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
 
     def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
-    ) -> List[TopkMatching]:
+    ) -> List[ColumnMatch]:
         max_topk = max(
             top_k, self.top_k
         )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
@@ -59,21 +57,20 @@ class MaxValSim(BaseTopkSchemaMatcher):
         matches = {}
         top_k_results = []
 
-        for source_column_name, scope in zip(source.columns, topk_column_matches):
+        grouped_matches = defaultdict(list)
+        for match in topk_column_matches:
+            grouped_matches[match.source_column].append(match)
 
-            source_column_name = scope["source_column"]
-            top_k_columns = scope["top_k_columns"]
-            source_column = source[source_column_name]
-
-            if not pd.api.types.is_string_dtype(source_column):
-                matches[source_column_name] = top_k_columns[0].column_name
+        for source_column, candidates in grouped_matches.items():
+            if not pd.api.types.is_string_dtype(source[source_column].dropna()):
+                matches[source_column] = candidates[0].target_column
                 continue
 
-            source_values = self.unique_string_values(source_column).to_list()
+            source_values = self.unique_string_values(source[source_column]).to_list()
 
             scores = []
-            for top_column in top_k_columns:
-                target_column_name = top_column.column_name
+            for top_column in candidates:
+                target_column_name = top_column.target_column
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
                 value_matches = self.value_matcher.get_one2one_match(
@@ -87,20 +84,18 @@ class MaxValSim(BaseTopkSchemaMatcher):
                     )
 
                 score = (self.contribution_factor * value_score) + (
-                    (1 - self.contribution_factor) * top_column.score
+                    (1 - self.contribution_factor) * top_column.similarity
                 )
-                scores.append((source_column_name, target_column_name, score))
+                scores.append((source_column, target_column_name, score))
 
             sorted_columns = sorted(scores, key=lambda it: it[2], reverse=True)[:top_k]
             sorted_columns = [
-                ColumnScore(name, score) for _, name, score in sorted_columns
+                ColumnMatch(source_column, target_column, score)
+                for source_column, target_column, score in sorted_columns
             ]
 
-            top_k_results.append(
-                {
-                    "source_column": source_column_name,
-                    "top_k_columns": sorted_columns,
-                }
-            )
+            top_k_results += sorted_columns
+
+        top_k_results = self._sort_ranked_matches(top_k_results)
 
         return top_k_results

@@ -2,7 +2,7 @@ import pandas as pd
 from typing import Dict, Any, List
 from magneto import Magneto as Magneto_Lib
 from bdikit.download import get_cached_model_or_download
-from bdikit.schema_matching.base import ColumnScore, TopkMatching, BaseTopkSchemaMatcher
+from bdikit.schema_matching.base import ColumnMatch, BaseTopkSchemaMatcher
 
 DEFAULT_MAGNETO_MODEL = "magneto-gdc-v0.1"
 
@@ -15,34 +15,24 @@ class MagnetoBase(BaseTopkSchemaMatcher):
 
     def get_topk_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
-    ) -> List[TopkMatching]:
+    ) -> List[ColumnMatch]:
         self.magneto.params["topk"] = (
             top_k  # Magneto does not provide a method to set topk
         )
         raw_matches = self.magneto.get_matches(source, target)
+        target_columns = set(target.columns)
+        matches = []
 
-        # Organizing data into the desired structure
-        sorted_dict = {}
         for (source, target), score in raw_matches.items():
             source_column = source[1]
             target_column = target[1]
-            if source_column not in sorted_dict:
-                sorted_dict[source_column] = []
-            sorted_dict[source_column].append((target_column, score))
+            if target_column not in target_columns:
+                continue
+            matches.append(ColumnMatch(source_column, target_column, score))
 
-        # Sorting the lists by value in descending order and format top k
-        top_k_results = []
-        for key in sorted_dict:
-            sorted_matches = sorted(sorted_dict[key], key=lambda x: x[1], reverse=True)
-            top_k_columns = [ColumnScore(name, score) for name, score in sorted_matches]
-            top_k_results.append(
-                {
-                    "source_column": key,
-                    "top_k_columns": top_k_columns,
-                }
-            )
+        matches = self._sort_ranked_matches(matches)
 
-        return top_k_results
+        return matches
 
 
 class MagnetoZSBP(MagnetoBase):

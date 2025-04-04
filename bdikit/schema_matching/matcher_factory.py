@@ -25,7 +25,6 @@ class One2oneSchemaMatchers(Enum):
         "jaccard_distance",
         "bdikit.schema_matching.valentine.Jaccard",
     )
-    GPT = ("gpt", "bdikit.schema_matching.gpt.GPT")
 
     TWO_PHASE = (
         "two_phase",
@@ -45,7 +44,7 @@ class TopkSchemaMatchers(Enum):
 
     MAX_VAL_SIM = (
         "max_val_sim",
-        "bdikit.schema_matching.topk.maxvalsim.MaxValSim",
+        "bdikit.schema_matching.maxvalsim.MaxValSim",
     )
 
     MAGNETO_ZS_BP = (
@@ -67,6 +66,8 @@ class TopkSchemaMatchers(Enum):
         "magneto_ft_llm",
         "bdikit.schema_matching.magneto.MagnetoFTLLM",
     )
+
+    GPT = ("gpt", "bdikit.schema_matching.gpt.GPT")
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name
