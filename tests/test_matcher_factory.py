@@ -1,3 +1,5 @@
+import os
+
 from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
 from bdikit.schema_matching.matcher_factory import (
     get_one2one_schema_matcher,
@@ -12,6 +14,11 @@ from bdikit.value_matching.matcher_factory import (
     One2OneValueMatchers,
     TopkValueMatchers,
 )
+
+
+# Set a mock API key to test only the initialization of the matcher
+# This is necessary because the OpenAI client requires an API key to be set
+os.environ["OPENAI_API_KEY"] = "mock_key"
 
 
 def test_get_one2one_schema_matcher():
