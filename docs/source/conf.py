@@ -62,10 +62,10 @@ html_theme = "sphinx_rtd_theme"
 
 # html_logo = 'images/logo.png'
 
-# html_theme_options = {
+html_theme_options = {
 #    'logo_only': True,
-#    'display_version': False,
-# }
+    'display_version': False,
+}
 
 autodoc_member_order = "bysource"
 
