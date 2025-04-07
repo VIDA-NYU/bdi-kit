@@ -1,6 +1,6 @@
 [![PyPI version](https://badge.fury.io/py/bdi-kit.svg)](https://pypi.org/project/bdi-kit)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Documentation Status](https://readthedocs.org/projects/bdi-kit/badge/?version=latest)](https://bdi-kit.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/bdi-kit/badge/?version=devel)](https://bdi-kit.readthedocs.io)
 [![Tests](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml)
 [![Lint](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml)
 
