@@ -1,10 +1,10 @@
 from enum import Enum
 from typing import Mapping, Any
-from bdikit.value_matching.base import BaseOne2oneValueMatcher, BaseTopkValueMatcher
+from bdikit.value_matching.base import BaseValueMatcher, BaseTopkValueMatcher
 from bdikit.utils import create_matcher
 
 
-class One2OneValueMatchers(Enum):
+class ValueMatchers(Enum):
     EDIT = (
         "edit_distance",
         "bdikit.value_matching.polyfuzz.EditDistance",
@@ -33,20 +33,18 @@ class TopkValueMatchers(Enum):
         self.matcher_path = matcher_path
 
 
-one2one_value_matchers = {
-    method.matcher_name: method.matcher_path for method in One2OneValueMatchers
-}
+value_matchers = {method.matcher_name: method.matcher_path for method in ValueMatchers}
 topk_value_matchers = {
     method.matcher_name: method.matcher_path for method in TopkValueMatchers
 }
-one2one_value_matchers.update(topk_value_matchers)
+value_matchers.update(topk_value_matchers)
 
 
-def get_one2one_value_matcher(
+def get_value_matcher(
     matcher_name: str, **matcher_kwargs: Mapping[str, Any]
-) -> BaseOne2oneValueMatcher:
+) -> BaseValueMatcher:
 
-    return create_matcher(matcher_name, one2one_value_matchers, **matcher_kwargs)
+    return create_matcher(matcher_name, value_matchers, **matcher_kwargs)
 
 
 def get_topk_value_matcher(

@@ -14,8 +14,8 @@ class ColumnMatch(NamedTuple):
     similarity: float
 
 
-class BaseOne2oneSchemaMatcher:
-    def get_one2one_match(
+class BaseSchemaMatcher:
+    def match_schema(
         self, source: pd.DataFrame, target: pd.DataFrame
     ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
@@ -39,19 +39,19 @@ class BaseOne2oneSchemaMatcher:
         return sorted(matches, key=lambda x: x.similarity, reverse=True)
 
 
-class BaseTopkSchemaMatcher(BaseOne2oneSchemaMatcher):
+class BaseTopkSchemaMatcher(BaseSchemaMatcher):
 
-    def get_topk_matches(
+    def rank_schema_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
-    def get_one2one_match(
+    def match_schema(
         self,
         source: pd.DataFrame,
         target: pd.DataFrame,
     ) -> List[ColumnMatch]:
-        matches = self.get_topk_matches(source, target, 1)
+        matches = self.rank_schema_matches(source, target, 1)
 
         return matches
 

@@ -2,7 +2,7 @@ import pandas as pd
 from collections import defaultdict
 from typing import Optional, List
 from bdikit.schema_matching.base import (
-    BaseOne2oneSchemaMatcher,
+    BaseSchemaMatcher,
     BaseTopkSchemaMatcher,
     ColumnMatch,
 )
@@ -11,12 +11,12 @@ from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
 from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 
 
-class TwoPhase(BaseOne2oneSchemaMatcher):
+class TwoPhase(BaseSchemaMatcher):
     def __init__(
         self,
         top_k: int = 20,
         top_k_matcher: Optional[BaseTopkSchemaMatcher] = None,
-        schema_matcher: BaseOne2oneSchemaMatcher = SimFlood(),
+        schema_matcher: BaseSchemaMatcher = SimFlood(),
     ):
         if top_k_matcher is None:
             self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
@@ -31,12 +31,12 @@ class TwoPhase(BaseOne2oneSchemaMatcher):
         self.schema_matcher = schema_matcher
         self.top_k = top_k
 
-    def get_one2one_match(
+    def match_schema(
         self,
         source: pd.DataFrame,
         target: pd.DataFrame,
     ) -> List[ColumnMatch]:
-        topk_column_matches = self.api.get_topk_matches(source, target, self.top_k)
+        topk_column_matches = self.api.rank_schema_matches(source, target, self.top_k)
 
         grouped_matches = defaultdict(list)
         for match in topk_column_matches:
@@ -46,7 +46,7 @@ class TwoPhase(BaseOne2oneSchemaMatcher):
         for source_column, candidates in grouped_matches.items():
             reduced_source = source[[source_column]]
             reduced_target = target[candidates]
-            partial_matches = self.schema_matcher.get_one2one_match(
+            partial_matches = self.schema_matcher.match_schema(
                 reduced_source, reduced_target
             )
             matches += partial_matches

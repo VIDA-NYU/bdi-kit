@@ -7,19 +7,19 @@ import numpy as np
 import panel as pn
 from IPython.display import display, Markdown
 
-from bdikit.schema_matching.base import BaseOne2oneSchemaMatcher, BaseTopkSchemaMatcher
+from bdikit.schema_matching.base import BaseSchemaMatcher, BaseTopkSchemaMatcher
 from bdikit.schema_matching.matcher_factory import (
-    get_one2one_schema_matcher,
+    get_schema_matcher,
     get_topk_schema_matcher,
 )
 from bdikit.value_matching.base import (
-    BaseOne2oneValueMatcher,
+    BaseValueMatcher,
     BaseTopkValueMatcher,
     ValueMatch,
     ValueMatchingResult,
 )
 from bdikit.value_matching.matcher_factory import (
-    get_one2one_value_matcher,
+    get_value_matcher,
     get_topk_value_matcher,
 )
 from bdikit.standards.standard_factory import Standards
@@ -52,7 +52,7 @@ logger = logging.getLogger(__name__)
 def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseOne2oneSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
@@ -83,15 +83,15 @@ def match_schema(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        matcher_instance = get_one2one_schema_matcher(method, **method_args)
-    elif isinstance(method, BaseOne2oneSchemaMatcher):
+        matcher_instance = get_schema_matcher(method, **method_args)
+    elif isinstance(method, BaseSchemaMatcher):
         matcher_instance = method
     else:
         raise ValueError(
             "The method must be a string or an instance of BaseColumnMappingAlgorithm"
         )
 
-    matches = matcher_instance.get_one2one_match(source, target_table)
+    matches = matcher_instance.match_schema(source, target_table)
 
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
@@ -154,7 +154,7 @@ def top_matches(
             "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
-    matches = topk_matcher.get_topk_matches(
+    matches = topk_matcher.rank_schema_matches(
         selected_columns, target=target_table, top_k=top_k
     )
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
@@ -164,7 +164,7 @@ def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    method: Union[str, BaseOne2oneValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
+    method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
@@ -213,8 +213,8 @@ def match_values(
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        matcher_instance = get_one2one_value_matcher(method, **method_args)
-    elif isinstance(method, BaseOne2oneValueMatcher):
+        matcher_instance = get_value_matcher(method, **method_args)
+    elif isinstance(method, BaseValueMatcher):
         matcher_instance = method
 
     matches = _match_values(
@@ -355,7 +355,7 @@ def _match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
-    value_matcher: Union[BaseOne2oneValueMatcher, BaseTopkValueMatcher],
+    value_matcher: Union[BaseValueMatcher, BaseTopkValueMatcher],
     standard_args: Dict[str, Any],
     top_k: int = 1,
 ) -> List[pd.DataFrame]:
@@ -386,11 +386,11 @@ def _match_values(
 
         # 3. Apply the value matcher to create value mapping dictionaries
         if isinstance(value_matcher, BaseTopkValueMatcher):
-            raw_matches = value_matcher.get_topk_matches(
+            raw_matches = value_matcher.rank_value_matches(
                 list(source_values_dict.keys()), list(target_values_dict.keys()), top_k
             )
         else:
-            raw_matches = value_matcher.get_one2one_match(
+            raw_matches = value_matcher.match_values(
                 list(source_values_dict.keys()), list(target_values_dict.keys())
             )
 

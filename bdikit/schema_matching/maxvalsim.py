@@ -6,7 +6,7 @@ from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 
 from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 from bdikit.value_matching.polyfuzz import TFIDF
-from bdikit.value_matching.base import BaseOne2oneValueMatcher
+from bdikit.value_matching.base import BaseValueMatcher
 
 
 class MaxValSim(BaseTopkSchemaMatcher):
@@ -15,7 +15,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
         top_k: int = 20,
         contribution_factor: float = 0.5,
         top_k_matcher: Optional[BaseTopkSchemaMatcher] = None,
-        value_matcher: Optional[BaseOne2oneValueMatcher] = None,
+        value_matcher: Optional[BaseValueMatcher] = None,
     ):
         if top_k_matcher is None:
             self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
@@ -29,7 +29,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
 
         if value_matcher is None:
             self.value_matcher = TFIDF()
-        elif isinstance(value_matcher, BaseOne2oneValueMatcher):
+        elif isinstance(value_matcher, BaseValueMatcher):
             self.value_matcher = value_matcher
         else:
             raise ValueError(
@@ -47,13 +47,13 @@ class MaxValSim(BaseTopkSchemaMatcher):
         else:
             return pd.Series(column.unique().astype(str), name=column.name)
 
-    def get_topk_matches(
+    def rank_schema_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
     ) -> List[ColumnMatch]:
         max_topk = max(
             top_k, self.top_k
         )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
-        topk_column_matches = self.api.get_topk_matches(source, target, max_topk)
+        topk_column_matches = self.api.rank_schema_matches(source, target, max_topk)
         matches = {}
         top_k_results = []
 
@@ -73,7 +73,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
                 target_column_name = top_column.target_column
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
-                value_matches = self.value_matcher.get_one2one_match(
+                value_matches = self.value_matcher.match_values(
                     source_values, target_values
                 )
                 if len(target_values) == 0:
