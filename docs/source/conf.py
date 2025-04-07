@@ -37,6 +37,7 @@ extensions = [
     "nbsphinx",
     "nbsphinx_link",
     "sphinxemoji.sphinxemoji",
+    "sphinx.ext.extlinks",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -93,13 +94,40 @@ autodoc_mock_imports = [
     "rapidfuzz",
 ]
 
-autodoc_type_aliases = {'MappingSpecLike': 'MappingSpecLike'}
+autodoc_type_aliases = {"MappingSpecLike": "MappingSpecLike"}
 
 # These folders are copied to the documentation's HTML output
-html_static_path = ['_static']
+html_static_path = ["_static"]
 
 # These paths are either relative to html_static_path
 # or fully qualified paths (eg. https://...)
 html_css_files = [
-    'css/custom.css',
+    "css/custom.css",
 ]
+
+html_show_sourcelink = False
+
+def read_version():
+    module_path = os.path.join("../../bdikit/__init__.py")
+    with open(module_path) as file:
+        for line in file:
+            parts = line.strip().split(" ")
+            if parts and parts[0] == "__version__":
+                return parts[-1].strip("'").strip('"')
+
+    raise KeyError("Version not found in {0}".format(module_path))
+
+
+version = read_version()
+
+if "dev" in version:
+    version = "devel"
+
+
+# Create links pointing to the current version
+extlinks = {
+    "example": (
+        "https://github.com/VIDA-NYU/bdi-kit/blob/" + version + "/examples/%s",
+        None,
+    ),
+}
