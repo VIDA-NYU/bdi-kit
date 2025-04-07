@@ -1,5 +1,6 @@
 from __future__ import annotations
 import logging
+import warnings
 from collections import defaultdict
 import itertools
 import pandas as pd
@@ -109,6 +110,51 @@ def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.Dat
 
 
 def top_matches(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame] = "gdc",
+    columns: Optional[List[str]] = None,
+    top_k: int = 10,
+    method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
+) -> pd.DataFrame:
+    """
+    .. deprecated:: 0.6.0
+        **This function is deprecated, use** `rank_schema_matches` **instead**.
+
+    Returns the top-k matches between the source and target tables.
+
+    Args:
+        source (pd.DataFrame): The source table.
+        target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
+        columns (Optional[List[str]], optional): The list of columns to consider for matching. Defaults to None.
+        top_k (int, optional): The number of top matches to return. Defaults to 10.
+        method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
+        method_args (Optional[Dict[str, Any]], optional): The additional arguments of the method for schema matching.
+        standard_args (Optional[Dict[str, Any]], optional): The additional arguments of the standard vocabulary.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
+    """
+    warnings.warn(
+        "`top_matches` is deprecated and will be removed in version 0.7.0 of bdi-kit. "
+        "Please use `rank_schema_matches` instead.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+
+    return rank_schema_matches(
+        source=source,
+        target=target,
+        columns=columns,
+        top_k=top_k,
+        method=method,
+        method_args=method_args,
+        standard_args=standard_args,
+    )
+
+
+def rank_schema_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     columns: Optional[List[str]] = None,
@@ -235,6 +281,76 @@ def match_values(
 
 
 def top_value_matches(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    top_k: int = 5,
+    method: Union[str, BaseTopkValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
+    method_args: Optional[Dict[str, Any]] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
+) -> List[pd.DataFrame]:
+    """
+    .. deprecated:: 0.6.0
+        **This function is deprecated, use** `rank_value_matches` **instead**.
+
+    Finds top value matches between column values from the source dataset and column
+    values of the target domain (a pd.DataFrame or a standard dictionary such
+    as 'gdc') using the method provided in `method`.
+
+    Args:
+        source (pd.DataFrame): The source dataset containing the columns to be
+          matched.
+
+        target (Union[str, pd.DataFrame]): The target domain to match the
+          values to. It can be either a DataFrame or a standard vocabulary name.
+
+        column_mapping (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
+          DataFrame containing the mappings between source and target columns.
+
+          - If a tuple is provided, it should contain two strings where the first
+            is the source column and the second is the target column.
+          - If a DataFrame is provided, it should contain 'source' and 'target'
+            column names where each row specifies a column mapping.
+
+        top_k (int, optional): The number of top matches to return. Defaults to 5.
+
+        method (str, optional): The name of the method to use for value
+          matching.
+        method_args (Dict[str, Any], optional): The additional arguments of the
+            method for value matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the
+            standard vocabulary.
+
+    Returns:
+        List[pd.DataFrame]: A list of DataFrame objects containing
+        the results of value matching between the source and target values.
+
+    Raises:
+        ValueError: If the column_mapping DataFrame does not contain 'source' and
+          'target' columns.
+        ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
+        ValueError: If the source column is not present in the source dataset.
+    """
+
+    warnings.warn(
+        "`top_value_matches` is deprecated and will be removed in version 0.7.0 of bdi-kit. "
+        "Please use `rank_value_matches` instead.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+
+    return rank_value_matches(
+        source=source,
+        target=target,
+        column_mapping=column_mapping,
+        top_k=top_k,
+        method=method,
+        method_args=method_args,
+        standard_args=standard_args,
+    )
+
+
+def rank_value_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     column_mapping: Union[Tuple[str, str], pd.DataFrame],
