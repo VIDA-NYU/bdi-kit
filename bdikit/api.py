@@ -495,7 +495,13 @@ def _match_values(
             continue
 
         # 2. Remove blank spaces to the unique values
-        source_values_dict: Dict[str, Any] = {str(x).strip(): x for x in unique_values}
+        source_values_dict: Dict[str, List[str]] = {}
+        for value in unique_values:
+            stripped_value = str(value).strip()
+            if stripped_value not in source_values_dict:
+                source_values_dict[stripped_value] = []
+            source_values_dict[stripped_value].append(value)
+
         target_values_dict: Dict[str, str] = {
             str(x).strip(): x for x in target_domain_list
         }
@@ -513,16 +519,20 @@ def _match_values(
         # 4. Transform the matches to the original
         matches: List[ValueMatch] = []
         for source_value, target_value, similarity in raw_matches:
-            matches.append(
-                ValueMatch(
-                    source_value=source_values_dict[source_value],
-                    target_value=target_values_dict[target_value],
-                    similarity=similarity,
+            original_source_values = source_values_dict[source_value]  # All originals
+            for original_source_value in original_source_values:
+                matches.append(
+                    ValueMatch(
+                        source_value=original_source_value,
+                        target_value=target_values_dict[target_value],
+                        similarity=similarity,
+                    )
                 )
-            )
 
         # 5. Calculate the coverage and unmatched values
-        source_values = set(source_values_dict.values())
+        source_values = set(
+            value for values in source_values_dict.values() for value in values
+        )
         match_values = set([x[0] for x in matches])
         coverage = len(match_values) / len(source_values_dict)
 
