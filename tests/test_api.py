@@ -64,7 +64,7 @@ def test_match_schema_with_gdc():
     assert df_matches[df_filter]["target"].values[0] == "figo_stage"
 
 
-def test_top_matches_with_dataframes():
+def test_rank_schema_matches_with_dataframes():
     # given
     source = pd.DataFrame({"tumor_size": ["a1", "b1", "c1"]})
     target = pd.DataFrame(
@@ -81,7 +81,7 @@ def test_top_matches_with_dataframes():
     #
 
     # when
-    df_matches = bdi.top_matches(
+    df_matches = bdi.rank_schema_matches(
         source,
         target=target,
         top_k=3,
@@ -104,7 +104,7 @@ def test_top_matches_with_dataframes():
     #
 
     # when
-    df_matches = bdi.top_matches(
+    df_matches = bdi.rank_schema_matches(
         source,
         target=target,
         top_k=3,
@@ -124,7 +124,7 @@ def test_top_matches_with_dataframes():
     assert "tumor_length" in df_matches[df_filter]["target"].tolist()
 
 
-def test_top_matches_with_gdc():
+def test_rank_schema_matches_with_gdc():
     # given
     source = pd.DataFrame(
         {
@@ -146,7 +146,7 @@ def test_top_matches_with_gdc():
     )
 
     # when
-    df_matches = bdi.top_matches(source, target="gdc", top_k=5)
+    df_matches = bdi.rank_schema_matches(source, target="gdc", top_k=5)
 
     # then
     assert df_matches.empty == False
@@ -221,7 +221,7 @@ def test_match_values():
     assert len(mapping) == len(df_source)
 
 
-def test_top_value_matches():
+def test_rank_value_matches():
     # given
     df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
     df_target = pd.DataFrame(
@@ -240,7 +240,7 @@ def test_top_value_matches():
     )
     column_mapping = ("fruits", "fruit_names")
     # when
-    matches = bdi.top_value_matches(df_source, df_target, column_mapping)
+    matches = bdi.rank_value_matches(df_source, df_target, column_mapping)
 
     # then
     assert len(matches) == 4  # number of dataframes in the list
@@ -393,7 +393,7 @@ def test_end_to_end_api_integration():
     assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", np.nan]
 
 
-def test_top_matches_and_match_values_integration():
+def test_rank_schema_matches_and_match_values_integration():
     # given
     df_source = pd.DataFrame(
         {"fruits": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
@@ -407,7 +407,7 @@ def test_top_matches_and_match_values_integration():
     )
 
     # when
-    df_matches = bdi.top_matches(df_source, target=df_target)
+    df_matches = bdi.rank_schema_matches(df_source, target=df_target)
 
     # then
     assert len(df_matches.index) == 3

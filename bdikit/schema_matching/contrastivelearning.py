@@ -15,7 +15,7 @@ class EmbeddingSimilarity(BaseTopkSchemaMatcher):
         self.api = column_embedder
         self.metric = metric
 
-    def get_topk_matches(
+    def rank_schema_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int = 10
     ) -> List[ColumnMatch]:
         """

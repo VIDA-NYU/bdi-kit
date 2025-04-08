@@ -34,7 +34,7 @@ def test_basic_schema_matching_algorithms():
         )
 
         # when
-        mapping = column_matcher.get_one2one_match(source=table1, target=table2)
+        mapping = column_matcher.match_schema(source=table1, target=table2)
 
         # then
         assert ("column_1", "column_1") == (

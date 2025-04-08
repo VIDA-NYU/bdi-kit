@@ -37,9 +37,9 @@ Contributors can add new methods for schema and value matching by following thes
 
 1. Create a Python module inside the "task folder" folder (e.g., `bdikit/value_matching`).
 
-2. Define a class in the module that implements a base class. For value matching, it could be `BaseOne2oneValueMatcher` or `BaseTopkValueMatcher`.  For schema matching, it could be `BaseOne2oneSchemaMatcher` or `BaseTopkSchemaMatcher`.
+2. Define a class in the module that implements a base class. For value matching, it could be `BaseValueMatcher` or `BaseTopkValueMatcher`.  For schema matching, it could be `BaseSchemaMatcher` or `BaseTopkSchemaMatcher`.
 
-3. Add a new entry to the Enum class (e.g. `One2OneValueMatchers`) in `matcher_factory.py` (e.g., `bdikit/value_matching/matcher_factory.py`). 
+3. Add a new entry to the Enum class (e.g. `ValueMatchers`) in `matcher_factory.py` (e.g., `bdikit/value_matching/matcher_factory.py`). 
 Make sure to add the correct import path for your module to ensure it can be accessed without errors.
 
 

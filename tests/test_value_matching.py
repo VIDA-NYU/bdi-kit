@@ -18,7 +18,7 @@ def test_textual_transformation_value_matching_algorithms():
         target_values = ["apple", "banana", "orange", "kiwi"]
 
         # when
-        matches = value_matcher.get_one2one_match(source_values, target_values)
+        matches = value_matcher.match_values(source_values, target_values)
 
         # then
         assert len(matches) == 3
@@ -42,7 +42,7 @@ def test_semantic_value_matching_algorithms():
     target_values = ["PC", "Monitor", "Football field"]
 
     # when
-    matches = value_matcher.get_one2one_match(source_values, target_values)
+    matches = value_matcher.match_values(source_values, target_values)
 
     # then
     assert len(matches) == 2
@@ -63,7 +63,7 @@ def test_semantic_value_matching_algorithms():
     target_values = ["PC", "Monitor", "Football field"]
 
     # when
-    matches = value_matcher.get_one2one_match(source_values, target_values)
+    matches = value_matcher.match_values(source_values, target_values)
 
     # then
     assert len(matches) == 2

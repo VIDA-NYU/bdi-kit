@@ -27,7 +27,7 @@ class GPT(BaseTopkSchemaMatcher):
         else:
             return values.tolist()
 
-    def get_topk_matches(self, source, target, top_k):
+    def rank_schema_matches(self, source, target, top_k):
         matches = []
 
         target_cols = [

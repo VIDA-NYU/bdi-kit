@@ -5,7 +5,7 @@ from polyfuzz import PolyFuzz as PolyFuzzLib
 from typing import List, Callable, Tuple
 from bdikit.value_matching.base import (
     BaseTopkValueMatcher,
-    BaseOne2oneValueMatcher,
+    BaseValueMatcher,
     ValueMatch,
 )
 from polyfuzz.models import (
@@ -29,7 +29,7 @@ class PolyFuzz(BaseTopkValueMatcher):
         self.model = polyfuzz_model
         self.threshold = threshold
 
-    def get_topk_matches(
+    def rank_value_matches(
         self,
         source_values: List[str],
         target_values: List[str],
@@ -126,7 +126,7 @@ class FastText(PolyFuzz):
         super().__init__(PolyFuzzLib(method), threshold)
 
 
-class EditDistance(BaseOne2oneValueMatcher):
+class EditDistance(BaseValueMatcher):
     """
     Value matching algorithm based on the edit distance between values.
     """
@@ -147,7 +147,7 @@ class EditDistance(BaseOne2oneValueMatcher):
         )
         self.threshold = threshold
 
-    def get_one2one_match(
+    def match_values(
         self,
         source_values: List[str],
         target_values: List[str],
