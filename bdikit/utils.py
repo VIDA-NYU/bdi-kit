@@ -1,4 +1,5 @@
 import os
+import warnings
 import hashlib
 import importlib
 import pandas as pd
@@ -72,6 +73,14 @@ def create_matcher(
         raise ValueError(
             f"The {matcher_name} algorithm is not supported. "
             f"Supported algorithms are: {names}"
+        )
+
+    if matcher_name == "ct_learning":
+        warnings.warn(
+            "ct_learning method is deprecated and will be removed in version 0.7.0 of bdi-kit. "
+            "Use magneto_zs_bp, magneto_ft_bp, magneto_zs_llm or magneto_ft_llm instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
         )
     # Load the class dynamically
     module_path, class_name = available_matchers[matcher_name].rsplit(".", 1)
