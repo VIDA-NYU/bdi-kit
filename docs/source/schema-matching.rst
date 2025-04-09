@@ -27,6 +27,12 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - ``magneto_ft_llm``
       - :class:`~bdikit.schema_matching.magneto.MagnetoFTLLM`
       - | Uses a fine-tuned small language model as retriever with a large language model as reranker in Magneto.
+    * - ``magneto_zs``
+      - :class:`~bdikit.schema_matching.magneto.MagnetoZS`
+      - | Uses only a zero-shot small language model as retriever (no reranker) in Magneto.
+    * - ``magneto_ft``
+      - :class:`~bdikit.schema_matching.magneto.MagnetoFT`
+      - | Uses only a fine-tuned small language model as retriever (no reranker) in Magneto.
     * - ``ct_learning``
       - :class:`~bdikit.schema_matching.contrastivelearning.ContrastiveLearning`
       - | Uses a contrastive (CT) learning model to learn embeddings for columns and retrieves the best match most similar columns using the cosine similarity between the column embeddings.

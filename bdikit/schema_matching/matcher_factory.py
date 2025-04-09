@@ -67,6 +67,16 @@ class TopkSchemaMatchers(Enum):
         "bdikit.schema_matching.magneto.MagnetoFTLLM",
     )
 
+    MAGNETO_ZS = (
+        "magneto_zs",
+        "bdikit.schema_matching.magneto.MagnetoZS",
+    )
+
+    MAGNETO_FT = (
+        "magneto_ft",
+        "bdikit.schema_matching.magneto.MagnetoFT",
+    )
+
     GPT = ("gpt", "bdikit.schema_matching.gpt.GPT")
 
     def __init__(self, matcher_name: str, matcher_path: str):

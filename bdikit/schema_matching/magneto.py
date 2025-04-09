@@ -55,6 +55,29 @@ class MagnetoBase(BaseTopkSchemaMatcher):
         return matches
 
 
+class MagnetoZS(MagnetoBase):
+    def __init__(self):
+        kwargs = {"use_bp_reranker": False, "use_gpt_reranker": False}
+        super().__init__(kwargs)
+
+
+class MagnetoFT(MagnetoBase):
+    def __init__(
+        self,
+        encoding_mode: str = "header_values_verbose",
+        model_name: str = DEFAULT_MAGNETO_MODEL,
+        model_path: str = None,
+    ):
+        embedding_model = check_magneto_model(model_name, model_path)
+        kwargs = {
+            "encoding_mode": encoding_mode,
+            "embedding_model": embedding_model,
+            "use_bp_reranker": False,
+            "use_gpt_reranker": False,
+        }
+        super().__init__(kwargs)
+
+
 class MagnetoZSBP(MagnetoBase):
     def __init__(self):
         super().__init__()
