@@ -1,10 +1,35 @@
 Change Log
 ==========
 
-0.6.0.dev0 (yyyy-mm-dd)
------------------------
+0.6.0 (2025-04-15)
+------------------
+We are pleased to announce the release of bdikit version 0.6.0.
+This version introduces exciting new features, such as similarity scores in match_schema() and improves support for Synapse integration.
 
-- 
+Below is a list of the main changes included in this release:
+
+New Features and Improvements: 
+- **Similarity Scores in Schema Matching**: Introduced similarity scores in `match_schema()` for enhanced matching accuracy. (#105)
+- **Synapse Support**: Added support for Synapse integration. (#98)
+- **Matcher Factory Tests**: Created tests for the matcher factory to improve test coverage.
+
+Refactoring:
+- **Refactored Matching Functions**: Updated and renamed functions with deprecation warnings to streamline the API. (#108)
+- **Reorganized Matchers**: Clearly differentiated between one-to-one and top-k matching methods. (#101)
+- **Parameter Ordering in Top Matches**: Reordered parameters in `top_matches()` for consistency. (#99)
+
+Deprecation:
+- **`ct_learning` Method**: Deprecated the `ct_learning` method as part of ongoing improvements. (#96)
+- **Deprecate functions**: Deprecated the functions `top_matches()` and `top_value_matches`. (#108)
+
+Fixes:
+- **Return All Original Source Values**: Addressed an issue where not all original source values were being returned.
+- **Magneto Top-1 Bipartite Issue**: Resolved an issue with top-1 matching when using the Bipartite method.
+- **PyTorch Compatibility**: Fixed an error when loading models with PyTorch version >=2.6.
+
+Documentation:
+- **Example Updates**: Revised examples to align with the current version.
+- **Versioned Links**: Created links in the examples pointing to the current version. (#107)
 
 
 0.5.0 (2025-01-17)
