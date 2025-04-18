@@ -44,6 +44,7 @@ from typing import (
 )
 
 from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
+from bdikit.utils import create_hash, load_from_cache, save_in_cache
 
 pn.extension("tabulator")
 
@@ -92,9 +93,18 @@ def match_schema(
             "The method must be a string or an instance of BaseColumnMappingAlgorithm"
         )
 
-    matches = matcher_instance.match_schema(source, target_table)
+    hash_id = create_hash(source, target_table, matcher_instance, 1)
+    object_from_cache = load_from_cache(hash_id)
 
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    if object_from_cache is None:
+        matches = matcher_instance.match_schema(source, target_table)
+        save_in_cache(matches, hash_id)
+    else:
+        matches = object_from_cache
+
+    matches = pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+    return matches
 
 
 def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
@@ -200,10 +210,20 @@ def rank_schema_matches(
             "The method must be a string or an instance of BaseTopkColumnMatcher"
         )
 
-    matches = topk_matcher.rank_schema_matches(
-        selected_columns, target=target_table, top_k=top_k
-    )
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    hash_id = create_hash(selected_columns, target_table, topk_matcher, top_k)
+    object_from_cache = load_from_cache(hash_id)
+
+    if object_from_cache is None:
+        matches = topk_matcher.rank_schema_matches(
+            selected_columns, target=target_table, top_k=top_k
+        )
+        save_in_cache(matches, hash_id)
+    else:
+        matches = object_from_cache
+
+    matches = pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+    return matches
 
 
 def match_values(
