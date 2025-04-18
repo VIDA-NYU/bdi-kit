@@ -31,7 +31,9 @@ class MagnetoBase(BaseTopkSchemaMatcher):
             ):
                 best_matches[match.source_column] = match
 
-        return list(best_matches.values())
+        matches = self._sort_matches(list(best_matches.values()))
+
+        return self._fill_missing_matches(source, matches)
 
     def rank_schema_matches(
         self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
