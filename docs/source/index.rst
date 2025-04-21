@@ -1,5 +1,7 @@
-Overview
-=========
+bdi-kit Documentation
+=====================
+
+**Version:** |version|
 
 The bdi-kit is a library that assist users in performing data harmonization.
 It provides state-of-the-art tools to streamline the process of integrating and

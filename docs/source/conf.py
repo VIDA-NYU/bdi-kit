@@ -65,7 +65,6 @@ html_theme = "sphinx_rtd_theme"
 
 # html_theme_options = {
 #    'logo_only': True,
-#    'display_version': False,
 # }
 
 autodoc_member_order = "bysource"
@@ -119,15 +118,16 @@ def read_version():
 
 
 version = read_version()
+version_link = version
 
 if "dev" in version:
-    version = "devel"
+    version_link = "devel"
 
 
 # Create links pointing to the current version
 extlinks = {
     "example": (
-        "https://github.com/VIDA-NYU/bdi-kit/blob/" + version + "/examples/%s",
+        "https://github.com/VIDA-NYU/bdi-kit/blob/" + version_link + "/examples/%s",
         None,
     ),
 }
