@@ -4,6 +4,7 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -21,10 +22,8 @@ sys.path.insert(0, os.path.abspath("../../"))
 project = "bdi-kit"
 copyright = "2024, NYU"
 author = "NYU"
-
-# The full version, including alpha/beta/rc tags
-release = ""
 master_doc = "index"
+
 
 # -- General configuration ---------------------------------------------------
 
@@ -59,14 +58,29 @@ html_theme = "sphinx_rtd_theme"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-# html_static_path = ['_static']
+html_static_path = ["_static"]
 
-# html_logo = 'images/logo.png'
+# These paths are either relative to html_static_path
+# or fully qualified paths (eg. https://...)
+html_css_files = [
+    "css/custom.css",
+]
 
-# html_theme_options = {
-#    'logo_only': True,
-# }
+# JavaScript files to be included in the HTML output
+html_js_files = [
+    ("javascript/readthedocs.js", {"defer": "defer"}),
+]
 
+html_show_sourcelink = False
+
+# html_logo = "images/logo.png"
+html_theme_options = {
+    # "logo_only": True,
+    "version_selector": False,
+}
+
+
+# -- Options for autodoc -------------------------------------------------
 autodoc_member_order = "bysource"
 
 autoclass_content = "both"
@@ -95,17 +109,8 @@ autodoc_mock_imports = [
 
 autodoc_type_aliases = {"MappingSpecLike": "MappingSpecLike"}
 
-# These folders are copied to the documentation's HTML output
-html_static_path = ["_static"]
 
-# These paths are either relative to html_static_path
-# or fully qualified paths (eg. https://...)
-html_css_files = [
-    "css/custom.css",
-]
-
-html_show_sourcelink = False
-
+# -- Version retrieval -------------------------------------------------
 def read_version():
     module_path = os.path.join("../../bdikit/__init__.py")
     with open(module_path) as file:
@@ -122,7 +127,6 @@ version_link = version
 
 if "dev" in version:
     version_link = "devel"
-
 
 # Create links pointing to the current version
 extlinks = {
