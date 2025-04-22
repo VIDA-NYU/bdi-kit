@@ -19,9 +19,10 @@ You can find the source code in our `GitHub repository <https://github.com/VIDA-
 
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started
+   :caption: User Guide
 
    installation
+   quick-start
    getting-started
    examples
 
