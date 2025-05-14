@@ -484,66 +484,28 @@ def _match_values(
 
     for mapping in column_mapping_list:
         source_column, target_column = mapping["source"], mapping["target"]
+        target_values = target_domain[target_column]
+        source_values = source[source_column].unique().tolist()
 
-        # 1. Select candidate columns for value mapping
-        target_domain_list = target_domain[target_column]
-        if target_domain_list is None or len(target_domain_list) == 0:
-            continue
-
-        unique_values = source[source_column].unique()
-        if _skip_values(unique_values):
-            continue
-
-        # 2. Remove blank spaces to the unique values
-        source_values_dict: Dict[str, List[str]] = {}
-        for value in unique_values:
-            stripped_value = str(value).strip()
-            if stripped_value not in source_values_dict:
-                source_values_dict[stripped_value] = []
-            source_values_dict[stripped_value].append(value)
-
-        target_values_dict: Dict[str, str] = {
-            str(x).strip(): x for x in target_domain_list
-        }
-
-        # 3. Apply the value matcher to create value mapping dictionaries
+        # Check whether call rank_value_matches or match_values
         if isinstance(value_matcher, BaseTopkValueMatcher):
-            raw_matches = value_matcher.rank_value_matches(
-                list(source_values_dict.keys()), list(target_values_dict.keys()), top_k
+            matches = value_matcher.rank_value_matches(
+                source_values, target_values, top_k
             )
         else:
-            raw_matches = value_matcher.match_values(
-                list(source_values_dict.keys()), list(target_values_dict.keys())
-            )
+            matches = value_matcher.match_values(source_values, target_values)
 
-        # 4. Transform the matches to the original
-        matches: List[ValueMatch] = []
-        for source_value, target_value, similarity in raw_matches:
-            original_source_values = source_values_dict[source_value]  # All originals
-            for original_source_value in original_source_values:
-                matches.append(
-                    ValueMatch(
-                        source_value=original_source_value,
-                        target_value=target_values_dict[target_value],
-                        similarity=similarity,
-                    )
-                )
-
-        # 5. Calculate the coverage and unmatched values
-        source_values = set(
-            value for values in source_values_dict.values() for value in values
-        )
-        match_values = set([x[0] for x in matches])
-        coverage = len(match_values) / len(source_values_dict)
+        source_values_set = set(source_values)
+        match_values_set = set([match.source_value for match in matches])
 
         mapping_results.append(
             ValueMatchingResult(
                 source=source_column,
                 target=target_column,
                 matches=matches,
-                coverage=coverage,
-                unique_values=source_values,
-                unmatch_values=source_values - match_values,
+                coverage=len(matches) / len(source_values),
+                unique_values=source_values_set,
+                unmatch_values=source_values_set - match_values_set,
             )
         )
 
