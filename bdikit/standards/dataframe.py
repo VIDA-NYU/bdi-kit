@@ -24,7 +24,13 @@ class DataFrame(BaseStandard):
     def get_column_metadata(self, column_names: List[str]) -> Dict[str, Dict]:
         column_metadata = {}
 
-        # TODO: In the future, we may want to provide metadata for all columns
+        for column_name in column_names:
+            column_metadata[column_name] = {}
+            column_metadata[column_name]["description"] = ""
+            column_metadata[column_name]["value_names"] = self.get_column_values(
+                [column_name]
+            )[column_name]
+            column_metadata[column_name]["value_descriptions"] = []
 
         return column_metadata
 
