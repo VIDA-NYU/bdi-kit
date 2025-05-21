@@ -17,13 +17,6 @@ class GPTNumeric(BaseValueMatcher):
         self.client = OpenAI()
         self.sample_size = sample_size
 
-    def sanitize_code(self, function_code):
-        function_code = re.sub(r"^(\s|`)*(?i:python)?\s*", "", function_code)
-        function_code = re.sub(r"(\s|`)*$", "", function_code)
-        function_code = textwrap.dedent(function_code)
-
-        return function_code
-
     def match_values(
         self,
         source_values: List[str],
@@ -33,8 +26,14 @@ class GPTNumeric(BaseValueMatcher):
     ) -> List[ValueMatch]:
 
         matches = []
-        filtered_values = [x for x in source_values if not np.isnan(x)]
-        sample_values = random.sample(filtered_values, self.sample_size)
+        sample_values = []
+        # For cases where source values are numeric but in string format, e.g. "1.0", "2.0"
+        clean_source_values = []
+        for source_value in source_values:
+            formatted_value = to_number(source_value)
+            if formatted_value is not None and len(sample_values) < self.sample_size:
+                sample_values.append(formatted_value)
+            clean_source_values.append(formatted_value)
 
         completion = self.client.chat.completions.create(
             model="gpt-4o-mini",
@@ -58,8 +57,8 @@ class GPTNumeric(BaseValueMatcher):
         )
 
         function_code = completion.choices[0].message.content
-        function_code = self.sanitize_code(function_code)
-
+        function_code = sanitize_code(function_code)
+        print(f"Function code: {function_code}")
         local_scope = {}
         try:
             exec(function_code, {}, local_scope)
@@ -69,11 +68,37 @@ class GPTNumeric(BaseValueMatcher):
 
         map_values_func = local_scope.get("map_values")
 
-        for source_value in source_values:
+        for index, clean_source_value in enumerate(clean_source_values):
             try:
-                target_value = map_values_func(source_value)
-                matches.append(ValueMatch(source_value, target_value, 1.0))
+                if clean_source_value is None:
+                    continue
+                target_value = map_values_func(clean_source_value)
+                matches.append(ValueMatch(source_values[index], target_value, 1.0))
             except Exception as e:
-                print(f"Error applying function to value {source_value}: {e}")
+                print(
+                    f"Error applying function to value '{source_value}' {type(source_value)}': {e}"
+                )
 
         return matches
+
+
+def sanitize_code(function_code):
+    function_code = re.sub(r"^(\s|`)*(?i:python)?\s*", "", function_code)
+    function_code = re.sub(r"(\s|`)*$", "", function_code)
+    function_code = textwrap.dedent(function_code)
+
+    return function_code
+
+
+def to_number(value):
+    try:
+        # Attempt to convert to float
+        num = float(value)
+        # Check if it is NaN
+        if np.isnan(num):
+            return None
+        # If the float is an integer, return it as an int
+        return int(num) if num.is_integer() else num
+    except (ValueError, TypeError):
+        # Return None if conversion fails
+        return None
