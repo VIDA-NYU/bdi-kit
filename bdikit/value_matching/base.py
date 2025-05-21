@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, TypedDict, Set
+from typing import List, NamedTuple, TypedDict, Set, Dict
 
 
 class ValueMatch(NamedTuple):
@@ -32,20 +32,35 @@ class BaseValueMatcher:
     """
 
     def match_values(
-        self, source_values: List[str], target_values: List[str]
+        self,
+        source_values: List[str],
+        target_values: List[str],
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
 
 class BaseTopkValueMatcher(BaseValueMatcher):
     def rank_value_matches(
-        self, source_values: List[str], target_values: List[str], top_k: int
+        self,
+        source_values: List[str],
+        target_values: List[str],
+        top_k: int,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
     def match_values(
-        self, source_values: List[str], target_values: List[str]
+        self,
+        source_values: List[str],
+        target_values: List[str],
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
-        matches = self.rank_value_matches(source_values, target_values, 1)
+        matches = self.rank_value_matches(
+            source_values, target_values, 1, source_context, target_context
+        )
 
         return matches

@@ -1,8 +1,9 @@
 import flair
 import torch
+import pandas as pd
 from rapidfuzz import fuzz
 from polyfuzz import PolyFuzz as PolyFuzzLib
-from typing import List, Callable, Tuple
+from typing import List, Callable, Tuple, Dict
 from bdikit.value_matching.base import (
     BaseTopkValueMatcher,
     BaseValueMatcher,
@@ -34,14 +35,19 @@ class PolyFuzz(BaseTopkValueMatcher):
         source_values: List[str],
         target_values: List[str],
         top_k: int,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
         if len(target_values) == 0:
-            matches = [ValueMatch(source, None, 0.0) for source in source_values]
-            return matches
+            return []
+
+        new_source_values = remove_non_string_values(source_values)
+        if len(new_source_values) == 0:
+            return []
 
         self.model.method.top_n = top_k
-        self.model.match(source_values, target_values)
+        self.model.match(new_source_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by="Similarity", ascending=False, inplace=True)
 
@@ -151,13 +157,18 @@ class EditDistance(BaseValueMatcher):
         self,
         source_values: List[str],
         target_values: List[str],
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
         if len(target_values) == 0:
-            matches = [ValueMatch(source, None, 0.0) for source in source_values]
-            return matches
+            return []
 
-        self.model.match(source_values, target_values)
+        new_source_values = remove_non_string_values(source_values)
+        if len(new_source_values) == 0:
+            return []
+
+        self.model.match(new_source_values, target_values)
         match_results = self.model.get_matches()
         match_results.sort_values(by="Similarity", ascending=False, inplace=True)
 
@@ -170,3 +181,8 @@ class EditDistance(BaseValueMatcher):
                 matches.append(ValueMatch(source_value, target_value, similarity))
 
         return matches
+
+
+def remove_non_string_values(values):
+    new_values = [x for x in values if not (isinstance(x, (int, float)) or pd.isna(x))]
+    return new_values

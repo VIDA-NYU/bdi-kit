@@ -1,5 +1,5 @@
 import ast
-from typing import List
+from typing import List, Dict
 from openai import OpenAI
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 from bdikit.config import VALUE_MATCHING_THRESHOLD
@@ -17,6 +17,8 @@ class GPT(BaseValueMatcher):
         self,
         source_values: List[str],
         target_values: List[str],
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
         if (
