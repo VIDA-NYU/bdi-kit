@@ -24,7 +24,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
         else:
             raise ValueError(
                 f"Invalid top_k_matcher type: {type(top_k_matcher)}. "
-                "Must be a subclass of {BaseTopkColumnMatcher.__name__}"
+                "Must be a subclass of {BaseTopkSchemaMatcher.__name__}"
             )
 
         if value_matcher is None:
@@ -34,7 +34,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
         else:
             raise ValueError(
                 f"Invalid value_matcher type: {type(value_matcher)}. "
-                "Must be a subclass of {BaseOne2oneValueMatcher.__name__}"
+                "Must be a subclass of {BaseValueMatcher.__name__}"
             )
 
         self.top_k = top_k
@@ -98,4 +98,4 @@ class MaxValSim(BaseTopkSchemaMatcher):
 
         top_k_results = self._sort_ranked_matches(top_k_results)
 
-        return top_k_results
+        return self._fill_missing_matches(source, top_k_results)

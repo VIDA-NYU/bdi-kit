@@ -45,16 +45,16 @@ class MagnetoBase(BaseTopkSchemaMatcher):
         target_columns = set(target.columns)
         matches = []
 
-        for (source, target), score in raw_matches.items():
-            source_column = source[1]
-            target_column = target[1]
+        for (source_column, target_column), score in raw_matches.items():
+            source_column = source_column[1]
+            target_column = target_column[1]
             if target_column not in target_columns:
                 continue
             matches.append(ColumnMatch(source_column, target_column, score))
 
         matches = self._sort_ranked_matches(matches)
 
-        return matches
+        return self._fill_missing_matches(source, matches)
 
 
 class MagnetoZSBP(MagnetoBase):

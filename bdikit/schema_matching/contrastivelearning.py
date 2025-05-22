@@ -44,7 +44,7 @@ class EmbeddingSimilarity(BaseTopkSchemaMatcher):
 
         top_k_results = self._sort_ranked_matches(top_k_results)
 
-        return top_k_results
+        return self._fill_missing_matches(source, top_k_results)
 
 
 class ContrastiveLearning(EmbeddingSimilarity):

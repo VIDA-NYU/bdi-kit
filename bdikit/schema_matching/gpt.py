@@ -70,9 +70,9 @@ class GPT(BaseTopkSchemaMatcher):
             for target_col, score in sorted_matches[:top_k]:
                 matches.append(ColumnMatch(source_col, target_col, score))
 
-        print(f"Refined matches: {matches}")
+        matches = self._sort_ranked_matches(matches)
 
-        return matches
+        return self._fill_missing_matches(source, matches)
 
     def _get_prompt(self, cand, targets):
         prompt = (
