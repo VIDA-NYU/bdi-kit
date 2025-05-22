@@ -1,6 +1,7 @@
-from typing import List, NamedTuple
+from typing import List, NamedTuple, Any
 from collections import defaultdict
 import pandas as pd
+import numpy as np
 
 
 class ColumnMatch(NamedTuple):
@@ -21,7 +22,10 @@ class BaseSchemaMatcher:
         raise NotImplementedError("Subclasses must implement this method")
 
     def _fill_missing_matches(
-        self, dataset: pd.DataFrame, matches: List[ColumnMatch]
+        self,
+        dataset: pd.DataFrame,
+        matches: List[ColumnMatch],
+        default_unmatched: Any = np.nan,
     ) -> List[ColumnMatch]:
         all_source_columns = set(dataset.columns)
 
@@ -31,7 +35,9 @@ class BaseSchemaMatcher:
 
         # Fill missing matches with empty strings
         for source_column in all_source_columns:
-            matches.append(ColumnMatch(source_column, "", ""))
+            matches.append(
+                ColumnMatch(source_column, default_unmatched, default_unmatched)
+            )
 
         return matches
 
