@@ -1,28 +1,18 @@
-from typing import List, NamedTuple, TypedDict, Set, Dict
+import numpy as np
+from typing import List, NamedTuple, Dict, Any
 
 
 class ValueMatch(NamedTuple):
     """
     Represents a match between a source value and a target value with a
-    similarity score.
+    similarity score given a source and target attributes.
     """
 
-    source_value: str
-    target_value: str
+    source_attribute: str
+    target_attribute: str
+    source_value: Any
+    target_value: Any
     similarity: float
-
-
-class ValueMatchingResult(TypedDict):
-    """
-    Represents the result of a value matching operation.
-    """
-
-    source: str
-    target: str
-    matches: List[ValueMatch]
-    coverage: float
-    unique_values: Set[str]
-    unmatch_values: Set[str]
 
 
 class BaseValueMatcher:
@@ -33,19 +23,47 @@ class BaseValueMatcher:
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
+    def _fill_missing_matches(
+        self,
+        source_values: List[Any],
+        matches: List[ValueMatch],
+        source_attribute: str,
+        target_attribute: str,
+        default_unmatched: Any = np.nan,
+    ) -> List[ValueMatch]:
+        source_values_set = set(source_values)
+
+        for match in matches:
+            if match.source_value in source_values_set:
+                source_values_set.remove(match.source_value)
+
+        # Fill missing matches with the default unmatched value
+        for source_value in source_values_set:
+            matches.append(
+                ValueMatch(
+                    source_attribute,
+                    target_attribute,
+                    source_value,
+                    default_unmatched,
+                    default_unmatched,
+                )
+            )
+
+        return matches
+
 
 class BaseTopkValueMatcher(BaseValueMatcher):
     def rank_value_matches(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         top_k: int,
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
@@ -54,8 +72,8 @@ class BaseTopkValueMatcher(BaseValueMatcher):
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:

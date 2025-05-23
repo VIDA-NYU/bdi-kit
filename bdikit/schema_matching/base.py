@@ -23,17 +23,17 @@ class BaseSchemaMatcher:
 
     def _fill_missing_matches(
         self,
-        dataset: pd.DataFrame,
+        source: pd.DataFrame,
         matches: List[ColumnMatch],
         default_unmatched: Any = np.nan,
     ) -> List[ColumnMatch]:
-        all_source_columns = set(dataset.columns)
+        all_source_columns = set(source.columns)
 
         for match in matches:
             if match.source_column in all_source_columns:
                 all_source_columns.remove(match.source_column)
 
-        # Fill missing matches with empty strings
+        # Fill missing matches with the default unmatched value
         for source_column in all_source_columns:
             matches.append(
                 ColumnMatch(source_column, default_unmatched, default_unmatched)

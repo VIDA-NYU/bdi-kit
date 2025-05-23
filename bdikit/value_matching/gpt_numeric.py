@@ -2,7 +2,7 @@ import re
 import random
 import textwrap
 import numpy as np
-from typing import List, Dict
+from typing import List, Dict, Any
 from openai import OpenAI
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 
@@ -19,14 +19,16 @@ class GPTNumeric(BaseValueMatcher):
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
         matches = []
         sample_values = []
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
         # For cases where source values are numeric but in string format, e.g. "1.0", "2.0"
         clean_source_values = []
         for source_value in source_values:
@@ -47,8 +49,8 @@ class GPTNumeric(BaseValueMatcher):
                     "role": "user",
                     "content": "You are an intelligent system designed to derive formulas and write Python code "
                     "to convert numeric source values into corresponding target values. "
-                    f"Given a dataset attribute named '{source_context['attribute_name']}' containing the values: {str(sample_values)}, "
-                    f"and a potential target attribute named '{target_context['attribute_name']}' described as: '{target_context['attribute_description']}'. "
+                    f"Given a dataset attribute named '{source_attribute}' containing the values: {str(sample_values)}, "
+                    f"and a potential target attribute named '{target_attribute}' described as: '{target_context['attribute_description']}'. "
                     "Your task is to determine the formula needed to transform source values into target values. "
                     "Write a Python function named 'map_values' that takes a single input value and applies the derived formula to return the corresponding target value. "
                     "Provide only the Python code snippet as a formatted string.",
@@ -73,13 +75,23 @@ class GPTNumeric(BaseValueMatcher):
                 if clean_source_value is None:
                     continue
                 target_value = map_values_func(clean_source_value)
-                matches.append(ValueMatch(source_values[index], target_value, 1.0))
+                matches.append(
+                    ValueMatch(
+                        source_attribute,
+                        target_attribute,
+                        source_values[index],
+                        target_value,
+                        1.0,
+                    )
+                )
             except Exception as e:
                 print(
                     f"Error applying function to value '{source_value}' {type(source_value)}': {e}"
                 )
 
-        return matches
+        return self._fill_missing_matches(
+            source_values, matches, source_attribute, target_attribute
+        )
 
 
 def sanitize_code(function_code):
