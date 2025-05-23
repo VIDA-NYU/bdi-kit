@@ -87,3 +87,24 @@ def create_matcher(
     module = importlib.import_module(module_path)
 
     return getattr(module, class_name)(**matcher_kwargs)
+
+
+def get_additional_context(context: Dict[str, str], dataset_label: str) -> str:
+    """
+    Generate a string with additional context information from the provided context dictionary.
+    This function excludes the keys 'attribute_name' and 'attribute_description' from the context.
+    Args:
+        context (Dict[str, str]): A dictionary containing context information.
+    Returns:
+        str: A formatted string containing the additional context information.
+    """
+    str_context = ""
+
+    for context_id in context:
+        if context_id != "attribute_name" and context_id != "attribute_description":
+            str_context += f"Its {context_id}: {context[context_id]}. "
+
+    if len(str_context) > 0:
+        str_context = f"The {dataset_label} dataset has the following additional context. {str_context}"
+
+    return str_context

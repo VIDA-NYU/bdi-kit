@@ -2,6 +2,7 @@ import ast
 from typing import List, Dict, Any
 from openai import OpenAI
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
+from bdikit.utils import get_additional_context
 from bdikit.config import VALUE_MATCHING_THRESHOLD
 
 
@@ -27,6 +28,10 @@ class GPT(BaseValueMatcher):
             return []
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
+        additional_source_cxt = get_additional_context(source_context, "source")
+        additional_target_cxt = get_additional_context(target_context, "target")
+        additional_context = additional_source_cxt + additional_target_cxt
+
         target_values_set = set(target_values)
         matches = []
 
@@ -40,8 +45,9 @@ class GPT(BaseValueMatcher):
                     },
                     {
                         "role": "user",
-                        "content": f'For the term: "{source_value}", choose a value from this list {target_values}. '
+                        "content": f"For the term: '{source_value}', choose a value from this list {target_values}. "
                         "Return the value from the list with a similarity score, between 0 and 1, with 1 indicating the highest similarity. "
+                        f"{additional_context}"
                         "DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. "
                         'Only provide a Python dictionary. For example {"term": "term from the list", "score": 0.8}.',
                     },

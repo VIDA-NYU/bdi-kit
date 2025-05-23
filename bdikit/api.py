@@ -67,10 +67,14 @@ def match_schema(
     Raises:
         ValueError: If the method is neither a string nor an instance of BaseSchemaMatcher.
     """
-    target_dataset = _load_target_dataset(target, standard_args)
+    target_dataset = _load_dataset(target, standard_args)
+    source_dataset = _load_dataset(source)
     matcher_instance = _load_schema_matcher(method, method_args)
 
-    matches = matcher_instance.match_schema(source, target_dataset.get_dataframe_rep())
+    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    matches = matcher_instance.match_schema(
+        source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
+    )
 
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
@@ -171,18 +175,22 @@ def rank_schema_matches(
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
     """
 
-    target_dataset = _load_target_dataset(target, standard_args)
-
     if columns is not None and len(columns) > 0:
-        selected_columns = source[columns]
+        selected_source = source[columns]
     else:
-        selected_columns = source
+        selected_source = source
 
+    source_dataset = _load_dataset(selected_source)
+    target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
 
+    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
     matches = topk_matcher.rank_schema_matches(
-        selected_columns, target=target_dataset.get_dataframe_rep(), top_k=top_k
+        source_dataset.get_dataframe_rep(),
+        target_dataset.get_dataframe_rep(),
+        top_k=top_k,
     )
+
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
 
@@ -246,6 +254,10 @@ def match_values(
 
         method (str, optional): The name of the method to use for value
           matching.
+        source_context (Dict[str, Any], optional): The context for the source
+            dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target
+            dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the
             method for value matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the
@@ -264,7 +276,8 @@ def match_values(
         ValueError: If the source column is not present in the source dataset.
     """
 
-    target_dataset = _load_target_dataset(target, standard_args)
+    source_dataset = _load_dataset(source)
+    target_dataset = _load_dataset(target, standard_args)
     matcher_instance = _load_value_matcher(method, method_args)
 
     all_matches: List[ValueMatch] = []
@@ -274,15 +287,18 @@ def match_values(
         target_attribute,
         source_values,
         target_values,
-    ) in _iterate_values(source, target_dataset, column_mapping):
-        source_ctx, target_ctx = _create_contexts(
-            source,
-            target_dataset,
+    ) in _iterate_values(source_dataset, target_dataset, column_mapping):
+        source_ctx = _create_context(
+            source_dataset,
             source_attribute,
-            target_attribute,
-            source_context,
-            target_context,
+            user_context=source_context,
         )
+        target_ctx = _create_context(
+            target_dataset,
+            target_attribute,
+            user_context=target_context,
+        )
+
         matches = matcher_instance.match_values(
             source_values, target_values, source_ctx, target_ctx
         )
@@ -444,6 +460,10 @@ def rank_value_matches(
 
         method (str, optional): The name of the method to use for value
           matching.
+        source_context (Dict[str, Any], optional): The context for the source
+            dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target
+            dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the
             method for value matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the
@@ -462,7 +482,8 @@ def rank_value_matches(
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
         ValueError: If the source column is not present in the source dataset.
     """
-    target_dataset = _load_target_dataset(target, standard_args)
+    source_dataset = _load_dataset(source)
+    target_dataset = _load_dataset(target, standard_args)
     matcher_instance = _load_topk_value_matcher(method, method_args)
 
     all_matches = []
@@ -472,15 +493,18 @@ def rank_value_matches(
         target_attribute,
         source_values,
         target_values,
-    ) in _iterate_values(source, target_dataset, column_mapping):
-        source_ctx, target_ctx = _create_contexts(
-            source,
-            target_dataset,
+    ) in _iterate_values(source_dataset, target_dataset, column_mapping):
+        source_ctx = _create_context(
+            source_dataset,
             source_attribute,
-            target_attribute,
-            source_context,
-            target_context,
+            user_context=source_context,
         )
+        target_ctx = _create_context(
+            target_dataset,
+            target_attribute,
+            user_context=target_context,
+        )
+
         matches = matcher_instance.rank_value_matches(
             source_values, target_values, top_k, source_ctx, target_ctx
         )
@@ -620,60 +644,76 @@ def view_value_matches(
         )
 
 
-def _load_target_dataset(
-    target: Union[str, pd.DataFrame], standard_args: Optional[Dict[str, Any]] = None
+def _load_dataset(
+    dataset: Union[str, pd.DataFrame], standard_args: Optional[Dict[str, Any]] = None
 ) -> BaseStandard:
-    if isinstance(target, str):
+    if isinstance(dataset, str):
         if standard_args is None:
             standard_args = {}
-        target_dataset = Standards.get_standard(target, **standard_args)
+        new_dataset = Standards.get_standard(dataset, **standard_args)
 
-    elif isinstance(target, pd.DataFrame):
-        target_dataset = DataFrame(target)
+    elif isinstance(dataset, pd.DataFrame):
+        new_dataset = DataFrame(dataset)
+    else:
+        raise ValueError(
+            "The dataset must be a DataFrame or a supported standard name."
+        )
 
-    return target_dataset
+    return new_dataset
 
 
-def _create_contexts(
-    source_dataset: pd.DataFrame,
-    target_dataset: BaseStandard,
-    source_attribute: str,
-    target_attribute: str,
-    source_user_ctx: Optional[Dict[str, str]] = None,
-    target_user_ctx: Optional[Dict[str, str]] = None,
+def _create_context(
+    dataset: BaseStandard,
+    attribute: str,
+    user_context: Optional[Dict[str, str]] = None,
 ):
-    source_context = {}
-    target_context = {}
+    """
+    Creates the context for source and target attributes, including auto-generated
+    context based on the dataset metadata and user-provided context.
+    Args:
+        dataset (BaseStandard): The dataset.
+        attribute (str): The attribute name.
+        target_attribute (str): The target attribute name.
+        source_user_ctx (Optional[Dict[str, str]]): User-provided context for the attribute.
+    Returns:
+        Dict[str, str]: A dictionary containing the context for the attribute.
+    """
+    context = {}
 
-    if source_user_ctx is None:
-        source_user_ctx = {}
-    if target_user_ctx is None:
-        target_user_ctx = {}
+    if user_context is None:
+        user_context = {}
 
-    source_auto_ctx = {"attribute_name": source_attribute, "attribute_description": ""}
-    target_auto_ctx = {
-        "attribute_name": target_attribute,
-        "attribute_description": target_dataset.get_column_metadata([target_attribute])[
-            target_attribute
-        ]["description"],
+    # Auto-generated context
+    auto_context = {
+        "attribute_name": attribute,
+        "attribute_description": dataset.get_column_metadata([attribute])[attribute][
+            "description"
+        ],
     }
 
-    source_context.update(source_user_ctx)
-    source_context.update(source_auto_ctx)
-    target_context.update(target_user_ctx)
-    target_context.update(target_auto_ctx)
+    context.update(auto_context)
+    for context_id, context_description in user_context.items():
+        if context_id not in context:
+            context[context_id] = context_description
+        else:
+            warnings.warn(
+                f"Context ID '{context_id}' found in the auto generated context. "
+                "It will be ignored.",
+                UserWarning,
+            )
 
-    return source_context, target_context
+    return context
 
 
 def _iterate_values(
-    source: pd.DataFrame,
+    source: BaseStandard,
     target: BaseStandard,
     attribute_matches: Union[Tuple[str, str], pd.DataFrame],
 ):
 
     attribute_matches_list = _format_attribute_matches(attribute_matches)
     all_target_values = target.get_column_values(target.get_columns())
+    all_source_values = source.get_column_values(source.get_columns())
 
     for attribute_match in attribute_matches_list:
         source_attribute, target_attribute = (
@@ -681,7 +721,7 @@ def _iterate_values(
             attribute_match["target"],
         )
         target_values = all_target_values[target_attribute]
-        source_values = source[source_attribute].unique().tolist()
+        source_values = all_source_values[source_attribute]
 
         yield (source_attribute, target_attribute, source_values, target_values)
 

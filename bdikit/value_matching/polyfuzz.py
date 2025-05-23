@@ -71,6 +71,7 @@ class PolyFuzz(BaseTopkValueMatcher):
                             similarity,
                         )
                     )
+
         matches = self._sort_matches(matches)
 
         return self._fill_missing_matches(
