@@ -165,6 +165,93 @@ def test_rank_schema_matches_with_gdc():
     assert "race" in df_matches[df_filter]["target"].tolist()
 
 
+def test_match_values():
+    # given
+    df_source = pd.DataFrame(
+        {"src_column": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
+    )
+    df_target = pd.DataFrame(
+        {"tgt_column": ["apple", "banana", "orange", "kiwi", "grapes"]}
+    )
+
+    df_matches = pd.DataFrame({"source": ["src_column"], "target": ["tgt_column"]})
+
+    # when
+    value_mappings = bdi.match_values(
+        df_source, df_target, df_matches, method="tfidf", output_format="dataframe"
+    )
+
+    # then
+    assert value_mappings is not None
+    assert isinstance(value_mappings, pd.DataFrame)
+    assert [
+        "source_attribute",
+        "target_attribute",
+        "source_value",
+        "target_value",
+        "similarity",
+    ] == value_mappings.columns.to_list()
+    assert len(value_mappings) == len(df_source)
+
+    # when
+    value_mappings = bdi.match_values(
+        df_source, df_target, df_matches, method="tfidf", output_format="list"
+    )
+
+    # then
+    assert len(value_mappings) == 1
+    mapping = value_mappings[0]
+    assert mapping is not None
+    assert isinstance(mapping, pd.DataFrame)
+    assert mapping.attrs["source_attribute"] == "src_column"
+    assert mapping.attrs["target_attribute"] == "tgt_column"
+    assert len(mapping) == len(df_source)
+
+
+def test_rank_value_matches():
+    # given
+    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
+    df_target = pd.DataFrame(
+        {
+            "fruit_names": [
+                "apple",
+                "red apple",
+                "banana",
+                "mx banana",
+                "melon",
+                "kiwi",
+                "grapes",
+            ],
+            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
+        }
+    )
+    column_mapping = ("fruits", "fruit_names")
+
+    # when
+    matches = bdi.rank_value_matches(df_source, df_target, column_mapping)
+
+    # then
+    isinstance(matches, pd.DataFrame)
+    assert "source_attribute" in matches.columns
+    assert "target_attribute" in matches.columns
+    assert "source_value" in matches.columns
+    assert "target_value" in matches.columns
+    assert "similarity" in matches.columns
+
+    # when
+    value_mappings = bdi.rank_value_matches(
+        df_source, df_target, column_mapping, output_format="list"
+    )
+
+    # then
+    assert len(value_mappings) == 1
+    mapping = value_mappings[0]
+    assert mapping is not None
+    assert isinstance(mapping, pd.DataFrame)
+    assert mapping.attrs["source_attribute"] == "fruits"
+    assert mapping.attrs["target_attribute"] == "fruit_names"
+
+
 def test_materialize_mapping():
     # given
     str_column_1 = ["a", "b", "c", "d", "e"]
@@ -195,82 +282,6 @@ def test_materialize_mapping():
 
     assert "string column 2" in df_mapped.columns
     assert df_mapped["string column 2"].eq(["A", "B", "C", "D", "E"]).all()
-
-
-def test_match_values():
-    # given
-    df_source = pd.DataFrame(
-        {"src_column": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
-    )
-    df_target = pd.DataFrame(
-        {"tgt_column": ["apple", "banana", "orange", "kiwi", "grapes"]}
-    )
-
-    df_matches = pd.DataFrame({"source": ["src_column"], "target": ["tgt_column"]})
-
-    # when
-    value_mappings = bdi.match_values(df_source, df_target, df_matches, method="tfidf")
-
-    # then
-    assert len(value_mappings) == 1
-    mapping = value_mappings[0]
-    assert mapping is not None
-    assert isinstance(mapping, pd.DataFrame)
-    assert mapping.attrs["source"] == "src_column"
-    assert mapping.attrs["target"] == "tgt_column"
-    assert len(mapping) == len(df_source)
-
-
-def test_rank_value_matches():
-    # given
-    df_source = pd.DataFrame({"fruits": ["Applee", "Bananaa", "Oorange", "Strawberry"]})
-    df_target = pd.DataFrame(
-        {
-            "fruit_names": [
-                "apple",
-                "red apple",
-                "banana",
-                "mx banana",
-                "melon",
-                "kiwi",
-                "grapes",
-            ],
-            "fruit_id": ["1", "2", "3", "4", "5", "6", "7"],
-        }
-    )
-    column_mapping = ("fruits", "fruit_names")
-    # when
-    matches = bdi.rank_value_matches(df_source, df_target, column_mapping)
-
-    # then
-    assert len(matches) == 4  # number of dataframes in the list
-
-    # when
-    df_match = matches[0]  # top matches for apple
-
-    # then
-    assert len(df_match) == 2
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
-
-    # when
-    df_match = matches[1]  # top matches for banana
-
-    # then
-    assert len(df_match) == 2
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
-
-    # when
-    df_match = matches[2]  # top matches for orange
-
-    # then
-    assert len(df_match) == 1
-    assert "source" in df_match.columns
-    assert "target" in df_match.columns
-    assert "similarity" in df_match.columns
 
 
 def test_preview_domain():
@@ -306,6 +317,51 @@ def test_preview_domain():
     assert "value_name" not in preview.columns
     assert "value_description" not in preview.columns
     assert "column_description" in preview.columns
+
+
+def test_rank_schema_matches_and_match_values_integration():
+    # given
+    df_source = pd.DataFrame(
+        {"fruits": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
+    )
+    df_target = pd.DataFrame(
+        {
+            "fruit_types": ["apple", "banana", "orange", "kiwi", "grapes"],
+            "fruit_names": ["apple", "banana", "melon", "kiwi", "grapes"],
+            "fruit_id": ["1", "2", "3", "4", "5"],
+        }
+    )
+
+    # when
+    df_matches = bdi.rank_schema_matches(df_source, target=df_target)
+
+    # then
+    assert len(df_matches.index) == 3
+    assert "source" in df_matches.columns
+    assert "target" in df_matches.columns
+    assert "similarity" in df_matches.columns
+
+    # when
+    df_matches = bdi.match_values(
+        df_source,
+        df_target,
+        column_mapping=df_matches,
+        method="tfidf",
+        output_format="list",
+    )
+    assert isinstance(df_matches, list)
+    assert len(df_matches) == 3
+    for df in df_matches:
+        assert isinstance(df, pd.DataFrame)
+        assert "source_value" in df.columns
+        assert "target_value" in df.columns
+        assert "similarity" in df.columns
+        assert df.attrs["source_attribute"] == "fruits"
+        assert df.attrs["target_attribute"] in [
+            "fruit_types",
+            "fruit_names",
+            "fruit_id",
+        ]
 
 
 def test_end_to_end_api_integration():
@@ -344,13 +400,16 @@ def test_end_to_end_api_integration():
     )
 
     # then: a list of value matches must be computed
-    assert len(value_mappings) == 1
-    mapping = value_mappings[0]
-    assert mapping is not None
-    assert isinstance(mapping, pd.DataFrame)
-    assert len(mapping) == len(df_source)
-    assert mapping.attrs["source"] == "src_column"
-    assert mapping.attrs["target"] == "tgt_column"
+    assert value_mappings is not None
+    assert isinstance(value_mappings, pd.DataFrame)
+    assert [
+        "source_attribute",
+        "target_attribute",
+        "source_value",
+        "target_value",
+        "similarity",
+    ] == value_mappings.columns.to_list()
+    assert len(value_mappings) == len(df_source)
 
     # when: pass output of match_values() to materialize_mapping(),
     df_mapped = bdi.materialize_mapping(df_source, value_mappings)
@@ -391,40 +450,3 @@ def test_end_to_end_api_integration():
     # values must be mapped according the provide user_mappings
     assert "tgt_column" in df_mapped.columns
     assert df_mapped["tgt_column"].tolist() == ["APPLE", "BANANA", "ORANGE", np.nan]
-
-
-def test_rank_schema_matches_and_match_values_integration():
-    # given
-    df_source = pd.DataFrame(
-        {"fruits": ["Red Apple", "Banana", "Oorange", "Strawberry"]}
-    )
-    df_target = pd.DataFrame(
-        {
-            "fruit_types": ["apple", "banana", "orange", "kiwi", "grapes"],
-            "fruit_names": ["apple", "banana", "melon", "kiwi", "grapes"],
-            "fruit_id": ["1", "2", "3", "4", "5"],
-        }
-    )
-
-    # when
-    df_matches = bdi.rank_schema_matches(df_source, target=df_target)
-
-    # then
-    assert len(df_matches.index) == 3
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
-    assert "similarity" in df_matches.columns
-
-    # when
-    df_matches = bdi.match_values(
-        df_source, df_target, column_mapping=df_matches, method="tfidf"
-    )
-    assert isinstance(df_matches, list)
-    assert len(df_matches) == 3
-    for df in df_matches:
-        assert isinstance(df, pd.DataFrame)
-        assert "source" in df.columns
-        assert "target" in df.columns
-        assert "similarity" in df.columns
-        assert df.attrs["source"] == "fruits"
-        assert df.attrs["target"] in ["fruit_types", "fruit_names", "fruit_id"]

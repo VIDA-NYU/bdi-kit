@@ -1,5 +1,5 @@
 import ast
-from typing import List, Dict
+from typing import List, Dict, Any
 from openai import OpenAI
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 from bdikit.config import VALUE_MATCHING_THRESHOLD
@@ -15,8 +15,8 @@ class GPT(BaseValueMatcher):
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
@@ -25,7 +25,8 @@ class GPT(BaseValueMatcher):
             len(source_values) > 25
         ):  # TODO: Improve this, avoid calling the API if the number of source values is too high (e.g. IDs)
             return []
-
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
         target_values_set = set(target_values)
         matches = []
 
@@ -53,10 +54,22 @@ class GPT(BaseValueMatcher):
                 target_value = response_dict["term"]
                 score = float(response_dict["score"])
                 if target_value in target_values_set and score >= self.threshold:
-                    matches.append(ValueMatch(source_value, target_value, score))
+                    matches.append(
+                        ValueMatch(
+                            source_attribute,
+                            target_attribute,
+                            source_value,
+                            target_value,
+                            score,
+                        )
+                    )
             except:
                 print(
                     f'Errors parsing response for "{source_value}": {response_message}'
                 )
 
-        return matches
+        matches = self._sort_matches(matches)
+
+        return self._fill_missing_matches(
+            source_values, matches, source_attribute, target_attribute
+        )

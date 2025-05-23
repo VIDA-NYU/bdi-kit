@@ -1,11 +1,10 @@
 from __future__ import annotations
 import logging
 import warnings
-from collections import defaultdict
 import itertools
 import pandas as pd
-import numpy as np
 import panel as pn
+from collections import defaultdict
 from IPython.display import display, Markdown
 
 from bdikit.schema_matching.base import BaseSchemaMatcher, BaseTopkSchemaMatcher
@@ -17,7 +16,6 @@ from bdikit.value_matching.base import (
     BaseValueMatcher,
     BaseTopkValueMatcher,
     ValueMatch,
-    ValueMatchingResult,
 )
 from bdikit.value_matching.matcher_factory import (
     get_value_matcher,
@@ -34,17 +32,7 @@ from bdikit.mapping_functions import (
     IdentityValueMapper,
 )
 
-from typing import (
-    Union,
-    List,
-    Dict,
-    TypedDict,
-    Optional,
-    Tuple,
-    Callable,
-    Any,
-    Generator,
-)
+from typing import Union, List, Dict, TypedDict, Optional, Tuple, Callable, Any
 
 from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
 
@@ -77,13 +65,29 @@ def match_schema(
         pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
 
     Raises:
-        ValueError: If the method is neither a string nor an instance of BaseColumnMappingAlgorithm.
+        ValueError: If the method is neither a string nor an instance of BaseSchemaMatcher.
     """
-    if isinstance(target, str):
-        target_table = _load_table_for_standard(target, standard_args)
-    else:
-        target_table = target
+    target_dataset = _load_target_dataset(target, standard_args)
+    matcher_instance = _load_schema_matcher(method, method_args)
 
+    matches = matcher_instance.match_schema(source, target_dataset.get_dataframe_rep())
+
+    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+
+def _load_schema_matcher(
+    method: Union[str, BaseSchemaMatcher], method_args: Optional[Dict[str, Any]] = None
+) -> BaseSchemaMatcher:
+    """
+    Loads the schema matcher based on the provided method and method arguments.
+
+    Args:
+        method (Union[str, BaseSchemaMatcher]): The method to use for schema matching.
+        method_args (Optional[Dict[str, Any]]): Additional arguments for the schema matcher.
+
+    Returns:
+        BaseSchemaMatcher: An instance of the schema matcher.
+    """
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
@@ -92,24 +96,9 @@ def match_schema(
         matcher_instance = method
     else:
         raise ValueError(
-            "The method must be a string or an instance of BaseColumnMappingAlgorithm"
+            "The method must be a string or an instance of BaseSchemaMatcher"
         )
-
-    matches = matcher_instance.match_schema(source, target_table)
-
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
-
-
-def _load_table_for_standard(name: str, standard_args: Dict[str, Any]) -> pd.DataFrame:
-    """
-    Load the table for the given standard data vocabulary.
-    """
-    if standard_args is None:
-        standard_args = {}
-    standard = Standards.get_standard(name, **standard_args)
-    df = standard.get_dataframe_rep()
-
-    return df
+    return matcher_instance
 
 
 def top_matches(
@@ -182,31 +171,46 @@ def rank_schema_matches(
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
     """
 
-    if isinstance(target, str):
-        target_table = _load_table_for_standard(target, standard_args)
-    else:
-        target_table = target
+    target_dataset = _load_target_dataset(target, standard_args)
 
     if columns is not None and len(columns) > 0:
         selected_columns = source[columns]
     else:
         selected_columns = source
 
+    topk_matcher = _load_topk_schema_matcher(method, method_args)
+
+    matches = topk_matcher.rank_schema_matches(
+        selected_columns, target=target_dataset.get_dataframe_rep(), top_k=top_k
+    )
+    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+
+
+def _load_topk_schema_matcher(
+    method: Union[str, BaseTopkSchemaMatcher],
+    method_args: Optional[Dict[str, Any]] = None,
+) -> BaseTopkSchemaMatcher:
+    """
+    Loads the top-k schema matcher based on the provided method and method arguments.
+
+    Args:
+        method (Union[str, BaseTopkSchemaMatcher]): The method to use for top-k schema matching.
+        method_args (Optional[Dict[str, Any]]): Additional arguments for the top-k schema matcher.
+
+    Returns:
+        BaseTopkSchemaMatcher: An instance of the top-k schema matcher.
+    """
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
-        topk_matcher = get_topk_schema_matcher(method, **method_args)
+        matcher_instance = get_topk_schema_matcher(method, **method_args)
     elif isinstance(method, BaseTopkSchemaMatcher):
-        topk_matcher = method
+        matcher_instance = method
     else:
         raise ValueError(
-            "The method must be a string or an instance of BaseTopkColumnMatcher"
+            "The method must be a string or an instance of BaseTopkSchemaMatcher"
         )
-
-    matches = topk_matcher.rank_schema_matches(
-        selected_columns, target=target_table, top_k=top_k
-    )
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    return matcher_instance
 
 
 def match_values(
@@ -218,6 +222,7 @@ def match_values(
     target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
+    output_format: str = "dataframe",
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between column values from the source dataset and column
@@ -245,12 +250,13 @@ def match_values(
             method for value matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the
             standard vocabulary.
+        output_format (str, optional): The format of the output. If "dataframe",
+            a single DataFrame is returned. If "list", a list of DataFrames is returned.
+            Defaults to "dataframe".
 
     Returns:
-        Union[pd.DataFrame, List[pd.DataFrame]]: A list of DataFrame objects containing
-        the results of value matching between the source and target values. If a tuple
-        is provided as the `column_mapping`, only a DataFrame instance is returned.
-
+        pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
+        between the source and target values.
     Raises:
         ValueError: If the column_mapping DataFrame does not contain 'source' and
           'target' columns.
@@ -261,7 +267,7 @@ def match_values(
     target_dataset = _load_target_dataset(target, standard_args)
     matcher_instance = _load_value_matcher(method, method_args)
 
-    matching_results: List[ValueMatchingResult] = []
+    all_matches: List[ValueMatch] = []
 
     for (
         source_attribute,
@@ -280,89 +286,44 @@ def match_values(
         matches = matcher_instance.match_values(
             source_values, target_values, source_ctx, target_ctx
         )
+        all_matches.extend(matches)
 
-        source_values_set = set(source_values)
-        match_values_set = set([match.source_value for match in matches])
+    matches = BaseValueMatcher.sort_multiple_matches(all_matches)
 
-        matching_results.append(
-            ValueMatchingResult(
-                source=source_attribute,
-                target=target_attribute,
-                matches=matches,
-                coverage=len(matches) / len(source_values),
-                unique_values=source_values_set,
-                unmatch_values=source_values_set - match_values_set,
-            )
-        )
+    matches = pd.DataFrame(
+        data=matches,
+        columns=[
+            "source_attribute",
+            "target_attribute",
+            "source_value",
+            "target_value",
+            "similarity",
+        ],
+    )
 
-    matches = [
-        _value_matching_result_to_df(matching_result)
-        for matching_result in matching_results
-    ]
-
-    # This will not be necessary when we return a single DataFrame of the form: source_attribute, target_attribute, source_value, target_value, similarity
-    if isinstance(column_mapping, tuple):
-        if len(matches) == 0:
-            return pd.DataFrame(columns=["source", "target", "similarity"])
-        # If only a single mapping is provided (as a tuple), we return the result
-        # directly as a DataFrame to make it easier to display it in notebooks.
-        assert (
-            len(matches) == 1
-        ), f"Expected one result for a single column mapping, but got: {len(matches)}"
-        return matches[0]
-    else:
+    if output_format == "dataframe":
         return matches
-
-
-def _create_contexts(
-    source_dataset: pd.DataFrame,
-    target_dataset: Standards,
-    source_attribute: str,
-    target_attribute: str,
-    source_user_ctx: Optional[Dict[str, str]] = None,
-    target_user_ctx: Optional[Dict[str, str]] = None,
-):
-    source_context = {}
-    target_context = {}
-
-    if source_user_ctx is None:
-        source_user_ctx = {}
-    if target_user_ctx is None:
-        target_user_ctx = {}
-
-    source_auto_ctx = {"attribute_name": source_attribute, "attribute_description": ""}
-    target_auto_ctx = {
-        "attribute_name": target_attribute,
-        "attribute_description": target_dataset.get_column_metadata([target_attribute])[
-            target_attribute
-        ]["description"],
-    }
-
-    source_context.update(source_user_ctx)
-    source_context.update(source_auto_ctx)
-    target_context.update(target_user_ctx)
-    target_context.update(target_auto_ctx)
-
-    return source_context, target_context
-
-
-def _load_target_dataset(
-    target: Union[str, pd.DataFrame], standard_args: Optional[Dict[str, Any]] = None
-) -> BaseStandard:
-    if isinstance(target, str):
-        if standard_args is None:
-            standard_args = {}
-        target_dataset = Standards.get_standard(target, **standard_args)
-
-    elif isinstance(target, pd.DataFrame):
-        target_dataset = DataFrame(target)
-
-    return target_dataset
+    elif output_format == "list":
+        return _convert_to_list_of_dataframes(matches)
+    else:
+        raise ValueError(
+            "The output_format must be either 'dataframe' or 'list'. "
+            f"Received: {output_format}"
+        )
 
 
 def _load_value_matcher(
     method: Union[str, BaseValueMatcher], method_args: Optional[Dict[str, Any]] = None
 ) -> BaseValueMatcher:
+    """Loads the value matcher based on the provided method and method arguments.
+    Args:
+        method (Union[str, BaseValueMatcher]): The method to use for value matching.
+        method_args (Optional[Dict[str, Any]]): Additional arguments for the value matcher.
+    Returns:
+        BaseValueMatcher: An instance of the value matcher.
+    Raises:
+        ValueError: If the method is neither a string nor an instance of BaseValueMatcher.
+    """
     if isinstance(method, str):
         if method_args is None:
             method_args = {}
@@ -377,24 +338,6 @@ def _load_value_matcher(
     return matcher_instance
 
 
-def _load_topk_value_matcher(
-    method: Union[str, BaseTopkValueMatcher],
-    method_args: Optional[Dict[str, Any]] = None,
-) -> BaseTopkValueMatcher:
-    if isinstance(method, str):
-        if method_args is None:
-            method_args = {}
-        matcher_instance = get_topk_value_matcher(method, **method_args)
-    elif isinstance(method, BaseTopkValueMatcher):
-        matcher_instance = method
-
-    else:
-        raise ValueError(
-            "The method must be a string or an instance of BaseTopkValueMatcher"
-        )
-    return matcher_instance
-
-
 def top_value_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
@@ -403,7 +346,7 @@ def top_value_matches(
     method: Union[str, BaseTopkValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
-) -> List[pd.DataFrame]:
+) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     .. deprecated:: 0.6.0
         **This function is deprecated, use** `rank_value_matches` **instead**.
@@ -475,7 +418,8 @@ def rank_value_matches(
     target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
-) -> List[pd.DataFrame]:
+    output_format: str = "dataframe",
+) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds top value matches between column values from the source dataset and column
     values of the target domain (a pd.DataFrame or a standard dictionary such
@@ -504,10 +448,13 @@ def rank_value_matches(
             method for value matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the
             standard vocabulary.
+        output_format (str, optional): The format of the output. If "dataframe",
+            a single DataFrame is returned. If "list", a list of DataFrames is returned.
+            Defaults to "dataframe".
 
     Returns:
-        List[pd.DataFrame]: A list of DataFrame objects containing
-        the results of value matching between the source and target values.
+        pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
+        between the source and target values.
 
     Raises:
         ValueError: If the column_mapping DataFrame does not contain 'source' and
@@ -518,7 +465,7 @@ def rank_value_matches(
     target_dataset = _load_target_dataset(target, standard_args)
     matcher_instance = _load_topk_value_matcher(method, method_args)
 
-    matching_results: List[ValueMatchingResult] = []
+    all_matches = []
 
     for (
         source_attribute,
@@ -538,36 +485,57 @@ def rank_value_matches(
             source_values, target_values, top_k, source_ctx, target_ctx
         )
 
-        source_values_set = set(source_values)
-        match_values_set = set([match.source_value for match in matches])
+        all_matches.extend(matches)
 
-        matching_results.append(
-            ValueMatchingResult(
-                source=source_attribute,
-                target=target_attribute,
-                matches=matches,
-                coverage=len(matches) / len(source_values),
-                unique_values=source_values_set,
-                unmatch_values=source_values_set - match_values_set,
-            )
+    matches = BaseTopkValueMatcher.sort_multiple_matches(all_matches)
+
+    matches = pd.DataFrame(
+        data=matches,
+        columns=[
+            "source_attribute",
+            "target_attribute",
+            "source_value",
+            "target_value",
+            "similarity",
+        ],
+    )
+
+    if output_format == "dataframe":
+        return matches
+    elif output_format == "list":
+        return _convert_to_list_of_dataframes(matches)
+    else:
+        raise ValueError(
+            "The output_format must be either 'dataframe' or 'list'. "
+            f"Received: {output_format}"
         )
 
-    matches = [
-        _value_matching_result_to_df(matching_result)
-        for matching_result in matching_results
-    ]
 
-    # This will not be necessary when we return a single DataFrame of the form: source_attribute, target_attribute, source_value, target_value, similarity
-    match_list = []
-    for match in matches:
-        for _, group in match.groupby("source", dropna=False):
-            match_list.append(
-                group.reset_index(drop=True).sort_values(
-                    by=["similarity"], ascending=False
-                )
-            )
+def _load_topk_value_matcher(
+    method: Union[str, BaseTopkValueMatcher],
+    method_args: Optional[Dict[str, Any]] = None,
+) -> BaseTopkValueMatcher:
+    """Loads the top-k value matcher based on the provided method and method arguments.
+    Args:
+        method (Union[str, BaseTopkValueMatcher]): The method to use for top-k value matching.
+        method_args (Optional[Dict[str, Any]]): Additional arguments for the top-k value matcher.
+    Returns:
+        BaseTopkValueMatcher: An instance of the top-k value matcher.
+    Raises:
+        ValueError: If the method is neither a string nor an instance of BaseTopkValueMatcher.
+    """
+    if isinstance(method, str):
+        if method_args is None:
+            method_args = {}
+        matcher_instance = get_topk_value_matcher(method, **method_args)
+    elif isinstance(method, BaseTopkValueMatcher):
+        matcher_instance = method
 
-    return match_list
+    else:
+        raise ValueError(
+            "The method must be a string or an instance of BaseTopkValueMatcher"
+        )
+    return matcher_instance
 
 
 def view_value_matches(
@@ -577,39 +545,125 @@ def view_value_matches(
     Shows the value match results in a DataFrame fashion.
 
     Args:
-        matches (Union[pd.DataFrame, List[pd.DataFrame]]): The value match results
-          obtained by the method match_values().
+        matches (Union[pd.DataFrame, List[pd.DataFrame]): The value match results obtained by the method
+        match_values() or rank_value_matches().
 
         edit (bool): Whether or not to edit the values within the DataFrame.
     """
-    if isinstance(matches, pd.DataFrame):
-        match_list = [matches]
-    elif isinstance(matches, list):
-        match_list = matches
-    else:
-        raise ValueError("The matches must be a DataFrame or a list of DataFrames")
+    if isinstance(matches, list):
+        # Grouping DataFrames by metadata (source and target columns)
+        grouped_matches = defaultdict(list)
+        for match_df in matches:
+            grouped_matches[
+                match_df.attrs["source_attribute"], match_df.attrs["target_attribute"]
+            ].append(match_df)
 
-    # Grouping DataFrames by metadata (source and target columns)
-    grouped_matches = defaultdict(list)
-    for match_df in match_list:
-        grouped_matches[match_df.attrs["source"], match_df.attrs["target"]].append(
-            match_df
-        )
-
-    # Display grouped DataFrames
-    for (source_col, target_col), match_dfs in grouped_matches.items():
-        display(
-            Markdown(
-                f"<br>**Source column:** {source_col}<br>"
-                f"**Target column:** {target_col}<br>"
+        # Display grouped DataFrames
+        for (source_col, target_col), match_dfs in grouped_matches.items():
+            display(
+                Markdown(
+                    f"<br>**Source column:** {source_col}<br>"
+                    f"**Target column:** {target_col}<br>"
+                )
             )
-        )
-        for match_df in match_dfs:
+            for match_df in match_dfs:
+                if edit:
+                    match_widget = pn.widgets.Tabulator(match_df, disabled=not edit)
+                    display(match_widget)
+                else:
+                    display(match_df)
+
+    elif isinstance(matches, pd.DataFrame):
+        # Create a grouped dictionary to hold widgets for each group
+        grouped = matches.groupby(["source_attribute", "target_attribute"], sort=False)
+        tabulators = {}
+
+        # Function to synchronize changes back to the original dataframe
+        def sync_changes(event):
+            for (source_attr, target_attr), tabulator in tabulators.items():
+                updated_sub_df = tabulator.value
+                # Update the relevant part of the original dataframe
+                mask = (matches["source_attribute"] == source_attr) & (
+                    matches["target_attribute"] == target_attr
+                )
+                matches.loc[mask, ["source_value", "target_value", "similarity"]] = (
+                    updated_sub_df[
+                        ["source_value", "target_value", "similarity"]
+                    ].values
+                )
+
+        for (source_attr, target_attr), group in grouped:
+            sub_df = group[["source_value", "target_value", "similarity"]].reset_index(
+                drop=True
+            )
+            display(
+                Markdown(
+                    f"<br>**Source column:** {source_attr}<br>"
+                    f"**Target column:** {target_attr}<br>"
+                )
+            )
             if edit:
-                match_widget = pn.widgets.Tabulator(match_df, disabled=not edit)
-                display(match_widget)
+                tabulator = pn.widgets.Tabulator(
+                    sub_df,
+                    disabled=not edit,
+                )
+                # Attach sync callback to updates
+                tabulator.param.watch(sync_changes, "value")
+                tabulators[(source_attr, target_attr)] = tabulator
+                display(tabulator)
+
             else:
-                display(match_df)
+                display(sub_df)
+    else:
+        raise ValueError(
+            "The matches must be either a DataFrame or a list of DataFrames."
+        )
+
+
+def _load_target_dataset(
+    target: Union[str, pd.DataFrame], standard_args: Optional[Dict[str, Any]] = None
+) -> BaseStandard:
+    if isinstance(target, str):
+        if standard_args is None:
+            standard_args = {}
+        target_dataset = Standards.get_standard(target, **standard_args)
+
+    elif isinstance(target, pd.DataFrame):
+        target_dataset = DataFrame(target)
+
+    return target_dataset
+
+
+def _create_contexts(
+    source_dataset: pd.DataFrame,
+    target_dataset: BaseStandard,
+    source_attribute: str,
+    target_attribute: str,
+    source_user_ctx: Optional[Dict[str, str]] = None,
+    target_user_ctx: Optional[Dict[str, str]] = None,
+):
+    source_context = {}
+    target_context = {}
+
+    if source_user_ctx is None:
+        source_user_ctx = {}
+    if target_user_ctx is None:
+        target_user_ctx = {}
+
+    source_auto_ctx = {"attribute_name": source_attribute, "attribute_description": ""}
+    target_auto_ctx = {
+        "attribute_name": target_attribute,
+        "attribute_description": target_dataset.get_column_metadata([target_attribute])[
+            target_attribute
+        ]["description"],
+    }
+
+    source_context.update(source_user_ctx)
+    source_context.update(source_auto_ctx)
+    target_context.update(target_user_ctx)
+    target_context.update(target_auto_ctx)
+
+    return source_context, target_context
 
 
 def _iterate_values(
@@ -661,35 +715,30 @@ def _format_attribute_matches(
     return attribute_matches_list
 
 
-def _value_matching_result_to_df(
-    matching_result: ValueMatchingResult, default_unmatched: Any = np.nan
-) -> pd.DataFrame:
+def _convert_to_list_of_dataframes(matches: pd.DataFrame) -> List[pd.DataFrame]:
     """
-    Transforms the list of matches and unmatched values into a DataFrame.
+    Converts a DataFrame of matches into a list of DataFrames, each containing matches
+    for a specific source-target attribute pair.
+
+    Args:
+        matches (pd.DataFrame): The DataFrame containing the matches.
+
+    Returns:
+        List[pd.DataFrame]: A list of DataFrames, each containing matches for a specific
+        source-target attribute pair.
     """
-    matches_df = pd.DataFrame(
-        data=matching_result["matches"],
-        columns=["source", "target", "similarity"],
-    )
+    dataframe_list = []
+    grouped = matches.groupby(["source_attribute", "target_attribute"], sort=False)
 
-    unmatched_values = matching_result["unmatch_values"]
+    for (source_attr, target_attr), group in grouped:
+        sub_df = group[["source_value", "target_value", "similarity"]].reset_index(
+            drop=True
+        )
+        sub_df.attrs["source_attribute"] = source_attr
+        sub_df.attrs["target_attribute"] = target_attr
+        dataframe_list.append(sub_df)
 
-    unmatched_df = pd.DataFrame(
-        data=list(
-            zip(
-                unmatched_values,
-                [default_unmatched] * len(unmatched_values),
-                [default_unmatched] * len(unmatched_values),
-            )
-        ),
-        columns=["source", "target", "similarity"],
-    )
-
-    result = pd.concat([matches_df, unmatched_df], ignore_index=True)
-    result.attrs["source"] = matching_result["source"]
-    result.attrs["target"] = matching_result["target"]
-    result.attrs["coverage"] = matching_result["coverage"]
-    return result
+    return dataframe_list
 
 
 def preview_domain(
@@ -842,8 +891,20 @@ def merge_mappings(
 
 
 def _normalize_mapping_spec(mapping_spec: MappingSpecLike) -> List[ColumnMappingSpec]:
-
-    if isinstance(mapping_spec, pd.DataFrame):
+    if (
+        isinstance(mapping_spec, pd.DataFrame)
+        and [
+            "source_attribute",
+            "target_attribute",
+            "source_value",
+            "target_value",
+            "similarity",
+        ]
+        == mapping_spec.columns.to_list()
+    ):
+        # Check if the mapping_spec is a DataFrame and comes from  match_schema()
+        mapping_spec_list: List = _convert_to_list_of_dataframes(mapping_spec)
+    elif isinstance(mapping_spec, pd.DataFrame):
         mapping_spec_list: List = mapping_spec.to_dict(orient="records")
     elif isinstance(mapping_spec, List):
         mapping_spec_list: List = mapping_spec
@@ -886,13 +947,13 @@ def _df_to_mapping_spec_dict(spec: Union[Dict, pd.DataFrame]) -> Dict:
     if isinstance(spec, Dict):
         return spec
     elif isinstance(spec, pd.DataFrame):
-        if "source" not in spec.attrs or "target" not in spec.attrs:
+        if "source_attribute" not in spec.attrs or "target_attribute" not in spec.attrs:
             raise ValueError(
-                "The DataFrame must contain 'source' and 'target' attributes."
+                "The DataFrame must contain 'source_attribute' and 'target_attribute' attributes."
             )
         return {
-            "source": spec.attrs["source"],
-            "target": spec.attrs["target"],
+            "source": spec.attrs["source_attribute"],
+            "target": spec.attrs["target_attribute"],
             "matches": spec,
         }
     else:
@@ -920,6 +981,7 @@ def materialize_mapping(
         pd.DataFrame: A DataFrame, which is created according to the target
         mapping specifications.
     """
+
     mapping_spec_list = _normalize_mapping_spec(mapping_spec)
 
     for mapping in mapping_spec_list:
@@ -946,7 +1008,6 @@ def create_mapper(
         None,
         ValueMapper,
         pd.DataFrame,
-        ValueMatchingResult,
         List[ValueMatch],
         Dict,
         ColumnMappingSpec,
@@ -1023,8 +1084,9 @@ def create_mapper(
             if "matches" in input and isinstance(input["matches"], pd.DataFrame):
                 # This could be the output of match_values(), so we can
                 # create a DictionaryMapper based on the value matches
+
                 return DictionaryMapper(
-                    input["matches"].set_index("source")["target"].to_dict()
+                    input["matches"].set_index("source_value")["target_value"].to_dict()
                 )
 
             # This could be the output of match_schema(), but the user did not
