@@ -18,6 +18,9 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - ``gpt``
       - :class:`~bdikit.value_matching.gpt.GPT`
       - | Leverages a large language model (GPT-4) to identify and select the most accurate value matches.
+    * - ``gpt_numeric``
+      - :class:`~bdikit.value_matching.gpt.GPTNumeric`
+      - | Employs a large language model (GPT-4) to perform numeric value transformations, such as converting ages from years to months.
 
 .. list-table:: Methods from other libraries
     :header-rows: 1
