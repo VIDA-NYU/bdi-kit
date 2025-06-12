@@ -164,6 +164,23 @@ def create_matcher(
     return getattr(module, class_name)(**matcher_kwargs)
 
 
+def get_class_doc(import_path: str):
+    module_path, class_name = import_path.rsplit(".", 1)
+    module = importlib.import_module(module_path)
+
+    # Get the class from the module
+    cls = getattr(module, class_name)
+
+    # Get the class docstring
+
+    doc = cls.__doc__
+
+    if doc is None:
+        return f"The class {class_name} does not have description."
+
+    return cls.__doc__.strip()
+
+
 def get_additional_context(context: Dict[str, str], dataset_label: str) -> str:
     """
     Generate a string with additional context information from the provided context dictionary.

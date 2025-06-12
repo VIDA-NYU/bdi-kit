@@ -37,6 +37,8 @@ class Valentine(BaseSchemaMatcher):
 
 
 class SimFlood(Valentine):
+    """Similarity Flooding transforms schemas into directed graphs and merges them into a propagation graph. The algorithm iteratively propagates similarity scores to neighboring nodes until convergence."""
+
     def __init__(
         self, coeff_policy: str = "inverse_average", formula: str = "formula_c"
     ):
@@ -46,6 +48,8 @@ class SimFlood(Valentine):
 
 
 class Coma(Valentine):
+    """COMA is a matcher that combines multiple schema-based matchers, representing schemas as rooted directed acyclic graphs."""
+
     def __init__(
         self, max_n: int = 0, use_instances: bool = False, java_xmx: str = "1024m"
     ):
@@ -55,6 +59,8 @@ class Coma(Valentine):
 
 
 class Cupid(Valentine):
+    """Cupid calculates overall similarity using linguistic and structural similarities, with tree transformations helping to compute context-based similarity."""
+
     def __init__(
         self,
         leaf_w_struct: float = 0.2,
@@ -83,6 +89,8 @@ class Cupid(Valentine):
 
 
 class DistributionBased(Valentine):
+    """Distribution-based Matching compares the distribution of data values in columns using the Earth Mover’s Distance. It clusters relational attributes based on these comparisons."""
+
     def __init__(
         self,
         threshold1: float = 0.15,

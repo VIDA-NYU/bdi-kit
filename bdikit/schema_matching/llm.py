@@ -5,6 +5,8 @@ from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 
 
 class LLM(BaseTopkSchemaMatcher):
+    """A schema matcher that uses LLM to match columns based on their similarity."""
+
     def __init__(self, llm_model="gpt-4o-mini"):
         self.llm_model = llm_model
         self.client = self._load_client()
