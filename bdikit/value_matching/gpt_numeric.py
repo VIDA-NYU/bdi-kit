@@ -1,10 +1,13 @@
 import re
 import random
 import textwrap
+import warnings
 import numpy as np
 from typing import List, Dict, Any
 from openai import OpenAI
+from bdikit.utils import get_additional_context
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
+
 
 random.seed(42)
 
@@ -29,6 +32,10 @@ class GPTNumeric(BaseValueMatcher):
         sample_values = []
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
+        additional_source_cxt = get_additional_context(source_context, "source")
+        additional_target_cxt = get_additional_context(target_context, "target")
+        additional_context = additional_source_cxt + additional_target_cxt
+
         # For cases where source values are numeric but in string format, e.g. "1.0", "2.0"
         clean_source_values = []
         for source_value in source_values:
@@ -52,6 +59,7 @@ class GPTNumeric(BaseValueMatcher):
                     f"Given a dataset attribute named '{source_attribute}' containing the values: {str(sample_values)}, "
                     f"and a potential target attribute named '{target_attribute}' described as: '{target_context['attribute_description']}'. "
                     "Your task is to determine the formula needed to transform source values into target values. "
+                    f"{additional_context}"
                     "Write a Python function named 'map_values' that takes a single input value and applies the derived formula to return the corresponding target value. "
                     "Provide only the Python code snippet as a formatted string.",
                 },
@@ -60,12 +68,15 @@ class GPTNumeric(BaseValueMatcher):
 
         function_code = completion.choices[0].message.content
         function_code = sanitize_code(function_code)
-        print(f"Function code: {function_code}")
+        # print(f"Function code: {function_code}")
         local_scope = {}
         try:
             exec(function_code, {}, local_scope)
         except Exception as e:
-            print(f"Error executing function code: {function_code}\n Error: {e}")
+            warnings.warn(
+                f"Error executing function code: {function_code}. " "Error: {e}.",
+                UserWarning,
+            )
             return matches
 
         map_values_func = local_scope.get("map_values")
@@ -85,8 +96,9 @@ class GPTNumeric(BaseValueMatcher):
                     )
                 )
             except Exception as e:
-                print(
-                    f"Error applying function to value '{source_value}' {type(source_value)}': {e}"
+                warnings.warn(
+                    f"Error applying function to value '{clean_source_value}' {type(clean_source_value)}: {e}",
+                    UserWarning,
                 )
 
         return self._fill_missing_matches(
