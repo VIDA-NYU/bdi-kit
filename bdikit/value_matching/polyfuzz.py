@@ -3,7 +3,7 @@ import torch
 import pandas as pd
 from rapidfuzz import fuzz
 from polyfuzz import PolyFuzz as PolyFuzzLib
-from typing import List, Callable, Tuple, Dict
+from typing import List, Callable, Tuple, Dict, Any
 from bdikit.value_matching.base import (
     BaseTopkValueMatcher,
     BaseValueMatcher,
@@ -32,8 +32,8 @@ class PolyFuzz(BaseTopkValueMatcher):
 
     def rank_value_matches(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         top_k: int,
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
@@ -46,10 +46,11 @@ class PolyFuzz(BaseTopkValueMatcher):
         if len(new_source_values) == 0:
             return []
 
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
         self.model.method.top_n = top_k
         self.model.match(new_source_values, target_values)
         match_results = self.model.get_matches()
-        match_results.sort_values(by="Similarity", ascending=False, inplace=True)
 
         matches = []
         for _, row in match_results.iterrows():
@@ -61,9 +62,20 @@ class PolyFuzz(BaseTopkValueMatcher):
                 target = top_matches[index]
                 similarity = top_matches[index + 1]
                 if similarity >= self.threshold:
-                    matches.append(ValueMatch(source, target, similarity))
+                    matches.append(
+                        ValueMatch(
+                            source_attribute,
+                            target_attribute,
+                            source,
+                            target,
+                            similarity,
+                        )
+                    )
+        matches = self._sort_matches(matches)
 
-        return matches
+        return self._fill_missing_matches(
+            source_values, matches, source_attribute, target_attribute
+        )
 
 
 class TFIDF(PolyFuzz):
@@ -155,8 +167,8 @@ class EditDistance(BaseValueMatcher):
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
@@ -167,10 +179,10 @@ class EditDistance(BaseValueMatcher):
         new_source_values = remove_non_string_values(source_values)
         if len(new_source_values) == 0:
             return []
-
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
         self.model.match(new_source_values, target_values)
         match_results = self.model.get_matches()
-        match_results.sort_values(by="Similarity", ascending=False, inplace=True)
 
         matches = []
         for _, row in match_results.iterrows():
@@ -178,9 +190,21 @@ class EditDistance(BaseValueMatcher):
             target_value = row["To"]
             similarity = row["Similarity"]
             if similarity >= self.threshold:
-                matches.append(ValueMatch(source_value, target_value, similarity))
+                matches.append(
+                    ValueMatch(
+                        source_attribute,
+                        target_attribute,
+                        source_value,
+                        target_value,
+                        similarity,
+                    )
+                )
 
-        return matches
+        matches = self._sort_matches(matches)
+
+        return self._fill_missing_matches(
+            source_values, matches, source_attribute, target_attribute
+        )
 
 
 def remove_non_string_values(values):

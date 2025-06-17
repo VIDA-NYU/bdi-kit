@@ -1,28 +1,19 @@
-from typing import List, NamedTuple, TypedDict, Set, Dict
+import numpy as np
+from collections import defaultdict
+from typing import List, NamedTuple, Dict, Any
 
 
 class ValueMatch(NamedTuple):
     """
     Represents a match between a source value and a target value with a
-    similarity score.
+    similarity score given a source and target attributes.
     """
 
-    source_value: str
-    target_value: str
+    source_attribute: str
+    target_attribute: str
+    source_value: Any
+    target_value: Any
     similarity: float
-
-
-class ValueMatchingResult(TypedDict):
-    """
-    Represents the result of a value matching operation.
-    """
-
-    source: str
-    target: str
-    matches: List[ValueMatch]
-    coverage: float
-    unique_values: Set[str]
-    unmatch_values: Set[str]
 
 
 class BaseValueMatcher:
@@ -33,19 +24,92 @@ class BaseValueMatcher:
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
+    def _fill_missing_matches(
+        self,
+        source_values: List[Any],
+        matches: List[ValueMatch],
+        source_attribute: str,
+        target_attribute: str,
+        default_unmatched: Any = np.nan,
+    ) -> List[ValueMatch]:
+        source_values_set = set(source_values)
+
+        for match in matches:
+            if match.source_value in source_values_set:
+                source_values_set.remove(match.source_value)
+
+        # Fill missing matches with the default unmatched value
+        for source_value in source_values_set:
+            matches.append(
+                ValueMatch(
+                    source_attribute,
+                    target_attribute,
+                    source_value,
+                    default_unmatched,
+                    default_unmatched,
+                )
+            )
+
+        return matches
+
+    def _sort_matches(self, matches: List[ValueMatch]) -> List[ValueMatch]:
+        # Group matches by source_value
+        grouped_matches = defaultdict(list)
+        for match in matches:
+            grouped_matches[match.source_value].append(match)
+
+        # Sort each group by similarity
+        ordered_groups = [
+            sorted(group, key=lambda x: x.similarity, reverse=True)
+            for group in grouped_matches.values()
+        ]
+
+        # Sort the groups by maximum similarity
+        ordered_groups = sorted(
+            ordered_groups, key=lambda x: x[0].similarity, reverse=True
+        )
+
+        # Flatten the sorted groups into a single list
+        sorted_matches = [item for group in ordered_groups for item in group]
+
+        return sorted_matches
+
+    @staticmethod
+    def sort_multiple_matches(matches: List[ValueMatch]) -> List[ValueMatch]:
+        # Group by source_attribute and target_attribute
+        grouped = {}
+        for match in matches:
+            key = (match.source_attribute, match.target_attribute)
+            grouped.setdefault(key, []).append(match)
+
+        # Create a list of groups with their maximum similarity
+        groups_with_similarity = [
+            (group, group[0].similarity) for group in grouped.values()
+        ]
+
+        # Sort the groups by maximum similarity
+        ordered_groups = sorted(
+            groups_with_similarity, key=lambda x: x[1], reverse=True
+        )
+
+        # Flatten the sorted groups into a single list
+        sorted_matches = [item for group, _ in ordered_groups for item in group]
+
+        return sorted_matches
+
 
 class BaseTopkValueMatcher(BaseValueMatcher):
     def rank_value_matches(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         top_k: int,
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
@@ -54,8 +118,8 @@ class BaseTopkValueMatcher(BaseValueMatcher):
 
     def match_values(
         self,
-        source_values: List[str],
-        target_values: List[str],
+        source_values: List[Any],
+        target_values: List[Any],
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
