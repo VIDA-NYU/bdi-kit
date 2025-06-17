@@ -1,11 +1,13 @@
 import os
+import json
+import pickle
 import warnings
 import hashlib
 import importlib
 import pandas as pd
 from os.path import join, dirname, isfile
 from typing import Mapping, Dict, Any
-from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR
+from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR, BDIKIT_CACHE_DIR
 
 
 def hash_dataframe(df: pd.DataFrame) -> str:
@@ -19,6 +21,72 @@ def hash_dataframe(df: pd.DataFrame) -> str:
         hash_object.update(row_string.encode())
 
     return hash_object.hexdigest()
+
+
+def hash_object(obj):
+
+    def default_serializer(o):
+        """Handles serialization of non-serializable objects."""
+        if hasattr(o, "__dict__"):  # Serialize objects with attributes
+            return o.__dict__
+        return str(o)  # Fallback for other objects
+
+    try:
+        # Serialize the object into a JSON string
+        obj_string = json.dumps(obj, sort_keys=True, default=default_serializer)
+    except TypeError as e:
+        raise ValueError(
+            f"Object of type {type(obj).__name__} is not serializable."
+        ) from e
+
+    # Create the hash object
+    hash_object = hashlib.sha256()
+    hash_object.update(obj_string.encode("utf-8"))
+
+    return hash_object.hexdigest()
+
+
+def create_hash(
+    source_table: pd.DataFrame, target_table: pd.DataFrame, matcher: Any, topk: int
+):
+    source_hash = hash_dataframe(source_table)
+    target_hash = hash_dataframe(target_table)
+    matcher_hash = hash_object(matcher)
+    topk_hash = str(topk)
+
+    final_hash = source_hash + target_hash + matcher_hash + topk_hash
+
+    return final_hash
+
+
+def load_from_cache(hash_id: str):
+    cache_path = join(BDIKIT_CACHE_DIR, "runs")
+    os.makedirs(cache_path, exist_ok=True)
+
+    hash_list = {f for f in os.listdir(cache_path) if isfile(join(cache_path, f))}
+
+    file_path = join(cache_path, hash_id)
+    file_object = None
+
+    if hash_id in hash_list:
+        if isfile(file_path):
+            try:
+                with open(file_path, "rb") as f:
+                    file_object = pickle.load(f)
+
+            except Exception as e:
+                print(f"Error loading object from cache: {e}")
+
+    return file_object
+
+
+def save_in_cache(obj: Any, hash_id: str):
+    cache_path = join(BDIKIT_CACHE_DIR, "runs")
+    os.makedirs(cache_path, exist_ok=True)
+    file_path = join(cache_path, hash_id)
+
+    with open(file_path, "wb") as f:
+        pickle.dump(obj, f)
 
 
 def write_embeddings_to_cache(embedding_file: str, embeddings: list):

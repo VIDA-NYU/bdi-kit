@@ -35,6 +35,7 @@ from bdikit.mapping_functions import (
 from typing import Union, List, Dict, TypedDict, Optional, Tuple, Callable, Any
 
 from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
+from bdikit.utils import create_hash, load_from_cache, save_in_cache
 
 pn.extension("tabulator")
 
@@ -71,10 +72,22 @@ def match_schema(
     source_dataset = _load_dataset(source)
     matcher_instance = _load_schema_matcher(method, method_args)
 
-    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
-    matches = matcher_instance.match_schema(
-        source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
+    hash_id = create_hash(
+        source_dataset.get_dataframe_rep(),
+        target_dataset.get_dataframe_rep(),
+        matcher_instance,
+        1,
     )
+    object_from_cache = load_from_cache(hash_id)
+
+    if object_from_cache is None:
+        # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+        matches = matcher_instance.match_schema(
+            source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
+        )
+        save_in_cache(matches, hash_id)
+    else:
+        matches = object_from_cache
 
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
@@ -184,12 +197,24 @@ def rank_schema_matches(
     target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
 
-    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
-    matches = topk_matcher.rank_schema_matches(
+    hash_id = create_hash(
         source_dataset.get_dataframe_rep(),
         target_dataset.get_dataframe_rep(),
-        top_k=top_k,
+        topk_matcher,
+        top_k,
     )
+    object_from_cache = load_from_cache(hash_id)
+
+    if object_from_cache is None:
+        # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+        matches = topk_matcher.rank_schema_matches(
+            source_dataset.get_dataframe_rep(),
+            target_dataset.get_dataframe_rep(),
+            top_k=top_k,
+        )
+        save_in_cache(matches, hash_id)
+    else:
+        matches = object_from_cache
 
     return pd.DataFrame(matches, columns=["source", "target", "similarity"])
 
