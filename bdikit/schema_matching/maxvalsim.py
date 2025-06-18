@@ -1,10 +1,8 @@
 import pandas as pd
 from collections import defaultdict
 from typing import Optional, List
-from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
 from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
-
-from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
+from bdikit.schema_matching.magneto import MagnetoFTBP
 from bdikit.value_matching.polyfuzz import TFIDF
 from bdikit.value_matching.base import BaseValueMatcher
 
@@ -18,7 +16,7 @@ class MaxValSim(BaseTopkSchemaMatcher):
         value_matcher: Optional[BaseValueMatcher] = None,
     ):
         if top_k_matcher is None:
-            self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
+            self.api = MagnetoFTBP()
         elif isinstance(top_k_matcher, BaseTopkSchemaMatcher):
             self.api = top_k_matcher
         else:
@@ -54,7 +52,6 @@ class MaxValSim(BaseTopkSchemaMatcher):
             top_k, self.top_k
         )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
         topk_column_matches = self.api.rank_schema_matches(source, target, max_topk)
-        matches = {}
         top_k_results = []
 
         grouped_matches = defaultdict(list)
@@ -62,10 +59,6 @@ class MaxValSim(BaseTopkSchemaMatcher):
             grouped_matches[match.source_column].append(match)
 
         for source_column, candidates in grouped_matches.items():
-            if not pd.api.types.is_string_dtype(source[source_column].dropna()):
-                matches[source_column] = candidates[0].target_column
-                continue
-
             source_values = self.unique_string_values(source[source_column]).to_list()
 
             scores = []
@@ -73,15 +66,21 @@ class MaxValSim(BaseTopkSchemaMatcher):
                 target_column_name = top_column.target_column
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
+                source_context = {"attribute_name": source_column}
+                target_context = {"attribute_name": target_column_name}
                 value_matches = self.value_matcher.match_values(
-                    source_values, target_values
+                    source_values, target_values, source_context, target_context
                 )
                 if len(target_values) == 0:
                     value_score = 0.0
                 else:
-                    value_score = sum([m.similarity for m in value_matches]) / len(
-                        target_values
-                    )
+                    value_score = sum(
+                        [
+                            m.similarity
+                            for m in value_matches
+                            if not pd.isna(m.similarity)
+                        ]
+                    ) / len(value_matches)
 
                 score = (self.contribution_factor * value_score) + (
                     (1 - self.contribution_factor) * top_column.similarity

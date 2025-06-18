@@ -167,7 +167,7 @@ def rank_schema_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     columns: Optional[List[str]] = None,
-    top_k: int = 10,
+    top_k: Optional[int] = 10,
     method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,

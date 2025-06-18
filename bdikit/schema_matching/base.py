@@ -62,24 +62,21 @@ class BaseTopkSchemaMatcher(BaseSchemaMatcher):
         return matches
 
     def _sort_ranked_matches(self, matches: List[ColumnMatch]) -> List[ColumnMatch]:
-        # Step 1: Group matches by source_column
+        # Group matches by source_column
         grouped_matches = defaultdict(list)
         for match in matches:
             grouped_matches[match.source_column].append(match)
 
-        # Step 2: Sort each group internally by similarity (descending)
-        for source_col in grouped_matches:
-            grouped_matches[source_col].sort(key=lambda x: x.similarity, reverse=True)
-
-        # Step 3: Sort groups by the highest similarity in each group, then flatten the result
-        sorted_matches = sorted(
-            (
-                match for group in grouped_matches.values() for match in group
-            ),  # Flatten groups
-            key=lambda x: grouped_matches[x.source_column][
-                0
-            ].similarity,  # Sort by highest similarity per group
-            reverse=True,
+        # Sort each group by similarity
+        ordered_groups = [
+            sorted(group, key=lambda x: x.similarity, reverse=True)
+            for group in grouped_matches.values()
+        ]
+        # Sort the groups by maximum similarity
+        ordered_groups = sorted(
+            ordered_groups, key=lambda x: x[0].similarity, reverse=True
         )
+        # Flatten the sorted groups into a single list
+        sorted_matches = [item for group in ordered_groups for item in group]
 
         return sorted_matches

@@ -39,7 +39,8 @@ class PolyFuzz(BaseTopkValueMatcher):
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
-        if len(target_values) == 0:
+        new_target_values = remove_non_string_values(target_values)
+        if len(new_target_values) == 0:
             return []
 
         new_source_values = remove_non_string_values(source_values)
@@ -49,7 +50,7 @@ class PolyFuzz(BaseTopkValueMatcher):
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
         self.model.method.top_n = top_k
-        self.model.match(new_source_values, target_values)
+        self.model.match(new_source_values, new_target_values)
         match_results = self.model.get_matches()
 
         matches = []
@@ -174,7 +175,8 @@ class EditDistance(BaseValueMatcher):
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
-        if len(target_values) == 0:
+        new_target_values = remove_non_string_values(target_values)
+        if len(new_target_values) == 0:
             return []
 
         new_source_values = remove_non_string_values(source_values)
@@ -182,7 +184,7 @@ class EditDistance(BaseValueMatcher):
             return []
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
-        self.model.match(new_source_values, target_values)
+        self.model.match(new_source_values, new_target_values)
         match_results = self.model.get_matches()
 
         matches = []
