@@ -81,6 +81,10 @@ class MagnetoZSLLM(MagnetoBase):
 
 
 class MagnetoFTLLM(MagnetoBase):
+    """
+    Magneto is an innovative framework designed to enhance schema matching (SM) by intelligently combining small, pre-trained language models (SLMs) with large language models (LLMs). The first phase involves using a fine-tuned SLMs to quickly identify a manageable subset of potential matches from a vast pool of possibilities. In the second phase, LLMs take over to assess and reorder the candidates, simplifying the process for users to review and select the most suitable matches.
+    """
+
     def __init__(
         self,
         encoding_mode: str = "header_values_verbose",

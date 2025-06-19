@@ -591,7 +591,7 @@ def view_value_matches(
     matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = False
 ):
     """
-    Shows the value match results in a DataFrame fashion.
+    Shows the value match results grouped by source and target attributes matches
 
     Args:
         matches (Union[pd.DataFrame, List[pd.DataFrame]): The value match results obtained by the method
@@ -667,6 +667,159 @@ def view_value_matches(
         raise ValueError(
             "The matches must be either a DataFrame or a list of DataFrames."
         )
+
+
+def preview_domain(
+    dataset: Union[str, pd.DataFrame],
+    column: str,
+    limit: Optional[int] = None,
+    standard_args: Optional[Dict[str, Any]] = None,
+) -> pd.DataFrame:
+    """
+    Preview the domain, i.e. set of unique values, column description and value description
+    (if applicable) of the given column of the source or target dataset.
+
+    Args:
+        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
+        containing the column to preview.
+            If a string is provided and it is equal to "gdc", the domain will be retrieved
+            from the GDC data.
+            If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
+        column(str): The column name to show the domain.
+        limit (int, optional): The maximum number of unique values to include in the preview.
+            Defaults to None.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
+        them if the parameter `limit` was specified), column description and value description
+        (if applicable).
+    """
+
+    if isinstance(dataset, str):
+        if standard_args is None:
+            standard_args = {}
+        standard = Standards.get_standard(dataset, **standard_args)
+        column_metadata = standard.get_column_metadata([column])
+        value_names = column_metadata[column]["value_names"]
+        value_descriptions = column_metadata[column]["value_descriptions"]
+        column_description = column_metadata[column]["description"]
+        assert len(value_names) == len(value_descriptions)
+    elif isinstance(dataset, pd.DataFrame):
+        value_names = dataset[column].unique()
+        value_descriptions = []
+        column_description = ""
+    else:
+        raise ValueError(
+            "The dataset must be a DataFrame or a standard vocabulary name."
+        )
+
+    if isinstance(limit, int):
+        value_names = value_names[:limit]
+        value_descriptions = value_descriptions[:limit]
+
+    domain = {}
+
+    if len(value_names) > 0:
+        domain["value_name"] = value_names
+
+    if len(value_descriptions) > 0:
+        domain["value_description"] = value_descriptions
+
+    if len(column_description) > 0:
+        empty_rows_size = len(value_names) - 1
+        domain["column_description"] = [column_description] + [""] * empty_rows_size
+
+    return pd.DataFrame(domain)
+
+
+def evaluate_schema_matches(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    schema_matches: pd.DataFrame,
+    standard_args: Optional[Dict[str, Any]] = None,
+) -> pd.DataFrame:
+    """
+    Evaluates the schema matches by providing a response and an explanation for each match.
+
+    Args:
+        source (pd.DataFrame): The source dataset.
+        target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
+        schema_matches (pd.DataFrame): The DataFrame containing the schema matches with columns
+            'source', 'target', and 'similarity'.
+        standard_args (Optional[Dict[str, Any]]): Additional arguments for the standard vocabulary.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
+        'response' and 'explanation'.
+    """
+    from bdikit.matching_evaluation.schema_matching import evaluate_match
+
+    evaluated_matches = schema_matches.copy()
+
+    evaluated_matches["response"], evaluated_matches["explanation"] = zip(
+        *evaluated_matches.apply(
+            lambda row: evaluate_match(
+                {
+                    "source_column": row["source"],
+                    "target_column": row["target"],
+                    "similarity": row["similarity"],
+                    "source_domain": preview_domain(source, row["source"]),
+                    "target_domain": preview_domain(
+                        target, row["target"], standard_args=standard_args
+                    ),
+                }
+            ),
+            axis=1,
+        )
+    )
+
+    return evaluated_matches
+
+
+def evaluate_value_matches(
+    source: pd.DataFrame,
+    target: Union[str, pd.DataFrame],
+    value_matches: pd.DataFrame,
+    standard_args: Optional[Dict[str, Any]] = None,
+) -> pd.DataFrame:
+    """Evaluates the value matches by providing a response and an explanation for each match.
+
+    Args:
+        source (pd.DataFrame): The source dataset.
+        target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
+        value_matches (pd.DataFrame): The DataFrame containing the value matches with columns
+            'source_attribute', 'target_attribute', 'source_value', 'target_value', and 'similarity'.
+        standard_args (Optional[Dict[str, Any]]): Additional arguments for the standard vocabulary.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
+        'response' and 'explanation'.
+    """
+    from bdikit.matching_evaluation.value_matching import evaluate_match
+
+    evaluated_matches = value_matches.copy()
+
+    evaluated_matches["response"], evaluated_matches["explanation"] = zip(
+        *evaluated_matches.apply(
+            lambda row: evaluate_match(
+                {
+                    "source_value": row["source_value"],
+                    "target_value": row["target_value"],
+                    "source_attribute": row["source_attribute"],
+                    "target_attribute": row["target_attribute"],
+                    "similarity": row["similarity"],
+                    "source_domain": preview_domain(source, row["source_attribute"]),
+                    "target_domain": preview_domain(
+                        target, row["target_attribute"], standard_args=standard_args
+                    ),
+                }
+            ),
+            axis=1,
+        )
+    )
+
+    return evaluated_matches
 
 
 def _load_dataset(
@@ -808,70 +961,6 @@ def _convert_to_list_of_dataframes(matches: pd.DataFrame) -> List[pd.DataFrame]:
         dataframe_list.append(sub_df)
 
     return dataframe_list
-
-
-def preview_domain(
-    dataset: Union[str, pd.DataFrame],
-    column: str,
-    limit: Optional[int] = None,
-    standard_args: Optional[Dict[str, Any]] = None,
-) -> pd.DataFrame:
-    """
-    Preview the domain, i.e. set of unique values, column description and value description
-    (if applicable) of the given column of the source or target dataset.
-
-    Args:
-        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
-        containing the column to preview.
-            If a string is provided and it is equal to "gdc", the domain will be retrieved
-            from the GDC data.
-            If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
-        column(str): The column name to show the domain.
-        limit (int, optional): The maximum number of unique values to include in the preview.
-            Defaults to None.
-        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
-
-    Returns:
-        pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
-        them if the parameter `limit` was specified), column description and value description
-        (if applicable).
-    """
-
-    if isinstance(dataset, str):
-        if standard_args is None:
-            standard_args = {}
-        standard = Standards.get_standard(dataset, **standard_args)
-        column_metadata = standard.get_column_metadata([column])
-        value_names = column_metadata[column]["value_names"]
-        value_descriptions = column_metadata[column]["value_descriptions"]
-        column_description = column_metadata[column]["description"]
-        assert len(value_names) == len(value_descriptions)
-    elif isinstance(dataset, pd.DataFrame):
-        value_names = dataset[column].unique()
-        value_descriptions = []
-        column_description = ""
-    else:
-        raise ValueError(
-            "The dataset must be a DataFrame or a standard vocabulary name."
-        )
-
-    if isinstance(limit, int):
-        value_names = value_names[:limit]
-        value_descriptions = value_descriptions[:limit]
-
-    domain = {}
-
-    if len(value_names) > 0:
-        domain["value_name"] = value_names
-
-    if len(value_descriptions) > 0:
-        domain["value_description"] = value_descriptions
-
-    if len(column_description) > 0:
-        empty_rows_size = len(value_names) - 1
-        domain["column_description"] = [column_description] + [""] * empty_rows_size
-
-    return pd.DataFrame(domain)
 
 
 class ColumnMappingSpec(TypedDict):

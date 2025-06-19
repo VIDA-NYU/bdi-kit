@@ -101,6 +101,10 @@ class DistributionBased(Valentine):
 
 
 class Jaccard(Valentine):
+    """
+    This algorithm computes pairwise column similarities using Jaccard similarity, treating values as identical if their Levenshtein distance is below a threshold.
+    """
+
     def __init__(
         self,
         threshold_dist: float = 0.8,
