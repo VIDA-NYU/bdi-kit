@@ -23,11 +23,13 @@ class Valentine(BaseSchemaMatcher):
     ) -> List[ColumnMatch]:
         raw_matches: MatcherResults = valentine_match(source, target, self.matcher)
         matches = []
-
+        cache_dict = set()  # To guarantee the one-to-one matching
         for match_data, score in raw_matches.one_to_one().items():
             source_column = match_data[0][1]
             target_column = match_data[1][1]
-            matches.append(ColumnMatch(source_column, target_column, score))
+            if source_column not in cache_dict:
+                matches.append(ColumnMatch(source_column, target_column, score))
+                cache_dict.add(source_column)
 
         matches = self._sort_matches(matches)
 
