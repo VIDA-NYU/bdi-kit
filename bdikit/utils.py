@@ -150,6 +150,13 @@ def create_matcher(
             category=DeprecationWarning,
             stacklevel=2,
         )
+    if matcher_name == "fasttext":
+        warnings.warn(
+            "fasttext method is deprecated and will be removed in version 0.7.0 of bdi-kit. "
+            "Use embedding instead.",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
     # Load the class dynamically
     module_path, class_name = available_matchers[matcher_name].rsplit(".", 1)
     module = importlib.import_module(module_path)
