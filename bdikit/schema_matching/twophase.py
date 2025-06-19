@@ -7,8 +7,7 @@ from bdikit.schema_matching.base import (
     ColumnMatch,
 )
 from bdikit.schema_matching.valentine import SimFlood
-from bdikit.models.contrastive_learning.cl_api import DEFAULT_CL_MODEL
-from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
+from bdikit.schema_matching.magneto import MagnetoFTBP
 
 
 class TwoPhase(BaseSchemaMatcher):
@@ -19,13 +18,13 @@ class TwoPhase(BaseSchemaMatcher):
         schema_matcher: BaseSchemaMatcher = SimFlood(),
     ):
         if top_k_matcher is None:
-            self.api = ContrastiveLearning(DEFAULT_CL_MODEL)
+            self.top_k_matcher = MagnetoFTBP()
         elif isinstance(top_k_matcher, BaseTopkSchemaMatcher):
-            self.api = top_k_matcher
+            self.top_k_matcher = top_k_matcher
         else:
             raise ValueError(
                 f"Invalid top_k_matcher type: {type(top_k_matcher)}. "
-                "Must be a subclass of {BaseTopkColumnMatcher.__name__}"
+                "Must be a subclass of {BaseTopkSchemaMatcher.__name__}"
             )
 
         self.schema_matcher = schema_matcher
@@ -36,7 +35,9 @@ class TwoPhase(BaseSchemaMatcher):
         source: pd.DataFrame,
         target: pd.DataFrame,
     ) -> List[ColumnMatch]:
-        topk_column_matches = self.api.rank_schema_matches(source, target, self.top_k)
+        topk_column_matches = self.top_k_matcher.rank_schema_matches(
+            source, target, self.top_k
+        )
 
         grouped_matches = defaultdict(list)
         for match in topk_column_matches:
