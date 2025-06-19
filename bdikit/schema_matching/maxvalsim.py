@@ -64,6 +64,8 @@ class MaxValSim(BaseTopkSchemaMatcher):
             scores = []
             for top_column in candidates:
                 target_column_name = top_column.target_column
+                if pd.isna(target_column_name):
+                    continue
                 target_column = target[target_column_name]
                 target_values = self.unique_string_values(target_column).to_list()
                 source_context = {"attribute_name": source_column}

@@ -745,8 +745,12 @@ def _iterate_values(
             attribute_match["source"],
             attribute_match["target"],
         )
-        target_values = all_target_values[target_attribute]
         source_values = all_source_values[source_attribute]
+        # For cases where the target attribute is not present in the target dataset,
+        # e.g., when the match returns a NaN value for the target attribute
+        if target_attribute not in all_target_values:
+            continue
+        target_values = all_target_values[target_attribute]
 
         yield (source_attribute, target_attribute, source_values, target_values)
 
