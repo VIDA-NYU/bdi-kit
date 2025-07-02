@@ -15,11 +15,11 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - Method
       - Class
       - Description
-    * - ``gpt``
-      - :class:`~bdikit.value_matching.gpt.GPT`
+    * - ``llm``
+      - :class:`~bdikit.value_matching.llm.LLM`
       - | Leverages a large language model (GPT-4) to identify and select the most accurate value matches.
-    * - ``gpt_numeric``
-      - :class:`~bdikit.value_matching.gpt.GPTNumeric`
+    * - ``llm_numeric``
+      - :class:`~bdikit.value_matching.llm_numeric.LLMNumeric`
       - | Employs a large language model (GPT-4) to perform numeric value transformations, such as converting ages from years to months.
 
 .. list-table:: Methods from other libraries
@@ -36,7 +36,7 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - | Uses the edit distance between lists of strings using a customizable scorer that supports various distance and similarity metrics.
     * - ``embedding``
       - :class:`~bdikit.value_matching.polyfuzz.Embeddings`
-      - | A value-matching algorithm that leverages the cosine similarity of value embeddings for precise comparisons. By default, it utilizes the `bert-base-multilingual-cased` model to generate contextualized embeddings, enabling effective multilingual matching.​.
+      - | A value-matching algorithm that leverages the cosine similarity of value embeddings for precise comparisons. By default, it utilizes the `bert-base-multilingual-cased` model to generate contextualized embeddings, enabling effective multilingual matching.​
     * - ``fasttext``
       - :class:`~bdikit.value_matching.polyfuzz.FastText`
       - | This method uses the cosine similarity of FastText embeddings to accurately compare and align values, capturing both semantic and subword-level similarities..

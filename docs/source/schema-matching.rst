@@ -36,9 +36,9 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - ``two_phase``
       - :class:`~bdikit.schema_matching.twophase.TwoPhase`
       - | The two-phase schema matching method first uses a a top-k column matcher (e.g., `ct_learning`) to prune the search space (keeping only the top-k most likely matches), and then uses another column matcher to choose the best match from the pruned search space.
-    * - ``gpt``
-      - :class:`~bdikit.schema_matching.gpt.GPT`
-      - | This method uses the `ct_learning` to prune the search space and then uses a large language model (GPT4) to choose the best column match, given a set of top-k most likely candidates retrieved using the `ct_learning` method in the first phase.
+    * - ``llm``
+      - :class:`~bdikit.schema_matching.llm.LLM`
+      - | Leverages a large language model (GPT-4) to identify and select the most accurate schema matches.
 
 .. list-table:: Methods from other libraries
     :header-rows: 1

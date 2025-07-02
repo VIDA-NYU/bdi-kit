@@ -4,7 +4,7 @@ from openai import OpenAI
 from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 
 
-class GPT(BaseTopkSchemaMatcher):
+class LLM(BaseTopkSchemaMatcher):
     def __init__(self, llm_model="gpt-4o-mini"):
         self.llm_model = llm_model
         self.client = self._load_client()

@@ -30,7 +30,7 @@ def get_match_description(match_info):
 
 def evaluate_match(match_info, verbose=False):
     match_description = get_match_description(match_info)
-    print(match_description)
+
     completion = client.chat.completions.create(
         model="gpt-4-turbo-preview",
         messages=[

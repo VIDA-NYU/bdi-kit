@@ -67,7 +67,7 @@ class TopkSchemaMatchers(Enum):
         "bdikit.schema_matching.magneto.MagnetoFTLLM",
     )
 
-    GPT = ("gpt", "bdikit.schema_matching.gpt.GPT")
+    LLM = ("llm", "bdikit.schema_matching.llm.LLM")
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name
