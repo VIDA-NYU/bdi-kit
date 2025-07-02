@@ -9,8 +9,8 @@ class ValueMatchers(Enum):
         "edit_distance",
         "bdikit.value_matching.polyfuzz.EditDistance",
     )
-    GPT = ("gpt", "bdikit.value_matching.gpt.GPT")
-    GPT_NUMERIC = ("gpt_numeric", "bdikit.value_matching.gpt_numeric.GPTNumeric")
+    LLM = ("llm", "bdikit.value_matching.llm.LLM")
+    LLM_NUMERIC = ("llm_numeric", "bdikit.value_matching.llm_numeric.LLMNumeric")
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name

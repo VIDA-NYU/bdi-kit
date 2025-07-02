@@ -6,7 +6,7 @@ from bdikit.utils import get_additional_context
 from bdikit.config import VALUE_MATCHING_THRESHOLD
 
 
-class GPT(BaseValueMatcher):
+class LLM(BaseValueMatcher):
     def __init__(
         self,
         threshold: float = VALUE_MATCHING_THRESHOLD,

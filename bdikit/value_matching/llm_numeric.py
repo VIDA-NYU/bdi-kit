@@ -12,7 +12,7 @@ from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 random.seed(42)
 
 
-class GPTNumeric(BaseValueMatcher):
+class LLMNumeric(BaseValueMatcher):
     def __init__(
         self,
         sample_size: int = 5,
