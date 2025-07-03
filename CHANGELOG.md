@@ -1,37 +1,79 @@
-Change Log
-==========
+# Change Log
 
-0.7.0.dev0 (yyyy-mm-dd)
------------------------
+## 0.7.0.dev0 (yyyy-mm-dd)
+
+This version brings powerful new capabilities such as the addition of a built-in MCP server for integration with AI agents and  new primitives for value matching.
+
+Below is a list of the main changes included in this release:
 
 
-0.6.0 (2025-04-15)
-------------------
+### New Feature
+
+- **MCP Server:** Introduced an integrated MCP server to enable interaction with BDI-Kit via AI assistants and agent frameworks. ([#122](https://github.com/VIDA-NYU/bdi-kit/pull/122))
+- **Evaluation of Schema and Value Matches:** Added methods to evaluate schema and value matches. ([#118](https://github.com/VIDA-NYU/bdi-kit/pull/118))
+- **Contextual Matching Support:** Enabled users to attach contextual information to source or target datasets to improve matching quality. ([#117](https://github.com/VIDA-NYU/bdi-kit/pull/117))
+- **Caching for Schema Matching:** Implemented a caching mechanism to avoid recomputing expensive match operations. ([#119](https://github.com/VIDA-NYU/bdi-kit/pull/119))
+- **Numeric Mapping Support:** Introduced a numeric transformer primitive to handle numeric conversions during value matching. ([#112](https://github.com/VIDA-NYU/bdi-kit/pull/112))
+
+
+### Enhancement
+
+- **Match Filling Across Matchers:** Improved schema matcher consistency by filling in missing matches across methods. ([#115](https://github.com/VIDA-NYU/bdi-kit/pull/115))
+- **MaxValSim Compatibility:** Updated the `max_val_sim` method to support newer schema and value matcher APIs.
+- **Sorting and Completion of Matches:** Matches are now sorted to ensure uniformity across outputs.
+- **Magneto as Default Matcher:** Set Magneto as the default schema matcher.
+- **Valentine Matching Refinement:** Ensured strict one-to-one matching in Valentine-based matchers.
+
+
+### API Change
+
+- **LLM Method Renaming:** Renamed LLM-based methods for consistency and improved clarity. ([#121](https://github.com/VIDA-NYU/bdi-kit/pull/121))
+- **Unification of Value Matching Output:** Standardized outputs from value matching methods to align with schema matching formats. ([#116](https://github.com/VIDA-NYU/bdi-kit/pull/116)) By default, the `match_values()` and `rank_value_matches()` functions now return a single DataFrame instead of a list of DataFrames. Note: This change is backward-incompatible.
+
+
+### Fix
+
+- **NaN Handling in Value Matching:** Skipped NaN values in target attributes to avoid runtime errors.
+- **Numeric String Handling:** Improved parsing of numbers represented as strings in matching pipelines.
+- **GitHub Actions Compatibility:** Updated GitHub Action dependencies to maintain compatibility with Python signing workflows.
+
+
+### Documentation
+
+- **Table-to-Table Harmonization:** Added a comprehensive example demonstrating how to harmonize entire tables. ([#120](https://github.com/VIDA-NYU/bdi-kit/pull/120))
+- **Quick-Start Guide:** Created a quick-start example to help new users begin using BDI-Kit more easily. ([#111](https://github.com/VIDA-NYU/bdi-kit/pull/111))
+- **Numeric Mapper Documentation:** Documentation of the numeric transformer primitive for numeric data integration.
+- **Versioned UI and Docs:** Enhanced the documentation site with version selectors and links. ([#110](https://github.com/VIDA-NYU/bdi-kit/pull/110))
+
+
+## 0.6.0 (2025-04-15)
+
 We are pleased to announce the release of bdikit version 0.6.0.
 This version introduces exciting new features, such as similarity scores in match_schema() and improves support for Synapse integration.
 
 Below is a list of the main changes included in this release:
 
-New Features and Improvements: 
+
+### New Feature
 - **Similarity Scores in Schema Matching**: Introduced similarity scores in `match_schema()` for enhanced matching accuracy. (#105)
 - **Synapse Support**: Added support for Synapse integration. (#98)
 - **Matcher Factory Tests**: Created tests for the matcher factory to improve test coverage.
 
-Refactoring:
-- **Refactored Matching Functions**: Updated and renamed functions with deprecation warnings to streamline the API. (#108)
+### Enhancement
 - **Reorganized Matchers**: Clearly differentiated between one-to-one and top-k matching methods. (#101)
-- **Parameter Ordering in Top Matches**: Reordered parameters in `top_matches()` for consistency. (#99)
 
-Deprecation:
+### API Change
+- **Refactored Matching Functions**: Updated and renamed functions with deprecation warnings to streamline the API. (#108)
 - **`ct_learning` Method**: Deprecated the `ct_learning` method as part of ongoing improvements. (#96)
 - **Deprecate functions**: Deprecated the functions `top_matches()` and `top_value_matches`. (#108)
+- **Parameter Ordering in Top Matches**: Reordered parameters in `top_matches()` for consistency. (#99)
 
-Fixes:
+### Fix
 - **Return All Original Source Values**: Addressed an issue where not all original source values were being returned.
 - **Magneto Top-1 Bipartite Issue**: Resolved an issue with top-1 matching when using the Bipartite method.
 - **PyTorch Compatibility**: Fixed an error when loading models with PyTorch version >=2.6.
 
-Documentation:
+### Documentation
 - **Example Updates**: Revised examples to align with the current version.
 - **Versioned Links**: Created links in the examples pointing to the current version. (#107)
 

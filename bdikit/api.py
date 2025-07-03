@@ -5,7 +5,7 @@ import itertools
 import pandas as pd
 import panel as pn
 from collections import defaultdict
-from IPython.display import display, Markdown
+from IPython.display import display, HTML
 
 from bdikit.schema_matching.base import BaseSchemaMatcher, BaseTopkSchemaMatcher
 from bdikit.schema_matching.matcher_factory import (
@@ -89,7 +89,9 @@ def match_schema(
     else:
         matches = object_from_cache
 
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    return pd.DataFrame(
+        matches, columns=["source_attribute", "target_attribute", "similarity"]
+    )
 
 
 def _load_schema_matcher(
@@ -155,7 +157,7 @@ def top_matches(
     return rank_schema_matches(
         source=source,
         target=target,
-        columns=columns,
+        attributes=columns,
         top_k=top_k,
         method=method,
         method_args=method_args,
@@ -166,7 +168,7 @@ def top_matches(
 def rank_schema_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
-    columns: Optional[List[str]] = None,
+    attributes: Optional[List[str]] = None,
     top_k: Optional[int] = 10,
     method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
@@ -178,7 +180,7 @@ def rank_schema_matches(
     Args:
         source (pd.DataFrame): The source table.
         target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
-        columns (Optional[List[str]], optional): The list of columns to consider for matching. Defaults to None.
+        attributes (Optional[List[str]], optional): The list of attributes/columns to consider for matching. Defaults to None.
         top_k (int, optional): The number of top matches to return. Defaults to 10.
         method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
         method_args (Optional[Dict[str, Any]], optional): The additional arguments of the method for schema matching.
@@ -188,8 +190,8 @@ def rank_schema_matches(
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
     """
 
-    if columns is not None and len(columns) > 0:
-        selected_source = source[columns]
+    if attributes is not None and len(attributes) > 0:
+        selected_source = source[attributes]
     else:
         selected_source = source
 
@@ -216,7 +218,9 @@ def rank_schema_matches(
     else:
         matches = object_from_cache
 
-    return pd.DataFrame(matches, columns=["source", "target", "similarity"])
+    return pd.DataFrame(
+        matches, columns=["source_attribute", "target_attribute", "similarity"]
+    )
 
 
 def _load_topk_schema_matcher(
@@ -249,7 +253,7 @@ def _load_topk_schema_matcher(
 def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
-    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    attribute_matches: Union[Tuple[str, str], pd.DataFrame],
     method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     source_context: Optional[Dict[str, Any]] = None,
     target_context: Optional[Dict[str, Any]] = None,
@@ -258,24 +262,24 @@ def match_values(
     output_format: str = "dataframe",
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
-    Finds matches between column values from the source dataset and column
+    Finds matches between attribute values from the source dataset and attribute
     values of the target domain (a pd.DataFrame or a standard dictionary such
     as 'gdc') using the method provided in `method`.
 
     Args:
-        source (pd.DataFrame): The source dataset containing the columns to be
+        source (pd.DataFrame): The source dataset containing the attributes/columns to be
           matched.
 
         target (Union[str, pd.DataFrame]): The target domain to match the
           values to. It can be either a DataFrame or a standard vocabulary name.
 
-        column_mapping (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
-          DataFrame containing the mappings between source and target columns.
+        attribute_matches (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
+          DataFrame containing the mappings between source and target attributes.
 
           - If a tuple is provided, it should contain two strings where the first
-            is the source column and the second is the target column.
-          - If a DataFrame is provided, it should contain 'source' and 'target'
-            column names where each row specifies a column mapping.
+            is the source attribute and the second is the target attribute.
+          - If a DataFrame is provided, it should contain 'source_attribute' and 'target_attribute'
+            column names where each row specifies a attribute mapping.
 
         method (str, optional): The name of the method to use for value
           matching.
@@ -312,7 +316,7 @@ def match_values(
         target_attribute,
         source_values,
         target_values,
-    ) in _iterate_values(source_dataset, target_dataset, column_mapping):
+    ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
         source_ctx = _create_context(
             source_dataset,
             source_attribute,
@@ -441,7 +445,7 @@ def top_value_matches(
     return rank_value_matches(
         source=source,
         target=target,
-        column_mapping=column_mapping,
+        attribute_matches=column_mapping,
         top_k=top_k,
         method=method,
         method_args=method_args,
@@ -452,7 +456,7 @@ def top_value_matches(
 def rank_value_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
-    column_mapping: Union[Tuple[str, str], pd.DataFrame],
+    attribute_matches: Union[Tuple[str, str], pd.DataFrame],
     top_k: int = 5,
     method: Union[str, BaseTopkValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
     source_context: Optional[Dict[str, Any]] = None,
@@ -462,24 +466,24 @@ def rank_value_matches(
     output_format: str = "dataframe",
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
-    Finds top value matches between column values from the source dataset and column
+    Finds top value matches between attribute values from the source dataset and attribute
     values of the target domain (a pd.DataFrame or a standard dictionary such
     as 'gdc') using the method provided in `method`.
 
     Args:
-        source (pd.DataFrame): The source dataset containing the columns to be
+        source (pd.DataFrame): The source dataset containing the attributes to be
           matched.
 
         target (Union[str, pd.DataFrame]): The target domain to match the
           values to. It can be either a DataFrame or a standard vocabulary name.
 
-        column_mapping (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
-          DataFrame containing the mappings between source and target columns.
+        attribute_matches (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
+          DataFrame containing the mappings between source and target attributes.
 
           - If a tuple is provided, it should contain two strings where the first
-            is the source column and the second is the target column.
-          - If a DataFrame is provided, it should contain 'source' and 'target'
-            column names where each row specifies a column mapping.
+            is the source attribute and the second is the target attribute.
+          - If a DataFrame is provided, it should contain 'source_attribute' and 'target_attribute'
+            column names where each row specifies a attribute mapping.
 
         top_k (int, optional): The number of top matches to return. Defaults to 5.
 
@@ -518,7 +522,7 @@ def rank_value_matches(
         target_attribute,
         source_values,
         target_values,
-    ) in _iterate_values(source_dataset, target_dataset, column_mapping):
+    ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
         source_ctx = _create_context(
             source_dataset,
             source_attribute,
@@ -610,9 +614,9 @@ def view_value_matches(
         # Display grouped DataFrames
         for (source_col, target_col), match_dfs in grouped_matches.items():
             display(
-                Markdown(
-                    f"<br>**Source column:** {source_col}<br>"
-                    f"**Target column:** {target_col}<br>"
+                HTML(
+                    f"<br><br><strong>Source attribute:</strong> {source_col}<br>"
+                    f"<strong>Target attribute:</strong> {target_col}"
                 )
             )
             for match_df in match_dfs:
@@ -646,9 +650,9 @@ def view_value_matches(
                 drop=True
             )
             display(
-                Markdown(
-                    f"<br>**Source column:** {source_attr}<br>"
-                    f"**Target column:** {target_attr}<br>"
+                HTML(
+                    f"<br><br><strong>Source attribute:</strong> {source_attr}<br>"
+                    f"<strong>Target attribute:</strong> {target_attr}"
                 )
             )
             if edit:
@@ -728,7 +732,7 @@ def preview_domain(
 
     if len(column_description) > 0:
         empty_rows_size = len(value_names) - 1
-        domain["column_description"] = [column_description] + [""] * empty_rows_size
+        domain["attribute_description"] = [column_description] + [""] * empty_rows_size
 
     return pd.DataFrame(domain)
 
@@ -761,12 +765,12 @@ def evaluate_schema_matches(
         *evaluated_matches.apply(
             lambda row: evaluate_match(
                 {
-                    "source_column": row["source"],
-                    "target_column": row["target"],
+                    "source_column": row["source_attribute"],
+                    "target_column": row["target_attribute"],
                     "similarity": row["similarity"],
-                    "source_domain": preview_domain(source, row["source"]),
+                    "source_domain": preview_domain(source, row["source_attribute"]),
                     "target_domain": preview_domain(
-                        target, row["target"], standard_args=standard_args
+                        target, row["target_attribute"], standard_args=standard_args
                     ),
                 }
             ),
@@ -895,8 +899,8 @@ def _iterate_values(
 
     for attribute_match in attribute_matches_list:
         source_attribute, target_attribute = (
-            attribute_match["source"],
-            attribute_match["target"],
+            attribute_match["source_attribute"],
+            attribute_match["target_attribute"],
         )
         source_values = all_source_values[source_attribute]
         # For cases where the target attribute is not present in the target dataset,
@@ -912,24 +916,27 @@ def _format_attribute_matches(
     attribute_matches: Union[Tuple[str, str], pd.DataFrame],
 ):
     if isinstance(attribute_matches, pd.DataFrame):
-        if not all(k in attribute_matches.columns for k in ["source", "target"]):
+        if not all(
+            k in attribute_matches.columns
+            for k in ["source_attribute", "target_attribute"]
+        ):
             raise ValueError(
-                "The attribute_matches DataFrame must contain 'source' and 'target' columns."
+                "The attribute_matches DataFrame must contain 'source_attribute' and 'target_attribute' columns."
             )
         attribute_matches_df = attribute_matches
     elif isinstance(attribute_matches, tuple):
         attribute_matches_df = pd.DataFrame(
             [
                 {
-                    "source": attribute_matches[0],
-                    "target": attribute_matches[1],
+                    "source_attribute": attribute_matches[0],
+                    "target_attribute": attribute_matches[1],
                 }
             ]
         )
     else:
         raise ValueError(
             "The attribute_matches_list must be a DataFrame or a tuple of two strings "
-            "containing the 'source' and 'target' columns."
+            "containing the 'source_attribute' and 'target_attribute' columns."
         )
 
     attribute_matches_list = attribute_matches_df.to_dict(orient="records")
@@ -1007,10 +1014,10 @@ def merge_mappings(
     def check_duplicates(mappings: List[ColumnMappingSpec]):
         keys = set()
         for mapping in mappings:
-            key = create_key(mapping["source"], mapping["target"])
+            key = create_key(mapping["source_attribute"], mapping["target_attribute"])
             if key in keys:
                 raise ValueError(
-                    f"Duplicate mapping for source: {mapping['source']}, target: {mapping['target']}"
+                    f"Duplicate mapping for source: {mapping['source_attribute']}, target: {mapping['target_attribute']}"
                 )
             keys.add(key)
 
@@ -1024,8 +1031,8 @@ def merge_mappings(
     # include all unique user mappings first, as they take precedence
     for mapping in itertools.chain(user_mapping_spec_list, mapping_spec_list):
 
-        source_column = mapping["source"]
-        target_column = mapping["target"]
+        source_column = mapping["source_attribute"]
+        target_column = mapping["target_attribute"]
 
         # ignore duplicate mappings across user and value mappings
         key = create_key(source_column, target_column)
@@ -1039,8 +1046,8 @@ def merge_mappings(
 
         final_mappings.append(
             {
-                "source": source_column,
-                "target": target_column,
+                "source_attribute": source_column,
+                "target_attribute": target_column,
                 "mapper": mapper,
             }
         )
@@ -1079,9 +1086,12 @@ def _normalize_mapping_spec(mapping_spec: MappingSpecLike) -> List[ColumnMapping
                 f" but was: {str(mapping_spec)}"
             )
 
-        if "source" not in mapping_dict or "target" not in mapping_dict:
+        if (
+            "source_attribute" not in mapping_dict
+            or "target_attribute" not in mapping_dict
+        ):
             raise ValueError(
-                "Each mapping specification should contain 'source', 'target' "
+                "Each mapping specification should contain 'source_attribute', 'target_attribute' "
                 f"and 'mapper' (optional) keys but found only {mapping_dict.keys()}."
             )
 
@@ -1092,8 +1102,8 @@ def _normalize_mapping_spec(mapping_spec: MappingSpecLike) -> List[ColumnMapping
 
         normalized.append(
             {
-                "source": mapping_dict["source"],
-                "target": mapping_dict["target"],
+                "source_attribute": mapping_dict["source_attribute"],
+                "target_attribute": mapping_dict["target_attribute"],
                 "mapper": mapper,
             }
         )
@@ -1110,8 +1120,8 @@ def _df_to_mapping_spec_dict(spec: Union[Dict, pd.DataFrame]) -> Dict:
                 "The DataFrame must contain 'source_attribute' and 'target_attribute' attributes."
             )
         return {
-            "source": spec.attrs["source_attribute"],
-            "target": spec.attrs["target_attribute"],
+            "source_attribute": spec.attrs["source_attribute"],
+            "target_attribute": spec.attrs["target_attribute"],
             "matches": spec,
         }
     else:
@@ -1143,17 +1153,17 @@ def materialize_mapping(
     mapping_spec_list = _normalize_mapping_spec(mapping_spec)
 
     for mapping in mapping_spec_list:
-        if mapping["source"] not in input_table.columns:
+        if mapping["source_attribute"] not in input_table.columns:
             raise ValueError(
-                f"The source column '{mapping['source']}' is not present in "
+                f"The source attribute '{mapping['source_attribute']}' is not present in "
                 " the input table."
             )
 
     # execute the actual mapping plan
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec_list:
-        from_column_name = column_spec["source"]
-        to_column_name = column_spec["target"]
+        from_column_name = column_spec["source_attribute"]
+        to_column_name = column_spec["target_attribute"]
         value_mapper = column_spec["mapper"]
         output_dataframe[to_column_name] = value_mapper.map(
             input_table[from_column_name]
@@ -1221,7 +1231,7 @@ def create_mapper(
         )
 
     if isinstance(input, Dict):
-        if all(k in input for k in ["source", "target"]):
+        if all(k in input for k in ["source_attribute", "target_attribute"]):
             # This could be the mapper created by merge_mappings() or a
             # specification defined by the user
             if "mapper" in input:
@@ -1283,8 +1293,8 @@ The mapping specification can be (1) a DataFrame or (2) a list of dictionaries o
 
 If it is a list of dictionaries, they must have:
 
-- `source`: The name of the source column.
-- `target`: The name of the target column.
+- `source_attribute`: The name of the source attribute/column.
+- `target_attribute`: The name of the target attribute/column.
 - `mapper` (optional): A ValueMapper instance or an object that can be used to
   create one using :py:func:`~bdikit.api.create_mapper()`. Examples of valid objects
   are Python functions or lambda functions. If empty, an IdentityValueMapper
@@ -1295,11 +1305,11 @@ If it is a list of dictionaries, they must have:
 
 Alternatively, the list can contain DataFrames. In this case, the DataFrames must
 contain not only the value mappings (as described in the `matches` key above) but
-also the `source` and `target` columns as DataFrame attributes. The DataFrames created
+also the `source_attribute` and `target_attribute` columns as DataFrame attributes. The DataFrames created
 by :py:func:`~bdikit.api.match_values()` include this information by default.
 
 If the mapping specification is a DataFrame, it must be compatible with the dictionaries
-above and contain `source`, `target`, and `mapper` or `matcher` columns.
+above and contain `source_attribute`, `target_attribute`, and `mapper` or `matcher` columns.
 
 Example:
 
@@ -1307,25 +1317,25 @@ Example:
 
     mapping_spec = [
       {
-        "source": "source_column1",
-        "target": "target_column1",
+        "source_attribute": "source_column1",
+        "target_attribute": "target_column1",
       },
       {
-        "source": "source_column2",
-        "target": "target_column2",
+        "source_attribute": "source_column2",
+        "target_attribute": "target_column2",
         "mapper": lambda age: -age * 365.25,
       },
       {
-        "source": "source_column3",
-        "target": "target_column3",
+        "source_attribute": "source_column3",
+        "target_attribute": "target_column3",
         "matches": [
           ("source_value1", "target_value1"),
           ("source_value2", "target_value2"),
         ]
       },
       {
-        "source": "source_column",
-        "target": "target_column",
+        "source_attribute": "source_column",
+        "target_attribute": "target_column",
         "matches": df_value_mapping_1
       },
       df_value_mapping_2, # a DataFrame returned by match_values()
