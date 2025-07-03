@@ -7,6 +7,8 @@ from bdikit.config import VALUE_MATCHING_THRESHOLD
 
 
 class LLM(BaseValueMatcher):
+    """A value matcher that uses LLM to match values based on their similarity."""
+
     def __init__(
         self,
         threshold: float = VALUE_MATCHING_THRESHOLD,

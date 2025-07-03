@@ -11,6 +11,8 @@ from bdikit.schema_matching.magneto import MagnetoFTBP
 
 
 class TwoPhase(BaseSchemaMatcher):
+    """A two-phase schema matcher that first ranks columns using a top-k matcher and then applies a schema matcher to the top-k matches."""
+
     def __init__(
         self,
         top_k: int = 20,

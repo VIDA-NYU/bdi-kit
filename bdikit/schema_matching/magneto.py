@@ -58,11 +58,15 @@ class MagnetoBase(BaseTopkSchemaMatcher):
 
 
 class MagnetoZSBP(MagnetoBase):
+    """Uses a zero-shot small language model as retriever with the bipartite algorithm as reranker in Magneto."""
+
     def __init__(self):
         super().__init__()
 
 
 class MagnetoFTBP(MagnetoBase):
+    """Uses a fine-tuned small language model as retriever with the bipartite algorithm as reranker in Magneto."""
+
     def __init__(
         self,
         encoding_mode: str = "header_values_verbose",
@@ -75,15 +79,15 @@ class MagnetoFTBP(MagnetoBase):
 
 
 class MagnetoZSLLM(MagnetoBase):
+    """Uses a zero-shot small language model as retriever with a large language model as reranker in Magneto."""
+
     def __init__(self):
         kwargs = {"use_bp_reranker": False, "use_gpt_reranker": True}
         super().__init__(kwargs)
 
 
 class MagnetoFTLLM(MagnetoBase):
-    """
-    Magneto is an innovative framework designed to enhance schema matching (SM) by intelligently combining small, pre-trained language models (SLMs) with large language models (LLMs). The first phase involves using a fine-tuned SLMs to quickly identify a manageable subset of potential matches from a vast pool of possibilities. In the second phase, LLMs take over to assess and reorder the candidates, simplifying the process for users to review and select the most suitable matches.
-    """
+    """Uses a fine-tuned small language model as retriever with a large language model as reranker in Magneto."""
 
     def __init__(
         self,

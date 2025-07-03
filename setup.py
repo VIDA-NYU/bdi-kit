@@ -39,9 +39,11 @@ setuptools.setup(
     version=version,
     packages=setuptools.find_packages(),
     install_requires=requires,
-    extras_require=extra_requires,
+    extras_require={
+        'mcp': ['mcp[cli]']
+    },
     python_requires='>=3.9',
-    description="bdi-kit library",
+    description="BDI-Kit Library",
     long_description=long_description,
     long_description_content_type='text/markdown',
     url='https://github.com/VIDA-NYU/bdi-kit',
@@ -50,7 +52,7 @@ setuptools.setup(
     author_email='',
     maintainer='',
     maintainer_email='',
-    keywords=['askem', 'data integration', 'nyu'],
+    keywords=['BDF', 'Data Harmonization', 'NYU'],
     license='Apache-2.0',
     classifiers=[
         'Development Status :: 5 - Production/Stable',

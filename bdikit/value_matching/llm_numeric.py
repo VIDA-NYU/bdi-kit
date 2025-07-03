@@ -13,6 +13,8 @@ random.seed(42)
 
 
 class LLMNumeric(BaseValueMatcher):
+    """A value matcher that uses LLM to derive formulas for numeric value matching."""
+
     def __init__(
         self,
         sample_size: int = 5,
