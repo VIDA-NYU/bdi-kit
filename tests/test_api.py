@@ -17,15 +17,15 @@ def test_match_schema_with_dataframes():
     df_matches = bdi.match_schema(source, target=target, method="similarity_flooding")
 
     # then assert that the df_matches contains a row with the value 'column_1'
-    # in the column 'source' and the value 'column_1a' in the 'target' value
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    # in the column 'source_attribute' and the value 'column_1a' in the 'target_attribute' value
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
 
-    df_filter = df_matches["source"] == "column_1"
-    assert df_matches[df_filter]["target"].values[0] == "column_1a"
+    df_filter = df_matches["source_attribute"] == "column_1"
+    assert df_matches[df_filter]["target_attribute"].values[0] == "column_1a"
 
-    df_filter = df_matches["source"] == "col_2"
-    assert df_matches[df_filter]["target"].values[0] == "col2"
+    df_filter = df_matches["source_attribute"] == "col_2"
+    assert df_matches[df_filter]["target_attribute"].values[0] == "col2"
 
 
 def test_match_schema_with_gdc():
@@ -54,14 +54,14 @@ def test_match_schema_with_gdc():
 
     # then df_matches must contain target columns that come from the GDC dictionary
     assert df_matches.empty == False
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
 
-    df_filter = df_matches["source"] == "Ethnicity"
-    assert df_matches[df_filter]["target"].values[0] == "ethnicity"
+    df_filter = df_matches["source_attribute"] == "Ethnicity"
+    assert df_matches[df_filter]["target_attribute"].values[0] == "ethnicity"
 
-    df_filter = df_matches["source"] == "FIGO_stage"
-    assert df_matches[df_filter]["target"].values[0] == "figo_stage"
+    df_filter = df_matches["source_attribute"] == "FIGO_stage"
+    assert df_matches[df_filter]["target_attribute"].values[0] == "figo_stage"
 
 
 def test_rank_schema_matches_with_dataframes():
@@ -90,14 +90,14 @@ def test_rank_schema_matches_with_dataframes():
 
     # then
     assert len(df_matches.index) == 3
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
     assert "similarity" in df_matches.columns
 
-    df_filter = df_matches["source"] == "tumor_size"
-    assert "tumor_size" in df_matches[df_filter]["target"].tolist()
-    assert "tumor_width" in df_matches[df_filter]["target"].tolist()
-    assert "tumor_length" in df_matches[df_filter]["target"].tolist()
+    df_filter = df_matches["source_attribute"] == "tumor_size"
+    assert "tumor_size" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "tumor_width" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "tumor_length" in df_matches[df_filter]["target_attribute"].tolist()
 
     #
     # Now test with ct_learning and euclidean distance
@@ -114,14 +114,14 @@ def test_rank_schema_matches_with_dataframes():
 
     # then
     assert len(df_matches.index) == 3
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
     assert "similarity" in df_matches.columns
 
-    df_filter = df_matches["source"] == "tumor_size"
-    assert "tumor_size" in df_matches[df_filter]["target"].tolist()
-    assert "tumor_width" in df_matches[df_filter]["target"].tolist()
-    assert "tumor_length" in df_matches[df_filter]["target"].tolist()
+    df_filter = df_matches["source_attribute"] == "tumor_size"
+    assert "tumor_size" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "tumor_width" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "tumor_length" in df_matches[df_filter]["target_attribute"].tolist()
 
 
 def test_rank_schema_matches_with_gdc():
@@ -150,19 +150,19 @@ def test_rank_schema_matches_with_gdc():
 
     # then
     assert df_matches.empty == False
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
     assert "similarity" in df_matches.columns
 
-    df_filter = df_matches["source"] == "FIGO_stage"
+    df_filter = df_matches["source_attribute"] == "FIGO_stage"
     assert len(df_matches[df_filter]) == 5
-    assert "figo_stage" in df_matches[df_filter]["target"].tolist()
-    assert "uicc_clinical_stage" in df_matches[df_filter]["target"].tolist()
+    assert "figo_stage" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "uicc_clinical_stage" in df_matches[df_filter]["target_attribute"].tolist()
 
-    df_filter = df_matches["source"] == "Ethnicity"
+    df_filter = df_matches["source_attribute"] == "Ethnicity"
     assert len(df_matches[df_filter]) == 5
-    assert "ethnicity" in df_matches[df_filter]["target"].tolist()
-    assert "race" in df_matches[df_filter]["target"].tolist()
+    assert "ethnicity" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "race" in df_matches[df_filter]["target_attribute"].tolist()
 
 
 def test_match_values():
@@ -174,7 +174,9 @@ def test_match_values():
         {"tgt_column": ["apple", "banana", "orange", "kiwi", "grapes"]}
     )
 
-    df_matches = pd.DataFrame({"source": ["src_column"], "target": ["tgt_column"]})
+    df_matches = pd.DataFrame(
+        {"source_attribute": ["src_column"], "target_attribute": ["tgt_column"]}
+    )
 
     # when
     value_mappings = bdi.match_values(
@@ -260,13 +262,13 @@ def test_materialize_mapping():
 
     value_mapping_spec = [
         {
-            "source": "column_str_1",
-            "target": "string column 1",
+            "source_attribute": "column_str_1",
+            "target_attribute": "string column 1",
             "mapper": IdentityValueMapper(),
         },
         {
-            "source": "column_str_2",
-            "target": "string column 2",
+            "source_attribute": "column_str_2",
+            "target_attribute": "string column 2",
             "mapper": FunctionValueMapper(function=lambda x: x.upper()),
         },
     ]
@@ -302,7 +304,7 @@ def test_preview_domain():
     assert preview is not None
     assert isinstance(preview, pd.DataFrame)
     assert "value_name" in preview.columns
-    assert "column_description" not in preview.columns
+    assert "attribute_description" not in preview.columns
     assert "value_description" not in preview.columns
     assert source["age"].eq(preview["value_name"]).all()
 
@@ -310,13 +312,13 @@ def test_preview_domain():
     preview = bdi.preview_domain("gdc", "age_at_diagnosis")
 
     # then
-    # preview must contain only the column "column_description" since there
+    # preview must contain only the column "attribute_description" since there
     # are sample values in the GDC dictionary
     assert preview is not None
     assert isinstance(preview, pd.DataFrame)
     assert "value_name" not in preview.columns
     assert "value_description" not in preview.columns
-    assert "column_description" in preview.columns
+    assert "attribute_description" in preview.columns
 
 
 def test_rank_schema_matches_and_match_values_integration():
@@ -337,15 +339,15 @@ def test_rank_schema_matches_and_match_values_integration():
 
     # then
     assert len(df_matches.index) == 3
-    assert "source" in df_matches.columns
-    assert "target" in df_matches.columns
+    assert "source_attribute" in df_matches.columns
+    assert "target_attribute" in df_matches.columns
     assert "similarity" in df_matches.columns
 
     # when
     df_matches = bdi.match_values(
         df_source,
         df_target,
-        column_mapping=df_matches,
+        attribute_matches=df_matches,
         method="tfidf",
         output_format="list",
     )
@@ -378,8 +380,8 @@ def test_end_to_end_api_integration():
     # then
     assert column_mappings is not None
     assert column_mappings.empty == False
-    assert "source" in column_mappings.columns
-    assert "target" in column_mappings.columns
+    assert "source_attribute" in column_mappings.columns
+    assert "target_attribute" in column_mappings.columns
     assert len(column_mappings.index) == 1
 
     # when: pass output of match_schema() directly to materialize_mapping(),
@@ -434,8 +436,8 @@ def test_end_to_end_api_integration():
     # when: user mappings are specified in merge_mappings()
     user_mappings = [
         {
-            "source": "src_column",
-            "target": "tgt_column",
+            "source_attribute": "src_column",
+            "target_attribute": "tgt_column",
             "matches": [
                 ("Red Apple", "APPLE"),
                 ("Banana", "BANANA"),
