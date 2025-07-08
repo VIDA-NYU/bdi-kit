@@ -398,7 +398,7 @@ def test_end_to_end_api_integration():
 
     # when: we pass the output of match_schema()
     value_mappings = bdi.match_values(
-        df_source, df_target, column_mappings, method="tfidf"
+        df_source, df_target, column_mappings, method="tfidf", use_cache=False
     )
 
     # then: a list of value matches must be computed

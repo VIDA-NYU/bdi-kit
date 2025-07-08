@@ -3,10 +3,11 @@ import json
 import pickle
 import warnings
 import hashlib
+import inspect
 import importlib
 import pandas as pd
 from os.path import join, dirname, isfile
-from typing import Mapping, Dict, Any
+from typing import Mapping, Dict, Any, List
 from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR, BDIKIT_CACHE_DIR
 
 
@@ -23,38 +24,94 @@ def hash_dataframe(df: pd.DataFrame) -> str:
     return hash_object.hexdigest()
 
 
-def hash_object(obj):
+def hash_iterable(iterable):
+    try:
+        s = json.dumps(iterable, sort_keys=True, default=str)
+    except TypeError as e:
+        raise ValueError(f"Cannot serialize for hashing: {e}")
+    return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
-    def default_serializer(o):
-        """Handles serialization of non-serializable objects."""
-        if hasattr(o, "__dict__"):  # Serialize objects with attributes
-            return o.__dict__
-        return str(o)  # Fallback for other objects
+
+def hash_object(obj):
+    cls = obj.__class__
+    init_args = {}
 
     try:
-        # Serialize the object into a JSON string
-        obj_string = json.dumps(obj, sort_keys=True, default=default_serializer)
-    except TypeError as e:
-        raise ValueError(
-            f"Object of type {type(obj).__name__} is not serializable."
-        ) from e
+        sig = inspect.signature(cls.__init__)
+        for name, _ in sig.parameters.items():
+            if name == "self":
+                continue
+            # Only include args that are actually set as attributes
+            if hasattr(obj, name):
+                value = getattr(obj, name)
+                try:
+                    json.dumps(value, default=str)  # Ensure serializable
+                    init_args[name] = value
+                except TypeError:
+                    init_args[name] = str(value)  # Fallback: stringify
+    except (ValueError, TypeError):
+        # Fallback: if inspection fails, fall back to empty init_args
+        pass
 
-    # Create the hash object
-    hash_object = hashlib.sha256()
-    hash_object.update(obj_string.encode("utf-8"))
+    obj_repr = {
+        "class": cls.__name__,
+        "init_args": init_args,
+    }
 
-    return hash_object.hexdigest()
+    obj_string = json.dumps(obj_repr, sort_keys=True, default=str)
+
+    return hashlib.sha256(obj_string.encode("utf-8")).hexdigest()
 
 
-def create_hash(
-    source_table: pd.DataFrame, target_table: pd.DataFrame, matcher: Any, topk: int
+def create_schema_hash(
+    source_table: pd.DataFrame, target_table: pd.DataFrame, matcher: Any, **kwargs: Any
 ):
     source_hash = hash_dataframe(source_table)
     target_hash = hash_dataframe(target_table)
     matcher_hash = hash_object(matcher)
-    topk_hash = str(topk)
+    topk_hash = str(kwargs.get("top_k", 1))
 
-    final_hash = source_hash + target_hash + matcher_hash + topk_hash
+    final_input = json.dumps(
+        {
+            "source": source_hash,
+            "target": target_hash,
+            "matcher": matcher_hash,
+            "top_k": topk_hash,
+        },
+        sort_keys=True,
+    )
+    final_hash = hashlib.sha256(final_input.encode("utf-8")).hexdigest()
+
+    return final_hash
+
+
+def create_value_hash(
+    source_values: List[Any],
+    target_values: List[Any],
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
+    matcher: Any,
+    **kwargs: Any,
+):
+    source_hash = hash_iterable(source_values)
+    target_hash = hash_iterable(target_values)
+    source_ctx_hash = hash_iterable(source_ctx)
+    target_ctx_hash = hash_iterable(target_ctx)
+    matcher_hash = hash_object(matcher)
+    topk_hash = str(kwargs.get("top_k", 1))
+
+    final_input = json.dumps(
+        {
+            "source": source_hash,
+            "target": target_hash,
+            "source_ctx": source_ctx_hash,
+            "target_ctx": target_ctx_hash,
+            "matcher": matcher_hash,
+            "top_k": topk_hash,
+        },
+        sort_keys=True,
+    )
+    final_hash = hashlib.sha256(final_input.encode("utf-8")).hexdigest()
 
     return final_hash
 
