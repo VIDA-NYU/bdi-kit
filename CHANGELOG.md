@@ -3,6 +3,10 @@
 
 ## 0.8.0.dev0 (yyyy-mm-dd)
 
+### Enhancement
+
+- **Deprecation Cleanup:** Removed deprecated methods and matchers, including `top_matches()`, `top_value_matches()`, `ct_learning`, and `fasttext`. Also removed related modules, tests, and docs. ([#125](https://github.com/VIDA-NYU/bdi-kit/pull/125))
+
 
 ## 0.7.0 (2025-07-14)
 

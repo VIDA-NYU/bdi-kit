@@ -76,41 +76,8 @@ def test_rank_schema_matches_with_dataframes():
         }
     )
 
-    #
-    # First test with method ct_learning and default args
-    #
-
     # when
-    df_matches = bdi.rank_schema_matches(
-        source,
-        target=target,
-        top_k=3,
-        method="ct_learning",
-    )
-
-    # then
-    assert len(df_matches.index) == 3
-    assert "source_attribute" in df_matches.columns
-    assert "target_attribute" in df_matches.columns
-    assert "similarity" in df_matches.columns
-
-    df_filter = df_matches["source_attribute"] == "tumor_size"
-    assert "tumor_size" in df_matches[df_filter]["target_attribute"].tolist()
-    assert "tumor_width" in df_matches[df_filter]["target_attribute"].tolist()
-    assert "tumor_length" in df_matches[df_filter]["target_attribute"].tolist()
-
-    #
-    # Now test with ct_learning and euclidean distance
-    #
-
-    # when
-    df_matches = bdi.rank_schema_matches(
-        source,
-        target=target,
-        top_k=3,
-        method="ct_learning",
-        method_args={"metric": "euclidean"},
-    )
+    df_matches = bdi.rank_schema_matches(source, target=target, top_k=3)
 
     # then
     assert len(df_matches.index) == 3
@@ -157,7 +124,7 @@ def test_rank_schema_matches_with_gdc():
     df_filter = df_matches["source_attribute"] == "FIGO_stage"
     assert len(df_matches[df_filter]) == 5
     assert "figo_stage" in df_matches[df_filter]["target_attribute"].tolist()
-    assert "uicc_clinical_stage" in df_matches[df_filter]["target_attribute"].tolist()
+    assert "ajcc_clinical_stage" in df_matches[df_filter]["target_attribute"].tolist()
 
     df_filter = df_matches["source_attribute"] == "Ethnicity"
     assert len(df_matches[df_filter]) == 5
