@@ -329,10 +329,10 @@ def match_values(
         pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
         between the source and target values.
     Raises:
-        ValueError: If the column_mapping DataFrame does not contain 'source' and
-          'target' columns.
+        ValueError: If the attribute_matches DataFrame does not contain 'source_attribute' and
+          'target_attribute' columns.
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
-        ValueError: If the source column is not present in the source dataset.
+        ValueError: If the source attribute is not present in the source dataset.
     """
 
     source_dataset = _load_dataset(source)
@@ -549,10 +549,10 @@ def rank_value_matches(
         between the source and target values.
 
     Raises:
-        ValueError: If the column_mapping DataFrame does not contain 'source' and
-          'target' columns.
+        ValueError: If the attribute_matches DataFrame does not contain 'source_attribute' and
+          'target_attribute' columns.
         ValueError: If the target is neither a DataFrame nor a standard vocabulary name.
-        ValueError: If the source column is not present in the source dataset.
+        ValueError: If the source attribute is not present in the source dataset.
     """
     source_dataset = _load_dataset(source)
     target_dataset = _load_dataset(target, standard_args)
@@ -691,7 +691,7 @@ def view_value_matches(
         edit (bool, optional): Whether or not to edit the values within the DataFrame.
     """
     if isinstance(matches, list):
-        # Grouping DataFrames by metadata (source and target columns)
+        # Grouping DataFrames by metadata (source_attribute and target_attribute columns)
         grouped_matches = defaultdict(list)
         for match_df in matches:
             grouped_matches[
@@ -762,28 +762,28 @@ def view_value_matches(
 
 def preview_domain(
     dataset: Union[str, pd.DataFrame],
-    column: str,
+    attribute: str,
     limit: Optional[int] = None,
     standard_args: Optional[Dict[str, Any]] = None,
 ) -> pd.DataFrame:
     """
-    Preview the domain, i.e. set of unique values, column description and value description
-    (if applicable) of the given column of the source or target dataset.
+    Preview the domain, i.e. set of unique values, attribute description and value description
+    (if applicable) of the given attribute of the source or target dataset.
 
     Args:
         dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
-        containing the column to preview.
+        containing the attribute to preview.
             If a string is provided and it is equal to "gdc", the domain will be retrieved
             from the GDC data.
             If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
-        column(str): The column name to show the domain.
+        attribute(str): The attribute name to show the domain.
         limit (int, optional): The maximum number of unique values to include in the preview.
             Defaults to None.
         standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
-        them if the parameter `limit` was specified), column description and value description
+        them if the parameter `limit` was specified), attribute description and value description
         (if applicable).
     """
 
@@ -791,13 +791,13 @@ def preview_domain(
         if standard_args is None:
             standard_args = {}
         standard = Standards.get_standard(dataset, **standard_args)
-        column_metadata = standard.get_column_metadata([column])
-        value_names = column_metadata[column]["value_names"]
-        value_descriptions = column_metadata[column]["value_descriptions"]
-        column_description = column_metadata[column]["description"]
+        column_metadata = standard.get_column_metadata([attribute])
+        value_names = column_metadata[attribute]["value_names"]
+        value_descriptions = column_metadata[attribute]["value_descriptions"]
+        column_description = column_metadata[attribute]["description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
-        value_names = dataset[column].unique()
+        value_names = dataset[attribute].unique()
         value_descriptions = []
         column_description = ""
     else:
@@ -837,7 +837,7 @@ def evaluate_schema_matches(
         source (pd.DataFrame): The source dataset.
         target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
         schema_matches (pd.DataFrame): The DataFrame containing the schema matches with columns
-            'source', 'target', and 'similarity'.
+            'source_attribute', 'target_attribute', and 'similarity'.
         standard_args (Dict[str, Any], optional): Additional arguments for the standard vocabulary.
 
     Returns:
@@ -1222,10 +1222,10 @@ def materialize_mapping(
     Takes an input DataFrame and a target mapping specification and returns a
     new DataFrame created according to the given target mapping specification.
     The mapping specification is a list of dictionaries, where each dictionary
-    defines one column in the output table and how it is created. It includes
-    the names of the input (source) and output (target) columns and the value
-    mapper used to transform the values of the input column into the
-    target output column.
+    defines one attribute/column in the output table and how it is created. It includes
+    the names of the input (source) and output (target) attributes and the value
+    mapper used to transform the values of the input attribute into the
+    target output attribute.
 
     Parameters:
         input_table (pd.DataFrame): The input (source) DataFrame.
@@ -1372,8 +1372,8 @@ def _create_mapper_from_value_matches(matches: List[ValueMatch]) -> DictionaryMa
 MappingSpecLike = Union[List[Union[Dict, pd.DataFrame]], pd.DataFrame]
 """
 The `MappingSpecLike` is a type alias that specifies mappings between source
-and target columns. It must include the source and target column names
-and a value mapper object that transforms the values of the source column
+and target attributes/columns. It must include the source and target attribute names
+and a value mapper object that transforms the values of the source attribute
 into the target.
 
 The mapping specification can be (1) a DataFrame or (2) a list of dictionaries or DataFrames.

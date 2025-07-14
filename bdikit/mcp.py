@@ -46,7 +46,7 @@ async def match_schema(
 async def rank_schema_matches(
     source_dataset_path: str,
     target_dataset_path: Optional[str] = "gdc",
-    columns: Optional[List[str]] = None,
+    attributes: Optional[List[str]] = None,
     top_k: Optional[int] = 10,
     method: Optional[str] = "magneto_ft_bp",
 ) -> List[Dict[str, Any]]:
@@ -55,7 +55,7 @@ async def rank_schema_matches(
     Args:
         source_dataset_path: Path to the source CSV data file
         target_dataset_path: Optional path to target schema (default is "gdc", which uses the GDC schema)
-        columns: Optional list of columns to match
+        attributes: Optional list of attributes/columns to match
         top_k: Optional number of top matches to return (default is 10)
         method: Optional method to use for schema matching (default is "magneto_ft_bp")
 
@@ -72,7 +72,7 @@ async def rank_schema_matches(
     matches = bdi.rank_schema_matches(
         source_dataset,
         target=target_dataset,
-        columns=columns,
+        attributes=attributes,
         top_k=top_k,
         method=method,
     )
