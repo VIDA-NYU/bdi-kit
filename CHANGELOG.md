@@ -1,5 +1,9 @@
 # Change Log
 
+
+## 0.8.0.dev0 (yyyy-mm-dd)
+
+
 ## 0.7.0 (2025-07-14)
 
 We are pleased to announce the release of bdikit version 0.7.0.
