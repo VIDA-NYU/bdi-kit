@@ -10,6 +10,7 @@ from typing import Any, Optional, Dict, List, Union, Tuple
 
 # Initialize FastMCP server
 server = FastMCP("bdikit-harmonizer")
+server.schema_match_results = None
 
 
 @server.tool()
@@ -37,6 +38,7 @@ async def match_schema(
 
     matches = bdi.match_schema(source_dataset, target=target_dataset, method=method)
 
+    server.schema_match_results = matches
     response = matches.to_dict(orient="records")
 
     return response
@@ -179,6 +181,33 @@ async def rank_value_matches(
 
 
 @server.tool()
+async def preview_domain(
+    dataset: Union[str, pd.DataFrame],
+    attribute: str,
+) -> pd.DataFrame:
+    """
+    Preview the domain, attribute description and values description
+    (if applicable) of the given attribute of the source or target dataset.
+
+    Args:
+        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
+        containing the attribute to preview.
+            If a string is provided and it is equal to "gdc", the domain will be retrieved
+            from the GDC data.
+            If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
+        attribute(str): The attribute name to show the domain.
+
+    Returns:
+        Dictionary with the description of the  description and value description
+        (if applicable).
+    """
+    domain = bdi.preview_domain(dataset, attribute)
+    response = domain.to_dict(orient="records")
+
+    return response
+
+
+@server.tool()
 async def materialize_mapping(
     source_dataset_path: str,
     mapping_spec: List[Dict[str, Any]],
@@ -208,6 +237,38 @@ async def materialize_mapping(
     response = {}
     response["message"] = f"Materialized data saved successfully in {output_file_path}."
     response["data"] = materialized_data.to_dict(orient="records")
+
+    return response
+
+
+@server.tool()
+async def update_schema_matching(
+    source_attribute: str, new_target_attribute: str, new_similarity: float
+) -> List[Dict[str, Any]]:
+    """Updates the schema matching results for a specific source attribute with a new target attribute and similarity score.
+    Args:
+        source_attribute: The source attribute to update
+        new_target_attribute: The new target attribute to set for the source attribute
+        new_similarity: The new similarity score to set for the new pair
+    Returns:
+        List of dictionaries with the updated schema matching results.
+    """
+    if server.schema_match_results is None:
+        raise ValueError(
+            "No schema match results available. Please run match_schema first."
+        )
+
+    # Update the schema match results with the new attribute matches
+    server.schema_match_results.loc[
+        server.schema_match_results["source_attribute"] == source_attribute,
+        "target_attribute",
+    ] = new_target_attribute
+    server.schema_match_results.loc[
+        server.schema_match_results["source_attribute"] == source_attribute,
+        "similarity",
+    ] = new_similarity
+
+    response = server.schema_match_results.to_dict(orient="records")
 
     return response
 
