@@ -1,8 +1,9 @@
 # Change Log
 
-## 0.7.0.dev0 (yyyy-mm-dd)
+## 0.7.0 (2025-07-14)
 
-This version brings powerful new capabilities such as the addition of a built-in MCP server for integration with AI agents and  new primitives for value matching.
+We are pleased to announce the release of bdikit version 0.7.0.
+This version brings powerful new capabilities such as the addition of a built-in MCP server for integration with AI agents and new primitives for value matching.
 
 Below is a list of the main changes included in this release:
 
@@ -13,6 +14,7 @@ Below is a list of the main changes included in this release:
 - **Evaluation of Schema and Value Matches:** Added methods to evaluate schema and value matches. ([#118](https://github.com/VIDA-NYU/bdi-kit/pull/118))
 - **Contextual Matching Support:** Enabled users to attach contextual information to source or target datasets to improve matching quality. ([#117](https://github.com/VIDA-NYU/bdi-kit/pull/117))
 - **Caching for Schema Matching:** Implemented a caching mechanism to avoid recomputing expensive match operations. ([#119](https://github.com/VIDA-NYU/bdi-kit/pull/119))
+- **Value Matching Caching:** Added caching support for value matching functions to improve performance and reduce redundant computations. Also enhanced the caching mechanism for schema matching. ([#124](https://github.com/VIDA-NYU/bdi-kit/pull/124))
 - **Numeric Mapping Support:** Introduced a numeric transformer primitive to handle numeric conversions during value matching. ([#112](https://github.com/VIDA-NYU/bdi-kit/pull/112))
 
 
@@ -29,6 +31,7 @@ Below is a list of the main changes included in this release:
 
 - **LLM Method Renaming:** Renamed LLM-based methods for consistency and improved clarity. ([#121](https://github.com/VIDA-NYU/bdi-kit/pull/121))
 - **Unification of Value Matching Output:** Standardized outputs from value matching methods to align with schema matching formats. ([#116](https://github.com/VIDA-NYU/bdi-kit/pull/116)) By default, the `match_values()` and `rank_value_matches()` functions now return a single DataFrame instead of a list of DataFrames. Note: This change is backward-incompatible.
+- **Terminology Update:** Renamed `'columns'` to `'attributes'` in the outputs of various methods to ensure consistent terminology across the toolkit. ([#123](https://github.com/VIDA-NYU/bdi-kit/pull/123))
 
 
 ### Fix
