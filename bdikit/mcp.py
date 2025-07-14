@@ -1,3 +1,5 @@
+import numbers
+import random
 import bdikit as bdi
 import pandas as pd
 from os.path import join
@@ -10,6 +12,10 @@ from typing import Any, Optional, Dict, List, Union, Tuple
 
 # Initialize FastMCP server
 server = FastMCP("bdikit-harmonizer")
+server.schema_matching_results = None
+server.value_matching_results = None
+
+random.seed(42)  # For reproducibility
 
 
 @server.tool()
@@ -37,6 +43,7 @@ async def match_schema(
 
     matches = bdi.match_schema(source_dataset, target=target_dataset, method=method)
 
+    server.schema_matching_results = matches
     response = matches.to_dict(orient="records")
 
     return response
@@ -47,7 +54,7 @@ async def rank_schema_matches(
     source_dataset_path: str,
     target_dataset_path: Optional[str] = "gdc",
     attributes: Optional[List[str]] = None,
-    top_k: Optional[int] = 10,
+    top_k: Optional[int] = 5,
     method: Optional[str] = "magneto_ft_bp",
 ) -> List[Dict[str, Any]]:
     """Returns the top-k matches between the source and target tables. Where k is a value specified by the user.
@@ -56,7 +63,7 @@ async def rank_schema_matches(
         source_dataset_path: Path to the source CSV data file
         target_dataset_path: Optional path to target schema (default is "gdc", which uses the GDC schema)
         attributes: Optional list of attributes/columns to match
-        top_k: Optional number of top matches to return (default is 10)
+        top_k: Optional number of top matches to return (default is 5)
         method: Optional method to use for schema matching (default is "magneto_ft_bp")
 
     Returns:
@@ -87,7 +94,7 @@ async def match_values(
     source_dataset_path: str,
     target_dataset_path: str,
     attribute_matches: Union[Tuple[str, str], None],
-    method: Optional[str] = "tfidf",
+    method: Optional[str] = "auto",
 ) -> List[Dict[str, Any]]:
     """Finds matches between attribute/column values from the source dataset and attribute/column
     values of the target schema.
@@ -95,9 +102,9 @@ async def match_values(
     Args:
         source_dataset_path: Path to the source CSV data file
         target_dataset_path: Path to target schema or a standard vocabulary name (e.g. "gdc", which uses the GDC schema)
-        attribute_matches: The attribute/column of the source and target dataset for which to find value matches for.
+        attribute_matches: The attribute/column pairs from the source and target dataset for which to find value matches.
             If not provided, it will be calculated using all attributes/columns.
-        method: Optional method to use for value matching (default is "tf-idf")
+        method: Optional method to use for value matching. Default is "auto", which selects the method based on the data type of the values.
 
     Returns:
         Dictionary with value matching results
@@ -117,11 +124,23 @@ async def match_values(
             target=target_dataset,
         )
 
+    if method == "auto":
+        # Automatically select the method based on the data type of the values
+        source_values = source_dataset[attribute_matches[0]].unique().tolist()
+        method = select_method(source_values)
+
     matches = bdi.match_values(
         source_dataset,
         target_dataset,
         attribute_matches,
         method=method,
+    )
+
+    if server.value_matching_results is None:
+        server.value_matching_results = pd.DataFrame()
+
+    server.value_matching_results = pd.concat(
+        [server.value_matching_results, matches], ignore_index=True
     )
 
     response = matches.to_dict(orient="records")
@@ -135,7 +154,7 @@ async def rank_value_matches(
     target_dataset_path: str,
     attribute_matches: Union[Tuple[str, str], None],
     top_k: Optional[int] = 5,
-    method: Optional[str] = "tfidf",
+    method: Optional[str] = "auto",
 ) -> List[Dict[str, Any]]:
     """Returns the top-k value matches between the source and target attributes/columns. Where k is a value specified by the user.
 
@@ -145,7 +164,7 @@ async def rank_value_matches(
         attribute_matches: The attribute/column of the source and target dataset for which to find value matches for.
             If not provided, it will be calculated using all attributes/columns.
         top_k: Optional number of top matches to return (default is 5)
-        method: Optional method to use for value matching (default is "tf-idf")
+        method: Optional method to use for value matching. Default is "auto", which selects the method based on the data type of the values.
 
     Returns:
         Dictionary with value matching results
@@ -164,6 +183,10 @@ async def rank_value_matches(
             source_dataset,
             target=target_dataset,
         )
+    if method == "auto":
+        # Automatically select the method based on the data type of the values
+        source_values = source_dataset[attribute_matches[0]].unique().tolist()
+        method = select_method(source_values)
 
     matches = bdi.rank_value_matches(
         source_dataset,
@@ -179,19 +202,43 @@ async def rank_value_matches(
 
 
 @server.tool()
+async def preview_domain(
+    dataset: Union[str, pd.DataFrame],
+    attribute: str,
+) -> pd.DataFrame:
+    """
+    Preview the domain, attribute description and values description
+    (if applicable) of the given attribute of the source or target dataset.
+
+    Args:
+        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
+        containing the attribute to preview.
+            If a string is provided and it is equal to "gdc", the domain will be retrieved
+            from the GDC data.
+            If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
+        attribute(str): The attribute name to show the domain.
+
+    Returns:
+        Dictionary with the description of the  description and value description
+        (if applicable).
+    """
+    domain = bdi.preview_domain(dataset, attribute)
+    response = domain.to_dict(orient="records")
+
+    return response
+
+
+@server.tool()
 async def materialize_mapping(
     source_dataset_path: str,
-    mapping_spec: List[Dict[str, Any]],
     output_folder_path: str,
     file_name: Optional[str] = "materialized_data.csv",
 ) -> List[Dict[str, Any]]:
-    """Takes the source dataset, the mapping specification, the output folder path, and an optional file name,
-        and materializes the data according to the mapping specification, saving it as a CSV file in the specified output folder.
+    """Takes the source dataset, the output folder path, and an optional file name,
+        and materializes the data, saving it as a CSV file in the specified output folder.
 
     Args:
         source_dataset_path: Path to the source CSV data file
-        mapping_spec: List of dictionaries representing the mapping specification. For instance, the output of the match_values() function:
-            [{'source_attribute': '', 'target_attribute': 'source_value': '','target_value': '', 'similarity': 1}, ...]
         output_folder_path: Path to the folder where the materialized data will be saved
         file_name: Optional name for the output CSV file (default is "materialized_data.csv")
     Returns:
@@ -199,8 +246,15 @@ async def materialize_mapping(
     """
     source_dataset = pd.read_csv(source_dataset_path)
 
-    # Convert to DataFrame
-    mapping_spec_df = pd.DataFrame(mapping_spec)
+    if server.value_matching_results is not None:
+        mapping_spec_df = server.value_matching_results
+    elif server.schema_matching_results is not None:
+        mapping_spec_df = server.schema_matching_results
+    else:
+        raise ValueError(
+            "No schema or value matching results available. Please run match_schema or match_values first."
+        )
+
     materialized_data = bdi.materialize_mapping(source_dataset, mapping_spec_df)
     output_file_path = join(output_folder_path, file_name)
     materialized_data.to_csv(output_file_path, index=False)
@@ -208,6 +262,38 @@ async def materialize_mapping(
     response = {}
     response["message"] = f"Materialized data saved successfully in {output_file_path}."
     response["data"] = materialized_data.to_dict(orient="records")
+
+    return response
+
+
+@server.tool()
+async def update_schema_matching(
+    source_attribute: str, new_target_attribute: str, new_similarity: float
+) -> List[Dict[str, Any]]:
+    """Updates the schema matching results for a specific source attribute with a new target attribute and similarity score.
+    Args:
+        source_attribute: The source attribute to update
+        new_target_attribute: The new target attribute to set for the source attribute
+        new_similarity: The new similarity score to set for the new pair
+    Returns:
+        List of dictionaries with the updated schema matching results.
+    """
+    if server.schema_matching_results is None:
+        raise ValueError(
+            "No schema match results available. Please run match_schema first."
+        )
+
+    # Update the schema match results with the new attribute matches
+    server.schema_matching_results.loc[
+        server.schema_matching_results["source_attribute"] == source_attribute,
+        "target_attribute",
+    ] = new_target_attribute
+    server.schema_matching_results.loc[
+        server.schema_matching_results["source_attribute"] == source_attribute,
+        "similarity",
+    ] = new_similarity
+
+    response = server.schema_matching_results.to_dict(orient="records")
 
     return response
 
@@ -266,3 +352,38 @@ async def get_available_value_matching_algorithms(
         for name, path in available_algorithms.items()
     ]
     return response
+
+
+def determine_type(values, threshold=0.7, sample_size=10):
+    numeric_count = 0
+
+    if len(values) > sample_size:
+        sample_values = random.sample(values, sample_size)
+    else:
+        sample_values = values
+
+    for value in sample_values:
+        # Try to convert strings to numbers
+        if isinstance(value, numbers.Number):
+            numeric_count += 1
+        else:
+            try:
+                float(value)  # Attempt to cast to a float
+                numeric_count += 1
+            except (ValueError, TypeError):
+                continue
+
+    proportion_numeric = numeric_count / len(sample_values)
+
+    if proportion_numeric >= threshold:
+        return "numeric"
+    else:
+        return "text"
+
+
+def select_method(values):
+    value_type = determine_type(values)
+    if value_type == "numeric":
+        return "llm_numeric"
+    else:
+        return "tfidf"
