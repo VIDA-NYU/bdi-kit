@@ -7,7 +7,11 @@ import panel as pn
 from collections import defaultdict
 from IPython.display import display, HTML
 
-from bdikit.schema_matching.base import BaseSchemaMatcher, BaseTopkSchemaMatcher
+from bdikit.schema_matching.base import (
+    BaseSchemaMatcher,
+    BaseTopkSchemaMatcher,
+    ColumnMatch,
+)
 from bdikit.schema_matching.matcher_factory import (
     get_schema_matcher,
     get_topk_schema_matcher,
@@ -35,7 +39,12 @@ from bdikit.mapping_functions import (
 from typing import Union, List, Dict, TypedDict, Optional, Tuple, Callable, Any
 
 from bdikit.config import DEFAULT_SCHEMA_MATCHING_METHOD, DEFAULT_VALUE_MATCHING_METHOD
-from bdikit.utils import create_hash, load_from_cache, save_in_cache
+from bdikit.utils import (
+    load_from_cache,
+    save_in_cache,
+    create_schema_hash,
+    create_value_hash,
+)
 
 pn.extension("tabulator")
 
@@ -48,9 +57,10 @@ def match_schema(
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
+    use_cache: Optional[bool] = True,
 ) -> pd.DataFrame:
     """
-    Performs schema mapping between the source table and the given target schema. The
+    Performs schema matching between the source table and the given target schema. The
     target is either a DataFrame or a string representing a standard data vocabulary
     supported by the library. Currently, only the GDC (Genomic Data Commons) standard
     vocabulary is supported.
@@ -58,12 +68,13 @@ def match_schema(
     Parameters:
         source (pd.DataFrame): The source table to be mapped.
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
-        method (str, optional): The method used for mapping. Defaults to "ct_learning".
+        method (str, optional): The method used for matching. Defaults to "ct_learning".
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+        use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
 
     Returns:
-        pd.DataFrame: A DataFrame containing the mapping results with columns "source" and "target".
+        pd.DataFrame: A DataFrame containing the matches results with columns "source_attribute", "target_attribute" and "similarity".
 
     Raises:
         ValueError: If the method is neither a string nor an instance of BaseSchemaMatcher.
@@ -72,22 +83,18 @@ def match_schema(
     source_dataset = _load_dataset(source)
     matcher_instance = _load_schema_matcher(method, method_args)
 
-    hash_id = create_hash(
-        source_dataset.get_dataframe_rep(),
-        target_dataset.get_dataframe_rep(),
-        matcher_instance,
-        1,
-    )
-    object_from_cache = load_from_cache(hash_id)
-
-    if object_from_cache is None:
-        # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    if use_cache:
+        matches = _cache_schema_matches(
+            source_df=source_dataset.get_dataframe_rep(),
+            target_df=target_dataset.get_dataframe_rep(),
+            matcher_obj=matcher_instance,
+            match_func=matcher_instance.match_schema,
+        )
+    else:
         matches = matcher_instance.match_schema(
             source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
         )
-        save_in_cache(matches, hash_id)
-    else:
-        matches = object_from_cache
 
     return pd.DataFrame(
         matches, columns=["source_attribute", "target_attribute", "similarity"]
@@ -102,7 +109,7 @@ def _load_schema_matcher(
 
     Args:
         method (Union[str, BaseSchemaMatcher]): The method to use for schema matching.
-        method_args (Optional[Dict[str, Any]]): Additional arguments for the schema matcher.
+        method_args (Dict[str, Any], optional): Additional arguments for the schema matcher.
 
     Returns:
         BaseSchemaMatcher: An instance of the schema matcher.
@@ -170,9 +177,12 @@ def rank_schema_matches(
     target: Union[str, pd.DataFrame] = "gdc",
     attributes: Optional[List[str]] = None,
     top_k: Optional[int] = 10,
-    method: Union[str, BaseTopkSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    method: Optional[
+        Union[str, BaseTopkSchemaMatcher]
+    ] = DEFAULT_SCHEMA_MATCHING_METHOD,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
+    use_cache: Optional[bool] = True,
 ) -> pd.DataFrame:
     """
     Returns the top-k matches between the source and target tables.
@@ -180,11 +190,12 @@ def rank_schema_matches(
     Args:
         source (pd.DataFrame): The source table.
         target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
-        attributes (Optional[List[str]], optional): The list of attributes/columns to consider for matching. Defaults to None.
+        attributes (List[str], optional): The list of attributes/columns to consider for matching. Defaults to None.
         top_k (int, optional): The number of top matches to return. Defaults to 10.
         method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
-        method_args (Optional[Dict[str, Any]], optional): The additional arguments of the method for schema matching.
-        standard_args (Optional[Dict[str, Any]], optional): The additional arguments of the standard vocabulary.
+        method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+        use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
 
     Returns:
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
@@ -199,24 +210,21 @@ def rank_schema_matches(
     target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
 
-    hash_id = create_hash(
-        source_dataset.get_dataframe_rep(),
-        target_dataset.get_dataframe_rep(),
-        topk_matcher,
-        top_k,
-    )
-    object_from_cache = load_from_cache(hash_id)
-
-    if object_from_cache is None:
-        # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    if use_cache:
+        matches = _cache_schema_matches(
+            source_df=source_dataset.get_dataframe_rep(),
+            target_df=target_dataset.get_dataframe_rep(),
+            match_func=topk_matcher.rank_schema_matches,
+            matcher_obj=topk_matcher,
+            top_k=top_k,
+        )
+    else:
         matches = topk_matcher.rank_schema_matches(
             source_dataset.get_dataframe_rep(),
             target_dataset.get_dataframe_rep(),
             top_k=top_k,
         )
-        save_in_cache(matches, hash_id)
-    else:
-        matches = object_from_cache
 
     return pd.DataFrame(
         matches, columns=["source_attribute", "target_attribute", "similarity"]
@@ -232,7 +240,7 @@ def _load_topk_schema_matcher(
 
     Args:
         method (Union[str, BaseTopkSchemaMatcher]): The method to use for top-k schema matching.
-        method_args (Optional[Dict[str, Any]]): Additional arguments for the top-k schema matcher.
+        method_args (Dict[str, Any], optional): Additional arguments for the top-k schema matcher.
 
     Returns:
         BaseTopkSchemaMatcher: An instance of the top-k schema matcher.
@@ -250,16 +258,36 @@ def _load_topk_schema_matcher(
     return matcher_instance
 
 
+def _cache_schema_matches(
+    source_df: pd.DataFrame,
+    target_df: pd.DataFrame,
+    match_func: Callable,
+    matcher_obj: Union[BaseSchemaMatcher, BaseTopkSchemaMatcher],
+    **match_kwargs: Any,
+) -> List[ColumnMatch]:
+    hash_id = create_schema_hash(source_df, target_df, matcher_obj, **match_kwargs)
+    cached_result = load_from_cache(hash_id)
+
+    if cached_result is not None:
+        return cached_result
+
+    result = match_func(source_df, target_df, **match_kwargs)
+    save_in_cache(result, hash_id)
+
+    return result
+
+
 def match_values(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     attribute_matches: Union[Tuple[str, str], pd.DataFrame],
-    method: Union[str, BaseValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
+    method: Optional[Union[str, BaseValueMatcher]] = DEFAULT_VALUE_MATCHING_METHOD,
     source_context: Optional[Dict[str, Any]] = None,
     target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
-    output_format: str = "dataframe",
+    output_format: Optional[str] = "dataframe",
+    use_cache: Optional[bool] = True,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds matches between attribute values from the source dataset and attribute
@@ -294,6 +322,8 @@ def match_values(
         output_format (str, optional): The format of the output. If "dataframe",
             a single DataFrame is returned. If "list", a list of DataFrames is returned.
             Defaults to "dataframe".
+        use_cache (bool, optional): Whether to use caching for the value matching results.
+            Defaults to True.
 
     Returns:
         pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
@@ -328,9 +358,19 @@ def match_values(
             user_context=target_context,
         )
 
-        matches = matcher_instance.match_values(
-            source_values, target_values, source_ctx, target_ctx
-        )
+        if use_cache:
+            matches = _cache_value_matches(
+                source_values=source_values,
+                target_values=target_values,
+                source_ctx=source_ctx,
+                target_ctx=target_ctx,
+                match_func=matcher_instance.match_values,
+                matcher_obj=matcher_instance,
+            )
+        else:
+            matches = matcher_instance.match_values(
+                source_values, target_values, source_ctx, target_ctx
+            )
         all_matches.extend(matches)
 
     matches = BaseValueMatcher.sort_multiple_matches(all_matches)
@@ -363,7 +403,7 @@ def _load_value_matcher(
     """Loads the value matcher based on the provided method and method arguments.
     Args:
         method (Union[str, BaseValueMatcher]): The method to use for value matching.
-        method_args (Optional[Dict[str, Any]]): Additional arguments for the value matcher.
+        method_args (Dict[str, Any], optional): Additional arguments for the value matcher.
     Returns:
         BaseValueMatcher: An instance of the value matcher.
     Raises:
@@ -457,13 +497,14 @@ def rank_value_matches(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame],
     attribute_matches: Union[Tuple[str, str], pd.DataFrame],
-    top_k: int = 5,
-    method: Union[str, BaseTopkValueMatcher] = DEFAULT_VALUE_MATCHING_METHOD,
+    top_k: Optional[int] = 5,
+    method: Optional[Union[str, BaseTopkValueMatcher]] = DEFAULT_VALUE_MATCHING_METHOD,
     source_context: Optional[Dict[str, Any]] = None,
     target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
-    output_format: str = "dataframe",
+    output_format: Optional[str] = "dataframe",
+    use_cache: Optional[bool] = True,
 ) -> Union[pd.DataFrame, List[pd.DataFrame]]:
     """
     Finds top value matches between attribute values from the source dataset and attribute
@@ -500,6 +541,8 @@ def rank_value_matches(
         output_format (str, optional): The format of the output. If "dataframe",
             a single DataFrame is returned. If "list", a list of DataFrames is returned.
             Defaults to "dataframe".
+        use_cache (bool, optional): Whether to use caching for the value matching results.
+            Defaults to True.
 
     Returns:
         pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
@@ -533,10 +576,20 @@ def rank_value_matches(
             target_attribute,
             user_context=target_context,
         )
-
-        matches = matcher_instance.rank_value_matches(
-            source_values, target_values, top_k, source_ctx, target_ctx
-        )
+        if use_cache:
+            matches = _cache_value_matches(
+                source_values=source_values,
+                target_values=target_values,
+                source_ctx=source_ctx,
+                target_ctx=target_ctx,
+                match_func=matcher_instance.rank_value_matches,
+                matcher_obj=matcher_instance,
+                top_k=top_k,
+            )
+        else:
+            matches = matcher_instance.rank_value_matches(
+                source_values, target_values, top_k, source_ctx, target_ctx
+            )
 
         all_matches.extend(matches)
 
@@ -571,7 +624,7 @@ def _load_topk_value_matcher(
     """Loads the top-k value matcher based on the provided method and method arguments.
     Args:
         method (Union[str, BaseTopkValueMatcher]): The method to use for top-k value matching.
-        method_args (Optional[Dict[str, Any]]): Additional arguments for the top-k value matcher.
+        method_args (Dict[str, Any], optional): Additional arguments for the top-k value matcher.
     Returns:
         BaseTopkValueMatcher: An instance of the top-k value matcher.
     Raises:
@@ -591,6 +644,40 @@ def _load_topk_value_matcher(
     return matcher_instance
 
 
+def _cache_value_matches(
+    source_values: List[Any],
+    target_values: List[Any],
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
+    match_func: Callable,
+    matcher_obj: Union[BaseValueMatcher, BaseTopkValueMatcher],
+    **match_kwargs: Any,
+) -> List[ValueMatch]:
+
+    hash_id = create_value_hash(
+        source_values,
+        target_values,
+        source_ctx,
+        target_ctx,
+        matcher_obj,
+        **match_kwargs,
+    )
+    cached_result = load_from_cache(hash_id)
+
+    if cached_result is not None:
+        return cached_result
+    result = match_func(
+        source_values=source_values,
+        target_values=target_values,
+        source_context=source_ctx,
+        target_context=target_ctx,
+        **match_kwargs,
+    )
+    save_in_cache(result, hash_id)
+
+    return result
+
+
 def view_value_matches(
     matches: Union[pd.DataFrame, List[pd.DataFrame]], edit: bool = False
 ):
@@ -601,7 +688,7 @@ def view_value_matches(
         matches (Union[pd.DataFrame, List[pd.DataFrame]): The value match results obtained by the method
         match_values() or rank_value_matches().
 
-        edit (bool): Whether or not to edit the values within the DataFrame.
+        edit (bool, optional): Whether or not to edit the values within the DataFrame.
     """
     if isinstance(matches, list):
         # Grouping DataFrames by metadata (source and target columns)
@@ -751,7 +838,7 @@ def evaluate_schema_matches(
         target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
         schema_matches (pd.DataFrame): The DataFrame containing the schema matches with columns
             'source', 'target', and 'similarity'.
-        standard_args (Optional[Dict[str, Any]]): Additional arguments for the standard vocabulary.
+        standard_args (Dict[str, Any], optional): Additional arguments for the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
@@ -794,7 +881,7 @@ def evaluate_value_matches(
         target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
         value_matches (pd.DataFrame): The DataFrame containing the value matches with columns
             'source_attribute', 'target_attribute', 'source_value', 'target_value', and 'similarity'.
-        standard_args (Optional[Dict[str, Any]]): Additional arguments for the standard vocabulary.
+        standard_args (Dict[str, Any], optional): Additional arguments for the standard vocabulary.
 
     Returns:
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
@@ -856,7 +943,7 @@ def _create_context(
         dataset (BaseStandard): The dataset.
         attribute (str): The attribute name.
         target_attribute (str): The target attribute name.
-        source_user_ctx (Optional[Dict[str, str]]): User-provided context for the attribute.
+        source_user_ctx (Dict[str, str], optional): User-provided context for the attribute.
     Returns:
         Dict[str, str]: A dictionary containing the context for the attribute.
     """
@@ -903,7 +990,7 @@ def _iterate_values(
             attribute_match["target_attribute"],
         )
         source_values = all_source_values[source_attribute]
-        # For cases where the target attribute is not present in the target dataset,
+        # Skip cases where the target attribute is not present in the target dataset,
         # e.g., when the match returns a NaN value for the target attribute
         if target_attribute not in all_target_values:
             continue
@@ -988,7 +1075,7 @@ def merge_mappings(
     Args:
         mappings (MappingSpecLike): The value mappings used to create the data
             harmonization plan. It can be a DataFrame, a list of dictionaries or a list of DataFrames.
-        user_mappings (Optional[MappingSpecLike]): The user mappings to be included in
+        user_mappings (MappingSpecLike, optional): The user mappings to be included in
             the update. It can be a DataFrame, a list of dictionaries or a list of DataFrames.
             Defaults to None.
 
