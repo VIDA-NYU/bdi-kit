@@ -37,11 +37,6 @@ class SchemaMatchers(Enum):
 
 
 class TopkSchemaMatchers(Enum):
-    CT_LEARNING = (
-        "ct_learning",
-        "bdikit.schema_matching.contrastivelearning.ContrastiveLearning",
-    )
-
     MAX_VAL_SIM = (
         "max_val_sim",
         "bdikit.schema_matching.maxvalsim.MaxValSim",

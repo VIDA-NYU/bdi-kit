@@ -37,6 +37,3 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - ``embedding``
       - :class:`~bdikit.value_matching.polyfuzz.Embeddings`
       - | A value-matching algorithm that leverages the cosine similarity of value embeddings for precise comparisons. By default, it utilizes the `bert-base-multilingual-cased` model to generate contextualized embeddings, enabling effective multilingual matching.​
-    * - ``fasttext``
-      - :class:`~bdikit.value_matching.polyfuzz.FastText`
-      - | This method uses the cosine similarity of FastText embeddings to accurately compare and align values, capturing both semantic and subword-level similarities..

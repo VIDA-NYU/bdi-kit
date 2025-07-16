@@ -8,7 +8,6 @@ from bdikit.schema_matching.valentine import (
 )
 
 from bdikit.schema_matching.twophase import TwoPhase
-from bdikit.schema_matching.contrastivelearning import ContrastiveLearning
 
 
 def test_basic_schema_matching_algorithms():
@@ -23,7 +22,6 @@ def test_basic_schema_matching_algorithms():
         # downloading large models
         #
         TwoPhase(schema_matcher=Coma()),
-        ContrastiveLearning(),
     ]:
         # given
         table1 = pd.DataFrame(

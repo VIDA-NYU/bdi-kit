@@ -24,10 +24,6 @@ class TopkValueMatchers(Enum):
         "embedding",
         "bdikit.value_matching.polyfuzz.Embedding",
     )
-    FASTTEXT = (
-        "fasttext",
-        "bdikit.value_matching.polyfuzz.FastText",
-    )
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name

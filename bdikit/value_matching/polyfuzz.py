@@ -126,26 +126,6 @@ class Embedding(PolyFuzz):
         super().__init__(PolyFuzzLib(method), threshold)
 
 
-class FastText(PolyFuzz):
-    """
-    Value matching algorithm based on the cosine similarity of FastText embeddings.
-    """
-
-    def __init__(
-        self,
-        model_name: str = "en-crawl",
-        threshold: float = VALUE_MATCHING_THRESHOLD,
-        cosine_method: str = "sparse",
-    ):
-        embeddings = WordEmbeddings(model_name)
-        method = EmbeddingMatcher(
-            embeddings,
-            min_similarity=threshold,
-            cosine_method=cosine_method,
-        )
-        super().__init__(PolyFuzzLib(method), threshold)
-
-
 class EditDistance(BaseValueMatcher):
     """
     Value matching algorithm based on the edit distance between values.

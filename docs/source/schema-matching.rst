@@ -27,9 +27,6 @@ To see how to use these methods, please refer to the documentation of :py:func:`
     * - ``magneto_ft_llm``
       - :class:`~bdikit.schema_matching.magneto.MagnetoFTLLM`
       - | Uses a fine-tuned small language model as retriever with a large language model as reranker in Magneto.
-    * - ``ct_learning``
-      - :class:`~bdikit.schema_matching.contrastivelearning.ContrastiveLearning`
-      - | Uses a contrastive (CT) learning model to learn embeddings for columns and retrieves the best match most similar columns using the cosine similarity between the column embeddings.
     * - ``max_val_sim``
       - :class:`~bdikit.schema_matching.twophase.MaxValSim`
       - | This schema matching method first uses a a top-k column matcher (e.g., `ct_learning`) to prune the search space (keeping only the top-k most likely matches), and then uses a value matcher method to choose the best match from the pruned search space.
