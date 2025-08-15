@@ -25,6 +25,7 @@ You can find the source code in our `GitHub repository <https://github.com/VIDA-
    quick-start
    getting-started
    examples
+   contributing
 
 .. toctree::
    :maxdepth: 1
