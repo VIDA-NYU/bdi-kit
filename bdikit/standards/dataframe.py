@@ -8,31 +8,31 @@ class DataFrame(BaseStandard):
     def __init__(self, dataframe) -> None:
         self.dataframe = dataframe
 
-    def get_columns(self) -> List[str]:
+    def get_attributes(self) -> List[str]:
         return list(self.dataframe.columns)
 
-    def get_column_values(self, column_names: List[str]) -> Dict[str, List]:
-        column_values = {}
+    def get_attribute_values(self, attribute_names: List[str]) -> Dict[str, List]:
+        attribute_values = {}
 
-        column_values = {
-            column_name: self.dataframe[column_name].unique().tolist()
-            for column_name in column_names
+        attribute_values = {
+            attribute_name: self.dataframe[attribute_name].unique().tolist()
+            for attribute_name in attribute_names
         }
 
-        return column_values
+        return attribute_values
 
-    def get_column_metadata(self, column_names: List[str]) -> Dict[str, Dict]:
-        column_metadata = {}
+    def get_attribute_metadata(self, attribute_names: List[str]) -> Dict[str, Dict]:
+        attribute_metadata = {}
 
-        for column_name in column_names:
-            column_metadata[column_name] = {}
-            column_metadata[column_name]["description"] = ""
-            column_metadata[column_name]["value_names"] = self.get_column_values(
-                [column_name]
-            )[column_name]
-            column_metadata[column_name]["value_descriptions"] = []
+        for attribute_name in attribute_names:
+            attribute_metadata[attribute_name] = {}
+            attribute_metadata[attribute_name]["description"] = ""
+            attribute_metadata[attribute_name]["value_names"] = (
+                self.get_attribute_values([attribute_name])[attribute_name]
+            )
+            attribute_metadata[attribute_name]["value_descriptions"] = []
 
-        return column_metadata
+        return attribute_metadata
 
     def get_dataframe_rep(self) -> pd.DataFrame:
         return self.dataframe

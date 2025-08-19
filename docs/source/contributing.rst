@@ -58,10 +58,10 @@ Contributors can extend bdi-kit to additional standards (data models) by followi
 1. Create a Python module inside the "standards" folder (`bdikit/standards`). 
 2. Define a class in the module to implements `BaseStandard`. This class should implement four methods:
 
-   - `get_columns()`: Returns a list of all the columns (strings) of the standard.
-   - `get_column_values()`: Returns a dictionary where the keys are column names and the values are lists of possible values for each column.
-   - `get_column_metadata()`: Returns a dictionary where the keys are column names and the values are dictionaries containing these fields for each column:
-     `column_description`, `value_names`, and `value_descriptions`.
+   - `get_attributes()`: Returns a list of all the attributes (strings) of the standard.
+   - `get_attribute_values()`: Returns a dictionary where the keys are attribute names and the values are lists of possible values for each attribute.
+   - `get_attribute_metadata()`: Returns a dictionary where the keys are attribute names and the values are dictionaries containing these fields for each attribute:
+     `description`, `value_names`, and `value_descriptions`.
    - `get_dataframe_rep()`: Returns a Pandas DataFrame representation of the standard, where each column in the DataFrame is a column in the standard and each row is a possible value for that column.
 
 3. Add a new entry to the class `Standards(Enum)` in `bdikit/standards/standard_factory.py`. Make sure to add the correct import path for your module to ensure it can be accessed without errors.

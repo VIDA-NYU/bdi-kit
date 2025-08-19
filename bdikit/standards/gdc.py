@@ -21,39 +21,41 @@ class GDC(BaseStandard):
         with open(GDC_SCHEMA_PATH) as json_file:
             self.data = json.load(json_file)
 
-    def get_columns(self) -> List[str]:
+    def get_attributes(self) -> List[str]:
         return list(self.data.keys())
 
-    def get_column_values(
-        self, column_names: List[str]
+    def get_attribute_values(
+        self, attribute_names: List[str]
     ) -> Dict[str, List]:  # get_gdc_data
-        column_values = {}
+        attribute_values = {}
 
-        for column_name in column_names:
-            raw_metadata = self.data.get(column_name, {})
-            column_values[column_name] = list(raw_metadata.get("value_data", {}).keys())
-
-        return column_values
-
-    def get_column_metadata(
-        self, column_names: List[str]
-    ) -> Dict[str, Dict]:  # get_gdc_metadata
-        column_metadata = {}
-
-        for column_name in column_names:
-            raw_metadata = self.data.get(column_name, {})
-            column_metadata[column_name] = {}
-            column_metadata[column_name]["description"] = raw_metadata.get(
-                "column_description", ""
-            )
-            column_metadata[column_name]["value_names"] = list(
+        for attribute_name in attribute_names:
+            raw_metadata = self.data.get(attribute_name, {})
+            attribute_values[attribute_name] = list(
                 raw_metadata.get("value_data", {}).keys()
             )
-            column_metadata[column_name]["value_descriptions"] = list(
+
+        return attribute_values
+
+    def get_attribute_metadata(
+        self, attribute_names: List[str]
+    ) -> Dict[str, Dict]:  # get_gdc_metadata
+        attribute_metadata = {}
+
+        for attribute_name in attribute_names:
+            raw_metadata = self.data.get(attribute_name, {})
+            attribute_metadata[attribute_name] = {}
+            attribute_metadata[attribute_name]["description"] = raw_metadata.get(
+                "column_description", ""
+            )
+            attribute_metadata[attribute_name]["value_names"] = list(
+                raw_metadata.get("value_data", {}).keys()
+            )
+            attribute_metadata[attribute_name]["value_descriptions"] = list(
                 raw_metadata.get("value_data", {}).values()
             )
 
-        return column_metadata
+        return attribute_metadata
 
     def get_dataframe_rep(self) -> pd.DataFrame:
         reshaped_data = {
