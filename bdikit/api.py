@@ -676,15 +676,15 @@ def preview_domain(
         if standard_args is None:
             standard_args = {}
         standard = Standards.get_standard(dataset, **standard_args)
-        column_metadata = standard.get_column_metadata([attribute])
-        value_names = column_metadata[attribute]["value_names"]
-        value_descriptions = column_metadata[attribute]["value_descriptions"]
-        column_description = column_metadata[attribute]["description"]
+        attribute_metadata = standard.get_attribute_metadata([attribute])
+        value_names = attribute_metadata[attribute]["value_names"]
+        value_descriptions = attribute_metadata[attribute]["value_descriptions"]
+        attribute_description = attribute_metadata[attribute]["description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[attribute].unique()
         value_descriptions = []
-        column_description = ""
+        attribute_description = ""
     else:
         raise ValueError(
             "The dataset must be a DataFrame or a standard vocabulary name."
@@ -702,9 +702,11 @@ def preview_domain(
     if len(value_descriptions) > 0:
         domain["value_description"] = value_descriptions
 
-    if len(column_description) > 0:
+    if len(attribute_description) > 0:
         empty_rows_size = len(value_names) - 1
-        domain["attribute_description"] = [column_description] + [""] * empty_rows_size
+        domain["attribute_description"] = [attribute_description] + [
+            ""
+        ] * empty_rows_size
 
     return pd.DataFrame(domain)
 
@@ -840,7 +842,7 @@ def _create_context(
     # Auto-generated context
     auto_context = {
         "attribute_name": attribute,
-        "attribute_description": dataset.get_column_metadata([attribute])[attribute][
+        "attribute_description": dataset.get_attribute_metadata([attribute])[attribute][
             "description"
         ],
     }
@@ -866,8 +868,8 @@ def _iterate_values(
 ):
 
     attribute_matches_list = _format_attribute_matches(attribute_matches)
-    all_target_values = target.get_column_values(target.get_columns())
-    all_source_values = source.get_column_values(source.get_columns())
+    all_target_values = target.get_attribute_values(target.get_attributes())
+    all_source_values = source.get_attribute_values(source.get_attributes())
 
     for attribute_match in attribute_matches_list:
         source_attribute, target_attribute = (
