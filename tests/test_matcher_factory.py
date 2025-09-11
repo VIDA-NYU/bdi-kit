@@ -16,11 +16,6 @@ from bdikit.value_matching.matcher_factory import (
 )
 
 
-# Set a mock API key to test only the initialization of the matcher
-# This is necessary because the OpenAI client requires an API key to be set
-os.environ["OPENAI_API_KEY"] = "mock_key"
-
-
 def test_get_schema_matcher():
     for matcher in SchemaMatchers:
         obj = get_schema_matcher(matcher.matcher_name)

@@ -1,9 +1,6 @@
 import json_repair
 import warnings
-from openai import OpenAI
-
-
-client = OpenAI()
+from litellm import completion
 
 
 def get_match_description(match_info):
@@ -28,11 +25,13 @@ def get_match_description(match_info):
     return description
 
 
-def evaluate_match(match_info, verbose=False):
+def evaluate_match(
+    match_info, model_name="openai/gpt-4o-mini", verbose=False, **model_kwargs
+):
     match_description = get_match_description(match_info)
 
-    completion = client.chat.completions.create(
-        model="gpt-4-turbo-preview",
+    response = completion(
+        model=model_name,
         messages=[
             {
                 "role": "system",
@@ -58,7 +57,7 @@ def evaluate_match(match_info, verbose=False):
         ],
     )
 
-    response_message = completion.choices[0].message.content
+    response_message = response.choices[0].message.content
     try:
         response_dict = json_repair.loads(response_message)
         decision_class = response_dict["response"]
@@ -67,7 +66,7 @@ def evaluate_match(match_info, verbose=False):
     except:
         if verbose:
             warnings.warn(
-                f"Failed to parse response from OpenAI API: {response_message}. ",
+                f"Failed to parse response: {response_message}. ",
                 UserWarning,
             )
 

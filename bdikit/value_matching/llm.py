@@ -1,6 +1,7 @@
-import ast
-from typing import List, Dict, Any
-from openai import OpenAI
+import json_repair
+import warnings
+from litellm import completion
+from typing import List, Dict, Any, Mapping
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 from bdikit.utils import get_additional_context
 from bdikit.config import VALUE_MATCHING_THRESHOLD
@@ -11,10 +12,13 @@ class LLM(BaseValueMatcher):
 
     def __init__(
         self,
+        model_name: str = "openai/gpt-4o-mini",
         threshold: float = VALUE_MATCHING_THRESHOLD,
+        **model_kwargs: Mapping[str, Any],
     ):
-        self.client = OpenAI()
+        self.model_name = model_name
         self.threshold = threshold
+        self.model_kwargs = model_kwargs
 
     def match_values(
         self,
@@ -38,8 +42,8 @@ class LLM(BaseValueMatcher):
         matches = []
 
         for source_value in source_values:
-            completion = self.client.chat.completions.create(
-                model="gpt-4o-mini",
+            response = completion(
+                model=self.model_name,
                 messages=[
                     {
                         "role": "system",
@@ -54,11 +58,13 @@ class LLM(BaseValueMatcher):
                         'Only provide a Python dictionary. For example {"term": "term from the list", "score": 0.8}.',
                     },
                 ],
+                **self.model_kwargs,
             )
 
-            response_message = completion.choices[0].message.content
+            response_message = response.choices[0].message.content
+
             try:
-                response_dict = ast.literal_eval(response_message)
+                response_dict = json_repair.loads(response_message)
                 target_value = response_dict["term"]
                 score = float(response_dict["score"])
                 if target_value in target_values_set and score >= self.threshold:
@@ -72,8 +78,9 @@ class LLM(BaseValueMatcher):
                         )
                     )
             except:
-                print(
-                    f'Errors parsing response for "{source_value}": {response_message}'
+                warnings.warn(
+                    f'Errors parsing response for "{source_value}": {response_message}',
+                    UserWarning,
                 )
 
         matches = self._sort_matches(matches)

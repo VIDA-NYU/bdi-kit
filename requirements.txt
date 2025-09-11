@@ -1,6 +1,6 @@
 polyfuzz
+pandas
 valentine>0.2.0
-openai
 torch
 transformers
 tqdm
@@ -13,3 +13,4 @@ panel!=1.4.3
 nltk>=3.9.1
 magneto-python
 json-repair
+litellm

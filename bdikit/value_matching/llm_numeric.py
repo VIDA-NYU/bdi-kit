@@ -3,8 +3,8 @@ import random
 import textwrap
 import warnings
 import numpy as np
-from typing import List, Dict, Any
-from openai import OpenAI
+from litellm import completion
+from typing import List, Dict, Any, Mapping
 from bdikit.utils import get_additional_context
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 
@@ -17,10 +17,13 @@ class LLMNumeric(BaseValueMatcher):
 
     def __init__(
         self,
+        model_name: str = "openai/gpt-4o-mini",
         sample_size: int = 5,
+        **model_kwargs: Mapping[str, Any],
     ):
-        self.client = OpenAI()
+        self.model_name = model_name
         self.sample_size = sample_size
+        self.model_kwargs = model_kwargs
 
     def match_values(
         self,
@@ -46,8 +49,8 @@ class LLMNumeric(BaseValueMatcher):
                 sample_values.append(formatted_value)
             clean_source_values.append(formatted_value)
 
-        completion = self.client.chat.completions.create(
-            model="gpt-4o-mini",
+        response = completion(
+            model=self.model_name,
             messages=[
                 {
                     "role": "system",
@@ -66,11 +69,12 @@ class LLMNumeric(BaseValueMatcher):
                     "Provide only the Python code snippet as a formatted string.",
                 },
             ],
+            **self.model_kwargs,
         )
 
-        function_code = completion.choices[0].message.content
+        function_code = response.choices[0].message.content
         function_code = sanitize_code(function_code)
-        # print(f"Function code: {function_code}")
+
         local_scope = {}
         try:
             exec(function_code, {}, local_scope)
