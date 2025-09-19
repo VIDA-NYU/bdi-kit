@@ -46,6 +46,13 @@ from bdikit.utils import (
     create_value_hash,
 )
 
+from bdikit.matching_evaluation.schema_matching import (
+    evaluate_match as evaluate_schema_match,
+)
+from bdikit.matching_evaluation.value_matching import (
+    evaluate_match as evaluate_value_match,
+)
+
 pn.extension("tabulator")
 
 logger = logging.getLogger(__name__)
@@ -731,13 +738,11 @@ def evaluate_schema_matches(
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
         'response' and 'explanation'.
     """
-    from bdikit.matching_evaluation.schema_matching import evaluate_match
-
     evaluated_matches = schema_matches.copy()
 
     evaluated_matches["response"], evaluated_matches["explanation"] = zip(
         *evaluated_matches.apply(
-            lambda row: evaluate_match(
+            lambda row: evaluate_schema_match(
                 {
                     "source_column": row["source_attribute"],
                     "target_column": row["target_attribute"],
@@ -774,13 +779,11 @@ def evaluate_value_matches(
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
         'response' and 'explanation'.
     """
-    from bdikit.matching_evaluation.value_matching import evaluate_match
-
     evaluated_matches = value_matches.copy()
 
     evaluated_matches["response"], evaluated_matches["explanation"] = zip(
         *evaluated_matches.apply(
-            lambda row: evaluate_match(
+            lambda row: evaluate_value_match(
                 {
                     "source_value": row["source_value"],
                     "target_value": row["target_value"],
