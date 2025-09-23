@@ -81,8 +81,15 @@ class MagnetoFTBP(MagnetoBase):
 class MagnetoZSLLM(MagnetoBase):
     """Uses a zero-shot small language model as retriever with a large language model as reranker in Magneto."""
 
-    def __init__(self):
-        kwargs = {"use_bp_reranker": False, "use_gpt_reranker": True}
+    def __init__(self, reranker_model: str = "openai/gpt-4o-mini", **reranker_kwargs):
+        if reranker_kwargs is None:
+            reranker_kwargs = {}
+        kwargs = {
+            "use_bp_reranker": False,
+            "use_gpt_reranker": True,
+            "llm_model": reranker_model,
+            "llm_model_kwargs": reranker_kwargs,
+        }
         super().__init__(kwargs)
 
 
@@ -94,13 +101,20 @@ class MagnetoFTLLM(MagnetoBase):
         encoding_mode: str = "header_values_verbose",
         model_name: str = DEFAULT_MAGNETO_MODEL,
         model_path: str = None,
+        reranker_model: str = "openai/gpt-4o-mini",
+        **reranker_kwargs
     ):
         embedding_model = check_magneto_model(model_name, model_path)
+        if reranker_kwargs is None:
+            reranker_kwargs = {}
+
         kwargs = {
             "encoding_mode": encoding_mode,
             "embedding_model": embedding_model,
             "use_bp_reranker": False,
             "use_gpt_reranker": True,
+            "llm_model": reranker_model,
+            "llm_model_kwargs": reranker_kwargs,
         }
         super().__init__(kwargs)
 
