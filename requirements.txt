@@ -2,7 +2,7 @@ polyfuzz
 pandas
 valentine>0.2.0
 torch
-transformers
+transformers<4.57.0
 tqdm
 scikit-learn
 flair[word-embeddings]>=0.14.0
