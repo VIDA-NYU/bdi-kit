@@ -35,7 +35,7 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - | The two-phase schema matching method first uses a a top-k column matcher (e.g., `ct_learning`) to prune the search space (keeping only the top-k most likely matches), and then uses another column matcher to choose the best match from the pruned search space.
     * - ``llm``
       - :class:`~bdikit.schema_matching.llm.LLM`
-      - | Leverages a large language model (GPT-4 by default) to identify and select the most accurate schema matches.
+      - | Leverages LLMs to identify and select the most accurate schema matches. Supports multiple models, with `gpt-4o-mini` used as the default.
 
 .. list-table:: Methods from other libraries
     :header-rows: 1

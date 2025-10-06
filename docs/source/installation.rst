@@ -1,7 +1,7 @@
 Installation
 ============
 
-This package works with Python 3.8+ in Linux and Mac. You can install the latest stable version of this library from `PyPI <https://pypi.org/project/bdi-kit/>`__:
+This package works with Python 3.9+ in Linux and Mac. You can install the latest stable version of this library from `PyPI <https://pypi.org/project/bdi-kit/>`__:
 
 ::
 
