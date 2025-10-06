@@ -39,16 +39,21 @@ class PolyFuzz(BaseTopkValueMatcher):
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
+
         new_target_values = remove_non_string_values(target_values)
         if len(new_target_values) == 0:
-            return []
+            return self._fill_missing_matches(
+                source_values, [], source_attribute, target_attribute
+            )
 
         new_source_values = remove_non_string_values(source_values)
         if len(new_source_values) == 0:
-            return []
+            return self._fill_missing_matches(
+                source_values, [], source_attribute, target_attribute
+            )
 
-        source_attribute = source_context["attribute_name"]
-        target_attribute = target_context["attribute_name"]
         self.model.method.top_n = top_k
         self.model.match(new_source_values, new_target_values)
         match_results = self.model.get_matches()
@@ -154,16 +159,21 @@ class EditDistance(BaseValueMatcher):
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
 
         new_target_values = remove_non_string_values(target_values)
         if len(new_target_values) == 0:
-            return []
+            return self._fill_missing_matches(
+                source_values, [], source_attribute, target_attribute
+            )
 
         new_source_values = remove_non_string_values(source_values)
         if len(new_source_values) == 0:
-            return []
-        source_attribute = source_context["attribute_name"]
-        target_attribute = target_context["attribute_name"]
+            return self._fill_missing_matches(
+                [], target_values, source_attribute, target_attribute
+            )
+
         self.model.match(new_source_values, new_target_values)
         match_results = self.model.get_matches()
 
