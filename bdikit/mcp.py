@@ -47,6 +47,8 @@ async def match_schema(
         Dictionary with schema matching results
     """
     source_dataset = pd.read_csv(source_dataset_path)
+    target_dataset_path = target_dataset_path or "gdc"
+    method = method or "magneto_ft_bp"
 
     if target_dataset_path == "gdc":
         target_dataset = target_dataset_path
@@ -82,6 +84,8 @@ async def rank_schema_matches(
         Dictionary with schema matching results
     """
     source_dataset = pd.read_csv(source_dataset_path)
+    target_dataset_path = target_dataset_path or "gdc"
+    method = method or "magneto_ft_bp"
 
     if target_dataset_path == "gdc":
         target_dataset = target_dataset_path
@@ -121,7 +125,7 @@ async def match_values(
     Returns:
         Dictionary with value matching results
     """
-
+    method = method or "tfidf"
     source_dataset = pd.read_csv(source_dataset_path)
 
     if target_dataset_path == "gdc":
@@ -185,7 +189,7 @@ async def rank_value_matches(
     Returns:
         Dictionary with value matching results
     """
-
+    method = method or "tfidf"
     source_dataset = pd.read_csv(source_dataset_path)
 
     if target_dataset_path == "gdc":
@@ -418,3 +422,7 @@ async def get_available_value_matching_algorithms(
         for name, path in available_algorithms.items()
     ]
     return response
+
+
+def run_mcp_server():
+    server.run(transport="stdio")
