@@ -17,10 +17,10 @@ To see how to use these methods, please refer to the documentation of :py:func:`
       - Description
     * - ``llm``
       - :class:`~bdikit.value_matching.llm.LLM`
-      - | Leverages a large language model (GPT-4 by default) to identify and select the most accurate value matches.
+      - | Leverages LLMs to identify and select the most accurate value matches. Supports multiple models, with `gpt-4o-mini` used as the default.
     * - ``llm_numeric``
       - :class:`~bdikit.value_matching.llm_numeric.LLMNumeric`
-      - | Employs a large language model (GPT-4 by default) to perform numeric value transformations, such as converting ages from years to months.
+      - | Employs LLMs to perform numeric value transformations, such as converting ages from years to months. Supports multiple models, with `gpt-4o-mini` used as the default.
 
 .. list-table:: Methods from other libraries
     :header-rows: 1
