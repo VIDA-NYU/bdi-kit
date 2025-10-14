@@ -7,7 +7,7 @@ tqdm
 scikit-learn
 flair[word-embeddings]>=0.14.0
 requests
-scipy<1.13
+scipy
 matplotlib<3.9
 panel!=1.4.3
 nltk>=3.9.1

@@ -5,7 +5,6 @@ import itertools
 import pandas as pd
 import panel as pn
 from collections import defaultdict
-from IPython.display import display, HTML
 
 from bdikit.schema_matching.base import (
     BaseSchemaMatcher,
@@ -580,8 +579,29 @@ def view_value_matches(
         matches (Union[pd.DataFrame, List[pd.DataFrame]): The value match results obtained by the method
         match_values() or rank_value_matches().
 
-        edit (bool, optional): Whether or not to edit the values within the DataFrame.
+        edit (bool, optional): Whether or not to edit the values within the DataFrame. Editable mode works only in Jupyter notebooks.
     """
+
+    def regular_display():
+        if isinstance(matches, pd.DataFrame):
+            print(matches)
+        else:
+            for match_df in matches:
+                print(match_df)
+
+    # Check if we are in a Jupyter notebook environment
+    try:
+        from IPython.display import display, HTML
+        from IPython import get_ipython
+
+        shell = get_ipython().__class__.__name__
+        if shell != "ZMQInteractiveShell":
+            regular_display()
+            return
+    except ImportError:
+        regular_display()
+        return
+
     if isinstance(matches, list):
         # Grouping DataFrames by metadata (source_attribute and target_attribute columns)
         grouped_matches = defaultdict(list)
