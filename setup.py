@@ -39,6 +39,11 @@ setuptools.setup(
     version=version,
     packages=setuptools.find_packages(),
     install_requires=requires,
+    entry_points={
+        'console_scripts': [
+            'bdikit-mcp=bdikit.mcp:run_mcp_server',
+        ],
+    },
     extras_require={
         'mcp': ['mcp[cli]']
     },
