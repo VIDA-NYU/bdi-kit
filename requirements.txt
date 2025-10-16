@@ -1,4 +1,5 @@
 polyfuzz
+gensim>=4.3.3
 pandas
 valentine>0.2.0
 torch
