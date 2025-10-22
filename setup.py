@@ -41,11 +41,13 @@ setuptools.setup(
     install_requires=requires,
     entry_points={
         'console_scripts': [
-            'bdikit-mcp=bdikit.mcp:run_mcp_server',
+            'bdikit-mcp=bdikit.mcp_server:run_mcp_server',
+            'bdikit-chatbot=bdikit.chatbot:run_streamlit',
         ],
     },
     extras_require={
-        'mcp': ['mcp[cli]']
+        'mcp': ['mcp[cli]'],
+        'chatbot': ['mcp[cli]', 'streamlit', 'langchain', 'langchain-litellm', 'langchain-mcp-adapters'],
     },
     python_requires='>=3.9',
     description="BDI-Kit Library",
