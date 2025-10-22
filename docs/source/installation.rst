@@ -15,6 +15,13 @@ To use bdi-kit from AI agents or assistants via Model Context Protocol (MCP), in
    $ pip install bdi-kit[mcp]
 
 
+If you want to try bdi-kit through a simple chatbot application, install:
+
+::
+
+   $ pip install bdi-kit[chatbot]
+   
+
 To install the latest development version:
 
 ::
