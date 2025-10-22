@@ -14,32 +14,32 @@ Below is a list of the main changes included in this release:
 
 ### New Feature
 
-- **MCP Integration Entry Point:** Added a new entry point to simplify MCP integration and improve interoperability with AI assistants and external tools. (#134)  
-- **Abstracted LLM Primitives:** Introduced an abstraction layer for LLM-based primitives, allowing users to specify their preferred LLM and pass additional arguments dynamically. (#129)  
-- **LLM Integration with Magneto:** Enabled passing an LLM instance and extra arguments directly to the Magneto matcher. (#130)  
+- **MCP Integration Entry Point:** Added a new entry point to simplify MCP integration and improve interoperability with AI assistants and external tools. ([#134](https://github.com/VIDA-NYU/bdi-kit/pull/134))  
+- **Abstracted LLM Primitives:** Introduced an abstraction layer for LLM-based primitives, allowing users to specify their preferred LLM and pass additional arguments dynamically. ([#129](https://github.com/VIDA-NYU/bdi-kit/pull/129))  
+- **LLM Integration with Magneto:** Enabled passing an LLM instance and extra arguments directly to the Magneto matcher. ([#130](https://github.com/VIDA-NYU/bdi-kit/pull/130))  
 
 
 ### Enhancement
 
-- **Extended MCP Server:** Expanded the built-in MCP server with additional tools and utilities to enhance agent-based data harmonization workflows. (#131)  
+- **Extended MCP Server:** Expanded the built-in MCP server with additional tools and utilities to enhance agent-based data harmonization workflows. ([#131](https://github.com/VIDA-NYU/bdi-kit/pull/131))  
 - **Method Arguments Exposure:** Exposed `method_args` in the MCP server and enabled dynamic reading of the selected LLM for better configurability.  
-- **BaseStandard Refactor:** Renamed internal `BaseStandard` functions for improved consistency across primitives. (#128)  
-- **Deprecation Cleanup:** Removed deprecated methods and matchers, including `top_matches()`, `top_value_matches()`, `ct_learning`, and `fasttext`. Also removed related modules, tests, and docs. ([#125](https://github.com/VIDA-NYU/bdi-kit/pull/125))
+- **BaseStandard Refactor:** Renamed internal `BaseStandard` functions for improved consistency across primitives. ([#128](https://github.com/VIDA-NYU/bdi-kit/pull/128))  
+- **Deprecation Cleanup:** Removed deprecated methods and matchers, including `top_matches()`, `top_value_matches()`, `ct_learning`, and `fasttext`. Also removed related modules, tests, and docs. ([#125](https://github.com/VIDA-NYU/bdi-kit/pull/125))  
 
 
 ### Fix
 
 - **PolyFuzz Match Handling:** Ensured PolyFuzz-based matchers always return valid value matches, even when no matches are found.  
-- **Gensim Import Fix:** Added constraints for the Gensim library and corrected subpackage imports for stability. (#137)  
-- **SciPy and Jupyter Compatibility:** Removed unnecessary SciPy version constraints and fixed Jupyter imports for smoother environment setup. (#136)  
-- **Transformers Constraint:** Added a compatibility constraint to the `transformers` library to prevent dependency conflicts. (#132)  
+- **Gensim Import Fix:** Added constraints for the Gensim library and corrected subpackage imports for stability. ([#137](https://github.com/VIDA-NYU/bdi-kit/pull/137))  
+- **SciPy and Jupyter Compatibility:** Removed unnecessary SciPy version constraints and fixed Jupyter imports for smoother environment setup. ([#136](https://github.com/VIDA-NYU/bdi-kit/pull/136))  
+- **Transformers Constraint:** Added a compatibility constraint to the `transformers` library to prevent dependency conflicts. ([#132](https://github.com/VIDA-NYU/bdi-kit/pull/132))  
 
 
 ### Documentation
 
-- **Claude Integration Example:** Added a new example demonstrating how to integrate BDI-Kit with the Claude desktop interface. (#127)  
-- **Contributing Guide:** Moved and expanded contributing instructions into the documentation site for easier access. (#126)  
-- **General Fixes:** Improved clarity and structure in multiple documentation sections, including setup and usage examples. (#135)  
+- **Claude Integration Example:** Added a new example demonstrating how to integrate BDI-Kit with the Claude desktop interface. ([#127](https://github.com/VIDA-NYU/bdi-kit/pull/127))  
+- **Contributing Guide:** Moved and expanded contributing instructions into the documentation site for easier access. ([#126](https://github.com/VIDA-NYU/bdi-kit/pull/126))  
+- **General Fixes:** Improved clarity and structure in multiple documentation sections, including setup and usage examples. ([#135](https://github.com/VIDA-NYU/bdi-kit/pull/135))  
 - **Dataset Additions:** Added the Clark dataset to support additional examples and testing scenarios.  
 
 
