@@ -1,6 +1,15 @@
 # Change Log
 
-## 0.9.0.dev0 (yyyy-mm-dd)
+## 0.9.0 (2025-11-17)
+
+We are pleased to announce the release of **BDI-Kit version 0.9.0**.  
+This version introduces a new **Streamlit-based chatbot interface**, making it easier to interact with BDI-Kit through an intuitive, conversational UI.
+
+Below is the main change included in this release:
+
+### New Feature
+
+- **Streamlit Chatbot Interface:** Added an interactive Streamlit-based chatbot for using BDI-Kit through a lightweight, browser-accessible interface. ([#138](https://github.com/VIDA-NYU/bdi-kit/pull/138))
 
 
 
