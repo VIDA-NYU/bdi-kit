@@ -1,0 +1,109 @@
+version: 0.9.0
+
+tool:
+  name: BDI-Kit
+  repo_url: https://github.com/VIDA-NYU/bdi-kit
+  package_url: https://pypi.org/project/bdi-kit
+  tool_homepage: https://github.com/VIDA-NYU/bdi-kit
+  documentation_url: https://bdi-kit.readthedocs.io/stable
+  tool_type: Library
+  tool_notes: Python library, pip installable
+
+llm:
+  usesLlm: true
+  modelsSupported:  # It can work with multiple models supported in LiteLLM, including open source models.
+    - gpt4o
+    - gpt4o-mini
+    - ollama
+  modelsRequired:
+    - gpt4o-mini
+  bringOwnKey: true
+
+input:
+  - name: Clinical/phenotype Tabular 1
+    dataCategory: clinical-phenotype
+    dataClass: tabular
+    dataType: clinical-ehr
+    format:
+      - csv
+    dataStandard:
+      - Any standard for tabular data
+    proprietary: false
+    source: https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples/datasets
+  - name: Omics/molecular 1
+    dataCategory: omics-molecular
+    dataClass: tabular
+    dataType: proteomics
+    format:
+      - none
+    dataStandard:
+      - None
+    proprietary: false
+    source: https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples/datasets
+
+output:
+  - name: Clinical/phenotype tabular 1
+    dataCategory: clinical-phenotype
+    dataClass: tabular
+    dataType: clinical-ehr
+    format:
+      - csv
+      - dataframe
+      - json
+    dataStandard:
+      - GDC
+      - PDC
+      - Synapse
+      - other common data models
+    proprietary: false
+    source: https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples/datasets
+  - name: Omics/molecular tabular 1
+    dataCategory: omics-molecular
+    dataClass: tabular
+    dataType: clinical-ehr
+    format:
+      - dataframe
+    dataStandard:
+      - Any target dataset represented as a Pandas DataFrame
+    proprietary: false
+    source: https://github.com/VIDA-NYU/bdi-kit/tree/devel/examples/datasets
+
+license:
+  license_type: Apache-2.0
+  link: https://github.com/VIDA-NYU/bdi-kit/blob/devel/LICENSE.txt
+
+funding:
+  source: ASKEM ARPA-H
+  agreement: Not specified
+  link: https://arpa-h.gov/
+
+domains:
+  - omics/clinical
+
+credit:
+  - name: NYU ASKEM Team
+    role: Developer
+    org: New York University
+    url: https://vida-nyu.github.io/
+
+target_users:
+  primary_user:
+    user_type: researcher
+    technical_literacy_level:
+      - novice
+    biomedical_literacy_level:
+      - intermediate
+  secondary_user:
+    user_type: Data Scientist/Developer
+    technical_literacy_level:
+      - novice
+    biomedical_literacy_level:
+      - intermediate
+
+maturity:
+  beginning_maturity: 1
+  current_maturity: 7
+
+media: [{ "link": "https://bdi-kit.readthedocs.io/stable/" }]
+
+collaborations: []
