@@ -1,0 +1,9 @@
+name: CRA-Validation
+
+on: [push, pull_request]
+
+jobs:
+  validate-tool:
+    uses: ARPA-H-BDF/bdfkb-schema/.github/workflows/ci-validate.yaml@main
+    with:
+      python-version: '3.10'
