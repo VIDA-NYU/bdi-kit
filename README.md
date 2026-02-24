@@ -35,6 +35,13 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 ```
 
 
+## Demo Video
+
+This video demonstrates a brief overview of BDI-Kit, showcasing its functionality through both the Python API and the chatbot-style agent interface.
+
+[![Watch a demo of BDI-Kit](docs/source/_static/images/demo_thumbnail.png)](https://drive.google.com/file/d/1snTXVFnVXwXJmIJ3WsxMbPjq9JLDG7g-/view?usp=sharing)
+
+
 ## Contributing
 
 To learn more about making a contribution to bdi-kit, please see our [Contributing guide](./CONTRIBUTING.md).
