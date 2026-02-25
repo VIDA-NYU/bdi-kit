@@ -17,7 +17,6 @@ from polyfuzz.models import (
 from flair.embeddings import TransformerWordEmbeddings, WordEmbeddings
 from bdikit.config import get_device, VALUE_MATCHING_THRESHOLD
 
-
 flair.device = torch.device(get_device())
 
 

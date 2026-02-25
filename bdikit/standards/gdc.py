@@ -4,7 +4,6 @@ from os.path import join, dirname
 from typing import List, Dict
 from bdikit.standards.base import BaseStandard
 
-
 GDC_SCHEMA_PATH = join(dirname(__file__), "../resource/gdc_schema.json")
 
 

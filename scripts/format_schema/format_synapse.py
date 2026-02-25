@@ -1,7 +1,6 @@
 import json
 from os.path import join, dirname
 
-
 RAW_SYNAPSE_PATH = join(dirname(__file__), "./synapse_raw_schema.json")
 FORMATTED_SYNAPSE_PATH = join(
     dirname(__file__), "../../bdikit/resource/synapse_schema.json"
