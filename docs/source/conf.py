@@ -105,6 +105,8 @@ autodoc_mock_imports = [
     "panel",
     "tqdm",
     "rapidfuzz",
+    "pydantic-core",
+    "litellm",
 ]
 
 autodoc_type_aliases = {"MappingSpecLike": "MappingSpecLike"}
