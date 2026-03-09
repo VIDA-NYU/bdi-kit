@@ -107,6 +107,7 @@ autodoc_mock_imports = [
     "rapidfuzz",
     "pydantic-core",
     "litellm",
+    "json_repair",
 ]
 
 autodoc_type_aliases = {"MappingSpecLike": "MappingSpecLike"}
