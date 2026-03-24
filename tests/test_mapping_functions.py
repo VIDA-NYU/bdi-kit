@@ -60,6 +60,43 @@ def test_dictionary_mapper_missing_key():
     assert np.isnan(mapped_column[6])
 
 
+def test_dictionary_mapper_repr():
+    # given
+    dict_mapper = DictionaryMapper(
+        dictionary={"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6},
+        missing_key_value="unknown",
+    )
+
+    # when
+    repr_str = repr(dict_mapper)
+
+    # then
+    assert "'a': 1" in repr_str
+    assert "'b': 2" in repr_str
+
+
+def test_identity_mapper_repr():
+    # given
+    identity_mapper = IdentityValueMapper()
+
+    # then
+    repr_str = repr(identity_mapper)
+    assert "type" in repr_str
+    assert "identity" in repr_str
+
+
+def test_function_mapper_repr():
+    # given
+    fn_mapper = FunctionValueMapper(function=lambda x: x)
+
+    # when
+    repr_str = repr(fn_mapper)
+
+    # then
+    assert "FunctionValueMapper" in repr_str
+    assert "<lambda>" in repr_str or "lambda" in repr_str
+
+
 def test_custom_function_mapper():
     # given
     str_column = pd.Series(data=["a", "b", "c", "d", "e"], name="column_str")
