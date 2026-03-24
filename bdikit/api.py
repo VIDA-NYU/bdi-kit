@@ -973,7 +973,7 @@ class ColumnMappingSpec(TypedDict):
     mapper: ValueMapper
 
 
-def merge_mappings(
+def create_harmonization_spec(
     mappings: MappingSpecLike, user_mappings: Optional[MappingSpecLike] = None
 ) -> List:
     """
@@ -1050,6 +1050,24 @@ def merge_mappings(
         )
 
     return final_mappings
+
+
+def merge_mappings(
+    mappings: MappingSpecLike, user_mappings: Optional[MappingSpecLike] = None
+) -> List:
+    """
+    Deprecated: Use :py:func:`~bdikit.api.create_harmonization_spec()` instead.
+
+    This function is deprecated and will be removed in a future version.
+    Please use create_harmonization_spec() which provides the same functionality.
+    """
+    warnings.warn(
+        "merge_mappings() is deprecated and will be removed in a future version. "
+        "Please use create_harmonization_spec() instead.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
+    return create_harmonization_spec(mappings, user_mappings)
 
 
 def _normalize_mapping_spec(mapping_spec: MappingSpecLike) -> List[ColumnMappingSpec]:
@@ -1229,7 +1247,7 @@ def create_mapper(
 
     if isinstance(input, Dict):
         if all(k in input for k in ["source_attribute", "target_attribute"]):
-            # This could be the mapper created by merge_mappings() or a
+            # This could be the mapper created by create_harmonization_spec() or a
             # specification defined by the user
             if "mapper" in input:
                 if isinstance(input["mapper"], ValueMapper):
