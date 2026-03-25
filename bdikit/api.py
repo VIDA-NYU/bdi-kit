@@ -1174,6 +1174,13 @@ def materialize_mapping(
                 " the input table."
             )
 
+    # Preserve the source column order from the input table regardless of the
+    # mapping specification order.
+    mapping_spec_list = sorted(
+        mapping_spec_list,
+        key=lambda mapping: input_table.columns.get_loc(mapping["source_attribute"]),
+    )
+
     # execute the actual mapping plan
     output_dataframe = pd.DataFrame()
     for column_spec in mapping_spec_list:

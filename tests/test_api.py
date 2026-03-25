@@ -253,6 +253,37 @@ def test_materialize_mapping():
     assert df_mapped["string column 2"].eq(["A", "B", "C", "D", "E"]).all()
 
 
+def test_materialize_mapping_keeps_input_column_order():
+    # given
+    df_base = pd.DataFrame(
+        {
+            "column_str_1": ["a", "b", "c"],
+            "column_str_2": ["x", "y", "z"],
+        }
+    )
+
+    # Intentionally reversed to validate that output order follows input_table,
+    # not mapping_spec order.
+    value_mapping_spec = [
+        {
+            "source_attribute": "column_str_2",
+            "target_attribute": "string column 2",
+            "mapper": IdentityValueMapper(),
+        },
+        {
+            "source_attribute": "column_str_1",
+            "target_attribute": "string column 1",
+            "mapper": IdentityValueMapper(),
+        },
+    ]
+
+    # when
+    df_mapped = bdi.materialize_mapping(df_base, mapping_spec=value_mapping_spec)
+
+    # then
+    assert df_mapped.columns.tolist() == ["string column 1", "string column 2"]
+
+
 def test_preview_domain():
     # given
     source = pd.DataFrame(
