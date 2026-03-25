@@ -28,12 +28,15 @@ class LLM(BaseValueMatcher):
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
 
+        source_attribute = source_context["attribute_name"]
+        target_attribute = target_context["attribute_name"]
         if (
             len(source_values) > 25
         ):  # TODO: Improve this, avoid calling the API if the number of source values is too high (e.g. IDs)
-            return []
-        source_attribute = source_context["attribute_name"]
-        target_attribute = target_context["attribute_name"]
+            return self._fill_missing_matches(
+                source_values, [], source_attribute, target_attribute
+            )
+
         additional_source_cxt = get_additional_context(source_context, "source")
         additional_target_cxt = get_additional_context(target_context, "target")
         additional_context = additional_source_cxt + additional_target_cxt
