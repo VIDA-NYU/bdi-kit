@@ -30,12 +30,6 @@ class LLM(BaseValueMatcher):
 
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
-        if (
-            len(source_values) > 25
-        ):  # TODO: Improve this, avoid calling the API if the number of source values is too high (e.g. IDs)
-            return self._fill_missing_matches(
-                source_values, [], source_attribute, target_attribute
-            )
 
         additional_source_cxt = get_additional_context(source_context, "source")
         additional_target_cxt = get_additional_context(target_context, "target")

@@ -15,6 +15,37 @@ class AttributeMatch(BaseModel):
     target_attribute: str
 
 
+def _extract_attribute_pair(match: Any) -> tuple[str, str]:
+    """Normalize attribute-match inputs across tool adapters.
+
+    Supports:
+    - `AttributeMatch` / Pydantic models with matching fields
+    - dict-like payloads
+    - 2-item sequences as (source_attribute, target_attribute)
+    """
+    if isinstance(match, BaseModel):
+        source = getattr(match, "source_attribute", None)
+        target = getattr(match, "target_attribute", None)
+    elif isinstance(match, dict):
+        source = match.get("source_attribute")
+        target = match.get("target_attribute")
+    elif isinstance(match, (list, tuple)) and len(match) == 2:
+        source, target = match
+    else:
+        raise ValueError(
+            "Invalid attribute match format. Expected object with "
+            "'source_attribute' and 'target_attribute'."
+        )
+
+    if source is None or target is None:
+        raise ValueError(
+            "Invalid attribute match format. Missing 'source_attribute' "
+            "or 'target_attribute'."
+        )
+
+    return str(source), str(target)
+
+
 # Initialize FastMCP server
 server = FastMCP(
     name="BDI-Kit",
@@ -34,7 +65,7 @@ server.kwargs = {}
 async def match_schema(
     source_dataset_path: str,
     target_dataset_path: Optional[str] = "gdc",
-    method: Optional[str] = "magneto_ft_bp",
+    method: Optional[str] = "magneto_ft_llm",
     method_args: Optional[Dict[str, Any]] = {},
 ) -> List[Dict[str, Any]]:
     """Performs schema matching task between the source table and the given target schema
@@ -42,7 +73,7 @@ async def match_schema(
     Args:
         source_dataset_path: Path to the source CSV data file
         target_dataset_path: Optional path to target schema (default is "gdc", which uses the GDC schema)
-        method: Optional method to use for schema matching (default is "magneto_ft_bp")
+        method: Optional method to use for schema matching (default is "magneto_ft_llm")
         method_kwargs: Optional dictionary of keyword arguments to pass to the schema matching method
 
     Returns:
@@ -50,7 +81,7 @@ async def match_schema(
     """
     source_dataset = pd.read_csv(source_dataset_path)
     target_dataset_path = target_dataset_path or "gdc"
-    method = method or "magneto_ft_bp"
+    method = method or "magneto_ft_llm"
 
     if target_dataset_path == "gdc":
         target_dataset = target_dataset_path
@@ -73,8 +104,8 @@ async def rank_schema_matches(
     source_dataset_path: str,
     target_dataset_path: Optional[str] = "gdc",
     attributes: Optional[List[str]] = None,
-    top_k: Optional[int] = 5,
-    method: Optional[str] = "magneto_ft_bp",
+    top_k: Optional[int] = 10,
+    method: Optional[str] = "magneto_ft_llm",
     method_args: Optional[Dict[str, Any]] = {},
 ) -> List[Dict[str, Any]]:
     """Returns the top-k matches between the source and target tables. Where k is a value specified by the user.
@@ -83,8 +114,8 @@ async def rank_schema_matches(
         source_dataset_path: Path to the source CSV data file
         target_dataset_path: Optional path to target schema (default is "gdc", which uses the GDC schema)
         attributes: Optional list of attributes/columns to match
-        top_k: Optional number of top matches to return (default is 5)
-        method: Optional method to use for schema matching (default is "magneto_ft_bp")
+        top_k: Optional number of top matches to return (default is 10)
+        method: Optional method to use for schema matching (default is "magneto_ft_llm")
         method_kwargs: Optional dictionary of keyword arguments to pass to the schema matching method
 
     Returns:
@@ -92,7 +123,7 @@ async def rank_schema_matches(
     """
     source_dataset = pd.read_csv(source_dataset_path)
     target_dataset_path = target_dataset_path or "gdc"
-    method = method or "magneto_ft_bp"
+    method = method or "magneto_ft_llm"
 
     if target_dataset_path == "gdc":
         target_dataset = target_dataset_path
@@ -119,7 +150,7 @@ async def match_values(
     source_dataset_path: str,
     target_dataset_path: str,
     attribute_matches: Optional[List[AttributeMatch]] = None,
-    method: Optional[str] = "tfidf",
+    method: Optional[str] = "llm",
     method_args: Optional[Dict[str, Any]] = {},
 ) -> List[Dict[str, Any]]:
     """Finds matches between attribute/column values from the source dataset and attribute/column
@@ -130,13 +161,13 @@ async def match_values(
         target_dataset_path: Path to target schema or a standard vocabulary name (e.g. "gdc", which uses the GDC schema)
         attribute_matches: The attribute/column pairs from the source and target dataset for which to find value matches.
             If not provided, it will use  the attribute matches from the schema matching step.
-        method: Optional method to use for value matching (default is "tfidf").
+        method: Optional method to use for value matching (default is "llm").
         method_args: Optional dictionary of keyword arguments to pass to the value matching method
 
     Returns:
         Dictionary with value matching results
     """
-    method = method or "tfidf"
+    method = method or "llm"
     source_dataset = pd.read_csv(source_dataset_path)
 
     if target_dataset_path == "gdc":
@@ -154,8 +185,7 @@ async def match_values(
     method_args = update_method_args(method, method_args)
     value_matches_list = []
     for match in attribute_matches:
-        source = match["source_attribute"]
-        target = match["target_attribute"]
+        source, target = _extract_attribute_pair(match)
 
         matches = bdi.match_values(
             source_dataset,
@@ -184,9 +214,9 @@ async def match_values(
 async def rank_value_matches(
     source_dataset_path: str,
     target_dataset_path: str,
-    attribute_matches: Optional[List[List[str]]] = None,
-    top_k: Optional[int] = 5,
-    method: Optional[str] = "tfidf",
+    attribute_matches: Optional[List[Any]] = None,
+    top_k: Optional[int] = 10,
+    method: Optional[str] = "llm",
     method_args: Optional[Dict[str, Any]] = {},
 ) -> List[Dict[str, Any]]:
     """Returns the top-k value matches between the source and target attributes/columns. Where k is a value specified by the user.
@@ -196,14 +226,14 @@ async def rank_value_matches(
         target_dataset_path: Path to target schema or a standard vocabulary name (e.g. "gdc", which uses the GDC schema)
         attribute_matches: The attribute/column of the source and target dataset for which to find value matches for.
             If not provided, it will use  the attribute matches from the schema matching step.
-        top_k: Optional number of top matches to return (default is 5)
-        method: Optional method to use for value matching (default is "tfidf").
+        top_k: Optional number of top matches to return (default is 10)
+        method: Optional method to use for value matching (default is "llm").
         method_kwargs: Optional dictionary of keyword arguments to pass to the value matching method
 
     Returns:
         Dictionary with value matching results
     """
-    method = method or "tfidf"
+    method = method or "llm"
     source_dataset = pd.read_csv(source_dataset_path)
 
     if target_dataset_path == "gdc":
@@ -222,8 +252,7 @@ async def rank_value_matches(
     method_args = update_method_args(method, method_args)
     value_matches_list = []
     for match in attribute_matches:
-        source = match["source_attribute"]
-        target = match["target_attribute"]
+        source, target = _extract_attribute_pair(match)
 
         matches = bdi.rank_value_matches(
             source_dataset,
@@ -444,9 +473,9 @@ def update_method_args(method: str, method_args: Dict[str, Any]) -> Dict[str, An
     if "llm" in server.kwargs:
         param_dict = {}
         if method == "magneto_ft_llm" or method == "magneto_zs_llm":
-            param_dict = {"reranker_model": server.kwargs["llm"]}
+            param_dict = {"reranker_model": "openai/gpt-4o-mini"}
         elif method == "llm" or method == "llm_numeric":
-            param_dict = {"model_name": server.kwargs["llm"]}
+            param_dict = {"model_name": "openai/gpt-4o-mini"}
 
         method_args.update(param_dict)
 
