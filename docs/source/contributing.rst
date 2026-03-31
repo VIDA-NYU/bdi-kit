@@ -2,7 +2,7 @@
 Contributing
 ============
 
-There are many ways to contribute to bdi-kit, such as improving the codebase, reporting 
+There are many ways to contribute to BDI-Kit, such as improving the codebase, reporting 
 issues or bugs, enhancing the documentation, reviewing pull requests from other developers, 
 adding new matching methods, or expanding support for additional standards (data models). 
 See the instructions below to get started!
@@ -53,7 +53,7 @@ Contributors can add new methods for schema and value matching by following thes
 Adding New Standards (Data Models)
 ----------------------------------
 
-Contributors can extend bdi-kit to additional standards (data models) by following these steps:
+Contributors can extend BDI-Kit to additional standards (data models) by following these steps:
 
 1. Create a Python module inside the "standards" folder (`bdikit/standards`). 
 2. Define a class in the module to implements `BaseStandard`. This class should implement four methods:

@@ -8,14 +8,14 @@ This package works with Python 3.9+ in Linux and Mac. You can install the latest
    $ pip install bdi-kit
 
 
-To use bdi-kit from AI agents or assistants via Model Context Protocol (MCP), install:
+To use BDI-Kit from AI agents or assistants via Model Context Protocol (MCP), install:
 
 ::
 
    $ pip install bdi-kit[mcp]
 
 
-If you want to try bdi-kit through a simple chatbot application, install:
+If you want to try BDI-Kit through a simple chatbot application, install:
 
 ::
 

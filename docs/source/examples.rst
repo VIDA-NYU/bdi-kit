@@ -1,7 +1,7 @@
 Examples
 ========
 
-Here you can find different Jupyter notebook examples about how to use `bdi-kit`:
+Here you can find different Jupyter notebook examples about how to use BDI-Kit for different tasks and with different methods. These examples are also available in the `examples` folder of the GitHub repository:
 
 - :example:`Table-to-Table Data Harmonization <table_to_table.ipynb>`
 - :example:`Changing  the parameters of the matching methods <changing_parameters.ipynb>`

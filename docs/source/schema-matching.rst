@@ -1,8 +1,8 @@
 Schema Matching Methods
 =======================
 
-This page provides an overview of all schema matching methods available in the `bdikit` library.
-Some methods reuse the implementation of other libraries such as `Valentine <https://delftdata.github.io/valentine/>`_ (e.g, `similarity_flooding`, `coma` and `cupid`) while others are implemented originally for bdikit (e.g., `gpt`, `ct_learning`, and `two_phase`).
+This page provides an overview of all schema matching methods available in the BDI-Kit library.
+Some methods reuse the implementation of other libraries such as `Valentine <https://delftdata.github.io/valentine/>`_ (e.g, `similarity_flooding`, `coma` and `cupid`) while others are implemented originally for BDI-Kit (e.g., `gpt`, `ct_learning`, and `two_phase`).
 To see how to use these methods, please refer to the documentation of :py:func:`~bdikit.api.match_schema()` in the :py:mod:`~bdikit.api` module.
 
 .. ``bdikit module <api>`.

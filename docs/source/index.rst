@@ -1,9 +1,9 @@
-bdi-kit Documentation
+BDI-Kit Documentation
 =====================
 
 **Version:** |version|
 
-The bdi-kit is a library that assist users in performing data harmonization.
+The BDI-Kit is a library that assist users in performing data harmonization.
 It provides state-of-the-art tools to streamline the process of integrating and
 transforming disparate datasets (with a focus on biomedical data), and includes
 APIs for performing tasks such as:
@@ -12,7 +12,7 @@ APIs for performing tasks such as:
 - Value matching
 - Data transformation to a target schema/standard
 
-**Warning:** bdi-kit is currently in *alpha* stage and under heavy development. Expect APIs to change.
+**Warning:** BDI-Kit is currently in *alpha* stage and under heavy development. Expect APIs to change.
 
 You can find the source code in our `GitHub repository <https://github.com/VIDA-NYU/bdi-kit>`__.
 

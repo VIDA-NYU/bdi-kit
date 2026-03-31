@@ -1,7 +1,7 @@
 Value Matching Methods
 ======================
 
-This page provides an overview of all value matching methods available in the `bdikit` library.
+This page provides an overview of all value matching methods available in the BDI-Kit library.
 Some methods reuse the implementation of other libraries such as `PolyFuzz <https://maartengr.github.io/PolyFuzz/>`_ (e.g, `embedding` and `tfidf`) while others are implemented originally for bdikit (e.g., `gpt`).
 To see how to use these methods, please refer to the documentation of :py:func:`~bdikit.api.match_values()` in the :py:mod:`~bdikit.api` module.
 
