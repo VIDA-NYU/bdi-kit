@@ -5,22 +5,20 @@
 [![Lint](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml)
 
 
-# bdi-kit 
+# BDI-Kit 
 
-The `bdi-kit` is a library that assist users in performing data harmonization. It provides state-of-the-art tools to streamline the process of integrating and transforming disparate datasets (with a focus on biomedical data), and includes APIs for performing tasks such as:
+**BDI-Kit** is a library that assist users in performing data harmonization. It provides state-of-the-art tools to streamline the process of integrating and transforming disparate datasets (with a focus on biomedical data), and includes APIs for performing tasks such as:
 - Schema matching
 - Value matching
 - Data transformation to a target schema/standard
 
-**Warning:** `bdi-kit` is currently in *alpha* stage and under heavy development. Expect APIs to change.
 
-
-## Documentation
+## 📚 Documentation
 
 Documentation is available at [https://bdi-kit.readthedocs.io/](https://bdi-kit.readthedocs.io/).
 
 
-## Installation
+## 🛠️ Installation
 
 You can install the latest stable version of this library from [PyPI](https://pypi.org/project/bdi-kit/):
 
@@ -35,13 +33,27 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 ```
 
 
-## Demo Video
+## 🎬 Demo Video
 
 This video demonstrates a brief overview of BDI-Kit, showcasing its functionality through both the Python API and the chatbot-style agent interface.
 
-[![Watch a demo of BDI-Kit](docs/source/_static/images/demo_thumbnail.png)](https://drive.google.com/file/d/1snTXVFnVXwXJmIJ3WsxMbPjq9JLDG7g-/view?usp=sharing)
+[![Watch a demo of BDI-Kit](docs/source/_static/images/demo_thumbnail.png)](https://drive.google.com/file/d/1gMlZuocYrKFQYDZOphIyFj-nvjtx4ODR/view?usp=sharing)
 
 
-## Contributing
+## 🤝 Contributing
 
-To learn more about making a contribution to bdi-kit, please see our [Contributing guide](./CONTRIBUTING.md).
+To learn more about making a contribution to BDI-Kit, please see our [Contributing guide](./CONTRIBUTING.md).
+
+
+## 🔖 Citation
+
+If you find BDI-Kit useful in your work, please consider citing:
+
+```bibtex
+@article{lopez2026bdikit,
+  title={{BDI-Kit: An AI-Powered Toolkit for Biomedical Data Harmonization}},
+  author={Lopez, Roque and Santos, Aecio and Koutras, Christos and Freire, Juliana},
+  journal={{Patterns}},
+  volume={7},
+  year={2026}
+}
