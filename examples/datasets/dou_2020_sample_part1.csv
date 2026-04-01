@@ -1,0 +1,63 @@
+Country,Histologic_type,Path_Stage_Reg_Lymph_Nodes-pN,Gender,Progesterone_Receptor,Num_full_term_pregnancies,Histologic_Grade_FIGO,FIGO_stage
+United States,Endometrioid,pN1 (FIGO IIIC1),Female,Cannot be determined,Unknown,FIGO grade 3,IIIC1
+Ukraine,Endometrioid,pN0,Female,Positive,Unknown,FIGO grade 3,IB
+Ukraine,Endometrioid,pNX,Female,Positive,2,FIGO grade 1,IA
+United States,Endometrioid,pNX,Female,Cannot be determined,3,FIGO grade 3,IVB
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,4 or more,FIGO grade 1,IA
+Ukraine,Endometrioid,pN0,Female,Positive,1,FIGO grade 3,IIIA
+Ukraine,Endometrioid,pNX,Female,Positive,2,FIGO grade 2,IIIA
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,4 or more,FIGO grade 1,IB
+United States,Endometrioid,pNX,Female,Cannot be determined,3,FIGO grade 1,IA
+United States,Endometrioid,pN0,Female,Cannot be determined,1,FIGO grade 1,IA
+United States,Endometrioid,pN0,Female,Cannot be determined,3,FIGO grade 1,II
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 1,IA
+Poland,Endometrioid,pN0,Female,Positive,2,FIGO grade 2,II
+Poland,Serous,pN2 (FIGO IIIC2),Female,Positive,1,,IIIC2
+Ukraine,Endometrioid,pN0,Female,Positive,1,FIGO grade 2,IB
+United States,Endometrioid,pNX,Female,Cannot be determined,4 or more,FIGO grade 2,IA
+United States,Endometrioid,pN0,Female,Unknown,2,FIGO grade 2,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,3,FIGO grade 2,IA
+United States,Clear cell,pN2 (FIGO IIIC2),Female,Cannot be determined,3,,IIIC2
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,4 or more,FIGO grade 1,IA
+Ukraine,Endometrioid,pNX,Female,Positive,2,FIGO grade 2,IA
+United States,Endometrioid,pNX,Female,Cannot be determined,1,FIGO grade 1,IA
+United States,Endometrioid,pNX,Female,Cannot be determined,3,FIGO grade 1,IA
+Ukraine,Endometrioid,pN0,Female,Positive,1,FIGO grade 1,IA
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,1,FIGO grade 2,IA
+Ukraine,Endometrioid,pNX,Female,Positive,Unknown,FIGO grade 2,IA
+United States,Serous,pNX,Female,Positive,Unknown,,IB
+Other_specify,Serous,pN1 (FIGO IIIC1),Female,Cannot be determined,1,,IIIC1
+Other_specify,Serous,pNX,Female,Positive,1,,IB
+United States,Endometrioid,pN0,Female,Cannot be determined,2,FIGO grade 1,IA
+Poland,Endometrioid,pN0,Female,Positive,2,FIGO grade 2,IIIB
+United States,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 1,IA
+Ukraine,Serous,,,,,,
+United States,Endometrioid,pN0,Female,Positive,4 or more,FIGO grade 2,IB
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 2,IA
+United States,Endometrioid,pN0,Female,Cannot be determined,,FIGO grade 1,IIIA
+United States,Serous,pNX,Female,Cannot be determined,2,,IA
+Ukraine,Endometrioid,pNX,Female,Positive,Unknown,FIGO grade 2,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 2,IA
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,2,FIGO grade 2,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,,FIGO grade 1,IA
+United States,Endometrioid,pNX,Female,Cannot be determined,,FIGO grade 1,IA
+Ukraine,Endometrioid,pN0,Female,Positive,Unknown,FIGO grade 1,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,1,FIGO grade 2,IB
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 2,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,1,FIGO grade 1,IB
+Ukraine,Endometrioid,pN0,Female,Positive,,FIGO grade 2,IA
+Ukraine,Endometrioid,pNX,Female,Positive,1,FIGO grade 3,IB
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,Unknown,FIGO grade 2,IIIA
+United States,Endometrioid,pN0,Female,Cannot be determined,,FIGO grade 2,IA
+Ukraine,Endometrioid,pN0,Female,Positive,1,FIGO grade 2,IA
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,2,FIGO grade 2,IB
+Ukraine,Endometrioid,pN0,Female,Positive,1,FIGO grade 2,IA
+Other_specify,Endometrioid,pN0,Female,Cannot be determined,Unknown,FIGO grade 2,IB
+United States,Endometrioid,pN0,Female,Cannot be determined,2,FIGO grade 2,IB
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,4 or more,FIGO grade 1,IA
+,Carcinosarcoma,,,,,,
+United States,Endometrioid,pN0,Female,Cannot be determined,,FIGO grade 1,IA
+Other_specify,Endometrioid,pNX,Female,Cannot be determined,2,FIGO grade 1,IA
+United States,Serous,pNX,Female,Cannot be determined,4 or more,,IIIA
+Ukraine,Endometrioid,pNX,Female,Negative,3,FIGO grade 1,IA
+United States,Endometrioid,pNX,Female,Cannot be determined,3,FIGO grade 1,IA
