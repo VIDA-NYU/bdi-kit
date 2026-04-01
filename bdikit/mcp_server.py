@@ -1,4 +1,6 @@
 import argparse
+import os
+import re
 import bdikit as bdi
 import pandas as pd
 from pydantic import BaseModel
@@ -471,11 +473,20 @@ async def get_available_value_matching_algorithms(
 
 def update_method_args(method: str, method_args: Dict[str, Any]) -> Dict[str, Any]:
     if "llm" in server.kwargs:
+        llm_name = server.kwargs["llm"]
         param_dict = {}
+
         if method == "magneto_ft_llm" or method == "magneto_zs_llm":
-            param_dict = {"reranker_model": "openai/gpt-4o-mini"}
+            param_dict = {"reranker_model": llm_name}
         elif method == "llm" or method == "llm_numeric":
-            param_dict = {"model_name": "openai/gpt-4o-mini"}
+            param_dict = {"model_name": llm_name}
+
+        # If the model name has a @ in this format, it's from Portkey, send the appropriate configuration
+        if re.search(r".+/@.+", llm_name):
+            param_dict["api_base"] = os.getenv("PORTKEY_API_BASE")
+            param_dict["extra_headers"] = {
+                "x-portkey-api-key": os.getenv("PORTKEY_API_KEY")
+            }
 
         method_args.update(param_dict)
 

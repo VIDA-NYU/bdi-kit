@@ -1,4 +1,5 @@
 import os
+import re
 import sys
 
 # Relaunch with streamlit if not already running inside streamlit
@@ -324,20 +325,17 @@ Response format:
 
 async def agent_worker(request_queue, response_queue):
     """Background worker that maintains the async context"""
+    llm_kwargs = {}
+
+    # If the model name has a @ in this format, it's from Portkey, send the appropriate configuration
+    if re.search(r".+/@.+", llm_model):
+        llm_kwargs = {
+            "api_base": os.getenv("PORTKEY_API_BASE"),
+            "extra_headers": {"x-portkey-api-key": os.getenv("PORTKEY_API_KEY")},
+        }
     try:
         print(f"[AGENT] Initializing with model: {llm_model}")
-        if (
-            "@" in llm_model
-        ):  # if the model name has a @, assume it's from Portkey and use the ChatLiteLLM with the appropriate configuration
-            llm = ChatLiteLLM(
-                model=llm_model,
-                api_base="https://ai-gateway.apps.cloud.rt.nyu.edu/v1",
-                extra_headers={"x-portkey-api-key": os.getenv("PORTKEY_API_KEY")},
-                streaming=True,
-                timeout=300,
-            )
-        else:
-            llm = ChatLiteLLM(model=llm_model, temperature=1.0)
+        llm = ChatLiteLLM(model=llm_model, streaming=True, timeout=300, **llm_kwargs)
 
         async with stdio_client(server_params) as (read, write):
             async with ClientSession(read, write) as session:
