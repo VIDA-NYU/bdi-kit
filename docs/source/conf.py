@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath("../../"))
 # -- Project information -----------------------------------------------------
 
 project = "BDI-Kit"
-copyright = "2024, NYU"
+copyright = ""
 author = "NYU"
 master_doc = "index"
 
@@ -138,3 +138,6 @@ extlinks = {
         None,
     ),
 }
+
+html_show_sphinx = False
+html_show_copyright = False
