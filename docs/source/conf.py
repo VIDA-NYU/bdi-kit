@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath("../../"))
 
 # -- Project information -----------------------------------------------------
 
-project = "bdi-kit"
+project = "BDI-Kit"
 copyright = "2024, NYU"
 author = "NYU"
 master_doc = "index"
