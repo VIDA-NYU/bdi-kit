@@ -45,10 +45,10 @@ llm_model = args.llm
 
 # Page configuration
 st.set_page_config(
-    page_title="AI Agent to use BDI-Kit", page_icon="🤖", layout="centered"
+    page_title="BDI-Kit AI Agent", page_icon="🤖", layout="centered"
 )
 
-st.title("🤖 AI Agent to use BDI-Kit")
+st.title("🤖 BDI-Kit AI Agent")
 st.markdown("Integrate and harmonize your datasets")
 
 # Initialize session state
