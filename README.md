@@ -57,3 +57,7 @@ If you find BDI-Kit useful in your work, please consider citing:
   volume={7},
   year={2026}
 }
+```
+
+
+You can also find [here](https://bdi-kit.readthedocs.io/) our other papers related to the BDI-Kit library.

@@ -27,9 +27,10 @@ The following quick demo illustrates how BDI-Kit can be used through both the Py
 
    <br><br>
 
-For more details about the design and capabilities of BDI-Kit, see our paper:
+For more details about the design and capabilities of BDI-Kit, see our papers:
 
 - `BDI-Kit: An AI-Powered Toolkit for Biomedical Data Harmonization <https://www.cell.com/action/showPdf?pii=S2666-3899%2825%2900318-6>`__  (preferred citation)
+- `BDI-Kit Demo: A Toolkit for Programmable and Conversational Data Harmonization <https://arxiv.org/pdf/2604.06405>`__
 
 
 .. toctree::
