@@ -472,17 +472,20 @@ async def get_available_value_matching_algorithms(
 
 
 def update_method_args(method: str, method_args: Dict[str, Any]) -> Dict[str, Any]:
+    use_llm = False
     if "llm" in server.kwargs:
         llm_name = server.kwargs["llm"]
         param_dict = {}
 
         if method == "magneto_ft_llm" or method == "magneto_zs_llm":
             param_dict = {"reranker_model": llm_name}
+            use_llm = True
         elif method == "llm" or method == "llm_numeric":
             param_dict = {"model_name": llm_name}
+            use_llm = True
 
         # If the model name has a @ in this format, it's from Portkey, send the appropriate configuration
-        if re.search(r".+/@.+", llm_name):
+        if use_llm and re.search(r".+/@.+", llm_name):
             param_dict["api_base"] = os.getenv("PORTKEY_API_BASE")
             param_dict["extra_headers"] = {
                 "x-portkey-api-key": os.getenv("PORTKEY_API_KEY")

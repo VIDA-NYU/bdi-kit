@@ -1,5 +1,4 @@
 import os
-import re
 import sys
 
 # Relaunch with streamlit if not already running inside streamlit
@@ -21,11 +20,13 @@ if os.environ.get("STREAMLIT_RUN") != "1":
     )
     sys.exit(0)
     import os
+import re
 import queue
 import asyncio
 import argparse
 import threading
 import time
+import litellm
 import streamlit as st
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -34,6 +35,8 @@ from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import AIMessage, ToolMessage, HumanMessage
 from langchain_litellm import ChatLiteLLM
 from langgraph.checkpoint.memory import InMemorySaver
+
+litellm.suppress_debug_info = True
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -44,9 +47,7 @@ args, _ = parser.parse_known_args()
 llm_model = args.llm
 
 # Page configuration
-st.set_page_config(
-    page_title="BDI-Kit AI Agent", page_icon="🤖", layout="centered"
-)
+st.set_page_config(page_title="BDI-Kit AI Agent", page_icon="🤖", layout="centered")
 
 st.title("🤖 BDI-Kit AI Agent")
 st.markdown("Integrate and harmonize your datasets")
@@ -335,7 +336,9 @@ async def agent_worker(request_queue, response_queue):
         }
     try:
         print(f"[AGENT] Initializing with model: {llm_model}")
-        llm = ChatLiteLLM(model=llm_model, streaming=True, timeout=300, **llm_kwargs)
+        llm = ChatLiteLLM(
+            model=llm_model, streaming=True, max_retries=1, timeout=300, **llm_kwargs
+        )
 
         async with stdio_client(server_params) as (read, write):
             async with ClientSession(read, write) as session:
