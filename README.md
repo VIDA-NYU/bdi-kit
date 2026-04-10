@@ -10,7 +10,7 @@
 **BDI-Kit** is a library that assist users in performing data harmonization. It provides state-of-the-art tools to streamline the process of integrating and transforming disparate datasets (with a focus on biomedical data), and includes APIs for performing tasks such as:
 - Schema matching
 - Value matching
-- Data transformation to a target schema/standard
+- Data transformation to a target schema or data model
 
 
 ## 📚 Documentation

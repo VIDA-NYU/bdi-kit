@@ -59,13 +59,13 @@ class PolyFuzz(BaseTopkValueMatcher):
 
         matches = []
         for _, row in match_results.iterrows():
-            source = row[0]
-            top_matches = row[1:]
+            source = row.iloc[0]
+            top_matches = row.iloc[1:]
             indexes = range(0, len(top_matches) - 1, 2)
 
             for index in indexes:
-                target = top_matches[index]
-                similarity = top_matches[index + 1]
+                target = top_matches.iloc[index]
+                similarity = top_matches.iloc[index + 1]
                 if similarity >= self.threshold:
                     matches.append(
                         ValueMatch(
