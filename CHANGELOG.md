@@ -1,6 +1,84 @@
 # Change Log
 
-## 0.10.0.dev0 (yyyy-mm-dd)
+## 0.10.0 (2026-04-10)
+
+We are pleased to announce the release of **BDI-Kit version 0.10.0**.  
+This version focuses on **Python compatibility improvements, enhanced chatbot workflows, new datasets and examples for research scenarios, and multiple fixes for value matching and API stability**.
+
+Below is a list of the main changes included in this release:
+
+
+### New Features
+
+- **Python 3.13 Support:** Updated Python compatibility to support Python **3.10–3.13** and removed Python 3.9 support. ([#141](https://github.com/VIDA-NYU/bdi-kit/pull/141))
+- **Valentine Upgrade:** Upgraded `valentine` dependency to **v0.5.0** for improved schema matching performance and compatibility.
+- **Improved MCP Chatbot Workflow:** Enhanced chatbot workflow guidance and improved default matching strategies.
+- **New Example Notebooks:** Added new notebooks demonstrating **SIGMOD scenarios** and **Patterns paper use cases**.
+- **New Datasets:** Added **DOU datasets** to support SIGMOD paper experiments and examples.
+- **Value Mapper Improvements:** Added string representation methods for value mapper classes to improve usability and debugging.
+
+
+### Enhancements
+
+- **Chatbot Improvements**
+  - Reduced LiteLLM debug logging noise
+  - Improved chatbot workflow guidance
+  - Renamed Streamlit chatbot application title
+  - Improved Portkey LLM integration within BDI-Kit workflows
+
+- **Examples and Documentation**
+  - Refreshed example notebooks and documentation pages
+  - Updated landing page content
+  - Added paper links and demo citation to README
+  - Updated demo section and project metadata
+  - Clarified LLM usage in Streamlit notebooks
+
+- **Datasets**
+  - Renamed and consolidated DOU dataset files
+  - Added datasets supporting SIGMOD scenarios
+
+- **Dependencies**
+  - Added `python-Levenshtein` dependency for improved similarity performance
+  - Updated ReadTheDocs Python and OS versions
+
+
+### Fixes
+
+- **Chatbot Fix**
+  - Fixed passing selected Portkey LLM into BDI-Kit workflows
+
+- **Value Matching Fixes**
+  - Preserved fallback matches for large inputs
+  - Improved robustness of value matching for large datasets
+
+- **API Fix**
+  - Preserved input column order in `materialize_mapping`
+
+- **Security Fix**
+  - Pinned `litellm` to safe version **1.82.6**
+
+
+### Deprecations
+
+- **Removed `merge_mappings()`**
+  - Deprecated `merge_mappings()` in favor of `create_harmonization_spec`
+
+
+### Documentation
+
+- Added demo video
+- Updated documentation landing page
+- Refreshed notebook examples
+- Improved README demo section
+- Added mocked imports for documentation builds
+
+
+### Maintenance
+
+- Added schema validation workflow
+- Updated formatting (Black changes)
+- Updated demo thumbnail
+- General documentation improvements and cleanup
 
 
 ## 0.9.0 (2025-11-17)
