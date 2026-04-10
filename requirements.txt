@@ -1,7 +1,7 @@
 polyfuzz
 gensim>=4.3.3
 pandas
-valentine>0.2.0
+valentine>=0.5.0
 torch
 transformers<4.57.0
 tqdm

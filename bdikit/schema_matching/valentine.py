@@ -6,7 +6,7 @@ from valentine.algorithms.matcher_results import MatcherResults
 from valentine.algorithms.jaccard_distance import StringDistanceFunction
 from valentine.algorithms import (
     SimilarityFlooding as SimilarityFloodingMatcher,
-    Coma as ComaMatcher,
+    ComaPy as ComaMatcher,
     Cupid as CupidMatcher,
     DistributionBased as DistributionBasedMatcher,
     JaccardDistanceMatcher,
@@ -51,10 +51,21 @@ class Coma(Valentine):
     """COMA is a matcher that combines multiple schema-based matchers, representing schemas as rooted directed acyclic graphs."""
 
     def __init__(
-        self, max_n: int = 0, use_instances: bool = False, java_xmx: str = "1024m"
+        self,
+        max_n: int = 0,
+        use_instances: bool = False,
+        use_schema: bool = True,
+        delta: float = 0.15,
+        threshold: float = 0.0,
     ):
         super().__init__(
-            ComaMatcher(max_n=max_n, use_instances=use_instances, java_xmx=java_xmx)
+            ComaMatcher(
+                max_n=max_n,
+                use_instances=use_instances,
+                use_schema=use_schema,
+                delta=delta,
+                threshold=threshold,
+            )
         )
 
 

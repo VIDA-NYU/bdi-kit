@@ -25,10 +25,10 @@ def test_basic_schema_matching_algorithms():
     ]:
         # given
         table1 = pd.DataFrame(
-            {"column_1": ["a1", "b1", "c1"], "column_2": ["a2", "b2", "c2"]}
+            {"column_1": ["a1", "b1", "c1"], "attribute_2": ["a2", "b2", "c2"]}
         )
         table2 = pd.DataFrame(
-            {"column_1": ["a1", "b1", "c1"], "column_2a": ["a2", "b2", "c2"]}
+            {"column_1": ["a1", "b1", "c1"], "attribute_2_alt": ["a2", "b2", "c2"]}
         )
 
         # when
@@ -40,7 +40,7 @@ def test_basic_schema_matching_algorithms():
             mapping[0].target_column,
         ), f"{type(column_matcher).__name__} failed to map columns"
 
-        assert ("column_2", "column_2a") == (
+        assert ("attribute_2", "attribute_2_alt") == (
             mapping[1].source_column,
             mapping[1].target_column,
         ), f"{type(column_matcher).__name__} failed to map columns"
