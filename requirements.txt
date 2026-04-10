@@ -2,8 +2,9 @@ polyfuzz
 gensim>=4.3.3
 pandas
 valentine>=0.5.0
+sentence_transformers<=5.3.0
 torch
-transformers<4.57.0
+transformers<5.0.0
 tqdm
 scikit-learn
 flair[word-embeddings]>=0.14.0
