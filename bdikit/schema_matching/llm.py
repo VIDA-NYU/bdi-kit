@@ -1,6 +1,9 @@
+import pandas as pd
 import warnings
 import json_repair
 from litellm import completion
+from typing import List, Dict
+from bdikit.utils import get_additional_context
 from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 
 
@@ -19,8 +22,19 @@ class LLM(BaseTopkSchemaMatcher):
         else:
             return values.tolist()
 
-    def rank_schema_matches(self, source, target, top_k):
+    def rank_schema_matches(
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        top_k: int,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
+    ) -> List[ColumnMatch]:
         matches = []
+
+        additional_source_cxt = get_additional_context(source_context, "source")
+        additional_target_cxt = get_additional_context(target_context, "target")
+        additional_context = additional_source_cxt + additional_target_cxt
 
         target_cols = [
             "Column: "
@@ -52,7 +66,7 @@ class LLM(BaseTopkSchemaMatcher):
                     refined_match = []
                     break
 
-                refined_match = self._get_matches(cand, targets)
+                refined_match = self._get_matches(cand, targets, additional_context)
                 refined_match = self._parse_matches(refined_match)
                 attempts += 1
 
@@ -67,28 +81,32 @@ class LLM(BaseTopkSchemaMatcher):
 
         return self._fill_missing_matches(source, matches)
 
-    def _get_prompt(self, cand, targets):
-        prompt = (
-            "Given a candidate column and a list of target columns, judge the similarity between the candidate and each target column. "
-            "Return a JSON array of objects, each with 'column' (the target column name) and 'score' (a float between 0 and 1, two decimals, 1 is most similar). "
-            "Do NOT provide any other output text or explanation. Only provide the JSON array.\n"
-            "Example:\n"
-            "Candidate Column: Column: EmployeeID, Sample values: [100, 101, 102]\n"
-            "Target Schemas:\n"
-            "Column: WorkerID, Sample values: [100, 101, 102]\n"
-            "Column: EmpCode, Sample values: [001, 002, 003]\n"
-            "Column: StaffName, Sample values: ['Alice', 'Bob', 'Charlie']\n"
-            'Response: [\n  {"column": "WorkerID", "score": 0.95},\n  {"column": "EmpCode", "score": 0.30},\n  {"column": "StaffName", "score": 0.05}\n]\n\n'
-            "Candidate Column: "
-            + cand
-            + "\n\nTarget Schemas:\n"
-            + targets
-            + "\n\nResponse: "
-        )
+    def _get_prompt(self, cand, targets, additional_context):
+        prompt = f"""Given a candidate column and a list of target columns, judge the similarity between the candidate and each target column. Return a JSON array of objects, each with 'column' (the target column name) and 'score' (a float between 0 and 1, two decimals, 1 is most similar). {additional_context}
+                    Do NOT provide any other output text or explanation. Only provide the JSON array.
+                    Example:
+                    Candidate Column: Column: EmployeeID, Sample values: [100, 101, 102]
+                    Target Schemas:
+                    Column: WorkerID, Sample values: [100, 101, 102]
+                    Column: EmpCode, Sample values: [001, 002, 003]
+                    Column: StaffName, Sample values: ['Alice', 'Bob', 'Charlie']
+                    Response: [
+                        {{"column": "WorkerID", "score": 0.95}},
+                        {{"column": "EmpCode", "score": 0.30}},
+                        {{"column": "StaffName", "score": 0.05}}
+                    ]
+
+                    Candidate Column: {cand}
+
+                    Target Schemas:
+                    {targets}
+
+                    Response: """
+
         return prompt
 
-    def _get_matches(self, cand, targets):
-        prompt = self._get_prompt(cand, targets)
+    def _get_matches(self, cand, targets, additional_context):
+        prompt = self._get_prompt(cand, targets, additional_context)
         messages = [
             {
                 "role": "system",

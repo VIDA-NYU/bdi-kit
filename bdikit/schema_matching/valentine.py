@@ -19,7 +19,11 @@ class Valentine(BaseSchemaMatcher):
         self.matcher = matcher
 
     def match_schema(
-        self, source: pd.DataFrame, target: pd.DataFrame
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        source_context: dict = None,
+        target_context: dict = None,
     ) -> List[ColumnMatch]:
         raw_matches: MatcherResults = valentine_match(source, target, self.matcher)
         matches = []

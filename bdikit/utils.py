@@ -63,10 +63,17 @@ def hash_object(obj):
 
 
 def create_schema_hash(
-    source_table: pd.DataFrame, target_table: pd.DataFrame, matcher: Any, **kwargs: Any
+    source_table: pd.DataFrame,
+    target_table: pd.DataFrame,
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
+    matcher: Any,
+    **kwargs: Any,
 ):
     source_hash = hash_dataframe(source_table)
     target_hash = hash_dataframe(target_table)
+    source_ctx_hash = hash_iterable(source_ctx)
+    target_ctx_hash = hash_iterable(target_ctx)
     matcher_hash = hash_object(matcher)
     topk_hash = str(kwargs.get("top_k", 1))
 
@@ -74,6 +81,8 @@ def create_schema_hash(
         {
             "source": source_hash,
             "target": target_hash,
+            "source_ctx": source_ctx_hash,
+            "target_ctx": target_ctx_hash,
             "matcher": matcher_hash,
             "top_k": topk_hash,
         },

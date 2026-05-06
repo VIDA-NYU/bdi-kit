@@ -9,7 +9,7 @@ from bdikit.value_matching.base import BaseValueMatcher
 
 class MaxValSim(BaseTopkSchemaMatcher):
     """
-    This schema matching method first uses a a top-k column matcher (e.g., ct_learning) to prune the search space (keeping only the top-k most likely matches), and then uses a value matcher method to choose the best match from the pruned search space.
+    This schema matching method first uses a a top-k column matcher (e.g., MagnetoFTBP) to prune the search space (keeping only the top-k most likely matches), and then uses a value matcher method to choose the best match from the pruned search space.
     """
 
     def __init__(
@@ -50,12 +50,19 @@ class MaxValSim(BaseTopkSchemaMatcher):
             return pd.Series(column.unique().astype(str), name=column.name)
 
     def rank_schema_matches(
-        self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        top_k: int,
+        source_context: dict = None,
+        target_context: dict = None,
     ) -> List[ColumnMatch]:
         max_topk = max(
             top_k, self.top_k
         )  # If self.top_k (method param) is smaller than the requested top_k, use top_k
-        topk_column_matches = self.api.rank_schema_matches(source, target, max_topk)
+        topk_column_matches = self.api.rank_schema_matches(
+            source, target, max_topk, source_context, target_context
+        )
         top_k_results = []
 
         grouped_matches = defaultdict(list)

@@ -36,9 +36,11 @@ class TwoPhase(BaseSchemaMatcher):
         self,
         source: pd.DataFrame,
         target: pd.DataFrame,
+        source_context: dict = None,
+        target_context: dict = None,
     ) -> List[ColumnMatch]:
         topk_column_matches = self.top_k_matcher.rank_schema_matches(
-            source, target, self.top_k
+            source, target, self.top_k, source_context, target_context
         )
 
         grouped_matches = defaultdict(list)
@@ -50,7 +52,7 @@ class TwoPhase(BaseSchemaMatcher):
             reduced_source = source[[source_column]]
             reduced_target = target[candidates]
             partial_matches = self.schema_matcher.match_schema(
-                reduced_source, reduced_target
+                reduced_source, reduced_target, source_context, target_context
             )
             matches += partial_matches
 

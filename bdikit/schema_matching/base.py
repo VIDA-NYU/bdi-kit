@@ -1,4 +1,4 @@
-from typing import List, NamedTuple, Any
+from typing import List, NamedTuple, Any, Dict
 from collections import defaultdict
 import pandas as pd
 import numpy as np
@@ -17,7 +17,11 @@ class ColumnMatch(NamedTuple):
 
 class BaseSchemaMatcher:
     def match_schema(
-        self, source: pd.DataFrame, target: pd.DataFrame
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
@@ -46,9 +50,13 @@ class BaseSchemaMatcher:
 
 
 class BaseTopkSchemaMatcher(BaseSchemaMatcher):
-
     def rank_schema_matches(
-        self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        top_k: int,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ColumnMatch]:
         raise NotImplementedError("Subclasses must implement this method")
 
@@ -56,8 +64,12 @@ class BaseTopkSchemaMatcher(BaseSchemaMatcher):
         self,
         source: pd.DataFrame,
         target: pd.DataFrame,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ColumnMatch]:
-        matches = self.rank_schema_matches(source, target, 1)
+        matches = self.rank_schema_matches(
+            source, target, 1, source_context, target_context
+        )
 
         return matches
 

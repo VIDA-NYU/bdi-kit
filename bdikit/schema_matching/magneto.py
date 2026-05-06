@@ -14,7 +14,11 @@ class MagnetoBase(BaseTopkSchemaMatcher):
         self.magneto = Magneto_Lib(**kwargs)
 
     def match_schema(
-        self, source: pd.DataFrame, target: pd.DataFrame
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ColumnMatch]:
         # Temporary workaround due to Magneto's top-1 matching issue
         # Issue details: https://github.com/VIDA-NYU/magneto-matcher/issues/10
@@ -36,7 +40,12 @@ class MagnetoBase(BaseTopkSchemaMatcher):
         return self._fill_missing_matches(source, matches)
 
     def rank_schema_matches(
-        self, source: pd.DataFrame, target: pd.DataFrame, top_k: int
+        self,
+        source: pd.DataFrame,
+        target: pd.DataFrame,
+        top_k: int,
+        source_context: Dict[str, str] = None,
+        target_context: Dict[str, str] = None,
     ) -> List[ColumnMatch]:
         self.magneto.params["topk"] = (
             top_k  # Magneto does not provide a method to set topk

@@ -61,6 +61,8 @@ def match_schema(
     source: pd.DataFrame,
     target: Union[str, pd.DataFrame] = "gdc",
     method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    source_context: Optional[Dict[str, Any]] = None,
+    target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
     use_cache: Optional[bool] = True,
@@ -75,6 +77,8 @@ def match_schema(
         source (pd.DataFrame): The source table to be mapped.
         target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
         method (str, optional): The method used for matching. Defaults to "ct_learning".
+        source_context (Dict[str, Any], optional): The context for the source dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
         use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
@@ -89,17 +93,31 @@ def match_schema(
     source_dataset = _load_dataset(source)
     matcher_instance = _load_schema_matcher(method, method_args)
 
+    source_ctx = _create_context(
+        source_dataset,
+        user_context=source_context,
+    )
+    target_ctx = _create_context(
+        target_dataset,
+        user_context=target_context,
+    )
+
     # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
     if use_cache:
         matches = _cache_schema_matches(
             source_df=source_dataset.get_dataframe_rep(),
             target_df=target_dataset.get_dataframe_rep(),
+            source_ctx=source_ctx,
+            target_ctx=target_ctx,
             matcher_obj=matcher_instance,
             match_func=matcher_instance.match_schema,
         )
     else:
         matches = matcher_instance.match_schema(
-            source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
+            source_dataset.get_dataframe_rep(),
+            target_dataset.get_dataframe_rep(),
+            source_ctx,
+            target_ctx,
         )
 
     return pd.DataFrame(
@@ -141,6 +159,8 @@ def rank_schema_matches(
     method: Optional[
         Union[str, BaseTopkSchemaMatcher]
     ] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    source_context: Optional[Dict[str, Any]] = None,
+    target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
     use_cache: Optional[bool] = True,
@@ -154,6 +174,8 @@ def rank_schema_matches(
         attributes (List[str], optional): The list of attributes/columns to consider for matching. Defaults to None.
         top_k (int, optional): The number of top matches to return. Defaults to 10.
         method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
+        source_context (Dict[str, Any], optional): The context for the source dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
         standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
         use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
@@ -171,11 +193,22 @@ def rank_schema_matches(
     target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
 
+    source_ctx = _create_context(
+        source_dataset,
+        user_context=source_context,
+    )
+    target_ctx = _create_context(
+        target_dataset,
+        user_context=target_context,
+    )
+
     # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
     if use_cache:
         matches = _cache_schema_matches(
             source_df=source_dataset.get_dataframe_rep(),
             target_df=target_dataset.get_dataframe_rep(),
+            source_ctx=source_ctx,
+            target_ctx=target_ctx,
             match_func=topk_matcher.rank_schema_matches,
             matcher_obj=topk_matcher,
             top_k=top_k,
@@ -185,6 +218,8 @@ def rank_schema_matches(
             source_dataset.get_dataframe_rep(),
             target_dataset.get_dataframe_rep(),
             top_k=top_k,
+            source_context=source_ctx,
+            target_context=target_ctx,
         )
 
     return pd.DataFrame(
@@ -222,11 +257,15 @@ def _load_topk_schema_matcher(
 def _cache_schema_matches(
     source_df: pd.DataFrame,
     target_df: pd.DataFrame,
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
     match_func: Callable,
     matcher_obj: Union[BaseSchemaMatcher, BaseTopkSchemaMatcher],
     **match_kwargs: Any,
 ) -> List[ColumnMatch]:
-    hash_id = create_schema_hash(source_df, target_df, matcher_obj, **match_kwargs)
+    hash_id = create_schema_hash(
+        source_df, target_df, source_ctx, target_ctx, matcher_obj, **match_kwargs
+    )
     cached_result = load_from_cache(hash_id)
 
     if cached_result is not None:
@@ -843,7 +882,7 @@ def _load_dataset(
 
 def _create_context(
     dataset: BaseStandard,
-    attribute: str,
+    attribute: Optional[str] = None,
     user_context: Optional[Dict[str, str]] = None,
 ):
     """
@@ -862,13 +901,16 @@ def _create_context(
     if user_context is None:
         user_context = {}
 
-    # Auto-generated context
-    auto_context = {
-        "attribute_name": attribute,
-        "attribute_description": dataset.get_attribute_metadata([attribute])[attribute][
-            "description"
-        ],
-    }
+    if attribute is None:
+        auto_context = {}
+    else:
+        # Auto-generated context
+        auto_context = {
+            "attribute_name": attribute,
+            "attribute_description": dataset.get_attribute_metadata([attribute])[
+                attribute
+            ]["description"],
+        }
 
     context.update(auto_context)
     for context_id, context_description in user_context.items():
