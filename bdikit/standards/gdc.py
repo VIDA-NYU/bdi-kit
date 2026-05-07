@@ -40,7 +40,7 @@ class GDC(BaseStandard):
             raw_metadata = self.data.get(attribute_name, {})
             attribute_metadata[attribute_name] = {}
             attribute_metadata[attribute_name]["description"] = raw_metadata.get(
-                "column_description", ""
+                "attribute_description", ""
             )
             attribute_metadata[attribute_name]["value_names"] = list(
                 raw_metadata.get("value_data", {}).keys()

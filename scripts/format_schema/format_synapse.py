@@ -6,7 +6,7 @@ FORMATTED_SYNAPSE_PATH = join(
     dirname(__file__), "../../bdikit/resource/synapse_schema.json"
 )
 
-data = {"entity": {}, "subschema": {}}
+data = {"attributes": {}, "subschema": {}}
 
 
 with open(RAW_SYNAPSE_PATH) as json_file:
@@ -23,10 +23,10 @@ for entry in sbn_schema["@graph"]:
             continue
         values = entry.get("schema:rangeIncludes", [])
         new_entry = {
-            "column_description": entry_description,
+            "attribute_description": entry_description,
             "value_data": {x["@id"].replace("bts:", ""): "" for x in values},
         }
-        data["entity"][entry_name] = new_entry
+        data["attributes"][entry_name] = new_entry
 
     if entry_name.endswith("Template") and "sms:requiresDependency" in entry:
         dependencies = [

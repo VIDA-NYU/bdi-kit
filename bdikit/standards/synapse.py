@@ -30,7 +30,7 @@ class Synapse(BaseStandard):
         self.data = {}
 
         for entity in entities:
-            self.data[entity] = data["entity"][entity]
+            self.data[entity] = data["attributes"][entity]
 
     def get_attributes(self) -> List[str]:
         return list(self.data.keys())
@@ -53,7 +53,7 @@ class Synapse(BaseStandard):
             raw_metadata = self.data.get(attribute_name, {})
             attribute_metadata[attribute_name] = {}
             attribute_metadata[attribute_name]["description"] = raw_metadata.get(
-                "column_description", ""
+                "attribute_description", ""
             )
             attribute_metadata[attribute_name]["value_names"] = list(
                 raw_metadata.get("value_data", {}).keys()
