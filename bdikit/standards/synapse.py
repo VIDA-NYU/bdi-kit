@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 from os.path import join, dirname
 from typing import List, Dict
 from bdikit.standards.base import BaseStandard
@@ -64,17 +63,3 @@ class Synapse(BaseStandard):
             )
 
         return attribute_metadata
-
-    def get_dataframe_rep(self) -> pd.DataFrame:
-        reshaped_data = {
-            key: list(value["value_data"].keys()) for key, value in self.data.items()
-        }
-
-        # Ensure all lists have the same length by padding with None
-        max_length = max(len(v) for v in reshaped_data.values())
-        for k, v in reshaped_data.items():
-            reshaped_data[k].extend([None] * (max_length - len(v)))
-
-        df = pd.DataFrame.from_dict(reshaped_data, orient="columns")
-
-        return df

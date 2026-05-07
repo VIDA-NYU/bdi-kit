@@ -33,6 +33,3 @@ class DataFrame(BaseStandard):
             attribute_metadata[attribute_name]["value_descriptions"] = []
 
         return attribute_metadata
-
-    def get_dataframe_rep(self) -> pd.DataFrame:
-        return self.dataframe

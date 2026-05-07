@@ -26,8 +26,10 @@ class BaseStandard:
         """
         raise NotImplementedError("Subclasses must implement this method")
 
-    def get_dataframe_rep(self) -> pd.DataFrame:
+    def _get_dataframe_rep(self) -> pd.DataFrame:
         """
         Returns a Pandas DataFrame representation of the standard, where each column in the DataFrame is an attribute in the standard and each row is a possible value for that attribute.
         """
-        raise NotImplementedError("Subclasses must implement this method")
+        attributes = self.get_attributes()
+        attribute_values = self.get_attribute_values(attributes)
+        return pd.DataFrame.from_dict(attribute_values, orient="index").transpose()

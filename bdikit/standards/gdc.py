@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 from os.path import join, dirname
 from typing import List, Dict
 from bdikit.standards.base import BaseStandard
@@ -25,7 +24,7 @@ class GDC(BaseStandard):
 
     def get_attribute_values(
         self, attribute_names: List[str]
-    ) -> Dict[str, List]:  # get_gdc_data
+    ) -> Dict[str, List]:
         attribute_values = {}
 
         for attribute_name in attribute_names:
@@ -38,7 +37,7 @@ class GDC(BaseStandard):
 
     def get_attribute_metadata(
         self, attribute_names: List[str]
-    ) -> Dict[str, Dict]:  # get_gdc_metadata
+    ) -> Dict[str, Dict]:
         attribute_metadata = {}
 
         for attribute_name in attribute_names:
@@ -55,17 +54,3 @@ class GDC(BaseStandard):
             )
 
         return attribute_metadata
-
-    def get_dataframe_rep(self) -> pd.DataFrame:
-        reshaped_data = {
-            key: list(value["value_data"].keys()) for key, value in self.data.items()
-        }
-
-        # Ensure all lists have the same length by padding with None
-        max_length = max(len(v) for v in reshaped_data.values())
-        for k, v in reshaped_data.items():
-            reshaped_data[k].extend([None] * (max_length - len(v)))
-
-        df = pd.DataFrame.from_dict(reshaped_data, orient="columns")
-
-        return df
