@@ -22,9 +22,7 @@ class GDC(BaseStandard):
     def get_attributes(self) -> List[str]:
         return list(self.data.keys())
 
-    def get_attribute_values(
-        self, attribute_names: List[str]
-    ) -> Dict[str, List]:
+    def get_attribute_values(self, attribute_names: List[str]) -> Dict[str, List]:
         attribute_values = {}
 
         for attribute_name in attribute_names:
@@ -35,9 +33,7 @@ class GDC(BaseStandard):
 
         return attribute_values
 
-    def get_attribute_metadata(
-        self, attribute_names: List[str]
-    ) -> Dict[str, Dict]:
+    def get_attribute_metadata(self, attribute_names: List[str]) -> Dict[str, Dict]:
         attribute_metadata = {}
 
         for attribute_name in attribute_names:
