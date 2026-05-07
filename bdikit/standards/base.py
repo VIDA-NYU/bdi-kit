@@ -21,8 +21,8 @@ class BaseStandard:
 
     def get_attribute_metadata(self, attribute_names: List[str]) -> Dict[str, Dict]:
         """
-        Returns a dictionary where the keys are attribute names and the values are dictionaries containing these fields for each attribute:
-        `description`, `value_names`, and `value_descriptions`.
+        Returns a dictionary where the keys are attribute names and the values are dictionaries containing these mandatory fields for each attribute:
+        `description`, `value_names`, and `value_descriptions`. Other fields can be included as well, but their values must be strings or lists of strings.
         """
         raise NotImplementedError("Subclasses must implement this method")
 

@@ -60,7 +60,7 @@ Contributors can extend BDI-Kit to additional standards (data models) by followi
 
    - `get_attributes()`: Returns a list of all the attributes (strings) of the standard.
    - `get_attribute_values()`: Returns a dictionary where the keys are attribute names and the values are lists of possible values for each attribute.
-   - `get_attribute_metadata()`: Returns a dictionary where the keys are attribute names and the values are dictionaries containing these fields for each attribute:
-     `description`, `value_names`, and `value_descriptions`.
+   - `get_attribute_metadata()`: Returns a dictionary where the keys are attribute names and the values are dictionaries containing these mandatory fields for each attribute:
+     `description`, `value_names`, and `value_descriptions`. Other fields can be included as well, but their values must be strings or lists of strings.
 
 3. Add a new entry to the class `Standards(Enum)` in `bdikit/standards/standard_factory.py`. Make sure to add the correct import path for your module to ensure it can be accessed without errors.
