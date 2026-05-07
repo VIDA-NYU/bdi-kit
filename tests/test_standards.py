@@ -2,7 +2,6 @@ import pandas as pd
 import pytest
 from bdikit.standards.base import BaseStandard
 
-
 # Sample data for testing
 FAKE_DATA = {
     "attr1": {
