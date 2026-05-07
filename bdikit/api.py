@@ -694,7 +694,7 @@ def view_value_matches(
 
 
 def preview_domain(
-    dataset: Union[str, pd.DataFrame],
+    dataset: Union[pd.DataFrame, BaseStandard, str],
     attribute: str,
     limit: Optional[int] = None,
     standard_args: Optional[Dict[str, Any]] = None,
@@ -704,9 +704,8 @@ def preview_domain(
     (if applicable) of the given attribute of the source or target dataset.
 
     Args:
-        dataset (Union[str, pd.DataFrame], optional): The dataset or standard data model name containing the attribute to preview.
-            If a string is provided and it is equal to "gdc", the domain will be retrieved
-            from the GDC data.
+        dataset (Union[pd.DataFrame, BaseStandard, str], optional): The dataset or standard data model name containing the attribute to preview.
+            If a BaseStandard or string is provided, the domain will be retrieved from the standard data model.
             If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
         attribute(str): The attribute name to show the domain.
         limit (int, optional): The maximum number of unique values to include in the preview. Defaults to None.
@@ -727,13 +726,19 @@ def preview_domain(
         value_descriptions = attribute_metadata[attribute]["value_descriptions"]
         attribute_description = attribute_metadata[attribute]["description"]
         assert len(value_names) == len(value_descriptions)
+    elif isinstance(dataset, BaseStandard):
+        attribute_metadata = dataset.get_attribute_metadata([attribute])
+        value_names = attribute_metadata[attribute]["value_names"]
+        value_descriptions = attribute_metadata[attribute]["value_descriptions"]
+        attribute_description = attribute_metadata[attribute]["description"]
+        assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[attribute].unique()
         value_descriptions = []
         attribute_description = ""
     else:
         raise ValueError(
-            "The dataset must be a DataFrame or a standard vocabulary name."
+            "The dataset must be a DataFrame, a BaseStandard, or a supported standard name."
         )
 
     if isinstance(limit, int):
@@ -847,7 +852,7 @@ def _load_dataset(
 ) -> BaseStandard:
     if isinstance(dataset, BaseStandard):
         new_dataset = dataset
-    if isinstance(dataset, pd.DataFrame):
+    elif isinstance(dataset, pd.DataFrame):
         new_dataset = DataFrame(dataset)
     elif isinstance(dataset, str):
         if standard_args is None:
@@ -855,7 +860,7 @@ def _load_dataset(
         new_dataset = Standards.get_standard(dataset, **standard_args)
     else:
         raise ValueError(
-            "The dataset must be a DataFrame or a supported standard name."
+            "The dataset must be a DataFrame, a BaseStandard, or a supported standard name."
         )
 
     return new_dataset
