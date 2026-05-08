@@ -39,8 +39,8 @@ class GDC(BaseStandard):
         for attribute_name in attribute_names:
             raw_metadata = self.data.get(attribute_name, {})
             attribute_metadata[attribute_name] = {}
-            attribute_metadata[attribute_name]["description"] = raw_metadata.get(
-                "attribute_description", ""
+            attribute_metadata[attribute_name]["attribute_description"] = (
+                raw_metadata.get("attribute_description", "")
             )
             attribute_metadata[attribute_name]["value_names"] = list(
                 raw_metadata.get("value_data", {}).keys()
