@@ -14,7 +14,7 @@ for attrib_data in gdc_schema.values():
     for attrib_name, attrib_properties in attrib_data["properties"].items():
         metadata[attrib_name] = {}
         attrib_description = attrib_properties.get("description", "")
-        metadata[attrib_name]["column_description"] = attrib_description
+        metadata[attrib_name]["attribute_description"] = attrib_description
 
         value_names = attrib_properties.get("enum", [])
         # metadata[attrib_name]["value_names"] = value_names

@@ -3,11 +3,13 @@ import json
 import pickle
 import hashlib
 import inspect
+import warnings
 import importlib
 import pandas as pd
 from os.path import join, dirname, isfile
-from typing import Mapping, Dict, Any, List
+from typing import Mapping, Dict, Any, List, Optional
 from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR, BDIKIT_CACHE_DIR
+from bdikit.standards.base import BaseStandard, MANDATORY_METADATA_FIELDS
 
 
 def hash_dataframe(df: pd.DataFrame) -> str:
@@ -63,10 +65,17 @@ def hash_object(obj):
 
 
 def create_schema_hash(
-    source_table: pd.DataFrame, target_table: pd.DataFrame, matcher: Any, **kwargs: Any
+    source_table: pd.DataFrame,
+    target_table: pd.DataFrame,
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
+    matcher: Any,
+    **kwargs: Any,
 ):
     source_hash = hash_dataframe(source_table)
     target_hash = hash_dataframe(target_table)
+    source_ctx_hash = hash_iterable(source_ctx)
+    target_ctx_hash = hash_iterable(target_ctx)
     matcher_hash = hash_object(matcher)
     topk_hash = str(kwargs.get("top_k", 1))
 
@@ -74,6 +83,8 @@ def create_schema_hash(
         {
             "source": source_hash,
             "target": target_hash,
+            "source_ctx": source_ctx_hash,
+            "target_ctx": target_ctx_hash,
             "matcher": matcher_hash,
             "top_k": topk_hash,
         },
@@ -223,7 +234,70 @@ def get_class_doc(import_path: str):
     return cls.__doc__.strip()
 
 
-def get_additional_context(context: Dict[str, str], dataset_label: str) -> str:
+def create_context(
+    dataset: BaseStandard,
+    attribute: Optional[str] = None,
+    user_context: Optional[Dict[str, str]] = None,
+):
+    """
+    Creates the context for source and target attributes, including auto-generated
+    context based on the dataset metadata and user-provided context.
+    Args:
+        dataset (BaseStandard): The dataset.
+        attribute (str): The attribute name.
+        target_attribute (str): The target attribute name.
+        source_user_ctx (Dict[str, str], optional): User-provided context for the attribute.
+    Returns:
+        Dict[str, str]: A dictionary containing the context for the attribute.
+    """
+    context = {}
+
+    if user_context is None:
+        user_context = {}
+
+    if attribute is None:
+        auto_context = {}
+    else:
+        # Auto-generated context
+        metadata = dataset.get_attribute_metadata([attribute])[attribute]
+
+        auto_context = {
+            "attribute_name": attribute,
+        }
+        if len(metadata["attribute_description"]) > 0:
+            auto_context["attribute_description"] = metadata["attribute_description"]
+
+        for key, value in metadata.items():
+            if key not in MANDATORY_METADATA_FIELDS:
+                auto_context[key] = str(value)
+
+        value_names = metadata.get("value_names", [])
+        value_descriptions = metadata.get("value_descriptions", [])
+
+        if value_names and value_descriptions:
+            value_pairs = [
+                f"{name}: {desc}"
+                for name, desc in zip(value_names, value_descriptions)
+                if desc
+            ]
+            if value_pairs:
+                auto_context["attribute_values"] = ". ".join(value_pairs)
+
+    context.update(auto_context)
+    for context_id, context_description in user_context.items():
+        if context_id not in context:
+            context[context_id] = context_description
+        else:
+            warnings.warn(
+                f"Context ID '{context_id}' found in the auto generated context. "
+                "It will be ignored.",
+                UserWarning,
+            )
+
+    return context
+
+
+def generate_string_context(context: Dict[str, str], dataset_label: str) -> str:
     """
     Generate a string with additional context information from the provided context dictionary.
     This function excludes the keys 'attribute_name' and 'attribute_description' from the context.

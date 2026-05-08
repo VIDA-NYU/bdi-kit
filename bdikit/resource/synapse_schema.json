@@ -1,59 +1,59 @@
 {
-    "entity": {
+    "attributes": {
         "NF1Variant": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Data": {
-            "column_description": "What the data (file) contains.",
+            "attribute_description": "What the data (file) contains.",
             "value_data": {}
         },
         "OrganismSubstance": {
-            "column_description": "This preferred root in the UBERON ontology is meant to cover organism-produced substances (bodily secretions and excreta) commonly used as assay specimens.",
+            "attribute_description": "This preferred root in the UBERON ontology is meant to cover organism-produced substances (bodily secretions and excreta) commonly used as assay specimens.",
             "value_data": {}
         },
         "BiologicalProcess": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "WHOPerformanceStatusScores": {
-            "column_description": "//www.ncbi.nlm.nih.gov/books/NBK97482/",
+            "attribute_description": "//www.ncbi.nlm.nih.gov/books/NBK97482/",
             "value_data": {}
         },
         "ConcentrationUnit": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Percentiles-2SD": {
-            "column_description": "Enumerations corresponding to 3 bins using 2 standard deviations as a cutoff.",
+            "attribute_description": "Enumerations corresponding to 3 bins using 2 standard deviations as a cutoff.",
             "value_data": {}
         },
         "Tissue": {
-            "column_description": "Tissue is a group of cells that have similar structure and that function together as a unit.",
+            "attribute_description": "Tissue is a group of cells that have similar structure and that function together as a unit.",
             "value_data": {}
         },
         "Cell": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Genotype": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "TimeUnit": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Measurement": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Material": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "TransplantationType": {
-            "column_description": "Type of transplantation involved in the experiment, derived from MESH",
+            "attribute_description": "Type of transplantation involved in the experiment, derived from MESH",
             "value_data": {
                 "Allograft": "",
                 "Xenograft": "",
@@ -62,19 +62,19 @@
             }
         },
         "CellLineModel": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Resource": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "MouseModel": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Institution": {
-            "column_description": "Link to affiliated institution.",
+            "attribute_description": "Link to affiliated institution.",
             "value_data": {
                 "AlbanyMedicalCollege": "",
                 "AlbertEinsteinCollegeofMedicine": "",
@@ -404,34 +404,34 @@
             }
         },
         "License": {
-            "column_description": "Link to a license or name of license applicable for the resource.",
+            "attribute_description": "Link to a license or name of license applicable for the resource.",
             "value_data": {}
         },
         "ProportionCoverage30x": {
-            "column_description": "Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 30X or greater coverage from Picard Tools",
+            "attribute_description": "Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 30X or greater coverage from Picard Tools",
             "value_data": {}
         },
         "Description": {
-            "column_description": "Text describing a resource.",
+            "attribute_description": "Text describing a resource.",
             "value_data": {}
         },
         "CompoundDoseUnit": {
-            "column_description": "A unit associated with the value(s) in compoundDose.",
+            "attribute_description": "A unit associated with the value(s) in compoundDose.",
             "value_data": {}
         },
         "IsStranded": {
-            "column_description": "Whether or not the library is stranded (Yes; No)",
+            "attribute_description": "Whether or not the library is stranded (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "GenomicReferenceLink": {
-            "column_description": "Link to genome reference data file used for alignment in processing workflow",
+            "attribute_description": "Link to genome reference data file used for alignment in processing workflow",
             "value_data": {}
         },
         "ProgrammingLanguage": {
-            "column_description": "A computer programming language",
+            "attribute_description": "A computer programming language",
             "value_data": {
                 "Python": "",
                 "R": "",
@@ -445,15 +445,15 @@
             }
         },
         "SlideID": {
-            "column_description": "Unique identifier printed on the label of each Visium slide. The serial number starts with V followed by a number which can range between one through five and ends with a dash and a three digit number, such as 123.\n",
+            "attribute_description": "Unique identifier printed on the label of each Visium slide. The serial number starts with V followed by a number which can range between one through five and ends with a dash and a three digit number, such as 123.\n",
             "value_data": {}
         },
         "SourceName": {
-            "column_description": "Intended for non-biological samples, tf the sample is a nanoparticle sample or some chemical substance not derived from a biological material,  the corresponding source name should refer to the starting sample that was modified by a protocol for the assay.\n",
+            "attribute_description": "Intended for non-biological samples, tf the sample is a nanoparticle sample or some chemical substance not derived from a biological material,  the corresponding source name should refer to the starting sample that was modified by a protocol for the assay.\n",
             "value_data": {}
         },
         "Mosaicism": {
-            "column_description": "Whether individual is mosaic.",
+            "attribute_description": "Whether individual is mosaic.",
             "value_data": {
                 "Mosaic": "",
                 "Notmosaic": "",
@@ -461,7 +461,7 @@
             }
         },
         "ReadPairOrientation": {
-            "column_description": "The relative orientation of the reads in a paired-end protocol",
+            "attribute_description": "The relative orientation of the reads in a paired-end protocol",
             "value_data": {
                 "Fr-firststrand": "",
                 "Inward": "",
@@ -470,11 +470,11 @@
             }
         },
         "FileSize": {
-            "column_description": "Size of file in bytes.",
+            "attribute_description": "Size of file in bytes.",
             "value_data": {}
         },
         "DermalSchwannoma": {
-            "column_description": "Characterization of the manifestation of Dermal schwannoma.",
+            "attribute_description": "Characterization of the manifestation of Dermal schwannoma.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -482,11 +482,11 @@
             }
         },
         "BenefactorId": {
-            "column_description": "The id of the resource from which access control is inherited.",
+            "attribute_description": "The id of the resource from which access control is inherited.",
             "value_data": {}
         },
         "SpinalSchwannoma": {
-            "column_description": "Characterization of the manifestation of Spinal schwannoma.",
+            "attribute_description": "Characterization of the manifestation of Spinal schwannoma.",
             "value_data": {
                 "Notimaged": "",
                 "Absentbyimaging": "",
@@ -496,7 +496,7 @@
             }
         },
         "AccessType": {
-            "column_description": "Indicates access type / possible procedures needed for access to the resource.",
+            "attribute_description": "Indicates access type / possible procedures needed for access to the resource.",
             "value_data": {
                 "PublicAccess": "",
                 "OpenAccess": "",
@@ -505,7 +505,7 @@
             }
         },
         "SpinalNeurofibromas": {
-            "column_description": "Characterization of the manifestation of Spinal neurofibromas.",
+            "attribute_description": "Characterization of the manifestation of Spinal neurofibromas.",
             "value_data": {
                 "Notimaged": "",
                 "Absent": "",
@@ -514,7 +514,7 @@
             }
         },
         "OpticGlioma": {
-            "column_description": "Characterization of the manifestation of Optic glioma.",
+            "attribute_description": "Characterization of the manifestation of Optic glioma.",
             "value_data": {
                 "Absent": "",
                 "Present-asymptomatic": "",
@@ -524,19 +524,19 @@
             }
         },
         "CreatedOn": {
-            "column_description": "Refers to when the resource was created.",
+            "attribute_description": "Refers to when the resource was created.",
             "value_data": {}
         },
         "ProtocolPurpose": {
-            "column_description": "Brief description of the protocol purpose.",
+            "attribute_description": "Brief description of the protocol purpose.",
             "value_data": {}
         },
         "GrantDOI": {
-            "column_description": "Doi of a grant (e.g. in ProposalCentral) that can be associated with the entity.",
+            "attribute_description": "Doi of a grant (e.g. in ProposalCentral) that can be associated with the entity.",
             "value_data": {}
         },
         "BreastCancer": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -544,11 +544,11 @@
             }
         },
         "ReporterSubstance": {
-            "column_description": "A biological material (clone, oligo, etc.) on an array which will report on some biosequence or biosequences.",
+            "attribute_description": "A biological material (clone, oligo, etc.) on an array which will report on some biosequence or biosequences.",
             "value_data": {}
         },
         "SlideVersion": {
-            "column_description": "Version of imaging slide used. Slide version is critical for the analysis of the sequencing data as different slides have different capture area layouts.",
+            "attribute_description": "Version of imaging slide used. Slide version is critical for the analysis of the sequencing data as different slides have different capture area layouts.",
             "value_data": {
                 "V1": "",
                 "V2": "",
@@ -557,11 +557,11 @@
             }
         },
         "ReporterGene": {
-            "column_description": "A gene which produces an easily assayed phenotype. Often used for expression studies of heterologous promoters.",
+            "attribute_description": "A gene which produces an easily assayed phenotype. Often used for expression studies of heterologous promoters.",
             "value_data": {}
         },
         "Nf1Genotype": {
-            "column_description": "Genotype of NF1 gene in the biospecimen from which the data were derived, if known.",
+            "attribute_description": "Genotype of NF1 gene in the biospecimen from which the data were derived, if known.",
             "value_data": {
                 "-/-": "",
                 "+/-": "",
@@ -570,7 +570,7 @@
             }
         },
         "Diagnosis": {
-            "column_description": "Diagnosis for the individual given signs and symptoms. Use the most specific diagnosis term that applies.",
+            "attribute_description": "Diagnosis for the individual given signs and symptoms. Use the most specific diagnosis term that applies.",
             "value_data": {
                 "Neurofibromatosistype1": "",
                 "Schwannomatosis": "",
@@ -586,23 +586,23 @@
             }
         },
         "TargetDepth": {
-            "column_description": "The targeted read depth prior to sequencing.",
+            "attribute_description": "The targeted read depth prior to sequencing.",
             "value_data": {}
         },
         "AccessRequirements": {
-            "column_description": "Statement describing access requirements for an entity.",
+            "attribute_description": "Statement describing access requirements for an entity.",
             "value_data": {}
         },
         "Creator": {
-            "column_description": "An entity responsible for making the resource.",
+            "attribute_description": "An entity responsible for making the resource.",
             "value_data": {}
         },
         "Age": {
-            "column_description": "A numeric value representing age of the individual. Use with `ageUnit`.",
+            "attribute_description": "A numeric value representing age of the individual. Use with `ageUnit`.",
             "value_data": {}
         },
         "AgeUnit": {
-            "column_description": "A time unit that can be used with a given age value, e.g. years.",
+            "attribute_description": "A time unit that can be used with a given age value, e.g. years.",
             "value_data": {
                 "Seconds": "",
                 "Minutes": "",
@@ -614,14 +614,14 @@
             }
         },
         "IsCellLine": {
-            "column_description": "Whether or not sample source is a cell line (Yes; No)",
+            "attribute_description": "Whether or not sample source is a cell line (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "LibraryPreparationMethod": {
-            "column_description": "Method by which library was prepared",
+            "attribute_description": "Method by which library was prepared",
             "value_data": {
                 "10x": "",
                 "CEL-seq": "",
@@ -647,15 +647,15 @@
             }
         },
         "Publisher": {
-            "column_description": "An entity responsible for making the resource available.",
+            "attribute_description": "An entity responsible for making the resource available.",
             "value_data": {}
         },
         "AverageBaseQuality": {
-            "column_description": "Average base quality collected from samtools",
+            "attribute_description": "Average base quality collected from samtools",
             "value_data": {}
         },
         "Sex": {
-            "column_description": "Phenotypic expression of chromosomal makeup that defines a study subject as male, female, or other.",
+            "attribute_description": "Phenotypic expression of chromosomal makeup that defines a study subject as male, female, or other.",
             "value_data": {
                 "Male": "",
                 "Female": "",
@@ -664,11 +664,11 @@
             }
         },
         "CreatedBy": {
-            "column_description": "Refers to the user who created the resource.",
+            "attribute_description": "Refers to the user who created the resource.",
             "value_data": {}
         },
         "OtherTumors": {
-            "column_description": "Characterization of the manifestation of other tumors.",
+            "attribute_description": "Characterization of the manifestation of other tumors.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -676,11 +676,11 @@
             }
         },
         "GenePerturbationType": {
-            "column_description": "Specific way in which a single gene was perturbed in a sample",
+            "attribute_description": "Specific way in which a single gene was perturbed in a sample",
             "value_data": {}
         },
         "PainStatus": {
-            "column_description": "Pain status rating.",
+            "attribute_description": "Pain status rating.",
             "value_data": {
                 "Notaproblem": "",
                 "Occasional": "",
@@ -688,35 +688,35 @@
             }
         },
         "CompoundDose": {
-            "column_description": "A dose quantity for the treatment compound. To be used with compoundDoseUnit.",
+            "attribute_description": "A dose quantity for the treatment compound. To be used with compoundDoseUnit.",
             "value_data": {}
         },
         "ReadDepth": {
-            "column_description": "If available, the coverage statistic as output from bedtools coverage or samtools stats.",
+            "attribute_description": "If available, the coverage statistic as output from bedtools coverage or samtools stats.",
             "value_data": {}
         },
         "InChIKey": {
-            "column_description": "//pubchem.ncbi.nlm.nih.gov/compound/10127622#section=InChI-Key).  This is a more reliable identifier than the compound name and should be used if available.\n",
+            "attribute_description": "//pubchem.ncbi.nlm.nih.gov/compound/10127622#section=InChI-Key).  This is a more reliable identifier than the compound name and should be used if available.\n",
             "value_data": {}
         },
         "ConcentrationMaterial": {
-            "column_description": "Numeric value for concentration of the material",
+            "attribute_description": "Numeric value for concentration of the material",
             "value_data": {}
         },
         "FileCount": {
-            "column_description": "Number of files in the resource collection.",
+            "attribute_description": "Number of files in the resource collection.",
             "value_data": {}
         },
         "AssayTarget": {
-            "column_description": "Target of the assay such as a HUGO gene symbol, cell type, or tissue region depending on the capabilities of the assay.",
+            "attribute_description": "Target of the assay such as a HUGO gene symbol, cell type, or tissue region depending on the capabilities of the assay.",
             "value_data": {}
         },
         "ReadLength": {
-            "column_description": "Number of base pairs (bp) sequenced for a read",
+            "attribute_description": "Number of base pairs (bp) sequenced for a read",
             "value_data": {}
         },
         "TumorTreatmentStatus": {
-            "column_description": "Tumor treatment status for the individual.",
+            "attribute_description": "Tumor treatment status for the individual.",
             "value_data": {
                 "Nospecifictherapy": "",
                 "Chemotherapy": "",
@@ -727,15 +727,15 @@
             }
         },
         "StudyId": {
-            "column_description": "Id of study.",
+            "attribute_description": "Id of study.",
             "value_data": {}
         },
         "Filename": {
-            "column_description": "The name of the file.",
+            "attribute_description": "The name of the file.",
             "value_data": {}
         },
         "DiffuseDermalNeurofibromas": {
-            "column_description": "Characterization of the manifestation of Diffuse dermal neurofibromas.",
+            "attribute_description": "Characterization of the manifestation of Diffuse dermal neurofibromas.",
             "value_data": {
                 "Absent": "",
                 "Scattered": "",
@@ -744,18 +744,18 @@
             }
         },
         "ReadStrandOrigin": {
-            "column_description": "The strand from which the read originates in a strand-specific protocol",
+            "attribute_description": "The strand from which the read originates in a strand-specific protocol",
             "value_data": {
                 "Forward": "",
                 "Reverse": ""
             }
         },
         "Series": {
-            "column_description": "Title of a custom series that this resource is part of, if any.",
+            "attribute_description": "Title of a custom series that this resource is part of, if any.",
             "value_data": {}
         },
         "ProgressReportNumber": {
-            "column_description": " if submitting data for the 6-month milestone report for NTAP, progressReportNumber=1.  Also if submitting data associated with first milestone, progressReportNumber =1",
+            "attribute_description": " if submitting data for the 6-month milestone report for NTAP, progressReportNumber=1.  Also if submitting data associated with first milestone, progressReportNumber =1",
             "value_data": {
                 "1": "",
                 "2": "",
@@ -771,7 +771,7 @@
             }
         },
         "SpecimenPreparationMethod": {
-            "column_description": "Term that represents preservation of the sample before usage in, e.g. sequencing",
+            "attribute_description": "Term that represents preservation of the sample before usage in, e.g. sequencing",
             "value_data": {
                 "Freshcollected": "",
                 "Flashfrozen": "",
@@ -785,14 +785,14 @@
             }
         },
         "IsMultiIndividual": {
-            "column_description": "Whether or not a file has data for multiple individuals (Yes; No)",
+            "attribute_description": "Whether or not a file has data for multiple individuals (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "LibraryStrand": {
-            "column_description": "Strandedness of paired-end RNA-Sequencing data. This is an important parameter for RNA-seq analysis.",
+            "attribute_description": "Strandedness of paired-end RNA-Sequencing data. This is an important parameter for RNA-seq analysis.",
             "value_data": {
                 "FirstStranded": "",
                 "SecondStranded": "",
@@ -801,7 +801,7 @@
             }
         },
         "GIST": {
-            "column_description": "Characterization of the manifestation of Gastrointestinal stromal tumor (GIST).",
+            "attribute_description": "Characterization of the manifestation of Gastrointestinal stromal tumor (GIST).",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -809,7 +809,7 @@
             }
         },
         "Immersion": {
-            "column_description": "Immersion medium",
+            "attribute_description": "Immersion medium",
             "value_data": {
                 "Air": "",
                 "Oil": "",
@@ -818,7 +818,7 @@
             }
         },
         "CaptureArea": {
-            "column_description": "  A1, B1, C1, D1 for Visium slides with 6.5 mm Capture Area and A, B for CytAssist slides with 11 mm Capture Area.  Both CytAssist slides with 6.5 mm Capture Area and Gateway Slides contain only two slide areas, A1 and D1.\n",
+            "attribute_description": "  A1, B1, C1, D1 for Visium slides with 6.5 mm Capture Area and A, B for CytAssist slides with 11 mm Capture Area.  Both CytAssist slides with 6.5 mm Capture Area and Gateway Slides contain only two slide areas, A1 and D1.\n",
             "value_data": {
                 "A": "",
                 "B": "",
@@ -831,7 +831,7 @@
             }
         },
         "ExperimentalFactor": {
-            "column_description": "An ontology concept for experimental factor measured with this data.",
+            "attribute_description": "An ontology concept for experimental factor measured with this data.",
             "value_data": {
                 "Braingrowthmeasurement": "",
                 "Brainvolumemeasurement": "",
@@ -844,7 +844,7 @@
             }
         },
         "Stature": {
-            "column_description": "Stature of the individual.",
+            "attribute_description": "Stature of the individual.",
             "value_data": {
                 "<5thcentile": "",
                 "5th-95thcentile": "",
@@ -852,11 +852,11 @@
             }
         },
         "ReadPair": {
-            "column_description": "The read of origin, Read 1 or Read 2",
+            "attribute_description": "The read of origin, Read 1 or Read 2",
             "value_data": {}
         },
         "WorkingDistanceUnit": {
-            "column_description": "Unit for working distance.",
+            "attribute_description": "Unit for working distance.",
             "value_data": {
                 "Angstrom": "",
                 "Nanometer": "",
@@ -866,7 +866,7 @@
             }
         },
         "NonopticGlioma": {
-            "column_description": "Characterization of the manifestation of Nonoptic glioma.",
+            "attribute_description": "Characterization of the manifestation of Nonoptic glioma.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -874,22 +874,22 @@
             }
         },
         "GermlineMutationIndicator": {
-            "column_description": "Indicates a summary testing result for individual's germline mutation only.",
+            "attribute_description": "Indicates a summary testing result for individual's germline mutation only.",
             "value_data": {
                 "Nottested": "",
                 "Testedbutunknown": ""
             }
         },
         "AntibodyID": {
-            "column_description": "Antibody ID such as RRID if available, otherwise use vendor ID.",
+            "attribute_description": "Antibody ID such as RRID if available, otherwise use vendor ID.",
             "value_data": {}
         },
         "SpecimenIDSource": {
-            "column_description": "Optional annotation describing where the specimen ID source derived from, e.g. the biobank providing samples or a providing lab.",
+            "attribute_description": "Optional annotation describing where the specimen ID source derived from, e.g. the biobank providing samples or a providing lab.",
             "value_data": {}
         },
         "VestibularSchwannoma": {
-            "column_description": "Characterization of the manifestation of Vestibular schwannoma.",
+            "attribute_description": "Characterization of the manifestation of Vestibular schwannoma.",
             "value_data": {
                 "Notimaged": "",
                 "Absentbyimaging": "",
@@ -899,18 +899,18 @@
             }
         },
         "IsPairedEnd": {
-            "column_description": "(Legacy/deprecated annotation) Whether or not is paired-end sequencing (Yes; No).",
+            "attribute_description": "(Legacy/deprecated annotation) Whether or not is paired-end sequencing (Yes; No).",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "PlateName": {
-            "column_description": "User-specified identifier of the plate used to prepare the sample for analysis.",
+            "attribute_description": "User-specified identifier of the plate used to prepare the sample for analysis.",
             "value_data": {}
         },
         "NumberOfSchwannomas": {
-            "column_description": "Number of schwannomas.",
+            "attribute_description": "Number of schwannomas.",
             "value_data": {
                 "Single": "",
                 "Scattered": "",
@@ -919,7 +919,7 @@
             }
         },
         "DataStatus": {
-            "column_description": "Overall status of data in a study.",
+            "attribute_description": "Overall status of data in a study.",
             "value_data": {
                 "DataNotExpected": "",
                 "DataPending": "",
@@ -930,27 +930,27 @@
             }
         },
         "ContentSize": {
-            "column_description": "(Files only) File size, usually calculated by the backend.",
+            "attribute_description": "(Files only) File size, usually calculated by the backend.",
             "value_data": {}
         },
         "TargetCaptureKitID": {
-            "column_description": "A unique identifier for the kit used to construct a genomic library using target capture-based techniques, which should be composed of the vendor name, kit name and kit version.\n",
+            "attribute_description": "A unique identifier for the kit used to construct a genomic library using target capture-based techniques, which should be composed of the vendor name, kit name and kit version.\n",
             "value_data": {}
         },
         "AliquotID": {
-            "column_description": "A unique identifier (non-PII) that represents the aliquots used for e.g. replicate runs. This is linked to the specimenID.",
+            "attribute_description": "A unique identifier (non-PII) that represents the aliquots used for e.g. replicate runs. This is linked to the specimenID.",
             "value_data": {}
         },
         "Initiative": {
-            "column_description": "Refers to a funding initiative. Typically handled by the DCC.",
+            "attribute_description": "Refers to a funding initiative. Typically handled by the DCC.",
             "value_data": {}
         },
         "NominalMagnification": {
-            "column_description": "magnification of the lens as specified by the manufacturer - i.e. '60' is a 60X lens.",
+            "attribute_description": "magnification of the lens as specified by the manufacturer - i.e. '60' is a 60X lens.",
             "value_data": {}
         },
         "GenePerturbationTechnology": {
-            "column_description": "Technology used to perturb gene",
+            "attribute_description": "Technology used to perturb gene",
             "value_data": {
                 "RNAi": "",
                 "CRISPR": "",
@@ -958,19 +958,19 @@
             }
         },
         "RelatedResource": {
-            "column_description": "A related resource.",
+            "attribute_description": "A related resource.",
             "value_data": {}
         },
         "SpecimenID": {
-            "column_description": "A unique identifier (non-PII) that represents the subspecimen (subsample) from which the data came,  e.g. an ID that distinguishes between different parts of the same parent tumor specimen.\n",
+            "attribute_description": "A unique identifier (non-PII) that represents the subspecimen (subsample) from which the data came,  e.g. an ID that distinguishes between different parts of the same parent tumor specimen.\n",
             "value_data": {}
         },
         "Comments": {
-            "column_description": "Brief free-text comments that may also be important to understanding the resource.",
+            "attribute_description": "Brief free-text comments that may also be important to understanding the resource.",
             "value_data": {}
         },
         "FileFormat": {
-            "column_description": "Defined format of the data file, typically corresponding to extension, but sometimes indicating more general group of files produced by the same tool or software",
+            "attribute_description": "Defined format of the data file, typically corresponding to extension, but sometimes indicating more general group of files produced by the same tool or software",
             "value_data": {
                 "7z": "",
                 "DICOM": "",
@@ -1089,7 +1089,7 @@
             }
         },
         "Nf2Genotype": {
-            "column_description": "Genotype of NF2 gene in the biospecimen from which the data were derived, if known",
+            "attribute_description": "Genotype of NF2 gene in the biospecimen from which the data were derived, if known",
             "value_data": {
                 "-/-": "",
                 "+/-": "",
@@ -1098,7 +1098,7 @@
             }
         },
         "PeripheralNeuropathy": {
-            "column_description": "Characterization of the manifestation of Peripheral neuropathy.",
+            "attribute_description": "Characterization of the manifestation of Peripheral neuropathy.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1106,11 +1106,11 @@
             }
         },
         "Component": {
-            "column_description": "Type of metadata template; provide the same one for all items/rows.",
+            "attribute_description": "Type of metadata template; provide the same one for all items/rows.",
             "value_data": {}
         },
         "Scoliosis": {
-            "column_description": "Characterization of the manifestation of Scoliosis.",
+            "attribute_description": "Characterization of the manifestation of Scoliosis.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1118,7 +1118,7 @@
             }
         },
         "Species": {
-            "column_description": "The name of a species (typically a taxonomic group) of organism.",
+            "attribute_description": "The name of a species (typically a taxonomic group) of organism.",
             "value_data": {
                 "Rattusnorvegicus": "",
                 "Gallusgallus": "",
@@ -1134,19 +1134,19 @@
             }
         },
         "ConcreteType": {
-            "column_description": "Refers to the class model the data platform uses for representing the resource. This is a low-level field set by the platform and is not a user annotation.",
+            "attribute_description": "Refers to the class model the data platform uses for representing the resource. This is a low-level field set by the platform and is not a user annotation.",
             "value_data": {}
         },
         "YearPublished": {
-            "column_description": "Year in which the resource was published/generally made available.",
+            "attribute_description": "Year in which the resource was published/generally made available.",
             "value_data": {}
         },
         "FundingAgency": {
-            "column_description": "Refers to the funding organization for the generated resource. This annotation is handled by the DCC.",
+            "attribute_description": "Refers to the funding organization for the generated resource. This annotation is handled by the DCC.",
             "value_data": {}
         },
         "IntellectualDisability": {
-            "column_description": "Characterization of the manifestation of Intellectual disability.",
+            "attribute_description": "Characterization of the manifestation of Intellectual disability.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1154,7 +1154,7 @@
             }
         },
         "PlexiformNeurofibromas": {
-            "column_description": "Characterization of the manifestation of Plexiform neurofibromas.",
+            "attribute_description": "Characterization of the manifestation of Plexiform neurofibromas.",
             "value_data": {
                 "Present": "",
                 "AbsentbyMRI": "",
@@ -1163,7 +1163,7 @@
             }
         },
         "MPNSTCharacterization": {
-            "column_description": "Characterization of the manifestation of MPNST.",
+            "attribute_description": "Characterization of the manifestation of MPNST.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1171,7 +1171,7 @@
             }
         },
         "NucleicAcidSource": {
-            "column_description": "Source of the extracted nucleic acid used in the experiment",
+            "attribute_description": "Source of the extracted nucleic acid used in the experiment",
             "value_data": {
                 "Bulkcell": "",
                 "Bulknuclei": "",
@@ -1181,11 +1181,11 @@
             }
         },
         "MeanCoverage": {
-            "column_description": "Mean coverage for whole genome sequencing, or mean target coverage for whole exome and targeted sequencing, collected from Picard Tools",
+            "attribute_description": "Mean coverage for whole genome sequencing, or mean target coverage for whole exome and targeted sequencing, collected from Picard Tools",
             "value_data": {}
         },
         "Channel": {
-            "column_description": "Color channel used to generate data file.",
+            "attribute_description": "Color channel used to generate data file.",
             "value_data": {
                 "Cy3": "",
                 "Cy5": "",
@@ -1193,31 +1193,31 @@
             }
         },
         "GenePerturbed": {
-            "column_description": "The HUGO gene symbol for the gene that is perturbed.",
+            "attribute_description": "The HUGO gene symbol for the gene that is perturbed.",
             "value_data": {}
         },
         "Type": {
-            "column_description": "Refers to the type of the resource on the platform, e.g. \u201cfile\u201d.",
+            "attribute_description": "Refers to the type of the resource on the platform, e.g. \u201cfile\u201d.",
             "value_data": {}
         },
         "Etag": {
-            "column_description": "Synapse employs an Optimistic Concurrency Control (OCC) scheme to handle concurrent updates. The E-Tag changes every time an entity is updated it is used to detect when a client's current representation of an entity is out-of-date.",
+            "attribute_description": "Synapse employs an Optimistic Concurrency Control (OCC) scheme to handle concurrent updates. The E-Tag changes every time an entity is updated it is used to detect when a client's current representation of an entity is out-of-date.",
             "value_data": {}
         },
         "RuntimePlatform": {
-            "column_description": "Runtime platform or script interpreter dependencies (e.g. Java v1, Python 2.3).",
+            "attribute_description": "Runtime platform or script interpreter dependencies (e.g. Java v1, Python 2.3).",
             "value_data": {}
         },
         "Nf1SomaticMutation": {
-            "column_description": "NF1 somatic mutation, i.e. in tumor samples.",
+            "attribute_description": "NF1 somatic mutation, i.e. in tumor samples.",
             "value_data": {}
         },
         "Manifestation": {
-            "column_description": "An associated phenotype characteristic.",
+            "attribute_description": "An associated phenotype characteristic.",
             "value_data": {}
         },
         "AqueductalStenosis": {
-            "column_description": "Characterization of the manifestation of aqueductal stenosis.",
+            "attribute_description": "Characterization of the manifestation of aqueductal stenosis.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1225,7 +1225,7 @@
             }
         },
         "IrisLischNodules": {
-            "column_description": "Characterization of the manifestation of Iris Lisch Nodules.",
+            "attribute_description": "Characterization of the manifestation of Iris Lisch Nodules.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1233,11 +1233,11 @@
             }
         },
         "ConcentrationNaCl": {
-            "column_description": "Numeric value for NaCl concentration",
+            "attribute_description": "Numeric value for NaCl concentration",
             "value_data": {}
         },
         "ResourceType": {
-            "column_description": "The type of resource being stored and annotated",
+            "attribute_description": "The type of resource being stored and annotated",
             "value_data": {
                 "ExperimentalData": "",
                 "Result": "",
@@ -1250,7 +1250,7 @@
             }
         },
         "DissociationMethod": {
-            "column_description": "Procedure by which a biological specimen is dissociated into individual cells or a cell suspension",
+            "attribute_description": "Procedure by which a biological specimen is dissociated into individual cells or a cell suspension",
             "value_data": {
                 "10xV2": "",
                 "FACS": "",
@@ -1263,7 +1263,7 @@
             }
         },
         "MaterialType": {
-            "column_description": "Type of material in the characterization",
+            "attribute_description": "Type of material in the characterization",
             "value_data": {
                 "Nanoparticles": "",
                 "Polymericnanoparticles": "",
@@ -1272,11 +1272,11 @@
             }
         },
         "AuxiliaryAsset": {
-            "column_description": "URI to supplemental asset(s), e.g. QC reports or other auxiliary files to support the processing, analysis, or interpretation of the current entity.\n",
+            "attribute_description": "URI to supplemental asset(s), e.g. QC reports or other auxiliary files to support the processing, analysis, or interpretation of the current entity.\n",
             "value_data": {}
         },
         "HeartDefect": {
-            "column_description": "Characterization of the manifestation of Heart defect.",
+            "attribute_description": "Characterization of the manifestation of Heart defect.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1284,15 +1284,15 @@
             }
         },
         "Doi": {
-            "column_description": "Digital object identifier of the resource.",
+            "attribute_description": "Digital object identifier of the resource.",
             "value_data": {}
         },
         "ReadsDuplicatedPercent": {
-            "column_description": "Percent of duplicated reads collected from samtools",
+            "attribute_description": "Percent of duplicated reads collected from samtools",
             "value_data": {}
         },
         "Pheochromocytoma": {
-            "column_description": "Characterization of the manifestation of Pheochromocytoma.",
+            "attribute_description": "Characterization of the manifestation of Pheochromocytoma.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1300,14 +1300,14 @@
             }
         },
         "IsMultiSpecimen": {
-            "column_description": "Whether or not a file has data for multiple specimens (Yes; No)",
+            "attribute_description": "Whether or not a file has data for multiple specimens (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "MRISequence": {
-            "column_description": "A mode used in MRI imaging",
+            "attribute_description": "A mode used in MRI imaging",
             "value_data": {
                 "PD-weighted": "",
                 "ShortTauInversionRecovery": "",
@@ -1316,11 +1316,11 @@
             }
         },
         "DatasetSizeInBytes": {
-            "column_description": "Size of dataset entity in bytes. Auto-calculated by Synapse.",
+            "attribute_description": "Size of dataset entity in bytes. Auto-calculated by Synapse.",
             "value_data": {}
         },
         "DiagnosisAgeGroup": {
-            "column_description": "Age group of the individual at the time of diagnosis.",
+            "attribute_description": "Age group of the individual at the time of diagnosis.",
             "value_data": {
                 "Infancy": "",
                 "Childhood": "",
@@ -1330,27 +1330,27 @@
             }
         },
         "YearProcessed": {
-            "column_description": "Year in which the resource was processed/derived, if applicable.  This is only required for data processed by NF-OSI for tracking purposes, optional for community-contributed datasets. \n",
+            "attribute_description": "Year in which the resource was processed/derived, if applicable.  This is only required for data processed by NF-OSI for tracking purposes, optional for community-contributed datasets. \n",
             "value_data": {}
         },
         "ReferenceSequence": {
-            "column_description": "Syntactic sequences that has a role as reference of an annotation.",
+            "attribute_description": "Syntactic sequences that has a role as reference of an annotation.",
             "value_data": {}
         },
         "Title": {
-            "column_description": "Title of a resource.",
+            "attribute_description": "Title of a resource.",
             "value_data": {}
         },
         "Documentation": {
-            "column_description": "URL to any documentation describing the resource and its use.",
+            "attribute_description": "URL to any documentation describing the resource and its use.",
             "value_data": {}
         },
         "RelatedDataset": {
-            "column_description": "Reference to a relevant dataset entity.",
+            "attribute_description": "Reference to a relevant dataset entity.",
             "value_data": {}
         },
         "Inheritance": {
-            "column_description": "Describes whether known inheritance from a parent.",
+            "attribute_description": "Describes whether known inheritance from a parent.",
             "value_data": {
                 "Parentaffected": "",
                 "Parentnotaffected": "",
@@ -1358,7 +1358,7 @@
             }
         },
         "ConcentrationMaterialUnit": {
-            "column_description": "Unit used for the material concentration, e.g. mg/mL",
+            "attribute_description": "Unit used for the material concentration, e.g. mg/mL",
             "value_data": {
                 "Mg/mL": "",
                 "MM": "",
@@ -1366,38 +1366,38 @@
             }
         },
         "ProportionCoverage10x": {
-            "column_description": "Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 10X or greater coverage from Picard Tools",
+            "attribute_description": "Proportion of all reference bases for whole genome sequencing, or targeted bases for whole exome and targeted sequencing, that achieves 10X or greater coverage from Picard Tools",
             "value_data": {}
         },
         "StudyName": {
-            "column_description": "Name of a study.",
+            "attribute_description": "Name of a study.",
             "value_data": {}
         },
         "Author": {
-            "column_description": "The author of the resource; preferably use an ORCID ID, GitHub profile link, etc., if available and a text name if not.",
+            "attribute_description": "The author of the resource; preferably use an ORCID ID, GitHub profile link, etc., if available and a text name if not.",
             "value_data": {}
         },
         "Summary": {
-            "column_description": "A short description (an abstract).",
+            "attribute_description": "A short description (an abstract).",
             "value_data": {}
         },
         "IsPrimaryCell": {
-            "column_description": "Whether or not cellType is primary (Yes; No)",
+            "attribute_description": "Whether or not cellType is primary (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "Citation": {
-            "column_description": "Citation (e.g. doi) that usage of data or resource should be cited with.",
+            "attribute_description": "Citation (e.g. doi) that usage of data or resource should be cited with.",
             "value_data": {}
         },
         "SampleType": {
-            "column_description": "Type of sample used",
+            "attribute_description": "Type of sample used",
             "value_data": {}
         },
         "RecordingSource": {
-            "column_description": "Source of electrophysiology recording.",
+            "attribute_description": "Source of electrophysiology recording.",
             "value_data": {
                 "Electrode": "",
                 "Tetrode": "",
@@ -1407,7 +1407,7 @@
             }
         },
         "Workflow": {
-            "column_description": "Name and version of the workflow used to generate/analyze the data",
+            "attribute_description": "Name and version of the workflow used to generate/analyze the data",
             "value_data": {
                 "CNVkit": "",
                 "DeepVariant": "",
@@ -1426,23 +1426,23 @@
             }
         },
         "WorkflowLink": {
-            "column_description": "Workflow URL reference",
+            "attribute_description": "Workflow URL reference",
             "value_data": {}
         },
         "PH": {
-            "column_description": "Numeric value for pH (range 0-14)",
+            "attribute_description": "Numeric value for pH (range 0-14)",
             "value_data": {}
         },
         "LibraryKitID": {
-            "column_description": "Library kit ID.",
+            "attribute_description": "Library kit ID.",
             "value_data": {}
         },
         "PairsOnDifferentChr": {
-            "column_description": "Pairs on different chromosomes collected from samtools",
+            "attribute_description": "Pairs on different chromosomes collected from samtools",
             "value_data": {}
         },
         "ConcentrationNaClUnit": {
-            "column_description": "Unit used for the NaCl concentration, e.g. mM",
+            "attribute_description": "Unit used for the NaCl concentration, e.g. mM",
             "value_data": {
                 "Mg/mL": "",
                 "MM": "",
@@ -1450,7 +1450,7 @@
             }
         },
         "TransplantationRecipientTissue": {
-            "column_description": "Tissue into which a xenograph sample is transplanted",
+            "attribute_description": "Tissue into which a xenograph sample is transplanted",
             "value_data": {
                 "Cerebralcortex": "",
                 "Bonemarrow": "",
@@ -1479,7 +1479,7 @@
             }
         },
         "SpecimenType": {
-            "column_description": "The type of a material sample taken from a biological entity for testing, diagnostic, propagation, treatment or research purposes. This includes particular types of cellular molecules, cells, tissues, organs, body fluids, embryos, and body excretory substances.\n",
+            "attribute_description": "The type of a material sample taken from a biological entity for testing, diagnostic, propagation, treatment or research purposes. This includes particular types of cellular molecules, cells, tissues, organs, body fluids, embryos, and body excretory substances.\n",
             "value_data": {
                 "Cerebralcortex": "",
                 "Bonemarrow": "",
@@ -1513,27 +1513,27 @@
             }
         },
         "DatasetItemCount": {
-            "column_description": "Count of files in dataset. Auto-calculated by Synapse.",
+            "attribute_description": "Count of files in dataset. Auto-calculated by Synapse.",
             "value_data": {}
         },
         "DataFileHandleId": {
-            "column_description": "(Files only) Refers to the id of the file.",
+            "attribute_description": "(Files only) Refers to the id of the file.",
             "value_data": {}
         },
         "IndividualIdSource": {
-            "column_description": "Database or repository to which individual ID maps",
+            "attribute_description": "Database or repository to which individual ID maps",
             "value_data": {}
         },
         "TotalReads": {
-            "column_description": "If available, the total number of reads collected from samtools.",
+            "attribute_description": "If available, the total number of reads collected from samtools.",
             "value_data": {}
         },
         "Contributor": {
-            "column_description": "An entity responsible for making contributions to the resource.",
+            "attribute_description": "An entity responsible for making contributions to the resource.",
             "value_data": {}
         },
         "DataType": {
-            "column_description": "Links an entity to data types that the entity represents/contains. This is closely tied to the assay property. For example, a file of dataType `genomicVariants` might have an assay value of `whole genome sequencing`.\n",
+            "attribute_description": "Links an entity to data types that the entity represents/contains. This is closely tied to the assay property. For example, a file of dataType `genomicVariants` might have an assay value of `whole genome sequencing`.\n",
             "value_data": {
                 "Immunoassay": "",
                 "Behaviorprocess": "",
@@ -1582,7 +1582,7 @@
             }
         },
         "DataSubtype": {
-            "column_description": "Further qualification of dataType, which may be used to indicate the state of processing of the data, aggregation of the data, or presence of metadata.",
+            "attribute_description": "Further qualification of dataType, which may be used to indicate the state of processing of the data, aggregation of the data, or presence of metadata.",
             "value_data": {
                 "Normalized": "",
                 "DataMatrix": "",
@@ -1593,7 +1593,7 @@
             }
         },
         "TimepointUnit": {
-            "column_description": "For timed experiments this represents the unit of time measured",
+            "attribute_description": "For timed experiments this represents the unit of time measured",
             "value_data": {
                 "Seconds": "",
                 "Minutes": "",
@@ -1605,7 +1605,7 @@
             }
         },
         "WHOPerformanceStatus": {
-            "column_description": "Score on the WHO scale describing patient's functional abilities.",
+            "attribute_description": "Score on the WHO scale describing patient's functional abilities.",
             "value_data": {
                 "0": "",
                 "1": "",
@@ -1615,15 +1615,15 @@
             }
         },
         "CurrentVersion": {
-            "column_description": "(Versionable entities only) The current version number of the resource.",
+            "attribute_description": "(Versionable entities only) The current version number of the resource.",
             "value_data": {}
         },
         "GenomicReference": {
-            "column_description": "Version of genome reference used for alignment in processing workflow",
+            "attribute_description": "Version of genome reference used for alignment in processing workflow",
             "value_data": {}
         },
         "Organ": {
-            "column_description": "A unique macroscopic (gross) anatomic structure that performs specific functions. It is composed of various tissues. An organ is part of an anatomic system or a body region.",
+            "attribute_description": "A unique macroscopic (gross) anatomic structure that performs specific functions. It is composed of various tissues. An organ is part of an anatomic system or a body region.",
             "value_data": {
                 "Kidney": "",
                 "Ovary": "",
@@ -1648,7 +1648,7 @@
             }
         },
         "LearningDisability": {
-            "column_description": "Characterization of the manifestation of Learning disability.",
+            "attribute_description": "Characterization of the manifestation of Learning disability.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1656,22 +1656,22 @@
             }
         },
         "Id": {
-            "column_description": "The entity id for the resource automatically assigned by the platform.",
+            "attribute_description": "The entity id for the resource automatically assigned by the platform.",
             "value_data": {}
         },
         "IsXenograft": {
-            "column_description": "Whether or not sample source is a xenograft (Yes; No)",
+            "attribute_description": "Whether or not sample source is a xenograft (Yes; No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "ResourceId": {
-            "column_description": "A UUID for a Resource from the NF Research Tools Database",
+            "attribute_description": "A UUID for a Resource from the NF Research Tools Database",
             "value_data": {}
         },
         "LenticularOpacity": {
-            "column_description": "Characterization of the manifestation of Lenticular opacity.",
+            "attribute_description": "Characterization of the manifestation of Lenticular opacity.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1679,7 +1679,7 @@
             }
         },
         "DrugScreenType": {
-            "column_description": "String describing general class of drug screen",
+            "attribute_description": "String describing general class of drug screen",
             "value_data": {
                 "Combinationlibraryscreen": "",
                 "Combinationscreen": "",
@@ -1688,11 +1688,11 @@
             }
         },
         "ExperimentalCondition": {
-            "column_description": "A free-text description of the experimental condition (e.g. 5 mM doxorubicin).",
+            "attribute_description": "A free-text description of the experimental condition (e.g. 5 mM doxorubicin).",
             "value_data": {}
         },
         "CafeaulaitMacules": {
-            "column_description": "Characterization of cafe-au-lait macules.",
+            "attribute_description": "Characterization of cafe-au-lait macules.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1700,7 +1700,7 @@
             }
         },
         "ModelSystemName": {
-            "column_description": "  HEK293 (cell line), Minnesota5 (swine strain), DXL (poultry strain), RB51 (vaccine strain of Brucella abortus)",
+            "attribute_description": "  HEK293 (cell line), Minnesota5 (swine strain), DXL (poultry strain), RB51 (vaccine strain of Brucella abortus)",
             "value_data": {
                 "HEK293NF1-/-withWTmNf1cDNA": "",
                 "SZ-NF4": "",
@@ -1859,7 +1859,7 @@
             }
         },
         "DermalNeurofibromas": {
-            "column_description": "Characterization of the manifestation of Dermal neurofibromas.",
+            "attribute_description": "Characterization of the manifestation of Dermal neurofibromas.",
             "value_data": {
                 "Absent": "",
                 "Scattered": "",
@@ -1868,15 +1868,15 @@
             }
         },
         "PlateWell": {
-            "column_description": "User-specified identifier for the specific well of the plate used to prepare the sample for analysis.",
+            "attribute_description": "User-specified identifier for the specific well of the plate used to prepare the sample for analysis.",
             "value_data": {}
         },
         "ChipID": {
-            "column_description": "User-specified identifier for the chip used to perform the methylation microarray.",
+            "attribute_description": "User-specified identifier for the chip used to perform the methylation microarray.",
             "value_data": {}
         },
         "ProteinExtractSource": {
-            "column_description": "Source of the extracted protein used in the experiment",
+            "attribute_description": "Source of the extracted protein used in the experiment",
             "value_data": {
                 "Celllysate": "",
                 "Cytoplasm": "",
@@ -1885,7 +1885,7 @@
             }
         },
         "DataCollectionMode": {
-            "column_description": "Mode of data collection in tandem MS assays. Either DDA (data-dependent acquisition) or DIA (data-independent) acquisition.",
+            "attribute_description": "Mode of data collection in tandem MS assays. Either DDA (data-dependent acquisition) or DIA (data-independent) acquisition.",
             "value_data": {
                 "DDA": "",
                 "DIA": "",
@@ -1893,7 +1893,7 @@
             }
         },
         "BodySite": {
-            "column_description": "Sample location referring to a named area of the body, inclusive of gross anatomical structures and organ parts.",
+            "attribute_description": "Sample location referring to a named area of the body, inclusive of gross anatomical structures and organ parts.",
             "value_data": {
                 "Axilla": "",
                 "Groin": "",
@@ -1917,7 +1917,7 @@
             }
         },
         "LongBoneDysplasia": {
-            "column_description": "Characterization of the manifestation of Long bone dysplasia.",
+            "attribute_description": "Characterization of the manifestation of Long bone dysplasia.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -1925,7 +1925,7 @@
             }
         },
         "LibraryPrep": {
-            "column_description": "The general strategy by which the library was prepared",
+            "attribute_description": "The general strategy by which the library was prepared",
             "value_data": {
                 "LncRNAenrichment": "",
                 "MiRNAenrichment": "",
@@ -1934,7 +1934,7 @@
             }
         },
         "TumorType": {
-            "column_description": "The type of tumor that the biospecimen used to generate the data were collected from.",
+            "attribute_description": "The type of tumor that the biospecimen used to generate the data were collected from.",
             "value_data": {
                 "DiffuseAstrocytoma": "",
                 "SubcutaneousNeurofibroma": "",
@@ -1990,11 +1990,11 @@
             }
         },
         "WorkingDistance": {
-            "column_description": "Working distance of the lens expressed as a floating point number > 0.",
+            "attribute_description": "Working distance of the lens expressed as a floating point number > 0.",
             "value_data": {}
         },
         "NonvestibularCranialSchwannoma": {
-            "column_description": "Characterization of the manifestation of Nonvestibular cranial schwannoma.",
+            "attribute_description": "Characterization of the manifestation of Nonvestibular cranial schwannoma.",
             "value_data": {
                 "Notimaged": "",
                 "Absentbyimaging": "",
@@ -2003,7 +2003,7 @@
             }
         },
         "ExpressionUnit": {
-            "column_description": "Measure used for transcript expression quantification",
+            "attribute_description": "Measure used for transcript expression quantification",
             "value_data": {
                 "TPM": "",
                 "RPKM": "",
@@ -2015,7 +2015,7 @@
             }
         },
         "PubertyOnset": {
-            "column_description": "Puberty onset.",
+            "attribute_description": "Puberty onset.",
             "value_data": {
                 "Prebubertal": "",
                 "Precocious": "",
@@ -2024,11 +2024,11 @@
             }
         },
         "ReadsMappedPercent": {
-            "column_description": "Percent of mapped reads collected from samtools",
+            "attribute_description": "Percent of mapped reads collected from samtools",
             "value_data": {}
         },
         "GlomusTumor": {
-            "column_description": "Characterization of the manifestation of Glomus tumor.",
+            "attribute_description": "Characterization of the manifestation of Glomus tumor.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2036,7 +2036,7 @@
             }
         },
         "StudyStatus": {
-            "column_description": "Status of a study.",
+            "attribute_description": "Status of a study.",
             "value_data": {
                 "Active": "",
                 "Completed": "",
@@ -2044,7 +2044,7 @@
             }
         },
         "SphenoidDysplasia": {
-            "column_description": "Characterization of the manifestation of Sphenoid dysplasia.",
+            "attribute_description": "Characterization of the manifestation of Sphenoid dysplasia.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2052,7 +2052,7 @@
             }
         },
         "NonvestibularSchwannomas": {
-            "column_description": "Characterization of the manifestation of Nonvestibular schwannomas.",
+            "attribute_description": "Characterization of the manifestation of Nonvestibular schwannomas.",
             "value_data": {
                 "Onlybyimagingevidence": "",
                 "1pathogicallyconfirmed": "",
@@ -2061,11 +2061,11 @@
             }
         },
         "GermlineMutation": {
-            "column_description": "The individual's actual germline mutation.",
+            "attribute_description": "The individual's actual germline mutation.",
             "value_data": {}
         },
         "SkinFoldFreckling": {
-            "column_description": "Characterization of skin fold freckling.",
+            "attribute_description": "Characterization of skin fold freckling.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2073,15 +2073,15 @@
             }
         },
         "ContentType": {
-            "column_description": "Refers to the type of content.",
+            "attribute_description": "Refers to the type of content.",
             "value_data": {}
         },
         "Objective": {
-            "column_description": "Microscope objective.",
+            "attribute_description": "Microscope objective.",
             "value_data": {}
         },
         "Leukemia": {
-            "column_description": "Characterization of the manifestation of Leukemia.",
+            "attribute_description": "Characterization of the manifestation of Leukemia.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2089,7 +2089,7 @@
             }
         },
         "SubcutaneousNodularNeurofibromas": {
-            "column_description": "Characterization of the manifestation of Subcutaneous nodular neurofibromas.",
+            "attribute_description": "Characterization of the manifestation of Subcutaneous nodular neurofibromas.",
             "value_data": {
                 "Absent": "",
                 "Scattered": "",
@@ -2098,30 +2098,30 @@
             }
         },
         "AverageInsertSize": {
-            "column_description": "Average insert size as reported by samtools",
+            "attribute_description": "Average insert size as reported by samtools",
             "value_data": {}
         },
         "CellID": {
-            "column_description": "Also known as cell barcode, this value can be added for single-cell experiments to identify data at the cell level.",
+            "attribute_description": "Also known as cell barcode, this value can be added for single-cell experiments to identify data at the cell level.",
             "value_data": {}
         },
         "BatchID": {
-            "column_description": "Batch identifier, can be used in any context where added batch information is helpful, such as different sequencing runs or collection times.",
+            "attribute_description": "Batch identifier, can be used in any context where added batch information is helpful, such as different sequencing runs or collection times.",
             "value_data": {}
         },
         "IndividualID": {
-            "column_description": "A unique identifier (non-PII) that represents the individual from which the data came. This could be a patient or animal ID.",
+            "attribute_description": "A unique identifier (non-PII) that represents the individual from which the data came. This could be a patient or animal ID.",
             "value_data": {}
         },
         "FailedQC": {
-            "column_description": "Whether the sample or data failed QC checks (Yes, No)",
+            "attribute_description": "Whether the sample or data failed QC checks (Yes, No)",
             "value_data": {
                 "Yes": "",
                 "No": ""
             }
         },
         "VascularDisease": {
-            "column_description": "Characterization of the manifestation of Vascular disease.",
+            "attribute_description": "Characterization of the manifestation of Vascular disease.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2129,34 +2129,34 @@
             }
         },
         "CompoundName": {
-            "column_description": "//pubchem.ncbi.nlm.nih.gov/compound/10127622)",
+            "attribute_description": "//pubchem.ncbi.nlm.nih.gov/compound/10127622)",
             "value_data": {}
         },
         "Nf1GermlineMutation": {
-            "column_description": "NF1 germline mutation.",
+            "attribute_description": "NF1 germline mutation.",
             "value_data": {}
         },
         "IsFilteredReads": {
-            "column_description": "Whether the reads in the processed result has been filtered by adding a 'PASS' filter or other filters as determined by the data generator",
+            "attribute_description": "Whether the reads in the processed result has been filtered by adding a 'PASS' filter or other filters as determined by the data generator",
             "value_data": {}
         },
         "RunType": {
-            "column_description": "Sequencing run type.",
+            "attribute_description": "Sequencing run type.",
             "value_data": {
                 "PairedEnd": "",
                 "SingleEnd": ""
             }
         },
         "LensAperture": {
-            "column_description": "Numerical aperture of the lens. Floating point value > 0.",
+            "attribute_description": "Numerical aperture of the lens. Floating point value > 0.",
             "value_data": {}
         },
         "ReferenceSet": {
-            "column_description": "A set of references (e.g., canonical assembled contigs) which defines a common coordinate space for comparing reference-aligned experimental data.",
+            "attribute_description": "A set of references (e.g., canonical assembled contigs) which defines a common coordinate space for comparing reference-aligned experimental data.",
             "value_data": {}
         },
         "AttentionDeficitDisorder": {
-            "column_description": "Characterization of the manifestation of Attention Deficit Disorder.",
+            "attribute_description": "Characterization of the manifestation of Attention Deficit Disorder.",
             "value_data": {
                 "Absent": "",
                 "Present": "",
@@ -2164,30 +2164,30 @@
             }
         },
         "ParentId": {
-            "column_description": "The id of the parent resource, i.e. the parent folder on the platform. ",
+            "attribute_description": "The id of the parent resource, i.e. the parent folder on the platform. ",
             "value_data": {}
         },
         "DiseaseFocus": {
-            "column_description": "Disease that acts as the main topic.",
+            "attribute_description": "Disease that acts as the main topic.",
             "value_data": {}
         },
         "TransplantationRecipientSpecies": {
-            "column_description": "Species into which donor  was grown",
+            "attribute_description": "Species into which donor  was grown",
             "value_data": {
                 "Human": "",
                 "Mouse": ""
             }
         },
         "AcknowledgementStatements": {
-            "column_description": "Statement describing how resource use should be acknowledged.",
+            "attribute_description": "Statement describing how resource use should be acknowledged.",
             "value_data": {}
         },
         "ExperimentId": {
-            "column_description": "When applicable, an optional identifier that can be used to distinguish or group the experiments that generated the data; also can be used to denote internal batch reference if needed.",
+            "attribute_description": "When applicable, an optional identifier that can be used to distinguish or group the experiments that generated the data; also can be used to denote internal batch reference if needed.",
             "value_data": {}
         },
         "CellType": {
-            "column_description": "A cell type is a distinct morphological or functional form of cell.",
+            "attribute_description": "A cell type is a distinct morphological or functional form of cell.",
             "value_data": {
                 "Monocytes": "",
                 "Macrophages": "",
@@ -2227,19 +2227,19 @@
             }
         },
         "ModifiedBy": {
-            "column_description": "Refers to a user who last modified the resource on the platform.",
+            "attribute_description": "Refers to a user who last modified the resource on the platform.",
             "value_data": {}
         },
         "ParentSpecimenID": {
-            "column_description": "A unique identifier (non-PII) that represents the parent specimen (sample) from which the data came from, e.g. the single parent tumor that was subsectioned into several samples.  The parentSpecimenID can be the same as specimenID when there is no subsectioning.\n",
+            "attribute_description": "A unique identifier (non-PII) that represents the parent specimen (sample) from which the data came from, e.g. the single parent tumor that was subsectioned into several samples.  The parentSpecimenID can be the same as specimenID when there is no subsectioning.\n",
             "value_data": {}
         },
         "ExperimentalTimepoint": {
-            "column_description": "The numeric value indicating the time elapsed from the beginning of the experiment at which the specimen was collected. Use in tandem with timePointUnit",
+            "attribute_description": "The numeric value indicating the time elapsed from the beginning of the experiment at which the specimen was collected. Use in tandem with timePointUnit",
             "value_data": {}
         },
         "VitalStatus": {
-            "column_description": "Vital status of the patient.",
+            "attribute_description": "Vital status of the patient.",
             "value_data": {
                 "Alive": "",
                 "Deceased": "",
@@ -2247,7 +2247,7 @@
             }
         },
         "ProtocolAssay": {
-            "column_description": "Main assay type that this protocol is related to, e.g. this is a prep protocol for single-cell RNA-seq assay. This is especially helpful for newly-developed or in-house assays.\n",
+            "attribute_description": "Main assay type that this protocol is related to, e.g. this is a prep protocol for single-cell RNA-seq assay. This is especially helpful for newly-developed or in-house assays.\n",
             "value_data": {
                 "2DAlamarBlueabsorbance": "",
                 "2DAlamarBluefluorescence": "",
@@ -2438,15 +2438,15 @@
             }
         },
         "BisulfiteConversionKitID": {
-            "column_description": "Name of kit used in bisulfite conversion.",
+            "attribute_description": "Name of kit used in bisulfite conversion.",
             "value_data": {}
         },
         "ChipPosition": {
-            "column_description": "User-specified identifier for the specific position on the chip that the sample was loaded into to perform the methylation microarray.",
+            "attribute_description": "User-specified identifier for the specific position on the chip that the sample was loaded into to perform the methylation microarray.",
             "value_data": {}
         },
         "Assay": {
-            "column_description": "The technology used to generate the data in this file.",
+            "attribute_description": "The technology used to generate the data in this file.",
             "value_data": {
                 "2DAlamarBlueabsorbance": "",
                 "2DAlamarBluefluorescence": "",
@@ -2637,15 +2637,15 @@
             }
         },
         "StudyFileviewId": {
-            "column_description": "Links a Synapse project to its fileview.",
+            "attribute_description": "Links a Synapse project to its fileview.",
             "value_data": {}
         },
         "AverageReadLength": {
-            "column_description": "Average read length collected from samtools",
+            "attribute_description": "Average read length collected from samtools",
             "value_data": {}
         },
         "GliomaOrEpendymoma": {
-            "column_description": "Characterization of the manifestation of Glioma or ependymoma.",
+            "attribute_description": "Characterization of the manifestation of Glioma or ependymoma.",
             "value_data": {
                 "Notimaged": "",
                 "Absentbyimaging": "",
@@ -2654,11 +2654,11 @@
             }
         },
         "RelatedStudies": {
-            "column_description": "Studies similar to the current study. Subproperty of `relatedResource`.",
+            "attribute_description": "Studies similar to the current study. Subproperty of `relatedResource`.",
             "value_data": {}
         },
         "Platform": {
-            "column_description": "A sequencing platform, microscope, spectroscope/plate reader, or other platform for collecting data.",
+            "attribute_description": "A sequencing platform, microscope, spectroscope/plate reader, or other platform for collecting data.",
             "value_data": {
                 "7TBrukerBiospec": "",
                 "10xVisiumSpatialGeneExpression": "",
@@ -2776,251 +2776,251 @@
             }
         },
         "StudyLeads": {
-            "column_description": "Individuals with lead roles in a study.",
+            "attribute_description": "Individuals with lead roles in a study.",
             "value_data": {}
         },
         "Template": {
-            "column_description": "A collection of fields representing some entity.",
+            "attribute_description": "A collection of fields representing some entity.",
             "value_data": {}
         },
         "BiospecimenTemplate": {
-            "column_description": "Specimen-level data, whether from human or animal.",
+            "attribute_description": "Specimen-level data, whether from human or animal.",
             "value_data": {}
         },
         "PartialTemplate": {
-            "column_description": "A template for collecting a subset of contextual data; not intended to be a standalone template but rather a subdocument.",
+            "attribute_description": "A template for collecting a subset of contextual data; not intended to be a standalone template but rather a subdocument.",
             "value_data": {}
         },
         "PortalStudy": {
-            "column_description": "//nf.synapse.org/Explore/Studies.\n",
+            "attribute_description": "//nf.synapse.org/Explore/Studies.\n",
             "value_data": {}
         },
         "Institutions": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GrantStartDate": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GrantEndDate": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "EmbargoEndDate": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "HumanCohortTemplate": {
-            "column_description": "Data of biosamples from human patients. Adapted from Table 2 of http://nrs.harvard.edu/urn-3:HUL.InstRepos:32725809. This template should be used when biosamples are from NF patients to provides a more valuable characterization and make additional gene-phenotype insights possible.\n",
+            "attribute_description": "Data of biosamples from human patients. Adapted from Table 2 of http://nrs.harvard.edu/urn-3:HUL.InstRepos:32725809. This template should be used when biosamples are from NF patients to provides a more valuable characterization and make additional gene-phenotype insights possible.\n",
             "value_data": {}
         },
         "Lenticularopacity": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "ProcessedMergedDataTemplate": {
-            "column_description": "Further processed data with multiple samples aggregated into one file. This may be also be known as level-4 data. Unlike level-2 and level-3 data, individual-level attributes such as age and sex are no longer surfaced on the data file directly.\n",
+            "attribute_description": "Further processed data with multiple samples aggregated into one file. This may be also be known as level-4 data. Unlike level-2 and level-3 data, individual-level attributes such as age and sex are no longer surfaced on the data file directly.\n",
             "value_data": {}
         },
         "AnimalIndividualTemplate": {
-            "column_description": "Template for non-human individual-level data.",
+            "attribute_description": "Template for non-human individual-level data.",
             "value_data": {}
         },
         "PortalDataset": {
-            "column_description": "//nf.synapse.org/Explore/Datasets. \n",
+            "attribute_description": "//nf.synapse.org/Explore/Datasets. \n",
             "value_data": {}
         },
         "VisualizeDataOn": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "IncludedInDataCatalog": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CTF": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "SMN": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CCBY-ND": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "UNKNOWN": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Genesymbol": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CC-0": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GRCh38": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "LowGradeGlioma": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "MPNST": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Knockout": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Atrophy": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Cognition": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GRCh37": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Drugtoxicity": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GFF": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "MMUL1.0": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Braindevelopment": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Independent": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CCBY-NC-SA": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "QualityofLife": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "GRCh38VerilyV1": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "ODC-BY": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "JMML": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Knockdown": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "ODC-ODbL": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Druginteraction": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "HighGradeGlioma": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CCBY-SA": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Chemicaldescriptor": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "NTAP": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Drugresistance": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CCBY-NC": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CC-BY": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Memory": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Pain": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Genefunction": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "ODC-PDDL": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "RESTRICTED-USE": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Non-targetingcontrol": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Overexpression": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "CCBY-NC-ND": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "PublicDomain": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "VisionLoss": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "Behavioral": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "R816X": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         },
         "HRC": {
-            "column_description": "TBD",
+            "attribute_description": "TBD",
             "value_data": {}
         }
     },

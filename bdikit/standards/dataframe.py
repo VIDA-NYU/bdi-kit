@@ -26,13 +26,10 @@ class DataFrame(BaseStandard):
 
         for attribute_name in attribute_names:
             attribute_metadata[attribute_name] = {}
-            attribute_metadata[attribute_name]["description"] = ""
+            attribute_metadata[attribute_name]["attribute_description"] = ""
             attribute_metadata[attribute_name]["value_names"] = (
                 self.get_attribute_values([attribute_name])[attribute_name]
             )
             attribute_metadata[attribute_name]["value_descriptions"] = []
 
         return attribute_metadata
-
-    def get_dataframe_rep(self) -> pd.DataFrame:
-        return self.dataframe

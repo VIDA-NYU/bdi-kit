@@ -24,7 +24,7 @@ from bdikit.value_matching.matcher_factory import (
     get_value_matcher,
     get_topk_value_matcher,
 )
-from bdikit.standards.base import BaseStandard
+from bdikit.standards.base import BaseStandard, MANDATORY_METADATA_FIELDS
 from bdikit.standards.standard_factory import Standards
 from bdikit.standards.dataframe import DataFrame
 
@@ -43,6 +43,7 @@ from bdikit.utils import (
     save_in_cache,
     create_schema_hash,
     create_value_hash,
+    create_context,
 )
 
 from bdikit.matching_evaluation.schema_matching import (
@@ -58,25 +59,29 @@ logger = logging.getLogger(__name__)
 
 
 def match_schema(
-    source: pd.DataFrame,
-    target: Union[str, pd.DataFrame] = "gdc",
-    method: Union[str, BaseSchemaMatcher] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    source: Union[pd.DataFrame, BaseStandard],
+    target: Optional[Union[pd.DataFrame, BaseStandard, str]] = "gdc",
+    method: Optional[Union[str, BaseSchemaMatcher]] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    source_context: Optional[Dict[str, Any]] = None,
+    target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
     use_cache: Optional[bool] = True,
 ) -> pd.DataFrame:
     """
     Performs schema matching between the source table and the given target schema. The
-    target is either a DataFrame or a string representing a standard data vocabulary
-    supported by the library. Currently, only the GDC (Genomic Data Commons) standard
-    vocabulary is supported.
+    target is either a DataFrame or a string representing a standard data model
+    supported by the library. Currently, only the GDC (Genomic Data Commons) and Synapse standard
+    data model is supported.
 
-    Parameters:
-        source (pd.DataFrame): The source table to be mapped.
-        target (Union[str, pd.DataFrame], optional): The target table or standard data vocabulary. Defaults to "gdc".
-        method (str, optional): The method used for matching. Defaults to "ct_learning".
+    Args:
+        source (Union[pd.DataFrame, BaseStandard, str]): The source table or standard data model to be mapped.
+        target (Union[pd.DataFrame, BaseStandard, str], optional): The target table or standard data model. Defaults to "gdc".
+        method (Union[str, BaseSchemaMatcher], optional): The method to use for schema matching. Defaults to "magneto_ft_bp".
+        source_context (Dict[str, Any], optional): The context for the source dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
-        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard data model (target).
         use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
 
     Returns:
@@ -85,21 +90,34 @@ def match_schema(
     Raises:
         ValueError: If the method is neither a string nor an instance of BaseSchemaMatcher.
     """
-    target_dataset = _load_dataset(target, standard_args)
     source_dataset = _load_dataset(source)
+    target_dataset = _load_dataset(target, standard_args)
     matcher_instance = _load_schema_matcher(method, method_args)
 
-    # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
+    source_ctx = create_context(
+        source_dataset,
+        user_context=source_context,
+    )
+    target_ctx = create_context(
+        target_dataset,
+        user_context=target_context,
+    )
+
     if use_cache:
         matches = _cache_schema_matches(
-            source_df=source_dataset.get_dataframe_rep(),
-            target_df=target_dataset.get_dataframe_rep(),
+            source_df=source_dataset._get_dataframe_rep(),
+            target_df=target_dataset._get_dataframe_rep(),
+            source_ctx=source_ctx,
+            target_ctx=target_ctx,
             matcher_obj=matcher_instance,
             match_func=matcher_instance.match_schema,
         )
     else:
         matches = matcher_instance.match_schema(
-            source_dataset.get_dataframe_rep(), target_dataset.get_dataframe_rep()
+            source_dataset._get_dataframe_rep(),
+            target_dataset._get_dataframe_rep(),
+            source_ctx,
+            target_ctx,
         )
 
     return pd.DataFrame(
@@ -134,13 +152,15 @@ def _load_schema_matcher(
 
 
 def rank_schema_matches(
-    source: pd.DataFrame,
-    target: Union[str, pd.DataFrame] = "gdc",
+    source: Union[pd.DataFrame, BaseStandard],
+    target: Optional[Union[pd.DataFrame, BaseStandard, str]] = "gdc",
     attributes: Optional[List[str]] = None,
     top_k: Optional[int] = 10,
     method: Optional[
         Union[str, BaseTopkSchemaMatcher]
     ] = DEFAULT_SCHEMA_MATCHING_METHOD,
+    source_context: Optional[Dict[str, Any]] = None,
+    target_context: Optional[Dict[str, Any]] = None,
     method_args: Optional[Dict[str, Any]] = None,
     standard_args: Optional[Dict[str, Any]] = None,
     use_cache: Optional[bool] = True,
@@ -149,42 +169,55 @@ def rank_schema_matches(
     Returns the top-k matches between the source and target tables.
 
     Args:
-        source (pd.DataFrame): The source table.
-        target (Union[str, pd.DataFrame], optional): The target table or the name of the standard target table. Defaults to "gdc".
+        source (Union[pd.DataFrame, BaseStandard, str]): The source table or standard data model to be mapped.
+        target (Union[pd.DataFrame, BaseStandard, str], optional): The target table or standard data model. Defaults to "gdc".
         attributes (List[str], optional): The list of attributes/columns to consider for matching. Defaults to None.
         top_k (int, optional): The number of top matches to return. Defaults to 10.
-        method (Union[str, BaseTopkSchemaMatcher], optional): The method used for matching. Defaults to DEFAULT_SCHEMA_MATCHING_METHOD.
+        method (Union[str, BaseSchemaMatcher], optional): The method to use for schema matching. Defaults to "magneto_ft_bp".
+        source_context (Dict[str, Any], optional): The context for the source dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target dataset, which can include additional information, such as descriptions or metadata.
         method_args (Dict[str, Any], optional): The additional arguments of the method for schema matching.
-        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard data model.
         use_cache (bool, optional): Whether to use caching for the matches results. Defaults to True.
 
     Returns:
         pd.DataFrame: A DataFrame containing the top-k matches between the source and target tables.
     """
 
-    if attributes is not None and len(attributes) > 0:
-        selected_source = source[attributes]
-    else:
-        selected_source = source
-
-    source_dataset = _load_dataset(selected_source)
+    source_dataset = _load_dataset(source)
     target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
+
+    source_ctx = create_context(
+        source_dataset,
+        user_context=source_context,
+    )
+    target_ctx = create_context(
+        target_dataset,
+        user_context=target_context,
+    )
+
+    if attributes is None:
+        attributes = source_dataset.get_attributes()
 
     # In the future, we might pass the whole dataset (to get metadata/descriptions) instead of just the DataFrame.
     if use_cache:
         matches = _cache_schema_matches(
-            source_df=source_dataset.get_dataframe_rep(),
-            target_df=target_dataset.get_dataframe_rep(),
+            source_df=source_dataset._get_dataframe_rep()[attributes],
+            target_df=target_dataset._get_dataframe_rep(),
+            source_ctx=source_ctx,
+            target_ctx=target_ctx,
             match_func=topk_matcher.rank_schema_matches,
             matcher_obj=topk_matcher,
             top_k=top_k,
         )
     else:
         matches = topk_matcher.rank_schema_matches(
-            source_dataset.get_dataframe_rep(),
-            target_dataset.get_dataframe_rep(),
+            source_dataset._get_dataframe_rep()[attributes],
+            target_dataset._get_dataframe_rep(),
             top_k=top_k,
+            source_context=source_ctx,
+            target_context=target_ctx,
         )
 
     return pd.DataFrame(
@@ -222,11 +255,15 @@ def _load_topk_schema_matcher(
 def _cache_schema_matches(
     source_df: pd.DataFrame,
     target_df: pd.DataFrame,
+    source_ctx: Dict[str, Any],
+    target_ctx: Dict[str, Any],
     match_func: Callable,
     matcher_obj: Union[BaseSchemaMatcher, BaseTopkSchemaMatcher],
     **match_kwargs: Any,
 ) -> List[ColumnMatch]:
-    hash_id = create_schema_hash(source_df, target_df, matcher_obj, **match_kwargs)
+    hash_id = create_schema_hash(
+        source_df, target_df, source_ctx, target_ctx, matcher_obj, **match_kwargs
+    )
     cached_result = load_from_cache(hash_id)
 
     if cached_result is not None:
@@ -239,8 +276,8 @@ def _cache_schema_matches(
 
 
 def match_values(
-    source: pd.DataFrame,
-    target: Union[str, pd.DataFrame],
+    source: Union[pd.DataFrame, BaseStandard],
+    target: Optional[Union[pd.DataFrame, BaseStandard, str]],
     attribute_matches: Union[Tuple[str, str], pd.DataFrame],
     method: Optional[Union[str, BaseValueMatcher]] = DEFAULT_VALUE_MATCHING_METHOD,
     source_context: Optional[Dict[str, Any]] = None,
@@ -256,35 +293,22 @@ def match_values(
     as 'gdc') using the method provided in `method`.
 
     Args:
-        source (pd.DataFrame): The source dataset containing the attributes/columns to be
-          matched.
-
-        target (Union[str, pd.DataFrame]): The target domain to match the
-          values to. It can be either a DataFrame or a standard vocabulary name.
-
-        attribute_matches (Union[Tuple[str, str], pd.DataFrame]): A tuple or a
-          DataFrame containing the mappings between source and target attributes.
+        source (pd.DataFrame): The source dataset containing the attributes/columns to be matched.
+        target (Union[str, pd.DataFrame]): The target domain to match the values to. It can be either a DataFrame or a standard vocabulary name.
+        attribute_matches (Union[Tuple[str, str], pd.DataFrame]): A tuple or a DataFrame containing the mappings between source and target attributes.
 
           - If a tuple is provided, it should contain two strings where the first
             is the source attribute and the second is the target attribute.
           - If a DataFrame is provided, it should contain 'source_attribute' and 'target_attribute'
             column names where each row specifies a attribute mapping.
 
-        method (str, optional): The name of the method to use for value
-          matching.
-        source_context (Dict[str, Any], optional): The context for the source
-            dataset, which can include additional information, such as descriptions or metadata.
-        target_context (Dict[str, Any], optional): The context for the target
-            dataset, which can include additional information, such as descriptions or metadata.
-        method_args (Dict[str, Any], optional): The additional arguments of the
-            method for value matching.
-        standard_args (Dict[str, Any], optional): The additional arguments of the
-            standard vocabulary.
-        output_format (str, optional): The format of the output. If "dataframe",
-            a single DataFrame is returned. If "list", a list of DataFrames is returned.
-            Defaults to "dataframe".
-        use_cache (bool, optional): Whether to use caching for the value matching results.
-            Defaults to True.
+        method (str, optional): The name of the method to use for value matching.
+        source_context (Dict[str, Any], optional): The context for the source dataset, which can include additional information, such as descriptions or metadata.
+        target_context (Dict[str, Any], optional): The context for the target dataset, which can include additional information, such as descriptions or metadata.
+        method_args (Dict[str, Any], optional): The additional arguments of the method for value matching.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard data model.
+        output_format (str, optional): The format of the output. If "dataframe", a single DataFrame is returned. If "list", a list of DataFrames is returned. Defaults to "dataframe".
+        use_cache (bool, optional): Whether to use caching for the value matching results. Defaults to True.
 
     Returns:
         pd.DataFrame: A DataFrame or a List of DataFrames containing the results of value matching
@@ -308,12 +332,12 @@ def match_values(
         source_values,
         target_values,
     ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
-        source_ctx = _create_context(
+        source_ctx = create_context(
             source_dataset,
             source_attribute,
             user_context=source_context,
         )
-        target_ctx = _create_context(
+        target_ctx = create_context(
             target_dataset,
             target_attribute,
             user_context=target_context,
@@ -457,12 +481,12 @@ def rank_value_matches(
         source_values,
         target_values,
     ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
-        source_ctx = _create_context(
+        source_ctx = create_context(
             source_dataset,
             source_attribute,
             user_context=source_context,
         )
-        target_ctx = _create_context(
+        target_ctx = create_context(
             target_dataset,
             target_attribute,
             user_context=target_context,
@@ -576,9 +600,7 @@ def view_value_matches(
     Shows the value match results grouped by source and target attributes matches
 
     Args:
-        matches (Union[pd.DataFrame, List[pd.DataFrame]): The value match results obtained by the method
-        match_values() or rank_value_matches().
-
+        matches (Union[pd.DataFrame, List[pd.DataFrame]]): The value match results obtained by the method match_values() or rank_value_matches().
         edit (bool, optional): Whether or not to edit the values within the DataFrame. Editable mode works only in Jupyter notebooks.
     """
 
@@ -673,7 +695,7 @@ def view_value_matches(
 
 
 def preview_domain(
-    dataset: Union[str, pd.DataFrame],
+    dataset: Union[pd.DataFrame, BaseStandard, str],
     attribute: str,
     limit: Optional[int] = None,
     standard_args: Optional[Dict[str, Any]] = None,
@@ -683,15 +705,12 @@ def preview_domain(
     (if applicable) of the given attribute of the source or target dataset.
 
     Args:
-        dataset (Union[str, pd.DataFrame], optional): The dataset or standard vocabulary name
-        containing the attribute to preview.
-            If a string is provided and it is equal to "gdc", the domain will be retrieved
-            from the GDC data.
+        dataset (Union[pd.DataFrame, BaseStandard, str], optional): The dataset or standard data model name containing the attribute to preview.
+            If a BaseStandard or string is provided, the domain will be retrieved from the standard data model.
             If a DataFrame is provided, the domain will be retrieved from the specified DataFrame.
         attribute(str): The attribute name to show the domain.
-        limit (int, optional): The maximum number of unique values to include in the preview.
-            Defaults to None.
-        standard_args (Dict[str, Any], optional): The additional arguments of the standard vocabulary.
+        limit (int, optional): The maximum number of unique values to include in the preview. Defaults to None.
+        standard_args (Dict[str, Any], optional): The additional arguments of the standard data model.
 
     Returns:
         pd.DataFrame: A DataFrame containing the unique domain values (or a sample of
@@ -706,7 +725,13 @@ def preview_domain(
         attribute_metadata = standard.get_attribute_metadata([attribute])
         value_names = attribute_metadata[attribute]["value_names"]
         value_descriptions = attribute_metadata[attribute]["value_descriptions"]
-        attribute_description = attribute_metadata[attribute]["description"]
+        attribute_description = attribute_metadata[attribute]["attribute_description"]
+        assert len(value_names) == len(value_descriptions)
+    elif isinstance(dataset, BaseStandard):
+        attribute_metadata = dataset.get_attribute_metadata([attribute])
+        value_names = attribute_metadata[attribute]["value_names"]
+        value_descriptions = attribute_metadata[attribute]["value_descriptions"]
+        attribute_description = attribute_metadata[attribute]["attribute_description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[attribute].unique()
@@ -714,7 +739,7 @@ def preview_domain(
         attribute_description = ""
     else:
         raise ValueError(
-            "The dataset must be a DataFrame or a standard vocabulary name."
+            "The dataset must be a DataFrame, a BaseStandard, or a supported standard name."
         )
 
     if isinstance(limit, int):
@@ -749,10 +774,9 @@ def evaluate_schema_matches(
 
     Args:
         source (pd.DataFrame): The source dataset.
-        target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
-        schema_matches (pd.DataFrame): The DataFrame containing the schema matches with columns
-            'source_attribute', 'target_attribute', and 'similarity'.
-        standard_args (Dict[str, Any], optional): Additional arguments for the standard vocabulary.
+        target (Union[str, pd.DataFrame]): The target dataset or standard data model name.
+        schema_matches (pd.DataFrame): The DataFrame containing the schema matches with columns 'source_attribute', 'target_attribute', and 'similarity'.
+        standard_args (Dict[str, Any], optional): Additional arguments for the standard data model.
 
     Returns:
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
@@ -790,10 +814,10 @@ def evaluate_value_matches(
 
     Args:
         source (pd.DataFrame): The source dataset.
-        target (Union[str, pd.DataFrame]): The target dataset or standard vocabulary name.
+        target (Union[str, pd.DataFrame]): The target dataset or standard data model name.
         value_matches (pd.DataFrame): The DataFrame containing the value matches with columns
             'source_attribute', 'target_attribute', 'source_value', 'target_value', and 'similarity'.
-        standard_args (Dict[str, Any], optional): Additional arguments for the standard vocabulary.
+        standard_args (Dict[str, Any], optional): Additional arguments for the standard data model.
 
     Returns:
         pd.DataFrame: A DataFrame containing the evaluated matches with additional columns
@@ -824,64 +848,23 @@ def evaluate_value_matches(
 
 
 def _load_dataset(
-    dataset: Union[str, pd.DataFrame], standard_args: Optional[Dict[str, Any]] = None
+    dataset: Union[pd.DataFrame, BaseStandard, str],
+    standard_args: Optional[Dict[str, Any]] = None,
 ) -> BaseStandard:
-    if isinstance(dataset, str):
+    if isinstance(dataset, BaseStandard):
+        new_dataset = dataset
+    elif isinstance(dataset, pd.DataFrame):
+        new_dataset = DataFrame(dataset)
+    elif isinstance(dataset, str):
         if standard_args is None:
             standard_args = {}
         new_dataset = Standards.get_standard(dataset, **standard_args)
-
-    elif isinstance(dataset, pd.DataFrame):
-        new_dataset = DataFrame(dataset)
     else:
         raise ValueError(
-            "The dataset must be a DataFrame or a supported standard name."
+            "The dataset must be a DataFrame, a BaseStandard, or a supported standard name."
         )
 
     return new_dataset
-
-
-def _create_context(
-    dataset: BaseStandard,
-    attribute: str,
-    user_context: Optional[Dict[str, str]] = None,
-):
-    """
-    Creates the context for source and target attributes, including auto-generated
-    context based on the dataset metadata and user-provided context.
-    Args:
-        dataset (BaseStandard): The dataset.
-        attribute (str): The attribute name.
-        target_attribute (str): The target attribute name.
-        source_user_ctx (Dict[str, str], optional): User-provided context for the attribute.
-    Returns:
-        Dict[str, str]: A dictionary containing the context for the attribute.
-    """
-    context = {}
-
-    if user_context is None:
-        user_context = {}
-
-    # Auto-generated context
-    auto_context = {
-        "attribute_name": attribute,
-        "attribute_description": dataset.get_attribute_metadata([attribute])[attribute][
-            "description"
-        ],
-    }
-
-    context.update(auto_context)
-    for context_id, context_description in user_context.items():
-        if context_id not in context:
-            context[context_id] = context_description
-        else:
-            warnings.warn(
-                f"Context ID '{context_id}' found in the auto generated context. "
-                "It will be ignored.",
-                UserWarning,
-            )
-
-    return context
 
 
 def _iterate_values(

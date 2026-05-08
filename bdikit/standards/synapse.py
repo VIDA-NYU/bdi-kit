@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 from os.path import join, dirname
 from typing import List, Dict
 from bdikit.standards.base import BaseStandard
@@ -27,11 +26,11 @@ class Synapse(BaseStandard):
                 f"Supported subschemas are: {list(data['subschema'].keys())}"
             )
 
-        entities = data["subschema"][self.subschema_name]
+        attributes = data["subschema"][self.subschema_name]
         self.data = {}
 
-        for entity in entities:
-            self.data[entity] = data["entity"][entity]
+        for attribute in attributes:
+            self.data[attribute] = data["attributes"][attribute]
 
     def get_attributes(self) -> List[str]:
         return list(self.data.keys())
@@ -53,8 +52,8 @@ class Synapse(BaseStandard):
         for attribute_name in attribute_names:
             raw_metadata = self.data.get(attribute_name, {})
             attribute_metadata[attribute_name] = {}
-            attribute_metadata[attribute_name]["description"] = raw_metadata.get(
-                "column_description", ""
+            attribute_metadata[attribute_name]["attribute_description"] = (
+                raw_metadata.get("attribute_description", "")
             )
             attribute_metadata[attribute_name]["value_names"] = list(
                 raw_metadata.get("value_data", {}).keys()
@@ -64,17 +63,3 @@ class Synapse(BaseStandard):
             )
 
         return attribute_metadata
-
-    def get_dataframe_rep(self) -> pd.DataFrame:
-        reshaped_data = {
-            key: list(value["value_data"].keys()) for key, value in self.data.items()
-        }
-
-        # Ensure all lists have the same length by padding with None
-        max_length = max(len(v) for v in reshaped_data.values())
-        for k, v in reshaped_data.items():
-            reshaped_data[k].extend([None] * (max_length - len(v)))
-
-        df = pd.DataFrame.from_dict(reshaped_data, orient="columns")
-
-        return df
