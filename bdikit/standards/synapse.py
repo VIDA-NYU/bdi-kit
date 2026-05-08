@@ -26,11 +26,11 @@ class Synapse(BaseStandard):
                 f"Supported subschemas are: {list(data['subschema'].keys())}"
             )
 
-        entities = data["subschema"][self.subschema_name]
+        attributes = data["subschema"][self.subschema_name]
         self.data = {}
 
-        for entity in entities:
-            self.data[entity] = data["attributes"][entity]
+        for attribute in attributes:
+            self.data[attribute] = data["attributes"][attribute]
 
     def get_attributes(self) -> List[str]:
         return list(self.data.keys())
