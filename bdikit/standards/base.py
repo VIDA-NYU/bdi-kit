@@ -1,6 +1,12 @@
 import pandas as pd
 from typing import List, Dict
 
+MANDATORY_METADATA_FIELDS = [
+    "attribute_description",
+    "value_names",
+    "value_descriptions",
+]
+
 
 class BaseStandard:
     """

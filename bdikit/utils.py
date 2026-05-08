@@ -3,11 +3,13 @@ import json
 import pickle
 import hashlib
 import inspect
+import warnings
 import importlib
 import pandas as pd
 from os.path import join, dirname, isfile
-from typing import Mapping, Dict, Any, List
+from typing import Mapping, Dict, Any, List, Optional
 from bdikit.download import BDIKIT_EMBEDDINGS_CACHE_DIR, BDIKIT_CACHE_DIR
+from bdikit.standards.base import BaseStandard, MANDATORY_METADATA_FIELDS
 
 
 def hash_dataframe(df: pd.DataFrame) -> str:
@@ -230,6 +232,69 @@ def get_class_doc(import_path: str):
         return f"The class {class_name} does not have description."
 
     return cls.__doc__.strip()
+
+
+def create_context(
+    dataset: BaseStandard,
+    attribute: Optional[str] = None,
+    user_context: Optional[Dict[str, str]] = None,
+):
+    """
+    Creates the context for source and target attributes, including auto-generated
+    context based on the dataset metadata and user-provided context.
+    Args:
+        dataset (BaseStandard): The dataset.
+        attribute (str): The attribute name.
+        target_attribute (str): The target attribute name.
+        source_user_ctx (Dict[str, str], optional): User-provided context for the attribute.
+    Returns:
+        Dict[str, str]: A dictionary containing the context for the attribute.
+    """
+    context = {}
+
+    if user_context is None:
+        user_context = {}
+
+    if attribute is None:
+        auto_context = {}
+    else:
+        # Auto-generated context
+        metadata = dataset.get_attribute_metadata([attribute])[attribute]
+
+        auto_context = {
+            "attribute_name": attribute,
+        }
+        if len(metadata["attribute_description"]) > 0:
+            auto_context["attribute_description"] = metadata["attribute_description"]
+
+        for key, value in metadata.items():
+            if key not in MANDATORY_METADATA_FIELDS:
+                auto_context[key] = str(value)
+
+        value_names = metadata.get("value_names", [])
+        value_descriptions = metadata.get("value_descriptions", [])
+
+        if value_names and value_descriptions:
+            value_pairs = [
+                f"{name}: {desc}"
+                for name, desc in zip(value_names, value_descriptions)
+                if desc
+            ]
+            if value_pairs:
+                auto_context["attribute_values"] = ". ".join(value_pairs)
+
+    context.update(auto_context)
+    for context_id, context_description in user_context.items():
+        if context_id not in context:
+            context[context_id] = context_description
+        else:
+            warnings.warn(
+                f"Context ID '{context_id}' found in the auto generated context. "
+                "It will be ignored.",
+                UserWarning,
+            )
+
+    return context
 
 
 def generate_string_context(context: Dict[str, str], dataset_label: str) -> str:

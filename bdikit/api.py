@@ -24,7 +24,7 @@ from bdikit.value_matching.matcher_factory import (
     get_value_matcher,
     get_topk_value_matcher,
 )
-from bdikit.standards.base import BaseStandard
+from bdikit.standards.base import BaseStandard, MANDATORY_METADATA_FIELDS
 from bdikit.standards.standard_factory import Standards
 from bdikit.standards.dataframe import DataFrame
 
@@ -43,6 +43,7 @@ from bdikit.utils import (
     save_in_cache,
     create_schema_hash,
     create_value_hash,
+    create_context,
 )
 
 from bdikit.matching_evaluation.schema_matching import (
@@ -93,11 +94,11 @@ def match_schema(
     target_dataset = _load_dataset(target, standard_args)
     matcher_instance = _load_schema_matcher(method, method_args)
 
-    source_ctx = _create_context(
+    source_ctx = create_context(
         source_dataset,
         user_context=source_context,
     )
-    target_ctx = _create_context(
+    target_ctx = create_context(
         target_dataset,
         user_context=target_context,
     )
@@ -187,11 +188,11 @@ def rank_schema_matches(
     target_dataset = _load_dataset(target, standard_args)
     topk_matcher = _load_topk_schema_matcher(method, method_args)
 
-    source_ctx = _create_context(
+    source_ctx = create_context(
         source_dataset,
         user_context=source_context,
     )
-    target_ctx = _create_context(
+    target_ctx = create_context(
         target_dataset,
         user_context=target_context,
     )
@@ -331,12 +332,12 @@ def match_values(
         source_values,
         target_values,
     ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
-        source_ctx = _create_context(
+        source_ctx = create_context(
             source_dataset,
             source_attribute,
             user_context=source_context,
         )
-        target_ctx = _create_context(
+        target_ctx = create_context(
             target_dataset,
             target_attribute,
             user_context=target_context,
@@ -480,12 +481,12 @@ def rank_value_matches(
         source_values,
         target_values,
     ) in _iterate_values(source_dataset, target_dataset, attribute_matches):
-        source_ctx = _create_context(
+        source_ctx = create_context(
             source_dataset,
             source_attribute,
             user_context=source_context,
         )
-        target_ctx = _create_context(
+        target_ctx = create_context(
             target_dataset,
             target_attribute,
             user_context=target_context,
@@ -724,13 +725,13 @@ def preview_domain(
         attribute_metadata = standard.get_attribute_metadata([attribute])
         value_names = attribute_metadata[attribute]["value_names"]
         value_descriptions = attribute_metadata[attribute]["value_descriptions"]
-        attribute_description = attribute_metadata[attribute]["description"]
+        attribute_description = attribute_metadata[attribute]["attribute_description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, BaseStandard):
         attribute_metadata = dataset.get_attribute_metadata([attribute])
         value_names = attribute_metadata[attribute]["value_names"]
         value_descriptions = attribute_metadata[attribute]["value_descriptions"]
-        attribute_description = attribute_metadata[attribute]["description"]
+        attribute_description = attribute_metadata[attribute]["attribute_description"]
         assert len(value_names) == len(value_descriptions)
     elif isinstance(dataset, pd.DataFrame):
         value_names = dataset[attribute].unique()
@@ -864,52 +865,6 @@ def _load_dataset(
         )
 
     return new_dataset
-
-
-def _create_context(
-    dataset: BaseStandard,
-    attribute: Optional[str] = None,
-    user_context: Optional[Dict[str, str]] = None,
-):
-    """
-    Creates the context for source and target attributes, including auto-generated
-    context based on the dataset metadata and user-provided context.
-    Args:
-        dataset (BaseStandard): The dataset.
-        attribute (str): The attribute name.
-        target_attribute (str): The target attribute name.
-        source_user_ctx (Dict[str, str], optional): User-provided context for the attribute.
-    Returns:
-        Dict[str, str]: A dictionary containing the context for the attribute.
-    """
-    context = {}
-
-    if user_context is None:
-        user_context = {}
-
-    if attribute is None:
-        auto_context = {}
-    else:
-        # Auto-generated context
-        auto_context = {
-            "attribute_name": attribute,
-            "attribute_description": dataset.get_attribute_metadata([attribute])[
-                attribute
-            ]["description"],
-        }
-
-    context.update(auto_context)
-    for context_id, context_description in user_context.items():
-        if context_id not in context:
-            context[context_id] = context_description
-        else:
-            warnings.warn(
-                f"Context ID '{context_id}' found in the auto generated context. "
-                "It will be ignored.",
-                UserWarning,
-            )
-
-    return context
 
 
 def _iterate_values(
