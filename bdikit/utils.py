@@ -232,7 +232,7 @@ def get_class_doc(import_path: str):
     return cls.__doc__.strip()
 
 
-def get_additional_context(context: Dict[str, str], dataset_label: str) -> str:
+def generate_string_context(context: Dict[str, str], dataset_label: str) -> str:
     """
     Generate a string with additional context information from the provided context dictionary.
     This function excludes the keys 'attribute_name' and 'attribute_description' from the context.

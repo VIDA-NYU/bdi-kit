@@ -3,7 +3,7 @@ import warnings
 import json_repair
 from litellm import completion
 from typing import List, Dict
-from bdikit.utils import get_additional_context
+from bdikit.utils import generate_string_context
 from bdikit.schema_matching.base import BaseTopkSchemaMatcher, ColumnMatch
 
 
@@ -32,8 +32,8 @@ class LLM(BaseTopkSchemaMatcher):
     ) -> List[ColumnMatch]:
         matches = []
 
-        additional_source_cxt = get_additional_context(source_context, "source")
-        additional_target_cxt = get_additional_context(target_context, "target")
+        additional_source_cxt = generate_string_context(source_context, "source")
+        additional_target_cxt = generate_string_context(target_context, "target")
         additional_context = additional_source_cxt + additional_target_cxt
 
         target_cols = [

@@ -5,7 +5,7 @@ import warnings
 import numpy as np
 from litellm import completion
 from typing import List, Dict, Any, Mapping
-from bdikit.utils import get_additional_context
+from bdikit.utils import generate_string_context
 from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
 
 random.seed(42)
@@ -36,8 +36,8 @@ class LLMNumeric(BaseValueMatcher):
         sample_values = []
         source_attribute = source_context["attribute_name"]
         target_attribute = target_context["attribute_name"]
-        additional_source_cxt = get_additional_context(source_context, "source")
-        additional_target_cxt = get_additional_context(target_context, "target")
+        additional_source_cxt = generate_string_context(source_context, "source")
+        additional_target_cxt = generate_string_context(target_context, "target")
         additional_context = additional_source_cxt + additional_target_cxt
 
         # For cases where source values are numeric but in string format, e.g. "1.0", "2.0"
