@@ -60,4 +60,4 @@ If you find BDI-Kit useful in your work, please consider citing:
 ```
 
 
-You can also find [here](https://bdi-kit.readthedocs.io/) our other papers related to the BDI-Kit library.
+You can also find [here](https://bdi-kit.readthedocs.io/dev/how-works.html#related-publications) our other papers related to the BDI-Kit library.
