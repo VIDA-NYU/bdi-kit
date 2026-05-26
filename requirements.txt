@@ -11,7 +11,6 @@ flair[word-embeddings]>=0.14.0
 requests
 scipy
 matplotlib<3.9
-panel!=1.4.3
 nltk>=3.9.1
 magneto-python
 json-repair

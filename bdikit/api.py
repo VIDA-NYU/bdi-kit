@@ -3,7 +3,6 @@ import logging
 import warnings
 import itertools
 import pandas as pd
-import panel as pn
 from collections import defaultdict
 
 from bdikit.schema_matching.base import (
@@ -52,8 +51,6 @@ from bdikit.matching_evaluation.schema_matching import (
 from bdikit.matching_evaluation.value_matching import (
     evaluate_match as evaluate_value_match,
 )
-
-pn.extension("tabulator")
 
 logger = logging.getLogger(__name__)
 
@@ -604,6 +601,18 @@ def view_value_matches(
         edit (bool, optional): Whether or not to edit the values within the DataFrame. Editable mode works only in Jupyter notebooks.
     """
 
+    if edit:
+        try:
+            import panel as pn
+
+            pn.extension("tabulator")
+        except ImportError:
+            warnings.warn(
+                "The 'panel' library is required for editing the matches. Please install it with 'pip install panel' and 'pip install jupyter_bokeh'."
+                "Displaying non-editable matches instead."
+            )
+            edit = False
+
     def regular_display():
         if isinstance(matches, pd.DataFrame):
             print(matches)
@@ -617,7 +626,9 @@ def view_value_matches(
         from IPython import get_ipython
 
         shell = get_ipython().__class__.__name__
-        if shell != "ZMQInteractiveShell":
+
+        # If not in a Jupyter notebook environment, use regular display
+        if shell not in ("ZMQInteractiveShell", "Shell"):
             regular_display()
             return
     except ImportError:
