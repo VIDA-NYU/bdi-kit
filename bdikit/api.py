@@ -603,12 +603,13 @@ def view_value_matches(
 
     if edit:
         try:
+            warnings.filterwarnings("ignore", message=".*jupyter_bokeh.*")
             import panel as pn
 
             pn.extension("tabulator")
         except ImportError:
             warnings.warn(
-                "The 'panel' library is required for editing the matches. Please install it with 'pip install panel' and 'pip install jupyter_bokeh'."
+                "The 'panel' library is required for editing the matches. Please install it with 'pip install panel'."
                 "Displaying non-editable matches instead."
             )
             edit = False
