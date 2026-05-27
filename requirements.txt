@@ -10,7 +10,6 @@ scikit-learn
 flair[word-embeddings]>=0.14.0
 requests
 scipy
-matplotlib<3.9
 nltk>=3.9.1
 magneto-python
 json-repair
