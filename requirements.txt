@@ -1,7 +1,7 @@
 polyfuzz
 gensim>=4.3.3
 pandas
-valentine>=0.5.0
+valentine==0.5.0
 sentence_transformers<=5.3.0
 torch
 transformers<5.0.0
@@ -10,8 +10,6 @@ scikit-learn
 flair[word-embeddings]>=0.14.0
 requests
 scipy
-matplotlib<3.9
-panel!=1.4.3
 nltk>=3.9.1
 magneto-python
 json-repair
