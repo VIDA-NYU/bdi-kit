@@ -3,6 +3,7 @@
 [![Documentation Status](https://readthedocs.org/projects/bdi-kit/badge/?version=stable)](https://bdi-kit.readthedocs.io)
 [![Tests](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/build.yml)
 [![Lint](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml/badge.svg)](https://github.com/VIDA-NYU/bdi-kit/actions/workflows/lint.yml)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/VIDA-NYU/bdi-kit/blob/devel/examples/quick-start.ipynb)
 
 
 # BDI-Kit 
@@ -37,7 +38,7 @@ pip install git+https://github.com/VIDA-NYU/bdi-kit@devel
 
 This video demonstrates a brief overview of BDI-Kit, showcasing its functionality through both the Python API and the chatbot-style agent interface.
 
-[![Watch a demo of BDI-Kit](docs/source/_static/images/demo_thumbnail.png)](https://drive.google.com/file/d/1gMlZuocYrKFQYDZOphIyFj-nvjtx4ODR/view?usp=sharing)
+[![Watch a demo of BDI-Kit](https://raw.githubusercontent.com/VIDA-NYU/bdi-kit/refs/heads/devel/docs/source/_static/images/demo_thumbnail.png)](https://www.youtube.com/watch?v=AP0bF7nbLeQ)
 
 
 ## 🤝 Contributing
