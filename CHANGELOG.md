@@ -1,6 +1,27 @@
 # Change Log
 
-## 0.11.0.dev0 (yyyy-mm-dd)
+## 0.11.0 (2026-05-29)
+
+We are pleased to announce the release of **BDI-Kit version 0.11.0**.  
+This release introduces new harmonization capabilities and multiple improvements to documentation, usability, and dependency management.
+
+Below is a list of the main changes included in this release:
+
+
+### New Features
+
+- **Data Model-to-Data Model Harmonization:** Added support for harmonizing directly between data models, enabling more flexible and expressive schema alignment workflows. ([#142](https://github.com/VIDA-NYU/bdi-kit/pull/142))
+
+
+### Enhancements
+
+- **Optional Panel Dependency:** Made `panel` optional and cleaned up visualization-related dependencies to reduce installation overhead and improve modularity. ([#144](https://github.com/VIDA-NYU/bdi-kit/pull/144))
+
+
+### Documentation
+
+- **BDI-Kit Overview Improvements:** Enhanced documentation with a clearer project overview and improved notebook examples for better onboarding and usability. ([#143](https://github.com/VIDA-NYU/bdi-kit/pull/143))
+- **General Documentation and Examples:** Improved and expanded documentation content and example usage across the project. ([#145](https://github.com/VIDA-NYU/bdi-kit/pull/145))
 
 
 ## 0.10.0 (2026-04-10)
