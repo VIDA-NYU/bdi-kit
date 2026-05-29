@@ -1,3 +1,3 @@
-__version__ = "0.11.0"
+__version__ = "0.12.0.dev0"
 # To shortcut the import path
 from bdikit.api import *

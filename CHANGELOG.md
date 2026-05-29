@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.12.0.dev0 (yyyy-mm-dd)
+
+
 ## 0.11.0 (2026-05-29)
 
 We are pleased to announce the release of **BDI-Kit version 0.11.0**.  
