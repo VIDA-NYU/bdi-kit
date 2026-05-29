@@ -20,7 +20,7 @@ The following quick demo illustrates how BDI-Kit can be used through both the Py
 
 .. image:: _static/images/demo_thumbnail.png
    :alt: Watch a demo of BDI-Kit
-   :target: https://drive.google.com/file/d/1gMlZuocYrKFQYDZOphIyFj-nvjtx4ODR/view?usp=sharing
+   :target: https://www.youtube.com/watch?v=AP0bF7nbLeQ
    :align: center
 
 

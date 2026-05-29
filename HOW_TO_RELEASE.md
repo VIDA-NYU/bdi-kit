@@ -12,7 +12,7 @@
 
 4. Commit with title "Bump version for release {version}" and push to remote. This commit will include the file changes done in steps 2 and 3 above.
 ```bash
-git commit -m "Bump version for release 0.x.y"
+git commit -m "bump version for release 0.x.y"
 git push origin devel
 ```
 
@@ -71,6 +71,6 @@ git merge main
 14.  Commit with message `Bump version for development`.
 ```bash
 git add CHANGELOG.md bdikit/__init__.py
-git commit -m "Bump version for development"
+git commit -m "bump version for development"
 git push
 ```
