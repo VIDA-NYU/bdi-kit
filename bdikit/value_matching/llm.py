@@ -2,12 +2,12 @@ import json_repair
 import warnings
 from litellm import completion
 from typing import List, Dict, Any, Mapping
-from bdikit.value_matching.base import BaseValueMatcher, ValueMatch
+from bdikit.value_matching.base import BaseTopkValueMatcher, ValueMatch
 from bdikit.utils import generate_string_context
 from bdikit.config import VALUE_MATCHING_THRESHOLD
 
 
-class LLM(BaseValueMatcher):
+class LLM(BaseTopkValueMatcher):
     """A value matcher that uses LLM to match values based on their similarity."""
 
     def __init__(
@@ -20,10 +20,11 @@ class LLM(BaseValueMatcher):
         self.threshold = threshold
         self.model_kwargs = model_kwargs
 
-    def match_values(
+    def rank_value_matches(
         self,
         source_values: List[Any],
         target_values: List[Any],
+        top_k: int,
         source_context: Dict[str, str] = None,
         target_context: Dict[str, str] = None,
     ) -> List[ValueMatch]:
@@ -44,15 +45,17 @@ class LLM(BaseValueMatcher):
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an intelligent system that given a term, you have to choose a value from a list that best matches the term.",
+                        "content": "You are an intelligent system that given a term, ranks the values from a list that best match the term.",
                     },
                     {
                         "role": "user",
-                        "content": f"For the term: '{source_value}', choose a value from this list {target_values}. "
-                        "Return the value from the list with a similarity score, between 0 and 1, with 1 indicating the highest similarity. "
+                        "content": f"For the term: '{source_value}', choose up to {top_k} values from this list {target_values} "
+                        "that best match it, ordered from most to least similar. "
+                        "Return each chosen value together with a similarity score, between 0 and 1, with 1 indicating the highest similarity. "
                         f"{additional_context}"
                         "DO NOT PROVIDE ANY OTHER OUTPUT TEXT OR EXPLANATION. "
-                        'Only provide a Python dictionary. For example {"term": "term from the list", "score": 0.8}.',
+                        'Only provide a Python list of dictionaries. For example [{"term": "term from the list", "score": 0.8}, '
+                        '{"term": "other term from the list", "score": 0.4}].',
                     },
                 ],
                 **self.model_kwargs,
@@ -61,10 +64,19 @@ class LLM(BaseValueMatcher):
             response_message = response.choices[0].message.content
 
             try:
-                response_dict = json_repair.loads(response_message)
-                target_value = response_dict["term"]
-                score = float(response_dict["score"])
-                if target_value in target_values_set and score >= self.threshold:
+                response_list = json_repair.loads(response_message)
+                ranked_matches = []
+                for entry in response_list:
+                    target_value = entry["term"]
+                    score = float(entry["score"])
+                    if target_value in target_values_set and score >= self.threshold:
+                        ranked_matches.append((target_value, score))
+
+                ranked_matches = sorted(
+                    ranked_matches, key=lambda match: match[1], reverse=True
+                )[:top_k]
+
+                for target_value, score in ranked_matches:
                     matches.append(
                         ValueMatch(
                             source_attribute,
