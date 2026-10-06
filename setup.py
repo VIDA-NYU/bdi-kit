@@ -47,7 +47,15 @@ setuptools.setup(
     },
     extras_require={
         'mcp': ['mcp[cli]'],
-        'chatbot': ['mcp[cli]', 'streamlit', 'langchain', 'langchain-litellm', 'langchain-mcp-adapters'],
+        'chatbot': [
+            'mcp[cli]',
+            'streamlit',
+            'langchain',
+            'langchain-litellm',
+            'langchain-mcp-adapters',
+            'langgraph',
+            'langgraph-checkpoint-sqlite',
+        ],
     },
     python_requires='>=3.10',
     description="BDI-Kit Library",

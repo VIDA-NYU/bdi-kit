@@ -22,6 +22,7 @@ if os.environ.get("STREAMLIT_RUN") != "1":
     import os
 import re
 import queue
+import uuid
 import asyncio
 import argparse
 import threading
@@ -34,9 +35,50 @@ from langchain_mcp_adapters.tools import load_mcp_tools
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import AIMessage, ToolMessage, HumanMessage
 from langchain_litellm import ChatLiteLLM
-from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
+
+from bdikit.download import BDIKIT_CACHE_DIR
+from bdikit.chatbot_tracing import create_trace_logger
 
 litellm.suppress_debug_info = True
+
+
+def _flatten_content(content):
+    """Collapse a structured content-block list (e.g. reasoning/"thinking" blocks
+    from streaming reasoning models) into a plain string, keeping only text parts.
+
+    Some OpenAI-compatible backends (e.g. DeepInfra) reject assistant/tool
+    messages whose `content` is a list containing non-text blocks such as
+    {"type": "thinking", ...}, failing with a 422 "Input should be a valid
+    string" error when that message is replayed in a later turn.
+    """
+    if not isinstance(content, list):
+        return content
+    parts = []
+    for block in content:
+        if isinstance(block, str):
+            parts.append(block)
+        elif isinstance(block, dict) and block.get("type") == "text":
+            text = block.get("text")
+            if isinstance(text, str):
+                parts.append(text)
+    return "".join(parts)
+
+
+def sanitize_messages_for_llm(state):
+    """pre_model_hook: strip non-text content blocks before messages are sent to
+    the LLM, without mutating the checkpointed conversation history."""
+    sanitized = []
+    for message in state["messages"]:
+        if isinstance(message, (AIMessage, ToolMessage)) and isinstance(
+            message.content, list
+        ):
+            message = message.model_copy(
+                update={"content": _flatten_content(message.content)}
+            )
+        sanitized.append(message)
+    return {"llm_input_messages": sanitized}
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -79,8 +121,10 @@ if "processed_message_count" not in st.session_state:
 if "waiting_for_response" not in st.session_state:
     st.session_state.waiting_for_response = False
 
-checkpointer = InMemorySaver()
-config = {"configurable": {"thread_id": "1"}}
+if "thread_id" not in st.session_state:
+    st.session_state.thread_id = str(uuid.uuid4())
+
+CHECKPOINT_DB_PATH = os.path.join(BDIKIT_CACHE_DIR, "chatbot_memory", "checkpoints.db")
 
 server_params = StdioServerParameters(
     command="bdikit-mcp", args=["--llm", llm_model], env=dict(os.environ)
@@ -324,7 +368,7 @@ Response format:
 """
 
 
-async def agent_worker(request_queue, response_queue):
+async def agent_worker(request_queue, response_queue, thread_id):
     """Background worker that maintains the async context"""
     llm_kwargs = {}
 
@@ -340,53 +384,74 @@ async def agent_worker(request_queue, response_queue):
             model=llm_model, streaming=True, max_retries=1, timeout=300, **llm_kwargs
         )
 
+        trace_logger, trace_path = create_trace_logger(thread_id)
+        print(f"[AGENT] Writing traces to {trace_path}")
+        config = {
+            "configurable": {"thread_id": thread_id},
+            "callbacks": [trace_logger],
+        }
+
+        os.makedirs(os.path.dirname(CHECKPOINT_DB_PATH), exist_ok=True)
+
         async with stdio_client(server_params) as (read, write):
             async with ClientSession(read, write) as session:
                 await session.initialize()
                 tools = await load_mcp_tools(session)
                 print(f"[AGENT] Loaded {len(tools)} tools")
-                agent = create_react_agent(
-                    llm, tools, prompt=prompt, checkpointer=checkpointer
-                )
 
-                # Signal initialization complete
-                response_queue.put(("initialized", None))
-                print("[AGENT] Initialization complete")
+                async with AsyncSqliteSaver.from_conn_string(
+                    CHECKPOINT_DB_PATH
+                ) as checkpointer:
+                    agent = create_react_agent(
+                        llm,
+                        tools,
+                        prompt=prompt,
+                        checkpointer=checkpointer,
+                        pre_model_hook=sanitize_messages_for_llm,
+                    )
 
-                # Process requests
-                while True:
-                    try:
+                    # Signal initialization complete
+                    response_queue.put(("initialized", None))
+                    print("[AGENT] Initialization complete")
+
+                    # Process requests
+                    while True:
                         try:
-                            message = request_queue.get_nowait()
-                            if message == "STOP":
-                                break
+                            try:
+                                message = request_queue.get_nowait()
+                                if message == "STOP":
+                                    break
 
-                            print(f"[AGENT] Processing message: {message}")
+                                print(f"[AGENT] Processing message: {message}")
 
-                            # Process the message
-                            result = await agent.ainvoke({"messages": message}, config)
+                                # Process the message
+                                result = await agent.ainvoke(
+                                    {"messages": message}, config
+                                )
 
-                            messages = result.get("messages", [])
-                            print(f"[AGENT] Got {len(messages)} messages in response")
+                                messages = result.get("messages", [])
+                                print(
+                                    f"[AGENT] Got {len(messages)} messages in response"
+                                )
 
-                            for i, msg in enumerate(messages):
-                                print(f"[AGENT] Message {i}: {type(msg).__name__}")
-                                if hasattr(msg, "content"):
-                                    print(
-                                        f"[AGENT]   Content: {str(msg.content)[:200]}"
-                                    )
+                                for i, msg in enumerate(messages):
+                                    print(f"[AGENT] Message {i}: {type(msg).__name__}")
+                                    if hasattr(msg, "content"):
+                                        print(
+                                            f"[AGENT]   Content: {str(msg.content)[:200]}"
+                                        )
 
-                            response_queue.put(("success", messages))
-                            print("[AGENT] Response queued")
+                                response_queue.put(("success", messages))
+                                print("[AGENT] Response queued")
 
-                        except queue.Empty:
-                            await asyncio.sleep(0.1)
-                    except Exception as e:
-                        print(f"[AGENT] Error processing message: {e}")
-                        import traceback
+                            except queue.Empty:
+                                await asyncio.sleep(0.1)
+                        except Exception as e:
+                            print(f"[AGENT] Error processing message: {e}")
+                            import traceback
 
-                        traceback.print_exc()
-                        response_queue.put(("error", str(e)))
+                            traceback.print_exc()
+                            response_queue.put(("error", str(e)))
     except Exception as e:
         print(f"[AGENT] Fatal error: {e}")
         import traceback
@@ -395,12 +460,12 @@ async def agent_worker(request_queue, response_queue):
         response_queue.put(("init_error", str(e)))
 
 
-def run_agent_loop(request_queue, response_queue):
+def run_agent_loop(request_queue, response_queue, thread_id):
     """Run the agent in a separate thread with its own event loop"""
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
     try:
-        loop.run_until_complete(agent_worker(request_queue, response_queue))
+        loop.run_until_complete(agent_worker(request_queue, response_queue, thread_id))
     finally:
         loop.close()
 
@@ -419,9 +484,12 @@ def format_message_for_display(msg):
             # formatted_messages.append(("tool", "\n".join(tool_info)))
             print("\n".join(tool_info))
 
-        # Handle regular content
-        if msg.content.strip():
-            formatted_messages.append(("assistant", msg.content))
+        # Handle regular content (may be a string, or a list of content
+        # blocks such as {"type": "thinking", ...} from streaming reasoning
+        # models)
+        content = _flatten_content(msg.content)
+        if content.strip():
+            formatted_messages.append(("assistant", content))
 
     elif isinstance(msg, ToolMessage):
         # formatted_messages.append(("tool_response", f"**Tool Response**:\n{msg.content}"))
@@ -439,7 +507,11 @@ if not st.session_state.initialized and not st.session_state.initializing:
     # Start the agent thread
     agent_thread = threading.Thread(
         target=run_agent_loop,
-        args=(st.session_state.request_queue, st.session_state.response_queue),
+        args=(
+            st.session_state.request_queue,
+            st.session_state.response_queue,
+            st.session_state.thread_id,
+        ),
         daemon=True,
     )
     agent_thread.start()
