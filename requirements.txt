@@ -1,4 +1,5 @@
 polyfuzz
+matplotlib<3.11
 gensim>=4.3.3
 pandas
 valentine==0.5.0
