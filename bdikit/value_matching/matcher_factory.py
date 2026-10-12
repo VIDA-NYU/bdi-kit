@@ -9,7 +9,6 @@ class ValueMatchers(Enum):
         "edit_distance",
         "bdikit.value_matching.polyfuzz.EditDistance",
     )
-    LLM = ("llm", "bdikit.value_matching.llm.LLM")
     LLM_NUMERIC = ("llm_numeric", "bdikit.value_matching.llm_numeric.LLMNumeric")
 
     def __init__(self, matcher_name: str, matcher_path: str):
@@ -24,6 +23,8 @@ class TopkValueMatchers(Enum):
         "embedding",
         "bdikit.value_matching.polyfuzz.Embedding",
     )
+
+    LLM = ("llm", "bdikit.value_matching.llm.LLM")
 
     def __init__(self, matcher_name: str, matcher_path: str):
         self.matcher_name = matcher_name
