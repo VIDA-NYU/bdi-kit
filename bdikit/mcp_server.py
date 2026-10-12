@@ -309,7 +309,7 @@ async def materialize_mapping(
     source_dataset_path: str,
     output_folder_path: str,
     file_name: Optional[str] = "materialized_data.csv",
-) -> List[Dict[str, Any]]:
+) -> Dict[str, Any]:
     """Takes the source dataset, the output folder path, and an optional file name,
         and materializes the data, saving it as a CSV file in the specified output folder.
 
