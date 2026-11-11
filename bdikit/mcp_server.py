@@ -203,6 +203,20 @@ async def match_values(
     if server.value_matching_results is None:
         server.value_matching_results = pd.DataFrame()
 
+    if not server.value_matching_results.empty:
+        rerun_pairs = set(
+            zip(value_matches["source_attribute"], value_matches["target_attribute"])
+        )
+        old = server.value_matching_results
+        is_rerun = pd.Series(
+            [
+                pair in rerun_pairs
+                for pair in zip(old["source_attribute"], old["target_attribute"])
+            ],
+            index=old.index,
+        )
+        server.value_matching_results = old[~is_rerun].reset_index(drop=True)
+
     server.value_matching_results = pd.concat(
         [server.value_matching_results, value_matches], ignore_index=True
     )
@@ -323,7 +337,19 @@ async def materialize_mapping(
     source_dataset = pd.read_csv(source_dataset_path)
 
     if server.value_matching_results is not None:
-        mapping_spec_df = server.value_matching_results
+        mapping_spec_df = bdi.create_harmonization_spec(server.value_matching_results)
+        if server.schema_matching_results is not None:
+            value_matched = set(server.value_matching_results["source_attribute"])
+            for row in server.schema_matching_results.itertuples():
+                if row.source_attribute not in value_matched and pd.notna(
+                    row.target_attribute
+                ):
+                    mapping_spec_df.append(
+                        {
+                            "source_attribute": row.source_attribute,
+                            "target_attribute": row.target_attribute,
+                        }
+                    )
     elif server.schema_matching_results is not None:
         mapping_spec_df = server.schema_matching_results
     else:
